@@ -1,3 +1,4 @@
+import ReciprocityTheory.L2DbarEstimates.ChartDerivatives.ChartSymmEventuallyEq -- shake: keep (import ordering (duplicate declarations): loaded first so that the implicit-argument copies of `wd_congr` and `wdb_congr` in `…LeviForms.EventuallyDifferentiableAtOfContDiffAt` load last and are the ones in scope)
 import BuildAid.Leniency.Variable
 import BuildAid.Leniency.Open
 import ReciprocityTheory.L2DbarEstimates.LeviForms.EventuallyDifferentiableAtOfContDiffAt

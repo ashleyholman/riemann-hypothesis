@@ -1,3 +1,4 @@
+import ReciprocityTheory.ReductiveGroups.DiscreteSeries.DiscreteSeriesExistence.SigLamMemLpOfNe -- shake: keep (import ordering (duplicate declarations): loaded first so that the explicit-`ε` copy of `umat_mem_UJset` in `…DiscreteSeriesExistence.NormSubOneLeOfHsdA` loads last and is the one in scope)
 import BuildAid.Leniency.Open
 import Development.WeilBound.RepresentationTheoryGL.FormalDegree.FormalDegreeHilbert.HlamStable
 import ReciprocityTheory.ReductiveGroups.DiscreteSeries.ExceptionalGroupG2.FormalDegreeG2.FdCons

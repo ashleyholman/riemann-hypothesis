@@ -1,3 +1,4 @@
+import ReciprocityTheory.L2DbarEstimates.LeviForms.EventuallyDifferentiableAtOfContDiffAt -- shake: keep (import ordering (duplicate declarations): loaded first so that the explicit-argument copy of `wd_congr` in `…ChartDerivatives.ChartSymmEventuallyEq` loads last and is the one in scope)
 import BuildAid.Leniency.Open
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.ArakelovVolumes.UpperBounds.RhGradFPfA
 import Development.AbelianVarietyTheory.Definitions.Divisors.ExistsIsClosedImmersionGenericPoint
