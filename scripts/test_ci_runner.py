@@ -294,6 +294,18 @@ class RunnerChecks(unittest.TestCase):
             self.assertNotIn("RH_CI_JOBS", output)
             self.assertNotIn("RH_CI_MEMORY_GIB", output)
 
+    def test_aws_template_persists_the_map_count_that_doctor_requires(self):
+        output = subprocess.check_output([sys.executable, str(SCRIPT), "aws-user-data"], text=True)
+        self.assertTrue(output.startswith("#cloud-config\n"))
+        # One drop-in holding the doctor minimum: applied on first boot, and kept across reboots.
+        path, minimum = runner.MAX_MAP_COUNT_CONF, runner.MINIMUM_MAX_MAP_COUNT
+        self.assertTrue(path.startswith("/etc/sysctl.d/") and path.endswith(".conf"))
+        self.assertIn(f"\n  - path: {path}\n    content: |\n      vm.max_map_count = {minimum}\nruncmd:\n", output)
+        self.assertIn(f"\n  - [sysctl, -p, {path}]\n", output)
+        self.assertEqual(output.count("vm.max_map_count ="), 1)
+        # The template must not go on claiming that it leaves every sysctl alone.
+        self.assertNotIn("or sysctl changes", output)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -432,7 +432,7 @@ def run_jit(args):
 
 
 def aws_user_data(args):
-    print("""#cloud-config
+    print(f"""#cloud-config
 # Debian 12/13 or another compatible apt-based image. No registration credential here.
 package_update: true
 packages:
@@ -452,11 +452,18 @@ users:
     gecos: Riemann hypothesis build runner
     lock_passwd: true
     shell: /bin/bash
+write_files:
+  # doctor requires this limit; an image that keeps the kernel default of 65530 (Debian 12) fails it.
+  - path: {MAX_MAP_COUNT_CONF}
+    content: |
+      vm.max_map_count = {MINIMUM_MAX_MAP_COUNT}
 runcmd:
   - [install, -d, -m, '0700', -o, rh-ci, -g, rh-ci, /var/lib/rh-ci]
   - [loginctl, enable-linger, rh-ci]
+  - [sysctl, -p, {MAX_MAP_COUNT_CONF}]
 # Use a 1 TiB encrypted root volume. Install/register after trusted operator access.
-# No AWS instance profile, inbound listener, public registration token, or sysctl changes.
+# No AWS instance profile, inbound listener, or public registration token. The only sysctl
+# change is vm.max_map_count above, kept in /etc/sysctl.d so that a reboot does not lose it.
 """)
 
 
