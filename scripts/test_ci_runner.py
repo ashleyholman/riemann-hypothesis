@@ -2,7 +2,7 @@
 """Credential and process-boundary checks; no GitHub/AWS calls or registration."""
 import importlib.util
 import base64
-from contextlib import redirect_stderr
+from contextlib import redirect_stderr, redirect_stdout
 import io
 import os
 import json
@@ -227,6 +227,13 @@ class RunnerChecks(unittest.TestCase):
         self.assertEqual(check(free_disk_gib=120.5), ["free_disk_gib is 120.5, need at least 250"])
         self.assertEqual(check(uid=0), ["uid is 0: use a dedicated unprivileged account"])
         self.assertEqual(check(offline_bwrap=False), ["offline_bwrap probe failed: see bwrap_error"])
+        # The probe's own exit status means bwrap ran and the sandbox still had a route out.
+        self.assertEqual(check(offline_bwrap=False, bwrap_exit=runner.PROBE_NOT_OFFLINE),
+                         ["offline_bwrap probe failed: the bwrap sandbox was not offline "
+                          "(a connection attempt inside it was not refused as unreachable)"])
+        self.assertEqual(check(free_disk_gib=120.5, free_disk_path="/home/rh-ci"),
+                         ["free_disk_gib is 120.5 on the filesystem holding /home/rh-ci (--work-directory), "
+                          "need at least 250"])
         # A missing bwrap also leaves offline_bwrap false; it is named once, as the missing command.
         self.assertEqual(check(commands=commands | {"bwrap": None, "elan": None}, offline_bwrap=False),
                          ["command not found: bwrap", "command not found: elan"])
@@ -234,6 +241,59 @@ class RunnerChecks(unittest.TestCase):
         # Zero minimums switch the threshold checks off, even when the value cannot be read.
         self.assertEqual(runner.failed_checks(
             {"uid": 1000, "commands": commands, "offline_bwrap": True, "free_disk_gib": 0.0, "max_map_count": None}, 0, 0), [])
+
+    def test_doctor_keeps_ready_and_failed_together_and_names_each_failure_in_the_error(self):
+        commands = dict.fromkeys(("git", "cc", "python3", "bwrap", "elan"), "/usr/bin/tool")
+
+        def doctor(free_gib=300, map_count=runner.MINIMUM_MAX_MAP_COUNT, probe=(0, "")):
+            """Run the real doctor with every host read replaced; return (report, error text, measured path)."""
+            with tempfile.TemporaryDirectory() as name:
+                args = SimpleNamespace(work_directory=Path(name) / "not-created-yet", minimum_disk_gib=250,
+                                       minimum_max_map_count=runner.MINIMUM_MAX_MAP_COUNT)
+                output, error = io.StringIO(), None
+                with patch.object(runner.sys, "platform", "linux"), \
+                        patch.object(runner.os, "getuid", return_value=1000), \
+                        patch.object(runner, "architecture", return_value="x64"), \
+                        patch.object(runner, "required_commands", return_value=commands), \
+                        patch.object(runner, "max_map_count", return_value=map_count), \
+                        patch.object(runner.shutil, "which", return_value=None), \
+                        patch.object(runner.shutil, "disk_usage",
+                                     return_value=SimpleNamespace(free=free_gib * 2**30)), \
+                        patch.object(runner.Path, "read_text", return_value="MemTotal:       134217728 kB\n"), \
+                        patch.object(runner.subprocess, "run",
+                                     return_value=SimpleNamespace(returncode=probe[0], stderr=probe[1])), \
+                        redirect_stdout(output):
+                    try:
+                        runner.doctor(args)
+                    except ValueError as raised:
+                        error = str(raised)
+                return json.loads(output.getvalue()), error, name
+
+        report, error, _ = doctor()
+        self.assertEqual((report["failed"], report["ready"], error), ([], True, None))
+        self.assertNotIn("bwrap_error", report)
+
+        # The probe prints nothing when the sandbox is not offline, so the report must not point at "".
+        report, error, _ = doctor(probe=(runner.PROBE_NOT_OFFLINE, ""))
+        self.assertEqual(report["failed"], ["offline_bwrap probe failed: the bwrap sandbox was not offline "
+                                            "(a connection attempt inside it was not refused as unreachable)"])
+        self.assertEqual(report["bwrap_error"], f"exit status {runner.PROBE_NOT_OFFLINE} with no error output")
+        self.assertFalse(report["ready"])
+
+        report, error, _ = doctor(probe=(1, "bwrap: setting up uid map: Permission denied\n"))
+        self.assertEqual(report["failed"], ["offline_bwrap probe failed: see bwrap_error"])
+        self.assertEqual(report["bwrap_error"], "bwrap: setting up uid map: Permission denied")
+
+        # doctor measures the nearest existing ancestor of --work-directory and says so.
+        report, error, measured = doctor(free_gib=120.5, map_count=65530)
+        self.assertEqual(report["free_disk_path"], measured)
+        self.assertEqual(report["failed"], [
+            f"free_disk_gib is 120.5 on the filesystem holding {measured} (--work-directory), need at least 250",
+            f"max_map_count is 65530, need at least {runner.MINIMUM_MAX_MAP_COUNT} "
+            "(sysctl vm.max_map_count, set on the host)"])
+        self.assertEqual(report["ready"], not report["failed"])
+        self.assertEqual(error, "runner prerequisites failed: " + "; ".join(report["failed"])
+                         + ". No host security settings were changed.")
 
     def test_policy_rejects_branch_or_repository_expansion(self):
         with tempfile.TemporaryDirectory() as name:

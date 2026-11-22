@@ -38,6 +38,8 @@ MINIMUM_MAX_MAP_COUNT = 1048576
 # A limit raised with `sysctl -w` alone is lost at reboot; this drop-in keeps it (issue #73).
 MAX_MAP_COUNT_CONF = "/etc/sysctl.d/60-rh-ci-max-map-count.conf"
 MINIMUM_MAX_MAP_COUNT_ENV = "RH_CI_MINIMUM_MAX_MAP_COUNT"
+# Exit status of doctor's offline probe when a connection attempt was not refused as unreachable.
+PROBE_NOT_OFFLINE = 2
 IDENTITY_FILES = (".runner", ".credentials", ".credentials_rsaparams")
 
 
@@ -134,9 +136,17 @@ def failed_checks(report, minimum_disk_gib, minimum_max_map_count):
     failed += [f"command not found: {name}" for name, path in report["commands"].items() if not path]
     # A missing bwrap is already named above; report the probe only when it actually ran.
     if report["commands"].get("bwrap") and not report["offline_bwrap"]:
-        failed.append("offline_bwrap probe failed: see bwrap_error")
+        if report.get("bwrap_exit") == PROBE_NOT_OFFLINE:
+            # bwrap ran and the sandbox still had a route out: the failure that matters most.
+            failed.append("offline_bwrap probe failed: the bwrap sandbox was not offline "
+                          "(a connection attempt inside it was not refused as unreachable)")
+        else:
+            failed.append("offline_bwrap probe failed: see bwrap_error")
     if report["free_disk_gib"] < minimum_disk_gib:
-        failed.append(f"free_disk_gib is {report['free_disk_gib']}, need at least {minimum_disk_gib}")
+        # Only one filesystem is measured; a small /home beside a large data disk is not the whole host.
+        measured = report.get("free_disk_path")
+        where = f" on the filesystem holding {measured} (--work-directory)" if measured else ""
+        failed.append(f"free_disk_gib is {report['free_disk_gib']}{where}, need at least {minimum_disk_gib}")
     count = report["max_map_count"]
     if (count or 0) < minimum_max_map_count:
         failed.append(f"max_map_count is {'unreadable' if count is None else count}, need at least "
@@ -154,6 +164,7 @@ def doctor(args):
         "architecture": architecture(),
         "uid": os.getuid(),
         "free_disk_gib": round(shutil.disk_usage(existing).free / 2**30, 1),
+        "free_disk_path": str(existing),
         "commands": required_commands(),
         "systemd_user": subprocess.run(
             ["systemctl", "--user", "show-environment"], stdout=subprocess.DEVNULL,
@@ -169,7 +180,7 @@ def doctor(args):
         probe = (
             "import errno,socket,sys; s=socket.socket(); s.settimeout(1); "
             "r=s.connect_ex(('1.1.1.1',9)); "
-            "sys.exit(0 if r in (errno.ENETUNREACH,errno.EHOSTUNREACH,errno.EADDRNOTAVAIL) else 2)"
+            f"sys.exit(0 if r in (errno.ENETUNREACH,errno.EHOSTUNREACH,errno.EADDRNOTAVAIL) else {PROBE_NOT_OFFLINE})"
         )
         command = [report["commands"]["bwrap"], "--die-with-parent", "--new-session",
                    "--unshare-user", "--unshare-pid", "--unshare-ipc", "--unshare-net",
@@ -179,7 +190,10 @@ def doctor(args):
         result = subprocess.run(command, capture_output=True, text=True, timeout=15)
         report["offline_bwrap"] = result.returncode == 0
         if result.returncode:
-            report["bwrap_error"] = result.stderr.strip()[-2000:]
+            report["bwrap_exit"] = result.returncode
+            # The probe itself prints nothing, so say that rather than leave an empty string to point at.
+            report["bwrap_error"] = (result.stderr.strip()[-2000:]
+                                     or f"exit status {result.returncode} with no error output")
     else:
         report["offline_bwrap"] = False
     report["failed"] = failed_checks(report, args.minimum_disk_gib, args.minimum_max_map_count)
@@ -187,7 +201,7 @@ def doctor(args):
     print(json.dumps(report, indent=2))
     if not report["ready"]:
         reasons = "; ".join(report["failed"])
-        raise ValueError(f"runner prerequisites failed ({reasons}); no host security settings were changed")
+        raise ValueError(f"runner prerequisites failed: {reasons}. No host security settings were changed.")
 
 
 def install(args):
