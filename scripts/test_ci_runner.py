@@ -2,6 +2,8 @@
 """Credential and process-boundary checks; no GitHub/AWS calls or registration."""
 import importlib.util
 import base64
+from contextlib import redirect_stderr
+import io
 import os
 import json
 from pathlib import Path
@@ -167,6 +169,36 @@ class RunnerChecks(unittest.TestCase):
             self.assertNotEqual(result.returncode, 0)
             self.assertNotIn(secret, result.stdout + result.stderr)
             self.assertIn("credentials omitted", result.stderr)
+
+    def test_job_start_check_names_current_and_required_map_count_and_the_persistent_fix(self):
+        minimum = runner.MINIMUM_MAX_MAP_COUNT
+        with patch.dict(os.environ), patch.object(runner, "max_map_count", return_value=65530), \
+                patch.object(runner.subprocess, "run", side_effect=AssertionError("the check must only read")):
+            os.environ.pop(runner.MINIMUM_MAX_MAP_COUNT_ENV, None)
+            with self.assertRaises(ValueError) as failure:
+                runner.require_max_map_count()
+            for expected in ("vm.max_map_count is 65530", f"need at least {minimum}", "lost at reboot",
+                             f'write "vm.max_map_count = {minimum}" to /etc/sysctl.d/', "changed nothing"):
+                self.assertIn(expected, str(failure.exception))
+            # A host accepted below the default says so in its runner service, as doctor's flag does.
+            os.environ[runner.MINIMUM_MAX_MAP_COUNT_ENV] = "65530"
+            runner.require_max_map_count()
+            with self.assertRaisesRegex(ValueError, "is 65530 .* need at least 65531"):
+                runner.require_max_map_count(65531)
+            os.environ[runner.MINIMUM_MAX_MAP_COUNT_ENV] = "plenty"
+            with self.assertRaisesRegex(ValueError, "must be an integer"):
+                runner.require_max_map_count()
+
+    def test_job_start_check_is_silent_when_configured_and_never_blocks_an_unknown_value(self):
+        skipped = "vm.max_map_count is unreadable; skipping the job-start check\n"
+        for count, platform, note in ((runner.MINIMUM_MAX_MAP_COUNT, "linux", ""), (None, "darwin", ""),
+                                      (None, "linux", skipped)):
+            with self.subTest(count=count, platform=platform), patch.dict(os.environ), \
+                    patch.object(runner, "max_map_count", return_value=count), \
+                    patch.object(runner.sys, "platform", platform), redirect_stderr(io.StringIO()) as stderr:
+                os.environ.pop(runner.MINIMUM_MAX_MAP_COUNT_ENV, None)
+                runner.require_max_map_count()
+                self.assertEqual(stderr.getvalue(), note)
 
     def test_max_map_count_reads_value_and_tolerates_missing_or_malformed_file(self):
         with tempfile.TemporaryDirectory() as raw:

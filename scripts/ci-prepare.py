@@ -257,7 +257,18 @@ def preparation_state(directory):
     return state if TOOLCHAIN == "leanprover/lean4:v4.33.1" else state / settings.TOOLCHAIN_DIR
 
 
+def runner_checks():
+    """Runner hosts download ci-runner.py on its own, so it owns the host thresholds and messages."""
+    # Loaded for prepare only: the hosted resolver and publisher import this file without runner code.
+    spec = importlib.util.spec_from_file_location("rh_ci_runner", Path(__file__).with_name("ci-runner.py"))
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
 def prepare(args):
+    # First, before any download: a low vm.max_map_count otherwise fails hours into the build.
+    runner_checks().require_max_map_count()
     trusted = Path(args.trusted).resolve()
     settings.require_baseline()
     state = preparation_state(args.state)

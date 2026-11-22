@@ -332,6 +332,31 @@ class PreparationTests(unittest.TestCase):
             with self.assertRaises(ValueError):
                 prep.downloads(cache, {"a" * 16: name}, {})
 
+    def test_prepare_stops_on_low_map_count_before_any_state_or_download_and_otherwise_continues(self):
+        checks = prep.runner_checks()
+        minimum = checks.MINIMUM_MAX_MAP_COUNT
+        with tempfile.TemporaryDirectory() as directory, patch.dict(os.environ), \
+                patch.object(prep, "runner_checks", return_value=checks):
+            os.environ.pop(checks.MINIMUM_MAX_MAP_COUNT_ENV, None)
+            root = Path(directory)
+            args = SimpleNamespace(trusted=root / "trusted", candidate=root / "candidate", state=root / "state",
+                                   request=root / "request.json", output=root / "paths.json")
+            with patch.object(checks, "max_map_count", return_value=65530), \
+                    patch.object(prep.settings, "require_baseline") as baseline, \
+                    patch.object(prep.subprocess, "run") as run, patch.object(prep, "get") as get:
+                with self.assertRaisesRegex(ValueError, f"vm.max_map_count is 65530 .* need at least {minimum}"):
+                    prep.prepare(args)
+                for untouched in (baseline, run, get):
+                    untouched.assert_not_called()
+                self.assertEqual(list(root.iterdir()), [])
+            # At the doctor minimum, and where the file does not exist (macOS), preparation goes on.
+            for count in (minimum, None):
+                with self.subTest(count=count), patch.object(checks, "max_map_count", return_value=count), \
+                        patch.object(checks.sys, "platform", "darwin"), \
+                        patch.object(prep.settings, "require_baseline", side_effect=RuntimeError("preparation continues")):
+                    with self.assertRaisesRegex(RuntimeError, "preparation continues"):
+                        prep.prepare(args)
+
 
 if __name__ == "__main__":
     unittest.main()
