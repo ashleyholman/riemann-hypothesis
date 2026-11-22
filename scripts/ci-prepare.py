@@ -267,8 +267,9 @@ def runner_checks():
 
 
 def prepare(args):
-    # First, before any download: a low vm.max_map_count otherwise fails hours into the build.
-    runner_checks().require_max_map_count()
+    # First, before any download: log this host's vm.max_map_count, and warn if it is low. A low value
+    # otherwise shows up only hours into the build, as "failed to read file". The job goes on either way.
+    runner_checks().report_max_map_count()
     trusted = Path(args.trusted).resolve()
     settings.require_baseline()
     state = preparation_state(args.state)

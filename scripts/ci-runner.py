@@ -37,7 +37,6 @@ DEFAULT_DIRECTORY = Path.home() / ".local/share/riemann-build-runner"
 MINIMUM_MAX_MAP_COUNT = 1048576
 # A limit raised with `sysctl -w` alone is lost at reboot; this drop-in keeps it (issue #73).
 MAX_MAP_COUNT_CONF = "/etc/sysctl.d/60-rh-ci-max-map-count.conf"
-MINIMUM_MAX_MAP_COUNT_ENV = "RH_CI_MINIMUM_MAX_MAP_COUNT"
 # Exit status of doctor's offline probe when a connection attempt was not refused as unreachable.
 PROBE_NOT_OFFLINE = 2
 IDENTITY_FILES = (".runner", ".credentials", ".credentials_rsaparams")
@@ -96,28 +95,24 @@ def max_map_count(path=Path("/proc/sys/vm/max_map_count")):
         return None
 
 
-def require_max_map_count(minimum=None):
-    """Job-start check for the build workflow. Read only; silent on a correctly configured host."""
-    if minimum is None:
-        # The runner service may carry a per-host minimum, as doctor --minimum-max-map-count does.
-        try:
-            minimum = int(os.environ.get(MINIMUM_MAX_MAP_COUNT_ENV, MINIMUM_MAX_MAP_COUNT))
-        except ValueError:
-            raise ValueError(f"{MINIMUM_MAX_MAP_COUNT_ENV} must be an integer") from None
+def report_max_map_count(minimum=MINIMUM_MAX_MAP_COUNT):
+    """Job-start report for the build workflow. Read only, and it never stops the job."""
     count = max_map_count()
     if count is None:
         # No such file off Linux. Unknown is not known-low: doctor is the check that requires a value.
         if sys.platform == "linux":
-            print("vm.max_map_count is unreadable; skipping the job-start check", file=sys.stderr)
+            print("vm.max_map_count is unreadable; skipping the job-start report", flush=True)
         return
+    # Printed on every job: the logs then show each runner's value before this becomes a requirement.
+    print(f"vm.max_map_count is {count} on this runner host (runner minimum {minimum})", flush=True)
     if count < minimum:
-        raise ValueError(
-            f"vm.max_map_count is {count} on this runner host, need at least {minimum}. Lean maps every "
-            "imported .olean, so the build would fail hours in with a misleading \"failed to read file\". "
-            f"On the host, as root: write \"vm.max_map_count = {minimum}\" to {MAX_MAP_COUNT_CONF} and run "
-            "\"sysctl --system\". A value set only with \"sysctl -w\" is lost at reboot. This check read "
-            f"the value and changed nothing. A host accepted with a lower limit sets {MINIMUM_MAX_MAP_COUNT_ENV} "
-            "in the runner service environment.")
+        # One line, as a GitHub Actions annotation: it shows on the run summary as well as in the log.
+        print("::warning title=vm.max_map_count is below the runner minimum::"
+              f"vm.max_map_count is {count} on this runner host, need at least {minimum}. Lean maps every "
+              "imported .olean, so modules high in the import graph can fail hours in with a misleading "
+              f"\"failed to read file\". On the host, as root: write \"vm.max_map_count = {minimum}\" to "
+              f"{MAX_MAP_COUNT_CONF} and run \"sysctl --system\". A value set only with \"sysctl -w\" is lost "
+              "at reboot. This check read the value and changed nothing; the job continues.", flush=True)
 
 
 def required_commands():
