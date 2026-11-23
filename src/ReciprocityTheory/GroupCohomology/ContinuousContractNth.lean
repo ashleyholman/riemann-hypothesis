@@ -156,20 +156,6 @@ def IsInvRep (M : TRep R G) (N : Subgroup G) [N.Normal] (Q : TRep R (G ⧸ N)) (
   P.φ = QuotientGroup.mk' N ∧ Topology.IsEmbedding P.u ∧
     ∀ m, m ∈ LinearMap.range P.u ↔ ∀ g ∈ N, M.rho g m = m
 
-def rep (U : Subgroup G) (x : G) : G := (Quotient.mk (QuotientGroup.rightRel U) x).out
-
-theorem mul_rep_inv_mem (U : Subgroup G) (x : G) : x * (rep U x)⁻¹ ∈ U :=
-  QuotientGroup.rightRel_apply.1 (Quotient.exact (Quotient.out_eq (Quotient.mk (QuotientGroup.rightRel U) x)))
-
-def retr (U : Subgroup G) (x : G) : U := ⟨x * (rep U x)⁻¹, mul_rep_inv_mem U x⟩
-
-def corFun (M : TRep R G) (U : Subgroup G) (n : ℕ) (f : (Fin n → U) → M.V) (g : Fin n → G) : M.V :=
-  ∑ᶠ c : Quotient (QuotientGroup.rightRel U), M.rho c.out⁻¹
-    (f fun i => (retr U (c.out * Fin.partialProd g i.castSucc))⁻¹ * retr U (c.out * Fin.partialProd g i.succ))
-
-def IsCor (M : TRep R G) (U : Subgroup G) (cor : Cx.Hom (M.resSub U).coch M.coch) : Prop :=
-  ∀ n f, (cor.f n f).1 = corFun M U n f.1
-
 structure Pairing (M N P : TRep R G) where
   β : M.V →ₗ[R] N.V →ₗ[R] P.V
   cont : Continuous fun x : M.V × N.V => β x.1 x.2

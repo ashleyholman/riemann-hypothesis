@@ -53,7 +53,6 @@ import Development.AbelianVarietyTheory.Definitions.Divisors.TwOrbMEqTwOrbUOfNor
 import Mathlib.CategoryTheory.Monoidal.Cartesian.Basic
 import Mathlib.CategoryTheory.Monoidal.Mon
 import Mathlib.Topology.Sheaves.Presheaf
-import ReciprocityTheory.ClassFieldTheory.LocalClassField.HerbrandA
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.CocycleRightZeroThd
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SemiabelianSchemes.CubicalStructures.CubeSymmetricSwapFirst
 import ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.SymplecticGenerators.StTransl

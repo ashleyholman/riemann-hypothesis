@@ -40,7 +40,6 @@ import Mathlib.Tactic.NormNum.Parity
 import Mathlib.Tactic.NormNum.Prime
 import Mathlib.Tactic.NormNum.RealSqrt
 import Mathlib.Topology.Sheaves.Init
-import ReciprocityTheory.ClassFieldTheory.LocalClassField.HerbrandA
 
 @[expose] public section
 
@@ -48,7 +47,7 @@ noncomputable section
 
 namespace Formalism.L2.LocGap.Gal
 
-open Formalism.BasicNotions Formalism.BasicNotions.Loc ReciprocityTheory.DiscreteGroups Filter Topology
+open Formalism.BasicNotions Formalism.BasicNotions.Loc Filter Topology
 open scoped Classical
 
 variable {l : ℕ} [Fact l.Prime]

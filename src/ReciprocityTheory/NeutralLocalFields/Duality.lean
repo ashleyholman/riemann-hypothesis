@@ -348,9 +348,6 @@ def charRep (χ : Γ →* Rˣ) : Representation R Γ R where
   map_one' := by ext; simp
   map_mul' g h := by ext; simp [mul_comm]
 
-@[simp] theorem charRep_apply (χ : Γ →* Rˣ) (g : Γ) (x : R) :
-    charRep χ g x = ((χ g : Rˣ) : R) * x := rfl
-
 
 end Coeff
 

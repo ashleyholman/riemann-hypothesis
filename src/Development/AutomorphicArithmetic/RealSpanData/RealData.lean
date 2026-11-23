@@ -46,7 +46,6 @@ import Development.AbelianVarietyTheory.Definitions.Divisors.PointsNonemptyUnita
 import Development.AbelianVarietyTheory.Definitions.Divisors.RedSurjective
 import Development.AbelianVarietyTheory.Definitions.Divisors.ToSpanSingletonConstGenInjective
 import Development.AbelianVarietyTheory.Definitions.Divisors.TwOrbMEqTwOrbUOfNormal
-import ReciprocityTheory.ClassFieldTheory.LocalClassField.HerbrandA
 
 @[expose] public section
 
