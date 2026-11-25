@@ -370,9 +370,6 @@ open GlobalTheory.NormExact
 open GlobalTheory.BotFormula (IsFinPt)
 open GlobalTheory.BotClassDict (finQ)
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
-
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MemLatticeOIffScaleMulFinitePartMemIdealLatticeStatement =====

@@ -939,9 +939,6 @@ open GlobalTheory.NormDict GlobalTheory.NormExact
 open GlobalTheory.BotFormula (IsFinPt)
 open GlobalTheory.IndefiniteRowSideFullHecke.ClassFunctionSumIntegral (IsDefiniteSpace IsOpenCompactLevel)
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
-
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.MovedVacuumConstantTrivialFinitePairsStatement =====

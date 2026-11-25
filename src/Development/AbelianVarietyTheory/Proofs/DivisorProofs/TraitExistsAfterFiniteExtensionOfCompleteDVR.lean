@@ -131,7 +131,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.PolFan GlobalTheory.ZM GlobalTheory.SiegelTor GlobalTheory.ZH
 open scoped CategoryTheory.Obj
 open GlobalTheory.Poinc Formalism.L2.Pj
-attribute [local instance] Over.cartesianMonoidalCategory
 open Classical
 
 theorem _root_.GlobalTheory.T.exists_monomialPeriods_symmetric_exponentForm : ∀ (W : Type) [CommRing W] [IsDomain W] [IsLocalRing W], GlobalTheory.LN.CDvr W → ∀ ϖ : W, Irreducible ϖ →
@@ -244,7 +243,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.PolFan GlobalTheory.ZM GlobalTheory.SiegelTor GlobalTheory.ZH
 open scoped CategoryTheory.Obj
 open GlobalTheory.Poinc Formalism.L2.Pj
-attribute [local instance] Over.cartesianMonoidalCategory
 open Classical
 
 theorem _root_.GlobalTheory.T.exists_completeDVR_finite_map_of_finiteAlgebra : ∀ (V : Type) [CommRing V] [IsDomain V] [IsLocalRing V], GlobalTheory.LN.CDvr V →
@@ -376,7 +374,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.PolFan GlobalTheory.ZM GlobalTheory.SiegelTor GlobalTheory.ZH
 open scoped CategoryTheory.Obj
 open GlobalTheory.Poinc Formalism.L2.Pj
-attribute [local instance] Over.cartesianMonoidalCategory
 open Classical
 
 theorem _root_.GlobalTheory.T.exists_lambdaPolarisation_siegelObject_charZeroField : ∀ (h k : ℕ) (o : Type) [CommRing o] (ζ : o) (S : Scheme.{0}) (s : S ⟶ Sp o) (c : SiegPre h k ζ s), c.Principal →
@@ -398,7 +395,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.PolFan GlobalTheory.ZM GlobalTheory.SiegelTor GlobalTheory.ZH
 open scoped CategoryTheory.Obj
 open GlobalTheory.Poinc Formalism.L2.Pj
-attribute [local instance] Over.cartesianMonoidalCategory
 open Classical
 
 theorem _root_.GlobalTheory.T.exists_semiAbelianModel_finiteExt_completeDVR : ∀ (W : Type) [CommRing W] [IsDomain W] [IsLocalRing W], GlobalTheory.LN.CDvr W → ∀ (P : PolAV (Sp (FractionRing W))),
@@ -478,7 +474,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.PolFan GlobalTheory.ZM GlobalTheory.SiegelTor GlobalTheory.ZH
 open scoped CategoryTheory.Obj
 open GlobalTheory.Poinc Formalism.L2.Pj
-attribute [local instance] Over.cartesianMonoidalCategory
 open Classical
 
 theorem _root_.GlobalTheory.T.exists_polarisedAbelian_semiAbelian_siegelPoint : ∀ (g n : ℕ) (o : Type) [CommRing o] (ζ : o) (F : SFam g n ζ) (V : Type) [CommRing V] [IsDomain V] [IsLocalRing V],
@@ -669,7 +664,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory.Toroidal GlobalTheory.LocM GlobalTheory.PolFan GlobalTheory.ZM GlobalTheory.SiegelTor GlobalTheory.ZH
 open scoped CategoryTheory.Obj
 open GlobalTheory.Poinc Formalism.L2.Pj
-attribute [local instance] Over.cartesianMonoidalCategory
 open Classical
 
 theorem _root_.GlobalTheory.T.exists_uniformisation_finiteExtension_siegelFamily : ∀ (g n : ℕ) (o : Type) [CommRing o] (ζ : o) (F : SFam g n ζ) (V₁ : Type) [CommRing V₁] [IsDomain V₁]

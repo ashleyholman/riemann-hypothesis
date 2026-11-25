@@ -834,7 +834,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.O
 open ReciprocityTheory.ChartRestriction.G.PullbackSections (TanM tv)
 open GlobalTheory.LogKS (IsField)
 open GlobalTheory.Heat GlobalTheory.FormalOrigin
-attribute [local instance] Over.cartesianMonoidalCategory
 
 end -- clump:auto
 end -- clump:auto

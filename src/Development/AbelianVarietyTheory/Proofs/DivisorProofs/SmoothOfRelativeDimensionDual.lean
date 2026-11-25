@@ -88,8 +88,6 @@ noncomputable section
 open CategoryTheory AlgebraicGeometry MonoidalCategory CartesianMonoidalCategory MonObj DividedPowers
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.AbLaw GlobalTheory.CechPic GlobalTheory.CatCoh GlobalTheory.Cris GlobalTheory.DeRham GlobalTheory.AbDual
 
-attribute [local instance] Over.cartesianMonoidalCategory
-
 namespace GlobalTheory.Published.AbelianDualCrystal.Test
 
 section Dual
@@ -132,7 +130,6 @@ open CategoryTheory AlgebraicGeometry Limits MonoidalCategory CartesianMonoidalC
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open GlobalTheory GlobalTheory.VB GlobalTheory.LieVB GlobalTheory.CurveRootGeometry GlobalTheory.TwoSeq GlobalTheory.DeRham GlobalTheory.AbDual GlobalTheory.ConjSeq GlobalTheory.PDiv GlobalTheory.PDivGroup GlobalTheory.BadPt
 open GlobalTheory.Cris (dp0)
-attribute [local instance] Over.cartesianMonoidalCategory
 
 namespace GlobalTheory.WeilAdjoint
 

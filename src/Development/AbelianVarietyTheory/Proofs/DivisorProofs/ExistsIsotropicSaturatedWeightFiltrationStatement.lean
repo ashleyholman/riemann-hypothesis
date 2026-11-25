@@ -1143,8 +1143,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory.LowDat GlobalTheory.LowFilt
 open scoped CategoryTheory.Obj
 
-attribute [local instance] Over.cartesianMonoidalCategory
-
 end -- clump:auto
 end -- clump:auto
 end -- clump:auto
@@ -1423,8 +1421,6 @@ open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalC
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open GlobalTheory.LowDat GlobalTheory.LowFilt
 open scoped CategoryTheory.Obj
-
-attribute [local instance] Over.cartesianMonoidalCategory
 
 end -- clump:auto
 end -- clump:auto
@@ -1727,8 +1723,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory.LowDat GlobalTheory.LowFilt
 open scoped CategoryTheory.Obj
 
-attribute [local instance] Over.cartesianMonoidalCategory
-
 end -- clump:auto
 end -- clump:auto
 end -- clump:auto
@@ -1848,8 +1842,6 @@ noncomputable section
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj IsLocalRing NumberField
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Out ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open scoped CategoryTheory.Obj
-
-attribute [local instance] Over.cartesianMonoidalCategory
 
 end -- clump:auto
 end -- clump:auto

@@ -814,7 +814,6 @@ open GlobalTheory.LogKS (IsField)
 open GlobalTheory.RayEv (Ray)
 open GlobalTheory.Toroidal GlobalTheory.LogKS GlobalTheory.RigChart GlobalTheory.Heat
 open GlobalTheory.LocM GlobalTheory.PolFan ReciprocityTheory.AnForm.R
-attribute [local instance] Over.cartesianMonoidalCategory
 open GlobalTheory.ChartDer
 
 end -- clump:auto

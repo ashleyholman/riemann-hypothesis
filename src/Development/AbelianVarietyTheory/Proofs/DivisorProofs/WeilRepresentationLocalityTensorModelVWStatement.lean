@@ -22,8 +22,6 @@ open GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation (spV spW spW₁ 
 open GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels (Base Spc Model Chars Rep IsTriple UAt ratU mat Acts SInf)
 open GlobalTheory.WeilM GlobalTheory.LFun ValuativeRel
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField borelKw borelSpaceKw
-
 noncomputable section
 namespace GlobalTheory.WeilLocalityVW
 

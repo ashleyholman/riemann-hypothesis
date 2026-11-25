@@ -173,9 +173,6 @@ open scoped Matrix
 
 noncomputable section
 
-attribute [local instance] Over.cartesianMonoidalCategory
-
-
 open GlobalTheory.TorusRM.LamAdd GlobalTheory.ProdUnifSq in
 theorem GlobalTheory.TorusRM.lbIso_lam_of_same_form : ∀ (g : ℕ) (A : Over (Sp ℂ)) [GrpObj A], IsAbelianScheme A → IsProjOver A.hom →
     ∀ (M M' : LB A.left) (u : HolUnif A M g) (u' : HolUnif A M' g) (Hm : Matrix (Fin g) (Fin g) ℂ)

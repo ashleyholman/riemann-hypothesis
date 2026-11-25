@@ -67,7 +67,6 @@ section -- clump:auto
 @[expose] public section
 
 open NumberField IsDedekindDomain Polynomial
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 end -- clump:auto
 end -- clump:auto

@@ -162,7 +162,6 @@ section -- clump:auto
 
 open CategoryTheory CategoryTheory.Limits AlgebraicGeometry KaehlerDifferential MonoidalCategory CartesianMonoidalCategory MonObj TensorProduct
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.Semi GlobalTheory.CatCoh GlobalTheory.Cris GlobalTheory.CechDR GlobalTheory.AbCoh
-attribute [local instance] Over.cartesianMonoidalCategory
 
 theorem GlobalTheory.AbCoh.oStr : GlobalTheory.AbCoh.OStr := _root_.GlobalTheory.AbCoh.oStr_of_noetherian
 end -- clump:auto

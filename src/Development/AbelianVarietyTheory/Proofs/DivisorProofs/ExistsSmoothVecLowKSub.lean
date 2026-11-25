@@ -361,8 +361,6 @@ end
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.IndefR Formalism.IndefR.Mult Formalism.IndefR.Datum
   Formalism.IndefR.Links
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 theorem lowT_ne_bot {D : D7} {V : HSp D} {S : D.what₂.Tau → SPar} (M : DSModel V S) (τ : D.what₂.Tau) :
     lowT M τ ≠ ⊥ := by
   obtain ⟨v, hv, h0, hs⟩ := exists_smoothVec_lowKSub (M.ds τ) (M.fr_unit τ) (M.fr_gram τ)

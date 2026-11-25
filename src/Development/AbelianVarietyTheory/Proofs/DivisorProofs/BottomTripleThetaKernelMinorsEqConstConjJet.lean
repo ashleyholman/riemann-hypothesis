@@ -93,8 +93,6 @@ open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.Glob
 open GlobalTheory.NormSum (Pair Tup minorPol ratG intG Cls gam)
 open GlobalTheory.NormDict
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 noncomputable section
 
 namespace GlobalTheory.NormDictEx.Jets

@@ -150,8 +150,6 @@ open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.Glob
 open Formalism.L2.Theta Formalism.L2.DIV Formalism.IndefR Formalism.IndefR.Links Formalism.IndefR.Mult
 open scoped TensorProduct InnerProductSpace
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 section Dense
 
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E]
@@ -459,7 +457,6 @@ open Formalism.L2.Theta Formalism.L2.DIV Formalism.L2.Pj Formalism.IndefR Formal
 open GlobalTheory.IndefiniteRowSideFullHecke.WeilGramSignature
 open scoped TensorProduct InnerProductSpace
 open GlobalTheory.GalLift
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 end
 end -- clump:auto
@@ -551,7 +548,6 @@ open Formalism.L2.Theta Formalism.L2.DIV Formalism.L2.Pj Formalism.IndefR Formal
 open GlobalTheory.IndefiniteRowSideFullHecke.WeilGramSignature
 open scoped TensorProduct InnerProductSpace
 open GlobalTheory.GalLift
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 namespace GlobalTheory.CentralShift
 
@@ -625,7 +621,6 @@ open Formalism.L2.Theta Formalism.L2.DIV Formalism.L2.Pj Formalism.IndefR Formal
 open GlobalTheory.IndefiniteRowSideFullHecke.WeilGramSignature
 open scoped TensorProduct InnerProductSpace
 open GlobalTheory.GalLift
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 end -- clump:auto
 end -- clump:auto

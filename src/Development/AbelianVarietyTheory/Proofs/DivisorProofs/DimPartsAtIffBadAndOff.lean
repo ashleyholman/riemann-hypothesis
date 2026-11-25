@@ -36,8 +36,6 @@ open scoped TensorProduct
 
 namespace GlobalTheory.IndefiniteRowSideFullHecke.LinearCoefficientData
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 variable {D : D7}
 
 def IsRecPlaces (D : D7) (Pg : Finset (Pl D.host.E)) : Prop :=
@@ -203,7 +201,7 @@ open scoped TensorProduct
 
 namespace GlobalTheory.DimPartsCompare
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar GlobalTheory.IndefiniteRowSideFullHecke.LevelCuspCharacters.factPrime
+attribute [local instance] GlobalTheory.IndefiniteRowSideFullHecke.LevelCuspCharacters.factPrime
 
 variable {D : D7}
 

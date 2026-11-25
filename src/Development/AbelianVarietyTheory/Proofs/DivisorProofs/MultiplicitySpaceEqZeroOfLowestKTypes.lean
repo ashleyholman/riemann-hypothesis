@@ -685,8 +685,6 @@ end
 
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.IndefR Formalism.IndefR.Mult Formalism.IndefR.Datum Formalism.IndefR.Links
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
 theorem lowGenerates {D : D7} {V : HSp D} {S : D.what₂.Tau → SPar} (M : DSModel V S) (τ : D.what₂.Tau) :
     GlobalTheory.Survey.SobolevContinuityLowGeneration.LowGenerates M τ := by
   intro ℓ hℓ h0 w

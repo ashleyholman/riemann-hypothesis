@@ -237,8 +237,6 @@ namespace GlobalTheory.WeylFour.LocInv
 
 variable {F : Type} [Field F] [NumberField F]
 
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
-
 local instance borelFvLoc (v : Pl (F := F)) : BorelSpace (Fv F v) := ⟨rfl⟩
 
 open GlobalTheory.SplitWeil
