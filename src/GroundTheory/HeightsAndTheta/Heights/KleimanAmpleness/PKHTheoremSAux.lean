@@ -223,8 +223,6 @@ theorem quotSES (V : Ideal (MRingOver S ι)) (hV : IsMultiHomogIdeal V) (e : K �
 
 theorem idealSub_finite (hS : IsNoetherianRing S) (V : Ideal (MRingOver S ι)) :
     Module.Finite (MRingOver S ι) (idealSub V) := by
-  have : IsNoetherianRing (MRingOver S ι) := inferInstance
-  have : IsNoetherian (MRingOver S ι) (MRingOver S ι ⧸ (⊥ : Ideal (MRingOver S ι))) := inferInstance
   exact Module.IsNoetherian.finite _ _
 
 end KHTheoremS

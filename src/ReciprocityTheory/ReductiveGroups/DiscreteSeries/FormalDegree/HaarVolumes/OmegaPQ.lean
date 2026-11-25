@@ -256,8 +256,6 @@ theorem map_pairMap (ε : Fin n → Bool) :
   have hF := mp_Fmap ε
   have hA := mp_Amap ε
   have hGm : Measurable (Gl ε) := (Gl ε).continuous_of_finiteDimensional.measurable
-  haveI i1 : (volume : Measure (Fin n → ℂ)).IsAddHaarMeasure := inferInstance
-  haveI i2 : (volume : Measure (Fin 2 → ℂ)).IsAddHaarMeasure := inferInstance
   haveI i3 : (volume : Measure (Qp ε → Fin 2 → ℂ)).IsAddHaarMeasure :=
     Measure.pi.isAddHaarMeasure (fun _ : Qp ε => (volume : Measure (Fin 2 → ℂ)))
   haveI i4 : (volume : Measure (XC ε)).IsAddHaarMeasure :=

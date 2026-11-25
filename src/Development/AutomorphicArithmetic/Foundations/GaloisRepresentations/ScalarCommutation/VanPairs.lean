@@ -646,7 +646,6 @@ private theorem units_finite {M : Type} [CommRing M] [Algebra ℚ M] [Module.Fin
     {x : Mˣ | x ∈ GlobalTheory.LKTorus.simT ℚ c ∧ (∀ (q : ℕ) [Fact q.Prime] (τ : M →+* PadicAlgCl q), ‖τ (x : M)‖ ≤ 1) ∧
       ∀ (q : ℕ) [Fact q.Prime] (τ : M →+* PadicAlgCl q), ‖τ ((x⁻¹ : Mˣ) : M)‖ ≤ 1}.Finite := by
   haveI : IsArtinianRing M := IsArtinianRing.of_finite ℚ M
-  haveI : Finite (MaximalSpectrum M) := inferInstance
   have key : ∀ m : MaximalSpectrum M, ∃ T : Set (M ⧸ m.asIdeal)ˣ, T.Finite ∧ ∀ x : Mˣ, x ∈ GlobalTheory.LKTorus.simT ℚ c →
       (∀ (q : ℕ) [Fact q.Prime] (τ : M →+* PadicAlgCl q), ‖τ (x : M)‖ ≤ 1) →
       (∀ (q : ℕ) [Fact q.Prime] (τ : M →+* PadicAlgCl q), ‖τ ((x⁻¹ : Mˣ) : M)‖ ≤ 1) →

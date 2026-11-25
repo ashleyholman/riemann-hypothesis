@@ -116,8 +116,6 @@ theorem isConstructible_image_of_isClosed {X Y : Over (Sp k)} [LocallyOfFiniteTy
   have : IsNoetherian Y.left := {}
   have : LocallyOfFiniteType (f.left ≫ Y.hom) := by rw [Over.w f]; infer_instance
   have : LocallyOfFiniteType f.left := locallyOfFiniteType_of_comp f.left Y.hom
-  have : LocallyOfFinitePresentation f.left := inferInstance
-  have : QuasiCompact f.left := inferInstance
   refine f.left.isConstructible_image ?_
   exact ((TopologicalSpace.NoetherianSpace.isCompact Zᶜ).isConstructible hZ.isOpen_compl).of_compl
 

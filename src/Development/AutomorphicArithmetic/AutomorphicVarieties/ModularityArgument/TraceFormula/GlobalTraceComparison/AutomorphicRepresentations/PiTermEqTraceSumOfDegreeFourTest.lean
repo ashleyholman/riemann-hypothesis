@@ -1341,7 +1341,6 @@ private theorem level_term (h1 : ThetaFixedGlobalWeights) (h3 : LevTop) (h6 : To
       rw [hKo.interior_eq]
       exact ⟨1, (Lev S N).one_mem⟩⟩
   let μf : Measure (GF E n) := Measure.haarMeasure K₀
-  haveI : μf.IsHaarMeasure := inferInstance
   obtain ⟨Y, ρ, A, cK, hYπ, hfd, hne, hYfix, hact, hsimple, hsq, htw, hcK, htr⟩ :=
     h1 E n hn π hreg hd lamE hlam (Lev S N) hKo hKc hKθ hfix μC μf μ
   obtain ⟨y, v, hv, hyv⟩ := hY μf inferInstance Y ρ A hYπ hfd hne hYfix hact hsimple hsq htw

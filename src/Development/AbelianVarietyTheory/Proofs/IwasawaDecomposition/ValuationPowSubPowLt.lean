@@ -383,7 +383,6 @@ theorem exists_frob_inert [IsAlgClosure E Ω] (c : E ≃ₐ[F] E) (h2 : Module.f
   haveI : IsScalarTower F E Ω := IsScalarTower.of_algebraMap_eq fun _ => rfl
   haveI : IsAlgClosure F Ω := ⟨IsAlgClosure.isAlgClosed E, Algebra.IsAlgebraic.trans F E Ω⟩
   have : Algebra.IsQuadraticExtension F E := { finrank_eq_two' := h2 }
-  have : IsGalois F E := inferInstance
   have hall : ∀ σ : E ≃ₐ[F] E, σ = 1 ∨ σ = c := by
     intro σ
     have hcard : Nat.card (E ≃ₐ[F] E) = 2 := by rw [IsGalois.card_aut_eq_finrank, h2]

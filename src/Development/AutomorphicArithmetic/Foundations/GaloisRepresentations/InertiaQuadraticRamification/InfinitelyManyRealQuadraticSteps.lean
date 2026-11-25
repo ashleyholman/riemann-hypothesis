@@ -506,7 +506,6 @@ private theorem fixingSubgroup_fieldRange {E Ω : Type} [Field E] [Field Ω] [Al
 
 theorem inclOf : InclOf := by
   intro E Ω _ _ _ _ _ _ X Y hXY
-  have hGal : IsGalois E Ω := inferInstance
   set f := IsScalarTower.toAlgHom E X.K Ω
   set g := IsScalarTower.toAlgHom E Y.K Ω
   have hX := fixingSubgroup_fieldRange (E := E) (Ω := Ω) X.K

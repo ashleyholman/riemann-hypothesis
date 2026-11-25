@@ -152,8 +152,6 @@ theorem tailBound : TailBound := by
       refine max_le (max_le (le_max_left _ _) (h.trans (le_max_right _ _))) ?_
       exact (norm_coordMap_le (m + 1) t c p).trans (le_max_right _ _)
   obtain ⟨k, hk⟩ := muBlock_eq β (m + 1)
-  have i1 : SecondCountableTopology ((UT (m + 1) → ℂ) × (Fin (m + 1) → ℂ)) := inferInstance
-  have i2 : BorelSpace ((UT (m + 1) → ℂ) × (Fin (m + 1) → ℂ)) := inferInstance
   have i3 : BorelSpace (BlockCoord (m + 1)) := inferInstance
   have j1 : (volume : Measure ((UT (m + 1) → ℂ) × (Fin (m + 1) → ℂ))).IsAddHaarMeasure :=
     Measure.prod.instIsAddHaarMeasure _ _

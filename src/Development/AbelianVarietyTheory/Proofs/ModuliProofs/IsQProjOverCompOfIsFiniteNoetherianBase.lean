@@ -60,7 +60,6 @@ theorem isQProjOver_comp_of_isFinite_general {R : Type} [CommRing R] {X Y : Sche
   have hY : IsAmpleLB ((ProjSpace.O1 R N).pull i) := hO.pull_of_isImmersion i
   have hX : IsAmpleLB (((ProjSpace.O1 R N).pull i).pull f) := hY.pull_of_isFinite f
   have := isProper_str R N
-  have : LocallyOfFiniteType (f ≫ i ≫ PSpace.str R N) := inferInstance
   exact hX.isQProjOver _
 
 theorem isQProjOver_comp_of_isFinite_noetherian :

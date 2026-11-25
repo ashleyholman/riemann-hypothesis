@@ -90,7 +90,6 @@ theorem UpperTheory.rankOne_character_isdR_and_jumps_zero :
   obtain ⟨T⟩ := UpperTheory.V.Loc.tiedP l
   haveI : CompactSpace ↥(GK Bw.Kw) := GlobalTheory.UnramifiedCrys.compactSpace_GK _
   haveI : CompactSpace ↥(Dec (F := F) A) := Bw.e.symm.surjective.compactSpace Bw.e_symm_cont
-  haveI : T2Space ↥(Dec (F := F) A) := inferInstance
   have hv : ∀ g a b, ((GlobalTheory.TripleGal.rk1 κ g : GL (Fin 1) (Om l)) : Matrix (Fin 1) (Fin 1) (Om l)) a b = κ g := by
     intro g a b
     rw [Subsingleton.elim a b]

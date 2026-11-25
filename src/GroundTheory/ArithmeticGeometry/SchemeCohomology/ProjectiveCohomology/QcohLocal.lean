@@ -379,7 +379,6 @@ variable {F G : X.Modules} (φ : F ⟶ G)
 noncomputable def kernelForkAppIsLimit (W : X.Opens) :
     IsLimit ((KernelFork.ofι (kernel.ι φ) (kernel.condition φ)).map
       (Scheme.Modules.toPresheaf X ⋙ (evaluation _ AddCommGrpCat.{u}).obj (op W))) := by
-  haveI : PreservesLimit (parallelPair φ 0) (Scheme.Modules.toPresheaf X) := inferInstance
   haveI : PreservesLimit (parallelPair φ 0 ⋙ Scheme.Modules.toPresheaf X)
       ((evaluation _ AddCommGrpCat.{u}).obj (op W)) :=
     evaluation_preservesLimit (parallelPair φ 0 ⋙ Scheme.Modules.toPresheaf X) (op W)

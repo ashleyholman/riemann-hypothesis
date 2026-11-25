@@ -49,7 +49,6 @@ theorem exists_invariant_form : ∀ (k : Type) [Field k] [ValuativeRel k] [Topol
     let := IsTopologicalAddGroup.rightUniformSpace k
     have := isUniformAddGroup_of_addCommGroup (G := k)
     infer_instance
-  have hlc : LocallyCompactSpace k := inferInstance
   have htd : TotallyDisconnectedSpace k := by
     let := IsTopologicalAddGroup.rightUniformSpace k
     have := isUniformAddGroup_of_addCommGroup (G := k)

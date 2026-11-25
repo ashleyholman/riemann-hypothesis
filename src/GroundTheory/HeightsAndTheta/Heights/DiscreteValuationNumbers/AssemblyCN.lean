@@ -1411,7 +1411,6 @@ theorem PrimeFiltration.proof (h1 : AssociatedMultiHomogPrime.Statement.{u})
     (h2 : FiltrationStepHilb.Statement.{u}) (h3 : FiltrationStepLength.Statement.{u})
     (h4 : ColonMultiHomog.Statement.{u}) : PrimeFiltration.Statement.{u} := by
   intro F _ K _ _ ι _ J
-  have : WellFoundedGT (Ideal (MRing ι F)) := inferInstance
   induction J using WellFoundedGT.induction
   rename_i J ih
   intro hJ

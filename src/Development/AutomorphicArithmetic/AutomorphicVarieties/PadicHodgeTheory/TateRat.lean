@@ -1129,7 +1129,6 @@ theorem UpperTheory.lattice_cohomology_finite_and_growth_of_finGen :
     refine ⟨C, fun m _ => ?_⟩
     obtain ⟨-, ⟨q, -⟩, -⟩ := hq m
     rw [e₀.finrank_eq] at hC
-    haveI : Finite (H0 (redRep ρ m)) := inferInstance
     exact latGrow_card (N := H0 (redRep ρ m)) q (hC m)
   · obtain ⟨C, hC⟩ := latGrow_bound ρ h hF 1
     refine ⟨C, fun m _ => ?_⟩

@@ -27,14 +27,12 @@ theorem not_dvd_discr_iff_ramificationIdx (E : Type) [Field E] [NumberField E] {
     rintro rfl
     exact hp.ne_zero (by simpa using hlP)
   have := hP.isMaximal hP0
-  have : (P.under ℤ).IsMaximal := inferInstance
   have hne : P.under ℤ ≠ ⊥ := by
     intro h0
     have h1 : (p : ℤ) ∈ P.under ℤ := by rw [Ideal.under_def, Ideal.mem_comap]; simpa using hlP
     rw [h0] at h1
     exact hp.ne_zero (by simpa using h1)
   have : Finite (ℤ ⧸ P.under ℤ) := Ideal.finiteQuotientOfFreeOfNeBot _ hne
-  have : Finite (P.under ℤ).ResidueField := inferInstance
   exact Ideal.ramificationIdx_eq_one_iff.symm
 
 theorem not_mem_sq {E : Type} [Field E] [NumberField E] {p : ℕ} (hp : p.Prime) {P : Ideal (𝓞 E)} [hP : P.IsPrime]

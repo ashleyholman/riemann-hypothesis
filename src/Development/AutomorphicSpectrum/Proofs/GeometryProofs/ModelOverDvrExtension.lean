@@ -137,7 +137,6 @@ theorem trdeg_eq {σ O O' : Type} [CommRing O] [IsDomain O] [CommRing O'] [IsDom
         (Ideal.Quotient.mk P (C a))
       rw [hφa, map_C]
       rfl
-  have : IsScalarTower O O' (MvPolynomial σ O' ⧸ P') := inferInstance
   have hOS : Function.Injective (algebraMap O (MvPolynomial σ O ⧸ P)) := by
     refine (injective_iff_map_eq_zero (algebraMap O (MvPolynomial σ O ⧸ P))).2 fun a ha => ?_
     have h : (C a : MvPolynomial σ O) ∈ P :=

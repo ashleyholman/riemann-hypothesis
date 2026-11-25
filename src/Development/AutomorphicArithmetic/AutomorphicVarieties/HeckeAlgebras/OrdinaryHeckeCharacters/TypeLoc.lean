@@ -241,7 +241,6 @@ private theorem UpperTheory.exists_mul_eq_algebraMap_of_galois_fixed (O : Type) 
   haveI : CharZero (FractionRing O) := RingHom.charZero (algebraMap (FractionRing O) ℂ)
   haveI : Algebra.IsSeparable (FractionRing O) ℂ := Algebra.IsAlgebraic.isSeparable_of_perfectField
   haveI : IsAlgClosure (FractionRing O) ℂ := ⟨inferInstance, inferInstance⟩
-  haveI : Normal (FractionRing O) ℂ := inferInstance
   haveI : IsGalois (FractionRing O) ℂ := ⟨⟩
   have hmem : z ∈ Set.range (algebraMap (FractionRing O) ℂ) :=
     (InfiniteGalois.mem_range_algebraMap_iff_fixed z).2 (fun f => hz (f.restrictScalars O))

@@ -358,7 +358,6 @@ theorem IsLocalIsomorphism.isIso_comp {X Y Z : Scheme.{u}} (f : X ⟶ Y) [Catego
   intro x
   obtain ⟨U, hxU, hU⟩ := hg (f.base x)
   refine ⟨f ⁻¹ᵁ U, hxU, ?_⟩
-  have : AlgebraicGeometry.IsOpenImmersion f := inferInstance
   have hrange : Set.range ((f ⁻¹ᵁ U).ι ≫ f).base = Set.range U.ι.base := by
     have h1 : Set.range ⇑((f ⁻¹ᵁ U).ι ≫ f).base
         = Set.range (⇑f.base ∘ ⇑(f ⁻¹ᵁ U).ι.base) := rfl
@@ -427,7 +426,6 @@ theorem isLocallyNoetherian_schemeAt_coverBlowupSequence (hstar : _root_.Functor
   have := h.valid.locallyOfFiniteType
   have := h.valid.quasiCompact
   have : IsNoetherianRing ↑(CommRingCat.of T.base) := inferInstanceAs (IsNoetherianRing T.base)
-  have : AlgebraicGeometry.IsNoetherian (Spec (CommRingCat.of T.base)) := inferInstance
   have : AlgebraicGeometry.IsNoetherian T.scheme :=
     isNoetherian_of_locallyOfFiniteType T.structMap
   have hgood := MaxContactCoverData.isMaxContactCover_chosenCoverData T h.valid
@@ -438,8 +436,6 @@ theorem isLocallyNoetherian_schemeAt_coverBlowupSequence (hstar : _root_.Functor
   have := hvc.quasiCompact
   have : IsNoetherianRing ↑(CommRingCat.of (MaxContactCoverData.coverTriple T h.valid).base) :=
     inferInstanceAs (IsNoetherianRing (MaxContactCoverData.coverTriple T h.valid).base)
-  have : AlgebraicGeometry.IsNoetherian
-      (Spec (CommRingCat.of (MaxContactCoverData.coverTriple T h.valid).base)) := inferInstance
   have : AlgebraicGeometry.IsNoetherian (MaxContactCoverData.coverTriple T h.valid).scheme :=
     isNoetherian_of_locallyOfFiniteType (MaxContactCoverData.coverTriple T h.valid).structMap
   refine ⟨?_, ?_⟩
@@ -478,7 +474,6 @@ theorem isAdmissible_and_dim_eq_withSchemeIdealBoundary_ker (T : MarkedIdealWith
       (T.withSchemeIdealBoundary (Scheme.Hom.ker e).subscheme
           ((Scheme.Hom.ker e).subschemeι ≫ T.structMap) (_root_.FunctorialResolution.Blowup.schemeImageIdeal ε J) []).krullDimSucc
         = (T.withSchemeIdealBoundary Y q J []).krullDimSucc := by
-  have : CategoryTheory.Mono ((Scheme.Hom.ker e).subschemeι) := inferInstance
   have hεi : ε = (kerSubschemeIso e).inv := by
     apply (CategoryTheory.cancel_mono ((Scheme.Hom.ker e).subschemeι)).mp
     rw [hε, kerSubschemeIso_inv_comp]
@@ -945,7 +940,6 @@ theorem maxContact_isPullback_of_smooth_of_orderAt_le_mult
   have hsm : AlgebraicGeometry.Smooth T.structMap := by
     cases hV
     assumption
-  have hflat : AlgebraicGeometry.Flat h := inferInstance
   have hidS : ((T.pullbackAlong Y q h).withBoundary E').ideal = T.ideal.comap h :=
     (FunctorialResolution.EmbeddedResolution.MarkedIdealWithBoundary.withBoundary_ideal (T.pullbackAlong Y q h) E').trans
       (FunctorialResolution.EmbeddedResolution.MarkedIdealWithBoundary.pullbackAlong_ideal T Y q h)
@@ -1022,10 +1016,6 @@ theorem maxContact_isPullback_of_smooth_of_orderAt_le_mult
           (FunctorialResolution.EmbeddedResolution.MaxContactCoverData.chosenCoverData
             (FunctorialResolution.EmbeddedResolution.MaxContactFunctoriality.dropTrivialBoundaryPullback T q h E') hpbv).disjointUnion :=
         hPv.isNoetherian
-      have hlnPt : AlgebraicGeometry.IsLocallyNoetherian
-          (FunctorialResolution.EmbeddedResolution.MaxContactCoverData.chosenCoverData
-            (FunctorialResolution.EmbeddedResolution.MaxContactFunctoriality.dropTrivialBoundaryPullback T q h E') hpbv).disjointUnion :=
-        inferInstance
       have hqcStruct : AlgebraicGeometry.QuasiCompact
           (FunctorialResolution.EmbeddedResolution.MaxContactCoverData.coverTriple
             (FunctorialResolution.EmbeddedResolution.MaxContactReduction.dropTrivialBoundary T) htrimv).structMap := by

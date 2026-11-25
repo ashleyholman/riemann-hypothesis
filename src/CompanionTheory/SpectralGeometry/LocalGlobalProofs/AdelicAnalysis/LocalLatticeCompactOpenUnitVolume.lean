@@ -44,7 +44,6 @@ theorem latV_compact_open_mass : ∀ (F E : Type) [Field F] [NumberField F] [Fie
   · rintro lam ⟨hHaar, h1⟩
     have : BorelSpace (Fv F v) := ⟨rfl⟩
     have : BorelSpace (Fv F v ⊗[F] E) := ⟨rfl⟩
-    have : SecondCountableTopology (Fin d → Fv F v) := inferInstance
     have hme : MeasurableEmbedding f := e.measurableEmbedding
     have hsurj : Function.Surjective f := e.surjective
     have : SigmaFinite (coordK (Fv F v) b lam) := by

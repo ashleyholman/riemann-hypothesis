@@ -30,7 +30,6 @@ theorem ae_exists_pairGroup_smul_mem_shear : ∀ (H : Type) [Group H] [Topologic
   intro H _ _ _ _ _ _ _ _ ν _ Γ N hΓ hNc hN κ 𝓝 hκ h𝓝 hconj 𝓕 h𝓕
   haveI : LocallyCompactSpace N := hNc.locallyCompactSpace
   haveI : SecondCountableTopology N := TopologicalSpace.Subtype.secondCountableTopology (N : Set H)
-  haveI : SigmaFinite κ := inferInstance
   have hgoodn : ∀ᵐ n : N ∂κ, ∀ v : Γ, ∃ δ : Γ.subgroupOf N,
       δ • (⟨(v : H) * n * (v : H)⁻¹, hN v v.2 n n.2⟩ : N) ∈ 𝓝 := by
     rw [ae_all_iff]
@@ -299,7 +298,6 @@ theorem smulInvariantMeasure_shear_map (H : Type) [Group H] [TopologicalSpace H]
     SMulInvariantMeasure (pairGroup Γ N hN) (H × H) ((κ.prod ν).map (shear N)) := by
   haveI : LocallyCompactSpace N := hNc.locallyCompactSpace
   haveI : SecondCountableTopology N := TopologicalSpace.Subtype.secondCountableTopology (N : Set H)
-  haveI : SigmaFinite κ := inferInstance
   refine ⟨fun g s hs => ?_⟩
   obtain ⟨⟨u, v⟩, hu, hv, huv⟩ := g
   have hmeasg : Measurable (fun x : H × H => ((⟨(u, v), hu, hv, huv⟩ : pairGroup Γ N hN)) • x) := by
@@ -341,8 +339,6 @@ theorem unfold_zero_mean : ∀ (H : Type) [Group H] [TopologicalSpace H] [IsTopo
   intro H _ _ _ _ _ _ _ _ ν _ Γ N hΓ hNc hN κ 𝓝 hκ h𝓝 h𝓝t K F hKm hFm hKN hKΓ hFΓ h0 𝓕 h𝓕 hint
   haveI : LocallyCompactSpace N := hNc.locallyCompactSpace
   haveI : SecondCountableTopology N := TopologicalSpace.Subtype.secondCountableTopology (N : Set H)
-  haveI : SigmaCompactSpace N := inferInstance
-  haveI : SigmaFinite κ := inferInstance
   haveI : Countable (Γ.subgroupOf N) := by
     refine Function.Injective.countable (f := fun x : Γ.subgroupOf N => (⟨(x : N), x.2⟩ : Γ)) ?_
     intro a b hab
@@ -362,7 +358,6 @@ theorem unfold_zero_mean : ∀ (H : Type) [Group H] [TopologicalSpace H] [IsTopo
     intro a b hab
     simp only [Prod.mk.injEq, Subtype.mk.injEq] at hab
     exact Subtype.ext (Prod.ext hab.1 hab.2)
-  haveI : MeasurableConstSMul G (H × H) := inferInstance
   haveI : SMulInvariantMeasure G (H × H) μ := _root_.GlobalTheory.UnfoldNormal.smulInvariantMeasure_shear_map H ν Γ N hNc hN κ hκ hC
   have hS : IsFundamentalDomain G (shear N '' (𝓝 ×ˢ 𝓕)) μ :=
     ⟨nullMeasurableSet_shear_image hNc κ ν h𝓝.nullMeasurableSet h𝓕.nullMeasurableSet,

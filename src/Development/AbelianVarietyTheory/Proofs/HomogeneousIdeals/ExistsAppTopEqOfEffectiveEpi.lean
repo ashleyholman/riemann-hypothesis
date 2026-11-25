@@ -33,7 +33,6 @@ theorem exists_appTop_eq_of_effectiveEpi (p : Y ⟶ X) [EffectiveEpi p] {f g : Z
   have hι : ι ≫ f.appTop = ι ≫ g.appTop := by
     ext x
     exact x.2
-  have : HasPullback p p := inferInstance
   obtain ⟨u, hu⟩ := IsRegularEpi.exists_of_isKernelPair p h (Y.toSpecΓ ≫ Spec.map ι) (by
     rw [Scheme.toSpecΓ_naturality_assoc, Scheme.toSpecΓ_naturality_assoc, ← Spec.map_comp,
       ← Spec.map_comp, hι])

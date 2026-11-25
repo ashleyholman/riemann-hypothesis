@@ -138,7 +138,6 @@ theorem exDown_exUp_and_exUp_exDown : ∀ (k : Type) [Field k] [ValuativeRel k] 
   · intro hN
     obtain ⟨hSB, hcomm⟩ := hT.2 hN
     have : SigmaCompactSpace k := sigmaCompactSpace_nonarchimedeanLocalField k
-    have : SigmaFinite ν := inferInstance
     have hF2 := fun f hf => (hF f hf).2
     have hG := (hF _ hSB).1
     have hGG := (hF _ hG).1

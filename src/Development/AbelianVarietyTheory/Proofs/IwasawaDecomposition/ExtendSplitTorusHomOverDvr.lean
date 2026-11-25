@@ -53,9 +53,7 @@ theorem extend_torus_hom_dvr : ∀ (V : Type) [CommRing V] [IsDomain V] [IsDiscr
 
   obtain ⟨e, he, heφ⟩ := grpPullback_iso h₁ (isGrpPullback_pullback G (spMap a))
   let j₁ : splitTorus (Sp (FractionRing V)) X ⟶ G₁ := SplitTorus.torusMap _ u ≫ T.i
-  have : IsMonHom j₁ := inferInstance
   let f := (SplitTorus.bcIso (spMap a) X).inv ≫ j₁ ≫ e.hom
-  have : IsMonHom f := inferInstance
   obtain ⟨F, ⟨hF, hF'⟩, -⟩ := homExtension_semiAbelian_dvr V (FractionRing V) (splitTorus (Sp V) X) G
     inferInstance hG f inferInstance
   refine ⟨F, hF, ?_⟩

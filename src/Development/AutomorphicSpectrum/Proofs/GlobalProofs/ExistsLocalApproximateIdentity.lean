@@ -194,7 +194,6 @@ theorem adele_eq (l : Measure (InfiniteAdeleRing F)) (hH : l.IsAddHaarMeasure)
     (D : Set (Ainf F)) (hD : IsAddFundamentalDomain (intInf F) D l) (hD1 : l D = 1)
     (lf : Measure (Af F)) (hlf : lf.IsAddHaarMeasure) (h1 : lf {x | ∀ v, x v ∈ v.adicCompletionIntegers F} = 1) :
     l.prod lf = adeleMeasure F := by
-  haveI : Countable (𝓞 F) := inferInstance
   haveI : Countable (intInf F) := by
     have : Function.Surjective ((((algebraMap F (Ainf F)).comp (algebraMap (𝓞 F) F)).toAddMonoidHom).rangeRestrict) :=
       AddMonoidHom.rangeRestrict_surjective _

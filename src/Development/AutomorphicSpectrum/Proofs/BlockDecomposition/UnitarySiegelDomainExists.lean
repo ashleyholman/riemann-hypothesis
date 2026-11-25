@@ -405,7 +405,6 @@ theorem isCompact_boxE_one (F E : Type) [Field F] [NumberField F] [Field E] [Num
   set b := Algebra.TensorProduct.basis (AF F) (Module.finBasis F E) with hb
   haveI : IsModuleTopology (AF F) (AF F ⊗[F] E) := ⟨rfl⟩
   haveI : ContinuousAdd (AF F ⊗[F] E) := IsModuleTopology.toContinuousAdd (AF F) _
-  haveI : ContinuousSMul (AF F) (AF F ⊗[F] E) := inferInstance
   have hK : IsCompact (Set.univ.pi fun _ : Fin (Module.finrank F E) => boxF F 1) :=
     isCompact_univ_pi fun _ => isCompact_boxF_one F
   have hc : Continuous

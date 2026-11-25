@@ -93,7 +93,6 @@ theorem unit_exponent_holds : UnitEx := by
   obtain ⟨ω, hω⟩ := Central.exists_hasCentral E m π₁
   obtain ⟨c, hc⟩ := log_norm_zc ω
   have hn : (0 : ℝ) < 2 * Fintype.card (InfinitePlace E) := by
-    have : Nonempty (InfinitePlace E) := inferInstance
     have := Fintype.card_pos (α := InfinitePlace E)
     positivity
   have hm' : (0 : ℝ) < m := by exact_mod_cast hm

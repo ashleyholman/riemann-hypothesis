@@ -27,7 +27,6 @@ theorem integralClosureRank (O F L : Type) [CommRing O] [IsDomain O] [IsDiscrete
   haveI : Module.IsTorsionFree O L := by
     rw [Module.isTorsionFree_iff_algebraMap_injective, IsScalarTower.algebraMap_eq O F L]
     exact (algebraMap F L).injective.comp (IsFractionRing.injective O F)
-  haveI : Module.IsTorsionFree O C := inferInstance
   haveI hFr : Module.Free O C := Module.free_of_finite_type_torsion_free'
   haveI : IsFractionRing C L := IsIntegralClosure.isFractionRing_of_finite_extension O F L C
   set m := IsLocalRing.maximalIdeal O

@@ -153,7 +153,6 @@ theorem adicInt_isAdicComplete : IsAdicComplete (maximalIdeal Ov) Ov := by
 
 instance adicInt_henselian : HenselianLocalRing Ov := by
   have := adicInt_isAdicComplete (K := K) v
-  have : HenselianRing Ov (maximalIdeal Ov) := inferInstance
   refine ⟨fun f hf a₀ h₁ h₂ => ?_⟩
   refine HenselianRing.is_henselian f hf a₀ h₁ ?_
   exact h₂.map _

@@ -426,8 +426,6 @@ theorem lintegral_indicator_ne_top (μ : Measure G) [μ.IsHaarMeasure]
   classical
   have : LocallyCompactSpace T := hT.isClosedEmbedding_subtypeVal.locallyCompactSpace
   have : SecondCountableTopology T := TopologicalSpace.Subtype.secondCountableTopology (T : Set G)
-  have : SigmaCompactSpace T := inferInstance
-  have : SFinite ν := inferInstance
   have hmcoe : Measurable (fun h : T => (h : G)) := measurable_subtype_coe
   have : ν.IsMulRightInvariant := by
     have : ν.inv.IsMulRightInvariant := inferInstance

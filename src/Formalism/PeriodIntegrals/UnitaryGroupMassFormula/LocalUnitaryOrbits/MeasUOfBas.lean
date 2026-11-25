@@ -31,7 +31,6 @@ theorem lamT_open (a : ℕ) (Y : TupV (E := E) v n a) (hB : LatBasO σ J ψ v Λ
   have hV : Module.finrank (Fv F v) (Fin n → Fv F v ⊗[F] E) = 2 * n := by
     rw [Module.finrank_pi_fintype, Finset.sum_const, Finset.card_univ, Fintype.card_fin, smul_eq_mul,
       Module.finrank_baseChange, hfr, mul_comm]
-  have : FiniteDimensional (Fv F v) (Fin n → Fv F v ⊗[F] E) := inferInstance
   let bb := basisOfLinearIndependentOfCardEqFinrank' b hb (by rw [Fintype.card_fin, hV])
   have hbb : ∀ i, bb i = b i := fun i => by simp [bb]
   have e : (latLoc (E := E) v Λ : Set (Fin n → Fv F v ⊗[F] E)) =

@@ -1016,7 +1016,6 @@ end PSD
 theorem finite_classes {K : Type} [AddCommGroup K] (R P : AddSubgroup K) (h : R.relIndex P ≠ 0) :
     {x : K ⧸ R | (Quotient.out x : K) ∈ P}.Finite := by
   have hfi : (R.addSubgroupOf P).FiniteIndex := ⟨h⟩
-  have : Finite (P ⧸ R.addSubgroupOf P) := inferInstance
   refine (Set.finite_range
     (fun q : P ⧸ R.addSubgroupOf P => (((Quotient.out q : P) : K) : K ⧸ R))).subset ?_
   intro x hx

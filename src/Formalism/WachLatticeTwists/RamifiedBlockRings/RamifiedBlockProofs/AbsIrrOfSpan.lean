@@ -215,7 +215,6 @@ theorem bcLocal : StatBcLocal := by
     | algebraMap c => rfl
     | add f g _ _ hf hg => simp only [Pi.add_apply, map_add (f := _), hf, hg]
     | mul f g _ _ hf hg => simp only [Pi.mul_apply, map_mul, hf, hg]
-  have : Algebra.IsIntegral O' (X → O') := inferInstance
   have : Algebra.IsIntegral (bcT O' T) (X → O') := Algebra.IsIntegral.tower_top O'
   have : FaithfulSMul (bcT O' T) (X → O') :=
     (faithfulSMul_iff_algebraMap_injective _ _).mpr Subtype.val_injective
@@ -231,7 +230,6 @@ theorem bcLocal : StatBcLocal := by
       rw [hres a.1 a.2 x π]
       exact (IsLocalRing.residue_ne_zero_iff_isUnit _).mpr ha
     exact (IsLocalRing.residue_ne_zero_iff_isUnit _).mp h1
-  have : Nontrivial (bcT O' T) := inferInstance
   refine IsLocalRing.of_isUnit_or_isUnit_one_sub_self fun a => ?_
   rcases IsLocalRing.isUnit_or_isUnit_one_sub_self (a.1 π) with h | h
   · exact Or.inl (hunit a h)
@@ -374,7 +372,6 @@ theorem stageC : StatStageC := by
   obtain ⟨heBm, he1m, heBB, he11, heB1, he1B, hrkB, hrk1, heBπ, he1π⟩ := hI
   let j : O →+* O' := algebraMap O O'
   have hj : Function.Injective j := FaithfulSMul.algebraMap_injective O O'
-  have hjl : IsLocalHom (algebraMap O O') := inferInstance
   let ι : O →+* FractionRing O := algebraMap O (FractionRing O)
   let ι' : O' →+* FractionRing O' := algebraMap O' (FractionRing O')
   have hι' : Function.Injective ι' := IsFractionRing.injective O' (FractionRing O')

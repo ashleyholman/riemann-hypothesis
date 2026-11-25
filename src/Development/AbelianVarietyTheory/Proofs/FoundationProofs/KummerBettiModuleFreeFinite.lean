@@ -374,7 +374,6 @@ theorem B_free_finite : ∀ {Ω : Type} [Field Ω] [Algebra ℚ Ω] [IsAlgClosur
       rwa [h2] at this
     apply Subtype.ext
     exact sub_eq_zero.mp (Prod.ext h1 h2)
-  haveI : IsNoetherian ℤ_[l] (Z1 N l w) := inferInstance
   haveI hSf : Module.Finite ℤ_[l] S := Module.Finite.of_injective _ hinj
   have hle : X.B N l w ≤ S.map (LinearMap.fst ℤ_[l] (X.Fn l) (Z1 N l w)) := by
     refine Submodule.span_le.mpr ?_

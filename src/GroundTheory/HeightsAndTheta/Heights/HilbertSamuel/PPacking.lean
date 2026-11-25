@@ -29,8 +29,6 @@ theorem finrank_span_le_finrank_int {V : Type*} [AddCommGroup V] [Module ℝ V]
       finrank ℝ (Submodule.span ℝ (La : Set V)) ≤ finrank ℤ La := by
   classical
   have : HasUniqueDiv V := HasUniqueDiv.of_isTorsionFree ℝ V
-  have : IsAddTorsionFree V := inferInstance
-  have : Module.IsTorsionFree ℤ La := inferInstance
   have : Module.Free ℤ La := Module.free_of_finite_type_torsion_free'
   let B := Module.Free.chooseBasis ℤ La
   let f : Module.Free.ChooseBasisIndex ℤ La → V := fun i => (B i : V)

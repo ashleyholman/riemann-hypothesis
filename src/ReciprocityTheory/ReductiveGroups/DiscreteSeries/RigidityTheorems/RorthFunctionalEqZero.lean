@@ -148,7 +148,6 @@ theorem rorth_exists_ext (hVf : FiniteDimensional ℂ V) (j : V →ₗ[ℂ] H) :
   let ι : V →ₗ[ℂ] H := D.subtype.comp V.subtype
   have hι : Function.Injective ι := D.injective_subtype.comp V.injective_subtype
   let S : Submodule ℂ H := LinearMap.range ι
-  have : FiniteDimensional ℂ S := inferInstance
   have : CompleteSpace S := FiniteDimensional.complete ℂ S
   let e : V ≃ₗ[ℂ] S := LinearEquiv.ofInjective ι hι
   refine ⟨(LinearMap.toContinuousLinearMap (j.comp e.symm.toLinearMap)).comp

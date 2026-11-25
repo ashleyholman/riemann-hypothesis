@@ -24,9 +24,6 @@ open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalC
 
 theorem ext_of_schDom {W X Y Z : Scheme.{0}} {f g : X ⟶ Y} (s : Y ⟶ Z) [IsSeparated s] (h : f ≫ s = g ≫ s)
     (ι : W ⟶ X) [IsSchemeTheoreticallyDominant ι] (hU : ι ≫ f = ι ≫ g) : f = g := by
-  have hΔ : IsClosedImmersion (pullback.diagonal s) := inferInstance
-  have hi : IsClosedImmersion (pullback.snd (pullback.diagonal s) (pullback.lift f g h)) :=
-    inferInstance
   have hj : (ι ≫ f) ≫ pullback.diagonal s = ι ≫ pullback.lift f g h := by
     apply pullback.hom_ext <;>
       simp only [Category.assoc, pullback.diagonal_fst, pullback.diagonal_snd, Category.comp_id,

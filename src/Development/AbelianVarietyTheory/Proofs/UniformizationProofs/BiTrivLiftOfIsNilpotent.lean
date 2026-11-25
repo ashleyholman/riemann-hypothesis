@@ -1092,8 +1092,6 @@ theorem exists_reduces (hJ : IsNilpotent J) {Y : Over (Spec (CommRingCat.of A))}
   obtain ⟨t₀, g₀, v₀⟩ := exists_gen hL (φ' := fun k => f ≫ lam (fst 𝕋 Y ≫ i) (snd 𝕋 Y ≫ x) k) (ε' := Oε)
     (fun U _ q => Finset.prod_congr rfl fun k _ => by simp only [h, pullback.lift_fst_assoc, Category.assoc, hm]) (LB.pullGen L.L _ _ s₀ h) (ReciprocityTheory.ChartRestriction.G.DVR.pullGen_isGen L.L _ _ s₀ h₀ h)
   have : Surjective (red J) := surjective_red hJ
-  have : IsClosedImmersion f := inferInstance
-  have : Surjective f := inferInstance
   have : IsAffine (splitTorus (Spec (CommRingCat.of A)) X).left := by
     unfold splitTorus splitTorusAff
     have : IsAffine ((Spec (torusRing ZU X)).asOver (Spec ZU)).left := inferInstanceAs (IsAffine (Spec (torusRing ZU X)))
@@ -1193,7 +1191,6 @@ instance {S : Scheme.{0}} (Z : Over S) (V : Z.left.Opens) : Mono (opnι Z V) :=
 
 theorem exists_opn_lift {S : Scheme.{0}} {Z Y : Over S} (x : Z ⟶ Y) (U : Y.left.Opens) (h : ∀ z, x.left z ∈ U) :
     ∃ y : Z ⟶ opn Y U, y ≫ opnι Y U = x := by
-  have hU : AlgebraicGeometry.IsOpenImmersion U.ι := inferInstance
   have hr : Set.range x.left ⊆ Set.range U.ι := by
     rintro _ ⟨z, rfl⟩
     exact ⟨⟨_, h z⟩, rfl⟩

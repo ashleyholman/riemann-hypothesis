@@ -76,7 +76,6 @@ theorem isPullback_red_of_ker_app_le_map (A : Type) [CommRing A] (J : Ideal A)
     IsPullback j s₀ s (red J) := by
   have hr : IsClosedImmersion (red J) :=
     IsClosedImmersion.spec_of_surjective _ Ideal.Quotient.mk_surjective
-  have hp : IsClosedImmersion (pullback.fst s (red J)) := inferInstance
   have hl : pullback.lift j s₀ w ≫ pullback.fst s (red J) = j := pullback.lift_fst _ _ _
   have hker : j.ker = (pullback.fst s (red J)).ker := by
     refine le_antisymm ?_ ?_

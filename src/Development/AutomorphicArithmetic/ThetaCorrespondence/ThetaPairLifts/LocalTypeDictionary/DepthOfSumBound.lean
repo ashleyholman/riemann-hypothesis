@@ -734,7 +734,6 @@ theorem flat_last [ν.IsAddHaarMeasure] {ϖ : kˣ} {e : ℕ} {T : G.Args → ℂ
   obtain ⟨hsc, ht2⟩ := Model.secondCountable_and_t2_local_field (k := k)
   haveI := hsc
   haveI := ht2
-  haveI : SigmaFinite ν := inferInstance
   haveI hinv : (varsVol G ν).IsAddRightInvariant := by
     unfold varsVol
     infer_instance

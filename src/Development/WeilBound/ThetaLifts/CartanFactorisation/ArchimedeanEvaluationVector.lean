@@ -175,7 +175,6 @@ theorem sympl_eq (w w') : sympl w w' = tb (C.P w).1 (C.P w').2 - tb (C.P w').1 (
 theorem norm_eq {f g : SInf F κ} (h : ∫⁻ x, ‖f x‖ₑ ^ 2 = ∫⁻ x, ‖g x‖ₑ ^ 2) :
     ‖(C.S f).toLp 2 volume‖ = ‖(C.S g).toLp 2 volume‖ := by
   haveI := HaarSplit.volume_isAddHaar F κ
-  haveI : BorelSpace (mixedEmbedding.mixedSpace F) := inferInstance
   haveI : BorelSpace (κ → mixedEmbedding.mixedSpace F) := Pi.borelSpace
   haveI : OpensMeasurableSpace (κ → mixedEmbedding.mixedSpace F) := BorelSpace.opensMeasurable
   have hm := Measure.isAddLeftInvariant_eq_smul (Measure.map C.Q volume) (volume : Measure (κ → mixedEmbedding.mixedSpace F))

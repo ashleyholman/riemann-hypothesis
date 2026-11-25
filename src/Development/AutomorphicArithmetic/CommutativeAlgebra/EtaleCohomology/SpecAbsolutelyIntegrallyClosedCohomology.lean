@@ -249,7 +249,6 @@ instance chainsPres : PreservesColimitsOfShape (Discrete WalkingPair) (chains R)
   unfold chains chainsN; infer_instance
 theorem chainsCoprod : LateralTheory.E.BinPf.ChainsCoprod := by
   intro R _ U V
-  have h : IsIso (coprodComparison (chains R) U V) := inferInstance
   have e : biprod.desc ((chains R).map (coprod.inl : U ⟶ U ⨿ V)) ((chains R).map (coprod.inr : V ⟶ U ⨿ V)) =
       (biprod.isoCoprod _ _).hom ≫ coprodComparison (chains R) U V := by
     apply biprod.hom_ext' <;> simp [coprodComparison]
@@ -843,7 +842,6 @@ theorem Img_of : LateralTheory.E.ChowCut.Img := by
   intro A _ Z X h p _ hh hZ
   have := hh
   have := hZ
-  have : QuasiCompact h := inferInstance
   have : IsIntegralHom (h.toImage ≫ h.imageι) := by rw [Scheme.Hom.toImage_imageι]; exact hh
   refine ⟨h.image, h.toImage, h.imageι ≫ p, inferInstance, inferInstance,
     IsIntegralHom.of_comp h.toImage h.imageι, inferInstance, ?_⟩
@@ -1054,7 +1052,6 @@ lemma projective_line_over_integers_isProper : IsProper (terminal.from P1) := by
   have : IsIso (terminal.from (Spec (CommRingCat.of ℤ))) :=
     ⟨⟨specZIsTerminal.from _, specZIsTerminal.hom_ext _ _, terminal.hom_ext _ _⟩⟩
   have h3 : IsProper (terminal.from (Spec (CommRingCat.of ℤ))) := by
-    have : IsClosedImmersion (terminal.from (Spec (CommRingCat.of ℤ))) := inferInstance
     infer_instance
   have h2' : IsProper (Spec.map (CommRingCat.ofHom (algebraMap ℤ (𝒜 0)))) := inferInstance
   rw [e]

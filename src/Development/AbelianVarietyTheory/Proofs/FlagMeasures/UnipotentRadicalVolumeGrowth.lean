@@ -56,7 +56,6 @@ theorem measure_mul_le {G : Type} [Group G] [TopologicalSpace G] [IsTopologicalG
   classical
   obtain ⟨-, hfc, hnull, hleft⟩ := hν
   haveI : IsFiniteMeasureOnCompacts ν := hfc
-  haveI : SigmaFinite ν := inferInstance
   have hKm : MeasurableSet K := hK.isClosed.measurableSet
   set E : Set (G × G) := {p | p.1 ∈ S ∧ p.1⁻¹ * p.2 ∈ K} with hEd
   have hE : MeasurableSet E :=

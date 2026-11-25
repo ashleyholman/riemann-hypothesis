@@ -702,7 +702,6 @@ theorem main : ∀ (p : ℕ) [Fact p.Prime], p ≠ 2 → ∀ (Ω : Type) [Field 
     rw [aeval_def, eval₂_map, hcomp, ← aeval_def, hx]
   haveI : IsAlgClosure F Ω := ⟨inferInstance, hal⟩
   haveI : IsGalois F Ω := {}
-  haveI : CompactSpace (Ω ≃ₐ[F] Ω) := inferInstance
   let q' : F := ⟨algebraMap (O0 p) Ω (qO p), hO _⟩
   have hirr : ∀ n, Irreducible (X ^ (p ^ n) - C q') := fun n =>
     irreducible_X_pow_sub_C_of_prime_pow_of_ne_two hp.out hp2 n (fun b hb =>

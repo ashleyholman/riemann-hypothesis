@@ -83,7 +83,6 @@ theorem _root_.GlobalTheory.datum_free_int {H : _root_.ReciprocityTheory.ChartRe
   haveI := D.fin
   haveI := D.proj
   haveI : Module.Finite ℤ D.La := Module.Finite.trans (𝓞 E) D.La
-  haveI : Module.IsTorsionFree (𝓞 E) D.La := inferInstance
   haveI : Module.IsTorsionFree ℤ D.La := Module.IsTorsionFree.trans (𝓞 E)
   exact Module.free_of_finite_type_torsion_free'
 

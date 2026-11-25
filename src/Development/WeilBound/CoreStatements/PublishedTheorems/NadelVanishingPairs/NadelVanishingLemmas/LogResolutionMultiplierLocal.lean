@@ -363,7 +363,6 @@ theorem kltAt_lcAt_iff_of_isLogRes : ∀ (k : Type) [Field k] [CharZero k] (X : 
   haveI : LocallyOfFiniteType p := hpi ▸ inferInstance
   haveI := hres.smooth
   haveI : Smooth (s ≫ p) := SmoothOfRelativeDimension.smooth n _
-  haveI : LocallyOfFiniteType (s ≫ p) := inferInstance
   haveI : IsNormalScheme Y := ModifSections.isNormalScheme_of_smooth (s ≫ p)
   have hdimY : topologicalKrullDim Y = n :=
     HSCore.VanishNumberField.topologicalKrullDim_eq_of_smooth (s ≫ p) n hres.smooth

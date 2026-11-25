@@ -624,8 +624,6 @@ theorem GlobalTheory.HaarR.map_prodR_isMulLeftInvariant : ∀ (k : Type) [Field 
   haveI := hH
   haveI : LocallyCompactSpace (N k n c p) := hNc.isClosedEmbedding_subtypeVal.locallyCompactSpace
   haveI : SecondCountableTopology (N k n c p) := TopologicalSpace.Subtype.secondCountableTopology _
-  haveI : SigmaFinite m := inferInstance
-  haveI : SigmaFinite (volN ν n c p) := inferInstance
   have hE : Continuous (embX c : GL n k → GL (n ⊕ Fin c) k) := GlobalTheory.RootEx.QuotStep.continuous_embX
   have hφ : Measurable (prodR (k := k) (n := n) (c := c) p) :=
     (Continuous.subtype_mk ((hE.comp continuous_fst).mul (continuous_subtype_val.comp continuous_snd)) _).measurable

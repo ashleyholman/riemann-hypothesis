@@ -49,7 +49,6 @@ theorem preimage_comp_eq_val {o Ω : Type} [CommRing o] [Field Ω] [Algebra o Ω
     (Spec.preimage (t ≫ u₀)).hom a = M.val (t ≫ U₀.ι) a := by
   have hle : (⊤ : U₀.toScheme.Opens) ≤ U₀.ι ⁻¹ᵁ U₀ := fun x _ => x.2
   have hs : Function.Surjective (U₀.ι.appLE U₀ ⊤ hle).hom := by
-    have : IsIso (U₀.ι.appLE U₀ ⊤ hle) := inferInstance
     exact (asIso (U₀.ι.appLE U₀ ⊤ hle)).commRingCatIsoToRingEquiv.surjective
   obtain ⟨f, hf⟩ := hs ((u₀.appLE ⊤ ⊤ le_top).hom ((Scheme.ΓSpecIso (CommRingCat.of R)).inv.hom a))
   have key : ∀ (L : Type) [Field L] (x : Sp L ⟶ U₀.toScheme),

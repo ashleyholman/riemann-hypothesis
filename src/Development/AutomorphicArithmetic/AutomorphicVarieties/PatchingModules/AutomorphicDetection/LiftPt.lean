@@ -1757,7 +1757,6 @@ theorem core : Core := by
   haveI : Nontrivial (W.R ⧸ ii W) := πb.toRingHom.domain_nontrivial
   haveI : IsCO O (W.R ⧸ ii W) := co_quot O W.R _ (Ideal.Quotient.mkₐ O (ii W)) Ideal.Quotient.mk_surjective
   obtain ⟨o⟩ := ooPair l L G0 T Λ n O r B u J D A W hn
-  haveI : FaithfulSMul B (Spo A) := inferInstance
   obtain ⟨⟨P, E, hPp, hE⟩, hdown⟩ := BC.chain_lift B (Spo A) h (fun i => RingHom.ker (x i).f) e
     (fun i => RingHom.ker_isPrime _) fun i => ⟨(he i).1, (he i).2.2⟩
   choose x' hx'1 hx'2 using fun i => lift_pt A hA hadj (x i) (P i) (hPp i).1 (hPp i).2

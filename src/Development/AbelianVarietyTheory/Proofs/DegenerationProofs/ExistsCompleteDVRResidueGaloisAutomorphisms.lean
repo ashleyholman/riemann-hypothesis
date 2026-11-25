@@ -52,7 +52,6 @@ theorem galois_of_isInvariant (A B G : Type) [CommRing A] [CommRing B] [Algebra 
     obtain ⟨x, rfl⟩ := hq z
     exact ⟨Ideal.Quotient.mk Q x, 1, by rw [map_one, div_one]; rfl⟩
   have hn : Normal k K := Ideal.IsFractionRing.normal G P Q k K
-  have hs : Algebra.IsSeparable k K := inferInstance
   refine ⟨Ideal.IsFractionRing.finite_of_isInvariant G P Q k K, { }, fun τ => ?_⟩
   obtain ⟨σ, rfl⟩ := IsFractionRing.stabilizerHom_surjective G P Q k K τ
   exact ⟨σ.1, fun x => (IsFractionRing.stabilizerHom_apply_apply_mk G P Q k K σ x).symm⟩
@@ -75,11 +74,8 @@ theorem exists_cDvr_residue_galois : ∀ (V V' : Type) [CommRing V] [IsDomain V]
   let K' := FractionRing V'
   let _ : Algebra K K' := FractionRing.liftAlgebra V K'
   have : IsScalarTower V K K' := FractionRing.isScalarTower_liftAlgebra V K'
-  have : FiniteDimensional K K' := inferInstance
   have : CharZero K := IsFractionRing.charZero_of_isFractionRing V
   let L := IntermediateField.normalClosure K K' (AlgebraicClosure K')
-  have : FiniteDimensional K L := inferInstance
-  have : IsGalois K L := inferInstance
   let W := integralClosure V L
   have hB : Module.Finite V W := IsIntegralClosure.finite V K L _
   have hBd : IsDiscreteValuationRing W := ReciprocityTheory.ChartRestriction.G.T0.FiniteAlgebraLocalCompletion.cl_dvr V K L

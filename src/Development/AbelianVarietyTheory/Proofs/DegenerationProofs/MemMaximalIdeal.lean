@@ -28,11 +28,9 @@ variable {V : Type} [CommRing V] [IsDomain V] [IsDiscreteValuationRing V] {D : D
 
 theorem toGen_injective (U : UnifPre (maximalIdeal V) D A G) (k : ℕ) : Function.Injective (toGen U k) := by
   have := U.smooth
-  have : Flat G.hom := inferInstance
   have h := GlobalTheory.ExtUnique.spec_fractionRing V (FractionRing V)
   have h₁ : IsSchemeTheoreticallyDominant (jK V) := h.2
   have h₂ : QuasiCompact (jK V) := h.1
-  have : IsSchemeTheoreticallyDominant (pullback.fst G.hom (jK V)) := inferInstance
   exact GlobalTheory.ConstFam.pullOver_injective_of_dominant _ _ _ _
 
 theorem chart_sum {Y : Scheme.{0}} {p : Y ⟶ Spec (CommRingCat.of V)} {M : LB Y} {J : Type} [Fintype J]
@@ -80,7 +78,6 @@ theorem main : LL → ∀ (V : Type) [CommRing V] [IsDomain V] [IsDiscreteValuat
   refine ⟨σ, hσ, fun s => ?_⟩
   obtain ⟨ϖ, hϖ⟩ := IsDiscreteValuationRing.exists_irreducible V
   have := U.smooth
-  have : Flat G.hom := inferInstance
   obtain ⟨a, ha⟩ := AdaptedSpan.exists_comb hL.1.globalFns U hk σ cls f h₂ h₃ hσ h₅ h₆ h₇ (toGen U.toUnifPre k s)
   obtain ⟨d, b, hd, hb⟩ := exists_denom a
   have e : (d • (show SecG U.toUnifPre k from s)) = ∑ i, b i • σ i := toGen_injective U.toUnifPre k (by

@@ -96,7 +96,6 @@ theorem exists_glue {T X Y : Scheme.{0}} [IsReduced Y] [X.IsSeparated] (j : T �
   have compat : ∀ x y : ι, pullback.fst (V x).ι (V y).ι ≫ h x = pullback.snd (V x).ι (V y).ι ≫ h y := by
     intro x y
     let w : pullback (V x).ι (V y).ι ⟶ Y := pullback.fst _ _ ≫ (V x).ι
-    have : IsOpenImmersion w := inferInstance
     have : IsReduced (pullback (V x).ι (V y).ι) := isReduced_of_isOpenImmersion w
     have : IsDominant (pullback.snd j w) :=
       IsZariskiLocalAtTarget.of_isPullback (P := @IsDominant) (IsPullback.of_hasPullback j w)
@@ -439,7 +438,6 @@ theorem exists_projective_cover (R : Type) [CommRing R] (X : Scheme.{0}) [IsInte
   have : IsSeparated (PSpace.str R N) := by
     unfold PSpace.str
     infer_instance
-  have : QuasiCompact (φ ≫ PSpace.str R N) := inferInstance
   have : QuasiCompact φ := QuasiCompact.of_comp φ (PSpace.str R N)
   have := dominant_toImage φ
   have hq : W.ι ≫ f = φ.toImage ≫ φ.imageι ≫ PSpace.str R N := by

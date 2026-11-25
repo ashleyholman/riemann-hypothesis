@@ -54,7 +54,6 @@ theorem UpperTheory.V.Z.Tf.Orb.convTest :
       refine (setIntegral_eq_integral_of_forall_compl_eq_zero fun y hy => ?_).symm
       rw [image_eq_zero_of_notMem_tsupport hy, zero_mul]
     rw [h]
-    haveI : FirstCountableTopology G := inferInstance
     exact continuous_parametric_integral_of_continuous (by fun_prop) a2
   · refine HasCompactSupport.intro (a2.isCompact.mul b2.isCompact) fun x hx => ?_
     refine integral_eq_zero_of_ae (Filter.Eventually.of_forall fun y => ?_)

@@ -395,7 +395,6 @@ theorem exists_inertia_moves_root : ∀ (W : Type) [CommRing W] [IsDomain W] [Is
   obtain ⟨O, hO⟩ := (LocalSubring.range f).exists_le_valuationSubring
   obtain ⟨h1, hloc⟩ := (GlobalTheory.localSubring_range_le_valuationSubring_iff_isLocalHom f O).1 hO
   have h2 := ((GlobalTheory.localSubring_range_le_valuationSubring_iff f O).1 hO).2
-  haveI : CharZero K := inferInstance
   haveI : CharZero F := charZero_of_injective_algebraMap (algebraMap K F).injective
   haveI : IsAlgClosed F := IsAlgClosure.isAlgClosed K
   obtain ⟨π, hπ⟩ := IsAlgClosed.exists_pow_nat_eq (f ϖ) (Nat.pos_of_ne_zero hk0)

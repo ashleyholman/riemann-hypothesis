@@ -56,7 +56,6 @@ theorem nonempty_addEquiv_gsRoots_of_places [NeZero n] (hnS : ∀ v ∉ S, ((n :
       IsPrimitiveRoot.of_map_of_injective (f := (maxUnramifiedOutside K.1 ℚ̄ S).val) hζ
         Subtype.val_injective
     rw [Nat.card_congr Additive.toMul, hprim.card_rootsOfUnity, Nat.card_zmod]
-  have : IsAddCyclic (Additive (rootsOfUnity n (maxUnramifiedOutside K.1 ℚ̄ S))) := inferInstance
   exact ⟨addEquivOfAddCyclicCardEq hcard⟩
 
 end

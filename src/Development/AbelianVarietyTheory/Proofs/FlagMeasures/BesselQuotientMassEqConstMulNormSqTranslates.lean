@@ -114,7 +114,6 @@ theorem closable (hσ : IsURepOn (UJset ε) σ) (D : Submodule ℂ H) (a : H →
   haveI : LocallyCompactSpace (Matrix (Fin n) (Fin n) ℂ) :=
     inferInstanceAs (LocallyCompactSpace (Fin n → Fin n → ℂ))
   haveI : LocallyCompactSpace (Formalism.REAL.UJ ε) := hemb.locallyCompactSpace
-  haveI : SigmaFinite (Formalism.REAL.muG ε) := inferInstance
   have hmul : ∀ (g : Formalism.REAL.UJ ε) (v : H), σ (umat g) (σ (umat g⁻¹) v) = v := by
     intro g v
     have e : σ (umat g * umat g⁻¹) = _ := hσ.1.2 _ g.2 _ (g⁻¹).2

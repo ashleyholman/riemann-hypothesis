@@ -116,7 +116,6 @@ theorem coordK_map_mul : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [N
     rw [← hσ.2.2.1, Module.finrank_eq_card_basis b, Fintype.card_fin]
   subst hd
   set μ := coordK (Fv F v) b lam with hμ
-  haveI : μ.Regular := inferInstance
   have hss : ∀ x, sigR (Fv F v) σ (sigR (Fv F v) σ x) = x := by
     intro x
     induction x using TensorProduct.induction_on with

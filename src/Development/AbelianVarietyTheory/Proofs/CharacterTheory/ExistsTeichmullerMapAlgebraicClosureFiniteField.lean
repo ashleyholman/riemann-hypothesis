@@ -48,9 +48,7 @@ theorem _root_.GlobalTheory.CuspGL.TeichEmb.exists_teichmuller :
     ⟨(CharP.char_is_prime_or_zero F p).resolve_right (CharP.char_ne_zero_of_finite F p)⟩
   have : CharP (AlgebraicClosure F) p :=
     charP_of_injective_algebraMap (algebraMap F (AlgebraicClosure F)).injective p
-  have : PerfectRing (AlgebraicClosure F) p := inferInstance
   let W := WittVector p (AlgebraicClosure F)
-  have : IsDomain W := inferInstance
   letI : Algebra (ZMod p) (AlgebraicClosure F) := ZMod.algebra _ p
   have hW : CharZero W := by
     let f : ℤ_[p] →+* W := (WittVector.map (algebraMap (ZMod p) (AlgebraicClosure F))).comp
@@ -62,7 +60,6 @@ theorem _root_.GlobalTheory.CuspGL.TeichEmb.exists_teichmuller :
   let Ω := AlgebraicClosure (FractionRing W)
   have : CharZero (FractionRing W) :=
     charZero_of_injective_algebraMap (IsFractionRing.injective W (FractionRing W))
-  have : CharZero Ω := inferInstance
   let g : W →+* Ω := (algebraMap (FractionRing W) Ω).comp (algebraMap W (FractionRing W))
   have hg : Function.Injective g :=
     (algebraMap (FractionRing W) Ω).injective.comp (IsFractionRing.injective W (FractionRing W))

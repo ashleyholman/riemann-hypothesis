@@ -1049,7 +1049,6 @@ theorem kummer_dual_step (A₀ K₀ F E : Type) [CommRing A₀] [IsDomain A₀] 
   intro y hy
   haveI : CharZero F := charZero_of_injective_algebraMap (algebraMap K₀ F).injective
   haveI : CharZero E := charZero_of_injective_algebraMap (algebraMap F E).injective
-  haveI : Algebra.IsSeparable F E := inferInstance
   let C := integralClosure A₀ F
   haveI : IsFractionRing C F := IsIntegralClosure.isFractionRing_of_finite_extension A₀ K₀ F C
   haveI : IsIntegrallyClosed C := integralClosure.isIntegrallyClosedOfFiniteExtension K₀
@@ -1203,7 +1202,6 @@ theorem kummer_not_map_comap_le_sq :
     rw [faithfulSMul_iff_algebraMap_injective]
     intro a b hab
     exact hinj (congrArg Subtype.val hab)
-  haveI : Module.IsTorsionFree A₀ (integralClosure A₀ E) := inferInstance
   have hone : Submodule.traceDual A₀ K₀ (1 : Submodule (integralClosure A₀ E) E) = 1 := by
     refine le_antisymm ?_ Submodule.one_le_traceDual_one
     intro y hy

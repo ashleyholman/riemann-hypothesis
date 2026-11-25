@@ -362,7 +362,6 @@ theorem gramDet_sumElim_ge (σ : K →+* ℂ) {m n : Type*} [Fintype m] [Decidab
       map_add' := map_add _
       map_smul' := lTensor_complex_smul σ X.incl }
   let W := LinearMap.range L
-  have : FiniteDimensional ℂ W := inferInstance
   have : CompleteSpace W := FiniteDimensional.complete ℂ W
   let a : m → FibreSpace E.metric σ := fun k ↦ fibreVec E.metric σ (X.incl (s' k))
   let b : n → FibreSpace E.metric σ := fun j ↦ fibreVec E.metric σ (u j)

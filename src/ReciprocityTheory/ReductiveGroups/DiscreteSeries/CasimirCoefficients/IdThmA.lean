@@ -78,7 +78,6 @@ lemma hasDerivAt_intK [CompactSpace (KG ε)] (T : KType ε Λ) (F F' : ℂ → K
     (hd : ∀ s ∈ S, ∀ k, HasDerivAt (fun s => F s k) (F' s k) s) {s0 : ℂ} (hs0 : s0 ∈ S) :
     HasDerivAt (fun s => ∫ k, F s k ∂(muK ε)) (∫ k, F' s0 k ∂(muK ε)) s0 := by
   have : IsFiniteMeasureOnCompacts (muK ε) := by unfold muK; infer_instance
-  have : IsFiniteMeasure (muK ε) := inferInstance
   obtain ⟨r, hr, hball⟩ := Metric.isOpen_iff.mp hS s0 hs0
   have hcl : Metric.closedBall s0 (r / 2) ⊆ S :=
     (Metric.closedBall_subset_ball (half_lt_self hr)).trans hball

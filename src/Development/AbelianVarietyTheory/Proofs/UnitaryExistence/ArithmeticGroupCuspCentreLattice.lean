@@ -217,7 +217,6 @@ theorem exists_int_basis_of_fg {V : Type} [AddCommGroup V] [Module ℚ V] (Z : S
     ∃ bs : Fin n → V, LinearIndependent ℤ bs ∧ Submodule.span ℤ (Set.range bs) = Z := by
   haveI : Module.Finite ℤ Z := Module.Finite.iff_fg.2 hZ
   haveI : HasUniqueDiv V := HasUniqueDiv.of_module_rat V
-  haveI : Module.Free ℤ Z := inferInstance
   let b := Module.finBasis ℤ Z
   have hli : LinearIndependent ℤ (Z.subtype ∘ b) :=
     b.linearIndependent.map' Z.subtype Z.ker_subtype

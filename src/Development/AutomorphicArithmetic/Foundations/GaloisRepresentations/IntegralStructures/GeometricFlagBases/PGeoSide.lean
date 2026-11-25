@@ -523,7 +523,6 @@ private lemma flat_of_dvr {O O' : Type} [CommRing O] [IsDomain O] [IsDiscreteVal
     · exact pow_ne_zero k h0 h
   algebraize [φ]
   have : FaithfulSMul O O' := (faithfulSMul_iff_algebraMap_injective O O').2 hinj
-  have : Module.IsTorsionFree O O' := inferInstance
   exact (inferInstance : Module.Flat O O')
 
 theorem UpperTheory.Ru.crystallineComparison.ptIdBC :

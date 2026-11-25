@@ -1128,8 +1128,6 @@ private theorem ipSec {K : Type} [Field K] [NumberField K] [_root_.NumberField.I
   haveI : IsFiniteMeasure (fd μ₂) := isFiniteMeasure_restrict.2 (measure_fundamentalDomain_pos_lt_top (Gam K 2) μ₂).2.ne
   haveI : CompactSpace (KG K (2 + 2)) := isCompact_iff_compactSpace.1 ((blkLaws (K := K)).2.2.2.2.2.2.2.2.2.2.2 (2 + 2)).1
   haveI : IsFiniteMeasure κ := CompactSpace.isFiniteMeasure
-  haveI : SFinite (fd μ₂) := inferInstance
-  haveI : SFinite κ := inferInstance
   haveI : SecondCountableTopology (KG K (2 + 2)) := TopologicalSpace.Subtype.secondCountableTopology _
   have hs : ∀ w, SFun (A.sec w) := fun w =>
     secFun μ₂ τ₁ τ₂ D hp.irr₁ hp.irr₂ _ ((A.onto (A.sec w)).1 ⟨_, rfl⟩).1 ((A.onto (A.sec w)).1 ⟨_, rfl⟩).2

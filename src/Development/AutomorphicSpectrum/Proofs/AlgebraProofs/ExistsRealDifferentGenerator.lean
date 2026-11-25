@@ -33,7 +33,6 @@ theorem differentIdeal_eq_top_of_unramified (E : Type) [Field E] [NumberField E]
   haveI : P.IsPrime := hP.isPrime
   have hU : Algebra.IsUnramifiedAt (𝓞 (maximalRealSubfield E)) P := by
     unfold Algebra.IsUnramifiedAt
-    haveI : Algebra.FormallyUnramified (𝓞 (maximalRealSubfield E)) (𝓞 E) := inferInstance
     exact Algebra.FormallyUnramified.comp (𝓞 (maximalRealSubfield E)) (𝓞 E) (Localization.AtPrime P)
   exact (not_dvd_differentIdeal_iff.mpr hU) hdvd
 

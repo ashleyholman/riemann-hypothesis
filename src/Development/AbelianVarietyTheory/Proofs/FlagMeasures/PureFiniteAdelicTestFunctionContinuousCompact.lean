@@ -61,7 +61,6 @@ theorem continuous_projV_fin (v : HeightOneSpectrum (𝓞 F)) :
     Continuous (fun X : Fin n → Fin M → Af F ⊗[F] E => projV v X) := by
   have h : Continuous (evalV F v) :=
     RestrictedProduct.continuous_eval (R := fun w : HeightOneSpectrum (𝓞 F) => w.adicCompletion F) v
-  haveI : IsTopologicalRing (Af F) := inferInstance
   have h2 : Continuous (Algebra.TensorProduct.map (evalV F v) (AlgHom.id F E)) :=
     continuous_map_tens b (evalV F v) h
   exact continuous_pi fun a => continuous_pi fun i =>

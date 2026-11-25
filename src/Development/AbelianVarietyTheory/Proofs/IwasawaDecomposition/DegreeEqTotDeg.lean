@@ -126,8 +126,6 @@ theorem exists_integral_dual_family (E M : Type) [Field E] [NumberField E] [Fiel
     ∃ (k : ℕ) (b : Fin k → 𝓞 M) (l : Fin k → M →ₗ[E] E),
       (∀ j (c : 𝓞 M), ∃ a : 𝓞 E, l j (c : M) = (a : E)) ∧
       ∀ y : M, y = ∑ j, (b j : M) * algebraMap E M (l j y) := by
-  haveI : Module.Finite (𝓞 E) (𝓞 M) := inferInstance
-  haveI : Module.Flat (𝓞 E) (𝓞 M) := inferInstance
   haveI : Module.FinitePresentation (𝓞 E) (𝓞 M) := Module.finitePresentation_of_finite _ _
   haveI : Module.Projective (𝓞 E) (𝓞 M) := Module.Flat.projective_of_finitePresentation
   obtain ⟨k, π, hπ⟩ := Module.Finite.exists_fin' (𝓞 E) (𝓞 M)

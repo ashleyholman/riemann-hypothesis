@@ -413,7 +413,6 @@ theorem scalar_of_data {F : Face D A} (hS : SourceLevelLawC R F) (hI : InnerProd
   have hL' := hL i t σ s P cμ cη m ω BW f₀ f c io hd
   have hvol := vol_mul_nrm R (hp i) hν hL'.1 (hL'.2 μ 𝓧 hμ)
   haveI : Nontrivial c.W := hd.2.2.2.2.2.2.2.2.2.1.2.2.2.1
-  haveI : Finite P.H := inferInstance
   have h1 : (0 : ℝ) < Module.finrank ℂ c.W := by exact_mod_cast Module.finrank_pos
   have h2 : (0 : ℝ) < Nat.card P.H := by exact_mod_cast Nat.card_pos
   refine (scalar_real th _ hev _ (mul_pos (mul_pos (ha i σ) h1) h2) _ hB.2.2.1.ne_zero fun y₁ hy₁ y₂ => ?_).elim

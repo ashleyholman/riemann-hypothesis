@@ -170,7 +170,6 @@ theorem isCuspidal_of_constantTerm {φ : GA E a → ℂ} (hl : ∀ γ g, φ (rat
       ∂AutomorphicForm.unipMeasure E a r = 0) : IsCuspidal φ := by
   intro r hr hr' inst1 inst2 μ 𝓕 hμ hF g
   obtain rfl : inst1 = MeasurableSpace.pi := inst2.measurable_eq.trans (pi_eq_borel r).symm
-  have : (AutomorphicForm.unipMeasure E a r).IsAddHaarMeasure := inferInstance
   have hc := Measure.isAddLeftInvariant_eq_smul μ (AutomorphicForm.unipMeasure E a r)
   have : Countable (ratN E a r) := AutomorphicForm.countable_unipLattice (K := E) (n := a) (r := r)
   have hF0 : IsAddFundamentalDomain (ratN E a r) (AutomorphicForm.unipFundamentalDomain E a r) μ :=

@@ -32,7 +32,6 @@ theorem projective_of_isTorsionFree (M : Type*) [AddCommGroup M] [Module (𝓞 K
 instance submodule_projective {E : Type*} [AddCommGroup E] [Module (𝓞 K) E]
     [Module.Finite (𝓞 K) E] [Module.Projective (𝓞 K) E] (F : Submodule (𝓞 K) E) :
     Module.Projective (𝓞 K) F := by
-  have : Module.IsTorsionFree (𝓞 K) F := inferInstance
   exact projective_of_isTorsionFree F
 
 section Comap

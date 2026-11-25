@@ -97,8 +97,6 @@ theorem integral_fundamentalDomain_eq_iterated : ∀ (D : D7) (V V' W : HSp D) (
   have hT : IsAddFundamentalDomain Γ' (𝓨 ×ˢ (𝓨 ×ˢ 𝓕')) P :=
     isAddFundamentalDomain_prod hY.2.1 (isAddFundamentalDomain_prod hY.2.1 hF')
   set m : Measure (WO V W) := P.map e with hm
-  have : (μ.prod μ').IsAddHaarMeasure := inferInstance
-  have : P.IsAddHaarMeasure := inferInstance
   have : m.IsAddHaarMeasure := e.isAddHaarMeasure_map P
   have : VAddInvariantMeasure Γ' (Mx D W.rank r × Mx D W.rank r × WO V' W) P :=
     ⟨fun g s _ => measure_preimage_add P (g : Mx D W.rank r × Mx D W.rank r × WO V' W) s⟩

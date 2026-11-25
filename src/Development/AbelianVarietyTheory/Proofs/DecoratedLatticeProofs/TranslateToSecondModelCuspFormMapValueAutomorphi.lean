@@ -38,11 +38,8 @@ theorem exists_fundamentalDomain_measure_eq (I : AutInst) (μf : Measure I.Gf) [
   haveI : BorelSpace (HA (AF I.F) I.cm.sig I.J) := Formalism.L2.GlobalTheoryTheory.GenusMassVolumes.Unfold.borelHA _ _
   haveI : IsTopologicalGroup (HA (AF I.F) I.cm.sig I.J) := Formalism.L2.GlobalTheoryTheory.GenusMassVolumes.Unfold.topGroupHA _ _
   haveI : SecondCountableTopology I.Gf := (GlobalTheory.CongTop.adelic_topology I).2.2.1
-  haveI : BorelSpace I.GA := inferInstance
   haveI hG1 : ∀ v, (Formalism.REAL.muG (I.ε v)).IsHaarMeasure := fun v => inferInstance
   haveI hG2 : ∀ v, SigmaFinite (Formalism.REAL.muG (I.ε v)) := fun v => inferInstance
-  haveI hP : (Measure.pi fun v => Formalism.REAL.muG (I.ε v)).IsHaarMeasure := inferInstance
-  haveI hPs : SigmaFinite (Measure.pi fun v => Formalism.REAL.muG (I.ε v)) := inferInstance
   haveI : (I.muA μf).IsHaarMeasure := by unfold AutInst.muA; infer_instance
   have hTm : Measurable T := T.continuous.measurable
   have hTsm : Measurable T.symm := T.symm.continuous.measurable

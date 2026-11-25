@@ -99,7 +99,6 @@ theorem exists_common_point : ∀ (E : Type) [Field E] [NumberField E] [IsCMFiel
     rw [(RingHom.injective_iff_ker_eq_bot W.subtype).1 Subtype.val_injective]; exact bot_le)⟩
   have hbase : (spMap σ₁ ≫ 𝔐.X.fromSpecStalk (centre z₁) ≫ 𝔐.f) ≫ Y.s =
       (spMap σ₂ ≫ 𝔐₀.X.fromSpecStalk (centre z₂) ≫ 𝔐₀.f) ≫ Y.s := by
-    have hsepZ : IsSeparated (specZIsTerminal.from (Sp (𝓞 c.F))) := inferInstance
     refine ext_of_isDominant_of_isSeparated (X := Sp W) (specZIsTerminal.from (Sp (𝓞 c.F)))
       (specZIsTerminal.hom_ext _ _) (spMap W.subtype) ?_
     simp only [← Category.assoc] at hgen ⊢

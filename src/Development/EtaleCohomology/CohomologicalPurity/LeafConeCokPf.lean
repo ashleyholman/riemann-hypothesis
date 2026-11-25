@@ -43,7 +43,6 @@ theorem leafConeCok_of : LeafConeCok := by
   have hcomp : ∀ n, IsIso (φ.τ₃.f n) := fun n => isIso_cokMap_f f f' a b comm n (hc n)
   have : IsIso φ.τ₃ := HomologicalComplex.Hom.isIso_of_components _
   have hm := mappingCone.map_descShortComplex S1 S2 φ
-  have : QuasiIso (mappingCone.descShortComplex S1 ≫ φ.τ₃) := inferInstance
   have : QuasiIso (mappingCone.map f f' a b comm ≫ mappingCone.descShortComplex S2) := by
     change QuasiIso (mappingCone.map S1.f S2.f φ.τ₁ φ.τ₂ φ.comm₁₂.symm ≫ mappingCone.descShortComplex S2)
     rw [hm]; infer_instance

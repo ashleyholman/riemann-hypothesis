@@ -947,7 +947,6 @@ theorem exists_principal (L : Type) [Field L] [NumberField L] (T : Set (HeightOn
   let Ω := AlgebraicClosure L
   let H := GroundTheory.Global.hilbertClassField L Ω
   have : NumberField H := NumberField.of_module_finite L H
-  have : IsGalois L H := inferInstance
   have hd := GroundTheory.Global.hasDirichletDensity_setOf_exists_arithFrobAt_mem (K := L) (L := H)
     ({1} : Set (H ≃ₐ[L] H)) (by
       intro σ hσ τ

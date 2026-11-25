@@ -1110,10 +1110,8 @@ theorem sum_reps_eq_zero_of_mem_twKer :
   haveI : Fintype (L ⧸ K) := Fintype.ofFinite _
   set C : Subgroup L := (M ⊓ K).normalCore with hC
   haveI : C.Normal := Subgroup.normalCore_normal _
-  haveI : C.FiniteIndex := inferInstance
   haveI : Fintype (L ⧸ C) := Fintype.ofFinite _
   have hCM : C ≤ M ⊓ K := Subgroup.normalCore_le _
-  haveI : Finite (K ⧸ C.subgroupOf K) := inferInstance
   haveI : Fintype (K ⧸ C.subgroupOf K) := Fintype.ofFinite _
   have hf : ∀ x : L, ∀ k ∈ K, twOrbit ρ L 1 v (x * k) = twOrbit ρ L 1 v x := by
     intro x k hk

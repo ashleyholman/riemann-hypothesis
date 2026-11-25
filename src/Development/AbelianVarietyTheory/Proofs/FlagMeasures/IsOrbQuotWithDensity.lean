@@ -164,7 +164,6 @@ theorem weil {k r : ℕ} (x : B.Mat k r) (hx : IsUnit x.det) (μR : Measure (Mt 
     ∫⁻ p, f p ∂μ = ∫⁻ p, (∫⁻ a, f (C6.actR x (Matrix.of a) p) ∂μR) ∂(μ.withDensity Θ) := by
   have hRs : ∀ a ∈ C6.Rset x, IsUnit a.det := fun a ha => WeylGroupFacts.isUnit_of_uh ha.1.1
   have : IsFiniteMeasureOnCompacts μR := ⟨fun K hK => hR.finite_compact K hK⟩
-  have : SigmaFinite μR := inferInstance
   have hU : ∀ᵐ a ∂μR, Matrix.of a ∈ C6.Rset x := ae_iff.mpr (by exact hR.conc)
   have hact := measurable_actR_of x
   have hleft : ∀ a ∈ C6.Rset x, ∀ h : Mt k r → ENNReal, Measurable h →
@@ -232,7 +231,6 @@ theorem isOrbQuot_withDensity : ∀ (k r : ℕ) (L : LocBessel k r) (x : B.Mat k
   have hxu : IsUnit x.det := WeylGroupFacts.isUnit_of_uh hx
   have hH : B.IsHaarOn (Nset k r) (Formalism.FourierDecayAlt.D.muN k r) := P.Dx2.MN.haar r
   have : IsFiniteMeasureOnCompacts (Formalism.FourierDecayAlt.D.muN k r) := ⟨fun K hK => hH.finite_compact K hK⟩
-  have : SigmaFinite (Formalism.FourierDecayAlt.D.muN k r) := inferInstance
   have hμN : L.μN = (L.κN * ENNReal.ofReal cN) • Formalism.FourierDecayAlt.D.muN k r := by
     have e1 : Formalism.MainNotions.S.haarLie (Nset k r) L.κN = L.κN • Formalism.MainNotions.S.haarLie (Nset k r) 1 := by
       unfold Formalism.MainNotions.S.haarLie

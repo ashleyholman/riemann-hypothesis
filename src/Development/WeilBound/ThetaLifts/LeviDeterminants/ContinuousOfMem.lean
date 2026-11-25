@@ -20,7 +20,6 @@ open PositivityTheory.ThKF0.Split
 variable {F : Type} [Field F] [NumberField F] {κ : Type} [Fintype κ]
 
 theorem borelV : BorelSpace (V F κ) := by
-  have : BorelSpace (mixedEmbedding.mixedSpace F) := inferInstance
   exact Pi.borelSpace
 
 theorem continuous_of_mem {Φ : (κ → AF F) → ℂ} (hΦ : Φ ∈ schA F κ) : Continuous Φ := by
@@ -30,7 +29,6 @@ theorem continuous_of_mem {Φ : (κ → AF F) → ℂ} (hΦ : Φ ∈ schA F κ) 
 theorem nsq_pure_lt_top {μ : @Measure (κ → AF F) (borel _)} (hμ : IsHaar μ) {u : V F κ → ℂ} (hu : Continuous u)
     (hu2 : ∫⁻ z, ‖u z‖ₑ ^ 2 < ⊤) {g : (κ → Af F) → ℂ} (hg : g ∈ SB (κ → Af F)) : nsq μ (pureA F u g) < ⊤ := by
   haveI := volume_isAddHaar F κ
-  haveI : OpensMeasurableSpace (κ → mixedEmbedding.mixedSpace F) := inferInstance
   haveI : LocallyCompactSpace (FiniteAdeleRing (𝓞 F) F) := GlobalTheory.AdelicUnitaryTop.locallyCompact_finiteAdele F
   haveI : SecondCountableTopology (FiniteAdeleRing (𝓞 F) F) := GlobalTheory.AdelicUnitaryTop.secondCountable_finiteAdele F
   haveI : T2Space (FiniteAdeleRing (𝓞 F) F) := GlobalTheory.AdelicUnitaryTop.t2Space_finiteAdeleRing_of_numberField F
@@ -40,7 +38,6 @@ theorem nsq_pure_lt_top {μ : @Measure (κ → AF F) (borel _)} (hμ : IsHaar μ
   haveI : BorelSpace (κ → AdeleRing (𝓞 F) F) := ⟨rfl⟩
   haveI : SigmaCompactSpace (κ → FiniteAdeleRing (𝓞 F) F) := sigmaCompactSpace_of_locallyCompact_secondCountable
   set ν : Measure (κ → FiniteAdeleRing (𝓞 F) F) := Measure.addHaar with hν
-  haveI : SFinite ν := inferInstance
   haveI : MeasurableAdd (κ → mixedEmbedding.mixedSpace F) := ContinuousAdd.measurableAdd
   haveI : MeasurableAdd (κ → FiniteAdeleRing (𝓞 F) F) := ContinuousAdd.measurableAdd
   haveI : ν.IsAddHaarMeasure := by rw [hν]; infer_instance

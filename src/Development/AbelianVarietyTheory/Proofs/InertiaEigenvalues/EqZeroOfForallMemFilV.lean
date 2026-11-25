@@ -181,7 +181,6 @@ variable {Qp K : Type} [Field Qp] [Field K] [Algebra Qp K]
 theorem exists_idem [FiniteDimensional Qp K] [CharZero Qp] (τ : K →ₐ[Qp] LL) :
     ∃ e : LL ⊗[Qp] K, Algebra.TensorProduct.lift (AlgHom.id Qp LL) τ (fun _ _ => Commute.all _ _) e = 1 ∧
       ∀ c : K, ((1 : LL) ⊗ₜ[Qp] c) * e = τ c • e := by
-  haveI : Algebra.IsSeparable Qp K := inferInstance
   haveI : Algebra.FormallyUnramified Qp K := Algebra.FormallyUnramified.of_isSeparable Qp K
   obtain ⟨t, ht, ht1⟩ := (Algebra.FormallyUnramified.iff_exists_tensorProduct (R := Qp) (S := K)).1 inferInstance
   refine ⟨Algebra.TensorProduct.map τ (AlgHom.id Qp K) t, ?_, fun c => ?_⟩

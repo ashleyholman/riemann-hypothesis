@@ -339,7 +339,6 @@ theorem BranchGermDimOne.proof (h₀ : LocalDimComponentBound.Statement) (h₁ :
     have hN'' : N' ∈ 𝓝 (c₀.toFun 0) := by rw [c₀.map_zero]; exact hN'
     have hev : ∀ᶠ t in 𝓝 (0 : Fin 1 → ℂ), t ∈ Metric.ball 0 c₀.radius ∧ c₀.toFun t ∈ N' :=
       Filter.Eventually.and (Metric.ball_mem_nhds 0 c₀.radius_pos) (hcont hN'')
-    have hne : (𝓝[≠] (0 : Fin 1 → ℂ)).NeBot := inferInstance
     have hev' : ∀ᶠ t in 𝓝[≠] (0 : Fin 1 → ℂ), (t ∈ Metric.ball 0 c₀.radius ∧ c₀.toFun t ∈ N') ∧ t ≠ 0 :=
       (Filter.Eventually.filter_mono nhdsWithin_le_nhds hev).and self_mem_nhdsWithin
     obtain ⟨t, ⟨ht, htN⟩, ht0⟩ := hev'.exists

@@ -104,8 +104,6 @@ theorem proper_relAmple_kTriv_of_fieldExtension : ∀ (K K' : Type) [Field K] [F
   intro K K' _ _ i G _ _ _ _ G' _ Ψ h L L' hL hL' hw hP hA hK
   have : Subsingleton (Spec (CommRingCat.of K)) := inferInstanceAs (Subsingleton (PrimeSpectrum K))
   have : Nonempty (Spec (CommRingCat.of K')) := inferInstanceAs (Nonempty (PrimeSpectrum K'))
-  have : Flat (specOf i) := inferInstance
-  have : Surjective (specOf i) := inferInstance
   have : UniversallyClosed G.hom := MorphismProperty.of_isPullback_of_descendsAlong (P := @UniversallyClosed)
     (Q := @Surjective ⊓ @Flat ⊓ @QuasiCompact) h.1.flip ⟨⟨inferInstance, inferInstance⟩, inferInstance⟩ inferInstance
   have hG : IsProper G.hom := ⟨⟩

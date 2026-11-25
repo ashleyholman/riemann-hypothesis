@@ -15,7 +15,6 @@ namespace GlobalTheory.MemLoc
 theorem ainf_isDomain_and_injective : ∀ (l : ℕ) [Fact l.Prime], IsDomain (Per.Ainf l) ∧ IsDomain (Per.AinfP l) ∧
     Function.Injective (algebraMap (Per.Ainf l) (Per.AinfP l)) := by
   intro l _
-  have : IsDomain (Per.Fl l) := inferInstance
   have h : IsDomain (Per.Ainf l) := inferInstance
   have hp : (l : Per.Ainf l) ≠ 0 := WittVector.p_nonzero l _
   have hle : Submonoid.powers (l : Per.Ainf l) ≤ nonZeroDivisors _ :=

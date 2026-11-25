@@ -418,7 +418,6 @@ theorem exists_th_scale : AllIso fun {_} _ _ {_} {_} {F} _ _ {N} {N'} ν ν' {_}
     refine h₁.symm.trans (H.trans (congrArg₂ (· * ·) ?_ h₂))
     rw [h₃, pow_one, p₁, p₂]
   rw [← map_mul, ← map_mul] at H'
-  haveI : Nontrivial ((TF (R := R) F).left.presheaf.stalk y) := inferInstance
   have := (sR (R := R) y).injective H'
   rw [← Units.eq_mul_inv_iff_mul_eq] at this
   rw [this]

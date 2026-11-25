@@ -16,7 +16,6 @@ theorem dvr_complete : ∀ {l : ℕ} [Fact l.Prime] (LL : FinExt l), ∃ _ : IsD
   intro l _ LL
   unfold OL
   have hfd : FiniteDimensional ℚ_[l] ↥LL.1 := LL.2
-  have : IsScalarTower ℤ_[l] ℚ_[l] ↥LL.1 := inferInstance
   have hfin : Module.Finite ℤ_[l] ↥(integralClosure ℤ_[l] ↥LL.1) :=
     IsIntegralClosure.finite ℤ_[l] ℚ_[l] ↥LL.1 ↥(integralClosure ℤ_[l] ↥LL.1)
   have : FaithfulSMul ℤ_[l] ↥LL.1 := ReciprocityTheory.ChartRestriction.G.T0.FiniteAlgebraLocalCompletion.cl_faithful ℤ_[l] ℚ_[l] ↥LL.1

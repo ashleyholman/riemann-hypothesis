@@ -121,7 +121,6 @@ theorem xi_sat : ∀ (l : ℕ) [Fact l.Prime], ∀ e : Per.Fl l, IsEps e → ∀
     simpa using congrArg Subtype.val h0
   have h2 := sat_pow _ _ h1 n
   refine ⟨h2, ?_⟩
-  have : IsAdicComplete (Ideal.span {(l : Per.Ainf l)}) (Per.Ainf l) := inferInstance
   have := complete_quot (l : Per.Ainf l) (xi e ^ n) h2
   rwa [map_natCast] at this
 

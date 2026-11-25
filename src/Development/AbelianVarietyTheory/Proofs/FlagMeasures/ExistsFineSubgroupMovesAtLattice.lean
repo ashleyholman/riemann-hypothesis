@@ -137,7 +137,6 @@ theorem relIndex_scl_ne_zero {E W : Type} [CommRing E] [AddCommGroup W] [Module 
     (hI : ∀ x ∈ I, ∃ y ∈ O, (x : E) = c * y) :
     (scl P.toAddSubgroup c).relIndex P.toAddSubgroup ≠ 0 := by
   haveI : Module.Finite O P := Module.Finite.iff_fg.2 hP
-  haveI : Finite (P ⧸ (⊤ : Submodule O P)) := inferInstance
   haveI hf : Finite (P ⧸ I • (⊤ : Submodule O P)) :=
     Submodule.finite_quotient_smul I Module.Finite.fg_top
   have h1 : (I • (⊤ : Submodule O P)).toAddSubgroup.index ≠ 0 :=

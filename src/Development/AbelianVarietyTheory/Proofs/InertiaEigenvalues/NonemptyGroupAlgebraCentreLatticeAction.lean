@@ -662,7 +662,6 @@ namespace GlobalTheory.CenOAct
 theorem cenO_nonempty : ∀ D : D7, (∀ i, Nonempty (Sec D i)) → ZLStable D → CenInt D → OnMtPreservesTypeV D → Nonempty (CenO D) := by
   intro D hS _ hInt hTy
   haveI : ∀ k : Fin 2, NeZero (D.host.g k) := fun k => ⟨(D.host.g_prime k).ne_zero⟩
-  haveI : Finite (G0g D.nd) := inferInstance
   have S : ∀ i, Sec D i := fun i => (hS i).some
   have hint : ∀ (i : D.nd.Loc) (a : 𝓞 D.what₂.LL), D.nd.embK i (a : D.what₂.LL) ∈
       (algebraMap (D.nd.O i) (FractionRing (D.nd.O i))).range := fun i a =>

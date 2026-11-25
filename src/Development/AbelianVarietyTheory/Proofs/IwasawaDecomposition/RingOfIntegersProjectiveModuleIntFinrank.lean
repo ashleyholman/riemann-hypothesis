@@ -19,7 +19,6 @@ theorem finite_projective_int_of_ringOfIntegers :
   intro E _ _ X _ _ _ _
   have hfin : Module.Finite ℤ X := Module.Finite.trans (𝓞 E) X
   have hflat : Module.Flat ℤ X := Module.Flat.trans ℤ (𝓞 E) X
-  have hfree : Module.Free ℤ X := inferInstance
   refine ⟨hfin, inferInstance, ?_⟩
   rw [finrank_int_eq_mul_of_finite (O := 𝓞 E), RingOfIntegers.rank]
 

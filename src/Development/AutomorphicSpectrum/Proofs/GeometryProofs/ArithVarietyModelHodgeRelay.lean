@@ -909,8 +909,6 @@ theorem sub_qf : ∀ (R : Type) [CommRing R] [IsDomain R] (T : Type) [CommGroup 
     rw [← hp h]
     rfl
   have hred : IsReduced (pullback W.hom (genPt R).hom) := by
-    have : IsOpenImmersion (pullback.map W.hom (genPt R).hom Γ.G.hom (genPt R).hom U.ι (𝟙 _) (𝟙 _)
-      (Category.comp_id _) ((Category.comp_id _).trans (Category.id_comp _).symm)) := inferInstance
     exact isReduced_of_isOpenImmersion (pullback.map W.hom (genPt R).hom Γ.G.hom (genPt R).hom U.ι (𝟙 _) (𝟙 _)
       (Category.comp_id _) ((Category.comp_id _).trans (Category.id_comp _).symm))
   have hcl : IsClosedImmersion U.ι := by

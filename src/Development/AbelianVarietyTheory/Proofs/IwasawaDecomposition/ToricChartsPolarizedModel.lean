@@ -23,7 +23,6 @@ theorem isLB_detOm_of_smooth {E : Type} [Field E] [NumberField E] [IsCMField E] 
   have e : spMap (RingHom.id c.F) = 𝟙 _ := by
     simp [spMap]
   haveI : IsIso (spMap (RingHom.id c.F)) := by rw [e]; infer_instance
-  haveI : IsIso (genι Y) := inferInstance
   have hs : SmoothOfRelativeDimension D.dim Y.s := by
     have hw : Y.s = inv (genι Y) ≫ genStr Y ≫ spMap (RingHom.id c.F) := by
       rw [← pullback.condition, IsIso.inv_hom_id_assoc]

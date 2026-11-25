@@ -470,7 +470,6 @@ theorem kExpansionC_holds_of (hSC : SlabCoverC) (hRG : RegroupC)
     (hPM : ∀ (D : D7) (X : Formalism.L2.SG.HidaSetting.HidaSetting D) (u : D.what₂.Word) (hK : X.LevelSubgroupCharacter), PserMeas X u hK) :
     KExpansionC := by
   intro D X Y u u' hOK hOK' hin hin' hFE hOI hOF hAW hA
-  have : SigmaFinite (Formalism.L2.SG.ProjRows.muInf X.B.I) := inferInstance
   have hKL : X.LevelSubgroupNormalized := Formalism.L2.SG.Closed.level_subgroup_properties X
   have hR : FoldReadyX X := foldReadyX_holds X
   have : SecondCountableTopology X.B.I.GA := hR.2.1
@@ -587,7 +586,6 @@ theorem Slab.ooLintSum_of {D : D7} {X : Formalism.L2.SG.HidaSetting.HidaSetting 
     (hOK : Formalism.L2.SG.WuDecay.FoldOK X u Y.hK) (hOK' : Formalism.L2.SG.WuDecay.FoldOK X u' Y.hK)
     (hNeat : NeatKu X u Y.hK) (hSC : SlabCoverC) (hTL : TermsLEC) :
     OOLintSum X u u' (X.Fu u) (X.Fu u') (Y.what₂ u) (Y.what₂ u') := by
-  have : SigmaFinite (Formalism.L2.SG.ProjRows.muInf X.B.I) := inferInstance
   have hKL : X.LevelSubgroupNormalized := Formalism.L2.SG.Closed.level_subgroup_properties X
   have hR : FoldReadyX X := foldReadyX_holds X
   have : SecondCountableTopology X.B.I.GA := hR.2.1

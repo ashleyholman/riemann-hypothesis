@@ -540,10 +540,7 @@ theorem etale_hom_ext_complex_points {K : Type} [Field K] (σ : K →+* ℂ) {X 
     intro y
     refine ⟨IsLocalRing.closedPoint ℂ, ?_⟩
     exact Subsingleton.elim _ _
-  have : Flat (pullback.fst X.hom (spMap σ)) := inferInstance
-  have : Surjective (pullback.fst X.hom (spMap σ)) := inferInstance
   have : Epi (pullback.fst X.hom (spMap σ)) := Flat.epi_of_flat_of_surjective _
-  have : Etale (pullback.snd X.hom (spMap σ)) := inferInstance
   have : IsReduced (pullback X.hom (spMap σ)) := isReduced_of_smooth_of_isReduced (pullback.snd X.hom (spMap σ))
   apply Over.OverMorphism.ext
   rw [← cancel_epi (pullback.fst X.hom (spMap σ))]

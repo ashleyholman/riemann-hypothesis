@@ -669,7 +669,6 @@ theorem mem_local_of_pow_mem (p : ℕ) [Fact p.Prime] (A : Type) [CommRing A] [I
   letI : Algebra Q A := (MvPolynomial.aeval t).toRingHom.toAlgebra
   haveI : Algebra.Etale Q A := he
   let T := Localization.AtPrime P
-  haveI : Algebra.FormallyEtale Q T := inferInstance
   haveI : Algebra.EssFiniteType A T := Algebra.EssFiniteType.of_isLocalization T P.primeCompl
   haveI : Algebra.EssFiniteType Q T := Algebra.EssFiniteType.comp Q A T
   haveI : IsIntegrallyClosed Q := isIntegrallyClosed_mvPolynomial_fin (ZMod p) n

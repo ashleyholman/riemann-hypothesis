@@ -153,7 +153,6 @@ theorem exists_dual_basis (Λ : Submodule (𝓞 E) (Fin n → E)) (h : Submodule
   have := Module.IsTorsionFree.trans_faithfulSMul (𝓞 E) E (Fin n → E)
   haveI : Module.Finite (𝓞 E) Λ := Module.Finite.iff_fg.2 h.fg
   have : Module.FinitePresentation (𝓞 E) Λ := Module.finitePresentation_of_finite (𝓞 E) Λ
-  have : Module.Flat (𝓞 E) Λ := inferInstance
   have : Module.Projective (𝓞 E) Λ := Module.Flat.projective_of_finitePresentation
   obtain ⟨m, f, hf⟩ := Module.Finite.exists_fin' (𝓞 E) Λ
   obtain ⟨s, hs⟩ := Module.projective_lifting_property f LinearMap.id hf

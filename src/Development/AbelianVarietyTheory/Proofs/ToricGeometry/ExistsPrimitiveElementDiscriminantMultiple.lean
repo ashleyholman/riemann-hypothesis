@@ -113,7 +113,6 @@ theorem exists_primitive_element_discriminant_multiple (R A K L : Type*) [CommRi
     [IsFractionRing A L] [Algebra K L] [Algebra R L] [IsScalarTower R K L] [IsScalarTower R A L] :
     ∃ (a : A) (q : R), q ≠ 0 ∧ C q ∈ Ideal.span {minpoly R a, (minpoly R a).derivative} ∧
       ∀ b : A, ∃ r : R[X], algebraMap R A q * b = aeval a r := by
-  haveI : IsLocalization (Algebra.algebraMapSubmonoid A R⁰) L := inferInstance
   haveI : Module.Finite K L := Module.Finite.of_isLocalization R A R⁰
   obtain ⟨α, hα⟩ := Field.exists_primitive_element K L
   obtain ⟨⟨a, ⟨_, t, ht, rfl⟩⟩, hat⟩ := IsLocalization.surj (Algebra.algebraMapSubmonoid A R⁰) α

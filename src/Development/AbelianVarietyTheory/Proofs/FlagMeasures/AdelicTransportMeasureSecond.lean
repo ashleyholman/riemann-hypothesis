@@ -135,7 +135,6 @@ theorem exists_transport (I : AutInst) (μf : Measure I.Gf) [μf.IsHaarMeasure] 
   obtain ⟨hl, hrt, -⟩ := _root_.GlobalTheory.AdelicUnimod.adelic_unimodular I μf
   obtain ⟨r1, r2, r3, r4, r5⟩ := isRightReg_props I μf fund hfund R hR
   have hD := hfd μf fund hfund
-  have : BorelSpace I.GA := inferInstance
   have : (I.muA μf).IsMulLeftInvariant := ⟨hl⟩
   have : (I.muA μf).IsMulRightInvariant := ⟨hrt⟩
   have : (I.muA μf).IsHaarMeasure := by

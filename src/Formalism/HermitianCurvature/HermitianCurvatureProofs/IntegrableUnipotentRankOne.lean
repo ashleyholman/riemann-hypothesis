@@ -112,10 +112,7 @@ theorem integrable_unipotent_rank_one (ph ρ : ℕ) (σ : Equiv.Perm (Fin ph)) (
   let v₀ : G.UT (0 + 1) → ℂ := fun q => isEmptyElim q
   have hvol : (volume : Measure (G.UT (0 + 1) → ℂ)) = Measure.dirac v₀ := by
     rw [volume_pi]; exact Measure.pi_of_empty _ _
-  have a1 : SigmaFinite (volume : Measure (Fin (0 + 1) → Fin ph → ℂ)) := inferInstance
   have a2 : SigmaFinite (volume : Measure (Fin ph → Fin (0 + 1) → ℂ)) := inferInstance
-  have a3 : SigmaFinite (volume : Measure (U.LW σ → ℂ)) := inferInstance
-  have a4 : SigmaFinite (volume : Measure (G.UT ph → ℂ)) := inferInstance
   have b1 : SigmaFinite (volume : Measure ((Fin (0 + 1) → Fin ph → ℂ) × (Fin ph → Fin (0 + 1) → ℂ))) := by
     rw [Measure.volume_eq_prod]; infer_instance
   have b2 : SigmaFinite (volume : Measure ((U.LW σ → ℂ) × (G.UT ph → ℂ))) := by

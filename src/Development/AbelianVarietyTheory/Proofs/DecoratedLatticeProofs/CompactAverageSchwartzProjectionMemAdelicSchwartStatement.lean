@@ -369,7 +369,6 @@ theorem integrable_and_projS_mem {θ : InfFam D} (hθ : IsInfFam θ) {T : HSp D}
     haveI : CompactSpace K := isCompact_iff_compactSpace.1 hK
     haveI : IsModuleTopology (Af D.host.F) (Af D.host.F ⊗[D.host.F] D.host.E) := ⟨rfl⟩
     haveI : IsTopologicalRing (Af D.host.F ⊗[D.host.F] D.host.E) := IsModuleTopology.isTopologicalRing (Af D.host.F) _
-    haveI : OpensMeasurableSpace K := inferInstance
     have c1 : Continuous fun k : K => Formalism.L2.Theta.mt T (k : GA D T) :=
       (GlobalTheory.RealWeil.continuous_mt T).1.comp continuous_subtype_val
     have c2 : Continuous fun k : K => Formalism.L2.Theta.mt T (k : GA D T)⁻¹ :=

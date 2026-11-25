@@ -31,7 +31,6 @@ theorem isClosedImmersion_torsion_lift {X : Scheme.{0}} (G : Over X) [GrpObj G] 
 
   let jq : pullback (pullback.diagonal G.hom) (pullback.lift f g hfg) ⟶ pullback G.hom x :=
     pullback.snd _ _
-  haveI : IsClosedImmersion jq := inferInstance
   have l1 : pullback.lift f g hfg ≫ pullback.fst G.hom G.hom = f := pullback.lift_fst _ _ _
   have l2 : pullback.lift f g hfg ≫ pullback.snd G.hom G.hom = g := pullback.lift_snd _ _ _
   have cond := pullback.condition (f := pullback.diagonal G.hom) (g := pullback.lift f g hfg)

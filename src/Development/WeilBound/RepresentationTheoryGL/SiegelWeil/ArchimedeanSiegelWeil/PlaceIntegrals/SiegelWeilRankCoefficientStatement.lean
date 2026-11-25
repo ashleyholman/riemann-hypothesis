@@ -1174,7 +1174,6 @@ theorem sfinite_herm {F E : Type} [Field F] [NumberField F] [Field E] [NumberFie
     inferInstanceAs (SecondCountableTopology (Fin n → Fin n → AF F ⊗[F] E))
   haveI : LocallyCompactSpace (HermR (AF F) σ n) := (hC n).isClosedEmbedding_subtypeVal.locallyCompactSpace
   haveI : SecondCountableTopology (HermR (AF F) σ n) := TopologicalSpace.Subtype.secondCountableTopology _
-  haveI : SigmaCompactSpace (HermR (AF F) σ n) := inferInstance
   haveI := h
   haveI := Measure.IsAddHaarMeasure.sigmaFinite db
   infer_instance

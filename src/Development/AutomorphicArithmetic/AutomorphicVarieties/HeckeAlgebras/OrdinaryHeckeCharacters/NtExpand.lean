@@ -133,7 +133,6 @@ private theorem nt_sq {p : ℕ} (hp : p.Prime) (hd : ¬ (p : ℤ) ∣ discr L) (
   have hu : w.asIdeal.under ℤ = Ideal.span {(p : ℤ)} := hlo.over.symm
   have : Finite (ℤ ⧸ w.asIdeal.under ℤ) := Ideal.finiteQuotientOfFreeOfNeBot _ (hu ▸ hb)
   have : (w.asIdeal.under ℤ).IsMaximal := hu ▸ hmax
-  have : Finite (w.asIdeal.under ℤ).ResidueField := inferInstance
   have he : w.asIdeal.ramificationIdx ℤ = 1 := Ideal.ramificationIdx_eq_one_iff.2 hun
   have hmap : Ideal.map (algebraMap ℤ (𝓞 L)) (Ideal.span {(p : ℤ)}) = Ideal.span {(p : 𝓞 L)} := by
     rw [Ideal.map_span]; simp

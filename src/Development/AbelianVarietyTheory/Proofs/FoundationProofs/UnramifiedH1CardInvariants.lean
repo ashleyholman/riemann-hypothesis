@@ -218,7 +218,6 @@ theorem card_vanI (ρ : Representation R D M) (I : Subgroup D) [hI : I.Normal] (
   let a : D →* Equiv.Perm N := a0.toHomPerm
   have ha : ∀ g m, (a g m : M) = ρ g m := fun _ _ => rfl
   have hal : IsLocallyConstant a := by
-    haveI : Finite N := inferInstance
     refine IsLocallyConstant.desc a (fun (p : Equiv.Perm N) (m : N) => (p m : M)) ?_ ?_
     · rw [IsLocallyConstant.iff_continuous]
       exact continuous_pi fun m => hρ.comp (continuous_id.prodMk continuous_const)

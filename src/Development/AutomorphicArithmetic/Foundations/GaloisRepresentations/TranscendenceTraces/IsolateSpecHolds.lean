@@ -553,7 +553,6 @@ theorem UpperTheory.Gal.TranscendenceTraces.isolateSpec_of :
   intro R B _ _ _ _ z
   let z' : PrimeSpectrum B := z
   haveI : z'.asIdeal.IsPrime := z'.isPrime
-  haveI : Algebra.QuasiFiniteAt R z'.asIdeal := inferInstance
   obtain ⟨R', _, _, hEt, P, _, _, e, he, P', hP', hlo, hq, heP, -, -, huniq⟩ :=
     Algebra.exists_etale_isIdempotentElem_forall_liesOver_eq (z'.asIdeal.under R) z'.asIdeal
   have pb := (isPullback_SpecMap_of_isPushout _ _ _ _
@@ -758,14 +757,12 @@ private theorem length_self_eq_of_ringEquiv {R S : Type*} [CommRing R] [CommRing
 private theorem length_stalk_eq_of_isIso {X Y : Scheme.{0}} (f : X ⟶ Y) [IsIso f] (x : X) (y : Y) (h : f x = y) :
     Module.length (X.presheaf.stalk x) (X.presheaf.stalk x) = Module.length (Y.presheaf.stalk y) (Y.presheaf.stalk y) := by
   subst h
-  have : IsIso (f.stalkMap x) := inferInstance
   exact (length_self_eq_of_ringEquiv (asIso (f.stalkMap x)).commRingCatIsoToRingEquiv).symm
 
 theorem UpperTheory.Gal.TranscendenceTraces.multSec_of :
     MultSec := by
   intro V Ω _ _ r z hz
   haveI : IsIso (z ≫ r) := by rw [hz]; infer_instance
-  haveI : IsIso (pullback.fst r (z ≫ r)) := inferInstance
   unfold mult
   rw [length_stalk_eq_of_isIso (pullback.fst r (z ≫ r)) _ (pt z)
     (by rw [← pt_comp, pullback.lift_fst])]
@@ -806,7 +803,6 @@ open CategoryTheory Limits AlgebraicGeometry Opposite CochainComplex CochainComp
 theorem UpperTheory.Gal.TranscendenceTraces.multSumPt_of :
     StalkSum → MultSec → PtLift → PtOne → FibFin → MultSumPt := by
   intro hS hM hL hO hF V Ω _ _ r _
-  have hI : IsIntegralHom r := inferInstance
   have hbij : Set.BijOn (fun z : gp Ω ⟶ V => pt z) (fib r (𝟙 (gp Ω))) Set.univ := by
     refine ⟨fun _ _ => Set.mem_univ _, ?_, ?_⟩
     · intro z hz z' hz' h

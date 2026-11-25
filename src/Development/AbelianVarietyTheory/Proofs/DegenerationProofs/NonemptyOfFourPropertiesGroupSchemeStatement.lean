@@ -1540,7 +1540,6 @@ variable {o Ω : Type} [CommRing o] [Field Ω] [Algebra o Ω]
 theorem ThetaSys.isOpen_setOf_TT_eq_bot {o Ω : Type} [CommRing o] [Field Ω] [Algebra o Ω] (S : ThetaSys o Ω)
     (M : RatModel o Ω) : IsOpen {z | S.TT M z = ⊥} := by
   have : NeZero (S.r * S.N) := ⟨Nat.mul_ne_zero (by have := S.r_pos; omega) (by have := S.N_ge; omega)⟩
-  have : Finite S.Gam := inferInstance
   refine isOpen_iff_forall_mem_open.2 fun z hz => ⟨⋂ x ∈ S.supI M z, {w | M.Div S.th x w}, fun w hw => ?_,
     (Set.toFinite _).isOpen_biInter fun x _ => M.isOpen_setOf_div S.th x, Set.mem_iInter₂.2 fun x hx => hx⟩
   have hsup : S.supI M z ⊆ S.supI M w := fun x hx => Set.mem_iInter₂.1 hw x hx

@@ -16,7 +16,6 @@ theorem smooth_smoothLocus_ι_comp {X Y : Scheme.{0}} (f : X ⟶ Y)
 
 theorem smoothDense : SmoothDenseSt := by
   intro K _ _ X f hX hf
-  have : LocallyOfFinitePresentation f := inferInstance
   exact f.dense_smoothLocus_of_perfectField.mono
     fun x hx => ⟨f.smoothLocus, hx, smooth_smoothLocus_ι_comp f⟩
 

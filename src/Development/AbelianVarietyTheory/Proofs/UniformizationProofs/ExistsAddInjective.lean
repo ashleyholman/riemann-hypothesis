@@ -70,7 +70,6 @@ theorem surjective_spMap {K k : Type} [Field K] [Field k] (β : K →+* k) : Sur
   ⟨fun _ => ⟨default, Subsingleton.elim _ _⟩⟩
 
 theorem epi_spMap {K k : Type} [Field K] [Field k] (β : K →+* k) : Epi (spMap β) := by
-  have : Flat (spMap β) := inferInstance
   have := surjective_spMap β
   exact Flat.epi_of_flat_of_surjective _
 

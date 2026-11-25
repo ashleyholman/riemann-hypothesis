@@ -370,7 +370,6 @@ theorem centre : Centre := by
     rw [← Category.assoc, hz, ← Category.assoc, hz₀]
     simpa only [Category.assoc] using hξ
   have hbase : (z ≫ 𝔐.f) ≫ Y.s = (z₀ ≫ 𝔐'.f) ≫ Y.s := by
-    have hsepZ : IsSeparated (specZIsTerminal.from (Sp (𝓞 c.F))) := inferInstance
     refine ext_of_isDominant_of_isSeparated (X := Sp W) (specZIsTerminal.from (Sp (𝓞 c.F)))
       (specZIsTerminal.hom_ext _ _) (spMap W.subtype) ?_
     simp only [← Category.assoc] at hgen ⊢

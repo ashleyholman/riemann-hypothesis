@@ -21,7 +21,6 @@ theorem topGroup_UA {F E : Type} [Field F] [NumberField F] [Field E] [NumberFiel
     (J : Matrix (Fin n) (Fin n) E) : IsTopologicalGroup (UA σ J) := by
   have : Module.Finite F E := Module.Finite.of_restrictScalars_finite ℚ F E
   have : IsTopologicalRing (AE F E) := IsModuleTopology.isTopologicalRing (AF F) _
-  have : IsTopologicalGroup (GL (Fin n) (AE F E)) := inferInstance
   exact Subgroup.instIsTopologicalGroupSubtypeMem _
 
 theorem iInv_of_parts (hB : ThetaBasic) (hU : PositivityTheory.ThKF.Unimod) (hE : EpsOf) : IInv := by

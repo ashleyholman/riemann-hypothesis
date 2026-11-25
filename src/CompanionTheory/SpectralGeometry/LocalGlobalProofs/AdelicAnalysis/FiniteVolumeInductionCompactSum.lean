@@ -133,7 +133,6 @@ theorem count_lt_top : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Num
   haveI := a3
   haveI : T2Space (AF F ⊗[F] E) := (GlobalTheory.CompanionTheory.SW.TopK.topTens_props F E σ hσ (AF F)).2.2.2.1
   haveI : Nontrivial (AF F) := inferInstanceAs (Nontrivial (Ainf F × Af F))
-  haveI : Nontrivial (AF F ⊗[F] E) := inferInstance
   obtain ⟨tg, lc, sc, t2, bs, hact⟩ :=
     _root_.GlobalTheory.CompanionTheory.SW.TopH.topH_props F E σ hσ (M + 1) (blockOne (algebraMap F E t) J) hJb (AF F)
   obtain ⟨tg₁, lc₁, sc₁, t2₁, bs₁, -⟩ := _root_.GlobalTheory.CompanionTheory.SW.TopH.topH_props F E σ hσ M J hJ (AF F)

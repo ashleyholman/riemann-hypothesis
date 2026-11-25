@@ -43,7 +43,6 @@ private theorem fc_abs (D V : Type) [CommRing D] [IsDomain D] [IsNoetherianRing 
   have hval : ValuationRing V := inferInstance
   refine ⟨((IsDiscreteValuationRing.TFAE V hnf).out 2 1).mp hval,
     GlobalTheory.FormalIsogeny.isAdicComplete_maximalIdeal_of_finite D V, ?_⟩
-  have : Module.Finite (ResidueField D) (ResidueField V) := inferInstance
   exact Module.finite_of_finite (ResidueField D)
 
 private theorem fc_point (D : Type) [CommRing D] [IsDomain D] [IsNoetherianRing D] [IsLocalRing D]

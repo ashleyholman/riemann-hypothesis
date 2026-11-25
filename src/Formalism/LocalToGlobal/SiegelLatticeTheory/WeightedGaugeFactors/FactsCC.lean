@@ -101,7 +101,6 @@ theorem isPsiFor_compact {ε : Fin n → Bool} {lam : Fin n → ℝ} (hpq : pOf 
     fun g hg => S7.psiM_casimir T μ hμ hg, fun ν hν => ?_⟩
   haveI : CompactSpace (S7.UJ ε) := cmpt_compact (cmpt_eps_eq hpq)
   haveI := hν
-  haveI : IsFiniteMeasure ν := inferInstance
   have hc : Continuous (fun g : S7.UJ ε => S7.PsiM T μ (S7.toM g)) :=
     (S7.psiM_continuousOn T μ hμ).comp_continuous (Units.continuous_val.comp continuous_subtype_val)
       (fun g => g.2)

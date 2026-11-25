@@ -397,7 +397,6 @@ theorem mem_smoothLocus {V : Type} [CommRing V] [IsLocalRing V] [IsNoetherianRin
 
 theorem smooth_of_smooth_thickenings : ∀ (R : Type) [CommRing R] [IsLocalRing R] [IsNoetherianRing R] (I : Ideal R), I ≠ ⊤ → ∀ (B : Over (Spec (CommRingCat.of R))), IsProper B.hom → ∀ (Y : ∀ e : ℕ, Over (Spec (CommRingCat.of (R ⧸ I ^ (e + 1))))) (b : ∀ e, (Y e).left ⟶ B.left), (∀ e, IsPullback (b e) (Y e).hom B.hom (thick R I e)) → (∀ e, Smooth (Y e).hom) → Smooth B.hom := by
   intro R _ _ _ I hI B _ Y b hpb hY
-  have : LocallyOfFinitePresentation B.hom := inferInstance
   rw [← Scheme.Hom.smoothLocus_eq_top_iff]
   by_contra hne
   obtain ⟨z, hz⟩ : ∃ z, z ∉ B.hom.smoothLocus := by

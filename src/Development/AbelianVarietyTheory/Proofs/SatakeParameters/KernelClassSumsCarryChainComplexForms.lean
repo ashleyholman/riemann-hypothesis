@@ -338,7 +338,6 @@ theorem ramificationIdxIn_eq_one : ∀ (D : D7) (X : Fields) (s : Seam D X), X.O
     ∀ v : HeightOneSpectrum (𝓞 X.F), v.asIdeal.ramificationIdxIn (𝓞 X.E) = 1 := by
   intro D X s hX hs v
   have : Algebra.IsQuadraticExtension X.F X.E := ⟨hX.rankE⟩
-  have : IsGalois X.F X.E := inferInstance
   have := v.isMaximal
   obtain ⟨Q, hQ, hlo⟩ := Ideal.exists_maximal_ideal_liesOver_of_isIntegral (S := 𝓞 X.E) v.asIdeal
   have hQ0 : Q ≠ ⊥ := Ideal.ne_bot_of_liesOver_of_ne_bot v.ne_bot Q

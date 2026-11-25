@@ -100,7 +100,6 @@ theorem main : ∀ (V : Type) [CommRing V] [IsDomain V] [IsDiscreteValuationRing
   intro V _ _ _ ϖ hϖ D A G _ _ U k σ s hs E hE
   obtain ⟨r, hr, σ₁, f₁, h₁, hf₁, hE₁⟩ := hE
   have := U.smooth
-  have : Flat G.hom := inferInstance
   have hσ₁ : SecIsMul G.hom r σ₁ σ := secIsMul_of_generic G U.LG.isLB k σ σ₁ s r hs h₁
   obtain ⟨n, u, rfl⟩ := IsDiscreteValuationRing.eq_unit_mul_pow_irreducible hr hϖ
   obtain ⟨σ₂, hσ₂⟩ := exists_secIsMul (p := G.hom) (u⁻¹ : Vˣ).val σ₁

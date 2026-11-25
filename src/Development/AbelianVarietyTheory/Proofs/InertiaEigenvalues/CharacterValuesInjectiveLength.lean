@@ -275,7 +275,6 @@ theorem exists_finite_dvr_splitting : ∀ (l : ℕ) [Fact l.Prime] {A ι : Type}
   let F : K[X] := ∏ i, (P i).map (toFr A)
   have hF : F.Monic := monic_prod_of_monic _ _ fun i _ => (hP i).1
   let L := F.SplittingField
-  haveI : IsScalarTower A K L := inferInstance
   let S := integralClosure A L
   haveI : Module.Finite A S := IsIntegralClosure.finite A K L S
   haveI : IsDedekindDomain S := IsIntegralClosure.isDedekindDomain A K L S

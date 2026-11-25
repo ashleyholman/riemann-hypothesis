@@ -92,7 +92,6 @@ private theorem inc_max {l : ℕ} [Fact l.Prime] {c c' : Coef l} (h : c.O ≤ c'
     ∀ x ∈ maximalIdeal c.O, inc h x ∈ maximalIdeal c'.O := by
   letI : Algebra c.O c'.O := (inc h).toAlgebra
   haveI : IsScalarTower ℤ_[l] c.O c'.O := IsScalarTower.of_algebraMap_eq fun x => rfl
-  haveI : Module.Finite ℤ_[l] c'.O := inferInstance
   haveI : Module.Finite c.O c'.O := Module.Finite.of_restrictScalars_finite ℤ_[l] _ _
   haveI : FaithfulSMul c.O c'.O := (faithfulSMul_iff_algebraMap_injective _ _).2 (Subalgebra.inclusion_injective h)
   haveI : Algebra.IsIntegral c.O c'.O := Algebra.IsIntegral.of_finite _ _

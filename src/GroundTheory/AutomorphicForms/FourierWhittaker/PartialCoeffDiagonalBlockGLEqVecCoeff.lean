@@ -84,7 +84,6 @@ theorem continuous_colGL (k : ℕ) :
   exact continuous_pi fun a => continuous_pi fun b => (hc a b).comp continuous_neg
 
 instance firstCountableTopology_adelicGL : FirstCountableTopology (AdelicGLn.AdelicGL K n) := by
-  have h1 : SecondCountableTopology (Matrix (Fin n) (Fin n) 𝔸[K]) := inferInstance
   have h2 : SecondCountableTopology (Matrix (Fin n) (Fin n) 𝔸[K])ᵐᵒᵖ :=
     (MulOpposite.opHomeomorph (M := Matrix (Fin n) (Fin n) 𝔸[K])).symm.isEmbedding.secondCountableTopology
   have hGL : SecondCountableTopology (AdelicGLn.AdelicGL K n) :=

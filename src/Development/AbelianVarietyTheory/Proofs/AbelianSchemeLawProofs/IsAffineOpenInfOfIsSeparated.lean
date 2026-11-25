@@ -219,7 +219,6 @@ theorem kuenneth_injective :
       (Field.toIsField K)
   have : CompactSpace X.left := QuasiCompact.compactSpace_of_compactSpace X.hom
   have : QuasiSeparatedSpace X.left := (quasiSeparated_iff_quasiSeparatedSpace X.hom).mp inferInstance
-  have : Flat Y.hom := inferInstance
   have hco : IsCocycle V φ := by
     intro a b d N ha hb hd
     have := congrArg (rs (le_inf (le_inf ha hb) hd)) (hφ a b d)

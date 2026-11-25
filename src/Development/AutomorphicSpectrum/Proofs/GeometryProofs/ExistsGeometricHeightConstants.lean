@@ -401,7 +401,6 @@ theorem exists_lin {Ψ : Type} {X : Scheme.{0}} (t : SAB H X) (z : Sp (𝓞 L) �
   haveI := P.τ.q_hom
   haveI := P.τ.i_hom
   haveI := P.e_hom
-  haveI heinv : IsMonHom P.e.inv := inferInstance
   haveI : Smooth t.G.hom := t.semi.smooth
   haveI : Smooth t'.G.hom := t'.semi.smooth
   obtain ⟨V₀, _, _, ⟨M₀⟩⟩ := lieModel_exists X t.G (𝓞 L) z

@@ -82,11 +82,8 @@ theorem fg_residueField_genericPoint {K : Type} [Field K] [CharZero K] [FiniteDi
   have t2 : IsScalarTower ℚ K (hV.primeIdealOf ⟨_, hxV⟩).asIdeal.ResidueField :=
     IsScalarTower.of_algebraMap_eq fun q => ((algebraMap K _).map_rat_algebraMap q).symm
   have f00 : Algebra.IsStandardSmooth K Γ(X, V) := Algebra.IsStandardSmoothOfRelativeDimension.isStandardSmooth n
-  have f01 : Algebra.FinitePresentation K Γ(X, V) := inferInstance
-  have f0 : Algebra.EssFiniteType K Γ(X, V) := inferInstance
   have f1 : Algebra.EssFiniteType K (hV.primeIdealOf ⟨_, hxV⟩).asIdeal.ResidueField :=
     Algebra.EssFiniteType.comp K Γ(X, V) _
-  have f2 : Algebra.EssFiniteType ℚ K := inferInstance
   have f3 : Algebra.EssFiniteType ℚ (hV.primeIdealOf ⟨_, hxV⟩).asIdeal.ResidueField :=
     Algebra.EssFiniteType.comp ℚ K _
   have f4 : Algebra.EssFiniteType ℚ (X.residueField hZ.1.genericPoint) :=

@@ -22,7 +22,6 @@ theorem isAlgebraic_of_etale (S R : Type) [CommRing S] [IsDomain S] [CommRing R]
   haveI : Algebra.EssFiniteType S L := Algebra.EssFiniteType.comp S R L
   haveI : Algebra.EssFiniteType K L := Algebra.EssFiniteType.of_comp S K L
   haveI : Algebra.IsSeparable K L := Algebra.FormallyUnramified.isSeparable K L
-  haveI : Algebra.IsAlgebraic K L := inferInstance
   haveI : Algebra.IsAlgebraic S L := (IsFractionRing.comap_isAlgebraic_iff (A := S) (K := K)).2 inferInstance
   exact Algebra.IsAlgebraic.of_injective (IsScalarTower.toAlgHom S R L)
     (IsFractionRing.injective R L)

@@ -126,7 +126,6 @@ theorem exists_convolution : ∀ (k : Type) [Field k] [ValuativeRel k] [Topologi
   intro k _ _ _ _ _ _ n _ _ ν _ Φ Ψ
   have : SecondCountableTopology k := GlobalTheory.SplitWeil.secondCountable k
   have : T2Space k := GlobalTheory.SplitWeil.t2Space k
-  have : ν.Regular := inferInstance
   have : ν.IsNegInvariant := inferInstance
   obtain ⟨w, hw1, hw2⟩ := exists_conv (Measure.pi fun _ : n => ν) Φ Ψ
   refine ⟨translate Ψ, w, fun y x => rfl, hw1, fun x => ?_, hw2⟩

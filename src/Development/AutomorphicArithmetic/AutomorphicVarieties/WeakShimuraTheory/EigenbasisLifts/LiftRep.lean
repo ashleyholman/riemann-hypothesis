@@ -483,7 +483,6 @@ private lemma exists_aeval_of_commute {σ W : Type} [Ring W] [Algebra B W] (p : 
     Algebra.isMulCommutative_adjoin (R := B) (s := Set.range p) (by
       rintro _ ⟨i, rfl⟩ _ ⟨j, rfl⟩ _; exact h i j)
   open scoped IsMulCommutative in
-    letI : CommRing (Algebra.adjoin B (Set.range p)) := inferInstance
   exact ⟨(Subalgebra.val (Algebra.adjoin B (Set.range p))).comp
     (MvPolynomial.aeval (R := B) fun j =>
     (⟨p j, Algebra.subset_adjoin ⟨j, rfl⟩⟩ : Algebra.adjoin B (Set.range p))), fun j => by simp⟩
@@ -1459,7 +1458,6 @@ theorem UpperTheory.V.Ws.Eb.liftRep :
   haveI : Module.Finite (PadicAlgCl l) (DualNumber (PadicAlgCl l)) :=
     inferInstanceAs (Module.Finite (PadicAlgCl l) (PadicAlgCl l × PadicAlgCl l))
   haveI : IsArtinianRing (DualNumber (PadicAlgCl l)) := IsArtinianRing.of_finite (PadicAlgCl l) _
-  haveI : IsAdicComplete (maximalIdeal (DualNumber (PadicAlgCl l))) (DualNumber (PadicAlgCl l)) := inferInstance
   haveI : IsLocalHom (dF (PadicAlgCl l)) := ⟨fun a ha => TrivSqZeroExt.isUnit_iff_isUnit_fst.2 ha⟩
   obtain ⟨ρ', h1, h2, h3⟩ := detRep (dF (PadicAlgCl l)) (B.u.D.map (x' : B.B →+* DualNumber (PadicAlgCl l))) ρ hn
     (fun a => ⟨TrivSqZeroExt.inl a, rfl⟩) hρ (((AlgebraTools.Det.mapApi B.u.D _).2.2.2.2.2.2.1 _).trans hD)

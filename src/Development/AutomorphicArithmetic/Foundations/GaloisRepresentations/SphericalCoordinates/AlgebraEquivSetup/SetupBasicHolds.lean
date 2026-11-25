@@ -1080,7 +1080,6 @@ theorem UpperTheory.Gal.W2.Seed.pOrbEx :
       iseqv := ⟨fun a => ⟨1, by ext x; simp⟩,
         fun {a b} ⟨σ, hσ⟩ => ⟨σ⁻¹, by rw [hσ]; ext x; simp⟩,
         fun {a b c} ⟨σ, hσ⟩ ⟨ρ, hρ⟩ => ⟨ρ * σ, by rw [hρ, hσ]; ext x; simp⟩⟩ }
-  haveI : Finite (E →+* PadicAlgCl p) := inferInstance
   haveI : Finite S := Subtype.finite
   haveI : Finite (Quotient R) := Quotient.finite _
   let s₁ : S := ⟨τ₁, h₁⟩

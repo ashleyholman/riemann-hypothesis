@@ -105,7 +105,6 @@ theorem isProper_of_subsingleton {K : Type} [Field K] (G : Over (Sp K)) [GrpObj 
     rw [h2, MonObj.one_comp] at h3
     exact mul_inv_eq_one.1 h3.symm⟩
   have : Mono T.q.left := inferInstanceAs (Mono ((Over.forget _).map T.q))
-  have : EffectiveEpi T.q.left := inferInstance
   have : IsIso T.q.left := isIso_of_mono_of_strongEpi _
   have := T.isAbelian.proper
   rw [← Over.w T.q]

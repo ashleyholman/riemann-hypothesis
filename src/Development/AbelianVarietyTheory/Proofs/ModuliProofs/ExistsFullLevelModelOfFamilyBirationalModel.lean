@@ -666,8 +666,6 @@ theorem exists_iso (hH : GlobalTheory.LN.HomExtSt) (hR : IsDedekindDomain R) [Ch
   have d₁ := isDominant_pullback_fst_of_isOpenMap C.W.ι (C.W.ι ≫ ρ.hom) (C.W.ι ≫ ρ.hom).isOpenEmbedding.isOpenMap
   have d₂ := isDominant_snd (C.W.ι ≫ ρ.hom) C.W.ι
   have he := pullback.condition (f := C.W.ι ≫ ρ.hom) (g := C.W.ι)
-  have o₁ : IsOpenImmersion (pullback.fst (C.W.ι ≫ ρ.hom) C.W.ι) := inferInstance
-  have o₂ : IsOpenImmersion (pullback.snd (C.W.ι ≫ ρ.hom) C.W.ι) := inferInstance
   set e₁ := pullback.fst (C.W.ι ≫ ρ.hom) C.W.ι
   set e₂ := pullback.snd (C.W.ι ≫ ρ.hom) C.W.ι
   obtain ⟨t', ⟨n₁⟩⟩ : ∃ t' : SAB H _, Nonempty (SABMap t' C.tW e₁) := by

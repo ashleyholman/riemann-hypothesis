@@ -96,7 +96,6 @@ theorem haarGL_restrict (hj : 1 ≤ j) : (haarGL E j).restrict {g | 0 < detNorm 
   Measure.restrict_eq_self_of_ae_mem (haarGL_singular hj)
 
 instance : SigmaFinite (haarGL E j) :=
-  haveI : SigmaFinite (volume : Measure (Fin j → ℂ)) := inferInstance
   haveI : SigmaFinite (volume : Measure (Fin j → Fin j → ℂ)) := inferInstance
   @SigmaFinite.withDensity_ofReal (InfinitePlace E → Fin j → Fin j → ℂ) _ volume inferInstance
     fun x => (detNorm E j x)⁻¹ ^ j

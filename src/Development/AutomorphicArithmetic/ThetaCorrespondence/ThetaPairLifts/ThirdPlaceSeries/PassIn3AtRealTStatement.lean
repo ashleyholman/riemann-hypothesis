@@ -1509,7 +1509,6 @@ theorem finiteDimensional_coindV_blockTri {F : Type} [Field F] [Fintype F] {r : 
     [Module ℂ V] [FiniteDimensional ℂ V] (b : Fin r → ℕ) (σ : Representation ℂ (blockTri (κ := F) b) V) :
     FiniteDimensional ℂ (Representation.coindV (blockTri (κ := F) b).subtype σ) := by
   classical
-  have : Finite (GL (Fin r) F) := inferInstance
   infer_instance
 
 theorem nPos_parInd (F : Type) [Field F] [Fintype F] (ψ : AddChar F ℂ) (hψ : ψ ≠ 1) (r : ℕ) (V : Type)

@@ -556,7 +556,6 @@ private theorem etaEx_of (hS : FinalTheorems) (hA : Alg) (hI : Integ) (hL : LcFi
     IsScalarTower.of_algebraMap_eq fun p => (hφ p).symm
   haveI : IsAlgClosed (Kb X) := by unfold Kb; infer_instance
   haveI : IsAlgClosure (RatFunc Ω) (Kb X) := ⟨inferInstance, halg⟩
-  haveI : IsGalois (RatFunc Ω) (Kb X) := inferInstance
   let L := IntermediateField.adjoin (RatFunc Ω) ({io X u, io X v} : Set (Kb X))
   haveI : FiniteDimensional (RatFunc Ω) L :=
     IntermediateField.finiteDimensional_adjoin (fun x _ => (halg.isAlgebraic x).isIntegral)

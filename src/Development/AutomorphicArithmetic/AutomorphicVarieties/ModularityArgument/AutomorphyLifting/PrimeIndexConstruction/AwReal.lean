@@ -211,7 +211,6 @@ private theorem exists_sq_neg (F K : Type) [Field F] [NumberField F] [IsTotallyR
   refine ⟨e 1, d, h1, fun φ => ?_, hx⟩
   by_contra hnn
   letI : Algebra F ℂ := ((algebraMap ℝ ℂ).comp φ).toAlgebra
-  haveI : Algebra.IsAlgebraic F K := inferInstance
   let τ : K →ₐ[F] ℂ := (by
     refine @_root_.IsAlgClosed.lift _ _ _ _ _ _ _ _ _ _ _ ?_ ?_ ?_
     solve_by_elim* (maxDepth := 2) only [*,

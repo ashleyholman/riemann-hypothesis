@@ -99,7 +99,6 @@ theorem isCompactOperator_repOp_Rcusp_zero (E : Type) [Field E] [NumberField E] 
     (μ : Measure (GA E 0)) [μ.IsHaarMeasure] [μ.IsMulRightInvariant] (f : GA E 0 → ℂ) :
     IsCompactOperator (repOp (Rcusp μ) μ f) := by
   have := SpecModel.finiteDimensional_zero μ
-  have : FiniteDimensional ℂ (L2cusp μ) := inferInstance
   have : ProperSpace (L2cusp μ) := FiniteDimensional.proper ℂ _
   exact isCompactOperator_of_locallyCompactSpace_rng _
 

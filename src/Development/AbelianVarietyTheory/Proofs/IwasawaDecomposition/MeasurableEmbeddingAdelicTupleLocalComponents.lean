@@ -161,7 +161,6 @@ theorem adelicTuple_measurableEmbedding : ∀ (F E : Type) [Field F] [NumberFiel
     inferInstance
   haveI : BorelSpace (∀ v : HeightOneSpectrum (𝓞 F), Fin n → Fin M → Fv F v ⊗[F] E) :=
     Pi.borelSpace
-  haveI : BorelSpace (Fin n → Fin M → Ainf F ⊗[F] E) := inferInstance
   exact ((continuous_projInf b).prodMk (continuous_pi (continuous_projV b))).measurableEmbedding
     (injective_glue b)
 

@@ -146,7 +146,6 @@ theorem mem_rr_iff (x : X.B.I.GA) :
 theorem covolTie_of (hM : X.MeasTie hb) : CovolTie X := by
   haveI hBor : BorelSpace (HA (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.AF X.B.I.F) X.B.I.cm.sig X.B.I.J) := ⟨rfl⟩
   haveI : (X.B.I.muA X.B.μf).IsHaarMeasure := Formalism.L2.SG.PoincareInHH.Cut.muA_isHaar' X.B.I X.B.μf
-  haveI : (X.B.I.muA X.B.μf).IsMulLeftInvariant := inferInstance
   have hfd0 : IsFundamentalDomain (Formalism.MainNotions.LeviCoordinates.rr_GF X.B.I) X.B.fund (X.B.I.muA X.B.μf) :=
     Formalism.MainNotions.LeviCoordinates.rr_isFD ⟨X.B.fund_spec.1, X.B.fund_spec.2.1, X.B.fund_spec.2.2⟩
   let Γ : Subgroup (HA (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.AF X.B.I.F) X.B.I.cm.sig X.B.I.J) :=
@@ -175,7 +174,6 @@ theorem covolTie_of (hM : X.MeasTie hb) : CovolTie X := by
     have hμ : X.measG.μG = (X.B.I.muA X.B.μf).map e := hM.1
     rw [hμ]
     exact (toHA X.B.I hb).isHaarMeasure_map (X.B.I.muA X.B.μf)
-  haveI : (X.measG.μG).IsMulLeftInvariant := inferInstance
   haveI : MeasurableConstSMul Γ (HA (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.AF X.B.I.F) X.B.I.cm.sig X.B.I.J) :=
     ⟨fun c => (continuous_const_mul (c : HA (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.AF X.B.I.F) X.B.I.cm.sig X.B.I.J)).measurable⟩
   unfold CovolTie covolBy

@@ -192,7 +192,6 @@ set_option backward.isDefEq.respectTransparency false in
 theorem nonempty_presentation_over_of_restrict (P : (F.restrict U.ι).Presentation) :
     Nonempty (F.over U).Presentation := by
   let e := Scheme.Modules.overEquiv U
-  have : Limits.PreservesColimitsOfSize.{u, u} e.inverse := inferInstance
   let iso : e.inverse.obj (F.restrict U.ι) ≅ F.over U :=
     e.inverse.mapIso ((Scheme.Modules.overFunctorEquiv U).app F).symm ≪≫
       (e.unitIso.app (F.over U)).symm

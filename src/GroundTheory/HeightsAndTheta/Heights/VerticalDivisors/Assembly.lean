@@ -276,7 +276,6 @@ theorem CodimOnePrimeAvoid.proof : CodimOnePrimeAvoid.Statement := by
     powers_le_nonZeroDivisors_of_noZeroDivisors hh
   have : IsDomain Bh := IsLocalization.isDomain_localization hle
   have : Algebra.FinitePresentation B Bh := IsLocalization.Away.finitePresentation (S := Bh) h
-  have : Algebra.FiniteType B Bh := inferInstance
   have : Algebra.FiniteType k Bh := Algebra.FiniteType.trans (S := B) inferInstance inferInstance
   have : IsNoetherianRing Bh := Algebra.FiniteType.isNoetherianRing k Bh
   let K := FractionRing B

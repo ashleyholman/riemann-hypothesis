@@ -167,7 +167,6 @@ theorem mem_smoothLocus {V : Type} [CommRing V] [IsLocalRing V] [IsNoetherianRin
 
 theorem main : ∀ (V : Type) [CommRing V] [IsDomain V] [IsLocalRing V] [IsNoetherianRing V] (B : Over (Spec (CommRingCat.of V))) [IsProper B.hom], (∀ e, Smooth (thickObj V (IsLocalRing.maximalIdeal V) e B).hom) → Smooth B.hom := by
   intro V _ _ _ _ B _ h
-  haveI : LocallyOfFinitePresentation B.hom := inferInstance
   rw [← Scheme.Hom.smoothLocus_eq_top_iff, ← top_le_iff]
   intro x _
   by_contra hx

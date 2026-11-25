@@ -459,9 +459,6 @@ lemma colimMono {S : Type 1} [Ring S] {F F' : KK (X := X) V ⥤ ModuleCat.{1} S}
   have hm : Mono (colimMap (Functor.whiskerLeft (Iota V) φ)) := by
     have : Mono (Functor.whiskerLeft (Iota V) φ) := by
       rw [NatTrans.mono_iff_mono_app]; intro k; dsimp; infer_instance
-    haveI : PreservesFiniteLimits (colim : (Discrete (ULift.{1} (V ⟶ X)) ⥤ ModuleCat.{1} S) ⥤ _) := inferInstance
-    haveI : (colim : (Discrete (ULift.{1} (V ⟶ X)) ⥤ ModuleCat.{1} S) ⥤ _).PreservesMonomorphisms :=
-      inferInstance
     exact (colim : (Discrete (ULift.{1} (V ⟶ X)) ⥤ ModuleCat.{1} S) ⥤ _).map_mono (Functor.whiskerLeft (Iota V) φ)
   have : colimMap φ = inv (colimit.pre F (Iota V)) ≫ colimMap (Functor.whiskerLeft (Iota V) φ) ≫ colimit.pre F' (Iota V) := by
     rw [← h, IsIso.inv_hom_id_assoc]
@@ -506,13 +503,6 @@ lemma lanMono (R : Type) [CommRing R] (X : Scheme.{0}) :
 theorem PullMono_of : LateralTheory.E.LocSlicePf.PullMono := by
   intro R _ X
   haveI := lanMono R X
-  have h1 : (sheafToPresheaf (Scheme.etaleTopology.{0}.over X) (ModuleCat.{1} (ULift.{1} R))).PreservesMonomorphisms :=
-    inferInstance
-  have h3 : (presheafToSheaf Scheme.etaleTopology.{0} (ModuleCat.{1} (ULift.{1} R))).PreservesMonomorphisms :=
-    inferInstance
-  have h4 : (sheafToPresheaf (Scheme.etaleTopology.{0}.over X) (ModuleCat.{1} (ULift.{1} R)) ⋙
-      (Over.forget X).op.lan ⋙ presheafToSheaf Scheme.etaleTopology.{0} (ModuleCat.{1} (ULift.{1} R))).PreservesMonomorphisms :=
-    inferInstance
   exact Functor.PreservesMonomorphisms.of_iso (F := sheafToPresheaf (Scheme.etaleTopology.{0}.over X) (ModuleCat.{1} (ULift.{1} R)) ⋙
       (Over.forget X).op.lan ⋙ presheafToSheaf Scheme.etaleTopology.{0} (ModuleCat.{1} (ULift.{1} R)))
     (Functor.sheafPullbackConstruction.sheafPullbackIso (Over.forget X) (ModuleCat.{1} (ULift.{1} R))

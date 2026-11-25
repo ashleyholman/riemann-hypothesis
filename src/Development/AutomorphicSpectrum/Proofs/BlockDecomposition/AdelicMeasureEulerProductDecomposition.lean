@@ -83,7 +83,6 @@ theorem coordMapN (σ : E →ₐ[F] E) (hσ : IsCMExt F E σ) (R : Type) [CommRi
   obtain ⟨-, -, -, -, -, -, hh, -⟩ := _root_.GlobalTheory.CompanionTheory.SW.TopK.topTens_props F E σ hσ R
   haveI : BorelSpace (R ⊗[F] E) := ⟨rfl⟩
   haveI := hlam
-  have hSF : SigmaFinite lam := inferInstance
   let e : R ⊗[F] E ≃ₜ (Fin d → R) := (hh d b).homeomorph _
   let em : R ⊗[F] E ≃ᵐ (Fin d → R) := e.toMeasurableEquiv
   have hem : ∀ y k, em y k = (Algebra.TensorProduct.basis R b).repr y k := fun _ _ => rfl
@@ -185,7 +184,6 @@ theorem dx_coordN (σ : E →ₐ[F] E) (hCM : IsCMExt F E σ) {M d n : ℕ} (J :
     rw [Matrix.det_smul, gramN, Matrix.det_kronecker, Matrix.det_one, one_pow, one_mul]
     exact mul_ne_zero (pow_ne_zero _ hξ0) (pow_ne_zero _ (traceGram_det_ne_zero σ hσ J hJ.2 b))
   obtain ⟨t1, -, -, -, -, -, -, -, -, -⟩ := _root_.GlobalTheory.CompanionTheory.SW.TopK.topTens_props F E σ hCM (AF F)
-  haveI : IsTopologicalAddGroup (Fin n → Fin M → AF F ⊗[F] E) := inferInstance
   refine selfDual_eq _ hs hdet _ (selfDual_transport e ?_ _ _ ?_ dx hdx)
   · intro x y
     rw [he, he, he]

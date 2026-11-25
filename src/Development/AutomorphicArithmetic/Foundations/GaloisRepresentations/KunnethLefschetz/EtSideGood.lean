@@ -544,7 +544,6 @@ theorem adic_decomp [Module.Finite ℤ_[l] M] : ∃ (r : ℕ) (c : Fin r → M) 
     LinearIndependent ℤ_[l] c ∧ ∀ x : M, ∃ (a : Fin r → ℤ_[l]) (τ : M), x = ∑ s, a s • c s + τ ∧ e • τ = 0 := by
   classical
   set T := Submodule.torsion ℤ_[l] M
-  have hTfin : Module.Finite ℤ_[l] T := inferInstance
   obtain ⟨a, ha, ha0⟩ := Submodule.annihilator_top_inter_nonZeroDivisors (Submodule.torsion_isTorsion (R := ℤ_[l]) (M := M))
   have hane : a ≠ 0 := nonZeroDivisors.ne_zero ha0
   have hkill : ∀ τ ∈ T, (l ^ a.valuation : ℕ) • τ = 0 := by

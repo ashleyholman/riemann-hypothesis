@@ -936,7 +936,6 @@ theorem smooth_away_away {π : R} (h : Algebra.Smooth R (Localization.Away (alge
   let T := Localization.Away (algebraMap B (Localization.Away p) f)
   haveI : Algebra.Smooth (Localization.Away p) T := Algebra.Smooth.of_isLocalization_Away (algebraMap B (Localization.Away p) f)
   haveI : Algebra.Smooth R T := Algebra.Smooth.comp R (Localization.Away p) T
-  haveI : IsLocalization.Away (f * p) T := inferInstance
   haveI : IsLocalization.Away (algebraMap B (Localization.Away f) p) (Localization.Away (algebraMap R (Localization.Away f) π)) := by
     rw [← IsScalarTower.algebraMap_apply]; infer_instance
   haveI : IsLocalization.Away (f * p) (Localization.Away (algebraMap R (Localization.Away f) π)) :=

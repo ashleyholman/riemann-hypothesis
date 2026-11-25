@@ -71,8 +71,6 @@ theorem eq_iff_expansion_eq : ∀ (R : Type) [CommRing R] [IsDomain R] (I : Idea
   intro R _ _ I hR D A G _ _ hG U k s s' F F' ⟨r, hr, σ, f, hσ, hf, hE⟩ ⟨r', hr', σ', f', hσ', hf', hE'⟩
   have := U.smooth
   have := D.toPre.P.isAb.smooth
-  have : Flat G.hom := inferInstance
-  have : Flat D.toPre.P.A.hom := inferInstance
   have e : (TF (R := R) (FractionRing R)).hom = jK R := by
     show Spec.map _ ≫ Spec.map _ = _
     rw [← Spec.map_comp]; rfl

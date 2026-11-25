@@ -207,7 +207,6 @@ lemma fractional_ideal_dual_family (K E : Type) [Field K] [Field E] [NumberField
       ∀ y : (I : Submodule (𝓞 E) E).restrictScalars (𝓞 K), (y : E) = ∑ j, f j y • g j := by
   set P := (I : Submodule (𝓞 E) E).restrictScalars (𝓞 K)
   have : Module.IsTorsionFree (𝓞 K) E := Module.IsTorsionFree.trans_faithfulSMul (𝓞 K) K E
-  have : Module.IsTorsionFree (𝓞 K) P := inferInstance
   have hfg : P.FG := (FractionalIdeal.fg_of_isNoetherianRing le_rfl I).restrictScalars
   have : Module.Finite (𝓞 K) P := Module.Finite.iff_fg.mpr hfg
   have : Module.FinitePresentation (𝓞 K) P := Module.finitePresentation_of_finite (𝓞 K) P

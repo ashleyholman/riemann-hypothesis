@@ -151,8 +151,6 @@ theorem exists_galois_level {y : ℚ̄} (hy : y ∈ maxUnramifiedOutside K.1 ℚ
   have : FiniteDimensional K.1 A :=
     IntermediateField.adjoin.finiteDimensional (Algebra.IsIntegral.isIntegral y)
   let N' : IntermediateField K.1 ℚ̄ := IntermediateField.normalClosure K.1 A ℚ̄
-  have hN'f : FiniteDimensional K.1 N' := inferInstance
-  have hN'n : Normal K.1 N' := inferInstance
   have hN'le : N' ≤ maxUnramifiedOutside K.1 ℚ̄ S :=
     IntermediateField.normalClosure_le_iff_of_normal.2
       ((IntermediateField.adjoin_simple_le_iff).2 hy)

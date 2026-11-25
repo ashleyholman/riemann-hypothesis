@@ -1127,7 +1127,6 @@ theorem interNumOn_comp_of_isIso (g : Y ⟶ Z) (f : Z ⟶ X) [IsIso (unitToPush 
 
 theorem interNumOn_eq_interNumSub (f : Z ⟶ X) [IsClosedImmersion f] (L : ι → LB X) :
     interNumOn k f L = interNumSub k f.ker L := by
-  have : IsIso f.toImage := inferInstance
   rw [interNumSub_def, ← interNumOn_comp_of_isIso k f.toImage]
   exact congrArg (interNumOn k · L) f.toImage_imageι.symm
 

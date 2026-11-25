@@ -43,7 +43,6 @@ theorem geometricallyConnected_of_surjective {X Y Z : Scheme.{0}} (p : X ⟶ Y) 
   have : ConnectedSpace ↥(pullback (p ≫ f) x) :=
     GeometricallyConnected.geometrically_connectedSpace _ _ _ (.of_hasPullback _ _)
   let q := (pullbackRightPullbackFstIso f x p).inv ≫ pullback.snd p (pullback.fst f x)
-  have : Surjective q := inferInstance
   exact q.surjective.connectedSpace q.continuous
 
 theorem relDim_le_of_isDominant {k : Type} [Field k] {X Y : Scheme.{0}} [IsIntegral X]

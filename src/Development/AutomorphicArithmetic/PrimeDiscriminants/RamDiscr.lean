@@ -25,7 +25,6 @@ theorem dvd_discr_of_mem_sq (E : Type) [Field E] [NumberField E] {p : ℕ} (hp :
   have hu : P.under ℤ = span {(p : ℤ)} := hlo.over.symm
   have : Finite (ℤ ⧸ P.under ℤ) := Ideal.finiteQuotientOfFreeOfNeBot _ (hu ▸ hb)
   have : (P.under ℤ).IsMaximal := hu ▸ hmax
-  have : Finite (P.under ℤ).ResidueField := inferInstance
   have he : P.ramificationIdx ℤ = 1 := Ideal.ramificationIdx_eq_one_iff.2 hun
   have hmap : Ideal.map (algebraMap ℤ (𝓞 E)) (span {(p : ℤ)}) = span {(p : 𝓞 E)} := by
     rw [Ideal.map_span]; simp

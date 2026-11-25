@@ -144,7 +144,6 @@ theorem isIntegral_and_isAlgebraic_of_regular : ∀ (X : Scheme.{0}) (Ω : Type)
     exact hp (ha p)
   · haveI : FaithfulSMul O Ω := (faithfulSMul_iff_algebraMap_injective O Ω).2 hinj
     letI := FractionRing.liftAlgebra O Ω
-    haveI : IsScalarTower O (FractionRing O) Ω := inferInstance
     refine (IsFractionRing.isAlgebraic_iff O (FractionRing O) Ω).2 (IsIntegral.isAlgebraic
       (isIntegral_of_forall_valuationSubring' (algebraMap (FractionRing O) Ω).injective a fun V hV => ?_))
     have hO : ∀ o : O, algebraMap O Ω o ∈ V := fun o => by

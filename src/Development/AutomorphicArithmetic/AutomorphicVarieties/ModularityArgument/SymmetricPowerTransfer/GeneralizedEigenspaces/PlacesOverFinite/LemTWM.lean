@@ -909,7 +909,6 @@ theorem UpperTheory.V.Af.Tw.unrAE :
   unfold UpperTheory.V.Af.Tw.UnrAE
   intro F L _ _ _ _ _
   letI := FractionRing.liftAlgebra (𝓞 F) (FractionRing (𝓞 L))
-  haveI : Algebra.IsSeparable (FractionRing (𝓞 F)) (FractionRing (𝓞 L)) := inferInstance
   have hD0 : differentIdeal (𝓞 F) (𝓞 L) ≠ ⊥ := differentIdeal_ne_bot (A := 𝓞 F) (B := 𝓞 L)
   have hfin := Ideal.finite_factors (R := 𝓞 L) (I := differentIdeal (𝓞 F) (𝓞 L)) hD0
   rw [Filter.eventually_cofinite]

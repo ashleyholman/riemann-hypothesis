@@ -26,8 +26,6 @@ theorem QFGroup.finite_of_qfGroup : ∀ (R : Type) [CommRing R] [IsDomain R] (T 
   have hK : ∀ u v : Spec (CommRingCat.of (FractionRing R)), u = v := fun u v =>
     Subsingleton.elim (α := PrimeSpectrum (FractionRing R)) u v
   let b : Spec (CommRingCat.of (FractionRing R)) := (⟨⊥, Ideal.isPrime_bot⟩ : PrimeSpectrum (FractionRing R))
-  have hgqf : LocallyQuasiFinite g := inferInstance
-  have hgqc : QuasiCompact g := inferInstance
   have huniv : g ⁻¹' {b} = Set.univ := by
     ext x; simp [hK (g x) b]
   have hfin : Finite F := by

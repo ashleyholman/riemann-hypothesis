@@ -652,7 +652,6 @@ theorem exists_extend_fractionRing {A B : Type} [CommRing A] [IsDomain A] [CommR
   haveI : FaithfulSMul A (FractionRing B) := (faithfulSMul_iff_algebraMap_injective A _).2 (by
     rw [IsScalarTower.algebraMap_eq A B (FractionRing B)]
     exact (IsFractionRing.injective B (FractionRing B)).comp hinj)
-  haveI : Algebra.IsAlgebraic A B := inferInstance
   haveI : Algebra.IsAlgebraic B (FractionRing B) := IsLocalization.isAlgebraic _ (nonZeroDivisors B)
   haveI : Algebra.IsAlgebraic A (FractionRing B) := Algebra.IsAlgebraic.trans A B _
   let φ : FractionRing B →ₐ[A] ℂ := (by

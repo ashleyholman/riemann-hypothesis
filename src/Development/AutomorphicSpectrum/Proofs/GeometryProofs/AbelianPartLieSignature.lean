@@ -221,7 +221,6 @@ theorem nonempty_basis_eigenHom :
   have hd : 0 < finrank ℚ E := Module.finrank_pos
   have hdim : finrank k (GlobalTheory.Diag.eigenHom X τ) = finrank ℤ X / finrank ℚ E := by
     rw [← hmul, Nat.mul_div_cancel _ hd]
-  haveI : FiniteDimensional k (GlobalTheory.Diag.eigenHom X τ) := inferInstance
   exact ⟨Module.finBasisOfFinrankEq _ _ hdim⟩
 
 end GlobalTheory.CompanionTheory.Ar.HT.LatMult
@@ -264,7 +263,6 @@ theorem lieMult_abPart : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] 
   haveI := P.τ.q_hom
   haveI := P.τ.i_hom
   haveI := P.e_hom
-  haveI heinv : IsMonHom P.e.inv := inferInstance
   obtain ⟨m, hm⟩ := _root_.GlobalTheory.CompanionTheory.TorusAct.exists_module_diagAct L P.tK.G P.τ (𝓞 E) P.tK.act (fun a => by
     haveI := P.tB.act.hom a
     refine ⟨P.e.hom ≫ P.tB.act.act a ≫ P.e.inv, inferInstance, ?_⟩

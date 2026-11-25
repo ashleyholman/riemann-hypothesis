@@ -269,7 +269,6 @@ theorem class_eq_zero_of_coboundary (R : Type) [CommRing R] (C : Type) [Category
     (H1.mk F).rTensor N t = 0 := by
   classical
   haveI : ∀ T T' : C, Finite (T ⟶ T') := fun T T' ↦ by
-    haveI : Subsingleton (T ⟶ T') := inferInstance
     exact Finite.of_subsingleton
   let κ : Z1 F →ₗ[R] ∀ x : (Σ T : C, Σ T' : C, (T ⟶ T')), F.obj x.2.1 :=
     LinearMap.pi fun x ↦ evZ F x.2.2

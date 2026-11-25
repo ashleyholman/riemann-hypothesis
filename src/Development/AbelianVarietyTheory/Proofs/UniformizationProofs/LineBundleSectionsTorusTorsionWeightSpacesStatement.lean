@@ -649,7 +649,6 @@ theorem weight_structure (hL : Laws) (hL₂ : Laws2) : AllPre fun {V} _ _ _ {D} 
   have : IsNoetherianRing V := by have := hV.1; infer_instance
   have hN : (N : Kbar V) ≠ 0 := by
     have := hV.2.2
-    have : CharZero (FractionRing V) := inferInstance
     exact Nat.cast_ne_zero.2 (by omega)
   obtain ⟨S, hS, hS₀⟩ := exists_expansion hL hL₂ V hV D A G U (Kbar V) N hN1
   obtain ⟨m, minj, mact, madd⟩ := _root_.GlobalTheory.UU.Eqv.main hL hL₂ V hV D A G U N hN1

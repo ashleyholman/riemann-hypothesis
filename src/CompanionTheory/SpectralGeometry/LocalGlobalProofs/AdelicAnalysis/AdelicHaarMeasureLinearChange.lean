@@ -123,7 +123,6 @@ theorem pi_scale : ∀ (F : Type) [Field F] [NumberField F], ∀ [MeasurableSpac
   haveI := hlc
   haveI := hsc
   haveI := ht2
-  haveI : SigmaFinite lf := inferInstance
   have hmeas : ∀ (g : Matrix ι ι F), g.det ≠ 0 → ∀ s : Set (ι → A F), MeasurableSet s →
       MeasurableSet ((fun x => Bf g *ᵥ x) '' s) := by
     intro g hg s hs

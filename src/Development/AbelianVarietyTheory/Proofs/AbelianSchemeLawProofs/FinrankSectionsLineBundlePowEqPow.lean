@@ -217,7 +217,6 @@ theorem mulSec_injective [IsIntegral (T ⊗ A).left] (a b : ℤ) (s : SecM A L b
   by_cases hi : Nonempty ((LPow A L b T).U i)
   · have h1 : (SecM.toSec A s).f i ≠ 0 := sec_ne_zero (SecM.toSec A s) (i₀ := i₀) h₀ i
     have h2 := congrFun (congrArg Subtype.val hf) i
-    haveI : IsDomain Γ((T ⊗ A).left, (LPow A L b T).U i) := inferInstance
     exact (mul_eq_zero (M₀ := Γ((T ⊗ A).left, (LPow A L b T).U i)).1 h2).resolve_right h1
   · have e : (LPow A L a T).U i = ⊥ := by
       ext x

@@ -353,7 +353,6 @@ theorem lbSpreads : LBSpreads := by
   have {s t : (Finset R)ᵒᵖ} (h : s ⟶ t) : IsAffineHom (D.map h) :=
     MorphismProperty.of_isPullback (hD h).flip (hGa h)
   have (s : (Finset R)ᵒᵖ) : CompactSpace (D.obj s) :=
-    have : QuasiCompact (pullback.snd f₀ (κ s)) := inferInstance
     QuasiCompact.compactSpace_of_compactSpace (pullback.snd f₀ (κ s))
   have (s : (Finset R)ᵒᵖ) : QuasiSeparatedSpace (D.obj s) :=
     have : QuasiSeparated (pullback.snd f₀ (κ s)) := inferInstance

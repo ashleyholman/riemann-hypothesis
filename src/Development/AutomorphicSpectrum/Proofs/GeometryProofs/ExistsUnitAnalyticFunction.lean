@@ -739,7 +739,6 @@ theorem exists_matrix {E : Type} [Field E] [NumberField E] {La : Type} [AddCommG
   have hr : Fintype.card I = Module.finrank E (E ⊗[𝓞 E] La) := by
     rw [hc]
     exact ((TensorProduct.isBaseChange (𝓞 E) La E).finrank_eq).symm
-  haveI : FiniteDimensional E (E ⊗[𝓞 E] La) := inferInstance
   let b : Module.Basis I E (E ⊗[𝓞 E] La) := basisOfLinearIndependentOfCardEqFinrank' _ hli hr
   have hb : ∀ n, b n = j (e n) := fun n => by simp [b]
   refine ⟨(LinearMap.toMatrix b b (gam.baseChange E))ᵀ, by rw [det_transpose, LinearMap.det_toMatrix], ?_⟩

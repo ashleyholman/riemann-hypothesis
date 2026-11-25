@@ -21,7 +21,6 @@ theorem smoothOfRelativeDimension_of_fibre : ∀ (R K : Type) [CommRing R] [IsDo
   intro R K _ _ _ β B _ X' π p g hB hP hg
   have := hB.smooth
   have := hB.geomConnected
-  have : ConnectedSpace (Sp R) := inferInstance
   have : ConnectedSpace B.left := GeometricallyConnected.connectedSpace B.hom B.hom.isOpenMap
   obtain ⟨x⟩ : Nonempty B.left := inferInstance
   obtain ⟨n, hn⟩ := exists_dim_of_preconnected B.hom x

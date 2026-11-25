@@ -1173,7 +1173,6 @@ theorem levelIndexNormC : GlobalTheory.IndefiniteRowSideFullHecke.LocalIntegralG
       rw [inv_inv, hq]
       simp
     have hcard : ∀ PP : Pl D.host.E, ∀ n : ℕ, (Nat.card (GL (Fin n) (kP PP)) : ℝ) ≠ 0 := fun PP n => by
-      have : Finite (GL (Fin n) (kP PP)) := inferInstance
       exact_mod_cast (Nat.card_pos (α := GL (Fin n) (kP PP))).ne'
     have hHl : ∀ PP, (Nat.card (Hl PP) : ℝ) ≠ 0 := fun PP => by
       exact_mod_cast (Nat.card_pos (α := Hl PP)).ne'

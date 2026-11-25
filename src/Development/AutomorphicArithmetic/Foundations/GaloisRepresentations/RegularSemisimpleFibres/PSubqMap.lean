@@ -184,7 +184,6 @@ theorem UpperTheory.Gal.InertialTypesAlt.subqMap :
     FinSec → UpperTheory.Gal.TypesAndIwahori.ParaFactor → SubqMap := by
   intro hSec hPF k _ _ _ _ N s d hd W V Z _ _ _ _ _ _ ρ π κ Φ hΦ hinj hsq hfix
   obtain ⟨S, f, hf⟩ := hsq
-  have : Finite (GL (Fin N) 𝓀[k]) := inferInstance
   obtain ⟨sec, hs, hfs⟩ := hSec (GL (Fin N) 𝓀[k])
     (fixed S.toRepresentation (KOne k (Fin N))) (fixed π (KOne k (Fin N)))
     (levelZero S.toRepresentation) (levelZero π) (levelZeroMap f).toLinearMap

@@ -37,7 +37,6 @@ theorem UpperTheory.Gal.TranscendenceTraces.ptLift_of :
   obtain ⟨t, ht1, ht2⟩ := Scheme.Pullback.exists_preimage_pullback (f := r) (g := x) v
     (IsLocalRing.closedPoint Ω) hv
   let P := pullback r x
-  haveI : IsIntegralHom (pullback.snd r x) := inferInstance
   haveI : IsAffine P := isAffine_of_isAffineHom (pullback.snd r x)
   let φ : CommRingCat.of Ω ⟶ Γ(P, ⊤) := Spec.preimage (P.isoSpec.inv ≫ pullback.snd r x)
   have hφ' : Spec.map φ = P.isoSpec.inv ≫ pullback.snd r x := Spec.map_preimage _

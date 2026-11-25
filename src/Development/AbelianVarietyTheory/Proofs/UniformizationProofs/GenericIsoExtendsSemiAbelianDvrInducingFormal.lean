@@ -180,8 +180,6 @@ theorem exists_iso [IsDomain R] [IsDiscreteValuationRing R] (hI : I = IsLocalRin
     have hg : g' ≫ ψ.left = g := by
       let a : Over.mk (g' ≫ G'.hom) ⟶ G := Over.homMk (g' ≫ ψ.left) (by simp)
       let b : Over.mk (g' ≫ G'.hom) ⟶ G := Over.homMk g h₃
-      have : IsSchemeTheoreticallyDominant (pullback.fst G'.hom (jK R)) := inferInstance
-      have : IsSchemeTheoreticallyDominant (pullback.fst g' (pullback.fst G'.hom (jK R))) := inferInstance
       have := GlobalTheory.over_ext_of_schemeTheoreticallyDominant (a := a) (b := b)
         (pullback.fst g' (pullback.fst G'.hom (jK R))) (by
           have := h₄ _ _ (pullback.snd g' (pullback.fst G'.hom (jK R))) pullback.condition.symm

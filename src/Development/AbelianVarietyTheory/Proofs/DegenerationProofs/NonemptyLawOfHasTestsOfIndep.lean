@@ -1349,7 +1349,6 @@ theorem isOpen_singleton_of_isClosed_of_generization {X : Scheme.{0}} [IsLocally
   have hemb := (X.affineCover.f i).isOpenEmbedding
   rw [← Set.image_singleton, ← hemb.isOpen_iff_image_isOpen]
   have hN : IsLocallyNoetherian (X.affineCover.X i) := isLocallyNoetherian_of_isOpenImmersion (X.affineCover.f i)
-  have hA : IsAffine (X.affineCover.X i) := inferInstance
   have : IsNoetherian (X.affineCover.X i) := {}
   have hcl : IsClosed ({y} : Set (X.affineCover.X i)) := by
     have := hx.preimage hemb.continuous

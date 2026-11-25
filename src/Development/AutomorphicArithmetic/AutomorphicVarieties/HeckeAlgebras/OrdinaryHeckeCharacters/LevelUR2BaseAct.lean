@@ -21,7 +21,6 @@ theorem UpperTheory.V.Hi.levelUR2BaseAct :
   · haveI : Subsingleton (H.MK θ a K) := by
       rw [h0]
       infer_instance
-    haveI : Subsingleton (Module.End A (H.MK θ a K)) := inferInstance
     let μ : R →+* Module.End A (H.MK θ a K) :=
       { toFun := fun _ => 0
         map_one' := Subsingleton.elim _ _

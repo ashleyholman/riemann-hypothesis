@@ -464,7 +464,6 @@ theorem order_facts : ∀ {F : Type} [Field F] [ValuativeRel F] [TopologicalSpac
     rw [Ideal.span_singleton_pow, Submodule.cardQuot_apply, Submodule.cardQuot_apply] at hq
     rw [hset, card_quot_eq_sq c hc hbase hinj hfix hu, hq, resQ, ← pow_mul, mul_comm]
   · rw [resQ, ← hm]
-    have : Finite (IsLocalRing.ResidueField 𝒪[F]) := inferInstance
     exact Finite.one_lt_card (α := IsLocalRing.ResidueField 𝒪[F])
   · obtain ⟨x, hx⟩ := GlobalTheory.UnramifiedHermitian.exists_norm_eq_of_henselian (R₀ := 𝒪[F]) c hc hbase
       hfix ⟨_, hu⟩ (hbase u) (u.isUnit.map _)

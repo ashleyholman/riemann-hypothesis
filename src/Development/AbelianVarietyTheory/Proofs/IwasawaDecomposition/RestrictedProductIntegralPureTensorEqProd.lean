@@ -185,7 +185,6 @@ theorem integral_pure : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Nu
         exact Set.indicator_of_mem (show projV w (projFin X) ∈ latV b w from h3) _
       rw [finprod_eq_zero _ v (by rw [hout v hvS]; exact Set.indicator_of_notMem hv _)
         (Filter.eventually_cofinite.1 hev), mul_zero]
-  haveI : SigmaFinite mi := inferInstance
   haveI : ∀ v, SigmaFinite (mv v) := fun v => inferInstance
   obtain ⟨h1, h2⟩ := integral_tensor (ν.restrict B) mi mv projInf (fun v X => projV v (projFin X))
     hci.measurable (fun v => (hcv v).measurable) S (tailProd b mv S) ENNReal.ofReal_ne_top (hP S)

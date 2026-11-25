@@ -158,7 +158,6 @@ theorem rightDeriv_mem_of_isKStable {V : Submodule ℂ (h.smoothFuns (F := F))}
     {X : 𝔤} (hX : ∀ t : ℝ, h.expG (t • X) ∈ K) {w : h.smoothFuns (F := F)} (hw : w ∈ V) :
     h.rightDerivEnd X w ∈ V := by
   set V' : Submodule ℂ (G → F) := V.map (h.smoothFuns (F := F)).subtype
-  haveI : FiniteDimensional ℂ V' := inferInstance
   have hcl : IsClosed (V' : Set (G → F)) := Submodule.closed_of_finiteDimensional V'
   have hlim : Tendsto (fun t : ℝ => t⁻¹ • (rightTranslate (h.expG (t • X)) (w : G → F) - w))
       (𝓝[≠] 0) (𝓝 (h.rightDeriv X w)) := by

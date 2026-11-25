@@ -396,7 +396,6 @@ theorem UpperTheory.exists_finite_place_set_factoring_through_GS :
   intro Ω _ _ _ K _ _ _ l _ c N _ e ψ D
   classical
   have hlp : l.Prime := Fact.out
-  haveI : IsScalarTower ℚ K Ω := inferInstance
   haveI : IsAlgClosure K Ω := ⟨IsAlgClosure.isAlgClosed ℚ, Algebra.IsAlgebraic.tower_top (K := ℚ) K⟩
   have hηopen : IsOpen (D.η.ker : Set (G ℚ Ω)) := by
     rw [D.η_ker]

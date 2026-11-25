@@ -43,7 +43,6 @@ theorem length_quot_ne_top {O M : Type} [CommRing O] [IsDomain O] [IsDiscreteVal
   have : IsArtinianRing (O ⧸ I) := isArtinian_of_tower O h1a
   have : Module.Finite (O ⧸ I) (M ⧸ I • (⊤ : Submodule O M)) :=
     Module.Finite.of_restrictScalars_finite O (O ⧸ I) (M ⧸ I • (⊤ : Submodule O M))
-  have : IsArtinian (O ⧸ I) (M ⧸ I • (⊤ : Submodule O M)) := inferInstance
   have : IsArtinian O (M ⧸ I • (⊤ : Submodule O M)) :=
     isArtinian_of_surjective_algebraMap (Ideal.Quotient.mk_surjective (I := I))
   exact Module.length_ne_top

@@ -187,16 +187,11 @@ theorem besselIntg_act {k0 r : ℕ} (L : LocBessel (k0 + 1) r) (hc : L.c = cStd)
   simp only [besselIntg, hs11, hs12, hs21, hs22, harg, hchar]
 
 theorem pairSp_borel (k r : ℕ) : BorelSpace (PairSp k r) := by
-  have : SecondCountableTopology (Mt k r × Mt k r) := inferInstance
-  have : SecondCountableTopologyEither (Mt k r × Mt k r) (Mt k r × Mt k r) := inferInstance
-  have : BorelSpace (Mt k r × Mt k r) := inferInstance
   exact Prod.borelSpace
 
 attribute [local instance] pairSp_borel
 
 theorem pairSpMt_borel (k r : ℕ) : BorelSpace (PairSp k r × Mt k r) := by
-  have : SecondCountableTopology (PairSp k r) := inferInstance
-  have : SecondCountableTopologyEither (PairSp k r) (Mt k r) := inferInstance
   exact Prod.borelSpace
 
 attribute [local instance] pairSpMt_borel

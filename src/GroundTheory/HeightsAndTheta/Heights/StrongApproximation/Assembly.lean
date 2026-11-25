@@ -942,7 +942,6 @@ theorem LocalRingHypotheses.proof : LocalRingHypotheses.Statement := by
     rw [Module.finrank_baseChange, h2]
 
   have hred : IsReduced (Kv E v) := by
-    have : Algebra.IsSeparable F E := inferInstance
     have : Algebra.FormallyUnramified F E := Algebra.FormallyUnramified.of_isSeparable F E
     exact Algebra.FormallyUnramified.isReduced_of_field (v.adicCompletion F) (Kv E v)
   refine ⟨hinv, hfix, hrank, hred, h2k, hsig_incl, ?_⟩

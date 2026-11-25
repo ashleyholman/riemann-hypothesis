@@ -24,7 +24,6 @@ private theorem frob_pow_fin (k L : Type) [Field k] [Finite k] [Field L] [Algebr
   haveI : FiniteDimensional k E :=
     IntermediateField.finiteDimensional_adjoin fun x _ => (Algebra.IsAlgebraic.isAlgebraic x).isIntegral
   haveI : Finite E := Module.finite_of_finite k
-  haveI : Normal k E := inferInstance
   let τE : E →ₐ[k] E := τ.restrictNormal E
   have hbij : Function.Bijective τE := Finite.injective_iff_bijective.1 τE.toRingHom.injective
   let e : E ≃ₐ[k] E := AlgEquiv.ofBijective τE hbij

@@ -889,7 +889,6 @@ theorem fubini_cutoff : ∀ (F E : Type) [NontriviallyNormedField F] [Nontrivial
   have he1 : Continuous e := IsModuleTopology.continuous_of_linearMap e.toLinearMap
   have he2 : Continuous e.symm := IsModuleTopology.continuous_of_linearMap e.symm.toLinearMap
   haveI : SecondCountableTopology A.K := (Homeomorph.mk e.toEquiv he1 he2).secondCountableTopology
-  haveI : SigmaFinite μK := inferInstance
   haveI : SigmaFinite (LinDesc.unitsMeas A μK) := by
     unfold LinDesc.unitsMeas
     haveI : SigmaFinite (μK.withDensity fun t => ENNReal.ofReal (A.absK t)⁻¹) :=

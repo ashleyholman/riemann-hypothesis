@@ -593,11 +593,7 @@ theorem splits_pullbackSnd_of_splits_diagComplHom {Z X V : Scheme.{0}} (f : Z �
         show 𝟙 V = (d k ≫ eU) ≫ _
         rw [Category.assoc, pullback.lift_snd, ← Category.assoc, pullback.lift_snd, Category.id_comp]
   rw [hg]
-  have hΦi : IsOpenImmersion Φ := inferInstance
   have hι : ∀ k, IsOpenImmersion (Sigma.ι (fun _ : Fin m => V) k) := fun k => inferInstance
-  have hδo : IsOpenImmersion (pullback.diagonal f) := inferInstance
-  have hUo : IsOpenImmersion eU := inferInstance
-  have hDo : IsOpenImmersion eD := inferInstance
   have hgo : ∀ j, IsOpenImmersion (g j) := by
     intro j
     induction j using Fin.cases with

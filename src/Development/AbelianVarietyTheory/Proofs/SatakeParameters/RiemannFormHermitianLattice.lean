@@ -36,7 +36,6 @@ theorem mOm_injective_and_omB (k K A : Type) [Field k] [Field K] [Algebra k K] [
     exact Module.Projective.of_split (exteriorPower.map q s)
       (exteriorPower.map q (Finsupp.linearCombination A id))
       (by rw [← exteriorPower.map_comp, hs, exteriorPower.map_id])
-  haveI : Module.Flat A (⋀[A]^q Ω[A⁄k]) := inferInstance
   haveI : Module.IsTorsionFree A (⋀[A]^q Ω[A⁄k]) := Module.Flat.isTorsionFree
   have hinj : Function.Injective (formLin k A K q) := by
     intro x y hxy

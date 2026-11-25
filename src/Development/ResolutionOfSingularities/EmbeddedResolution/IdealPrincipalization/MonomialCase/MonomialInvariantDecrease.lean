@@ -218,8 +218,6 @@ private theorem exists_orderAt_comap_eq_strictTransform_add_exceptional (hGeom :
       (smooth_monomialCenter hGeom hT h) (hasStrictNormalCrossingsWith_monomialCenter hGeom hT h) X' π hπ
       (T.boundary.get i) hmemL x'
   refine ⟨ε, hε01, hεiff, ?_⟩
-  have : AlgebraicGeometry.Smooth U'.ι := inferInstance
-  have : AlgebraicGeometry.Smooth (U'.ι ≫ q) := inferInstance
   have e1 : orderAt (((T.boundary.get i).comap π).comap U'.ι) ⟨x', hx'U'⟩
       = orderAt ((T.boundary.get i).comap π) x' :=
     orderAt_comap T.base q U'.ι ((T.boundary.get i).comap π) ⟨x', hx'U'⟩
@@ -381,8 +379,6 @@ theorem orderAlong_transform_add_mult_of_exceptionalIndex_mem (hGeom : MonomialG
     refine congrArg List.ofFn (funext fun i => ?_)
     simp only [Function.comp_apply]
     rw [AlgebraicGeometry.Scheme.IdealSheafData.comap_pow, hrestr]
-  have : AlgebraicGeometry.Smooth (π ⁻¹ᵁ U).ι := inferInstance
-  have : AlgebraicGeometry.Smooth ((π ⁻¹ᵁ U).ι ≫ q) := inferInstance
   have e0 : orderAt ((T.ideal.comap π).comap (π ⁻¹ᵁ U).ι)
       ⟨(isIrreducible_of_mem_intersectionComponents hC').genericPoint, hξU⟩
       = orderAt (T.ideal.comap π) (isIrreducible_of_mem_intersectionComponents hC').genericPoint :=

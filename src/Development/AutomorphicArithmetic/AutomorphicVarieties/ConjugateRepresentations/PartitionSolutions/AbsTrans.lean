@@ -309,7 +309,6 @@ theorem partBase : PartBase := by
   let Y' : TopologicalSpace.Opens V := ⟨Y, hY⟩
   haveI : ProperSpace V := FiniteDimensional.proper_real V
   haveI : LocallyCompactSpace Y' := Y'.isOpen.locallyCompactSpace
-  haveI : SecondCountableTopology V := inferInstance
   obtain ⟨f, hf⟩ := SmoothPartitionOfUnity.exists_isSubordinate 𝓘(ℝ, V) (M := Y') isClosed_univ
     (fun j => ((↑) : Y' → V) ⁻¹' D j) (fun j => (hD j).preimage continuous_subtype_val)
     (fun x _ => Set.mem_iUnion.2 ⟨(x : V), hDp x x.2⟩)

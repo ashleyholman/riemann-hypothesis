@@ -1062,7 +1062,6 @@ theorem GlobalTheory.exists_torsion_level_extend : ∀ (Λ : Type) [AddCommGroup
       obtain ⟨_, _⟩ := hS x
       infer_instance
     exact isReduced_of_isReduced_stalk _
-  have hqc : QuasiCompact j := inferInstance
   let P : Over S := Over.mk ((𝟙_ (Over W)).hom ≫ j)
   let ρ : (𝟙_ (Over W) ⟶ G') →* (P ⟶ G) := pushHom gp _
   have hρ : ∀ x, (ρ x).left = x.left ≫ φ := fun _ => rfl

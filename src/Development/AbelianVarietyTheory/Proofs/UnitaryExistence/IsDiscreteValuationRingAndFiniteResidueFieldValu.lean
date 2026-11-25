@@ -69,7 +69,6 @@ theorem _root_.GlobalTheory.isDiscreteValuationRing_and_finite_residueField_valu
   haveI : IsLocalization.AtPrime S v.asIdeal := Localization.subalgebra.isLocalization_ofField K _ _
   have hD : IsDiscreteValuationRing S :=
     IsLocalization.AtPrime.isDiscreteValuationRing_of_dedekind_domain R v.ne_bot S
-  haveI : IsLocalRing S := inferInstance
   haveI : v.asIdeal.IsMaximal := v.isMaximal
   have hS : Finite (ResidueField S) :=
     Finite.of_equiv _ (IsLocalization.AtPrime.equivQuotMaximalIdeal v.asIdeal S).toEquiv

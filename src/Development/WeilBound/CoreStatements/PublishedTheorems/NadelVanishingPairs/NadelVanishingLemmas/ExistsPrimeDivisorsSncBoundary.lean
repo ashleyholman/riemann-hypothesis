@@ -247,7 +247,6 @@ theorem linearIndependent_fibre_of_associated : ∀ (k A : Type) [Field k] [Comm
 theorem relSnc_of_regular_params : ∀ (k : Type) [Field k] [PerfectField k] (X : Scheme.{0}) (f : X ⟶ Sp k) (d : ℕ) [SmoothOfRelativeDimension d f] (s : ℕ) (L : Fin s → LB X) (σ : ∀ i, (L i).Sec), (∀ i, (L i).IsLB) → (∀ x : X, IsClosed ({x} : Set X) → ∃ (n : ℕ) (t : Fin n → X.presheaf.stalk x) (c : ∀ i, (L i).ι) (hc : ∀ i, x ∈ (L i).U (c i)) (e : Fin s → Option (Fin n)), ReciprocityTheory.AnForm.R.FinalTheorems.Rsp (X.presheaf.stalk x) n t ∧ (∀ i j a, e i = some a → e j = some a → i = j) ∧ ∀ i, Associated ((X.presheaf.germ _ x (hc i)).hom ((σ i).f (c i))) ((e i).elim 1 t)) → RelSnc f d L σ := by
   intro k _ _ X f d _ s L σ hL H
   haveI : Smooth f := SmoothOfRelativeDimension.smooth d f
-  haveI : LocallyOfFiniteType f := inferInstance
   haveI : IsLocallyNoetherian X := LocallyOfFiniteType.isLocallyNoetherian f
   refine ⟨hL, fun x => ?_⟩
   suffices hcl : ∀ y : X, IsClosed ({y} : Set X) → ∃ C : SncChart f d L σ, y ∈ C.U by

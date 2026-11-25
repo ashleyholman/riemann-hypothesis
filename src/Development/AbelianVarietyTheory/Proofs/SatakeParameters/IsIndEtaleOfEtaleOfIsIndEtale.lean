@@ -99,7 +99,6 @@ theorem isNoetherianRing_completion (hfg : (maximalIdeal S).FG) :
     (AdicCompletion.isAdicComplete_self _ hfg) ?_
   rw [← AdicCompletion.ker_evalOneₐ_eq_map _ hfg]
   letI := Ideal.Quotient.field (maximalIdeal S)
-  haveI : IsNoetherianRing (S ⧸ maximalIdeal S) := inferInstance
   exact isNoetherianRing_of_ringEquiv _
     (RingHom.quotientKerEquivOfSurjective (f := (AdicCompletion.evalOneₐ (maximalIdeal S)).toRingHom)
       (AdicCompletion.evalOneₐ_surjective _)).symm

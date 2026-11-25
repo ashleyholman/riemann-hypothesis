@@ -462,7 +462,6 @@ theorem baseChange_free (G Z : Over S) [GrpObj G] [ModObj G Z] (hf : IsFreeActio
   letI := modObjObj (Over.pullback j) G Z
   apply free_of_mono
   have := mono_of_free G Z hf
-  have hm : Mono ((Over.pullback j).map (lift (γ[G, Z] : G ⊗ Z ⟶ Z) (snd G Z))) := inferInstance
   have key : Functor.LaxMonoidal.μ (Over.pullback j) G Z ≫
         (Over.pullback j).map (lift (γ[G, Z] : G ⊗ Z ⟶ Z) (snd G Z)) =
       lift (γ[(Over.pullback j).obj G, (Over.pullback j).obj Z] :

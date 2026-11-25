@@ -1157,13 +1157,10 @@ theorem lebR0_map_conjM_eq_of_isNormalZero : ∀ (k r j : ℕ) (hj : j ≤ r) (z
     have h3 := h2.prod (MeasurePreserving.id (volume : Measure (({p : UT r // j ≤ p.1.1.val} → ℂ) × ({a : Fin r // j ≤ a.val} → ℝ))))
     exact h3
   haveI : SFinite (volume : Measure (PTop k r j)) := by
-    haveI : SFinite ((volume : Measure ({p : UT r // j ≤ p.1.1.val} → ℂ)).prod
-      (volume : Measure ({a : Fin r // j ≤ a.val} → ℝ))) := inferInstance
     haveI : SFinite (volume : Measure ({a : Fin r // j ≤ a.val} → Fin (k + 1) → ℂ)) := inferInstance
     exact (inferInstance : SFinite ((volume : Measure ({a : Fin r // j ≤ a.val} → Fin (k + 1) → ℂ)).prod
       ((volume : Measure ({p : UT r // j ≤ p.1.1.val} → ℂ)).prod (volume : Measure ({a : Fin r // j ≤ a.val} → ℝ)))))
   haveI : OpensMeasurableSpace ((UTin β → ℂ) × PTop k r j) := by
-    haveI : OpensMeasurableSpace (({p : UT r // j ≤ p.1.1.val} → ℂ) × ({a : Fin r // j ≤ a.val} → ℝ)) := inferInstance
     haveI : OpensMeasurableSpace (PTop k r j) := inferInstance
     infer_instance
   let Ψ : (UTin β → ℂ) × PTop k r j → (UTin β → ℂ) × PTop k r j := fun q => (Φ q.1, L q.2)

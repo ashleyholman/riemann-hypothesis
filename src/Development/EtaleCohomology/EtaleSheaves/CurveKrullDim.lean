@@ -109,13 +109,11 @@ theorem LeafCurveSmall_of_cut (hD : LateralTheory.E.LeafDescendVCut.LeafDimBound
     LateralTheory.E.QuotientFieldNonconstantLift.LeafCurveSmall := by
   intro Ω _ _ C c hc
   obtain ⟨hI, hPr, hS⟩ := id hc
-  have : LocallyOfFiniteType c := inferInstance
   have : IsLocallyNoetherian C := LocallyOfFiniteType.isLocallyNoetherian c
   have : CompactSpace C := by
     have : QuasiCompact c := inferInstance
     exact (quasiCompact_iff_compactSpace c).mp this
   have : IsNoetherian C := by constructor
-  have : NoetherianSpace C := inferInstance
   have : JacobsonSpace C := LocallyOfFiniteType.jacobsonSpace c
   have hd := dim_le_one hD c hS
   refine ⟨fun hfin => hP Ω c hc ?_, fun Z hZ hinf => ?_⟩
@@ -140,7 +138,6 @@ theorem curveNotPoint : LeafCurveNotPoint := by
   intro Ω _ _ C c hc hsub
   obtain ⟨hI, hPr, hS⟩ := id hc
   obtain ⟨x⟩ : Nonempty C := inferInstance
-  have : IsAffine C := inferInstance
   let _ : Field Γ(C, ⊤) := (isField_of_isIntegral_of_subsingleton C).toField
   have hft : (c.appTop).hom.FiniteType :=
     (HasRingHomProperty.iff_of_isAffine (P := @LocallyOfFiniteType)).mp inferInstance

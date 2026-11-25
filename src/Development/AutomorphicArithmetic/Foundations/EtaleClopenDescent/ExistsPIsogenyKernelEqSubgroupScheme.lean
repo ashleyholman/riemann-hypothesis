@@ -853,8 +853,6 @@ theorem UpperTheory.exists_section_of_etale_clopen_geomPoint_unique :
   have hrange : Set.range U.ι.base = W := U.range_ι
   haveI : IsClosedImmersion U.ι :=
     IsClosedImmersion.of_isPreimmersion _ (by rw [hrange]; exact hWc)
-  haveI : IsFinite (U.ι ≫ Y.hom) := inferInstance
-  haveI : Etale (U.ι ≫ Y.hom) := inferInstance
   have hiso : IsIso (U.ι ≫ Y.hom) := by
     rw [GlobalTheory.FinEt.isIso_iff_bijective_algClosed]
     intro k _ _

@@ -61,9 +61,6 @@ theorem measurableSet_satFrames (X : Data E r) {x0 : Frame X.Ψ r} (ho : IsOrth 
     · rintro ⟨⟨z, b⟩, ⟨hz, hb⟩, rfl⟩; exact ⟨z, hz, b, hb, rfl⟩
   rw [h]
   have : PolishSpace (Fin r → ℂ) := inferInstance
-  have : PolishSpace (Fin r → Fin r → ℂ) := inferInstance
-  have : PolishSpace (Frame X.Ψ r) := inferInstance
-  have : PolishSpace (V (nd X)) := inferInstance
   refine MeasurableSet.image_of_continuousOn_injOn (hA.prod (measurableSet_Bor X)) ?_ ?_
   · exact ((continuous_rmul X).comp (((FundSetPf.cont_cpt X x0).comp continuous_fst).prodMk
       continuous_snd)).continuousOn

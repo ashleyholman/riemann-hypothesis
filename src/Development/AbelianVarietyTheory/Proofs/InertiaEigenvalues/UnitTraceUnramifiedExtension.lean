@@ -162,10 +162,6 @@ theorem exists_trace_unit_of_span (K K' : UQ) (d : ℕ) (φ : K.E →+* K'.E) (h
   haveI : Finite (K'.O ⧸ Ideal.map (algebraMap K.O K'.O) (IsLocalRing.maximalIdeal K.O)) :=
     Finite.of_equiv _ (Ideal.quotEquivOfEq hpS).symm.toEquiv
   haveI : Finite (K.O ⧸ IsLocalRing.maximalIdeal K.O) := K.fin
-  haveI : FiniteDimensional (K.O ⧸ IsLocalRing.maximalIdeal K.O)
-      (K'.O ⧸ Ideal.map (algebraMap K.O K'.O) (IsLocalRing.maximalIdeal K.O)) := inferInstance
-  haveI : Algebra.IsSeparable (K.O ⧸ IsLocalRing.maximalIdeal K.O)
-      (K'.O ⧸ Ideal.map (algebraMap K.O K'.O) (IsLocalRing.maximalIdeal K.O)) := inferInstance
   obtain ⟨z, hz⟩ := Algebra.trace_surjective (K.O ⧸ IsLocalRing.maximalIdeal K.O)
     (K'.O ⧸ Ideal.map (algebraMap K.O K'.O) (IsLocalRing.maximalIdeal K.O)) 1
   obtain ⟨y, rfl⟩ := Ideal.Quotient.mk_surjective z

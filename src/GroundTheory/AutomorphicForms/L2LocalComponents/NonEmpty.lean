@@ -623,7 +623,6 @@ theorem exists_isZKFinite_of_summand (V : Submodule ℂ (CuspL2 μ)) [CompleteSp
     exact ((isExpLieAlgebra K n).smoothVectors (archRepT μ)).smul_mem _ (hTsmooth e)
 
   set F : Submodule ℂ (CuspL2 μ) := E.map V.subtype
-  have hFfd : FiniteDimensional ℂ F := inferInstance
   have hmemF : ∀ x ∈ V, T x = lam • x → x ∈ F := fun x hx hTx =>
     ⟨⟨x, hx⟩, Module.End.mem_eigenspace_iff.2 (Subtype.ext hTx), rfl⟩
   have hFV : ∀ f ∈ F, f ∈ V ∧ T f = lam • f := by

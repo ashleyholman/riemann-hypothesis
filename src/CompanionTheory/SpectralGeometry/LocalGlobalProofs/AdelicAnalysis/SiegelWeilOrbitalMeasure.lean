@@ -646,7 +646,6 @@ theorem fact_S : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberFie
     rw [hPdef, Measure.map_apply hprm hK.isClosed.measurableSet,
       Measure.restrict_apply (hprm hK.isClosed.measurableSet)]
     exact preimage_lt_top σ hσ b S I K hK⟩
-  haveI hPl : IsLocallyFiniteMeasure P := inferInstance
   have hPinv : ∀ (g₀ : HA (Ainf F) σ J) (g : ∀ v : S, HA (Fv F v.1) σ J),
       P.map (fun x => (actW (Ainf F) σ J g₀ x.1, fun v => actW (Fv F v.1) σ J (g v) (x.2 v))) = P := by
     intro g₀ g

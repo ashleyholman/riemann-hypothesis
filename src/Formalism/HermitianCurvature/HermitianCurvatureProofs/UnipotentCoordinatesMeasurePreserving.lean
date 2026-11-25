@@ -2997,9 +2997,6 @@ theorem measurePreserving_third_level_map (b : Bs k j ρ) : MeasurePreserving (l
 
 theorem tskew_mp : MeasurePreserving (fun p : Bs k j ρ × Fs k j ρ => (p.1, lev3 p.1 p.2)) volume volume := by
   haveI h1 : SigmaFinite (volume : Measure (G.UT j → ℂ)) := inferInstance
-  haveI h2 : SigmaFinite (volume : Measure (U.RC k j ρ)) := inferInstance
-  haveI h3 : SigmaFinite (volume : Measure (Bs k j ρ)) := inferInstance
-  haveI h4 : SigmaFinite (volume : Measure (Fs k j ρ)) := inferInstance
   rw [Measure.volume_eq_prod]
   refine (MeasurePreserving.id volume).skew_product (g := fun b f => lev3 b f) ?_ ?_
   · haveI : BorelSpace ((Fin j → ℂ) × (Fin (2 * ρ + k + 1) → ℂ)) := Prod.borelSpace
@@ -3070,11 +3067,7 @@ theorem measurePreserving_coord_equiv : MeasurePreserving (e1 (k := k) (j := j) 
 
 theorem src_mp : MeasurePreserving (fun z : U.RC k 1 (j + ρ) × Bs k j ρ => (z.2, e1 z.1)) volume volume := by
   haveI : SigmaFinite (volume : Measure (G.UT j → ℂ)) := inferInstance
-  haveI : SigmaFinite (volume : Measure (U.RC k j ρ)) := inferInstance
-  haveI : SigmaFinite (volume : Measure (Bs k j ρ)) := inferInstance
   haveI : SigmaFinite (volume : Measure (G.UT 1 → ℂ)) := inferInstance
-  haveI : SigmaFinite (volume : Measure (U.RC k 1 (j + ρ))) := inferInstance
-  haveI : SigmaFinite (volume : Measure (Fs k j ρ)) := inferInstance
   have h1 : MeasurePreserving (Prod.swap : U.RC k 1 (j + ρ) × Bs k j ρ → Bs k j ρ × U.RC k 1 (j + ρ)) volume volume :=
     Measure.measurePreserving_swap
   have h2 := ((MeasurePreserving.id (volume : Measure (Bs k j ρ))).prod (measurePreserving_coord_equiv (k := k) (j := j) (ρ := ρ))).comp h1
@@ -3186,7 +3179,6 @@ def perm8 (q : Bs k j ρ × Fs k j ρ) : Ts (k := k) (j := j) (ρ := ρ) :=
   (((q.1.1.1, q.2.1.1.2), ((q.1.1.2.1, q.2.1.2), (q.1.1.2.2, q.2.2))), (q.2.1.1.1, q.1.2))
 
 theorem measurePreserving_coord_permutation : MeasurePreserving (perm8 (k := k) (j := j) (ρ := ρ)) volume volume := by
-  haveI : SigmaFinite (volume : Measure (G.UT j → ℂ)) := inferInstance
   haveI : SigmaFinite (volume : Measure ((G.UT j → ℂ) × (Fin j → ℝ))) := inferInstance
   haveI : SigmaFinite (volume : Measure (U.RC k j ρ)) := inferInstance
   haveI : SigmaFinite (volume : Measure ((Fin (2 * ρ + k + 1) → ℂ) × ((Fin j → ℂ) × ℝ))) := inferInstance

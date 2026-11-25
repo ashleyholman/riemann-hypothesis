@@ -334,7 +334,6 @@ theorem gam_free : (∀ (Y : Type) [AddCommGroup Y] [Module.Free ℤ Y] [Module.
   obtain ⟨n, hn, hγn⟩ := isOfFinOrder_iff_pow_eq_one.1 hfo
   have : Module.Finite (𝓞 E) Λ := Module.Finite.iff_fg.2 hfg
   have : Module.Finite ℤ Λ := Module.Finite.trans (𝓞 E) Λ
-  have : Module.Free ℤ Λ := inferInstance
   have hpow : ∀ (k : ℕ) (v : Λ), (((restrict Λ γ hγ.2) ^ k) v : Fin r → E) =
       ((γ : Matrix (Fin r) (Fin r) E) ^ k) *ᵥ v := by
     intro k

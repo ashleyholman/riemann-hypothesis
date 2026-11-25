@@ -108,7 +108,6 @@ private theorem mem_geoField_of_fixed_local {p : ℕ} [Fact p.Prime] {Ω : Type}
   letI : Algebra.IsAlgebraic F Ω := hAlg
   haveI : IsAlgClosure F Ω := ⟨h.clo, hAlg⟩
   haveI : CharZero F := ⟨fun m n e => CharZero.cast_injective (congrArg Subtype.val e)⟩
-  haveI : IsGalois F Ω := inferInstance
   have hbot : x ∈ (⊥ : IntermediateField F Ω) := by
     refine (InfiniteGalois.mem_bot_iff_fixed x).2 fun σ => ?_
     let τ : Ω ≃ₐ[O0 p] Ω := AlgEquiv.ofRingEquiv (f := σ.toRingEquiv)

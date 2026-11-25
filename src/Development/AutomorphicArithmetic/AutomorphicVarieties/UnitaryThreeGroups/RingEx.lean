@@ -37,7 +37,6 @@ private theorem phi_unr (hGF : GlobalFiniteness) {Ω : Type} [Field Ω] [CharZer
     [hl : Fact l.Prime] (S : Finset (HeightOneSpectrum (𝓞 ℚ))) (hS : ContainsAbove S l) (M : Subgroup (G ℚ Ω)) [M.Normal]
     (hM : NS Ω (S : Set (HeightOneSpectrum (𝓞 ℚ))) ≤ M) : PhiCond (G ℚ Ω ⧸ M) l := by
   haveI : IsGalois ℚ Ω := IsAlgClosure.isGalois ℚ Ω
-  haveI hK : CompactSpace (GS Ω (S : Set (HeightOneSpectrum (𝓞 ℚ)))) := inferInstance
   haveI : NeZero (l ^ 1) := ⟨pow_ne_zero _ hl.out.ne_zero⟩
   have key : PhiCond (GS Ω (S : Set (HeightOneSpectrum (𝓞 ℚ)))) (l ^ 1) := UpperTheory.V.Alg.phiCond_of_finite_H1 (l ^ 1) fun M _ _ _ _ _ ρ hρ => by
     obtain ⟨-, f1, -⟩ := hGF ℚ Ω l 1 M S ρ one_pos hS hρ

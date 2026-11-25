@@ -546,7 +546,6 @@ theorem exists_radN_measure (D : D7) (B W : HSp D) (t : ℕ) (d : HypDec B W t) 
   have hcl : IsClosed (skewA D t : Set (Mx D t t)) := isClosed_eq continuous_adj continuous_neg
   haveI : LocallyCompactSpace (skewA D t) := hcl.isClosedEmbedding_subtypeVal.locallyCompactSpace
   haveI : BorelSpace (skewA D t) := Subtype.borelSpace _
-  haveI : T2Space (skewA D t) := inferInstance
   haveI : SecondCountableTopology (skewA D t) :=
     hcl.isClosedEmbedding_subtypeVal.isEmbedding.secondCountableTopology
   let κ : Measure (skewA D t) := Measure.addHaar

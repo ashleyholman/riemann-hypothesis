@@ -251,7 +251,6 @@ theorem of_dual_families (hG : admG1 D) (hC : Crv D cc δ)
     simp [w0]
     ring
   have hdisc : DiscreteTopology A := by
-    haveI : DiscreteTopology L.lattice := inferInstance
     let f : A → Fin r → L.lattice := fun z i =>
       ⟨sq z.1 (embV D (tor0 D cc δ) (y' i)), (hL _).1 (hsq z.1 z.2 _ (hy' i))⟩
     have hf : Continuous f := continuous_pi fun i =>

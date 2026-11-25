@@ -34,7 +34,6 @@ theorem der_coords {B A R : Type} [CommRing B] [CommRing A] [CommRing R] [Nontri
   have : Algebra.IsStandardSmooth B A := Algebra.IsStandardSmoothOfRelativeDimension.isStandardSmooth g
   have : Nontrivial A := u.domain_nontrivial
   have hr := Algebra.IsStandardSmoothOfRelativeDimension.rank_kaehlerDifferential (R := B) (S := A) g
-  have : Module.Finite A (KaehlerDifferential B A) := inferInstance
   let β : Module.Basis (Fin g) A (KaehlerDifferential B A) :=
     Module.finBasisOfFinrankEq A _ (Module.finrank_eq_of_rank_eq hr)
   have hsm : ∀ (a : A) (r : R), a • r = u a * r := fun a r => Algebra.smul_def a r

@@ -270,7 +270,6 @@ theorem exists_basis_integral_coords : ∀ (F : IntermediateField ℚ ℂ) [Numb
   have hsm : ∀ (r : R) (z : ℂ), r • z = (((r : F) : ℂ)) * z := fun r z => rfl
   let N : Submodule R ℂ := Submodule.span R S
   haveI : Module.Finite R N := Module.Finite.span_of_finite R hS
-  haveI : Module.IsTorsionFree R N := inferInstance
   haveI : Module.Free R N := Module.free_of_finite_type_torsion_free'
   let b := (Module.Free.chooseBasis R N).reindex (Fintype.equivFin _)
   let m := Fintype.card (Module.Free.ChooseBasisIndex R N)

@@ -50,7 +50,6 @@ theorem exists_connected_open {S : Scheme.{0}} [IsLocallyNoetherian S] (N : S.Op
   obtain ⟨U, hU, hsU, hUN⟩ := exists_isAffineOpen_mem_and_subset (X := S) (U := N) (x := s) hs
   have : IsAffine U := hU
   have : IsNoetherian U.toScheme := {}
-  have : NoetherianSpace U.toScheme := inferInstance
   let V : U.toScheme.Opens := ⟨_, isOpen_connectedComponent_of_noetherian (X := U.toScheme) ⟨s, hsU⟩⟩
   have : ConnectedSpace V.toScheme := isConnected_iff_connectedSpace.1 isConnected_connectedComponent
   refine ⟨V.toScheme, V.ι ≫ U.ι, inferInstance, this, ⟨⟨⟨s, hsU⟩, mem_connectedComponent⟩, rfl⟩, ?_⟩

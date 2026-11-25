@@ -23,7 +23,6 @@ namespace GlobalTheory.SepIdem
 theorem formallyUnramified_of_isReduced (K A : Type) [Field K] [PerfectField K] [CommRing A]
     [Algebra K A] [Module.Finite K A] [IsReduced A] : Algebra.FormallyUnramified K A := by
   have : IsArtinianRing A := IsArtinianRing.of_finite K A
-  have : Finite (MaximalSpectrum A) := inferInstance
   have h : Algebra.FormallyUnramified K (∀ I : MaximalSpectrum A, A ⧸ I.asIdeal) := by
     rw [Algebra.FormallyUnramified.pi_iff]
     intro I

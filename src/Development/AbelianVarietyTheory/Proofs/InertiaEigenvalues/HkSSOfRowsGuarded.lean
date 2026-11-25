@@ -1025,7 +1025,6 @@ theorem hL_separable_good : ∀ {D : D7} {G : Type} [Group G] [Fintype G] {Pl0 I
     have h := FiniteDimensional.span_of_finite S.Ks (Set.finite_range bs)
     rw [hspan] at h
     exact h
-  haveI : FiniteDimensional ↥D.LL0 ↥V := inferInstance
   have hind : ∀ (n : ℕ) (x : Fin n → ↥V), LinearIndependent ↥D.LL0 x → LinearIndependent ℂ (fun a => jm (x a)) := by
     intro n x hx
     have hx1 : LinearIndependent ↥D.LL0 (fun a => (x a : ↥D.LL0 ⊗[S.Ks] FmK S ((i0 : ℕ) + 1))) :=

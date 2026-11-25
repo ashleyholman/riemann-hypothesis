@@ -133,7 +133,6 @@ theorem exists_lev_mul_pow_of_invariant_mod_pow :
   haveI := CongruenceSubgroup.Gamma_normal (M ^ e)
   haveI : NeZero (M ^ e) := ⟨(pow_pos hM e).ne'⟩
   let D : Subgroup H := (CongruenceSubgroup.Gamma (M ^ e)).subgroupOf H
-  haveI : D.FiniteIndex := inferInstance
   have hcard : l.Coprime (Nat.card (H ⧸ D)) := by
     refine CongruenceDescent.coprime_card_of_pow_eq_one hl (hlq.pow_right e) fun x => ?_
     obtain ⟨γ, rfl⟩ := QuotientGroup.mk_surjective x

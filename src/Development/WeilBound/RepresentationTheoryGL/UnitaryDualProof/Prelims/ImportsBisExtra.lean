@@ -10,7 +10,6 @@ theorem UpperTheory.Reformulated.B.DYlb5.main :
     ∀ {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
       {n : ℕ} (f : Module.Dual k (Matrix (Fin n) (Fin n) k)), Continuous (⇑f : Matrix (Fin n) (Fin n) k → k) := by
   intro k _ _ _ _ n f
-  haveI : IsTopologicalRing k := inferInstance
   have key : ∀ M : Matrix (Fin n) (Fin n) k,
       f M = ∑ i, ∑ j, M i j * f (Matrix.single i j 1) := by
     intro M

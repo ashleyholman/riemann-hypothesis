@@ -1436,7 +1436,6 @@ theorem GlobalTheory.CompanionTheory.AvgFree.coordW_dMat_scale : ∀ (F E : Type
   obtain ⟨hK, -, -⟩ := GlobalTheory.CompanionTheory.SW.coord_measures_haar F E σ hσ (Fv F v) d b lv hlv.1
   haveI := hK
   set μ := GlobalTheory.CompanionTheory.SW.coordK (Fv F v) b lv with hμ
-  haveI : SigmaFinite μ := inferInstance
   let g : Fv F v ⊗[F] E → Fv F v ⊗[F] E := fun x => (s : Fv F v ⊗[F] E) * x
   have hgm : Measurable g := (continuous_const.mul continuous_id).measurable
   have hgs : Function.Surjective g := fun y =>

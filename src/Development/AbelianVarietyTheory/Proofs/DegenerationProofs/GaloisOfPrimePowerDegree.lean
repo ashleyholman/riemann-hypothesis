@@ -164,7 +164,6 @@ theorem exists_sub_mem_maximalIdeal {A B : Type*} [CommRing A] [CommRing B] [IsL
     [IsLocalRing B] [Algebra A B] [FaithfulSMul A B] [Algebra.IsIntegral A B]
     [IsAlgClosed (ResidueField A)] (t : B) :
     ∃ a : A, t - algebraMap A B a ∈ maximalIdeal B := by
-  haveI : IsLocalHom (algebraMap A B) := inferInstance
   have hint : (ResidueField.map (algebraMap A B)).IsIntegral := by
     intro x
     obtain ⟨y, rfl⟩ := residue_surjective x
@@ -347,7 +346,6 @@ theorem exists_pow_finrank_eq {R : Type} (K : Type u_1) [CommRing R] [IsDomain R
   let F := SeparableClosure L
   haveI : Algebra.IsSeparable K F := Algebra.IsSeparable.trans K L F
   haveI : IsSepClosure K F := ⟨inferInstance, inferInstance⟩
-  haveI : IsGalois K F := inferInstance
   haveI : NeZero ((Module.finrank K L : ℕ) : F) := ⟨by
     simpa using ((hn.map (algebraMap R K)).map (algebraMap K F)).ne_zero⟩
   obtain ⟨ρ, hρ⟩ := IsSepClosed.exists_pow_nat_eq (algebraMap K F (algebraMap R K π))

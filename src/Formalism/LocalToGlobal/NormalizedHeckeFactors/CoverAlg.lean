@@ -270,7 +270,6 @@ theorem eq_zero_of_forall_mem_off [FiniteDimensional K V] (hinj : Function.Injec
   classical
   letI : IsMulCommutative (Algebra.adjoin O S) :=
     Algebra.isMulCommutative_adjoin O fun a ha b hb _ => hS a ha b hb
-  letI : CommRing (Algebra.adjoin O S) := inferInstance
   obtain ⟨F, hF, htop⟩ := exists_finset_pts hinj hS hsplit hint
   set Wp : (Algebra.adjoin O S →ₐ[O] O) → Submodule K V := fun ψ => W _ (pt ψ) with hWp
   have hind : iSupIndep Wp := (iSupIndep_alt hS).comp (pt_injective hinj)
@@ -426,7 +425,6 @@ theorem isCompl_part_off [FiniteDimensional K V] (hinj : Function.Injective (alg
   classical
   letI : IsMulCommutative (Algebra.adjoin O S) :=
     Algebra.isMulCommutative_adjoin O fun a ha b hb _ => hS a ha b hb
-  letI : CommRing (Algebra.adjoin O S) := inferInstance
   obtain ⟨F, hF, htop⟩ := exists_finset_pts hinj hS hsplit hint
   set Wp : (Algebra.adjoin O S →ₐ[O] O) → Submodule K V := fun ψ => W _ (pt ψ) with hWp
   have hind : iSupIndep Wp := (iSupIndep_alt hS).comp (pt_injective hinj)

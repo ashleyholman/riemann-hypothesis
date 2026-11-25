@@ -166,7 +166,6 @@ theorem existsUnique_hom_extension_of_graphClosure_lqf
   have : Flat i := MorphismProperty.of_isPullback hpb ‹Flat u›
   have : QuasiCompact i := graphClosure.quasiCompact_incl ..
   have : IsSchemeTheoreticallyDominant i := graphClosure.schemeDominant_incl ..
-  have : IsDominant i := inferInstance
   have : IsReduced Γ := graphClosure.isReduced ..
   have : LocallyOfFiniteType p := graphClosure.locallyOfFiniteType_fst ..
   have : QuasiCompact p := graphClosure.quasiCompact_fst ..

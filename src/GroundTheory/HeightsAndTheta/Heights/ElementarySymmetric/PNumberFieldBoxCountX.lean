@@ -131,7 +131,6 @@ theorem measure_le_encard_mul {E : Type} [NormedAddCommGroup E] [NormedSpace ℝ
   have : MeasurableVAdd La E := (inferInstance : MeasurableVAdd La.toAddSubgroup E)
   have : VAddInvariantMeasure La E μ :=
     (inferInstance : VAddInvariantMeasure La.toAddSubgroup E μ)
-  have : Countable La := inferInstance
   set A := {x : E | x ∈ La ∧ x ∈ T} with hAdef
   have key : ∀ y : E, ∑' g : La, S.indicator (1 : E → ℝ≥0∞) (g +ᵥ y) ≤
       ((A.encard : ℕ∞) : ℝ≥0∞) := by

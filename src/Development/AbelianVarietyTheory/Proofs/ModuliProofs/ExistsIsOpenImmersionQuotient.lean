@@ -237,7 +237,6 @@ theorem isPullback_fractionField {O O' F F' : Type} [CommRing O] [CommRing O'] [
   have : Module.Finite O' O := hfin
   have : FaithfulSMul O' O := (faithfulSMul_iff_algebraMap_injective _ _).mpr hinj
   have : Nontrivial O' := b.domain_nontrivial
-  have : Algebra.IsAlgebraic O' O := inferInstance
   have h1 : IsLocalization (Algebra.algebraMapSubmonoid O (nonZeroDivisors O')) F := inferInstance
   have h2 : IsLocalization ((nonZeroDivisors O').map b) F := h1
   exact isPullback_SpecMap_of_isPushout _ _ _ _

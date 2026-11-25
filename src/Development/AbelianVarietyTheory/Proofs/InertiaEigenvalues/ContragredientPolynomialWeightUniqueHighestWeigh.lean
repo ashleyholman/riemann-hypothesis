@@ -149,7 +149,6 @@ theorem defect_transfer (e : K →+* ℂ) (c : L →+* L) (τ : L →+* K) {ι :
     (B : GL (Fin n) ℂ) (hB : B.val.BlockTriangular id) (i : ι) :
     defect e c τ P v lam B.val (B⁻¹).val i = 0 := by
   haveI : CharZero K := RingHom.charZero e
-  haveI : Infinite K := inferInstance
   classical
   obtain ⟨D, hD⟩ : ∃ D : MvPolynomial (Fin n × Fin n) K, D = ∏ a, X (a, a) := ⟨_, rfl⟩
   let A := Localization.Away D

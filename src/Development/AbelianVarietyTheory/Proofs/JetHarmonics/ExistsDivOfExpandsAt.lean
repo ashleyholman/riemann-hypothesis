@@ -107,7 +107,6 @@ theorem SecIsMul.comp {R : Type} [CommRing R] {Y : Scheme.{0}} {p : Y ⟶ Spec (
 theorem prB_app_injective {V : Type} [CommRing V] [IsDomain V] (D : DegPre V) (W : D.P.A.left.Opens) :
     Function.Injective ((DegPre.prB D (FractionRing V)).left.app W) := by
   have := D.P.isAb.smooth
-  have : Flat D.P.A.hom := inferInstance
   have e : (TF (R := V) (FractionRing V)).hom = jK V := by
     show Spec.map _ ≫ Spec.map _ = _
     rw [← Spec.map_comp]; rfl
@@ -123,7 +122,6 @@ theorem exists_div_of_expandsAt {V : Type} [CommRing V] [IsDomain V] [IsDiscrete
     (hf : ∀ α, SecIsMul D.toPre.P.A.hom (ϖ ^ (e + 1)) (f' α) (f α)) (hE : U.ExpandsAt e k σ f') :
     ∃ τ : H0 U.LG.L k, SecIsMul G.hom (ϖ ^ (e + 1)) σ τ := by
   have := U.smooth
-  have : Flat G.hom := inferInstance
   refine (GlobalTheory.ThickDiv.main V ϖ hϖ G _ σ e).1 fun j => fn_ext fun y hy => ?_
   obtain ⟨jL, rfl⟩ : ∃ jL, j = fun _ => jL := ⟨j 0, funext fun i => congrArg j (Subsingleton.elim i 0)⟩
   obtain ⟨S, hS⟩ := expandsAt_val U e k σ f' hE

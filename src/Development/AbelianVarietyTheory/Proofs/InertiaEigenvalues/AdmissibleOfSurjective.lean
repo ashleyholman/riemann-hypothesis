@@ -27,7 +27,6 @@ def between [IsDomain O] [IsPrincipalIdealRing O] (L₁ L₂ : Lattice (O := O) 
   free := by
     haveI := L₁.free
     haveI : Module.Finite O L₁.T := Module.Finite.iff_fg.mpr L₁.fg
-    haveI : Module.Finite O (N.comap L₁.T.subtype) := inferInstance
     haveI : Module.Free O (N.comap L₁.T.subtype) := Module.free_of_finite_type_torsion_free'
     exact Module.Free.of_equiv (Submodule.comapSubtypeEquivOfLe h₁)
   span := by

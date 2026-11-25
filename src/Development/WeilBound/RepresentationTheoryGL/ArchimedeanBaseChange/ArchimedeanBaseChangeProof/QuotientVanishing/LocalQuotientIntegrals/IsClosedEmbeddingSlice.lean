@@ -122,10 +122,7 @@ theorem pf_Glob2 : PositivityTheory.Rg.BcB.D4.SplitAt2 → PositivityTheory.Rg.B
     have h := congrArg e (hP.comm _ hs' _ ht')
     rw [map_mul, map_mul, e.apply_symm_apply, e.apply_symm_apply] at h
     exact congrArg Prod.snd h
-  have : SigmaFinite μ₁ := inferInstance
-  have : SigmaFinite μ₂ := inferInstance
   have : (μ₁.prod μ₁).IsHaarMeasure := inferInstance
-  have : ((μ₁.prod μ₁).prod μ₂).IsHaarMeasure := inferInstance
   obtain ⟨ν', hν'1, hν'2⟩ := exists_haar_map e (adCent d) ν _ (hcent d)
   have := hν'1
   have := hν'2

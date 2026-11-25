@@ -112,9 +112,6 @@ theorem UpperTheory.exists_haar_restrict_range_sl2IdeleMap_eq_smul_prod :
   intro M U μ _
   haveI := M.haar
   haveI : SecondCountableTopology (G1 ℚ × US) := UpperTheory.isOpenEmbedding_projection.isEmbedding.secondCountableTopology
-  haveI : SecondCountableTopology (G1 ℚ) := inferInstance
-  haveI : BorelSpace (G1 ℚ × US) := inferInstance
-  haveI : IsFiniteMeasureOnCompacts (M.μ.prod (us U)) := inferInstance
   refine UpperTheory.exists_haar_restrict_range_eq_smul_map_of_invariant GG (G1 ℚ × US) μ pm (M.μ.prod (us U)) UpperTheory.isOpenEmbedding_projection ?_ ?_ ?_ ?_ ?_
   · rw [range_pm]
     change GroundTheory.Automorphic.AdelicGLn.det ℚ 2 1 ∈ US

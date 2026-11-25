@@ -67,7 +67,6 @@ theorem ChartAcyc_of (hQ : QuotAcyc) : ChartAcyc := by
     obtain ⟨x⟩ : Nonempty Z := inferInstance
     obtain ⟨V, ⟨W, hW, rfl⟩, hxW, -⟩ := (Z.isBasis_affineOpens).exists_subset_of_mem_open (Set.mem_univ x) isOpen_univ
     have hWne : Nonempty W := ⟨⟨x, hxW⟩⟩
-    have hdom : IsDomain Γ(Z, W) := inferInstance
     have haic : AIC Γ(Z, W) := hZ.2 W hW ⟨x, hxW⟩
     let ψ : CommRingCat.of A ⟶ Γ(Z, W) :=
       (Scheme.ΓSpecIso (CommRingCat.of A)).inv ≫ p.appTop ≫ Z.presheaf.map (homOfLE le_top).op

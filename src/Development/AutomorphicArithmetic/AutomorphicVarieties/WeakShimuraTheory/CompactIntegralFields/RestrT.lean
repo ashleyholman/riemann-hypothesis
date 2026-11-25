@@ -395,7 +395,6 @@ private theorem UpperTheory.V.Ws.Rt.pow_char_graded {k : Type} [Field k] (l : â„
     ext i j
     rw [Matrix.zero_apply]
     exact UpperTheory.V.Ws.Rt.pow_graded h N hN l i j (by have := hl j; omega)
-  haveI : CharP (Matrix (Fin 4) (Fin 4) k) l := inferInstance
   rw [hXN, add_pow_char_of_commute (p := l) (h := Commute.one_left N), one_pow, hNl, add_zero]
 
 theorem UpperTheory.V.Ws.Rt.unipPow :

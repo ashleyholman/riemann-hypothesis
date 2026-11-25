@@ -119,7 +119,6 @@ theorem haarLc : HaarLc := by
 
   have hV : ∀ (ν : Measure (Fin m → AE F E)), ν.IsAddHaarMeasure → ν.map φ = ν := by
     intro ν hν
-    haveI : ν.Regular := inferInstance
     have key := addEquivAddHaarChar_smul_map ν φ
     rwa [hc, one_smul] at key
 

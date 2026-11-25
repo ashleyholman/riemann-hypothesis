@@ -37,7 +37,6 @@ theorem regularityLocalCardinality_holds.proof (hD : regularityLocalDimension_ho
   have := hloc
   have := hnoeth
   have : P.IsPrime := hP.2.1.1
-  have : IsDomain (locRing P W) := inferInstance
   have : Ring.KrullDimLE 1 (locRing P W) := ReciprocityTheory.ChartRestriction.G.AI.krullDimLE_one_of_krullDim_eq hdim
   obtain ⟨-, hcard⟩ := hR K ι P s a W b hP hs hsP hW
   have hy0' : (⟨y, hy⟩ : locRing P W) ≠ 0 := fun h => hy0 (congrArg Subtype.val h)

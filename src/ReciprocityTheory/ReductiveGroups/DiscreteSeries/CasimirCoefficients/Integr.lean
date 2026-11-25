@@ -134,7 +134,6 @@ theorem lintegral_lt_top_of_polar (hq : 1 ≤ q0 ε) (ν : Measure (UJ ε)) [ν.
           nlinarith
   have h1 : ∀ _ : Pt ε, (volume : Measure (Qt ε → ℂ)).IsAddHaarMeasure := fun _ => inferInstance
   have h2 : ∀ _ : Pt ε, SigmaFinite (volume : Measure (Qt ε → ℂ)) := fun _ => inferInstance
-  have h3 : (volume : Measure (Pt ε → Qt ε → ℂ)).IsAddHaarMeasure := inferInstance
   calc ∫⁻ g, F g ∂ν
       ≤ C * ∫⁻ B : Pt ε → Qt ε → ℂ,
           (∫⁻ k, F (toUJ ε (toMK k * NormedSpace.exp (pOfB ε B))) ∂(muK ε)) *

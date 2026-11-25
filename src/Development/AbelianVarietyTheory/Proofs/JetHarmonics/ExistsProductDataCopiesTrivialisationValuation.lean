@@ -135,7 +135,6 @@ theorem main : lemmaBSt.{0} → ∀ (V : Type) [CommRing V] [IsDomain V] [IsDisc
   obtain ⟨r, hr, σ, f, h, hf, hx⟩ := hE
   obtain ⟨r', hr', σ', f', h', hf', hx'⟩ := hE'
   have := U.smooth
-  have : Flat G.hom := inferInstance
   obtain ⟨ρ, hρ⟩ := exists_secIsMul (p := G.hom) r' σ
   obtain ⟨ρ', hρ'⟩ := exists_secIsMul (p := G.hom) r σ'
   choose g hg using fun α => exists_secIsMul (p := D.toPre.P.A.hom) r' (f α)

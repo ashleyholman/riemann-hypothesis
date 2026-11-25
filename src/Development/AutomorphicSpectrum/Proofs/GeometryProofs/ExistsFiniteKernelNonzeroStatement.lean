@@ -560,7 +560,6 @@ theorem exists_fibre {X Y : Scheme.{0}} (f : X ⟶ Y) [IsFinite f] (k : Type) [F
   haveI : IsAffine (pullback f y) := isAffine_of_isAffineHom (pullback.snd f y)
   let P := pullback f y
   let g' : Spec Γ(P, ⊤) ⟶ Sp k := P.isoSpec.inv ≫ pullback.snd f y
-  haveI : IsFinite g' := inferInstance
   obtain ⟨φ, hφ⟩ := Spec.map_surjective g'
   have hφf : φ.hom.Finite := by
     rw [← IsFinite.SpecMap_iff, hφ]

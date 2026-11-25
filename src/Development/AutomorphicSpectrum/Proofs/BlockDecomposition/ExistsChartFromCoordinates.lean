@@ -302,8 +302,6 @@ theorem etale_tensor {d : ℕ} (t : Fin d → G)
       rw [Algebra.algebraMap_eq_smul_one, Algebra.algebraMap_eq_smul_one, TensorProduct.smul_tmul]
     · change g (MvPolynomial.map _ (MvPolynomial.X i)) = (1 : R) ⊗ₜ[O] f (MvPolynomial.X i)
       simp [g, f])
-  haveI t7 : IsScalarTower O G (R ⊗[O] G) := inferInstance
-  have p1 : Algebra.IsPushout O (MvPolynomial (Fin d) O) R (MvPolynomial (Fin d) R) := inferInstance
   have p2 : Algebra.IsPushout O G R (R ⊗[O] G) := inferInstance
   have p3 := (Algebra.IsPushout.comp_iff O (MvPolynomial (Fin d) O) R (MvPolynomial (Fin d) R)
     (T := G) (T' := R ⊗[O] G)).1 p2

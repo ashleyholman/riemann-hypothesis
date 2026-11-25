@@ -99,7 +99,6 @@ theorem UpperTheory.V.Pa.B2.odEx :
     simp
   letI : TopologicalSpace (Od x.A X n x.a) := ⊥
   haveI : DiscreteTopology (Od x.A X n x.a) := ⟨rfl⟩
-  haveI : Finite (Od x.A X n x.a) := inferInstance
   have hp : Continuous h.p₀ := continuous_induced_rng.2 (h.cont.comp continuous_subtype_val)
   have hcont : ContAction rep := by
     apply cont_of_ker

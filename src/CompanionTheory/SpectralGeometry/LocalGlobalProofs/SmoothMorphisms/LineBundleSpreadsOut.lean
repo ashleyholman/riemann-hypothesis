@@ -23,9 +23,6 @@ theorem lb_descends_fg : ∀ (k V : Type) [CommRing k] [CommRing V] [Algebra k V
       R₀.subtype.comp ι₀ = algebraMap k V ∧ ∀ x ∈ R₀, ∃ a, algebraMap k V a = x :=
     ⟨(algebraMap k V).range, (algebraMap k V).rangeRestrict, by ext a; rfl,
       fun x hx => RingHom.mem_range.mp hx⟩
-  haveI : QuasiSeparated p₀ := inferInstance
-  haveI : QuasiCompact (pullback.snd p₀ (spMap ι₀)) := inferInstance
-  haveI : QuasiSeparated (pullback.snd p₀ (spMap ι₀)) := inferInstance
   have hw0 : φ ≫ p₀ = (p ≫ spMap R₀.subtype) ≫ spMap ι₀ := by
     rw [Category.assoc, ← hcompS, hι₀c]; exact hpb.w
   obtain ⟨π, hπ1, hπ2⟩ : ∃ π : X ⟶ pullback p₀ (spMap ι₀),

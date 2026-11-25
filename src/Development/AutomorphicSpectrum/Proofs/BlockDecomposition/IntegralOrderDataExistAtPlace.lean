@@ -414,7 +414,6 @@ theorem exists_idems (σ : E →ₐ[F] E) (hσ : IsCMExt F E σ) (v : HeightOneS
   · have hf : IsField (Fv F v ⊗[F] E) :=
       GlobalTheory.CompanionTheory.DictLoc.isField_tensor_of_no_algHom hσ.2.2.1 (not_nonempty_iff.1 hs)
     let fK : Field (Fv F v ⊗[F] E) := hf.toField
-    have : FiniteDimensional (Fv F v) (Fv F v ⊗[F] E) := inferInstance
     refine ⟨{1}, ?_, ?_, ?_, ?_⟩
     · intro e he
       rw [Finset.mem_singleton] at he

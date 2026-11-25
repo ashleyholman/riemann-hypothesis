@@ -22,8 +22,6 @@ theorem GlobalTheory.MixPer.semiMeas_isMulLeftInvariant {G H : Type} [Group G] [
   have : LocallyCompactSpace N := hN.isClosedEmbedding_subtypeVal.locallyCompactSpace
   have : SecondCountableTopology N := TopologicalSpace.Subtype.secondCountableTopology (N : Set G)
   have : SigmaCompactSpace N := sigmaCompactSpace_of_locallyCompact_secondCountable
-  have : SigmaFinite ν := inferInstance
-  have : SigmaFinite μ := inferInstance
   have hemb : MeasurableEmbedding (Subtype.val : N → G) :=
     MeasurableEmbedding.subtype_coe hN.measurableSet
 

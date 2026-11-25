@@ -111,7 +111,6 @@ theorem topologicalKrullDim_eq_succ {O K : Type} [CommRing O] [IsDedekindDomain 
     rw [HasRingHomProperty.Spec_iff (P := @Flat)] at hfl
     have : Algebra.FiniteType O A := RingHom.finiteType_algebraMap.mp hft
     have : Module.Flat O A := RingHom.flat_algebraMap_iff.mp hfl
-    have : FaithfulSMul O A := inferInstance
     have h₁ : ringKrullDim (K ⊗[O] A) ≤ d :=
       (PrimeSpectrum.topologicalKrullDim_eq_ringKrullDim _).ge.trans
         (i₀.isOpenEmbedding.isInducing.topologicalKrullDim_le.trans hd.le)

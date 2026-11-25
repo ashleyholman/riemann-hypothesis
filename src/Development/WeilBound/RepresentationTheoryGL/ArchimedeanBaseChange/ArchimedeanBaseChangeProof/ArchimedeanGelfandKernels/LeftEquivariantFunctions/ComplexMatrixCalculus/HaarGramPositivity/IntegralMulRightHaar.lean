@@ -34,7 +34,6 @@ theorem map_mul_right_haar (g : UK n) :
   set μ : Measure (UK n) := Measure.haar
   set ν : Measure (UK n) := μ.map (· * g)
   haveI : ν.IsHaarMeasure := Measure.isHaarMeasure_map_mul_right μ g
-  haveI : ν.Regular := inferInstance
   have hsm := Measure.isMulLeftInvariant_eq_smul_of_regular ν μ
   have huniv : ν Set.univ = μ Set.univ := by
     simp only [ν]

@@ -202,7 +202,6 @@ theorem lintegral_tensor_at_standard_point (κ : Type) [Fintype κ] (μ : Measur
     ∫⁻ x, ‖tens (evI F) (⇑g) (r0 F κ) x‖ₑ ^ 2 ∂(Measure.map e (μ.prod ν)) =
       (∫⁻ y, ‖g y‖ₑ ^ 2 ∂μ) * ν (intPts F κ) := by
   rw [lintegral_map_equiv]
-  haveI : BorelSpace (κ → mixedEmbedding.mixedSpace F) := inferInstance
   have hpt : ∀ p : (κ → mixedEmbedding.mixedSpace F) × (κ → FiniteAdeleRing (𝓞 F) F),
       ‖tens (evI F) (⇑g) (r0 F κ) (e p)‖ₑ ^ 2 = ‖g p.1‖ₑ ^ 2 * (intPts F κ).indicator 1 p.2 := by
     intro p
@@ -240,7 +239,6 @@ theorem acts_norm_sq_eq : ∀ {F E : Type} [Field F] [NumberField F] [Field E] [
   haveI := GlobalTheory.AdelicUnitaryTop.locallyCompact_finiteAdele F
   haveI := GlobalTheory.AdelicUnitaryTop.secondCountable_finiteAdele F
   haveI := GlobalTheory.AdelicUnitaryTop.t2Space_finiteAdeleRing_of_numberField F
-  haveI : BorelSpace (Fin n × Fin d → mixedEmbedding.mixedSpace F) := inferInstance
   let ν : Measure (Fin n × Fin d → FiniteAdeleRing (𝓞 F) F) := Measure.addHaar
   let H : ((Fin n × Fin d → mixedEmbedding.mixedSpace F) × (Fin n × Fin d → FiniteAdeleRing (𝓞 F) F)) ≃ₜ
       (Fin n × Fin d → AF F) :=
@@ -250,7 +248,6 @@ theorem acts_norm_sq_eq : ∀ {F E : Type} [Field F] [NumberField F] [Field E] [
   let e := H.toMeasurableEquiv
   have he : ∀ p, e p = splitEquiv F (Fin n × Fin d) p := fun _ => rfl
   haveI : SigmaFinite ν := inferInstance
-  haveI : SigmaFinite μ := inferInstance
   have hμ' : (Measure.map e (μ.prod ν)).IsAddHaarMeasure :=
     (splitEquiv F (Fin n × Fin d)).isAddHaarMeasure_map (μ.prod ν) (continuous_splitEquiv _)
       (continuous_splitEquiv_symm _)

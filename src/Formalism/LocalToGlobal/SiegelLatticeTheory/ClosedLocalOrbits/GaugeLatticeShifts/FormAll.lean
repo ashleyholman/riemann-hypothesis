@@ -157,7 +157,6 @@ theorem formAllC_holds : FormAllC := by
     exact rankOneInnerOperator_smul_smul_eq_mul_conj_smul _ (Formalism.L2.SG.RealObj.InfCut.norm_psiInfU X u r) _ _
   letI : MeasurableSpace (X.Vpi u' →L[ℂ] X.Vpi u) := borel _
   haveI : BorelSpace (X.Vpi u' →L[ℂ] X.Vpi u) := ⟨rfl⟩
-  haveI : SecondCountableTopology (X.Vpi u' →L[ℂ] X.Vpi u) := inferInstance
   have hfm : Measurable f := hfc.measurable
 
   have hB : ∀ B, MeasurableSet B → (∀ r ∈ Rset t, (fun x => r * x) ⁻¹' B = B) →

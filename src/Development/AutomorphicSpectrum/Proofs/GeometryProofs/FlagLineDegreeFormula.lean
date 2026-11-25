@@ -1104,7 +1104,6 @@ theorem root_height : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H 
   obtain ⟨m, hm, hsw⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Sandwich.lat_sandwich E H D l Xo c Y S Ω K J y 𝔐 Fl
   haveI : Smooth 𝔐.t.G.hom := 𝔐.t.semi.smooth
   have hc : CharZero Ω := by
-    haveI : CharZero c.F := inferInstance
     exact charZero_of_injective_ringHom 𝔐.cst.injective
   have hind : ∀ s, LinearIndependent Ω (Fl.b s) := by
     obtain ⟨c', u, _, _, _, h4, _⟩ := Fl.generic

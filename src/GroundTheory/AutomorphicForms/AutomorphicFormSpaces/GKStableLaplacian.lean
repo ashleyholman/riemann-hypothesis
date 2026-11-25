@@ -196,7 +196,6 @@ theorem uAction_ι_mem_archKSpan (hK : IsKFinite (φ : AdelicGLn.AdelicGL K n �
     simp only [one_mul, archSlice_apply] at h
     rw [uAction_ι_apply]
     exact h
-  have : FiniteDimensional ℂ Wf := inferInstance
   obtain ⟨w, hw, e⟩ := mem_of_hasDerivAt Wf hc hd
   rwa [show w = uAction (UniversalEnvelopingAlgebra.ι ℝ X) ψ from Subtype.ext e] at hw
 

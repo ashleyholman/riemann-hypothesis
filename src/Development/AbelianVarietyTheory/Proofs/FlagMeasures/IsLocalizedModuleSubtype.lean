@@ -186,7 +186,6 @@ theorem isUnimodMod_quot (H : HermSpace K V) {L : Submodule (𝓞 K) V} (hU : Is
       exact Submodule.subset_span (Submodule.mem_sup_left h)
   refine ⟨⟨⟨_, ?_, rfl⟩, hspan⟩, ?_⟩
   · have : Module.Finite (𝓞 K) L := Submodule.IsLattice.finite K L
-    have : IsNoetherian (𝓞 K) L := inferInstance
     have : IsNoetherian (𝓞 K) ↥(L ⊓ rs (𝓞 K) (perp H I)) := isNoetherian_of_le inf_le_left
     rw [← Module.Finite.iff_fg]
     infer_instance

@@ -188,7 +188,6 @@ private theorem countable_subgroup_map_of_countable {A B : Type*} [Group A] [Gro
   exact (f.subgroupMap_surjective H).countable
 
 private theorem countable_GL_fin_of_countable {R : Type*} [CommRing R] [Countable R] (n : ℕ) : Countable (GL (Fin n) R) := by
-  haveI : Countable (Fin n → Fin n → R) := inferInstance
   exact Function.Injective.countable (α := GL (Fin n) R) (β := Fin n → Fin n → R)
     (f := fun u => (u : Matrix (Fin n) (Fin n) R)) (fun a b h => Units.ext h)
 

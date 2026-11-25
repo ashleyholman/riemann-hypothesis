@@ -297,8 +297,6 @@ theorem map_eq_smul_prod : ∀ (F E : Type) [Field F] [NumberField F] [Field E] 
     (hermSplit b σ n).isAddHaarMeasure_map db e.continuous e.symm.continuous
   let ν₁ : Measure (HermR (Ainf F) σ n) := Measure.addHaar
   let ν₂ : Measure (HermR (Af F) σ n) := Measure.addHaar
-  haveI : SFinite ν₁ := inferInstance
-  haveI : SFinite ν₂ := inferInstance
   refine ⟨ν₁, ν₂, ((db.map e).addHaarScalarFactor (ν₁.prod ν₂) : ℝ≥0), inferInstance, inferInstance,
     inferInstance, inferInstance, ENNReal.coe_ne_top, ?_, ?_⟩
   · rw [← he]

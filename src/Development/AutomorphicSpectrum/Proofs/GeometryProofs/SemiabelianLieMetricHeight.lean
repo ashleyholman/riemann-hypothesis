@@ -443,8 +443,6 @@ theorem exists_ringHom (L A : Type) [Field L] [CommRing A] [Nontrivial A] (φ : 
   haveI : Module.Finite L A := hφ
   obtain ⟨m, hm⟩ := Ideal.exists_maximal A
   letI := Ideal.Quotient.field m
-  haveI : Module.Finite L (A ⧸ m) := inferInstance
-  haveI : Algebra.IsAlgebraic L (A ⧸ m) := inferInstance
   let j : (A ⧸ m) →ₐ[L] AlgebraicClosure L := (by
     refine @_root_.IsAlgClosed.lift _ _ _ _ _ _ _ _ _ _ _ ?_ ?_ ?_
     solve_by_elim* (maxDepth := 2) only [*,
@@ -478,7 +476,6 @@ end PositivityTheory.Xgn.FiniteSurjectivePointLift
 theorem PositivityTheory.Xgn.finite_surjective_point_lift : ∀ (Z' Z : Scheme.{0}) (π : Z' ⟶ Z), IsFinite π → Surjective π → ∀ (L : Type) [Field L] (zZ : Sp L ⟶ Z),
     ∃ x : Sp (AlgebraicClosure L) ⟶ Z', x ≫ π = spMap (algebraMap L (AlgebraicClosure L)) ≫ zZ := by
   intro Z' Z π hfin hsurj L _ zZ
-  haveI : Surjective (pullback.snd π zZ) := inferInstance
   obtain ⟨p, -⟩ := (pullback.snd π zZ).surjective (IsLocalRing.closedPoint L)
   haveI : Nonempty ↥(pullback π zZ) := ⟨p⟩
   obtain ⟨x, hx⟩ := FiniteSurjectivePointLift.exists_point L (pullback π zZ) (pullback.snd π zZ)
@@ -1072,7 +1069,6 @@ theorem exists_pullback_ext {k Ω : Type} [Field k] [Field Ω] (f : Sp Ω ⟶ Sp
       apply Over.OverMorphism.ext
       change (p.left ≫ ((Over.pullback f).map T.q).left) ≫ pullback.fst T.B.hom f = p₀.left ≫ T.q.left
       rw [hp, Category.assoc, Category.assoc, hq.w]
-    letI iB : GrpObj ((Over.pullback f).obj T.B) := inferInstance
     change p ≫ (Over.pullback f).map T.q = 1 ↔ p₀ ≫ T.q = 1
     rw [← e1]
     exact (MulEquiv.map_eq_one_iff _).symm
@@ -1519,8 +1515,6 @@ theorem stratum_good : GlobalTheory.Published.SemiAbelianHomExtension → ∀ (X
   haveI := hG.smooth
   haveI := hG.separated
   let s : Z ⟶ Sp ℚ := i ≫ XQ.snd X
-  haveI : LocallyOfFiniteType s := inferInstance
-  haveI : QuasiCompact s := inferInstance
   let io : Z ⟶ X := i ≫ XQ.fst X
   have hGZ : IsSemiAbelian ((Over.pullback io).obj G) := IsSemiAbelian.pullback io G hG
   obtain ⟨Z', hZ', π, G', hG', φ', Xc, _, _, _, u, U, hπf, hπs, hnorm, hpb, hu, hU, hpt⟩ :=

@@ -132,7 +132,6 @@ theorem exists_retr_abs {Z O O' K K' : Type} [CommRing Z] [CommRing O] [CommRing
   haveI : IsScalarTower Z O O' := IsScalarTower.of_algebraMap_eq hf
   haveI : Module.Finite O O' := Module.Finite.of_restrictScalars_finite Z _ _
   let L : Submodule O K' := LinearMap.range (IsScalarTower.toAlgHom O O' K').toLinearMap
-  haveI : Module.Finite O L := inferInstance
   have hsp : Submodule.span K (L : Set K') = ⊤ := by
     rw [eq_top_iff]
     intro x _

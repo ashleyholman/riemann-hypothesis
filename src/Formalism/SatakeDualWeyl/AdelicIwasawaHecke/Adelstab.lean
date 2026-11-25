@@ -216,7 +216,6 @@ theorem adelstab_finite (G : GL n 𝒜) (L : Submodule 𝒮 (n → 𝒜)) (c₂ 
     rintro _ ⟨_, ⟨i, rfl⟩, rfl⟩
     exact ⟨(j, i), by simp [Lj]⟩
   have : Module.Finite (𝓞 F) W := Module.Finite.span_of_finite _ (Set.finite_range _)
-  have : IsNoetherian (𝓞 F) W := inferInstance
   have : IsNoetherian (𝓞 F) ((adelstabLam F E G L).restrictScalars (𝓞 F)) := isNoetherian_of_le hle
   have : Module.Finite (𝓞 F) (adelstabLam F E G L) := inferInstanceAs
     (Module.Finite (𝓞 F) ((adelstabLam F E G L).restrictScalars (𝓞 F)))

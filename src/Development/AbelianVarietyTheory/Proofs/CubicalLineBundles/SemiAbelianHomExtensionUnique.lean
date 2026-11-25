@@ -157,7 +157,6 @@ theorem exists_agree_of_extend {U T : Scheme.{0}} {k : U ⟶ T} {t : T ⟶ S} [M
     have hfst : (a.hom.left ≫ pullback.fst ((Over.pullback t).obj G).hom k) ≫ pullback.fst G.hom t =
         pullback.fst G.hom j := (Category.assoc _ _ _).trans ha'
     have hu : u = u' ≫ (a.hom.left ≫ pullback.fst ((Over.pullback t).obj G).hom k) := by
-      have : Mono (pullback.fst G.hom t) := inferInstance
       rw [← cancel_mono (pullback.fst G.hom t), e]
       exact (congrArg (u' ≫ ·) hfst.symm).trans (Category.assoc _ _ _).symm
     rw [hu]

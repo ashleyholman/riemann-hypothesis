@@ -611,7 +611,6 @@ theorem UpperTheory.V.Th.Nm.repIn :
     ∀ {l : ℕ} [Fact l.Prime] {n : ℕ} (F : GFrame l) (c : Coef l) (ρ : F.G₀ →* GL (Fin n) (Qbar l)) (z : F.G₀ → Matrix (Fin n) (Fin n) (Qbar l)), Continuous ρ → (∀ g, IntM (mat ρ g)) → Continuous z → (∀ g g', z (g * g') = z g + mat ρ g * z g' * mat ρ g⁻¹) → ∃ (c' : Coef l) (a : Qbar l), c.O ≤ c'.O ∧ a ≠ 0 ∧ (∀ g, InO c' (mat ρ g)) ∧ ∀ g, InO c' (a • z g) := by
   intro l hl n F c ρ z hρ hi hz hc
   haveI : CompactSpace F.G₀ := isCompact_iff_compactSpace.1 (Subgroup.isClosed_of_isOpen _ F.η_open).isCompact
-  haveI : T2Space F.G₀ := inferInstance
   obtain ⟨E, fE, m₁, m₂⟩ := ri_entries (l := l) ((Units.coeHom _).comp ρ) z (Units.continuous_val.comp hρ) hz hc
   obtain ⟨d, hd⟩ := UpperTheory.V.X.So.coefOf l E
   obtain ⟨c', h1, h2⟩ := (UpperTheory.V.HV.coefSup l).1 c d

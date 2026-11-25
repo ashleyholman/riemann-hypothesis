@@ -68,7 +68,6 @@ theorem dominant_field (V : Type) [CommRing V] [IsDomain V] (F : Type) [Field F]
     ⟨(PrimeSpectrum.denseRange_comap_iff_ker_le_nilRadical _).2
       (((RingHom.injective_iff_ker_eq_bot _).1 (algebraMap (FractionRing V) F).injective).le.trans bot_le)⟩
   have h₃ : IsDominant (TF (R := V) F).hom := inferInstanceAs (IsDominant (jFK (R := V) F ≫ jK V))
-  have h₄ : IsReduced (Spec (CommRingCat.of V)) := inferInstance
   exact IsSchemeTheoreticallyDominant.of_isDominant _
 
 theorem kTriv_of_generic : GlobalFnsSt → ∀ (V : Type) [CommRing V] [IsDomain V] [IsDiscreteValuationRing V] [CharZero V] (B : Over (Spec (CommRingCat.of V))) [GrpObj B] [IsCommMonObj B], IsAbelianScheme B → ∀ (L : RigLB B) (_ : CubicalStr B L), RelAmple B L.L → (∀ x : TF (R := V) (AlgebraicClosure (FractionRing V)) ⟶ B, InK B L.L x → x = 1) → KTriv B L.L := by
@@ -84,7 +83,6 @@ theorem kTriv_of_generic : GlobalFnsSt → ∀ (V : Type) [CommRing V] [IsDomain
   have hrep : ∀ (T : Over (Spec (CommRingCat.of V))) (x : T ⟶ B), InK B L.L x ↔ ∃ y : T ⟶ H, y ≫ j = x :=
     fun T x => (hK _ rfl T x).trans (hH T x)
   have hm : Mono j := (Over.forget _).mono_of_mono_map (inferInstanceAs (Mono j.left))
-  have hchar : CharZero (AlgebraicClosure (FractionRing V)) := inferInstance
   have key := GlobalTheory.FiniteOnePoint.main _ B H j hm hfin ((hrep _ _).1 (inK_one hLB _))
     (fun T x y => (hrep _ _).1 (InK.mul hLB ((hrep _ _).2 ⟨x, rfl⟩) (InK.inv hLB ((hrep _ _).2 ⟨y, rfl⟩))))
     (AlgebraicClosure (FractionRing V)) (TF (R := V) (AlgebraicClosure (FractionRing V))).hom

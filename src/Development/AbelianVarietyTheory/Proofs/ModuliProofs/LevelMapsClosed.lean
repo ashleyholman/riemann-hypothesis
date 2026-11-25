@@ -199,7 +199,6 @@ theorem levelMap_over_field_noetherian (hL : Out.Laws)
 
   obtain ⟨Y, π, oc, mc, hπf, hπe, hπs, hmc, huniv⟩ :=
     levelCover_noetherian hL E H D l l₂ F b b₂ _ (pullback.snd Xo.s (spMap j)) o nX hpq hd hρ hζ
-  have hsmπ : Smooth π := inferInstance
   have hsmY : Smooth (π ≫ pullback.snd Xo.s (spMap j)) := inferInstance
   obtain ⟨rY, -, -⟩ := isReduced_isNormalScheme_isLocallyNoetherian_of_smooth_over_field F _ _ hsmY
   obtain ⟨o₁, ⟨n₁⟩⟩ := obj_pull E H D l F F b b (RingHom.id F) _ Y (pullback.snd _ _) (π ≫ pullback.snd _ _) π

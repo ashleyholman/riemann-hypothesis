@@ -492,7 +492,6 @@ theorem core {k K L : Type} [Field k] [IsAlgClosed k] [CharZero k] [Field K] [Al
     IntermediateField.finiteDimensional_adjoin fun x _ => Algebra.IsIntegral.isIntegral x
   haveI : IsAlgClosed L := IsAlgClosure.isAlgClosed K
   haveI : Algebra.IsAlgebraic K L := IsAlgClosure.isAlgebraic
-  haveI : Algebra.IsAlgebraic E K := inferInstance
   haveI : Module.IsTorsionFree E L := DivisionSemiring.to_moduleIsTorsionFree
   haveI : IsAlgClosure E L := ⟨inferInstance, Algebra.IsAlgebraic.trans E K L⟩
   haveI : CharZero K := charZero_of_injective_ringHom (algebraMap (RatFunc k) K).injective

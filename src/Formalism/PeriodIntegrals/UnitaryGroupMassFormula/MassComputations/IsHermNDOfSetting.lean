@@ -33,7 +33,6 @@ theorem fdExistsH_holds : FDExistsH := by
   intro D X u
   haveI : FiniteDimensional X.B.I.F X.B.I.E :=
     Module.finite_of_finrank_pos (by rw [X.B.I.cm.deg2]; norm_num)
-  haveI i1 : SecondCountableTopology (HA (AF X.B.I.F) X.B.I.cm.sig X.B.I.J) := inferInstance
   haveI i2 := discHF_setting X
   haveI i3 : SecondCountableTopology (Hsub (AF X.B.I.F) X.B.I.cm.sig X.B.I.J (frameOf X u)) :=
     TopologicalSpace.Subtype.secondCountableTopology _

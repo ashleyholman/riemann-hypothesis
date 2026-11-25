@@ -313,7 +313,6 @@ theorem finrank_invariants_dualRep_comp [Module.Finite k M] (P : Subgroup G) [P.
       Module.finrank k (Representation.invariants
         ((quotientRep P (homRep T M) hN).comp ((QuotientGroup.mk' P).comp ψ).range.subtype)) := by
   have : Module.Finite k T := Module.finite_of_finrank_eq_succ hT
-  have : Module.Finite k (T →ₗ[k] M) := inferInstance
   rw [finrank_invariants_eq_of_linearEquiv ((dualRep T M).ρ.comp ψ) (dualLineEquiv T M hT)
     (σ := ((homRep T M).ρ.dual).comp ψ) fun h f => dualLineEquiv_comm T M hT (ψ h) f]
   have e : ((homRep T M).ρ.dual).comp ψ =

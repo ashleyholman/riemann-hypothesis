@@ -496,7 +496,6 @@ theorem gens [FiniteDimensional k⸨X⸩ V] (N : Submodule k⟦X⟧ V) (hN : N.F
     ∃ (n : ℕ) (e : Fin n → V), n ≤ finrank k⸨X⸩ V ∧ Submodule.span k⟦X⟧ (Set.range e) = N := by
   have : Module.Finite k⟦X⟧ N := Module.Finite.iff_fg.2 hN
   have : Module.IsTorsionFree k⟦X⟧ V := Module.IsTorsionFree.trans_faithfulSMul k⟦X⟧ k⸨X⸩ V
-  have : Module.Free k⟦X⟧ N := inferInstance
   let b := Module.finBasis k⟦X⟧ N
   refine ⟨_, N.subtype ∘ b, ?_, ?_⟩
   · have hli : LinearIndependent k⟦X⟧ (N.subtype ∘ b) := b.linearIndependent.map' _ N.ker_subtype
@@ -1645,7 +1644,6 @@ theorem exists_residue (l : ℕ) [Fact l.Prime] (O : Type) [CommRing O] [IsDomai
       rw [PadicInt.maximalIdeal_eq_span_p]; exact Ideal.mem_span_singleton_self _
     rw [← h2, Ideal.mem_comap, map_natCast] at h3
     exact h3
-  have hloc : IsLocalHom (algebraMap ℤ_[l] O) := inferInstance
   have hfin : Finite (IsLocalRing.ResidueField O) := by
     have : Finite (IsLocalRing.ResidueField ℤ_[l]) := Finite.of_equiv _ (PadicInt.residueField (p := l)).toEquiv.symm
     exact Module.finite_of_finite (IsLocalRing.ResidueField ℤ_[l])

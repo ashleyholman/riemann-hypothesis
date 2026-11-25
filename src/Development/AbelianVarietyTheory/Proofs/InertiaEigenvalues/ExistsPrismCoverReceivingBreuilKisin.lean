@@ -457,7 +457,6 @@ theorem flat_of_pi {A P : Type} [CommRing A] [CommRing P] {n : ℕ} {Ps : Fin n 
   have hpi : (Pi.ringHom fun i => (g i).comp f).Flat := by
     letI : ∀ i, Algebra A (Ps i) := fun i => ((g i).comp f).toAlgebra
     haveI : ∀ i, Module.Flat A (Ps i) := fun i => RingHom.flat_algebraMap_iff.1 (hf i)
-    haveI : Module.Flat A (Π₀ i, Ps i) := inferInstance
     haveI : Module.Flat A (∀ i, Ps i) :=
       Module.Flat.of_linearEquiv (DFinsupp.linearEquivFunOnFintype (R := A) (M := Ps)).symm
     exact RingHom.flat_algebraMap_iff.2 this

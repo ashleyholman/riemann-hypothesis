@@ -183,8 +183,6 @@ theorem fold : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberField
   haveI hHsc : ∀ m, SecondCountableTopology (HermR R σ m) := fun m =>
     (_root_.GlobalTheory.CompanionTheory.SW.HermTop.herm_top F E σ hσ R m).2.1
   haveI : (coordHerm R σ b lam n).IsAddHaarMeasure := hνh n
-  haveI : SigmaFinite (coordK R b lam) := inferInstance
-  haveI : SigmaFinite (coordHerm R σ b lam n) := inferInstance
   obtain ⟨e, he00, he0j, heij, hemap⟩ := _root_.GlobalTheory.CompanionTheory.SW.HermSplit.herm_split F E σ hσ R d b lam hlam n
   obtain ⟨hs0c, hacS, hcvc, hschc, hBopen⟩ :=
     _root_.GlobalTheory.CompanionTheory.SW.PiLocalization₂.Coord.coords F E σ M J t n R d b lam m₁ m' s B₀ a κ₁ cm D

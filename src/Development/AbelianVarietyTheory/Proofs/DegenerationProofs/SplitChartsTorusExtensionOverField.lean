@@ -338,7 +338,6 @@ theorem geometricallyConnected_of_surjective {X Y Z : Scheme.{0}} (p : X ⟶ Y) 
   have : ConnectedSpace ↥(pullback (p ≫ f) x) :=
     GeometricallyConnected.geometrically_connectedSpace _ _ _ (.of_hasPullback _ _)
   let q := (pullbackRightPullbackFstIso f x p).inv ≫ pullback.snd p (pullback.fst f x)
-  have : Surjective q := inferInstance
   exact q.surjective.connectedSpace q.continuous
 
 variable {S : Scheme.{0}} {X : Type} [AddCommGroup X] {G : Over S} [GrpObj G] {B : Scheme.{0}}

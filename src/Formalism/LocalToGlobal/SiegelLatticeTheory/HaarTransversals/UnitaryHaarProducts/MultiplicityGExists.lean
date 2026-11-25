@@ -600,7 +600,6 @@ theorem muA_map_toHA :
   have hΦ : (I.muA μf).map (Phi I hb) =
       ((Formalism.L2.SG.ProjRows.muInf I).map (Formalism.L2.SG.Pf.MeasInf.toInfL I hb)).prod (μf.map (toFinI I hb)) := by
     rw [Phi_eq]
-    have : SigmaFinite (Formalism.L2.SG.ProjRows.muInf I) := inferInstance
     exact (Measure.map_prod_map (Formalism.L2.SG.ProjRows.muInf I) μf (map_continuous (eInf I hb)).measurable
       (map_continuous (eFin I hb)).measurable).symm
   rw [← hΦ, Measure.map_map (map_continuous (sA I.cm.sig I.J (finrank_two I)).symm).measurable
@@ -614,9 +613,6 @@ theorem mG_norm (r : ℕ) : (mG I hb μf r).IsTextNorm := by
   obtain ⟨⟨g1, g2, g3, g4, g5⟩, ⟨h1, h2, h3, h4, h5⟩, ⟨k1, k2, k3, k4, k5⟩⟩ := grp_facts I.cm.sig I.J (finrank_two I)
   have hinf : ((Formalism.L2.SG.ProjRows.muInf I).map (Formalism.L2.SG.Pf.MeasInf.toInfL I hb)).IsHaarMeasure := by
     show ((Formalism.L2.SG.ProjRows.muInf I).map (eInf I hb)).IsHaarMeasure
-    have : (Formalism.L2.SG.ProjRows.muInf I).IsHaarMeasure := inferInstance
-    have : BorelSpace I.Ginf := inferInstance
-    have : IsTopologicalGroup I.Ginf := inferInstance
     exact ContinuousMulEquiv.isHaarMeasure_map _ (eInf I hb)
   have hfin : (μf.map (toFinI I hb)).IsHaarMeasure := by
     show (μf.map (eFin I hb)).IsHaarMeasure

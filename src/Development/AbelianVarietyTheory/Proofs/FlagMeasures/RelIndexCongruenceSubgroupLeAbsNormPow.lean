@@ -88,7 +88,6 @@ theorem relIndex_le : ∀ (K V : Type) [Field K] [NumberField K] [AddCommGroup V
   intro K V _ _ _ _ _ _ _ G M 𝔪 B hM h𝔪 hG hB
   have : Module.Finite (𝓞 K) M := Module.Finite.iff_fg.2 hM
   have : Module.IsTorsionFree (𝓞 K) V := Module.IsTorsionFree.trans_faithfulSMul (𝓞 K) K V
-  have : Module.Flat (𝓞 K) M := inferInstance
   have : Module.FinitePresentation (𝓞 K) M := Module.finitePresentation_of_finite _ _
   have : Module.Projective (𝓞 K) M := Module.Flat.projective_of_finitePresentation
   have : Finite (𝓞 K ⧸ 𝔪) := Ideal.finiteQuotientOfFreeOfNeBot 𝔪 h𝔪

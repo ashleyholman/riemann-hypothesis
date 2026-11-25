@@ -1223,7 +1223,6 @@ theorem UpperTheory.V.J.htLow :
   obtain ⟨N, N', p, f, hN, hp, hker⟩ := Fr.pres hF hn S x L
   obtain ⟨hfl, -, -⟩ := Fr.loc_flat hF hn S x L
   have hA : IsNoetherianRing S.A := (Fr.gr_A hF hn S).2.2.2.2.2.1
-  have hR : IsNoetherianRing L.R := inferInstance
   obtain ⟨h1, h2⟩ := htPres L.O' N N' L.R p f hp hker Q hQ
   have hc : (Ideal.comap p Q).height = N := ht_of_sum hdim h1
   have hfh : Q.height = q.height := flatHt S.A L.R L.ι hfl q Q hQ him hmin

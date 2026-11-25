@@ -29,7 +29,6 @@ instance secondCountableTopology_GL_complex : SecondCountableTopology (GL ι ℂ
 
 instance secondCountableTopology_archUnitary (h : HermitianForm F E W) (v : Basis ι E W) :
     SecondCountableTopology (archUnitary h v) := by
-  have : SecondCountableTopology (InfinitePlace E → GL ι ℂ) := inferInstance
   exact TopologicalSpace.Subtype.secondCountableTopology _
 
 end Topology

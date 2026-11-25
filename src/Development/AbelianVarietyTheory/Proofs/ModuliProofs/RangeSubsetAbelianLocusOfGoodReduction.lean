@@ -148,10 +148,8 @@ theorem exists_dvr_centre {R K L : Type} [CommRing R] [IsDomain R] [IsNoetherian
       (algebraMap T L).comp g = (algebraMap K L).comp (algebraMap R K) ∧
         (IsLocalRing.maximalIdeal T).comap g = p := by
   let S := Localization.subalgebra.ofField K p.primeCompl p.primeCompl_le_nonZeroDivisors
-  have : IsLocalization.AtPrime S p := inferInstance
   have : IsLocalRing S := IsLocalization.AtPrime.isLocalRing S p
   have : IsNoetherianRing S := IsLocalization.isNoetherianRing p.primeCompl S ‹_›
-  have : IsFractionRing S K := inferInstance
   have : Algebra.EssFiniteType S K := Algebra.EssFiniteType.of_isLocalization K (nonZeroDivisors S)
   have : Algebra.EssFiniteType S L := Algebra.EssFiniteType.comp S K L
   have : FaithfulSMul S L := (faithfulSMul_iff_algebraMap_injective S L).2
@@ -179,8 +177,6 @@ theorem fibre_of_range_subset {S S' A₀ A : Scheme.{0}} {g : A₀ ⟶ S} {f : A
   rw [e] at P
   have Q := IsPullback.of_hasPullback g p
   have P' := IsPullback.of_right (by rw [Q.lift_fst]; exact P) (Q.lift_snd _ _ (by simpa using P.w)) Q
-  have : Surjective u := inferInstance
-  have : Flat u := inferInstance
   exact ⟨GrpFlatDesc.isProper_of_isPullback P', GrpFlatDesc.geometricallyConnected_of_isPullback P'⟩
 
 theorem isSemiAbelian_of_fibres {S : Scheme.{0}} (B : Over S) [GrpObj B] [IsCommMonObj B] [Smooth B.hom]

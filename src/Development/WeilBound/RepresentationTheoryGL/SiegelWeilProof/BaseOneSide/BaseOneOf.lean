@@ -1140,7 +1140,6 @@ theorem isUnit_of_tmul (hσ : IsCMExt F E σ) (R : Type) [CommRing R] [Algebra F
     (hn : IsUnit (n ⊗ₜ[F] (1 : E))) : IsUnit n := by
   obtain ⟨w, hw⟩ := hn.exists_right_inv
   have h2 := hσ.2.2.1
-  haveI : Module.Free R (R ⊗[F] E) := inferInstance
   have e : n ⊗ₜ[F] (1 : E) * w = n • w := by
     rw [Algebra.smul_def, Algebra.TensorProduct.algebraMap_apply]
     simp

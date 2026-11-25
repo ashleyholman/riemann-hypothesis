@@ -68,7 +68,6 @@ theorem finrank_eq_pow_mul_card (R S Ω : Type) [CommRing R] [CommRing S] [IsDom
   letI : Algebra F Ω := FractionRing.liftAlgebra R Ω
   haveI : IsScalarTower R F E := FractionRing.isScalarTower_liftAlgebra R E
   haveI : IsScalarTower R F Ω := FractionRing.isScalarTower_liftAlgebra R Ω
-  haveI : FiniteDimensional F E := inferInstance
   haveI : ExpChar F p := expChar_of_injective_algebraMap (IsFractionRing.injective R F) p
   obtain ⟨e, he⟩ := finInsepDegree_eq_pow F E p
   have hc : Nat.card (E →ₐ[F] Ω) = Nat.card (S →ₐ[R] Ω) := by

@@ -502,10 +502,8 @@ theorem exists_dvr_in_finite_ext (O : Type) [CommRing O] [IsDomain O] [IsDiscret
       (_ : Algebra O O') (_ : IsLocalHom (algebraMap O O')) (_ : Algebra.IsAlgebraic O O')
       (_ : Algebra O' L) (_ : IsScalarTower O O' L) (ζ : O'),
       Function.Injective (algebraMap O' L) ∧ IsPrimitiveRoot ζ n ∧ algebraMap O' L ζ = z := by
-  haveI : Algebra.IsSeparable K L := inferInstance
   haveI : IsDedekindDomain (integralClosure O L) := integralClosure.isDedekindDomain O K L
   haveI : IsFractionRing (integralClosure O L) L := integralClosure.isFractionRing_of_finite_extension K L
-  haveI : Algebra.IsIntegral O (integralClosure O L) := inferInstance
   have hinjOL : Function.Injective (algebraMap O L) := by
     rw [IsScalarTower.algebraMap_eq O K L]
     exact (algebraMap K L).injective.comp (IsFractionRing.injective O K)

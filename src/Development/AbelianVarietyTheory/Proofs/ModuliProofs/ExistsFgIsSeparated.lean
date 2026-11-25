@@ -194,7 +194,6 @@ theorem _root_.GlobalTheory.SpreadSep.exists_fg_isSeparated (k V : Type) [CommRi
   haveI : IsLocallyNoetherian (pullback p p) := LocallyOfFiniteType.isLocallyNoetherian pB
   haveI : CompactSpace ↥(_root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.Sp k) := by unfold _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.Sp; infer_instance
   haveI : CompactSpace ↥(pullback p p) := QuasiCompact.compactSpace_of_compactSpace pB
-  haveI : QuasiSeparated pB := inferInstance
   haveI : AlgebraicGeometry.IsNoetherian (pullback p p) := {}
   let D := _root_.GlobalTheory.Spread.bcDiagram pB V
   let c := _root_.GlobalTheory.Spread.bcCone pB V

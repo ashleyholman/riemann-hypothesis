@@ -1092,7 +1092,6 @@ theorem norm_sub_expK_sq_le : ∀ {n : ℕ} (ε : Fin n → Bool) (d : ℕ) (φ 
     have hemb : Topology.IsEmbedding (fun k : KG ε => toMK k) :=
       (isClosedEmbeddingMatrix n ε).1.isEmbedding.comp Topology.IsEmbedding.subtypeVal
     haveI : SecondCountableTopology (KG ε) := hemb.isInducing.secondCountableTopology
-    haveI : SecondCountableTopology (KG ε × ℝ) := inferInstance
     exact Integrable.of_bound hcont2.aestronglyMeasurable C
       (Filter.Eventually.of_forall fun p => hC _ (Set.mem_univ _))
   have hswap := integral_integral_swap hI

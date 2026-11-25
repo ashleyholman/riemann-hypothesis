@@ -18,7 +18,6 @@ open LateralTheory.E.E4
 theorem inf_affine {Ω : Type} [Field Ω] {C : Scheme.{0}} (c : C ⟶ Sp Ω) (hc : IsCurve c)
     {U V : C.Opens} (hU : IsAffineOpen U) (hV : IsAffineOpen V) : IsAffineOpen (U ⊓ V) := by
   obtain ⟨_, hP, _⟩ := hc
-  have : IsSeparated c := inferInstance
   have : IsSeparated (terminal.from C) := by
     rw [show terminal.from C = c ≫ terminal.from _ from Subsingleton.elim _ _]
     infer_instance
@@ -59,7 +58,6 @@ theorem krullDim_eq_one {Ω : Type} [Field Ω] {C : Scheme.{0}} (c : C ⟶ Sp Ω
     ringKrullDim Γ(C, W) = ((1 : ℕ) : WithBot ℕ∞) := by
   have hI0 : IsIntegral C := hc.1
   have : Nonempty W := hWn.to_subtype
-  have : IsDomain Γ(C, W) := inferInstance
   obtain ⟨hI, _, hS⟩ := hc
   have : Nonempty W := hWn.to_subtype
   have hL : LocallyOfFiniteType c := inferInstance
@@ -103,7 +101,6 @@ theorem leafDim1 : LeafDim1 := by
   have h3 := krullDim_eq_one c hc W hW hWn
   have hI0 : IsIntegral C := hc.1
   have : Nonempty W := hWn.to_subtype
-  have : IsDomain Γ(C, W) := inferInstance
   have hK : Ring.KrullDimLE 1 Γ(C, W) := Ring.krullDimLE_iff.mpr (by rw [h3])
   exact ⟨fun {P} hne hP => hP.isMaximal_of_ne_bot hne⟩
 

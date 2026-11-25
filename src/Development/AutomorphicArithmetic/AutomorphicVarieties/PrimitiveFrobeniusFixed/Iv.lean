@@ -1362,7 +1362,6 @@ open scoped nonZeroDivisors Pointwise
 theorem UpperTheory.V.ML.psiOf :
     Rec → PsiBound := by
   intro hR E Ω _ _ _ _ _ _ _ _ _ _ N _ ρ hρ l _ hl2 hlE O _ _ e he ψ hodd a ha
-  haveI : IsGalois ℚ E := inferInstance
   let c : HV.Coef l := ⟨O, inferInstance, inferInstance⟩
   let ψ' : DirichletCharacter (↥c.O) N := MulChar.ofUnitHom (ψ.comp ρ)
   have hcomp : MulChar.ringHomComp ψ' c.O.val.toRingHom = chiOf ρ ψ := by

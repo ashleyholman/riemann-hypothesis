@@ -867,8 +867,6 @@ theorem flat_localization_of_fibre (R P Q : Type) [CommRing R] [IsLocalRing R] [
     (h : (fibreMap R (IsLocalRing.ResidueField R) P Q).Flat) (n : Ideal Q) [n.IsMaximal] :
     Module.Flat P (Localization.AtPrime n) := by
   haveI : Module.Finite P Q := .of_restrictScalars_finite R P Q
-  haveI : Algebra.IsIntegral P Q := inferInstance
-  haveI : Algebra.IsIntegral R P := inferInstance
   haveI : IsNoetherianRing P := IsNoetherianRing.of_finite R P
   haveI : IsNoetherianRing Q := IsNoetherianRing.of_finite R Q
   let p : Ideal P := n.comap (algebraMap P Q)
@@ -1761,7 +1759,6 @@ theorem finitePart_extension_core : ∀ (R : Type) [CommRing R] [IsDomain R] [Is
     obtain ⟨t, x, hx⟩ := Γf.pt_onto w hw
     exact ⟨Γf.pt t ≫ b, x, by simp [hx]⟩)
   obtain ⟨M, _, ΓM, φM, _, htM⟩ := _root_.GlobalTheory.CompanionTheory.Ar.BT.Tors.exists_qfGroup_kernel R _ inferInstance N hN AT jT hpT (_root_.GlobalTheory.CompanionTheory.Ar.BT.RatKer.exists_section_of_generic R H Γf AT AB a b η[AB] hcl' hpb')
-  have hinv : IsMonHom φB.inv := inferInstance
   have isoL : IsIso φB.inv.left := inferInstanceAs (IsIso ((Over.forget _).map φB.inv))
   have isoM : IsIso φM.hom.left := inferInstanceAs (IsIso ((Over.forget _).map φM.hom))
   refine ⟨M, C, _, _, ΓM, ΓB, φM.hom.left ≫ jT.left, φB.hom.left ≫ jB.left, φM.hom ≫ a, b ≫ φB.inv, htM, htB,

@@ -424,7 +424,6 @@ theorem bc_inclE_injective (D : D7) :
     obtain ⟨P, hP⟩ := Ideal.exists_maximal (𝓞 D.host.F)
     have hne : P ≠ ⊥ := Ring.ne_bot_of_isMaximal_of_not_isField hP (RingOfIntegers.not_isField _)
     exact (evalV D.host.F ⟨P, hP.isPrime, hne⟩).toRingHom.domain_nontrivial
-  haveI : Nontrivial (D.host.E ⊗[D.host.F] FiniteAdeleRing (𝓞 D.host.F) D.host.F) := inferInstance
   intro a b hab
   refine Units.ext (Matrix.ext fun i j => ?_)
   apply (inclE (F := D.host.F) (E := D.host.E) (FiniteAdeleRing (𝓞 D.host.F) D.host.F)).injective

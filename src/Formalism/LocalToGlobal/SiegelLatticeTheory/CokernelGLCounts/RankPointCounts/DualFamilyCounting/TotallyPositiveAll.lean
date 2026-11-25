@@ -29,7 +29,6 @@ theorem emb_surj (D : Formalism.BasicNotions.D7) : Function.Surjective D.host.em
       have h1 : D.host.φ₀ (σ x) = D.host.φ₀ (τ x) := congrArg (fun g : D.host.E →ₐ[ℚ] ℂ => g x) h
       exact D.host.φ₀.injective h1
     have hcard : Fintype.card (D.host.E ≃ₐ[ℚ] D.host.E) = Fintype.card (D.host.E →ₐ[ℚ] ℂ) := by
-      haveI : IsGalois ℚ D.host.E := inferInstance
       rw [AlgHom.card ℚ D.host.E ℂ, ← IsGalois.card_aut_eq_finrank ℚ D.host.E, Fintype.card_eq_nat_card]
     obtain ⟨σ, hσ⟩ := ((Fintype.bijective_iff_injective_and_card f).2 ⟨hinj, hcard⟩).2 φ.toRatAlgHom
     refine ⟨σ, ?_⟩

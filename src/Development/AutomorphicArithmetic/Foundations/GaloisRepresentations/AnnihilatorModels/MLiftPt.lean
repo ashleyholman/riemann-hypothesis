@@ -41,7 +41,6 @@ theorem UpperTheory.Gal.crystallineComparison.Mod.liftPt_of :
     refine Module.IsTorsionFree.of_smul_eq_zero fun r x h => ?_
     rw [Algebra.smul_def, mul_eq_zero] at h
     exact h.imp_left fun h => hK (by rw [h, map_zero])
-  haveI : Algebra.IsIntegral V (B ⧸ q) := inferInstance
   haveI : Algebra.IsAlgebraic V (B ⧸ q) := Algebra.IsIntegral.isAlgebraic
   let φ : (B ⧸ q) →ₐ[V] FractionRing V := (by
     refine @_root_.IsAlgClosed.lift _ _ _ _ _ _ _ _ _ _ _ ?_ ?_ ?_

@@ -97,7 +97,6 @@ theorem MramL_map (u : D.what₂.Word) :
 
 theorem ramL_fg (u : D.what₂.Word) : (D.fm u).ramL.FG := by
   have : Module.Finite (𝓞 D.what₂.LL) ((D.fm u).lat 0).L := Module.Finite.iff_fg.2 ((D.fm u).lat_good 0).2.1
-  have : IsNoetherian (𝓞 D.what₂.LL) ((D.fm u).lat 0).L := inferInstance
   have h : (D.fm u).ramL ≤ ((D.fm u).lat 0).L := inf_le_left
   have := (IsNoetherian.noetherian ((D.fm u).ramL.comap ((D.fm u).lat 0).L.subtype)).map ((D.fm u).lat 0).L.subtype
   rwa [Submodule.map_comap_subtype, inf_eq_right.2 h] at this
@@ -678,7 +677,6 @@ theorem flat_ext {V W ι : Type*} [AddCommGroup V] [Module K V] [Module A V] [Is
       have ha : a = 0 := toO_injective w σ hσ (by rw [← h2, map_zero])
       rw [ha, map_zero] at h1
       exact (IsUnit.mul_left_eq_zero (IsLocalization.map_units _ s)).1 h1)
-  have t10 : Module.Flat (Localization.AtPrime w.asIdeal) O := inferInstance
   let φL : V →ₗ[K] W := { toFun := φ, map_add' := φ.map_add, map_smul' := fun a x => hφ a x }
   have t11 : Module.Flat A O := Module.Flat.trans A (Localization.AtPrime w.asIdeal) O
   refine ⟨?_, fun L U => span_inf_span_tower (IsFractionRing.injective O Kf) φL b hb L U⟩

@@ -190,7 +190,6 @@ theorem finrank_eq {M : ℕ} {Λ : Lt E n} (h : Λ ∈ Vset E n M) : Module.finr
 omit [IsCMField E] in
 theorem proj {Λ : Lt E n} (h : Λ.FG) : Module.Projective (𝓞 E) Λ := by
   have : Module.Finite (𝓞 E) Λ := Module.Finite.iff_fg.mpr h
-  have : Module.Flat (𝓞 E) Λ := inferInstance
   have : Module.FinitePresentation (𝓞 E) Λ := Module.finitePresentation_of_finite _ _
   exact Module.Flat.projective_of_finitePresentation
 

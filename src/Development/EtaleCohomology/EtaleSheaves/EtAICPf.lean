@@ -19,7 +19,6 @@ theorem EtAIC_of (hS : Split) (hD : DomOpen) : LateralTheory.E.t_E1Cut.EtAIC := 
   intro T C _ _ _ _ _ hT
   obtain ⟨n, e, he, hdom⟩ := hS T C hT
   refine ⟨n, e, he, fun j => ?_⟩
-  have : Algebra.Etale C (Localization.Away (e j)) := inferInstance
   have : Algebra.Etale T (Localization.Away (e j)) := Algebra.Etale.comp T C _
   have h := hD T (Localization.Away (e j)) hT
   rwa [IsScalarTower.algebraMap_eq T C (Localization.Away (e j))] at h

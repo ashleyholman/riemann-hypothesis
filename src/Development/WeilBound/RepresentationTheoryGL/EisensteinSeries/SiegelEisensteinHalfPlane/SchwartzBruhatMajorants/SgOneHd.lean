@@ -314,7 +314,6 @@ variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algeb
 theorem exists_delta (h : IsCMExt F E σ) :
     ∃ (δ : E) (d : F), δ ≠ 0 ∧ σ δ = -δ ∧ algebraMap F E d = δ ^ 2 := by
   have : Algebra.IsQuadraticExtension F E := { finrank_eq_two' := h.2.2.1 }
-  have : IsGalois F E := inferInstance
   have hσ := GlobalTheory.LFun.InertChart.conj_conj h
   have hne := GlobalTheory.LFun.InertChart.conj_ne h
   obtain ⟨e, he⟩ : ∃ e, σ e ≠ e := by
@@ -1107,7 +1106,6 @@ theorem jtop : JTop := by
         x.1 * Units.map A.σ.toMonoidHom x.1 * Units.map ν.toMonoidHom (Matrix.GeneralLinearGroup.det x.2)) ⁻¹' {1} :=
       Set.ext fun x => Iff.rfl
     rw [e]; exact isClosed_singleton.preimage hf
-  haveI : SecondCountableTopology (Rˣ × GL (ι ⊕ ι) 𝔸[F]) := inferInstance
   exact ⟨hjGL.subtype_mk _, inferInstance, hcl.isClosedEmbedding_subtypeVal.locallyCompactSpace,
     Topology.IsEmbedding.subtypeVal.secondCountableTopology⟩
 

@@ -1049,10 +1049,8 @@ theorem UpperTheory.V.Pa.BC.chain_tens :
   let φ : B ⊗[O] O' ≃ₐ[B] O' ⊗[O] B := Algebra.TensorProduct.commRight O B O'
   haveI : Module.Finite B (O' ⊗[O] B) := Module.Finite.equiv φ.toLinearEquiv
   haveI : Module.Free B (O' ⊗[O] B) := Module.Free.of_equiv φ.toLinearEquiv
-  haveI : Module.FaithfullyFlat O O' := inferInstance
   haveI : Module.FaithfullyFlat B (O' ⊗[O] B) :=
     Module.FaithfullyFlat.of_linearEquiv B (B ⊗[O] O') φ.symm.toLinearEquiv
-  haveI : FaithfulSMul B (O' ⊗[O] B) := inferInstance
   exact UpperTheory.V.Pa.BC.chain_lift B (O' ⊗[O] B) h p e hp he
 end -- clump:auto
 end -- clump:auto

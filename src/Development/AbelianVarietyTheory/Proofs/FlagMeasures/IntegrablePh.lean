@@ -170,7 +170,6 @@ theorem isContRep_of_kernel (hA : KernelA) : ∀ (B : RowsAut) (d : InfinitePlac
   intro B d h hd hn hl hb T hT y C hC h0
   obtain ⟨-, hK, hinv, -⟩ := hA B d h hd hn hl hb
   obtain ⟨hT2, hL, hS, -⟩ := GlobalTheory.CongTop.adelic_topology B.I
-  have : BorelSpace B.I.GA := inferInstance
   have : IsFiniteMeasureOnCompacts (B.I.muA B.μf) := by
     unfold AutInst.muA; infer_instance
   refine ⟨?_, fun γ hγ x => ?_, ?_⟩
@@ -341,7 +340,6 @@ theorem integrable_ph (B : RowsAut) (d : InfinitePlace B.I.F → ℝ) (h : ℝ) 
 theorem kernelB : KernelB := by
   intro B d h hd hn hdec hb hfin T hT
   obtain ⟨hT2, hL, hS, -⟩ := GlobalTheory.CongTop.adelic_topology B.I
-  have : BorelSpace B.I.GA := inferInstance
   have : (Measure.pi fun v => Formalism.REAL.muG (B.I.ε v)).IsHaarMeasure := Measure.pi.isHaarMeasure _
   have : (B.I.muA B.μf).IsHaarMeasure := Measure.prod.instIsHaarMeasure _ _
   obtain ⟨-, -, -, hP⟩ := _root_.GlobalTheory.GlobProj.globalProj_holds B d hd (integrable_ph B d h hd hdec hb)

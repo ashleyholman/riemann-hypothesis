@@ -32,8 +32,6 @@ open GlobalTheory.CechPic
 
 theorem isIso_of_factor {X Y Z : Scheme.{0}} (y : X ⟶ Z) (j : Z ⟶ Y) [Mono j] [Flat (y ≫ j)]
     [Surjective (y ≫ j)] [QuasiCompact (y ≫ j)] : IsIso j := by
-  have : IsRegularEpi (y ≫ j) := inferInstance
-  have : StrongEpi (y ≫ j) := inferInstance
   have : StrongEpi j := strongEpi_of_strongEpi y j
   exact isIso_of_mono_of_strongEpi j
 

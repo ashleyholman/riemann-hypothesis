@@ -312,12 +312,9 @@ theorem emb_Tt : MeasurableEmbedding (Tt S γ w e) := by
     unfold Tt
     exact measurable_fst.prodMk (meas_Tx S hγ hd hZw hpos e)
   have hi : Function.Injective (Tt S γ w e) := inj_Tt S hγ hd hZw hpos e he
-  haveI i1 : StandardBorelSpace (C2.Lstidx w → ℂ) := inferInstance
   haveI i2 : StandardBorelSpace (Mt k r) := inferInstance
-  haveI i3 : StandardBorelSpace (G.UT (r + 1) → ℂ) := inferInstance
   haveI i4 : StandardBorelSpace (C2.LPidx w → ℂ) := inferInstance
   haveI i5 : StandardBorelSpace (RR k r w) := inferInstance
-  haveI i6 : StandardBorelSpace ((C2.Lstidx w → ℂ) × RR k r w) := inferInstance
   exact hm.measurableEmbedding hi
 
 end main
@@ -469,10 +466,6 @@ theorem ae_good : ∀ᵐ q ∂(nuR S w μ0 μ0'), Matrix.of q.1.1 ∈ UWset k r 
   have : IsFiniteMeasureOnCompacts S.μW' := ⟨fun K hK => S.haarW'.finite_compact K hK⟩
   have : IsFiniteMeasureOnCompacts μ0 := ⟨fun K hK => hμ0.finite_compact K hK⟩
   have : IsFiniteMeasureOnCompacts μ0' := ⟨fun K hK => hμ0'.finite_compact K hK⟩
-  have t1 : SFinite S.μW := inferInstance
-  have t2 : SFinite μ0 := inferInstance
-  have t5 : SFinite S.μW' := inferInstance
-  have t6 : SFinite μ0' := inferInstance
   have hW : ∀ᵐ a ∂S.μW, Matrix.of a ∈ UWset k r S.z :=
     ae_iff.2 S.haarW.conc
   have hW' : ∀ᵐ a ∂S.μW', Matrix.of a ∈ UWset k r S.z' :=
@@ -641,7 +634,6 @@ theorem orb_int [CompleteSpace Wp] {c1 c2 : NNReal} (hc1 : 0 < c1) (hc2 : 0 < c2
   have : IsFiniteMeasureOnCompacts S.μW' := ⟨fun K hK => S.haarW'.finite_compact K hK⟩
   have : IsFiniteMeasureOnCompacts μ0 := ⟨fun K hK => hμ0.finite_compact K hK⟩
   have : IsFiniteMeasureOnCompacts μ0' := ⟨fun K hK => hμ0'.finite_compact K hK⟩
-  have t1 : SFinite S.μW := inferInstance
   have t2 : SFinite μ0 := inferInstance
   have t5 : SFinite S.μW' := inferInstance
   have t6 : SFinite μ0' := inferInstance

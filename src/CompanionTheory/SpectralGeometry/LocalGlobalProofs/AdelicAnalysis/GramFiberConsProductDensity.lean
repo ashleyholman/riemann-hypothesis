@@ -96,11 +96,7 @@ theorem lintegral_Uset_eq_Mid : ∀ (F E : Type) [Field F] [NumberField F] [Fiel
   haveI := hBorel n M
   haveI := hBorel (n + 1) (M + 1)
   haveI := hBorel 1 (M + 1)
-  haveI : SigmaFinite (coordK R b lam) := inferInstance
-  haveI : SigmaFinite (coordW R b lam n M) := inferInstance
-  haveI : SigmaFinite (m₁ (hermScal R σ (algebraMap F R t))) := inferInstance
   haveI : BorelSpace (HermR R σ n) := ⟨rfl⟩
-  haveI : SFinite (Measure.pi fun _ : Fin n => coordK R b lam) := inferInstance
   have hm : ∀ S, SFinite (m' S) := fun S => inferInstance
   have hUm : MeasurableSet (Unt σ R n) := hUo.measurableSet
   have hB : MeasurableSet B₀ := D.hB₀.measurableSet
@@ -114,9 +110,6 @@ theorem lintegral_Uset_eq_Mid : ∀ (F E : Type) [Field F] [NumberField F] [Fiel
       f p.1 p.2.1 p.2.2 := by
     have hcm : Measurable (fun p : HA R σ (blockOne (algebraMap F E t) J) × (Fin (n + 1) → Fin (M + 1) → R ⊗[F] E) =>
         actW R σ (blockOne (algebraMap F E t) J) p.1 p.2) := by
-      haveI : SecondCountableTopology (Fin (n + 1) → Fin (M + 1) → R ⊗[F] E) := inferInstance
-      haveI : OpensMeasurableSpace (Fin (n + 1) → Fin (M + 1) → R ⊗[F] E) := inferInstance
-      haveI : OpensMeasurableSpace (HA R σ (blockOne (algebraMap F E t) J)) := inferInstance
       haveI : OpensMeasurableSpace (HA R σ (blockOne (algebraMap F E t) J) × (Fin (n + 1) → Fin (M + 1) → R ⊗[F] E)) :=
         Prod.opensMeasurableSpace
       exact hc.measurable

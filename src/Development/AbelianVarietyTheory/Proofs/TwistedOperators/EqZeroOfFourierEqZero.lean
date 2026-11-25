@@ -30,7 +30,6 @@ theorem polish : PolishSpace G := by
   haveI : IsUniformAddGroup G := isUniformAddGroup_of_addCommGroup
   haveI : CompleteSpace G := IsRightUniformAddGroup.completeSpace_of_weaklyLocallyCompactSpace G
   haveI : (uniformity G).IsCountablyGenerated := IsUniformAddGroup.uniformity_countably_generated
-  haveI : TopologicalSpace.IsCompletelyMetrizableSpace G := inferInstance
   infer_instance
 
 def bchar (χ : A → G → ℂ) (hc : ∀ a, Continuous (χ a)) (hn : ∀ a x, ‖χ a x‖ = 1) (a : A) : G →ᵇ ℂ :=

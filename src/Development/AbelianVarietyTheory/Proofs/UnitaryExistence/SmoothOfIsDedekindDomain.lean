@@ -69,7 +69,6 @@ theorem isSmoothAt_of_ne_bot (k : Type) [Field k] [IsAlgClosed k] (B : Type) [Co
     simp
   have hinj : Function.Injective (algebraMap k[X] B) := transcendental_iff_injective.mp htr
   have : FaithfulSMul k[X] B := (faithfulSMul_iff_algebraMap_injective _ _).mpr hinj
-  have : Module.Flat k[X] B := inferInstance
   have : Algebra.FiniteType k[X] B := .of_restrictScalars_finiteType k _ _
   have : Algebra.FinitePresentation k[X] B :=
     (Algebra.FinitePresentation.of_finiteType (R := k[X]) (A := B)).mp ‹_›

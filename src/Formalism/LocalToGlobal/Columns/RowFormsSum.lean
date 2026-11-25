@@ -124,7 +124,6 @@ theorem rf_cs_split (H : LevFam.Split ι ΛP ΛK Λ0) (hinj : ∀ a : ↥Λ0.grp
   classical
   let _ := hP.fintypeCl
   let _ := hK.fintypeCl
-  have : Finite ↥Λ0.grp := inferInstance
   have : Finite (FormG ΛP ⧸ rf_subN ΛP ΛK) := Finite.of_equiv _ (rf_cosetEquiv H hinj)
   have hinjP : Function.Injective sP.rep := fun c c' hc => by rw [← sP.spec c, hc, sP.spec]
   have hinjK : Function.Injective sK.rep := fun c c' hc => by rw [← sK.spec c, hc, sK.spec]

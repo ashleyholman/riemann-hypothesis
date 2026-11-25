@@ -15,9 +15,6 @@ theorem cellMult_pos {O : Type} [CommRing O] [Module.Finite ℤ O] (bar : O → 
   unfold cellMult
   set M := balForms bar X ⧸ Submodule.span ℤ (Set.range δ)
   set T := Submodule.torsion ℤ M
-  haveI : IsNoetherian ℤ (LinearMap.BilinForm ℤ X) := inferInstance
-  haveI : Module.Finite ℤ M := inferInstance
-  haveI : IsNoetherian ℤ M := inferInstance
   haveI : IsNoetherian ℤ T := isNoetherian_of_submodule_of_noetherian ℤ M T inferInstance
   haveI : Module.Finite ℤ T := ⟨IsNoetherian.noetherian ⊤⟩
   haveI : AddGroup.FG T := by

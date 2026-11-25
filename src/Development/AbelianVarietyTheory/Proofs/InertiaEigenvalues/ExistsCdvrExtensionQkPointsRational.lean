@@ -120,7 +120,6 @@ theorem exists_cdvr_ext_rational : ∀ (T : Formalism.L2.Pj.CDVR) (D : DegPre T.
   have h₁ : FiniteDimensional (FractionRing T.V) (IntermediateField.adjoin (FractionRing T.V) {π}) :=
     IntermediateField.finiteDimensional_adjoin fun y _ => Algebra.IsIntegral.isIntegral y
   let M₂ := M ⊔ IntermediateField.adjoin (FractionRing T.V) {π}
-  have h₂ : FiniteDimensional (FractionRing T.V) M₂ := inferInstance
   let π₂ : M₂ := ⟨π, (le_sup_right : _ ≤ M₂) (IntermediateField.mem_adjoin_simple_self _ π)⟩
   have hπ₂ : π₂ ^ N = algebraMap (FractionRing T.V) M₂ (algebraMap T.V _ ϖ) := Subtype.ext hπ
   obtain ⟨W, _, _, _, _, _, _, _, hc, hfin, hinj, -, hint, -⟩ :=

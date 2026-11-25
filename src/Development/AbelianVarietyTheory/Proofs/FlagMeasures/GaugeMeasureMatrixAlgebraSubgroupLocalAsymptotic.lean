@@ -160,7 +160,6 @@ theorem _root_.GlobalTheory.GaugeSubHaar.isGaugeSub_haar : ∀ (n : ℕ) (ε : F
     rw [← hmap, hme.map_apply]
     exact (hS.isClosedEmbedding_subtypeVal.isCompact_preimage hK).measure_lt_top⟩
   haveI : LocallyCompactSpace S := hS.isClosedEmbedding_subtypeVal.locallyCompactSpace
-  haveI : SecondCountableTopology (_root_.Formalism.REAL.UJ ε) := inferInstance
   haveI : SecondCountableTopology S := TopologicalSpace.Subtype.secondCountableTopology _
   refine ⟨inferInstance, hfinμ, fun μ' hμ' => ?_⟩
   obtain ⟨hmap', hinv', hfin', -⟩ := comap_subtype_val_haar_properties S hS d μ' hμ'

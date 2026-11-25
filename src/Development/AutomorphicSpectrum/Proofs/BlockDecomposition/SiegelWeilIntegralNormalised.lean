@@ -30,8 +30,6 @@ theorem fubini_starN : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Num
     (hCl n).isClosedEmbedding_subtypeVal.isEmbedding.secondCountableTopology
   have := hdx.1
   have := hdb.1
-  have : SFinite dx := inferInstance
-  have : SFinite db := inferInstance
   set Th := fouH σ ψ db τ with hTh
   set S : HermR (AF F) σ n := hermOf (AF F) σ T hT with hS
   obtain ⟨hψc, hψn, -⟩ := hψ

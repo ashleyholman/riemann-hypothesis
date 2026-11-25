@@ -763,7 +763,6 @@ theorem unipotent_orbit_measurable : MeasUOg := by
 theorem unipotent_orbit_count : CountUOg := by
   intro F E _ _ _ _ _ v r g _
   haveI := PI.LocMassTypM.sc_tensV (E := E) v
-  haveI : SecondCountableTopology (UIdx r → Fv F v ⊗[F] E) := inferInstance
   have hB : IsOpen (UOgS (E := E) v g r : Set (UIdx r → Fv F v ⊗[F] E)) := isOpen_uog v r g
   rw [← Set.countable_univ_iff]
   have hd : (Set.univ : Set ((UIdx r → Fv F v ⊗[F] E) ⧸ UOgS (E := E) v g r)).PairwiseDisjoint

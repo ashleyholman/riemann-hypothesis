@@ -774,10 +774,8 @@ theorem lattice_line (K : Type) [Field K] [NumberField K] (n : ℕ) (F : HermLat
 theorem short_vector_of_submodule : LineOfLargeDegree.Statement → ∀ (L : Type) [Field L] [NumberField L] (B : HermitianBundle.{0} L) (F : Submodule (𝓞 L) B.carrier), F ≠ ⊥ → ∃ (L' : Type) (_ : Field L') (_ : NumberField L') (_ : Algebra L L') (x : (B.baseChange L').carrier), x ≠ 0 ∧ B.slope F - 1 / 2 * Real.log (Module.finrank (𝓞 L) B.carrier) - 1 ≤ -mean L' (fun σ => Real.log (Real.sqrt (((B.baseChange L').metric.form σ).inner ((1 : ComplexAt σ) ⊗ₜ[𝓞 L'] x) ((1 : ComplexAt σ) ⊗ₜ[𝓞 L'] x) : ℂ).re)) := by
   intro hS L _ _ B F hF
   classical
-  haveI : Module.IsTorsionFree (𝓞 L) B.carrier := inferInstance
   haveI : Module.IsTorsionFree (𝓞 L) F :=
     Function.Injective.moduleIsTorsionFree F.subtype Subtype.val_injective (fun _ _ => rfl)
-  haveI : Module.Finite (𝓞 L) F := inferInstance
   set i : ℕ := B.rank F with hi
   set f : Fin i → F := (HermitianBundle.exists_linearIndependent_rank B F).choose with hfdef
   have hf : LinearIndependent (𝓞 L) f := (HermitianBundle.exists_linearIndependent_rank B F).choose_spec

@@ -78,7 +78,6 @@ theorem mem_of_forall_rat_functional (E : Type) [Field E] [NumberField E] (a : �
     z ∈ A := by
   haveI : Module.Finite (𝓞 E) A := Module.Finite.iff_fg.2 hfg
   haveI : Module.Finite ℤ A := Module.Finite.trans (𝓞 E) A
-  haveI : Module.Free ℤ A := inferInstance
   let b := Module.Free.chooseBasis ℤ A
   let f : A →ₗ[ℤ] (Fin a → E) := A.subtype.restrictScalars ℤ
   have hli : LinearIndependent ℤ (f ∘ b) :=

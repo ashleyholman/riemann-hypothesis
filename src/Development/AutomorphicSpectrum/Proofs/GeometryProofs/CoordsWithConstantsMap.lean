@@ -934,7 +934,6 @@ theorem exists_away_basis (S T K L : Type) [CommRing S] [CommRing T] [Field K] [
         (∀ i, z' (Fin.castAdd r i) = algebraMap T T' (algebraMap S T (z i))) ∧
         LinearIndependent T' (fun i => KaehlerDifferential.D ℚ T' (z' i)) ∧
         Submodule.span T' (Set.range fun i => KaehlerDifferential.D ℚ T' (z' i)) = ⊤ := by
-  haveI : Algebra.IsSmoothAt S P := inferInstance
   obtain ⟨g, hg, hstd⟩ := Algebra.IsSmoothAt.exists_notMem_isStandardSmooth S P
   refine ⟨g, hg, ?_⟩
   intro T' _ _ _ _ _ _ _
@@ -947,7 +946,6 @@ theorem exists_away_basis (S T K L : Type) [CommRing S] [CommRing T] [Field K] [
       ← IsScalarTower.algebraMap_apply T T' L]
   let f : Localization.Away g ≃ₐ[T] T' := IsLocalization.algEquiv (Submonoid.powers g) _ _
   haveI : Algebra.IsStandardSmooth S T' := Algebra.IsStandardSmooth.of_algEquiv (f.restrictScalars S)
-  haveI : Algebra.Smooth S T' := inferInstance
   have hsm : Algebra.Smooth ℚ T' := Algebra.Smooth.comp ℚ S T'
   refine ⟨hsm, ?_⟩
   obtain ⟨m, w, hli', hsp'⟩ : ∃ (m : ℕ) (w : Fin m → T'),

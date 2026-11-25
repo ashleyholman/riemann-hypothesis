@@ -63,7 +63,6 @@ theorem exists_section {Z : Scheme.{0}} {Ω : Type} [Field Ω] [IsAlgClosed Ω]
   obtain ⟨z, -, hz⟩ := (isClosed_univ (X := Z)).exists_closed_singleton Set.univ_nonempty
   rw [isClosed_singleton_iff_isClosedImmersion] at hz
   set g : Spec (Z.residueField z) ⟶ Spec (CommRingCat.of Ω) := Z.fromSpecResidueField z ≫ f with hg
-  have : IsIntegralHom g := inferInstance
   have : IsIso (Spec.preimage g) := by
     rw [ConcreteCategory.isIso_iff_bijective]
     refine IsAlgClosed.ringHom_bijective_of_isIntegral _ ?_

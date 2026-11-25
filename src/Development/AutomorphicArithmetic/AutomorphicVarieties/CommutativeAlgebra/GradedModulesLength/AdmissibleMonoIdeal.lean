@@ -971,7 +971,6 @@ private theorem length_localization_bound {O B L P I : Type} [CommRing O] [IsDom
       | zero => rw [map_zero]; exact zero_mem _
       | add f g _ _ hf hg => rw [map_add]; exact add_mem hf hg
       | smul b f _ hf => rw [hlc]; exact Submodule.smul_mem _ _ hf
-  have hfree : Module.Free O (LinearMap.range lc) := inferInstance
   have hrk : Module.finrank O (LinearMap.range lc) = Fintype.card I := by
     apply le_antisymm
     · have h1 : Module.rank O (LinearMap.range lc) ≤ Module.rank O (I → FractionRing O) := Submodule.rank_le _

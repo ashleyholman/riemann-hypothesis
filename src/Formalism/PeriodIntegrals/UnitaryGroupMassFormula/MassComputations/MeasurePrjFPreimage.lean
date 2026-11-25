@@ -380,8 +380,6 @@ theorem measure_prjF_preimage (M : MeasW σ J P) (hM : M.IsTextNorm) (S : Set (H
   haveI := hM.2.2.1
   haveI : SecondCountableTopology (Hsub (Af F) σ J P) :=
     TopologicalSpace.Subtype.secondCountableTopology _
-  haveI : SigmaCompactSpace (Hsub (Af F) σ J P) := inferInstance
-  haveI : SigmaFinite M.μHf := inferInstance
   have hmeas : Measurable (splitA σ J) := (continuous_splitA_u σ J).measurable
   let T : Set (HA (Ainf F) σ J × HA (Af F) σ J) := univ ×ˢ (Subtype.val '' S)
   have hT : MeasurableSet T := MeasurableSet.univ.prod (hHf.subtype_image hS)

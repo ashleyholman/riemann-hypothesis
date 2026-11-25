@@ -45,7 +45,6 @@ noncomputable def genKer [IsLocalRing P] (z : Matrix ι ι P) (m : ι → P) (c 
   carrier := {f | ∃ s : MvPolynomial ι P, s ∉ (maximalIdeal P).map (C : P →+* MvPolynomial ι P) ∧
     s * C f ∈ chartIdeal z m c}
   zero_mem' := ⟨1, (Ideal.ne_top_iff_one _).1 (Ideal.IsPrime.ne_top (by
-    have : (maximalIdeal P).IsPrime := inferInstance
     exact isPrime_map_C _)), by simp⟩
   add_mem' := by
     rintro a b ⟨s, hs, ha⟩ ⟨t, ht, hb⟩

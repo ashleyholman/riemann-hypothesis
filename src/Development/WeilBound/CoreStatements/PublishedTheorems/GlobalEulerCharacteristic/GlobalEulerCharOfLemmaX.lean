@@ -384,7 +384,6 @@ theorem exists_prime_to_part (ℓ : ℕ) [Fact ℓ.Prime]
   generalize (gsOpenSubgroup S hL : Subgroup (galUnramifiedOutside K.1 ℚ̄ S)) = U at hN hle hcyc hUi hUo ⊢
   generalize (gsOpenSubgroup S hL' : Subgroup (galUnramifiedOutside K.1 ℚ̄ S)) = W at hle hcyc ⊢
   have : U.FiniteIndex := ⟨hUi⟩
-  have : (U.subgroupOf W).FiniteIndex := inferInstance
   have : Finite (W ⧸ U.subgroupOf W) := Subgroup.finite_quotient_of_finiteIndex
   have : IsCyclic (W ⧸ U.subgroupOf W) := hcyc
   obtain ⟨g, hg⟩ := hcyc.exists_generator

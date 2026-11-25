@@ -555,7 +555,6 @@ theorem eventually_testFn_mul_inverse_eq : ∀ (F E : Type) [NontriviallyNormedF
   intro F E _ _ _ _ hU A φ' hφ a ha
   haveI : LocallyCompactSpace F := hU.lcF
   haveI : ProperSpace F := ProperSpace.of_locallyCompactSpace F
-  haveI : CompleteSpace F := inferInstance
   obtain ⟨hunit, hinv⟩ := eventually_isUnit_and_tendsto_inverse F A.K
   have hC : IsCompact (tsupport φ') := hφ.2
   have H1 : ∀ᶠ w in 𝓝 (1 : A.K), ∀ q ∈ tsupport φ', φ' (q.1 * w, q.2) = φ' q := by

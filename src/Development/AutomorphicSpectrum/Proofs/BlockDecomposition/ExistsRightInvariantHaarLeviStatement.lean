@@ -207,7 +207,6 @@ theorem isReduced_tensor {F E R : Type} [Field F] [Field E] [Algebra F E] [Modul
     haveI : Algebra.FormallyUnramified F E := (Algebra.FormallyUnramified.iff_isSeparable F E).2 inferInstance
     haveI : Algebra.FormallyUnramified (R ⧸ I.asIdeal) ((R ⧸ I.asIdeal) ⊗[F] E) :=
       Algebra.FormallyUnramified.base_change (R ⧸ I.asIdeal)
-    haveI : Algebra.EssFiniteType (R ⧸ I.asIdeal) ((R ⧸ I.asIdeal) ⊗[F] E) := inferInstance
     haveI : IsReduced ((R ⧸ I.asIdeal) ⊗[F] E) :=
       Algebra.FormallyUnramified.isReduced_of_field (R ⧸ I.asIdeal) _
     exact isReduced_of_injective (Algebra.TensorProduct.comm F E (R ⧸ I.asIdeal)).toRingEquiv.toRingHom
@@ -391,7 +390,6 @@ theorem exists_split_reduced {κ : Type} [Finite κ]
   haveI : IsArtinianRing (R ⊗[F] E) := IsArtinianRing.of_finite R _
   haveI : IsReduced (AF F) := isReduced_adele F
   haveI : IsReduced R := isReduced_of_split p.toRingHom hp e hpe hker
-  haveI : Algebra.IsSeparable F E := inferInstance
   refine ⟨R ⊗[F] E, inferInstance, (Algebra.TensorProduct.map p (AlgHom.id F E)).toRingHom,
     e ⊗ₜ 1, inferInstance, isReduced_tensor, Algebra.TensorProduct.map_surjective _ _ hp Function.surjective_id,
     ?_, fun y hy => ?_, fun k => ?_⟩

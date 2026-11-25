@@ -208,7 +208,6 @@ theorem ProdExact_holds : Formalism.L2.SG.Pf.NcReal.ProdExact := by
   choose κH hκH0 hκHT hκH using fH u μH hH
   choose κH' hκH'0 hκH'T hκH' using fH u' μH' hH'
   have hSL : ∀ v, Formalism.L2.SG.Pf.NcReal.muSL (μH v) (μN v) = (κN v * κH v) • muSv X u v := fun v => by
-    haveI : SigmaFinite (muHv X u v) := inferInstance
     unfold Formalism.L2.SG.Pf.NcReal.muSL muSv
     rw [hκN v, hκH v, Measure.prod_smul_left, Measure.prod_smul_right, smul_smul, Measure.map_smul]
     all_goals exact measurable_mul.aemeasurable

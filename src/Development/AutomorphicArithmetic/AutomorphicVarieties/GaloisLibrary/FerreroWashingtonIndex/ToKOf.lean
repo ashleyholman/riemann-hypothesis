@@ -183,7 +183,6 @@ theorem UpperTheory.V.FW.sepChar :
     rw [hc]; push_cast; rw [h0, zero_mul]
   haveI : NeZero ((Monoid.exponent D : ℕ) : k) := ⟨hexp⟩
   haveI : NeZero (Monoid.exponent D) := ⟨fun h0 => hexp (by rw [h0]; simp)⟩
-  haveI : HasEnoughRootsOfUnity k (Monoid.exponent D) := inferInstance
   have hcard : Nat.card (D →* kˣ) = Nat.card D :=
     CommGroup.card_monoidHom_of_hasEnoughRootsOfUnity D k
   haveI : Finite (D →* kˣ) := Nat.finite_of_card_ne_zero (by rw [hcard]; exact Nat.card_pos.ne')

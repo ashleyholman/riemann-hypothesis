@@ -131,7 +131,6 @@ theorem comp_eq_of_extending_section {X U W G T : Scheme.{0}} [IsReduced X] (j :
   let f₂ := pullback.snd (a ≫ g) ((a ≫ g) ≫ r)
   have hc : f₁ ≫ a ≫ g = f₂ ≫ (a ≫ g) ≫ r := pullback.condition
   let t := f₂ ≫ a ≫ g
-  have : IsOpenImmersion t := inferInstance
   have : IsReduced (pullback (a ≫ g) ((a ≫ g) ≫ r)) := isReduced_of_isOpenImmersion t
   have := isDominant_pullback_fst_of_isOpenMap j t t.isOpenEmbedding.isOpenMap
   have hd : pullback.fst t j ≫ f₂ ≫ a ≫ g = pullback.snd t j ≫ j := pullback.condition
@@ -416,13 +415,9 @@ theorem fibre_fixed_of_finite_order_of_level_fixed : Out.Laws → Out.Laws2 → 
   let p : X' ⟶ C.X := pullback.fst _ _
   let s' : X' ⟶ Sp (RZ H S (l.A * l.M)) := pullback.snd _ _
   have hps : p ≫ C.s = s' ≫ spMap b := pullback.condition
-  have : Etale p := inferInstance
-  have : IsFinite p := inferInstance
-  have : Surjective p := inferInstance
   have : IsLocallyNoetherian X' := LocallyOfFiniteType.isLocallyNoetherian p
   have hN : Geo.Tor.IsNormalScheme X' := forall_isDomain_and_isIntegrallyClosed_stalk_of_smooth p C.normal
   let ρ' : X' ⟶ X' := pullback.map _ _ _ _ ρ.hom (𝟙 _) (𝟙 _) (by rw [hρs, Category.comp_id]) (by simp)
-  have : IsIso ρ' := inferInstance
   have hρ'p : ρ' ≫ p = p ≫ ρ.hom := pullback.lift_fst _ _ _
   have hρ's : ρ' ≫ s' = s' := (pullback.lift_snd _ _ _).trans (Category.comp_id _)
 
@@ -446,7 +441,6 @@ theorem fibre_fixed_of_finite_order_of_level_fixed : Out.Laws → Out.Laws2 → 
     have := Xo.smooth
     have : Smooth Xo.s := SmoothOfRelativeDimension.smooth D.dim Xo.s
     have : IsLocallyNoetherian Xo.X := LocallyOfFiniteType.isLocallyNoetherian Xo.s
-    have : Etale q := inferInstance
     exact LocallyOfFiniteType.isLocallyNoetherian q
   let r' : U' ⟶ U' := pullback.map _ _ _ _ ρ' r.hom ρ.hom hρ'p.symm hj
   have hr'j : r' ≫ j' = j' ≫ ρ' := pullback.lift_fst _ _ _

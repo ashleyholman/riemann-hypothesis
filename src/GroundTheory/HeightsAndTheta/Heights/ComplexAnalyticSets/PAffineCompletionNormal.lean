@@ -151,8 +151,6 @@ theorem isStablyFree_localizedModule {R : Type u} [CommRing R] [IsLocalRing R] [
         (LinearMap.fst A _ _) (LinearMap.ext fun _ ↦ rfl)
     have hKsf := ih K hK hKproj
     obtain ⟨N, _, _, _, _, hNfree⟩ := IsStablyFree.exist_free_prod A (LocalizedModule T K)
-    have : Module.Finite R K := inferInstance
-    have : Module.Finite A (LocalizedModule T K) := inferInstance
     have : Module.Free A (LocalizedModule T M × (LocalizedModule T K × N)) := by
       exact Module.Free.of_equiv ((LinearEquiv.prodAssoc A (LocalizedModule T M)
         (LocalizedModule T K) N).symm.trans

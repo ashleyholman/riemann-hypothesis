@@ -36,7 +36,6 @@ theorem exists_lift_of_etale_surjective : ∀ (K : Type) [Field K] [IsAlgClosed 
   intro K _ _ X Y π hE hS x
   haveI := hE
   haveI := hS
-  have : LocallyOfFiniteType π := inferInstance
   let t : Sp K := IsLocalRing.closedPoint K
   obtain ⟨w, hw⟩ := π.surjective (x t)
   obtain ⟨y, -, -⟩ := Scheme.Pullback.exists_preimage_pullback w t hw

@@ -77,7 +77,6 @@ theorem UpperTheory.exists_frame_factorization_of_trivial_on_inertia :
     let H' : Subgroup (upl Ω L) := (r.ker.map (galEmb ℚ L Ω)).comap (upl Ω L).subtype
     have hcl : IsClosed (H' : Set (upl Ω L)) := by
       have hk : IsClosed (r.ker : Set (G L Ω)) := by
-        haveI : T2Space (Qbar l) := inferInstance
         haveI : T2Space (Matrix (Fin n) (Fin n) (Qbar l)) :=
           (inferInstance : T2Space (Fin n → Fin n → Qbar l))
         haveI h2 : T2Space (GL (Fin n) (Qbar l)) := inferInstance

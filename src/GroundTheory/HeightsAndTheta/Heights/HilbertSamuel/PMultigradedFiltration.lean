@@ -459,7 +459,6 @@ theorem exists_chain [Module.Finite (MRing ι F) M] (hM : IsMultigrading ι M pi
           N j.succ = N j.castSucc ⊔ Submodule.span (MRing ι F) {x j} ∧
           (q j).IsPrime ∧ IsMultiHomogIdeal (q j) ∧
           ∀ s : MRing ι F, s • x j ∈ N j.castSucc ↔ s ∈ q j := by
-  haveI : IsNoetherian (MRing ι F) M := inferInstance
   haveI : WellFoundedGT (Submodule (MRing ι F) M) := isNoetherian_iff'.mp inferInstance
   intro N₀
   induction N₀ using WellFoundedGT.induction with

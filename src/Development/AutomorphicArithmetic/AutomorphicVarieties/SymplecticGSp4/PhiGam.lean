@@ -73,7 +73,6 @@ theorem UpperTheory.V.GradeZeroInterpolatingElement.phiGam :
     rintro v ⟨p, hp, hv⟩
     exact Set.mem_biUnion hp hv
   have hS : ContainsAbove hfin.toFinset l := fun v hv => hfin.mem_toFinset.2 ⟨l, hD.l_mem, hv⟩
-  haveI hK : CompactSpace (GS Ω (hfin.toFinset : Set (HeightOneSpectrum (𝓞 ℚ)))) := inferInstance
   haveI : NeZero (l ^ 1) := ⟨pow_ne_zero _ hl.out.ne_zero⟩
   have key : PhiCond (GS Ω (hfin.toFinset : Set (HeightOneSpectrum (𝓞 ℚ)))) (l ^ 1) :=
     UpperTheory.V.Alg.phiCond_of_finite_H1 (l ^ 1) fun M _ _ _ _ _ ρ hρ => by

@@ -831,7 +831,6 @@ theorem lintegral_prod_le : ∀ (W : Type) [Fintype W] (n M : ℕ), ∃ C : ℝ,
   have hπ : (Measure.pi fun _ : W × Fin M => (volume : Measure (EuclideanSpace ℂ (Fin n)))).IsAddHaarMeasure := by
     haveI : ∀ _ : W × Fin M, (volume : Measure (EuclideanSpace ℂ (Fin n))).IsAddHaarMeasure :=
       fun _ => inferInstance
-    haveI : MeasurableAdd (EuclideanSpace ℂ (Fin n)) := inferInstance
     first
       | exact Measure.pi.isAddHaarMeasure _
   have hνπ := Measure.isAddLeftInvariant_eq_smul (Measure.map L (volume : Measure (TupV W n M)))
@@ -1699,7 +1698,6 @@ theorem hua_integrable : ∀ (n : ℕ) (s : ℝ), (n : ℝ) - 1 / 2 < s → ∀ 
     intro s _ ν hν
     have : IsFiniteMeasure ν := by
       haveI : Finite (hermC 0) := by
-        haveI : Subsingleton (Matrix (Fin 0) (Fin 0) ℂ) := inferInstance
         exact Finite.of_subsingleton
       haveI : CompactSpace (hermC 0) := Finite.compactSpace
       exact ⟨isCompact_univ.measure_lt_top⟩

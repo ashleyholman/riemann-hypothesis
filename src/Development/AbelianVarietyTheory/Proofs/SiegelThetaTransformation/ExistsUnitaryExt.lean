@@ -34,10 +34,8 @@ theorem exists_right_inv {E : Type} [Field E] [NumberField E] {κ ι : Type} [Fi
   let j : (ι → 𝓞 E) →ₗ[𝓞 E] (ι → E) := (Algebra.linearMap (𝓞 E) E).compLeft ι
   let q : (ι → E) →ₗ[E] (ι → E) := LinearMap.id - W.vecMulLinear ∘ₗ g
   let φ : (ι → 𝓞 E) →ₗ[𝓞 E] (ι → E) := (q.restrictScalars (𝓞 E)) ∘ₗ j
-  haveI : Module.Finite (𝓞 E) (LinearMap.range φ) := inferInstance
   haveI : Module.FinitePresentation (𝓞 E) (LinearMap.range φ) :=
     Module.finitePresentation_of_finite _ _
-  haveI : Module.Flat (𝓞 E) (LinearMap.range φ) := inferInstance
   haveI : Module.Projective (𝓞 E) (LinearMap.range φ) :=
     Module.Flat.projective_of_finitePresentation
   obtain ⟨s, hs⟩ := Module.projective_lifting_property φ.rangeRestrict LinearMap.id

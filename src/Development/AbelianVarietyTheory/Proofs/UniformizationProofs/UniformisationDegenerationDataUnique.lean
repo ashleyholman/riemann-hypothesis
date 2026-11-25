@@ -143,7 +143,6 @@ theorem identification_linear : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLoca
     have := (U'.gt n).q_affine
     have e₁ := map_pG (U.gt n) _ _ (hl.q_lin n a)
     have e₂ := map_pG (U'.gt n) _ _ (hl'.q_lin n a)
-    have hE : Epi (U'.gt n).q.left := inferInstance
     refine (cancel_epi (U'.gt n).q.left).1 ?_
     refine (Category.assoc _ _ _).symm.trans (Eq.trans ?_ (Category.assoc _ _ _))
     change (U'.gt n).pG.left ≫ _ = (U'.gt n).pG.left ≫ _

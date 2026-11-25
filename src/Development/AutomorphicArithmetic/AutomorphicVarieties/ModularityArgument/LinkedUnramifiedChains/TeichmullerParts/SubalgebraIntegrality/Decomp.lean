@@ -223,7 +223,6 @@ variable {l : ℕ} [Fact l.Prime] {L Ω : Type} [Field L] [NumberField L] [IsCMF
   [IsAlgClosure L Ω]
 
 theorem unrOf (s : HidaSetting l L Ω) : GlobalTheory.BCT.Unr L := fun w => by
-  haveI : IsGalois (Lp L) L := inferInstance
   have h := GlobalTheory.RayFromArtin.unramIn_of_ine (K := Lp L) (Ω := Ω) L (v := w.under (𝓞 (Lp L))) fun A hA σ hσ => by
     obtain ⟨g, rfl⟩ := s.unr A _ hA hσ
     ext x

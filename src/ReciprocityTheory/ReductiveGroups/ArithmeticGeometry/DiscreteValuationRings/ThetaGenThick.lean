@@ -128,7 +128,6 @@ theorem vanish_of_mul {X : Scheme.{0}} (p : X ⟶ Spec (CommRingCat.of R)) [Flat
   set π₁ := pullback.fst p (tq J₁)
   set π₂ := pullback.fst p (tq J₂)
   have : IsClosedImmersion (tq J₁) := IsClosedImmersion.spec_of_surjective _ Ideal.Quotient.mk_surjective
-  have : IsClosedImmersion π₁ := inferInstance
   refine TopCat.Presheaf.section_ext (pullback p (tq J₂)).sheaf _ _ 0 fun z hz => ?_
 
   have hemb : Topology.IsEmbedding π₁.base := π₁.isClosedEmbedding.isEmbedding

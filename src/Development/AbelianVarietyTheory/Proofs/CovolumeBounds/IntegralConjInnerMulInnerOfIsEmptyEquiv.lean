@@ -50,7 +50,6 @@ theorem eq_haarProb (μ : Measure K) [μ.IsHaarMeasure] [IsProbabilityMeasure μ
 
 instance haarProb_isMulRightInvariant : (haarProb K).IsMulRightInvariant := by
   refine ⟨fun g => ?_⟩
-  have : IsProbabilityMeasure (Measure.map (fun x => x * g) (haarProb K)) := inferInstance
   exact eq_haarProb _
 
 instance haarProb_isInvInvariant : (haarProb K).IsInvInvariant := by

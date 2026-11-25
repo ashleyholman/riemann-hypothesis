@@ -1035,7 +1035,6 @@ theorem spMap_mono_of_fraction [IsDomain V] [Algebra V K] [IsFractionRing V K] (
     {A : Type} [CommRing A] (f₁ f₂ : Sp A ⟶ Sp K) (e : f₁ ≫ spMap VK = f₂ ≫ spMap VK) : f₁ = f₂ := by
   subst hVK
   haveI : Epi (CommRingCat.ofHom (algebraMap V K)) := IsLocalization.epi (nonZeroDivisors V) K
-  haveI : Mono (Scheme.Spec.map (CommRingCat.ofHom (algebraMap V K)).op) := inferInstance
   exact (cancel_mono (Scheme.Spec.map (CommRingCat.ofHom (algebraMap V K)).op)).1 e
 
 theorem eq_bcTan_left [IsDomain V] [Algebra V K] [IsFractionRing V K] (hVK : VK = algebraMap V K)
@@ -1420,7 +1419,6 @@ theorem exists_frame {K : Type} [Field K] (V : Subring K) [IsDomain V] [IsPrinci
   set N : Submodule V U := Submodule.span V (Set.range u) ⊓ W.restrictScalars V with hN
   have hfg : (Submodule.span V (Set.range u)).FG := Submodule.fg_span (Set.finite_range u)
   haveI : Module.Finite V (Submodule.span V (Set.range u)) := Module.Finite.iff_fg.2 hfg
-  haveI : IsNoetherian V (Submodule.span V (Set.range u)) := inferInstance
   have hNfg : N.FG := by
     have := IsNoetherian.noetherian (R := V) (M := Submodule.span V (Set.range u))
       (N.comap (Submodule.span V (Set.range u)).subtype)

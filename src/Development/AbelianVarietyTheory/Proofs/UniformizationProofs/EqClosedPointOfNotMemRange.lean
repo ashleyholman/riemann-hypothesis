@@ -89,7 +89,6 @@ theorem exists_hom_specStalk {W Y T X : Scheme.{u}} (j : W ⟶ Y) [IsSchemeTheor
   have := flat_fromSpecStalk Y (g' p)
   have key : pullback.fst h h ≫ T.fromSpecStalk p ≫ g = pullback.snd h h ≫ T.fromSpecStalk p ≫ g := by
     let q := pullback.fst h h ≫ h ≫ Y.fromSpecStalk (g' p)
-    have hq : Flat q := inferInstance
     refine hom_ext_of_isSchemeTheoreticallyDominant (pullback.fst q j) (terminal.from X) ?_
       (terminal.hom_ext _ _)
     have e₁ := H _ (pullback.fst q j ≫ pullback.fst h h ≫ T.fromSpecStalk p) (pullback.snd q j) (by
@@ -193,7 +192,6 @@ theorem main : ∀ (R : Type) [CommRing R] [IsDomain R] [IsDiscreteValuationRing
   have := isOpenImmersion_jK R
   have : IsDominant (jK R) := DVR.isDominant_jK
   have := IsSchemeTheoreticallyDominant.of_isDominant (jK R)
-  have : IsDominant (pullback.fst X'.hom (jK R)) := inferInstance
   have hf : f.left ≫ pullback.snd X.hom (jK R) = pullback.snd X'.hom (jK R) := Over.w f
   obtain ⟨ψ, h₁, h₂⟩ := exists_extension (pullback.fst X'.hom (jK R)) X'.hom X.hom
     (f.left ≫ pullback.fst X.hom (jK R))

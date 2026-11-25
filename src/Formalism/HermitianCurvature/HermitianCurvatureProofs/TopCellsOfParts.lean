@@ -207,19 +207,6 @@ private theorem iter_lemma {X Y V : Type*} [NormedAddCommGroup X] [NormedSpace �
 
 theorem topCells_of (hZ : ZjAffine) (hST : SizesTop) (hIT : IntTop) : TopCells := by
   intro p s β σ d hd hs q e he
-  haveI i1 : OpensMeasurableSpace (Fin s → Fin p → ℂ) := inferInstance
-  haveI i2 : OpensMeasurableSpace (Fin p → Fin s → ℂ) := inferInstance
-  haveI i3 : OpensMeasurableSpace (LW σ → ℂ) := inferInstance
-  haveI i4 : OpensMeasurableSpace (G.UT p → ℂ) := inferInstance
-  haveI i5 : SecondCountableTopology (Fin s → Fin p → ℂ) := inferInstance
-  haveI i6 : SecondCountableTopology (Fin p → Fin s → ℂ) := inferInstance
-  haveI i7 : SecondCountableTopology (LW σ → ℂ) := inferInstance
-  haveI i8 : SecondCountableTopology (G.UT p → ℂ) := inferInstance
-  haveI i9 : OpensMeasurableSpace ((Fin s → Fin p → ℂ) × (Fin p → Fin s → ℂ)) := inferInstance
-  haveI i10 : OpensMeasurableSpace ((LW σ → ℂ) × (G.UT p → ℂ)) := inferInstance
-  haveI i11 : SecondCountableTopology ((Fin s → Fin p → ℂ) × (Fin p → Fin s → ℂ)) := inferInstance
-  haveI i12 : SecondCountableTopology ((LW σ → ℂ) × (G.UT p → ℂ)) := inferInstance
-  haveI : OpensMeasurableSpace (XiH p s σ) := inferInstance
   have h5N : (0 : ℝ) < 5 * ((p + s : ℕ) : ℝ) := by positivity
   have hepos : ∀ i ≤ q, 0 ≤ e i := by
     intro i hi

@@ -409,7 +409,6 @@ theorem exists_abelianByPrimePower_not_dvd_card_fixedBy₂ :
     obtain ⟨j, hj⟩ := hpow g g.2
     exact ⟨j, by rw [Subgroup.mem_subgroupOf]; simpa using hj⟩
   · intro hd
-    haveI : Finite (G ⧸ H) := inferInstance
     have h1 := _root_.GlobalTheory.card_fixedBy_quotient_eq_relIndex_of_pRegular G (x ^ p ^ k) p H _ hk hCH hpow hN
     have h2 := _root_.GlobalTheory.card_fixedBy_pow_prime_pow_modEq G (G ⧸ H) x p k hp
     apply hidx _ hN

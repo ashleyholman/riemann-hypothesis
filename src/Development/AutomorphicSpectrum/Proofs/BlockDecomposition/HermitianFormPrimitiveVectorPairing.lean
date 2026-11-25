@@ -22,10 +22,8 @@ theorem isReduced_tens (F E : Type) [Field F] [NumberField F] [Field E] [NumberF
     (R : Type) [CommRing R] [Algebra F R] [IsReduced R] : IsReduced (R ⊗[F] E) := by
   haveI : FiniteDimensional F E := Module.Finite.of_restrictScalars_finite ℚ F E
   haveI : Algebra.FormallyEtale F E := Algebra.FormallyEtale.of_isSeparable F E
-  haveI : Algebra.FormallySmooth F E := inferInstance
   haveI : Algebra.FinitePresentation F E := Algebra.FinitePresentation.of_finiteType.mp inferInstance
   haveI : Algebra.Smooth F E := ⟨inferInstance, inferInstance⟩
-  haveI : Algebra.Smooth R (R ⊗[F] E) := inferInstance
   exact GlobalTheory.isReduced_algebra_of_smooth_of_isReduced R (R ⊗[F] E)
 
 theorem isUnit_det_JR {F E : Type} [Field F] [Field E] [Algebra F E] (R : Type) [CommRing R]

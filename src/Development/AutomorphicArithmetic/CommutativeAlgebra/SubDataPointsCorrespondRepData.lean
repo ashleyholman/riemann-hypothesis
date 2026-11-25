@@ -143,8 +143,6 @@ private theorem exists_factor {A B C : Over S} [GrpObj A] [IsCommMonObj A] [GrpO
     ∃ φ : B ⟶ C, IsMonHom φ ∧ ψ₁ ≫ φ = ψ₂ := by
   obtain ⟨_, _, _, _⟩ := GlobalTheory.abelianScheme_id_pow_finite_etale_surjective S A n hA hn
   obtain ⟨_, _, _, _⟩ := GlobalTheory.abelianScheme_id_pow_finite_etale_surjective S B n hB hn
-  haveI : EffectiveEpi (Over.Hom.left ((𝟙 A) ^ n)) := inferInstance
-  haveI : EffectiveEpi (Over.Hom.left ((𝟙 B) ^ n)) := inferInstance
   have e1 : ψ₁.left ≫ ψ₁'.left = Over.Hom.left ((𝟙 A) ^ n) := by rw [← Over.comp_left, h1]
   have e2 : ψ₁'.left ≫ ψ₁.left = Over.Hom.left ((𝟙 B) ^ n) := by rw [← Over.comp_left, h2]
   haveI : Epi (ψ₁.left ≫ ψ₁'.left) := by rw [e1]; infer_instance

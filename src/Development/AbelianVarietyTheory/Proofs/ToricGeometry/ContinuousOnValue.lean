@@ -159,7 +159,6 @@ theorem exists_holUnif :
       (f : Γ(Y, U)), valAt' x (φ ⁻¹ᵁ U) ((φ.app U).hom f) = valAt' (x ≫ φ) U f :=
     fun X x => (H1 X x).2.2.2.1
   haveI hTG : IsTopologicalGroup (𝟙_ (Over (Sp ℂ)) ⟶ P.A) := H3 P.A
-  haveI : IsTopologicalAddGroup (Additive (𝟙_ (Over (Sp ℂ)) ⟶ P.A)) := inferInstance
   haveI : CompactSpace (Additive (𝟙_ (Over (Sp ℂ)) ⟶ P.A)) := H4 P
   obtain ⟨W, σ, U, t, hW, h0W, hσ0, hUa, hσ, ht, ho, hD⟩ := H5 P.A P.g P.smoothDim 1
   have hσ' : HolOn W σ := hσ
@@ -193,7 +192,6 @@ theorem exists_holUnif :
     have hn1 : 1 ≤ n := Nat.one_le_iff_ne_zero.mpr hn
     obtain ⟨hfin, -, hsur, -⟩ := hmul (Sp ℂ) P n hn1
     haveI : Smooth P.A.hom := P.isAb.smooth
-    haveI : LocallyOfFiniteType P.A.hom := inferInstance
     haveI : JacobsonSpace P.A.left := LocallyOfFiniteType.jacobsonSpace P.A.hom
     set y : 𝟙_ (Over (Sp ℂ)) ⟶ P.A := Additive.toMul a with hy
     have hyh : y.left ≫ P.A.hom = 𝟙 _ := Over.w y

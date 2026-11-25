@@ -994,7 +994,6 @@ theorem lieMult_tensor_of_finrank {O O' M R k : Type} [CommRing O] [CommRing O']
     convert h using 2 with i
     fin_cases i
     exact hβ c)
-  have : Module.Finite k (k ⊗[O] M) := inferInstance
   have := lieMult_of_param (b₀.pullback (spMap β) A) (rightAction k O O' M) Φ inj tan add smul
     (fun x y => by
       rw [rightAction_apply, eqv]

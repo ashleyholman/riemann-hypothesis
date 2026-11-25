@@ -27,7 +27,6 @@ theorem isAdicComplete_map_of_finite {O : Type} [CommRing O] [IsNoetherianRing O
 theorem finite_quotient_map_of_finite {O : Type} [CommRing O] (I : Ideal O) [Finite (O ⧸ I)]
     (R : Type) [CommRing R] [Algebra O R] [Module.Finite O R] :
     Finite (R ⧸ I.map (algebraMap O R)) := by
-  have : Module.Finite O (R ⧸ I.map (algebraMap O R)) := inferInstance
   have : Module.Finite (O ⧸ I) (R ⧸ I.map (algebraMap O R)) :=
     Module.Finite.of_restrictScalars_finite O (O ⧸ I) _
   exact Module.finite_of_finite (O ⧸ I)

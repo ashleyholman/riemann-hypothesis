@@ -51,7 +51,6 @@ private theorem index_zpowers_neg_one_units_zmod_two_pow_dvd (e : ℕ) :
 private theorem index_ker_toUnitHom_dvd_orderOf_dirichletCharacter (n : ℕ) [NeZero n] (χ : DirichletCharacter ℂ n) :
     (MulChar.toUnitHom χ).ker.index ∣ orderOf χ := by
   rw [Subgroup.index_ker]
-  haveI : IsCyclic (MulChar.toUnitHom χ).range := inferInstance
   rw [← IsCyclic.exponent_eq_card]
   refine Monoid.exponent_dvd_of_forall_pow_eq_one fun x => ?_
   obtain ⟨_, u, rfl⟩ := x

@@ -99,7 +99,6 @@ theorem conj_ne (h : IsCMExt F E σ) : ¬ ∀ x, σ x = x := fun h1 => by
 theorem exists_conj_sub_unit (h : IsCMExt F E σ) (hw : IsInertAt F E v w) :
     ∃ x : 𝓞 E, w.valuation E (σ x - x) = 1 := by
   have : Algebra.IsQuadraticExtension F E := { finrank_eq_two' := h.2.2.1 }
-  have : IsGalois F E := inferInstance
   have : w.asIdeal.LiesOver v.asIdeal := ⟨congrArg (·.asIdeal) ((under_eq_iff hw w).2 rfl).symm⟩
   have := v.isPrime
   have := w.isPrime

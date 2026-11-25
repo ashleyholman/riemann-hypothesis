@@ -19,9 +19,7 @@ theorem UpperTheory.V.Th.AnnihilatorQuotientFinite.closedSub :
   intro O T _ _ _ _ _ _ I _ S t ht
   let q : T →ₐ[O] T ⧸ I := Ideal.Quotient.mkₐ O I
   have hq : Function.Surjective q := Ideal.Quotient.mkₐ_surjective O I
-  haveI : IsNoetherian O (T ⧸ I) := inferInstance
   haveI : IsNoetherianRing (T ⧸ I) := isNoetherian_of_tower O inferInstance
-  haveI : Algebra.IsIntegral O (T ⧸ I) := inferInstance
   set K : Ideal (T ⧸ I) := (maximalIdeal T).map q with hK
   set J : Ideal (T ⧸ I) := (maximalIdeal O).map (algebraMap O (T ⧸ I)) with hJ
   have hKJ : K ≤ J.radical := by

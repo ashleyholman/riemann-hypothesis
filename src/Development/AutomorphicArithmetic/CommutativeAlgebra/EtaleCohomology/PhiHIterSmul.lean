@@ -334,7 +334,6 @@ private theorem liftClosed {W P : Scheme.{0}} (ι : W ⟶ P) [IsClosedImmersion 
     (v : Spec (CommRingCat.of U') ⟶ W) (h : v ≫ ι = Spec.map (CommRingCat.ofHom φ) ≫ u) :
     ∃ w : Spec (CommRingCat.of U) ⟶ W, w ≫ ι = u := by
   let g := pullback.snd ι u
-  have hcl : IsClosedImmersion g := inferInstance
   let v' : Spec (CommRingCat.of U') ⟶ pullback ι u := pullback.lift v (Spec.map (CommRingCat.ofHom φ)) h
   have hv' : v' ≫ g = Spec.map (CommRingCat.ofHom φ) := pullback.lift_snd _ _ _
   obtain ⟨hA, hsurj⟩ := IsClosedImmersion.isAffine_surjective_of_isAffine g
@@ -423,7 +422,6 @@ private theorem eqLocus₀ {Z Y : Scheme.{0}} (p : Z ⟶ Y) [Etale p] [IsSeparat
       ∀ (X : Scheme.{0}) (t : X ⟶ A), (∀ x, t x ∈ O) ↔ t ≫ f = t ≫ g := by
   let Δ := pullback.diagonal p
   have hΔ : IsOpenImmersion Δ := sec_open (pullback.fst p p) Δ (pullback.diagonal_fst p)
-  have hc : IsClosedImmersion Δ := inferInstance
   let c := pullback.lift f g hfg
   have cf : c ≫ pullback.fst p p = f := pullback.lift_fst _ _ _
   have cs : c ≫ pullback.snd p p = g := pullback.lift_snd _ _ _
@@ -544,7 +542,6 @@ private theorem etale_snd (l : ℕ) (Y : Scheme.{0}) (T : Corr l Y) (X : Scheme.
   generalize IsOpenImmersion.lift U.ι x r = x' at hk
   subst hk
   have sq := (IsPullback.of_hasPullback (T.p ∣_ U) x').paste_horiz (isPullback_morphismRestrict T.p U).flip
-  have h1 : Etale (pullback.snd (T.p ∣_ U) x') := inferInstance
   have e : pullback.snd T.p (x' ≫ U.ι) = sq.isoPullback.inv ≫ pullback.snd (T.p ∣_ U) x' := by
     rw [Iso.eq_inv_comp]
     exact sq.isoPullback_hom_snd
@@ -576,7 +573,6 @@ private theorem finite_sec (l : ℕ) (Y : Scheme.{0}) (T : Corr l Y) (K : Type) 
   have het := etale_snd l Y T _ y hu
   have hfin : IsFinite T.p := T.fin
   let r := pullback.snd T.p y
-  have hr : IsFinite r := inferInstance
   let pt : Spec (CommRingCat.of K) := IsLocalRing.closedPoint K
   have hsub : ∀ a b : Spec (CommRingCat.of K), a = b := fun a b => Subsingleton.elim a b
   have hF : Finite (pullback T.p y : Scheme.{0}) := by

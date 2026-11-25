@@ -858,8 +858,6 @@ theorem exists_domain (hE : IsTotallyComplex E) {k : ℕ} (hk : 1 ≤ k) (Λ : S
       rw [detNorm_mul]; exact mul_pos (detNorm_pos_of_mem_autGL hγ) hx
   refine ⟨D, hDm, hcov, fun γ hγ hne => ?_, fun F hF => ?_⟩
   · haveI : BorelSpace (Fin k → ℂ) := inferInstance
-    haveI : BorelSpace (Fin k → Fin k → ℂ) := inferInstance
-    haveI : BorelSpace (InfinitePlace E → Fin k → Fin k → ℂ) := inferInstance
     haveI : MeasurableSpace.CountablyGenerated (InfinitePlace E → Fin k → Fin k → ℂ) := inferInstance
     haveI : MeasurableSpace.SeparatesPoints (InfinitePlace E → Fin k → Fin k → ℂ) := inferInstance
     haveI : MeasurableSpace.CountablySeparated (MatInf E k) :=

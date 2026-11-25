@@ -121,7 +121,6 @@ theorem datum_character_eq_zpow {E : Type} [Field E] [NumberField E] [IsCMField 
   haveI : NeZero M := ⟨hM.ne'⟩
   haveI : Module.Projective ℤ Dw.La := by
     obtain ⟨s, hs⟩ := Module.projective_def'.1 Dw.proj
-    haveI : Module.Free ℤ (Dw.La →₀ 𝓞 E) := inferInstance
     exact Module.Projective.of_split (s.restrictScalars ℤ)
       ((Finsupp.linearCombination (𝓞 E) id).restrictScalars ℤ)
       (LinearMap.ext fun x => LinearMap.congr_fun hs x)

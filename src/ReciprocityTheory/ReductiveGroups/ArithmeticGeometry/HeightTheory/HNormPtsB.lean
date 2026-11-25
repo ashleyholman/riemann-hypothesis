@@ -59,7 +59,6 @@ theorem fib (hd : d.AxH 𝒜) (h : d.S1) (c : ι) (sg : K →+* ℂ) (t : Fin d.
   letI iB : Algebra (KTf K d.D d.N) ℂ := (tauPev sg _ hpt).toAlgebra
   obtain ⟨hfd, hrank⟩ := d.omS_finite hd h c
   haveI := hfd
-  haveI : CharZero (KTf K d.D d.N) := inferInstance
   haveI : Algebra.IsIntegral (KTf K d.D d.N) (OmS (Ω c) d.D d.N) := Algebra.IsIntegral.of_finite _ _
   haveI : Algebra.IsSeparable (KTf K d.D d.N) (OmS (Ω c) d.D d.N) := Algebra.IsSeparable.of_integral _ _
   have hy : ∀ i, y (Fin.natAdd (d.N + 1) i) ≠ 0 := by

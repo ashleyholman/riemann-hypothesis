@@ -402,7 +402,6 @@ theorem compactSpace_of_isProjOver {R : Type} [CommRing R] {X : Scheme.{0}} {f :
     (h : IsProjOver f) : CompactSpace X := by
   obtain ⟨m, i, hi, rfl⟩ := h
   have := isProper_str R m
-  have : IsProper (i ≫ PSpace.str R m) := inferInstance
   exact QuasiCompact.compactSpace_of_compactSpace (i ≫ PSpace.str R m)
 
 theorem exists_pullCart_agree : ∀ (k : Type) [Field k] [CharZero k] (Y₀ Y₁ : Scheme.{0}) [IsIntegral Y₀] [IsIntegral Y₁] [IsLocallyNoetherian Y₀] [IsLocallyNoetherian Y₁] (q : Y₀ ⟶ Sp k) (n : ℕ) (t : Y₁ ⟶ Y₀) [IsDominant t] [SmoothOfRelativeDimension n q] [SmoothOfRelativeDimension n (t ≫ q)], IsProjOver (t ≫ q) → ∀ (U : Y₀.Opens), IsIso (t ∣_ U) → ∀ H : CartierDiv Y₁, ∃ H₀ : CartierDiv Y₀, ∀ y : Y₁, t y ∈ U → y ∉ (H - pullCart t H₀).supp := by

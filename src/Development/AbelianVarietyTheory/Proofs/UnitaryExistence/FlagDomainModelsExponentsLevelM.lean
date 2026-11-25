@@ -766,7 +766,6 @@ theorem exists_int_extension {L V : Type} [AddCommGroup L] [AddCommGroup V] [Mod
     [Module.IsTorsionFree ℤ V] (q : L →ₗ[ℤ] V) (f : L →ₗ[ℤ] ℚ)
     (hf : ∀ x, q x = 0 → ∃ n : ℤ, f x = n) :
     ∃ g : L →ₗ[ℤ] ℤ, ∀ x, q x = 0 → (g x : ℚ) = f x := by
-  haveI : Module.Finite ℤ (LinearMap.range q) := inferInstance
   haveI : Module.Free ℤ (LinearMap.range q) := Module.free_of_finite_type_torsion_free'
   obtain ⟨σ, hσ⟩ := Module.projective_lifting_property q.rangeRestrict LinearMap.id
     q.surjective_rangeRestrict

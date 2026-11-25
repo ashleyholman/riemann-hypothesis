@@ -842,7 +842,6 @@ theorem piTermA_of (h1 : GlobalTwistedTraceBound) (hθ : ThetaFixOf) (h2 : WtEx)
       rw [hFo.interior_eq]
       exact ⟨1, (Kf E n).one_mem⟩⟩
   let μf : Measure (GF E n) := Measure.haarMeasure K₀
-  haveI : μf.IsHaarMeasure := inferInstance
   have hμ1 : μf (Kf E n : Set (GF E n)) = 1 := Measure.haarMeasure_self (K₀ := K₀)
   obtain ⟨c₀, hc₀, hG⟩ := h1 E n μC μf μ
   refine ⟨c₀, hc₀, fun π hreg hd hl S hS Z hZ B τ hB hτ => ?_⟩

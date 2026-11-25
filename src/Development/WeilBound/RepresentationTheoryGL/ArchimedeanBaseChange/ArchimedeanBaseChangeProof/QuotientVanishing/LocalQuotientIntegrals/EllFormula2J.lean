@@ -202,7 +202,6 @@ theorem lintegral_kernel_ne_top [TopologicalSpace G] [IsTopologicalGroup G] [T2S
     ∫⁻ x in Fd, ∑' d : R, ‖χ x * φ (twConj θ x (ι d))‖ₑ ∂μ ≠ ∞ := by
   classical
   haveI : Countable ι.range := (Set.countable_range ι).to_subtype
-  haveI : MeasurableMul G := inferInstance
   set Ψ : G → ℝ≥0∞ := fun x => ∑' d : R, ‖χ x * φ (twConj θ x (ι d))‖ₑ with hΨ
   have hinv : ∀ γ ∈ ι.range, ∀ x, Ψ (γ * x) = Ψ x := by
     rintro _ ⟨r, rfl⟩ x
@@ -439,7 +438,6 @@ theorem unfold2_of (hM : Mahler) : Unfold2 := by
   let θR : Monoid.End (GL (Fin a) E × GL (Fin b) E) := (thetaE E a).prodMap (thetaE E b)
   haveI : DiscreteTopology ι.range := discreteTopology_prodMap
   haveI : Countable ι.range := by
-    haveI : SecondCountableTopology ι.range := inferInstance
     exact (TopologicalSpace.separableSpace_iff_countable).1 inferInstance
   have hι : Injective ι :=
     GlobalTheory.CompanionTheory.KerTwFin.injective_ratGL.prodMap GlobalTheory.CompanionTheory.KerTwFin.injective_ratGL

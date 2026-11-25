@@ -28,7 +28,6 @@ theorem secondCountable_GL (n : ℕ) : SecondCountableTopology (GL (Fin n) ℂ) 
 
 theorem isClosed_nilrad (W₁ W₂ : Submodule ℂ (Fin n → ℂ)) :
     IsClosed (nilrad W₁ W₂ : Set (Matrix (Fin n) (Fin n) ℂ)) := by
-  haveI : FiniteDimensional ℂ (Matrix (Fin n) (Fin n) ℂ) := inferInstance
   letI : NormedAddCommGroup (Matrix (Fin n) (Fin n) ℂ) := Matrix.normedAddCommGroup
   letI : NormedSpace ℂ (Matrix (Fin n) (Fin n) ℂ) := Matrix.normedSpace
   exact Submodule.closed_of_finiteDimensional (nilrad W₁ W₂)

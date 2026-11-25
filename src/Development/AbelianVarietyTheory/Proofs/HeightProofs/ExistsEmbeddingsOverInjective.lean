@@ -117,8 +117,6 @@ theorem exists_embeddings_over_injective (R A Ω : Type*) [CommRing R] [IsDomain
   let F := FractionRing R
   let _ : Algebra F Ω := FractionRing.liftAlgebra R Ω
   have : IsScalarTower R F Ω := FractionRing.isScalarTower_liftAlgebra R Ω
-  have : IsLocalization (Algebra.algebraMapSubmonoid A (nonZeroDivisors R)) Ω :=
-    inferInstance
   have : FiniteDimensional F Ω := Module.Finite.of_isLocalization R A (nonZeroDivisors R)
   refine ⟨Module.finrank F Ω, fun τ hτ => ?_⟩
   let _ : Algebra F ℂ := (IsFractionRing.lift hτ : F →+* ℂ).toAlgebra

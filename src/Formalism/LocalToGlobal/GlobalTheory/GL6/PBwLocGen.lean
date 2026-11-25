@@ -183,7 +183,6 @@ theorem exists_basis_atL {A : Submodule (𝓞 K) V} (hfg : A.FG)
       ∀ i, bK i = (b i : V) := by
   have := rl_pid l K
   have : Module.Finite (Rl l K) (atL l K A) := Module.Finite.iff_fg.2 (atL_fg l K hfg)
-  have : Module.Free (Rl l K) (atL l K A) := inferInstance
   let b := Module.Free.chooseBasis (Rl l K) (atL l K A)
   have hli : LinearIndependent (Rl l K) (fun i => ((b i : atL l K A) : V)) :=
     b.linearIndependent.map' (atL l K A).subtype (Submodule.ker_subtype _)

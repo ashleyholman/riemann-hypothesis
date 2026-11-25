@@ -216,7 +216,6 @@ theorem GlobalTheory.CompanionTheory.FinPresDescent.finitePresentation_of_finite
       Algebra.FinitePresentation R C := by
   intro R C D _ _ _ _ _ _ _ hfin hproj hff hfp
   have hinj : Function.Injective (algebraMap C D) := FaithfulSMul.algebraMap_injective C D
-  haveI : Algebra.FiniteType R D := inferInstance
   haveI : Algebra.FiniteType R C := _root_.UpperTheory.Reformulated.B.FiniteTypeDescent.main R C D hinj
   obtain ⟨k, f, hf⟩ := Algebra.FiniteType.iff_quotient_mvPolynomial''.1 ‹Algebra.FiniteType R C›
   letI : Algebra (MvPolynomial (Fin k) R) C := f.toRingHom.toAlgebra

@@ -88,7 +88,6 @@ theorem basisAtEx :
     rw [Module.Finite.iff_fg]
     refine ⟨s, ?_⟩
     rw [hN, ← hs, Submodule.span_span_of_tower]
-  have : Module.IsTorsionFree (locRing w) N := inferInstance
   let b := Module.Free.chooseBasis (locRing w) N
   let v : Module.Free.ChooseBasisIndex (locRing w) N → Fin d → K := fun i => (b i : Fin d → K)
   have hliA : LinearIndependent (locRing w) v := b.linearIndependent.map' N.subtype N.ker_subtype

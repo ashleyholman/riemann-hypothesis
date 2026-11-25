@@ -377,7 +377,6 @@ theorem UpperTheory.V.Ws.Po.finExt :
   haveI : FaithfulSMul A B := (faithfulSMul_iff_algebraMap_injective A B).mpr hφ
   haveI : FaithfulSMul A K := (faithfulSMul_iff_algebraMap_injective A K).mpr hfK
   haveI : IsScalarTower A V K := IsScalarTower.of_algebraMap_eq (fun _ => rfl)
-  haveI : Algebra.IsAlgebraic A B := inferInstance
   let y₀ : B →ₐ[A] K := (by
     refine @_root_.IsAlgClosed.lift _ _ _ _ _ _ _ _ _ _ _ ?_ ?_ ?_
     solve_by_elim* (maxDepth := 2) only [*,

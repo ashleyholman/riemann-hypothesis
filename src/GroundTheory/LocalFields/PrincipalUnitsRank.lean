@@ -371,7 +371,6 @@ theorem fg_range_padicLogLinear : (LinearMap.range (padicLogLinear (K := K) p)).
   set c : ℤ := e + 1 - e * e
   have : Module.Finite ℤ_[p] (valBallSubmodule (K := K) p c) :=
     (finite_and_finrank_valBallSubmodule (K := K) p c).1
-  have : IsNoetherian ℤ_[p] (valBallSubmodule (K := K) p c) := inferInstance
   have : IsNoetherian ℤ_[p] (LinearMap.range (padicLogLinear (K := K) p)) :=
     isNoetherian_of_le (range_padicLogLinear_le p)
   exact (Submodule.fg_top _).mp (IsNoetherian.noetherian ⊤)

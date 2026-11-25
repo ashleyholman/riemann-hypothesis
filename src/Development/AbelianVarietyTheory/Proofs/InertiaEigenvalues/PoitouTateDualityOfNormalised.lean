@@ -100,7 +100,6 @@ theorem exists_pow_card {k K : Type} [Field k] [Fintype k] [Field K] [Algebra k 
   let L := IntermediateField.adjoin k ({x} : Set K)
   haveI : FiniteDimensional k L := IntermediateField.adjoin.finiteDimensional hx
   haveI : Finite L := Module.finite_of_finite k
-  haveI : IsGalois k L := inferInstance
   obtain ⟨i, hi⟩ := (FiniteField.bijective_frobeniusAlgEquivOfAlgebraic_pow k L).2
     (σ.restrictNormal' L)
   refine ⟨i.1, ?_⟩
@@ -315,7 +314,6 @@ theorem cycMod_conjBack (l : ℕ) [Fact l.Prime] (r : ℕ) (g : G F Ω) :
 
 omit hA in
 theorem continuous_conjBack [Algebra.IsAlgebraic F Ω] : Continuous (conjBack σ τ hστ) := by
-  haveI : Algebra.IsIntegral F Ω := inferInstance
   refine continuous_of_continuousAt_one _ ?_
   rw [ContinuousAt, map_one]
   intro s hs

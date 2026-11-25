@@ -126,12 +126,6 @@ theorem exists_modulus_chi : ∀ (F E : Type) [Field F] [NumberField F] [Field E
     · exact (cN.comp hv).mul (continuous_snd.comp continuous_snd)
   haveI : μW.IsAddHaarMeasure := hW
   haveI : μA.IsAddHaarMeasure := hA
-  haveI : IsTopologicalAddGroup (Fin 1 → Fin M → AF F ⊗[F] E) := inferInstance
-  haveI : LocallyCompactSpace (Fin 1 → Fin M → AF F ⊗[F] E) := inferInstance
-  haveI : SecondCountableTopology (Fin 1 → Fin M → AF F ⊗[F] E) := inferInstance
-  haveI : SigmaFinite μW := inferInstance
-  haveI : SigmaFinite μA := inferInstance
-  haveI : (μW.prod μA).IsAddHaarMeasure := inferInstance
   obtain ⟨χ, hχc, hχ⟩ := _root_.GlobalTheory.CompanionTheory.Adelic.ModulusAction.exists_continuous_modulus ((Fin 1 → Fin M → AF F ⊗[F] E) × AF F) (μW.prod μA)
     (AF F ⊗[F] E)ˣ a hcont continuous_inv
     (by intro y; rw [ha]; simp)

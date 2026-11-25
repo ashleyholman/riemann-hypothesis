@@ -35,7 +35,6 @@ theorem exists_model_ringOfIntegers (hj : IsIntegral ℤ W.j) (h : HasRationalTo
     (M' : Type*) [Field M'] [Algebra M M'] :
     ∃ (C : VariableChange M') (W₀ : WeierstrassCurve (𝓞 M')),
       C • W.baseChange M' = W₀.baseChange M' ∧ W₀.Δ = 1 := by
-  have : IsIntegrallyClosedIn (𝓞 M) M := inferInstance
   obtain ⟨C, W₀, e, h₀⟩ := exists_integral_model (𝓞 M) ⟨⟨W.j, hj⟩, rfl⟩ h
   refine ⟨C.map (algebraMap M M'), W₀.map (algebraMap (𝓞 M) (𝓞 M')), ?_, by rw [map_Δ, h₀, map_one]⟩
   rw [WeierstrassCurve.baseChange, map_variableChange, e]

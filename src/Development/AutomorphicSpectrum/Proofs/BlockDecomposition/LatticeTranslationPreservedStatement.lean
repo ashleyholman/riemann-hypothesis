@@ -132,8 +132,6 @@ theorem cont_rmul (c : Mx D p p) : Continuous fun v : Mx D ρ p => v ⬝ c :=
 
 theorem cont_sub {X : Type*} [TopologicalSpace X] {f g : X → Mx D ρ p} (hf : Continuous f) (hg : Continuous g) :
     Continuous fun v => f v - g v := by
-  have h₁ : IsTopologicalRing (AE D) := inferInstance
-  have h₂ : IsTopologicalAddGroup (AE D) := inferInstance
   have h₃ : ContinuousSub (AE D) := IsTopologicalAddGroup.to_continuousSub
   exact continuous_matrix fun i j => (hf.matrix_elem i j).sub (hg.matrix_elem i j)
 

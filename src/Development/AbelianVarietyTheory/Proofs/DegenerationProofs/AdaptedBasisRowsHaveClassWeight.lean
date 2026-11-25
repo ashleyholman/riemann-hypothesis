@@ -144,7 +144,6 @@ theorem crd_carries (w : W0 U) {J : Type}
   obtain ⟨d, hd⟩ := exists_unit_carries U F k w a l ((top_le_iff_mem x _ y).2 m₀) y J₀ hJ
   obtain ⟨d₀, hd₀⟩ := toStk_onto y d.val
   have hd₁ : d₀ ≠ 0 := fun h0 => by
-    have : Nontrivial ((Sp F).presheaf.stalk y) := inferInstance
     rw [h0, map_zero] at hd₀
     exact Units.ne_zero _ hd₀.symm
   let r : Sp F ⟶ (UnifPre.GF (G := G) F).left := (lift (𝟙 (TFK (R := R) F)) a).left
@@ -277,7 +276,6 @@ theorem crd_iff {F : Type} [Field F] {X : Scheme.{0}} {H : LB X} {J : Type} (s :
   · rintro ⟨l, c, hz, hv⟩
     obtain ⟨d, hd⟩ := stk_onto z c.val
     have d0 : d ≠ 0 := fun h0 => by
-      have : Nontrivial ((Sp F).presheaf.stalk z) := inferInstance
       rw [h0, map_zero] at hd
       exact Units.ne_zero _ hd.symm
     refine ⟨l, Units.mk0 d d0, (top_le_iff_mem x _ z).2 hz, fun j => (toStk z).injective ?_⟩

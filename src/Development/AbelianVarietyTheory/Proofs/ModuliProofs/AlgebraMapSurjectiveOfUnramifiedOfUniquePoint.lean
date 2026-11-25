@@ -92,8 +92,6 @@ theorem nontrivial_tensor_of_mem_support (R C K : Type) [CommRing R] [AddCommGro
   haveI : IsScalarTower R p.asIdeal.ResidueField K := IsScalarTower.of_algebraMap_eq (by
     intro r
     exact (Ideal.ResidueField.lift_algebraMap ..).symm)
-  haveI : Nontrivial (K ⊗[p.asIdeal.ResidueField] (p.asIdeal.ResidueField ⊗[R] C)) :=
-    inferInstance
   exact (TensorProduct.AlgebraTensorModule.cancelBaseChange R p.asIdeal.ResidueField K K
     C).symm.toEquiv.nontrivial
 

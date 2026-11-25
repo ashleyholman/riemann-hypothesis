@@ -24,8 +24,6 @@ theorem isAbelianScheme_of_iso {S : Scheme.{0}} {A B : Over S} [GrpObj A] [GrpOb
   · rw [hw]; infer_instance
   · rw [hw]; infer_instance
   · rw [hw]
-    have hbc : MorphismProperty.IsStableUnderBaseChange (C := Scheme.{0})
-        @GeometricallyConnected := inferInstance
     have hri : MorphismProperty.RespectsIso (C := Scheme.{0}) @GeometricallyConnected :=
       MorphismProperty.IsStableUnderBaseChange.respectsIso
     exact (MorphismProperty.cancel_left_of_respectsIso @GeometricallyConnected _ _).2 this

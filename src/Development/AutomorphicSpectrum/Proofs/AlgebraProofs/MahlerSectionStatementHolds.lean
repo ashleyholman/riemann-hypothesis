@@ -931,8 +931,6 @@ theorem map_coefRows (h : HermNorm n) : ∃ a : ℝ≥0∞,
     LinearEquiv.ofBijective ((splitL h e).restrictScalars ℝ) ⟨hinj, splitL_surjective h⟩
   let Ψ := Ψl.toContinuousLinearEquiv
   have hΨ : ∀ π, Ψ π = (π 0, coefRows h π) := fun π => rfl
-  haveI : (volume : Measure (Fin n → ℂ)).IsAddHaarMeasure := inferInstance
-  haveI : (volume : Measure (Fin e × Fin n → ℂ)).IsAddHaarMeasure := inferInstance
   haveI : (volume : Measure ((Fin n → ℂ) × (Fin e × Fin n → ℂ))).IsAddHaarMeasure :=
     Measure.prod.instIsAddHaarMeasure _ _
   haveI : (volume : Measure (Fin (e + 1) → Fin n → ℂ)).IsAddHaarMeasure :=

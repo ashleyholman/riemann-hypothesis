@@ -139,9 +139,6 @@ theorem integral_haar_eq_zero_of_fibre_integrals_eq_zero :
   let φ : (P × Q) ≃ₜ H := e.toEquiv.toHomeomorphOfContinuousOpen hcont hopen
   let νP : Measure P := Measure.haar
   let νQ : Measure Q := Measure.haar
-  haveI : νP.IsHaarMeasure := inferInstance
-  haveI : νQ.IsHaarMeasure := inferInstance
-  haveI : (νP.prod νQ).IsHaarMeasure := inferInstance
   haveI : ((νP.prod νQ).map e).IsHaarMeasure :=
     e.isHaarMeasure_map (νP.prod νQ) φ.continuous φ.symm.continuous
   have hμeq := Measure.isMulLeftInvariant_eq_smul μ ((νP.prod νQ).map e)

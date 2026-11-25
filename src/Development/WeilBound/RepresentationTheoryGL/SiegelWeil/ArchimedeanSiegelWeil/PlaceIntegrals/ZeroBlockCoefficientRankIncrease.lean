@@ -84,7 +84,6 @@ theorem exists_covolOne (σ : E →ₐ[F] E) (hCM : IsCMExt F E σ) (n : ℕ) {d
       dA.map e = GroundTheory.Automorphic.GJMatrix.adeleMeasurePi F ∧ IsCovolOne dA := by
   obtain ⟨e, he, hB⟩ := exists_coordHomeoN σ hCM 1 n b
   obtain ⟨t1, -, -, -, -, -, -, -, -, -⟩ := GlobalTheory.CompanionTheory.SW.TopK.topTens_props F E σ hCM (AF F)
-  haveI : IsTopologicalAddGroup (Fin 1 → Fin n → AF F ⊗[F] E) := inferInstance
   let eA := e.toMeasurableEquiv
   let μ := GroundTheory.Automorphic.GJMatrix.adeleMeasurePi (K := F) (ι := Fin 1 × (Fin n × Fin d))
   have hadd : ∀ x y, e (x + y) = e x + e y := by
@@ -351,7 +350,6 @@ theorem measurable_stage (σ : E →ₐ[F] E) (hCM : IsCMExt F E σ) (R : Type) 
   obtain ⟨h1, h2, h3, h4, -⟩ := hR
   have hk := GlobalTheory.CompanionTheory.SW.TopK.topTens_props F E σ hCM R
   have hKf : IsHomeomorph (GlobalTheory.CompanionTheory.SW.WBox.cK (F := F) (E := E) R b) := hk.2.2.2.2.2.2.1 d b
-  haveI : SigmaFinite lam := inferInstance
   haveI := GlobalTheory.CompanionTheory.SW.WBox.sigmaFinite_coordK R hKf lam
   haveI : SFinite (coordW R b lam 1 n) := by unfold coordW; infer_instance
   exact Measurable.lintegral_prod_right (f := fun Y a => f (consA a Y))

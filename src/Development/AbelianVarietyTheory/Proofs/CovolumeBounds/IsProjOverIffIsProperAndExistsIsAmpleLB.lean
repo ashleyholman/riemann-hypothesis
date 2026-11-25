@@ -173,7 +173,6 @@ theorem IsAmpleLB.box {L : LB X} {M : LB Y} {N : LB Z} (hL : IsAmpleLB L) (hM : 
     nonzeroLocus_secPow _ hm] at hu
   refine ⟨n * m, Nat.mul_pos hn hm, u, hu.ge ⟨ht, hs⟩, ?_⟩
   have : IsAffine (nonzeroLocus s) := ha
-  have : IsAffineHom (((nonzeroLocus s).ι ≫ f) ≫ terminal.from S) := inferInstance
   have h₁ : IsAffineHom ((nonzeroLocus s).ι ≫ f) := .of_comp _ (terminal.from S)
   have h₂ : IsAffineHom ((p ⁻¹ᵁ nonzeroLocus s).ι ≫ q) := MorphismProperty.of_isPullback (P := @IsAffineHom)
     ((isPullback_morphismRestrict p (nonzeroLocus s)).paste_vert P) h₁
@@ -327,7 +326,6 @@ theorem IsAmpleLB.isQProjOver (h : IsAmpleLB L) (f : X ⟶ Sp R) [LocallyOfFinit
   obtain ⟨n, -, M, t, ht, H⟩ := h.exists_isImmersion f
   have := h.compactSpace
   have := isProper_str R M
-  have : QuasiCompact (toProj f t ht ≫ PSpace.str R M) := inferInstance
   exact ⟨M, _, H, .of_comp _ (PSpace.str R M), toProj_str f t ht⟩
 
 theorem isClosedImmersion_of_isProper {M : ℕ} (φ : X ⟶ PSpace R M) [IsImmersion φ]

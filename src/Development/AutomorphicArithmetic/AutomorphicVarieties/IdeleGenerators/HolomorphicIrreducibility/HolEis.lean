@@ -778,7 +778,6 @@ private theorem loc {φ : TR.Sm F 2} {Ψ : GA F 2 → ℂ} (h0 : Ψ ≠ 0) (hr :
   have hM1 : M φ = Φ := by simpa using hM 1
   have hΦ : Φ ∈ Hi.fixd (Hi.rtr ℂ _ ℂ) (K1 w c) := fun u hu => by rw [← hM, hf u hu, hM1]
   refine ⟨Function.ne_iff.2 ⟨Matrix.GeneralLinearGroup.map (pLoc F w) k, by simpa [Φ, hg'] using hg₀⟩, hΦ, ?_⟩
-  have : Finite (IsLocalRing.ResidueField (w.adicCompletionIntegers F)) := inferInstance
   have := Fintype.ofFinite (IsLocalRing.ResidueField (w.adicCompletionIntegers F))
   have hs := IsLocalRing.residue_surjective (R := w.adicCompletionIntegers F)
   have hS : Set.BijOn (IsLocalRing.residue _) ((Finset.univ.image (Function.surjInv hs) : Finset _) : Set (w.adicCompletionIntegers F))

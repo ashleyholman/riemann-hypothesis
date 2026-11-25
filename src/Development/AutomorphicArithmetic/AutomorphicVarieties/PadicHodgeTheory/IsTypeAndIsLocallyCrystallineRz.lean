@@ -386,7 +386,6 @@ theorem UpperTheory.V.Loc.isType_and_isLocallyCrystalline_rz :
       rw [← hL, ← hker]
       exact inf_le_left
     have h : D.Kv.1 ≤ L.1 := by
-      have : IsGalois ℚ_[l] (Om l) := inferInstance
       rw [← InfiniteGalois.fixedField_fixingSubgroup D.Kv.1, ← InfiniteGalois.fixedField_fixingSubgroup L.1]
       exact IntermediateField.fixedField_le hle
     choose x hx hb ht using fun a => R0.cr_char h (κ a) (τ a) (hκ a) (hτ a) (w a) (hw a) (hL ▸ hτ1 a)

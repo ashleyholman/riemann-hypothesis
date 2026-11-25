@@ -171,7 +171,6 @@ theorem main : (∀ (A : Type) [CommRing A] [IsLocalRing A] (J : Ideal A), IsNil
       refine hPG.2 ?_
       rw [hsnd]
       have := hB₀.geomConnected
-      have hst : MorphismProperty.IsStableUnderBaseChange (@GeometricallyConnected.{0}) := inferInstance
       have hRI : MorphismProperty.RespectsIso (@GeometricallyConnected.{0}) :=
         MorphismProperty.IsStableUnderBaseChange.respectsIso
       exact (MorphismProperty.cancel_left_of_respectsIso (@GeometricallyConnected.{0}) _ _).mpr this

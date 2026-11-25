@@ -205,7 +205,6 @@ theorem UpperTheory.Reformulated.B.RestrictAutomorphism.exists_alg :
                         W) ∧
                     ∀ (i j : Fin r) (n : ℕ), ∃ (m : ℕ), (0 : ℕ) < m ∧ (W i j).coeff n ^ p ^ m = (W i j).coeff n := by
   intro p hp G _ R _ ρ _ _ _ _ _ hopen r M hM hker
-  haveI : CharP (algPart p R) p := inferInstance
   obtain ⟨V, hV, hVeq⟩ := UpperTheory.Reformulated.B.WittVectorTrivializingMatrix.exists_alg (p := p) (restrictHom p ρ)
     (fun y m hm hy => (hopen y m hm (by simpa using congrArg Subtype.val hy)).mono
       fun g hg => Subtype.ext hg)

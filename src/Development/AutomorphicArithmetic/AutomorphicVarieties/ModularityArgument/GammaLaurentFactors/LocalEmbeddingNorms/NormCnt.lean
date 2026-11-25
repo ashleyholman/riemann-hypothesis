@@ -158,7 +158,6 @@ private theorem exists_eta [IsGalois K L] (hl : (Module.finrank K L).Prime) :
   haveI : NeZero (Module.finrank K L) := ⟨hl.ne_zero⟩
   have hc : Nat.card (L ≃ₐ[K] L) = Module.finrank K L := IsGalois.card_aut_eq_finrank K L
   haveI : IsCyclic (L ≃ₐ[K] L) := isCyclic_of_prime_card hc
-  haveI : IsMulCommutative (L ≃ₐ[K] L) := inferInstance
   let ι : (L ≃ₐ[K] L) →* ℂˣ := (rootsOfUnity (Module.finrank K L) ℂ).subtype.comp
     (mulEquivOfPrimeCardEq hc (Complex.card_rootsOfUnity _)).toMonoidHom
   have hι : Function.Injective ι := Subtype.val_injective.comp (MulEquiv.injective _)

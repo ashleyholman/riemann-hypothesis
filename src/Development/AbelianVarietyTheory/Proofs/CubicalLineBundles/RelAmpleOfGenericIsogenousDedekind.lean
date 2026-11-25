@@ -39,7 +39,6 @@ theorem relAmple_of_generic_of_isogenous : Out.Laws → Out.Laws2 → ∀ (R K :
   have := P.isAb.proper
   have hsq := hpb.1
   have : IsProper B₀.hom := MorphismProperty.of_isPullback (P := @IsProper) hsq inferInstance
-  have : IsLocallyNoetherian (Sp R) := inferInstance
   have a₀ : IsAmpleLB (M.pull φ) :=
     (isAmpleLB_congr hM₀ (LB.isLB_pull hM φ) hiso).1 ((relAmple_iff_isAmpleLB_of_isAffine B₀ hM₀).1 hamp)
   let x := spMap (algebraMap R K)

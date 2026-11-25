@@ -89,7 +89,6 @@ theorem DualLatticeModPrime.proof : DualLatticeModPrime.Statement := by
       Submodule.span_le_restrictScalars (𝓞 K) (locAt 𝔭) _ (hu hx)
   have := isNoetherian_of_fg_of_noetherian _ (Submodule.fg_span (Set.finite_range u)) (R := locAt 𝔭)
   have : Module.Finite (locAt 𝔭) DA := Module.Finite.iff_fg.mpr (isNoetherian_submodule.mp this DA hDA)
-  have : Module.IsTorsionFree (locAt 𝔭) DA := inferInstance
   let b := Module.Free.chooseBasis (locAt 𝔭) DA
   have hspan : Submodule.span K (Set.range fun j => (b j : Fin i → K)) = ⊤ := by
     rw [eq_top_iff, ← span_dual_eq_top F, Submodule.span_le]

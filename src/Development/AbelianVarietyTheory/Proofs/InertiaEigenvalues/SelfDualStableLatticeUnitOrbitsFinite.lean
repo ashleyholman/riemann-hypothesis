@@ -423,7 +423,6 @@ theorem fg_quot_intUnits : ∀ (K : UQ) (B : InvAlg K), B.P.Separable →
 theorem exists_finset_sq_mem {G : Type} [CommGroup G] (N : Subgroup G) (hN : Group.FG (G ⧸ N)) :
     ∃ F : Finset G, ∀ u : G, u ^ 2 ∈ N → ∃ f ∈ F, u * f⁻¹ ∈ N := by
   let M := Additive (G ⧸ N)
-  haveI : AddGroup.FG M := inferInstance
   haveI : Module.Finite ℤ M := Module.Finite.iff_addGroup_fg.mpr inferInstance
   let K2 : Submodule ℤ M := LinearMap.ker (LinearMap.lsmul ℤ M 2)
   haveI : Module.Finite ℤ K2 := Module.IsNoetherian.finite ℤ K2

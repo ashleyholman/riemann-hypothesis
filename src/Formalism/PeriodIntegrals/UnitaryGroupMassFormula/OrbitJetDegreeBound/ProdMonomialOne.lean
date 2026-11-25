@@ -19,7 +19,6 @@ variable (D : D7) (p : ℕ) [Fact p.Prime]
 theorem subst_rename {β : Type} [Finite β] (ep : ℂ_[p]) (r : Pl D) (F : MvPowerSeries (ZMod (nP D p) × β) ℂ_[p]) :
     subst (fun v : Pl D × β => C ep * logPl D p v) (rename (pE D p r β) F) =
       rename (pE D p r β) (subst (fun w : ZMod (nP D p) × β => C ep * jetLogG p (nP D p) w) F) := by
-  haveI : Finite (Pl D × β) := inferInstance
   have hcc1 : ∀ v : Pl D × β, constantCoeff (C ep * logPl D p v) = 0 := by
     intro v
     rw [map_mul]
@@ -98,7 +97,6 @@ theorem E_eq {N0 N1 : ℕ} (R : Finset (Pl D)) (sg : Pl D → ℂ_[p])
     (be : Pl D → MvPowerSeries (ZMod (nP D p)) ℂ_[p]) (hcc : ∀ r ∈ R, constantCoeff (be r) = 0) :
     subst (logPl D p (β := Fin N0 × Fin N1)) (OJ.expS ℂ_[p] (beAll D p R sg be)) =
       ∏ r ∈ R, rename (pE D p r (Fin N0 × Fin N1)) (Eorb D p (N0 := N0) (N1 := N1) (sg r) (be r)) := by
-  haveI : Finite (Pl D × Fin N0 × Fin N1) := inferInstance
   have hL : HasSubst (logPl D p (β := Fin N0 × Fin N1)) := by
     refine MvPowerSeries.hasSubst_of_constantCoeff_zero fun v => ?_
     rw [← MvPowerSeries.coeff_zero_eq_constantCoeff_apply]

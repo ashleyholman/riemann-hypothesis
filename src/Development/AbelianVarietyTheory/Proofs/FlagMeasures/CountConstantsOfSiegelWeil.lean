@@ -339,9 +339,7 @@ theorem exists_transport (I : AutInst) (T : HA (AF I.F) I.cm.sig I.J ≃ₜ* I.G
   haveI : ∀ v, (Formalism.REAL.muG (I.ε v)).IsHaarMeasure := fun v => by unfold Formalism.REAL.muG; infer_instance
   haveI : (Measure.pi fun v => Formalism.REAL.muG (I.ε v)).IsHaarMeasure := Measure.pi.isHaarMeasure _
   haveI : (I.muA μf).IsHaarMeasure := Measure.prod.instIsHaarMeasure _ _
-  haveI : BorelSpace I.GA := inferInstance
   haveI : BorelSpace (HA (AF I.F) I.cm.sig I.J) := ⟨rfl⟩
-  haveI : IsTopologicalGroup (HA (AF I.F) I.cm.sig I.J) := inferInstance
   obtain ⟨Γ, hΓ, -, -, hF⟩ := GlobalTheory.RatDiscrete.rational_points I
   let e : HA (AF I.F) I.cm.sig I.J ≃ᵐ I.GA := T.toHomeomorph.toMeasurableEquiv
   have hp : MeasurePreserving e ((I.muA μf).map e.symm) (I.muA μf) :=

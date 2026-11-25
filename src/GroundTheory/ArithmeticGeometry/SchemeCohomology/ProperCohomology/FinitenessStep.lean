@@ -328,7 +328,6 @@ theorem isClosedImmersion_q_restrict [IsClosedImmersion (c i)] :
     simp only [Qo, Qφ, Category.assoc]
     rw [pullback.condition]
   rw [e]
-  have h1 : IsClosedImmersion (Qφ s n U c hc i) := inferInstance
   have h2 : IsClosedImmersion (Qφ s n U c hc i ≫ pullback.snd (c i) (ρ (A := A) n i)) :=
     inferInstance
   exact @IsClosedImmersion.comp _ _ _ κ _ hκc h2
@@ -1024,7 +1023,6 @@ theorem finiteH_step
     rw [h]
     infer_instance
   have : IsProper ψ := IsProper.of_comp ψ (X ↘ Spec (.of A))
-  have : IsClosedImmersion (c ≫ j) := inferInstance
 
   have hG' : IsCoherent ((Scheme.Modules.pullback ψ).obj F) := isCoherent_pullback ψ hF
   set G' := (Scheme.Modules.pullback ψ).obj F

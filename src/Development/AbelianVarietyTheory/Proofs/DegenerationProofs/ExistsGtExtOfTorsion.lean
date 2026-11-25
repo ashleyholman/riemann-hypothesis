@@ -25,7 +25,6 @@ section Val
 variable {F F' : Type} [Field F] [Field F'] (f : F →+* F') {X Y : Scheme.{0}} {L : LB X} {K : Type} [Fintype K]
 
 theorem epi_spMap : Epi (spMap f) := by
-  have : Flat (spMap f) := inferInstance
   have : Surjective (spMap f) := ⟨fun y => ⟨default, Subsingleton.elim _ _⟩⟩
   exact Flat.epi_of_flat_of_surjective _
 

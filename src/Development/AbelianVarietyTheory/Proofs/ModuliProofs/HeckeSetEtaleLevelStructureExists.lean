@@ -67,8 +67,6 @@ theorem exists_isClopen_equalizer {P C S : Scheme.{0}} (c : C ⟶ S) [IsFinite c
     ∃ (U : Set P), IsClopen U ∧ ∀ (T : Scheme.{0}) (y : T ⟶ P), y ≫ a = y ≫ b ↔ Set.range y ⊆ U := by
   let d := pullback.diagonal c
   let l : P ⟶ pullback c c := pullback.lift a b h
-  haveI : IsOpenImmersion d := inferInstance
-  haveI : IsClosedImmersion d := inferInstance
   let j : pullback l d ⟶ P := pullback.fst l d
   have hj : j ≫ a = j ≫ b := by
     have h0 : j ≫ l = pullback.snd l d ≫ d := pullback.condition

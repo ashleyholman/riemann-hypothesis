@@ -389,7 +389,6 @@ instance hasColShv : HasColimitsOfShape (Discrete A) (Shv R) := by
   infer_instance
 
 def hcp (hc : IsColimit c) (p : ℤ) : IsColimit ((HomologicalComplex.eval (Shv R) (ComplexShape.up ℤ) p).mapCocone c) :=
-  haveI : PreservesColimitsOfShape (Discrete A) (HomologicalComplex.eval (Shv R) (ComplexShape.up ℤ) p) := inferInstance
   isColimitOfPreserves _ hc
 
 variable {L : Cx R} {n : ℤ}
@@ -604,7 +603,6 @@ theorem eqv_of_loc (a1 : A1) {X : Scheme.{0}} {E : Spc} {π : E ⟶ sch.obj X} (
 
 theorem eqv_base (a1 : A1) {X : Scheme.{0}} {E : Spc} {π : E ⟶ sch.obj X} (L : Loc π) (R : Type) [CommRing R]
     (F : Shv R) : Eqv R π F := by
-  have hi : IsIso (sch.map (𝟙 X)) := inferInstance
   have e : pullback.fst π (sch.map (𝟙 X)) ≫ π = pullback.snd π (sch.map (𝟙 X)) ≫ sch.map (𝟙 X) := pullback.condition
   have h1 : Eqv R (pullback.fst π (sch.map (𝟙 X)) ≫ π) F := by
     rw [e]; exact eqv_comp (eqv_of_loc a1 L R _ F) (eqv_iso _ F)
@@ -1424,11 +1422,9 @@ variable (R : Type) [CommRing R]
 abbrev Fsh := presheafToSheaf Scheme.etaleTopology.{0} (ModuleCat.{1} (ULift.{1} R))
 
 instance wlb : Scheme.etaleTopology.{0}.WEqualsLocallyBijective (ModuleCat.{1} (ULift.{1} R)) := by
-  have : EssentiallySmall.{1} Scheme.{0} := inferInstance
   infer_instance
 
 instance ph : (Fsh R).PreservesHomology := by
-  have : EssentiallySmall.{1} Scheme.{0} := inferInstance
   infer_instance
 
 theorem chainsN_eq : chainsN R = TubeCut.chainsP R ⋙ (Fsh R).mapHomologicalComplex _ := by

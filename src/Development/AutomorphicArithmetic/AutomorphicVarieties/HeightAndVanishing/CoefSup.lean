@@ -86,7 +86,6 @@ private theorem exists_unram (l : ℕ) [hl : Fact l.Prime] (n : ℕ) [NeZero n] 
     haveI : IsScalarTower ℤ_[l] A c.O := IsScalarTower.of_algebraMap_eq fun x => (f.commutes x).symm
     haveI : Algebra.IsIntegral A c.O := Algebra.IsIntegral.tower_top ℤ_[l]
     haveI : FaithfulSMul A c.O := (faithfulSMul_iff_algebraMap_injective _ _).2 hf
-    haveI : IsLocalHom (algebraMap A c.O) := inferInstance
     exact (algebraMap A c.O).domain_isLocalRing
   have hinj : Function.Injective (algebraMap ℤ_[l] A) := by
     intro a b hab
@@ -94,7 +93,6 @@ private theorem exists_unram (l : ℕ) [hl : Fact l.Prime] (n : ℕ) [NeZero n] 
     simp only [Subalgebra.coe_algebraMap, IsScalarTower.algebraMap_apply ℤ_[l] ℚ_[l] (PadicAlgCl l)] at h
     exact IsFractionRing.injective ℤ_[l] ℚ_[l] ((algebraMap ℚ_[l] (PadicAlgCl l)).injective h)
   haveI : FaithfulSMul ℤ_[l] A := (faithfulSMul_iff_algebraMap_injective _ _).2 hinj
-  haveI : IsLocalHom (algebraMap ℤ_[l] A) := inferInstance
   have hm : Ideal.span {(l : A)} = IsLocalRing.maximalIdeal A := by
     rw [← Algebra.FormallyUnramified.map_maximalIdeal (R := ℤ_[l]), PadicInt.maximalIdeal_eq_span_p,
       Ideal.map_span, Set.image_singleton, map_natCast]

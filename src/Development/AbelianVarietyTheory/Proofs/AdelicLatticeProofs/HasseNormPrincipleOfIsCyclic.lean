@@ -681,9 +681,6 @@ theorem _root_.GlobalTheory.CNorm.np_of_cyclic_tower : ∀ (F M E : Type) [Field
     [Field E] [NumberField E] [Algebra F M] [Algebra M E] [Algebra F E] [IsScalarTower F M E]
     [IsGalois F E], IsCyclic (E ≃ₐ[F] E) → _root_.GlobalTheory.CNorm.NP M E → _root_.GlobalTheory.CNorm.NP F M → _root_.GlobalTheory.CNorm.NP F E := by
   intro F M E _ _ _ _ _ _ _ _ _ _ _ hcyc hME hMF x hx0 hloc
-  haveI : FiniteDimensional F E := inferInstance
-  haveI : FiniteDimensional F M := inferInstance
-  haveI : FiniteDimensional M E := inferInstance
   haveI : IsGalois M E := IsGalois.tower_top_of_isGalois F M E
   have hprops := _root_.GlobalTheory.CNorm.tnorm_baseChange F E
   have hxM : algebraMap F M x ≠ 0 := (_root_.map_ne_zero _).mpr hx0
@@ -847,7 +844,6 @@ theorem exists_pushout_primitiveRoot : ∀ (p : ℕ) (F E : Type) [Field F] [Num
   letI : Field (A ⊗[F] E) := hf.toField
   letI : Algebra E (A ⊗[F] E) := Algebra.TensorProduct.rightAlgebra
   haveI : Module.Finite F E := Module.Finite.of_restrictScalars_finite ℚ F E
-  haveI : Module.Finite A (A ⊗[F] E) := inferInstance
   haveI : NumberField (A ⊗[F] E) := NumberField.of_module_finite A (A ⊗[F] E)
   have hζ := IsCyclotomicExtension.zeta_spec p F A
   have hr : Module.finrank A (A ⊗[F] E) = p := by

@@ -511,7 +511,6 @@ theorem point_from_fg_subalgebra {K F : Type} [CommRing K] [CommRing F] (φ : K 
     rw [← Spec.map_comp]
     rfl
   have hG (t : (Finset S)ᵒᵖ) : IsAffine (G.obj t) := inferInstanceAs (IsAffine (Spec _))
-  have hGa {t t' : (Finset S)ᵒᵖ} (f : t ⟶ t') : IsAffineHom (G.map f) := inferInstance
   obtain ⟨i, y₀, hy₀, hy₁⟩ := Scheme.exists_π_app_comp_eq_of_locallyOfFinitePresentation G
     ({ app := κ, naturality := fun t t' f => (hι f).trans (Category.comp_id _).symm } :
       G ⟶ (Functor.const _).obj (Sp K)) s cG hcG x

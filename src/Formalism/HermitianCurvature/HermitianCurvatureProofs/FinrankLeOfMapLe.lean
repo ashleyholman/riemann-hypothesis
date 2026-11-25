@@ -202,7 +202,6 @@ theorem finrank_zsub (A : FI E) (hA : A ≠ 0) : finrank ℤ (zsub E A) = finran
   exact this
 
 theorem finite_of_le (N : Submodule ℤ E) (A : FI E) (h : N ≤ zsub E A) : Module.Finite ℤ N := by
-  have : IsNoetherian ℤ (zsub E A) := inferInstance
   have := isNoetherian_of_le h
   infer_instance
 
@@ -216,7 +215,6 @@ theorem relIndex_nsmul (N : Submodule ℤ E) [Module.Finite ℤ N] (g : ℕ) :
       = g ^ finrank ℤ N := by
   have h1 : Module.Finite ℤ ↥(AddSubgroup.toIntSubmodule N.toAddSubgroup) :=
     inferInstanceAs (Module.Finite ℤ N)
-  have h2 : Module.Free ℤ ↥(AddSubgroup.toIntSubmodule N.toAddSubgroup) := inferInstance
   exact AddSubgroup.relIndex_map_nsmul g N.toAddSubgroup
 
 theorem finrank_sup (N₁ N₂ : Submodule ℤ E) [Module.Finite ℤ N₁] [Module.Finite ℤ N₂]

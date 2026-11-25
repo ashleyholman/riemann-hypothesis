@@ -48,7 +48,6 @@ private lemma exists_idem [Algebra.FormallyUnramified R A] [Module.Finite R A] (
   rw [key, h1, map_one, one_mul]
 
 private lemma finite_algHom (K : Type) [Field K] [Algebra R K] [Module.Finite R A] : Finite (A →ₐ[R] K) := by
-  have : Finite (K ⊗[R] A →ₐ[K] K) := inferInstance
   refine Finite.of_injective (fun f : A →ₐ[R] K =>
     (Algebra.TensorProduct.lift (AlgHom.id K K) f fun _ _ => Commute.all _ _ : K ⊗[R] A →ₐ[K] K)) ?_
   intro f g h
@@ -343,7 +342,6 @@ theorem UpperTheory.Ru.crystallineComparison.splitEx :
     rw [← hx']
     exact (IsPullback.of_hasPullback (T.p ∣_ V) x').paste_horiz (isPullback_morphismRestrict T.p V).flip
   have het0 : Etale (T.p ∣_ V) := T.et
-  have het1 : Etale (pullback.snd (T.p ∣_ V) x') := inferInstance
   have het : Etale (pullback.snd T.p x) := by
     have : pullback.snd T.p x = sq.isoPullback.inv ≫ pullback.snd (T.p ∣_ V) x' := by
       simp

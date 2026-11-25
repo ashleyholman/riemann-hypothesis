@@ -45,7 +45,6 @@ theorem muS_swap {z : Fin (2 * r + k + 1) → ℂ} (hz : inWb k r z) (hT : 0 < T
     (μN.prod μW).map (fun p => (Matrix.of.symm (Matrix.of p.1 * Matrix.of p.2) : Mt k r)) = Formalism.MainNotions.S.muS μW μN := by
   haveI : SigmaFinite μW := hW.1
   haveI : IsFiniteMeasureOnCompacts μN := ⟨fun K hK => hNB.finite_compact K hK⟩
-  haveI : SigmaFinite μN := inferInstance
   have hconj := Formalism.FourierDecayAlt.P.b2_conjInvRaw_proof k r z μN hz hT hNB
   have hco : ∀ i j, Measurable fun p : Mt k r × Mt k r => p.1 i j :=
     fun i j => (measurable_pi_apply j).comp ((measurable_pi_apply i).comp measurable_fst)

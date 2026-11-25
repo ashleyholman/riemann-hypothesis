@@ -223,7 +223,6 @@ theorem exists_ext_all_models_uniformised : ∀ (E : Type) [Field E] [NumberFiel
   have hz : CharZero W := charZero_of_injective_ringHom hi
   let T' : Formalism.L2.Pj.CDVR := { V := W }
   have : FaithfulSMul T.V W := (faithfulSMul_iff_algebraMap_injective _ _).2 hi
-  have hl : IsLocalHom (algebraMap T.V W) := inferInstance
   have hj : Function.Injective ((algebraMap W (FractionRing W)).comp (algebraMap T.V W)) :=
     (IsFractionRing.injective W _).comp hi
   obtain ⟨φ, hφ⟩ : ∃ φ : T.Fr →+* T'.Fr, ∀ v, φ (algebraMap T.V T.Fr v) = algebraMap T'.V T'.Fr (algebraMap T.V W v) :=

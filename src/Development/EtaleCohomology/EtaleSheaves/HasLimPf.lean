@@ -12,7 +12,6 @@ namespace LateralTheory.E.HasLimPf
 
 theorem hasLimit_of_affine {K : Type} [SmallCategory K] (F : K ⥤ Scheme.{0}) (hF : ∀ k, IsAffine (F.obj k)) :
     HasLimit F := by
-  have : HasLimit (F ⋙ Scheme.Γ.rightOp) := inferInstance
   have : PreservesLimitsOfSize.{0, 0} Scheme.Spec.{0} := ΓSpec.adjunction.rightAdjoint_preservesLimits
   have : HasLimit (F ⋙ Scheme.Γ.rightOp ⋙ Scheme.Spec) :=
     HasLimit.mk ⟨_, isLimitOfPreserves Scheme.Spec (limit.isLimit (F ⋙ Scheme.Γ.rightOp))⟩

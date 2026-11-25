@@ -106,7 +106,6 @@ theorem nontriv {A X B Z : CommRingCat.{0}} (x : A ⟶ X) (b : A ⟶ B) (u : X �
   let _ : Algebra (ResidueField A) K := e.toAlgebra
   let _ : Algebra (ResidueField A) (ResidueField B) := (ResidueField.map b.hom).toAlgebra
   have : Algebra.IsIntegral (ResidueField A) (ResidueField B) := ⟨resInt b.hom hb⟩
-  have : Algebra.IsAlgebraic (ResidueField A) (ResidueField B) := inferInstance
   let l : ResidueField B →ₐ[ResidueField A] K := (by
     refine @_root_.IsAlgClosed.lift _ _ _ _ _ _ _ _ _ _ _ ?_ ?_ ?_
     solve_by_elim* (maxDepth := 2) only [*,
@@ -207,7 +206,6 @@ theorem frob {A X B Z : CommRingCat.{0}} (x : A ⟶ X) (b : A ⟶ B) (u : X ⟶ 
     intro y
     let _ : Algebra (ResidueField A) (ResidueField B) := (ResidueField.map b.hom).toAlgebra
     have : Algebra.IsIntegral (ResidueField A) (ResidueField B) := ⟨resInt b.hom hb⟩
-    have : Algebra.IsAlgebraic (ResidueField A) (ResidueField B) := inferInstance
     have : IsPurelyInseparable (ResidueField A) (ResidueField B) :=
       Algebra.IsAlgebraic.isPurelyInseparable_of_isSepClosed
     obtain ⟨n, c, hc⟩ := IsPurelyInseparable.pow_mem (ResidueField A) q (residue B y)

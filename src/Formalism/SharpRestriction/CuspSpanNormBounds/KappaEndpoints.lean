@@ -983,7 +983,6 @@ theorem ng_modK (hOK : M.OK) {x : E} (hx : IsUnit x) : 0 < M.modK x ∧ (x ∈ M
 theorem two_le_residue_card (hOK : M.OK) : 2 ≤ qF F := by
   have := hOK.loc
   unfold qF
-  have : Finite 𝓀[F] := inferInstance
   exact Finite.one_lt_card
 
 open MeasureTheory in

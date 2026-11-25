@@ -429,7 +429,6 @@ theorem card_latCount : ∀ {E : Type} [Field E] [NumberField E] [IsCMField E] {
       Nat.card_congr (Submodule.quotientQuotientEquivQuotient _ _ hle).toEquiv,
       ← Nat.card_congr (TensorProduct.quotTensorEquivQuotSMul L J).toEquiv,
       Module.natCard_eq_pow_finrank (K := R ⧸ J), GlobalTheory.SW.Hyper.finrank_fibre R L (R ⧸ J), hq]
-  haveI : Finite V := inferInstance
   haveI : Module.Finite (R ⧸ J) V := Module.Finite.of_finite
   have hq2 : 2 ≤ Ideal.absNorm J := by
     rw [← hq]

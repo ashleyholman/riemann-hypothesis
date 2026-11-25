@@ -146,7 +146,6 @@ theorem exists_rational {k k' : Type} [Field k] [IsAlgClosed k] [Field k'] {X : 
 
 theorem epi_of_fields {k k' : Type} [Field k] [Field k'] (t : Sp k' ⟶ Sp k) : Epi t := by
   have : Surjective t := ⟨fun x => ⟨IsLocalRing.closedPoint k', Subsingleton.elim _ _⟩⟩
-  have : Flat t := inferInstance
   exact Flat.epi_of_flat_of_surjective t
 
 section Bundles

@@ -240,7 +240,6 @@ private theorem exists_basis [IsDedekindDomain R] [CharZero R] [Module.Free ℤ 
       (Fin (Module.finrank ℤ_[p] (LinearMap.range (LinearMap.mulLeft ℤ_[p] w.e)))) ℤ_[p]
       (LinearMap.range (LinearMap.mulLeft ℤ_[p] w.e))), ∀ k, (b k : Op p R) = w.e * α ^ (k : ℕ) := by
   obtain ⟨_, _⟩ := exists_dvr w
-  have : Module.Free ℤ_[p] (LinearMap.range (LinearMap.mulLeft ℤ_[p] w.e)) := inferInstance
   have : Module.Free ℤ_[p] w.Ow := Module.Free.of_equiv (cutEquiv w)
   have : IsLocalHom (algebraMap ℤ_[p] w.Ow) := Algebra.IsIntegral.isLocalHom _ _
   have : Finite (IsLocalRing.ResidueField ℤ_[p]) :=

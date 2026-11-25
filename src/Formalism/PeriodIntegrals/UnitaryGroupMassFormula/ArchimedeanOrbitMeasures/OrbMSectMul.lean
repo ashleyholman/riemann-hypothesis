@@ -56,7 +56,6 @@ theorem muH_preimage (μ : Measure (Hsub (Ainf X.B.I.F) X.B.I.cm.sig X.B.I.J (fr
         (S : Subgroup G) : IsTopologicalGroup S := inferInstance
     exact h (HR (Ainf X.B.I.F) X.B.I.cm.sig X.B.I.J)
   haveI : BorelSpace (GI X) := ⟨rfl⟩
-  haveI : BorelSpace (Hsub (Ainf X.B.I.F) X.B.I.cm.sig X.B.I.J (frameOf X u')) := inferInstance
   have ha : AEMeasurable (fun h => h0 * h) μ :=
     (measurable_const_mul h0).aemeasurable
   rw [← Measure.map_apply_of_aemeasurable ha hS, hm]

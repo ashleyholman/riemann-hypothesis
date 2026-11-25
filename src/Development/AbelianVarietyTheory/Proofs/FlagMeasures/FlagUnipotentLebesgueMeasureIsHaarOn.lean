@@ -175,7 +175,6 @@ theorem volume_ne_zero (k r : ℕ) : (volume : Measure ((UT r → ℂ) × PPar k
   rw [← Measure.measure_univ_ne_zero, Measure.volume_eq_prod, ← Set.univ_prod_univ, Measure.prod_prod,
     Measure.volume_eq_prod, ← Set.univ_prod_univ, Measure.prod_prod,
     Measure.volume_eq_prod, ← Set.univ_prod_univ, Measure.prod_prod]
-  have h1 : (volume : Measure (Fin (k + 1) → ℂ)).IsOpenPosMeasure := inferInstance
   have : (volume : Measure (Fin r → Fin (k + 1) → ℂ)).IsOpenPosMeasure :=
     Measure.pi.isOpenPosMeasure (μ := fun _ : Fin r => (volume : Measure (Fin (k + 1) → ℂ)))
   refine mul_ne_zero ?_ (mul_ne_zero ?_ (mul_ne_zero ?_ ?_)) <;>

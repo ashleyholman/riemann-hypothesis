@@ -42,7 +42,6 @@ theorem goal1 :
   have hM : M ≤ nonZeroDivisors (𝓞 E) := map_le_nonZeroDivisors_of_injective _
     (FaithfulSMul.algebraMap_injective _ _) v.asIdeal.primeCompl_le_nonZeroDivisors
   let A : Subalgebra (𝓞 E) E := Localization.subalgebra.ofField E M hM
-  have : IsLocalization M A := inferInstance
   have : IsDedekindDomain A := IsLocalization.isDedekindDomain (𝓞 E) hM A
   let : Algebra (𝓞 F) A := ((algebraMap (𝓞 E) A).comp (algebraMap (𝓞 F) (𝓞 E))).toAlgebra
   have : IsScalarTower (𝓞 F) (𝓞 E) A := IsScalarTower.of_algebraMap_eq fun _ => rfl

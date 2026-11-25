@@ -892,7 +892,6 @@ theorem exists_components [IsGalois k Ω] [Smooth p] [ConnectedSpace X] [Compact
     have hZ : Z = Set.univ := by
       by_contra hne
       obtain ⟨b, hb⟩ := (Set.ne_univ_iff_exists_notMem Z).1 hne
-      have : Algebra.IsIntegral k Ω := inferInstance
       have : IsIntegralHom ψ := IsIntegralHom.SpecMap_iff.2 (fun x => Algebra.IsIntegral.isIntegral x)
       have : Surjective ψ := ⟨fun _ => ⟨Classical.arbitrary _, Subsingleton.elim _ _⟩⟩
       have hcl := (pullback.fst p ψ).isClosedMap
@@ -956,7 +955,6 @@ theorem geoMain : GeometricGenericComponents := by
   have : Smooth M.q := SmoothOfRelativeDimension.smooth d M.q
   have : CompactSpace M.X := GeoD.compactSpace_of_isProjOver hM.1
   have : QuasiCompact M.p := quasiCompact_of_compactSpace M.p
-  have : CompactSpace M.gen := inferInstance
   obtain ⟨r, U, hint, hcov, hdisj, hperm, htrans⟩ := GeoC.exists_components (Ω := PadicAlgCl l) M.q
   have hne : ∀ s, (U s : Set (GlobalTheory.Et.geom (PadicAlgCl l) M.q)).Nonempty := fun s => by
     obtain ⟨⟨y, hy⟩⟩ := (hint s).nonempty

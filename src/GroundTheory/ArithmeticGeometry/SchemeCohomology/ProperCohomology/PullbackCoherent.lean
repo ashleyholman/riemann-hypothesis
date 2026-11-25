@@ -338,7 +338,6 @@ theorem exists_pushforward_iso_of_supportedIn (F : X.Modules) (hF : IsCoherent F
   refine ⟨I, support_annihilatorIdealSheaf_subset F hF hT hFT,
     (Scheme.Modules.pullback I.subschemeι).obj F, isCoherent_pullback _ hF, ?_⟩
   let adj := Scheme.Modules.pullbackPushforwardAdjunction I.subschemeι
-  have : IsClosedImmersion (I.subschemeι ∣_ ⊤) := inferInstance
   have : IsIso (adj.unit.app F) := by
     refine isIso_of_bijective_app _ fun V => ?_
     refine bijective_unit_app_of_le I.subschemeι F ⊤ (fun V hV _ a ha m => ?_) V le_top

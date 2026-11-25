@@ -63,8 +63,6 @@ theorem UpperTheory.haarMeasure_triple_product_decomposition :
   have : LocallyCompactSpace B := hB.isClosedEmbedding_subtypeVal.locallyCompactSpace
   have : LocallyCompactSpace C := hC.isClosedEmbedding_subtypeVal.locallyCompactSpace
   have : (μB.prod μC).IsHaarMeasure := Measure.prod.instIsHaarMeasure μB μC
-  have : SigmaFinite (μB.prod μC) := inferInstance
-  have : MeasurableMul (B × C) := inferInstance
   have hPH : (μA.prod (μB.prod μC)).IsHaarMeasure :=
     Measure.prod.instIsHaarMeasure μA (μB.prod μC)
   set P : Measure (A × B × C) := μA.prod (μB.prod μC) with hP

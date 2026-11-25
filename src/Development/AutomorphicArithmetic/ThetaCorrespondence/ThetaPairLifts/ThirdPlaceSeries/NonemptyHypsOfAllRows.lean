@@ -307,7 +307,6 @@ theorem finrank_red (N : Submodule (𝓞 E) V) (hN : Submodule.IsFullLattice E N
     Module.finrank (𝓞 E ⧸ w) ((𝓞 E ⧸ w) ⊗[𝓞 E] N) = Module.finrank E V := by
   have : Module.Finite (𝓞 E) N := Module.Finite.iff_fg.2 (Submodule.IsLattice.fg (self := hN.toIsLattice))
   have : Module.IsTorsionFree (𝓞 E) V := Module.IsTorsionFree.trans_faithfulSMul (𝓞 E) E V
-  have : Module.Flat (𝓞 E) N := inferInstance
   have hr : Module.finrank (𝓞 E) N = Module.finrank E V := by
     have : IsLocalizedModule (nonZeroDivisors (𝓞 E)) N.subtype := by
       refine ⟨fun s => ?_, fun y => ?_, fun {a b} hab => ⟨1, by simpa using hab⟩⟩
@@ -594,7 +593,6 @@ theorem mem_span_of_semilinear {B K O Kf V W ι : Type*} [CommRing B] [IsDomain 
   set N := Submodule.span B (T' : Set V) with hN
   have : Module.Finite B N := Module.Finite.span_of_finite B T'.finite_toSet
   have : Module.IsTorsionFree B V := Module.IsTorsionFree.trans_faithfulSMul B K V
-  have : Module.Free B N := inferInstance
   let e0 := Module.Free.chooseBasis B N
   let e : Module.Free.ChooseBasisIndex B N → V := fun i => (e0 i : V)
   have heB : LinearIndependent B e := e0.linearIndependent.map' N.subtype N.ker_subtype

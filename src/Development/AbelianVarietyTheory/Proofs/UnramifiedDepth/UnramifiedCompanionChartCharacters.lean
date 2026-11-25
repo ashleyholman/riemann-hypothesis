@@ -253,7 +253,6 @@ private theorem exists_det_sq (OE : Type) [CommRing OE] [IsDedekindDomain OE] [C
       ((Algebra.discr ℤ (Module.Free.chooseBasis ℤ OE) : ℤ) : R) =
         (Matrix.of fun i j => σ i (Module.Free.chooseBasis ℤ OE j)).det ^ 2 := by
   have : IsScalarTower ℤ OE K := AddCommGroup.intIsScalarTower
-  have : IsLocalization (Algebra.algebraMapSubmonoid OE (nonZeroDivisors ℤ)) K := inferInstance
   set b := Module.Free.chooseBasis ℤ OE with hb
   let bK := b.localizationLocalization ℚ (nonZeroDivisors ℤ) K
   have : Module.Finite ℚ K := Module.Finite.of_basis bK

@@ -176,8 +176,6 @@ theorem map_haar_eq_smul {π : G → X} (hc : Continuous π) (hs : Function.Surj
   haveI : IsFiniteMeasureOnCompacts ν' := ⟨fun C hC => by
     rw [hν'def, Measure.map_apply hm hC.measurableSet]
     exact (isCompact_preimage_orbit hc hs hT hπ hK hf hC).measure_lt_top⟩
-  haveI : SigmaFinite ν' := inferInstance
-  haveI : SigmaFinite ν := inferInstance
   have hν' : ∀ a, ν'.map (T a) = ν' := by
     intro a
     rw [hν'def, Measure.map_map (hTm a) hm]

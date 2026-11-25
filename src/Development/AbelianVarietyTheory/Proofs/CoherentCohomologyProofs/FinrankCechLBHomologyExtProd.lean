@@ -977,7 +977,6 @@ theorem isAffineOpen_preimage_inf_of_isSeparated {Y Z : Scheme.{0}} [Y.IsSeparat
     {U : Y.Opens} (hU : IsAffineOpen U) {V : Z.Opens} (hV : IsAffineOpen V) :
     IsAffineOpen (p ⁻¹ᵁ U ⊓ V) := by
   have : IsAffine V := hV
-  have : IsAffineHom ((V.ι ≫ p) ≫ terminal.from Y) := inferInstance
   have : IsAffineHom (V.ι ≫ p) := IsAffineHom.of_comp _ (terminal.from Y)
   have h := (hU.preimage (V.ι ≫ p)).image_of_isOpenImmersion V.ι
   rwa [Scheme.Hom.comp_preimage, Scheme.Hom.image_preimage_eq_opensRange_inf,

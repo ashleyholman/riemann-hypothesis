@@ -411,7 +411,6 @@ theorem exists_kaVal_extension : Out.Laws → ∀ (O : Type) [CommRing O] [IsDom
   intro laws O _ _ _ Ω _ _ r x xk φ w n l l' al d hg s sk zk chk hker hadm hN H hs E
   classical
   have := x.P.isAb.smooth
-  have : LocallyOfFiniteType x.P.A.hom := inferInstance
   have hNΩ : ((degProd x.P.g n l l' : ℕ) : Ω) ≠ 0 := by
     have := (hN.map r).ne_zero
     rwa [map_natCast] at this

@@ -126,7 +126,6 @@ theorem exists_sympl_of_selfDual {V : Type} [AddCommGroup V] [Module ℚ V] [Fin
       ∀ i j, B (b i) (b j) = -(omegaStd (Pi.single i 1) (Pi.single j 1) : ℤ) := by
   haveI : Module.Finite ℤ N := Module.Finite.iff_fg.2 hfg
   haveI : HasUniqueDiv V := HasUniqueDiv.of_module_rat V
-  haveI : Module.Free ℤ N := inferInstance
   choose f hf using fun (x y : N) => (hN x).1 x.2 y y.2
   let ω : LinearMap.BilinForm ℤ N := LinearMap.mk₂ ℤ (fun x y => -f x y)
     (fun x x' y => by

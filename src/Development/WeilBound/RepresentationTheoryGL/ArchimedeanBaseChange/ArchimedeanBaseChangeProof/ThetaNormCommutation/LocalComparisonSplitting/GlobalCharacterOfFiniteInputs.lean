@@ -1581,7 +1581,6 @@ theorem termOf_holds : TermOf := by
   have he' : ∀ x, e' x = comps x := he
   have hνH : (ν₁.prod ν₂).IsHaarMeasure := inferInstance
   have hνS : SigmaFinite (ν₁.prod ν₂) := inferInstance
-  have hαH : (Measure.pi fun _ : InfinitePlace E => ν₁.prod ν₂).IsHaarMeasure := inferInstance
   let α : Measure (Gi E a b) := Measure.pi fun _ => ν₁.prod ν₂
   obtain ⟨β, hβ, hmap⟩ := hHS (GA E a × GA E b) (Gi E a b) (Gf E a b) (μ₁.prod μ₂) α e
   haveI := hβ

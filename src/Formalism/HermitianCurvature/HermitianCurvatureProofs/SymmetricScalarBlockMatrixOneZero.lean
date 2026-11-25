@@ -56,8 +56,6 @@ theorem eU_mp {m : ℕ} (σ : Equiv.Perm (Fin m)) [IsEmpty (U.LW σ)] :
     MeasurePreserving (eU σ) volume volume := by
   have hT := Dx2.SL.probT m
   have hL : IsProbabilityMeasure (volume : Measure (U.LW σ → ℂ)) := probE
-  have s1 : SigmaFinite (volume : Measure (U.LW σ → ℂ)) := inferInstance
-  have s2 : SigmaFinite (volume : Measure (G.UT m → ℂ)) := inferInstance
   have s3 : SFinite (volume : Measure ((U.LW σ → ℂ) × (G.UT m → ℂ))) := by
     rw [Measure.volume_eq_prod]; infer_instance
   have h1 := Dx2.SL.dropE_mp ((Fin 0 → Fin m → ℂ) × (Fin m → Fin 0 → ℂ)) ((U.LW σ → ℂ) × (G.UT m → ℂ))
@@ -257,8 +255,6 @@ theorem eD_apply (n : ℕ) (q : ((Fin 1 → Fin n → ℂ) × (Fin n → Fin 1 �
 
 theorem eD_mp (n : ℕ) : MeasurePreserving (eD n) volume (volume.prod (volume.prod volume)) := by
   have s1 : SigmaFinite (volume : Measure (Fin 1 → Fin n → ℂ)) := inferInstance
-  have s2 : SigmaFinite (volume : Measure (Fin n → Fin 1 → ℂ)) := inferInstance
-  have s3 : SigmaFinite (volume : Measure (G.UT n → ℂ)) := inferInstance
   have h1 := Dx2.SL.assoc_mp (volume : Measure (Fin 1 → Fin n → ℂ)) (volume : Measure (Fin n → Fin 1 → ℂ))
     (volume : Measure (G.UT n → ℂ))
   have h2 : MeasurePreserving (MeasurableEquiv.prodCongr (MeasurableEquiv.refl (Fin 1 → Fin n → ℂ))
@@ -337,11 +333,8 @@ theorem omBlock_eq (β : ℂ) (n : ℕ) (t c : ℂ) {V : Type} [NormedAddCommGro
   let eC : U.XiH n 1 σh ≃ᵐ ((Fin 1 → Fin n → ℂ) × (Fin n → Fin 1 → ℂ)) × (G.UT n → ℂ) :=
     MeasurableEquiv.prodCongr (MeasurableEquiv.refl _) (Dx2.SL.dropE (U.LW σh → ℂ) (G.UT n → ℂ))
   have hL : IsProbabilityMeasure (volume : Measure (U.LW σh → ℂ)) := probE
-  have s2 : SigmaFinite (volume : Measure (G.UT n → ℂ)) := inferInstance
-  have s2' : SigmaFinite (volume : Measure (U.LW σh → ℂ)) := inferInstance
   have s3 : SFinite (volume : Measure ((U.LW σh → ℂ) × (G.UT n → ℂ))) := by
     rw [Measure.volume_eq_prod]; infer_instance
-  have s4a : SigmaFinite (volume : Measure (Fin 1 → Fin n → ℂ)) := inferInstance
   have s4b : SigmaFinite (volume : Measure (Fin n → Fin 1 → ℂ)) := inferInstance
   have s4 : SFinite (volume : Measure ((Fin 1 → Fin n → ℂ) × (Fin n → Fin 1 → ℂ))) := by
     rw [Measure.volume_eq_prod]; infer_instance

@@ -724,7 +724,6 @@ theorem exists_basis_coord_lattice {O V : Type} [CommRing O] [IsDomain O] [IsPri
   classical
   have hfin : Module.Finite O B := Module.Finite.iff_fg.2 hfg
   have htf : Module.IsTorsionFree O V := Module.IsTorsionFree.trans_faithfulSMul O (FractionRing O) V
-  have hfree : Module.Free O B := inferInstance
   let bO := Module.finBasis O B
   let v : Fin (Module.finrank O B) → V := fun t => (bO t : V)
   have hliO : LinearIndependent O v := bO.linearIndependent.map' B.subtype (Submodule.ker_subtype B)

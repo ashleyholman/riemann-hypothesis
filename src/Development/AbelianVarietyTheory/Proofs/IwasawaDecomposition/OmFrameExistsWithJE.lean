@@ -19,7 +19,6 @@ namespace GlobalTheory.HeightCounting
 
 theorem omFrame_exists_with_jE (D : D7) (jE : D.host.E →+* Qb) : ∃ fr : OmFrame D, fr.jE = jE := by
   letI : Algebra D.host.E Qb := jE.toAlgebra
-  haveI : Algebra.IsAlgebraic ℚ Qb := inferInstance
   haveI : IsScalarTower ℚ D.host.E Qb := .of_algebraMap_eq fun x => (map_ratCast jE x).symm
   haveI : Algebra.IsAlgebraic D.host.E Qb := .tower_top (K := ℚ) D.host.E
   haveI : IsAlgClosure D.host.E Qb := ⟨inferInstance, inferInstance⟩

@@ -68,7 +68,6 @@ theorem exists_numberField_point (Z : Comp Xo c) :
       g ≫ strK = spMap j ∧ ∀ p, g p ∈ (Z : Set (Xo.XF c)) := by
   have := Xo.smooth
   have : Smooth Xo.s := SmoothOfRelativeDimension.smooth Dw.dim Xo.s
-  have : LocallyOfFiniteType (strK (Xo := Xo) (c := c)) := inferInstance
   obtain ⟨L, _, j, g, hj, hg, hZ⟩ := exists_finite_point (strK (Xo := Xo) (c := c))
     (CompSplitPfB.cspB_isClopen (CompSplitPfD.cspD_comp_disj Xo c) Z).isOpen
     (Z.2.1 : IsIrreducible (Z : Set (Xo.XF c))).nonempty

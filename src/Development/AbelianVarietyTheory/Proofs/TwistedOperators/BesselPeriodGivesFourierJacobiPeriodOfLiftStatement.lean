@@ -1278,7 +1278,6 @@ theorem unf_measurable (s : StFB ψ J B) (vL : VolM D B.L.rank J.W₀.rank)
   let K : (GA D B.V × GA D J.W₀) × Mx D B.L.rank J.W₀.rank → ℂ := fun q =>
     flFB s (s.om (J.d.emb0 q.1.2, q.1.1) Φ) ((B.o.resT J.W₀).symm (0, q.2)) * star (omz (q.1.2, 1) Φ₀ q.2)
   have hK : Continuous K := h1.mul h2
-  haveI : SecondCountableTopology (GA D B.V × GA D J.W₀) := inferInstance
   haveI : OpensMeasurableSpace (GA D B.V × GA D J.W₀) := Prod.opensMeasurableSpace
   haveI : SecondCountableTopologyEither (GA D B.V × GA D J.W₀) (Mx D B.L.rank J.W₀.rank) :=
     secondCountableTopologyEither_of_left _ _

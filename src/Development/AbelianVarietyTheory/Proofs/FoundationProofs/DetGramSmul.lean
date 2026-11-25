@@ -648,7 +648,6 @@ theorem red_gl (F E : Type) [Field F] [NumberField F] [Field E] [NumberField E] 
   obtain ⟨M, C, hM, H⟩ := red_inf E _ _ (_root_.GlobalTheory.totallyComplex_span_embeddings_and_finrank E).1 (_root_.GlobalTheory.totallyComplex_span_embeddings_and_finrank E).2 n
   let O : Set (FiniteAdeleRing (𝓞 E) E) := {a | ∀ v, a v ∈ v.adicCompletionIntegers E}
   have hO : IsCompact O := GlobalTheory.AdeleCocompact.isCompact_integral E
-  haveI : ProperSpace (InfinitePlace E → ℂ) := inferInstance
   refine ⟨e.symm '' (Metric.closedBall 0 C ×ˢ (O ∪ (fun a => algebraMap E _ (M : E)⁻¹ * a) '' O)),
     ((isCompact_closedBall _ _).prod (hO.union (hO.image (continuous_const.mul continuous_id)))).image he, fun β => ?_⟩
   let p₁ := (RingHom.fst _ _).comp e.toRingHom

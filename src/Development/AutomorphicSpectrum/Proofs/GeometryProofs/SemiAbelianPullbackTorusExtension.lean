@@ -288,7 +288,6 @@ theorem lie_torus_saturated : ∀ (R K : Type) [CommRing R] [IsDomain R] [IsDisc
   have e := addMonoidHomLequivInt (A := X) (B := R) R
   haveI : Module.Free R (X →+ R) := Module.Free.of_equiv e.symm
   haveI : Module.Finite R (X →+ R) := Module.Finite.equiv e.symm
-  haveI : Module.IsTorsionFree R E := inferInstance
   exact GlobalTheory.CompanionTheory.CommAlg.SatOfInj.sat_of_inj_mod R (X →+ R) E A key
 
 end GlobalTheory.CompanionTheory.Ar.TorusSat

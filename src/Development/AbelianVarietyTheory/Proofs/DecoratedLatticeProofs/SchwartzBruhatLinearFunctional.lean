@@ -218,8 +218,6 @@ theorem integral_eq_measureReal_box_mul_sum : ∀ (k : Type) [Field k] [Valuativ
   classical
   have : ν.IsAddHaarMeasure := hν
   have : SecondCountableTopology k := secondCountable k
-  have : SigmaFinite ν := inferInstance
-  have : (Measure.pi fun _ : n => ν).IsAddHaarMeasure := inferInstance
   set μ : Measure (n → k) := Measure.pi fun _ => ν
   have hmeas : MeasurableSet (box n r) :=
     MeasurableSet.univ_pi fun _ => (isOpen_cball r).measurableSet

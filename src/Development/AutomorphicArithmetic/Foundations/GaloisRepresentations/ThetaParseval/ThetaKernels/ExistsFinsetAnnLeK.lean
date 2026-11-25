@@ -452,7 +452,6 @@ theorem prof_integrable_k (hB : GoodK σ B) (hS : IsHermND σ JS) (hT : IsHermND
     {f : WOF F E nS (nT + nT) → ℂ} (hf : IsThetaFunOF σ JS (dblG JT) ξ₀ B.ψ f) :
     Integrable (fun t : conjHalf σ e nS nT => prof σ JS JT ξ₀ B.ψ ν 𝓕 f t) μ := by
   obtain ⟨-, i2, i3, i4, -⟩ := GlobalTheory.AdelicMatrixLatticeF.lattice F E nS nT
-  have : T2Space (conjHalf σ e nS nT) := inferInstance
   have : R1Space (conjHalf σ e nS nT) := T2Space.r1Space
   obtain ⟨U, hU, hUf⟩ := prof_level (JT := JT) ν 𝓕 he hf
   obtain ⟨K, hK, hKs⟩ := prof_support_k hB hS hT hξ hσξ hν h𝓕 he hf

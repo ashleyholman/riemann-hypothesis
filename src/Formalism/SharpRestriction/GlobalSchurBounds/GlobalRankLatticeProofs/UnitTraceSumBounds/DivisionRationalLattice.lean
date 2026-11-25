@@ -1012,7 +1012,6 @@ theorem proG_order {G : Type} [Group G] [TopologicalSpace G] [IsTopologicalGroup
   classical
   obtain ⟨hc, hidx⟩ := h
   haveI : CompactSpace Uw := isCompact_iff_compactSpace.mp hc
-  haveI : T1Space Uw := inferInstance
   let xu : Uw := ⟨x, hx⟩
   have hxu : orderOf xu = orderOf x := by
     exact Subgroup.orderOf_mk x hx
@@ -1026,7 +1025,6 @@ theorem proG_order {G : Type} [Group G] [TopologicalSpace G] [IsTopologicalGroup
     have := orderOf_le_of_pow_eq_one hj0 hj1
     omega
   obtain ⟨N, hN⟩ : ∃ N : OpenNormalSubgroup Uw, (N : Set Uw) ⊆ (↑Z : Set Uw)ᶜ := by
-    haveI : T2Space Uw := inferInstance
     obtain ⟨H, hH⟩ :=
       ProfiniteGrp.exist_openNormalSubgroup_sub_open_nhds_of_one (G := ProfiniteGrp.of Uw) hZ h1
     exact ⟨H, hH⟩

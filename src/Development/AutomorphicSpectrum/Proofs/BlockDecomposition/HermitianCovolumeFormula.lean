@@ -136,7 +136,6 @@ theorem hermCovol : HermCovol := by
     rw [Matrix.det_smul]
     exact mul_ne_zero (pow_ne_zero _ hξ0) (formB_det hinv b n)
   haveI : IsModuleTopology (AF F) (AF F ⊗[F] E) := ⟨rfl⟩
-  haveI : IsTopologicalAddGroup (HermR (AF F) σ n) := inferInstance
   haveI : BorelSpace (HermR (AF F) σ n) := ⟨rfl⟩
   have hsd : ν.map e = adeleMeasurePi F := by
     refine GlobalTheory.CompanionTheory.Hypotheses₂.OneV.Fth.selfDual_eq _ hs hdet _

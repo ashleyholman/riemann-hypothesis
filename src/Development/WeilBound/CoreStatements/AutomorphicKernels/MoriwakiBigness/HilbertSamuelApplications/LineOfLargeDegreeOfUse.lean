@@ -827,7 +827,6 @@ theorem frame : ∀ (K : Type) [Field K] [NumberField K] (i : ℕ) (P : Ideal (�
     rw [Module.Finite.iff_fg]
     refine ⟨G, ?_⟩
     rw [show N = Submodule.span A (L : Set (Fin i → K)) from rfl, ← hG, Submodule.span_span_of_tower]
-  haveI : Module.IsTorsionFree A N := inferInstance
   haveI : Module.Free A N := Module.free_of_finite_type_torsion_free'
   let q := Module.Free.chooseBasis A N
   let ι := Module.Free.ChooseBasisIndex A N

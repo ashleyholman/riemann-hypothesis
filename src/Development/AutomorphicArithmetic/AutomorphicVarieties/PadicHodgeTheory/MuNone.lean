@@ -138,7 +138,6 @@ theorem UpperTheory.V.Loc.muNone :
   set L : IntermediateField ℚ_[l] (Om l) := K.1 with hL
   haveI : Algebra.IsAlgebraic L (Om l) := Algebra.IsAlgebraic.tower_top (K := ℚ_[l]) L
   haveI : IsAlgClosure L (Om l) := ⟨inferInstance, inferInstance⟩
-  haveI : IsSepClosure L (Om l) := inferInstance
   obtain ⟨vr, ts, hloc, -⟩ := GroundTheory.LocalField.exists_isNonarchimedeanLocalField_valuativeExtension ℚ_[l] L
   let ψ : G →* Gal(Om l/L) := L.fixingSubgroupEquiv.toMonoidHom.comp e.toMonoidHom
   have hψ : Continuous ψ := (GlobalTheory.fixingSubgroupEquiv_bicontinuous ℚ_[l] (Om l) L).1.comp he1

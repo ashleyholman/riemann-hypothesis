@@ -149,7 +149,6 @@ theorem kr_eq_integral_krI_psiR {k p ρ : ℕ} {Wp Wq : Type} [NormedAddCommGrou
     unfold LeftFubiniLemmas.PsiR
     exact ((Formalism.FourierDecayAlt.P.PBM.levMt_cont p ρ rfl).comp (continuous_fst.comp continuous_fst)).prodMk LeftFubiniLemmas.NR_cont
   have hPol : PolishSpace (LeftFubiniLemmas.XR k p ρ) := {}
-  have hSB : StandardBorelSpace (LeftFubiniLemmas.XR k p ρ) := inferInstance
   have : StandardBorelSpace S := hSm.standardBorel
   have hemb : MeasurableEmbedding (fun s : S => LeftFubiniLemmas.PsiR (s : LeftFubiniLemmas.XR k p ρ)) :=
     (hcont.measurable.comp measurable_subtype_coe).measurableEmbedding

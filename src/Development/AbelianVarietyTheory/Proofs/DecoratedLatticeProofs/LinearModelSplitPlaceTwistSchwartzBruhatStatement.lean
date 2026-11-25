@@ -685,7 +685,6 @@ theorem ip_reidx [MeasurableSpace (Fv D.host.F v)] [BorelSpace (Fv D.host.F v)] 
     GlobalTheory.SplitWeil.ip ν (fun z : Matrix (Fin b) (Fin a) (Fv D.host.F v) => u (z.submatrix ε' ε))
       (fun z => u' (z.submatrix ε' ε)) = GlobalTheory.SplitWeil.ip ν u u' := by
   haveI := GlobalTheory.AdelicUnitaryTop.properSpace_adicCompletion D.host.F v
-  haveI : SigmaFinite ν := inferInstance
   have h1 := measurePreserving_arrowCongr' (fun _ : Fin a => ν) (fun _ : Fin r ⊕ A => ν) ε.symm
     (MeasurableEquiv.refl (Fv D.host.F v)) (fun _ => MeasurePreserving.id ν)
   have h2 := measurePreserving_arrowCongr' (fun _ : Fin b => Measure.pi fun _ : Fin a => ν)

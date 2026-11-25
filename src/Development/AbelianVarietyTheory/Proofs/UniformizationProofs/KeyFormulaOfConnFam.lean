@@ -1069,7 +1069,6 @@ theorem exists_smooth_normalisation (E : Type) [CommRing E] [IsDomain E] [Algebr
   haveI : Ring.DimensionLEOne E' := Ring.DimensionLEOne.integralClosure E F
   haveI : IsIntegrallyClosed E' := integralClosure.isIntegrallyClosedOfFiniteExtension F
   haveI : IsDedekindRing E' := ⟨⟩
-  haveI : IsDedekindDomain E' := inferInstance
   have hinj : Function.Injective (algebraMap E E') := by
     intro x y h
     apply IsFractionRing.injective E F

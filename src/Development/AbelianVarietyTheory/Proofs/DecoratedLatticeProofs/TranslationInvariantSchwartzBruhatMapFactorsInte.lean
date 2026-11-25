@@ -273,9 +273,6 @@ theorem translation_invariant_factors : ∀ (k : Type) [Field k] [ValuativeRel k
   haveI := secondCountable k
   haveI := t2Space k
   haveI := hν
-  haveI : LocallyCompactSpace k := inferInstance
-  haveI : SigmaFinite ν := inferInstance
-  haveI : (Measure.pi fun _ : m₁ => ν).IsAddHaarMeasure := inferInstance
   haveI : (Measure.pi fun _ : m₂ => ν).IsAddHaarMeasure := inferInstance
   obtain ⟨l₀, hl₀⟩ := exists_factor ((Measure.pi fun _ : m₁ => ν).prod (Measure.pi fun _ : m₂ => ν))
     (basis_prod m₁ m₂) L hL

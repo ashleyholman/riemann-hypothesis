@@ -499,7 +499,6 @@ theorem exists_open_isIrreducible_zero {X : Scheme.{0}} {k : Type} [Field k] {p 
     (hx : x ∈ V) (hxt : x ∉ X.basicOpen (c.coord t)) :
     ∃ N : X.Opens, N ≤ V ∧ x ∈ N ∧ IsIrreducible ({y : X | y ∈ N ∧ y ∉ X.basicOpen (c.coord t)}) := by
   have : IsAffine V.toScheme := hV
-  have : TopologicalSpace.NoetherianSpace V.toScheme := inferInstance
   let D : V.toScheme.IdealSheafData := c.coordIdeal {t}
   have hloc : ∀ y : V.toScheme, ∃ (U' : V.toScheme.Opens) (_ : y ∈ U') (n : ℕ) (c' : EtaleChart (V.ι ≫ p) U' n),
       restrictIdeal D U' = ⊤ ∨ ∃ j : Fin n, restrictIdeal D U' = c'.coordIdeal {j} :=

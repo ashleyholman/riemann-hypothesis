@@ -182,10 +182,8 @@ theorem mem_twKer_iff_average (ρ : Representation ℂ G V) (hρ : IsSmooth ρ) 
     · rw [Finset.sum_image (fun a _ b _ h => Quotient.out_injective h)]
       set C : Subgroup L := (M ⊓ stabKer ρ L θ v).normalCore with hC
       haveI : C.Normal := Subgroup.normalCore_normal _
-      haveI : C.FiniteIndex := inferInstance
       haveI : Fintype (L ⧸ C) := Fintype.ofFinite _
       have hCM : C ≤ M ⊓ stabKer ρ L θ v := Subgroup.normalCore_le _
-      haveI : Finite (stabKer ρ L θ v ⧸ C.subgroupOf (stabKer ρ L θ v)) := inferInstance
       haveI : Fintype (stabKer ρ L θ v ⧸ C.subgroupOf (stabKer ρ L θ v)) := Fintype.ofFinite _
       have h0 := hsum C (hCM.trans inf_le_left)
       rw [sum_out_refine (hCM.trans inf_le_right) (twOrbit ρ L θ v)

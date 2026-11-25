@@ -52,7 +52,6 @@ theorem exists_rigLB_extension_dedekind :
   intro R K _ _ _ _ _ A _ hA X' φ p hφ N hN
   have := hA.smooth
   have := hA.proper
-  have hR : IsRegularRing R := inferInstance
   have : GeometricallyIntegral A.hom :=
     forall_geometricallyIntegral_of_smooth_of_geometricallyConnected _ _ _ hA.smooth
       hA.geomConnected

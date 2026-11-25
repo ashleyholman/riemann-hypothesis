@@ -85,7 +85,6 @@ private theorem isCoherent_Omega {Z : Scheme.{0}} (s : Z ⟶ Sp ℂ) [LocallyOfF
     GroundTheory.Arith.SchemeCoh.IsCoherent (Omega s a) := by
   refine ⟨inferInstance, fun U hU => ?_⟩
   have := finiteType_sec s hU
-  have h : Module.Finite (CechDR.Sec s U) (CechDR.OmU s U a) := inferInstance
   have h' : Module.Finite (CechDR.Sec s U) Γ(Omega s a, U) := Module.Finite.equiv (toOmEquiv s a hU)
   exact h'
 

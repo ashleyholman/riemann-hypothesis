@@ -27,7 +27,6 @@ theorem map_pi_eq_of_map_addHaar_eq (G : Type) [AddCommGroup G] [TopologicalSpac
   have hp : MeasurePreserving φ ν ν := ⟨hφ.measurable, h ν hν⟩
   have hpi : MeasurePreserving (fun (x : Fin m → G) i => φ (x i)) (Measure.pi fun _ => ν) (Measure.pi fun _ => ν) :=
     measurePreserving_pi _ _ (fun _ => hp)
-  have hH : (Measure.pi fun _ : Fin m => ν).IsAddHaarMeasure := inferInstance
   have he := Measure.isAddLeftInvariant_eq_smul μ (Measure.pi fun _ : Fin m => ν)
   generalize Measure.addHaarScalarFactor μ (Measure.pi fun _ : Fin m => ν) = c at he
   subst he

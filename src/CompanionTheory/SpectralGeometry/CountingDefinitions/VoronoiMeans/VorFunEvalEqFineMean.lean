@@ -60,7 +60,6 @@ theorem classes (h : CMOrd O bar) : ∀ q : ℕ, ∃ (n : ℕ) (R : Fin n → Mo
   let g : T → ModuleCat.{0} O := fun t => ModuleCat.of O (Model t.2)
   let P : T → Prop := fun t => Module.Finite O (g t) ∧ Module.Projective O (g t) ∧ Module.finrank O (g t) ≤ q
   let S := {t : T // P t}
-  have : Finite S := inferInstance
   let eS := Finite.equivFin S
   refine ⟨Nat.card S, fun k => g (eS.symm k).1, fun k => (eS.symm k).2, ?_⟩
   intro X _ _ _ _ hq

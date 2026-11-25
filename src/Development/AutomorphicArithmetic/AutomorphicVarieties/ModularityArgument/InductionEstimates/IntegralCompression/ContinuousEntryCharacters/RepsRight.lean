@@ -132,7 +132,6 @@ private theorem reps_int {X : Type} [TopologicalSpace X] [CompactSpace X] [Topol
     {v : LL μ} {φ : G1 K n → ℂ} (hφ : Continuous φ) (hv : Reps μ v φ) :
     Reps μ (∫ k, a k • rightRegularRep (Gam K n) μ (u k) v ∂ν) fun y => ∫ k, a k * φ (y * u k) ∂ν := by
   letI := TopologicalSpace.metrizableSpaceMetric X
-  haveI : TopologicalSpace.SeparableSpace (Set.univ : Set X) := inferInstance
   let s : ℕ → SimpleFunc X X := fun i => SimpleFunc.approxOn id measurable_id Set.univ (Classical.arbitrary X) (Set.mem_univ _) i
   have hs : ∀ k, Tendsto (fun i => s i k) atTop (𝓝 k) := fun k =>
     SimpleFunc.tendsto_approxOn measurable_id (Set.mem_univ _) (by simp)
@@ -170,8 +169,6 @@ theorem UpperTheory.V.Z.InvariantSubmoduleMonicPolynomial.EA.ptPi :
       (∀ i n q, C.Pi μ i n q v = 0 → ∀ x, ∫ m, conj (KT.psi n q n m) * φ (x * C.un i m) ∂μK = 0) ∧
       ∀ (κ : Measure (archCompact K 2)) (p : archCompact K 2 → ℂ), IdemA κ p → (pOp μ κ p v = v ↔ FixA κ p φ) := by
   intro K _ _ _ ι _ C μ _ v φ hφ hv
-  haveI : TopologicalSpace.MetrizableSpace U2 := inferInstance
-  haveI : CompactSpace U2 := inferInstance
   have hcu : ∀ i, Continuous (C.un i) := fun i => by
     have hm : Continuous (fun x : U2 => (Pi.mulSingle i x : ι → U2)) := by
       refine continuous_pi fun j => ?_

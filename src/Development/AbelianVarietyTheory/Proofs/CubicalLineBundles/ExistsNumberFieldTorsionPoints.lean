@@ -93,7 +93,6 @@ theorem exists_numberField_torsion_points : Out.Laws → ∀ (k : IntermediateFi
   refine ⟨k₁, hfd, hk, fun k₂ h₂ h₁₂ x hx => ?_⟩
   obtain ⟨y, hy, -⟩ := LatticeTorsion.existsUnique_torsion P.A n x hx
   obtain ⟨y₂, hy₂⟩ := H k₂ h₂ h₁₂ y
-  have : Flat (spMap (algebraMap k₂ ℂ)) := inferInstance
   have : Surjective (spMap (algebraMap k₂ ℂ)) := ⟨fun y => ⟨default, Subsingleton.elim _ _⟩⟩
   have : Epi (spMap (algebraMap k₂ ℂ)) := Flat.epi_of_flat_of_surjective _
   refine existsUnique_of_exists_of_unique ⟨y₂ ≫ torsion.ι P.A n, ?_⟩ fun a b ha hb => ?_

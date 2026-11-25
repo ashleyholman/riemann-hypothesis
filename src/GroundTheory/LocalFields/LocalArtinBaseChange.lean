@@ -28,7 +28,6 @@ theorem continuous_restrictScalarsHom : Continuous (restrictScalarsHom (K := K) 
   rw [ContinuousAt, map_one]
   intro s hs
   obtain ⟨M, hM, hMs⟩ := (krullTopology_mem_nhds_one_iff K Ω s).1 hs
-  have : FiniteDimensional K (M ⊔ E : IntermediateField K Ω) := inferInstance
   have : FiniteDimensional E (IntermediateField.extendScalars (le_sup_right : E ≤ M ⊔ E)) :=
     finiteDimensional_extendScalars _
   rw [Filter.mem_map, krullTopology_mem_nhds_one_iff]

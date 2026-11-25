@@ -180,7 +180,6 @@ theorem dual_isIrreducible {G V : Type} [Group G] [AddCommGroup V] [Module ℂ V
     rw [not_nontrivial_iff_subsingleton] at hs
     obtain ⟨S, T, hST⟩ := (hρ : IsSimpleOrder _).toNontrivial.exists_pair_ne
     exact hST (Subrepresentation.toSubmodule_injective (Subsingleton.elim _ _))
-  have hntD : Nontrivial (Module.Dual ℂ V) := inferInstance
   refine { toNontrivial := ⟨⟨⊥, ⊤, fun h => ?_⟩⟩, eq_bot_or_eq_top := fun U => ?_ }
   · have h1 := congrArg Subrepresentation.toSubmodule h
     exact (bot_ne_top : (⊥ : Submodule ℂ (Module.Dual ℂ V)) ≠ ⊤) h1

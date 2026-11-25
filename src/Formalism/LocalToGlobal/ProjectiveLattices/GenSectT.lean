@@ -277,10 +277,8 @@ theorem s1 [CharZero K] (hfg : (⊤ : IntermediateField K Ω).FG) (htr : Algebra
     Algebra.TensorProduct.congr AlgEquiv.refl e
   have : CharZero (KTf K D m) :=
     charZero_of_injective_algebraMap (algebraMap K (KTf K D m)).injective
-  have : Algebra.IsSeparable (KTf K D m) E := inferInstance
   have : Algebra.FormallyUnramified (KTf K D m) E :=
     Algebra.FormallyUnramified.of_isSeparable _ _
-  have : Algebra.FormallyUnramified K' (K' ⊗[KTf K D m] E) := inferInstance
   have : Algebra.EssFiniteType K' (K' ⊗[KTf K D m] E) := inferInstance
   have : IsReduced (K' ⊗[KTf K D m] E) := Algebra.FormallyUnramified.isReduced_of_field K' _
   exact isReduced_of_injective e'.toRingHom e'.injective

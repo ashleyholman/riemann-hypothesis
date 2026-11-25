@@ -315,8 +315,6 @@ theorem isProjOver_abelian (K : Type) [Field K] (A : Over (Sp K)) [GrpObj A] (hA
   have : IsLocallyNoetherian A.left := LocallyOfFiniteType.isLocallyNoetherian A.hom
   have : Subsingleton (Sp K) := inferInstanceAs (Subsingleton (PrimeSpectrum K))
   have : Nonempty (Sp L) := inferInstanceAs (Nonempty (PrimeSpectrum L))
-  have h₁ : Flat (spMap (algebraMap K L)) := inferInstance
-  have h₂ : Surjective (spMap (algebraMap K L)) := inferInstance
   have h₃ : IsFinite (spMap (algebraMap K L)) := by
     rw [IsFinite.SpecMap_iff]
     exact RingHom.finite_algebraMap.2 inferInstance

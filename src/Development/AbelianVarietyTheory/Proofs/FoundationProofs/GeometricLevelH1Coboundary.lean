@@ -739,7 +739,6 @@ theorem GlobalTheory.K5.span_fixed_ggeo_stab : ∀ (p : ℕ) [Fact p.Prime] (Ω 
   haveI : CharZero Ω := Basic.charZero_of_isClo h
   haveI := h.clo
   set L := baseField p Ω
-  haveI : CharZero L := inferInstance
   haveI : Algebra.IsAlgebraic L Ω := isAlgebraic_baseField h
   haveI : IsAlgClosure L Ω := ⟨h.clo, inferInstance⟩
   haveI : IsGalois L Ω := IsAlgClosure.isGalois L Ω

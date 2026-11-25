@@ -17,9 +17,7 @@ private theorem exists_point {k R : Type} [Field k] [IsAlgClosed k] [CommRing R]
     [Algebra.FiniteType k R] (m : Ideal R) [m.IsMaximal] :
     ∃ φ : R →ₐ[k] k, ∀ r, φ r = 0 → r ∈ m := by
   letI : Field (R ⧸ m) := Ideal.Quotient.field m
-  haveI : Algebra.FiniteType k (R ⧸ m) := inferInstance
   haveI : Module.Finite k (R ⧸ m) := finite_of_finite_type_of_isJacobsonRing k (R ⧸ m)
-  haveI : Algebra.IsIntegral k (R ⧸ m) := inferInstance
   let e : k ≃ₐ[k] (R ⧸ m) :=
     AlgEquiv.ofBijective (Algebra.ofId k (R ⧸ m)) IsAlgClosed.algebraMap_bijective_of_isIntegral
   refine ⟨e.symm.toAlgHom.comp (Ideal.Quotient.mkₐ k m), fun r hr => ?_⟩
@@ -69,7 +67,6 @@ private theorem dom_tensor (k K L : Type) [Field k] [IsAlgClosed k] [Field K] [F
     [Algebra k L] : IsDomain (L ⊗[k] K) := by
   classical
   let e := Module.Basis.ofVectorSpace k K
-  haveI : Nontrivial (L ⊗[k] K) := inferInstance
   suffices hnz : NoZeroDivisors (L ⊗[k] K) from NoZeroDivisors.to_isDomain _
   refine ⟨fun {x y} hxy => ?_⟩
   let E := TensorProduct.equivFinsuppOfBasisRight (M := L) e

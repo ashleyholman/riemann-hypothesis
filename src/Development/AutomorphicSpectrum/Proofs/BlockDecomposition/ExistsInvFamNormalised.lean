@@ -549,7 +549,6 @@ theorem exists_norm_fixedField_ker_eq_unit :
       (∀ g : Ω ≃ₐ[K] Ω, g ξ = ξ → ψ g = 1) → ∀ U : Kˣ, GroundTheory.LocalField.ord (U : K) = 0 →
       ∃ y : IntermediateField.fixedField ψ.ker, Algebra.norm K y = (U : K) := by
   intro K Ω _ _ _ _ _ _ _ N hN ξ hξ ψ hopen hψ U hU
-  have hgal : IsGalois K Ω := inferInstance
   obtain ⟨hL, -⟩ := isUnramifiedSubextension_adjoin hN hξ
   have := hL.1
   have := hL.isGalois

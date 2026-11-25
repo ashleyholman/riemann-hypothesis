@@ -684,7 +684,6 @@ theorem mem_compact : ∀ (n : ℕ) (ε : Fin n → Bool) (fr G : Matrix (Fin n)
       _ = J := by rw [hx, hy]
   let F₀ : Submodule ℂ (Z → ℂ) :=
     (MvPolynomial.restrictTotalDegree σ ℂ φ'.totalDegree).map (R (fr⁻¹ * h' * fr) ∘ₗ pt)
-  have : FiniteDimensional ℂ F₀ := inferInstance
   have m0 : pt φ ∈ F₀ := by
     refine ⟨φ', (MvPolynomial.mem_restrictTotalDegree _ _ _).2 le_rfl, ?_⟩
     rw [LinearMap.comp_apply, hφ', ← Module.End.mul_apply, ← cR _ _ h3 hh, h1, Matrix.mul_one, f2, hR1,

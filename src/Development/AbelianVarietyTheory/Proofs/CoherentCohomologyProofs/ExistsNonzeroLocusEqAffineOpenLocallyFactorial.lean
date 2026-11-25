@@ -97,7 +97,6 @@ theorem exists_nonzeroLocus_eq : ∀ (X : Scheme.{0}) [IsIntegral X] [IsLocallyN
   intro X _ _ _ U hU hne hufd
   have hι : IsAffineHom U.ι :=
     haveI : IsAffine U := hU
-    haveI : IsAffineHom (U.ι ≫ terminal.from X) := inferInstance
     IsAffineHom.of_comp _ (terminal.from X)
   have hE : FinalTheorems.EffCartier (Scheme.IdealSheafData.vanishingIdeal U.compl) := by
     refine effCartier_of_stalkId_of_isLocallyNoetherian _ fun x => ?_

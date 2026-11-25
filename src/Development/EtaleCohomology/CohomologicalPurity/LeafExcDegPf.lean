@@ -67,10 +67,7 @@ def chIso (p : ℕ) : chains R ⋙ HomologicalComplex.eval _ _ (-(p : ℤ)) ≅
     rfl)
 
 instance : PreservesColimitsOfShape WalkingSpan (free R) := by
-  have h1 : PreservesColimitsOfShape WalkingSpan (uliftFunctor.{1, 0}) := inferInstance
   have h2' := (ModuleCat.adj (ULift.{1, 0} R)).leftAdjoint_preservesColimits
-  have h2 : PreservesColimitsOfShape WalkingSpan (ModuleCat.free (ULift.{1, 0} R)) := inferInstance
-  have h3 : PreservesColimitsOfShape WalkingSpan (uliftFunctor.{1, 0} ⋙ ModuleCat.free (ULift.{1, 0} R)) := inferInstance
   have : PreservesColimitsOfShape WalkingSpan (freeP R) := by
     unfold freeP; infer_instance
   unfold free; infer_instance

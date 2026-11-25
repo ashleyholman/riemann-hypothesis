@@ -90,7 +90,6 @@ theorem isFam_descends_to_numberField : ThetaUnifAV → Out.Laws → ∀ (E : Ty
     EllMap C₂ C (IntermediateField.inclusion h₂).toRingHom φ₂ → EllMap C' C₂ (algebraMap k₂ ℂ) φ₃ → φ₃ ≫ φ₂ = φ → m₃.φ ≫ m₂.φ = m.φ → ∃ ψ : L → (C₂.P.A ⟶ T₂.t.G), IsFam C₂ T₂ h L ψ ∧ ∀ a, (ψ' a).left ≫ m₃.φ = φ₃ ≫ (ψ a).left := by
   intro hT hL E _ _ _ H k _ ω C D h T L ω' C' φ T' m ψ' hC hF
   have hfin := D.fin
-  have : Module.Finite (𝓞 E) L := inferInstance
   have : Module.Finite ℤ L := Module.Finite.trans (𝓞 E) L
   have hg : AddMonoid.FG L := AddGroup.fg_iff_addMonoid_fg.1 (Module.Finite.iff_addGroup_fg.1 inferInstance)
   obtain ⟨S, hS⟩ := AddMonoid.isAddFG_iff.mp hg

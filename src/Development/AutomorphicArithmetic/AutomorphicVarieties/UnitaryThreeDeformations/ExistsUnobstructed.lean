@@ -980,7 +980,6 @@ private theorem isCO_of_surj {O : Type} [CommRing O] [IsLocalRing O] {R S : Type
   haveI hl : IsLocalHom (f : R →+* S) := IsLocalHom.of_surjective (f : R →+* S) hf
   have hm : ∀ x : R, f x ∈ maximalIdeal S ↔ x ∈ maximalIdeal R := fun x =>
     ⟨fun h hu => h (hu.map f), fun h hu => h (hl.map_nonunit x hu)⟩
-  haveI : IsArtinianRing S := inferInstance
   refine ⟨{ complete := inferInstance, isLocalHom := ⟨fun a ha => ?_⟩, res_surj := fun y => ?_ }, hm⟩
   · rw [← f.commutes] at ha
     exact IsLocalHom.map_nonunit (f := algebraMap O R) a (hl.map_nonunit _ ha)

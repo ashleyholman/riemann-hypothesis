@@ -162,9 +162,6 @@ section fmoc
 variable {k p ρ : ℕ}
 
 theorem fmoc_RC : MeasureTheory.IsFiniteMeasureOnCompacts (U.muRC k p ρ) := by
-  have h1 : IsFiniteMeasureOnCompacts (volume : Measure (Fin (2 * ρ + k + 1) → Fin p → ℂ)) := inferInstance
-  have h2 : IsFiniteMeasureOnCompacts (volume : Measure ((G.UT p → ℂ) × (Fin p → ℝ))) := inferInstance
-  have h3 : SigmaFinite (volume : Measure ((G.UT p → ℂ) × (Fin p → ℝ))) := inferInstance
   unfold U.muRC
   rw [Measure.volume_eq_prod]
   exact Measure.prod.instIsFiniteMeasureOnCompacts _ _
@@ -174,12 +171,6 @@ theorem fmoc_Xi (σ : Equiv.Perm (Fin p)) : MeasureTheory.IsFiniteMeasureOnCompa
   have h1' : SigmaFinite (U.muRC k p ρ) := Formalism.FourierDecayAlt.P.Dx2.SplitF.sf_RC p ρ
   have h2 : IsFiniteMeasureOnCompacts ((U.muRC k p ρ).prod (U.muRC k p ρ)) :=
     Measure.prod.instIsFiniteMeasureOnCompacts _ _
-  have a1 : IsFiniteMeasureOnCompacts (volume : Measure (Fin 0 → Fin p → ℂ)) := inferInstance
-  have a2 : IsFiniteMeasureOnCompacts (volume : Measure (Fin p → Fin 0 → ℂ)) := inferInstance
-  have a2' : SigmaFinite (volume : Measure (Fin p → Fin 0 → ℂ)) := inferInstance
-  have a3 : IsFiniteMeasureOnCompacts (volume : Measure (U.LW σ → ℂ)) := inferInstance
-  have a4 : IsFiniteMeasureOnCompacts (volume : Measure (G.UT p → ℂ)) := inferInstance
-  have a4' : SigmaFinite (volume : Measure (G.UT p → ℂ)) := inferInstance
   have b1 : IsFiniteMeasureOnCompacts (volume : Measure ((Fin 0 → Fin p → ℂ) × (Fin p → Fin 0 → ℂ))) := by
     rw [Measure.volume_eq_prod]; exact Measure.prod.instIsFiniteMeasureOnCompacts _ _
   have b2 : IsFiniteMeasureOnCompacts (volume : Measure ((U.LW σ → ℂ) × (G.UT p → ℂ))) := by

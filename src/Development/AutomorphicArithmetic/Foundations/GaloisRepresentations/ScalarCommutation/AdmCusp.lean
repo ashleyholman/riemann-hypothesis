@@ -386,8 +386,6 @@ theorem main : ∀ (N : ℕ) (V : Type) [AddCommGroup V] [Module ℂ V] (π : Re
   intro N V _ _ π hπ a b μ hμ u hu hadd l w hw F hF hFw
   haveI := secondCountable k
   haveI := t2Space k
-  haveI : OpensMeasurableSpace (Fin b → k) := inferInstance
-  haveI : OpensMeasurableSpace (Fin a → Fin b → k) := inferInstance
   have hu0 : u 0 = 1 := by
     have h := hadd 0 0
     rw [add_zero] at h

@@ -190,7 +190,6 @@ theorem UpperTheory.V.AlgebraTools.regular_polynomial_localization :
   haveI : IsRegularRing (MvPolynomial σ A ⧸
       (maximalIdeal A).map (MvPolynomial.C : A →+* MvPolynomial σ A)) := by
     letI := Ideal.Quotient.field (maximalIdeal A)
-    haveI : IsRegularRing (MvPolynomial σ (A ⧸ maximalIdeal A)) := inferInstance
     exact IsRegularRing.of_ringEquiv
       (MvPolynomial.quotientEquivQuotientMvPolynomial (σ := σ) (maximalIdeal A)).toRingEquiv
   have hf := fibre_reg _ _ Q hQ (Localization.AtPrime Q)

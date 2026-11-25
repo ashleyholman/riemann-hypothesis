@@ -147,10 +147,8 @@ theorem UpperTheory.exists_cyclic_galois_tensor_algEquiv_pi :
   intro F E K _ _ _ _ _ _ _ _
   obtain ⟨p, hp⟩ := Normal.exists_isSplittingField F E
   haveI : Algebra.FormallyEtale F E := Algebra.FormallyEtale.of_isSeparable F E
-  haveI : Algebra.FormallyEtale K (K ⊗[F] E) := inferInstance
   obtain ⟨I, hI, Ai, iF, iA, e, hs⟩ :=
     (Algebra.FormallyEtale.iff_exists_algEquiv_prod K (K ⊗[F] E)).1 inferInstance
-  haveI : Nontrivial (K ⊗[F] E) := inferInstance
   haveI hne : Nonempty I := by
     by_contra h
     rw [not_nonempty_iff] at h

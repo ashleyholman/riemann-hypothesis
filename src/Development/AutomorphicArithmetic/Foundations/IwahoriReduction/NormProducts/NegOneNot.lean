@@ -778,7 +778,6 @@ theorem UpperTheory.Kd.K4.nsAbs :
     apply (algebraMap K K').injective
     exact congrArg (fun b : B => (b : K')) hxy
   haveI : FaithfulSMul A B := (faithfulSMul_iff_algebraMap_injective A B).2 hinjAB
-  haveI : Module.IsTorsionFree A B := inferInstance
   haveI : CharZero (FractionRing A) :=
     charZero_of_injective_ringHom (f := ((algebraMap A (FractionRing A)).comp (algebraMap k[X] A)).comp
       (algebraMap k k[X])) (RingHom.injective _)

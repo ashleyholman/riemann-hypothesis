@@ -26,7 +26,6 @@ theorem LeafMono_of : LeafMono := by
   intro R _ U E f hf p
   have hk : ∀ k : ℕ, Mono (((chainsN R).map f).f k) := by
     intro k
-    have : Mono (f.app (op (SimplexCategory.mk k))) := inferInstance
     have := mono_free R (f.app (op (SimplexCategory.mk k)))
     simp only [chainsN, Functor.comp_map, AlgebraicTopology.alternatingFaceMapComplex_map_f]
     exact this

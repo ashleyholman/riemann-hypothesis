@@ -29,7 +29,6 @@ private theorem chain_stab {R : Type} [CommRing R] [IsLocalRing R] [IsNoetherian
   haveI : Module.Finite (R ⧸ maximalIdeal R) K :=
     Module.Finite.of_restrictScalars_finite R _ _
   letI : Field (R ⧸ maximalIdeal R) := Ideal.Quotient.field _
-  haveI : IsArtinianRing (R ⧸ maximalIdeal R) := inferInstance
   haveI : IsArtinian (R ⧸ maximalIdeal R) K := isArtinian_of_fg_of_artinian'
   haveI : IsArtinian R K := isArtinian_of_surjective_algebraMap (R := R ⧸ maximalIdeal R)
     (Ideal.Quotient.mk_surjective (I := maximalIdeal R))

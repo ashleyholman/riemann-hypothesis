@@ -1160,7 +1160,6 @@ theorem UpperTheory.curve_picard_of_selmerPicard_of_modelCurve :
   intro hSel hModel hH q _ k B _ _ _ _ _ _ hq
   by_cases hB : IsField B
   · letI := hB.toField
-    haveI : Subsingleton (CommRing.Pic B) := inferInstance
     exact Finite.of_subsingleton
   · haveI hK : IsFunctionField k (FractionRing B) := UpperTheory.isFunctionField_fractionRing_of_dedekind_finiteType k B hB
     obtain ⟨u, hu, hfd⟩ := IsFunctionField.exists_transcendental_finiteDimensional (k := k) (K := FractionRing B)

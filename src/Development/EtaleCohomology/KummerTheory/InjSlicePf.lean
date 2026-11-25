@@ -21,8 +21,6 @@ theorem pushPullback_inj {R : Type} [CommRing R] {X S : Scheme.{0}} (p : X ⟶ S
       (Scheme.etaleTopology.over S) (Scheme.etaleTopology.over X)).obj G) := by
   have adj := (Over.mapPullbackAdj p).sheafPushforwardContinuous (E := ModuleCat.{1} (ULift.{1} R))
     (Scheme.etaleTopology.over X) (Scheme.etaleTopology.over S)
-  have : ((Over.map p).sheafPushforwardContinuous (ModuleCat.{1} (ULift.{1} R))
-      (Scheme.etaleTopology.over X) (Scheme.etaleTopology.over S)).PreservesMonomorphisms := inferInstance
   exact Injective.injective_of_adjoint adj G
 
 theorem InjSlice_of (hF : ForgetInj) : InjSlice := by

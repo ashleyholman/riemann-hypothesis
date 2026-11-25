@@ -124,9 +124,7 @@ theorem UpperTheory.V.Z.InvariantSubmoduleMonicPolynomial.orthCt :
   let μ₂ : Measure (G1 K 2) := Measure.haar
   let κ : Measure (KG K (2 + 2)) := Measure.haar
   haveI : SecondCountableTopology (G1 K 2) := inferInstance
-  haveI : SecondCountableTopology (G1 K (2 + 2)) := inferInstance
   haveI : SecondCountableTopology (KG K (2 + 2)) := TopologicalSpace.Subtype.secondCountableTopology _
-  haveI : BorelSpace (G1 K 2) := inferInstance
   haveI : BorelSpace (KG K (2 + 2)) := Subtype.borelSpace _
   haveI : BorelSpace (ℝ × KG K (2 + 2)) := Prod.borelSpace
   haveI : BorelSpace (G1 K 2 × ℝ × KG K (2 + 2)) := Prod.borelSpace
@@ -139,7 +137,6 @@ theorem UpperTheory.V.Z.InvariantSubmoduleMonicPolynomial.orthCt :
   haveI : SFinite ((unipMeasure K (2 + 2) 2).restrict (unipFundamentalDomain K (2 + 2) 2)) := inferInstance
   haveI : SFinite (κ.prod ((unipMeasure K (2 + 2) 2).restrict (unipFundamentalDomain K (2 + 2) 2))) :=
     Measure.prod.instSFinite
-  haveI : SFinite ((volume : Measure ℝ).withDensity fun t => ENNReal.ofReal (Real.exp (-4 * t))) := inferInstance
   haveI : SFinite (((volume : Measure ℝ).withDensity fun t => ENNReal.ofReal (Real.exp (-4 * t))).prod
       (κ.prod ((unipMeasure K (2 + 2) 2).restrict (unipFundamentalDomain K (2 + 2) 2)))) := Measure.prod.instSFinite
   haveI : SFinite ((fd μ₂).prod (((volume : Measure ℝ).withDensity fun t => ENNReal.ofReal (Real.exp (-4 * t))).prod

@@ -1065,7 +1065,6 @@ variable {F : Type} [Field F] [ValuativeRel F] [TopologicalSpace F]
 theorem unit_one_sub (M : Model F E) (hOK : M.OK) (π : 𝒪[F]) (hπ : π ∈ nonunits 𝒪[F]) (r : M.L.O) :
     IsUnit (1 - (⟨algebraMap F E (π : F), (alg_mem_O M).mpr π.2⟩ : M.L.O) * r) := by
   have := hOK.loc
-  haveI : IsLocalRing 𝒪[F] := inferInstance
   obtain ⟨⟨tr, htr⟩, ⟨nr, hnr⟩⟩ := (mem_O_iff M r).mp r.2
   set x : E := 1 - algebraMap F E (π : F) * r with hx
   have hcj : M.L.cj x = 1 - algebraMap F E (π : F) * M.L.cj r := by
@@ -1130,7 +1129,6 @@ theorem isUnit_of_fst (M : Model F E) (hOK : M.OK) {g : SplitG M.L} (hs : M.spli
     (hab : Ideal.Quotient.mk (Ideal.span {g.q}) a = Ideal.Quotient.mk (Ideal.span {g.q}) b) (ha : IsUnit a) :
     IsUnit x := by
   have := hOK.loc
-  haveI : IsLocalRing 𝒪[F] := inferInstance
   obtain ⟨s, hsq⟩ := Ideal.mem_span_singleton'.1 ((Ideal.Quotient.eq).1 hab.symm)
   have hqn : g.q ∈ nonunits 𝒪[F] := g.q_irr.not_isUnit
   have hqm : g.q ∈ IsLocalRing.maximalIdeal 𝒪[F] := (IsLocalRing.mem_maximalIdeal _).2 hqn
@@ -1178,7 +1176,6 @@ theorem fst_isUnit (M : Model F E) {g : SplitG M.L} (hs : M.split = some g) (x :
 
 theorem isLocal_R (M : Model F E) (hOK : M.OK) {g : SplitG M.L} (hs : M.split = some g) : IsLocalRing M.R := by
   have := hOK.loc
-  haveI : IsLocalRing 𝒪[F] := inferInstance
   haveI : Nontrivial M.R := by
     refine ⟨⟨0, 1, fun h => ?_⟩⟩
     have h1 := congrArg (fun x : M.R => (g.e (x : E)).1) h

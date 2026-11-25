@@ -1318,7 +1318,6 @@ theorem exists_smooth_descent_of_tame_quotient :
   obtain ⟨hpb, hflat, hlft⟩ := _root_.GlobalTheory.TameDescent.isPullback_flat_of_tame Γ X X' G.left Y' ρ τ π φ G.hom p' hπ hφ hp' hτ hfin
     inferInstance inferInstance hstab hfib
   have hsurj : Surjective π := (quotient_isIntegral_surjective_orbits Γ X X' ρ π hπ).2.1
-  haveI : LocallyOfFinitePresentation p' := inferInstance
   exact ⟨Over.mk p', φ, hpb,
     smooth_of_isPullback_of_surjective_of_flat X X' G.left Y' π φ G.hom p' hpb hsurj hflat
       inferInstance hsm, fun g => hφ.2.1 g⟩

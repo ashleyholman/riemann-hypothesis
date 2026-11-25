@@ -520,8 +520,6 @@ private theorem bijective_coordEvalQuotientHom_of_isPullback (B : BlowupChart π
     (hB : IsPullback B.chart.map (π.resLE U B.domain B.domain_le) (coordBlowupSubstMap k m S s) c.map) :
     Function.Bijective B.coordEvalQuotientHom := by
   have hUaff : IsAffine U.toScheme := hU
-  have hPaff : IsAffine (CategoryTheory.Limits.pullback (coordBlowupSubstMap k m S s) c.map) :=
-    inferInstance
   have hDaff : IsAffine B.domain.toScheme := IsAffine.of_isIso hB.isoPullback.hom
   have HP : IsPushout (coordBlowupSubstMap k m S s).appTop c.map.appTop B.chart.map.appTop
       (π.resLE U B.domain B.domain_le).appTop :=

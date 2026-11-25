@@ -55,7 +55,6 @@ theorem liB_skew_mem_span : ∀ (E : Type) [Field E] [NumberField E] [_root_.Num
     exact h2
   obtain ⟨c, h0, hc, hu⟩ := exists_skew_curve S
   let W' : Submodule ℂ (GA E a → ℂ) := W.map (Sm E a).subtype
-  have hW' : FiniteDimensional ℂ W' := inferInstance
   have hF : ∀ t, (fun g => ψ.1 (g * infGL E a (c t))) ∈ W' := fun t =>
     ⟨cptRep E a ⟨(c t).val, hu hS t⟩ ψ, hst _ _ hψ, funext fun g => by
       have e : Unitary.toUnits (⟨(c t).val, hu hS t⟩ : Kinf E a) = c t := Units.ext rfl

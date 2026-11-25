@@ -96,7 +96,6 @@ theorem exists_resolution_genericFibre : Geo.ResK.ResKStatement → ∀ (E : Typ
       (IsPullback.of_horiz_isIso ⟨by simp⟩ :
         IsPullback Y.jQ.isoOpensRange.inv (Y.jQ.isoOpensRange.inv ≫ pullback.snd _ _) (pullback.snd _ _) (𝟙 _)) hXF
   have hin : Geo.ResK.IsResInput M i U D.dim := ⟨hi, hred, hd, by rw [his]; exact hU⟩
-  haveI : CharZero c.F := inferInstance
   obtain ⟨r, X', j, f, hj, hfj, hsm, hiso, hdense, hsnc⟩ := hRes c.F M D.dim _ i U hin
   obtain ⟨hp1, hp2⟩ := GenRes.isProper_of_closed i j f hfj
   rw [his] at hp2 hsm hsnc

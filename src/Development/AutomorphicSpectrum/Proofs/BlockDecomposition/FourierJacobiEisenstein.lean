@@ -279,7 +279,6 @@ theorem fj_fold_mean : ∀ {D : D7} {n ρ p : ℕ} {hn : ρ + p = n} (M : Maps D
   obtain ⟨hH, hfd, h1⟩ := m.hμ
   obtain ⟨i1, i2, i3, i4, -⟩ := lattice_Mx D ρ p
   haveI : BorelSpace (Mx D ρ p) := ⟨rfl⟩
-  haveI : SFinite m.μ := inferInstance
   haveI : IsFiniteMeasure (m.μ.restrict m.𝓕) := ⟨by simp [h1]⟩
   haveI : Countable D.host.E := (Module.finBasis ℚ D.host.E).equivFun.toEquiv.injective.countable
   haveI : Countable (Matrix (Fin ρ) (Fin p) D.host.E) :=
@@ -713,7 +712,6 @@ theorem Wz_stronglyMeasurable : ∀ {D : D7} {n ρ p : ℕ} {hn : ρ + p = n} (M
   haveI : LocallyCompactSpace (hermA D ρ) :=
     (GlobalTheory.CompanionTheory.FourierN.isClosed_hermA (D := D) (n := ρ)).isClosedEmbedding_subtypeVal.locallyCompactSpace
   haveI := m.hz.1
-  haveI : SFinite m.lz := inferInstance
   have hchz : Continuous fun z : hermA D ρ => conj (chz ψ b₀ z) :=
     Complex.continuous_conj.comp
       (hψ.1.comp ((GlobalTheory.CompanionTheory.FourierN.continuous_pr b₀.1).comp continuous_subtype_val))

@@ -25,8 +25,6 @@ theorem exists_algHom_X_add_C {O : Type} [CommRing O] (I : Ideal O) [h : IsAdicC
   have ha : PowerSeries.HasEval c := WithIdeal.isTopologicallyNilpotent_of_mem hc
   have hC : PowerSeries.HasEval (C c : O⟦X⟧) :=
     ha.map (φ := (C : O →+* O⟦X⟧)) PowerSeries.WithPiTopology.continuous_C
-  have : IsLinearTopology O⟦X⟧ O⟦X⟧ :=
-    inferInstance
   have hX : PowerSeries.HasEval (X + C c : O⟦X⟧) := PowerSeries.HasEval.X.add hC
   have : ContinuousSMul O O⟦X⟧ := ⟨by
     have : (fun p : O × O⟦X⟧ => p.1 • p.2) = fun p => C p.1 * p.2 := by

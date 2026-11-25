@@ -22,7 +22,6 @@ theorem rightReg_unitary_mul_continuous : ∀ (I : AutInst) (μf : Measure I.Gf)
   obtain ⟨Γ, hΓ, hc, -, hfd⟩ := GlobalTheory.RatDiscrete.rational_points I
   obtain ⟨hl, hrt, -⟩ := GlobalTheory.AdelicUnimod.adelic_unimodular I μf
   have hD := hfd μf fund hfund
-  have : BorelSpace I.GA := inferInstance
   have : (I.muA μf).IsMulLeftInvariant := ⟨hl⟩
   have : (I.muA μf).IsMulRightInvariant := ⟨hrt⟩
   have : IsFiniteMeasureOnCompacts (I.muA μf) := by

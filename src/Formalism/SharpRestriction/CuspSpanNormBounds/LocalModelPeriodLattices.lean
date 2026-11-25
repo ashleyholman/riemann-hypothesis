@@ -410,7 +410,6 @@ theorem top_of_OK (M : Model F E) (hOK : M.OK) : IsTopologicalRing E := by
 theorem nonarchimedean_local_field_t2 (hF : IsNonarchimedeanLocalField F) : T2Space F := by
   let := IsTopologicalAddGroup.rightUniformSpace F
   have := isUniformAddGroup_of_addCommGroup (G := F)
-  have : T0Space F := inferInstance
   infer_instance
 
 theorem t2Space_of_model_ok (M : Model F E) (hOK : M.OK) : T2Space E := by

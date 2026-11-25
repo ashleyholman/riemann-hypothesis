@@ -1207,7 +1207,6 @@ private theorem ce_teich_ex (l : ℕ) [Fact l.Prime] (O : Type) [CommRing O] [Is
     [IsAdicComplete (maximalIdeal O) O] [Finite (ResidueField O)] [CharP (ResidueField O) l] :
     ∃ τ : ResidueField O →* O, ∀ x, residue O (τ x) = x := by
   haveI : CharP (O ⧸ maximalIdeal O) l := inferInstanceAs (CharP (ResidueField O) l)
-  haveI : PerfectRing (ResidueField O) l := inferInstance
   let j : ResidueField O →+* Perfection (O ⧸ maximalIdeal O) l :=
     Perfection.lift l (ResidueField O) (O ⧸ maximalIdeal O) (RingHom.id (ResidueField O))
   have hj : ∀ x, Perfection.coeff (O ⧸ maximalIdeal O) l 0 (j x) = x := fun x => by
@@ -1802,7 +1801,6 @@ theorem z_eq_dim_e_of_count_e_res_eq_inv_loc_kir : _root_.UpperTheory.V.Z.Desc.V
       rwa [← map_natCast (residue c.O), residue_eq_zero_iff]
     have : CharP (c.O ⧸ maximalIdeal c.O) l :=
       inferInstanceAs (CharP (ResidueField c.O) l)
-    have : PerfectRing (ResidueField c.O) l := inferInstance
     let lift := Perfection.lift l (ResidueField c.O) (c.O ⧸ maximalIdeal c.O)
     let j := lift (RingHom.id (ResidueField c.O))
     let τ := (Perfection.teichmuller l (maximalIdeal c.O)).comp j.toMonoidHom

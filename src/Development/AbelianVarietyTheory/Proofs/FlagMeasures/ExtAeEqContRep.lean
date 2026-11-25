@@ -48,7 +48,6 @@ theorem ext_ae_eq_contRep : ∀ (B : RowsAut) (y : B.I.L2 B.μf B.fund) (f : B.I
   obtain ⟨hT, hL, hS, -⟩ := GlobalTheory.CongTop.adelic_topology B.I
   obtain ⟨Γ, hΓ, hc, -, -⟩ := GlobalTheory.RatDiscrete.rational_points B.I
   obtain ⟨hl, hrt, -, -, hop⟩ := _root_.GlobalTheory.AdelicUnimod.adelic_unimodular B.I B.μf
-  have : BorelSpace B.I.GA := inferInstance
   have : (B.I.muA B.μf).IsMulLeftInvariant := ⟨hl⟩
   have : (B.I.muA B.μf).IsMulRightInvariant := ⟨hrt⟩
   have : (B.I.muA B.μf).IsOpenPosMeasure := ⟨fun U hU hne => (hop U hU hne).ne'⟩

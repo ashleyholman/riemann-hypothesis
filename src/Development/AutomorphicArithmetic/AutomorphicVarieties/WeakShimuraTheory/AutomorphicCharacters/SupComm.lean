@@ -27,7 +27,6 @@ theorem UpperTheory.V.Ws.auGal :
   intro Ω _ _ _ l _ c D T
   haveI : Algebra.IsQuadraticExtension ℚ T.K := ⟨T.degK⟩
   haveI hK : IsGalois ℚ T.K := inferInstance
-  haveI : IsCyclic (T.K ≃ₐ[ℚ] T.K) := inferInstance
   haveI hF : IsGalois ℚ T.F := inferInstance
   haveI : Normal ℚ Ω := IsAlgClosure.normal ℚ Ω
   have hN : Normal ℚ ↥(T.F ⊔ T.K) := @IntermediateField.normal_sup ℚ Ω _ _ _ T.F T.K hF.to_normal hK.to_normal

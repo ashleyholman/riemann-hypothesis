@@ -231,7 +231,6 @@ theorem exists_compact_open {e : AEF F E} (he : IsSplitIdemF σ e) :
     exact ⟨t, by show projH σ nS nT he1 (Φ t) = y; rw [ht, projH_coe]⟩
   haveI : LocallyCompactSpace (conjHalf σ e nS nT) :=
     (isClosed_conjHalf e).isClosedEmbedding_subtypeVal.locallyCompactSpace
-  haveI : T2Space (conjHalf σ e nS nT) := inferInstance
   haveI : R1Space (conjHalf σ e nS nT) := T2Space.r1Space
   haveI : BaireSpace (conjHalf σ e nS nT) := BaireSpace.of_t2Space_locallyCompactSpace
   have hopen : IsOpenMap J := AddMonoidHom.isOpenMap_of_sigmaCompact J hJs hJ

@@ -96,7 +96,6 @@ theorem rconv_eq_integral : ∀ (B : RowsAut) (φ : B.I.GA → ℂ) (T : B.I.L2 
   obtain ⟨hT2, hL, hS, -⟩ := GlobalTheory.CongTop.adelic_topology B.I
   obtain ⟨hl, -⟩ := _root_.GlobalTheory.AdelicUnimod.adelic_unimodular B.I B.μf
   obtain ⟨-, -, hn, -, hext⟩ := _root_.GlobalTheory.RightRegFund.rightReg_unitary_continuous B
-  have : BorelSpace B.I.GA := inferInstance
   have : (B.I.muA B.μf).IsMulLeftInvariant := ⟨hl⟩
   have : SigmaFinite (B.I.muA B.μf) := by
     unfold AutInst.muA; infer_instance

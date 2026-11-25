@@ -52,8 +52,6 @@ theorem ker_comp_subschemeι_ideal_eq_comap (H : P.IdealSheafData) (Z : H.subsch
     (Z.subschemeι ≫ H.subschemeι).ker.ideal ⟨U, hU⟩ =
       Ideal.comap (H.subschemeι.appLE U (H.subschemeι ⁻¹ᵁ U) le_rfl).hom
         (Z.ideal ⟨H.subschemeι ⁻¹ᵁ U, isAffineOpen_preimage_subschemeι H hU⟩) := by
-  have hqcZ : QuasiCompact Z.subschemeι := inferInstance
-  have hqcf : QuasiCompact (Z.subschemeι ≫ H.subschemeι) := inferInstance
   have hopen : (Z.subschemeι ≫ H.subschemeι) ⁻¹ᵁ U
       = Z.subschemeι ⁻¹ᵁ (H.subschemeι ⁻¹ᵁ U) :=
     Scheme.Hom.comp_preimage ..
@@ -347,7 +345,6 @@ private theorem mem_map_of_mul_mem_of_etale {Pr A : Type u} [CommRing Pr] [CommR
   let algInst : Algebra (Pr ⧸ I) (A ⧸ Ideal.map f I) :=
     (Ideal.quotientMap (Ideal.map f I) f Ideal.le_comap_map).toAlgebra
   have instEt : Algebra.Etale (Pr ⧸ I) (A ⧸ Ideal.map f I) := hg
-  have instFlat : Module.Flat (Pr ⧸ I) (A ⧸ Ideal.map f I) := inferInstance
   have hreg : IsSMulRegular (Pr ⧸ I) ((Ideal.Quotient.mk I) w) := fun a b h => hw a b h
   have hregA : IsSMulRegular (A ⧸ Ideal.map f I) ((Ideal.Quotient.mk I) w) := hreg.of_flat
   have hsmul : (Ideal.Quotient.mk I) w • (Ideal.Quotient.mk (Ideal.map f I)) x

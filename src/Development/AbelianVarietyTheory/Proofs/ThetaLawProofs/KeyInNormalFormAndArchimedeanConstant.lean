@@ -57,7 +57,6 @@ theorem setIntegral_periodic_eq_measure_mul_cube {E I : Type} [NormedAddCommGrou
     ext p
     simp only [Set.mem_preimage, ZSpan.mem_fundamentalDomain, hrepr, Set.mem_pi, Set.mem_univ,
       true_imp_iff]
-  have hcount : Countable (Submodule.span ℤ (Set.range b)) := inferInstance
   haveI : VAddInvariantMeasure (Submodule.span ℤ (Set.range b)) E ν :=
     ⟨fun c s _ => measure_preimage_add ν (c : E) s⟩
   have h1 : ∫ z in Fd, F z ∂ν = ∫ z in ZSpan.fundamentalDomain b, F z ∂ν :=

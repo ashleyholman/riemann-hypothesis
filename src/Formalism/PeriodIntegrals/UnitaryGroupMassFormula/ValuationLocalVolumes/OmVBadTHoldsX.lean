@@ -420,7 +420,6 @@ theorem fixed_mem_range {k K : Type} [Field k] [Fintype k] [Field K] [Fintype K]
     ∃ c : k, t = algebraMap k K c := by
   classical
   haveI : FiniteDimensional k K := inferInstance
-  haveI : IsGalois k K := inferInstance
   have hcard : Fintype.card (K ≃ₐ[k] K) = 2 := by
     rw [← Nat.card_eq_fintype_card, IsGalois.card_aut_eq_finrank, h2]
   have hall : ∀ τ : K ≃ₐ[k] K, τ = AlgEquiv.refl ∨ τ = σ := by

@@ -120,7 +120,6 @@ theorem idealSheafData_eq_of_forall_comap_eq {X : Scheme.{u}} {ι : Type u} (Y :
     obtain ⟨i, hi⟩ := Set.mem_iUnion.mp hx
     obtain ⟨y, hy⟩ := Set.mem_range.mp hi
     subst hy
-    have hiso : IsIso ((f i).stalkMap y) := inferInstance
     have hinv : (inv ((f i).stalkMap y)).hom.comp ((f i).stalkMap y).hom
         = RingHom.id (X.presheaf.stalk ((f i).base y)) := by
       rw [← CommRingCat.hom_comp, IsIso.hom_inv_id, CommRingCat.hom_id]
@@ -235,14 +234,11 @@ private theorem exists_etale_maxContactIdeal_comparison_of_finite_cover {k : Typ
   have hWe₂ : ∀ i, Etale (c i).f₂ := fun i => (c i).etale_f₂
   have hWlft : ∀ i, LocallyOfFiniteType ((c i).f₁ ≫ p) := fun i => (c i).lft_f₁
   have hoi : ∀ i, IsOpenImmersion (Sigma.ι (fun j => (c j).W) i) := fun i => inferInstance
-  have hVaff : IsAffine (∐ fun i => (c i).W) := inferInstance
   have he₁ : Etale (Sigma.desc fun i => (c i).f₁) :=
     etale_sigmaDesc (fun i => (c i).f₁) fun i => (c i).etale_f₁
   have he₂ : Etale (Sigma.desc fun i => (c i).f₂) :=
     etale_sigmaDesc (fun i => (c i).f₂) fun i => (c i).etale_f₂
   have hlft : LocallyOfFiniteType ((Sigma.desc fun i => (c i).f₁) ≫ p) := inferInstance
-  have hcsV : CompactSpace ↥(∐ fun i => (c i).W) := inferInstance
-  have hss : Subsingleton ↥(Spec (CommRingCat.of k)) := inferInstance
   have hqc : QuasiCompact ((Sigma.desc fun i => (c i).f₁) ≫ p) := by
     apply AlgebraicGeometry.quasiCompact_of_compactSpace_of_subsingleton
   refine ⟨∐ (fun i => (c i).W), Sigma.desc (fun i => (c i).f₁), Sigma.desc (fun i => (c i).f₂),
@@ -311,8 +307,6 @@ theorem exists_etale_maxContactIdeal_comparison (k : Type u) [Field k] [CharZero
       (@maxContactIdeal k _ _ V (g₁ ≫ p) hlft (A.comap g₁) μ).subschemeι ≫ g₁ =
         (@maxContactIdeal k _ _ V (g₁ ≫ p) hlft (A.comap g₁) μ).subschemeι ≫ g₂ := by
   classical
-  have hsub : Subsingleton ↥(Spec (CommRingCat.of k)) := inferInstance
-  have hcsS : CompactSpace ↥(Spec (CommRingCat.of k)) := inferInstance
   have hcP : CompactSpace ↥P := by
     constructor
     have h := (‹QuasiCompact p›).isCompact_preimage Set.univ isOpen_univ isCompact_univ
@@ -767,14 +761,10 @@ theorem nonempty_etaleMaxContactComparison (k : Type u) [Field k] [CharZero k] {
   obtain ⟨V, hVaff, hptV, n, c₁, c₂, γ, j₀, hH₁, hH₂, hmc₁, hmc₂, hgm₁, hgm₂, hco, hNγ,
       _, hγne⟩ :=
     exists_common_charts_of_isMaxContactHypersurface A hμ N H₁ H₂ hsnc₁ hsnc₂ hadm₁ hadm₂ pt hpt
-  have hlftF : LocallyOfFiniteType (chartPullbackFst c₁ c₂ ≫ p) := inferInstance
   have hln1 : IsLocallyNoetherian (chartPullback c₁ c₂) :=
     LocallyOfFiniteType.isLocallyNoetherian (f := chartPullbackFst c₁ c₂ ≫ p)
   have hln2 : IsLocallyNoetherian
       ((maxContactIdeal k p A μ).comap (chartPullbackFst c₁ c₂)).subscheme := by
-    have : LocallyOfFiniteType
-        (((maxContactIdeal k p A μ).comap (chartPullbackFst c₁ c₂)).subschemeι ≫
-          (chartPullbackFst c₁ c₂ ≫ p)) := inferInstance
     exact LocallyOfFiniteType.isLocallyNoetherian
       (f := ((maxContactIdeal k p A μ).comap (chartPullbackFst c₁ c₂)).subschemeι ≫
         (chartPullbackFst c₁ c₂ ≫ p))
@@ -800,8 +790,6 @@ theorem nonempty_etaleMaxContactComparison (k : Type u) [Field k] [CharZero k] {
       (((chartPullback c₁ c₂).basicOpen g).ι ≫ chartPullbackFst c₁ c₂) := inferInstance
   have hetale2 : AlgebraicGeometry.Etale
       (((chartPullback c₁ c₂).basicOpen g).ι ≫ chartPullbackSnd c₁ c₂) := inferInstance
-  have hsmooth1 : AlgebraicGeometry.Smooth
-      (((chartPullback c₁ c₂).basicOpen g).ι ≫ chartPullbackFst c₁ c₂) := inferInstance
   have hlft1 : LocallyOfFiniteType
       ((((chartPullback c₁ c₂).basicOpen g).ι ≫ chartPullbackFst c₁ c₂) ≫ p) := inferInstance
   have e1 : H₁.comap (chartPullbackFst c₁ c₂)

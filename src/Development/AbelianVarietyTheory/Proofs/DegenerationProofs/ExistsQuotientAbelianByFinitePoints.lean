@@ -108,7 +108,6 @@ theorem exists_quotient_abelian_by_finite_points :
     have : GeometricallyConnected (q.left ≫ B.hom) := by rw [hw']; infer_instance
     have := UniversallyClosed.of_comp_surjective q.left B.hom
     have := AbelianQuotient.geometricallyReduced_of_comp q.left B.hom
-    have : LocallyOfFinitePresentation B.hom := inferInstance
     exact ⟨hcomm, AbelianQuotient.smooth_of_grpObj_of_flat B, ⟨⟩, AbelianQuotient.geometricallyConnected_of_comp q.left B.hom⟩
   · have h1 : (1 : Over.mk t ⟶ A) ≫ q = y ≫ q := by rw [hy, MonObj.one_comp]
     obtain ⟨a, ha, -⟩ := hG.fibre K (1 : Over.mk t ⟶ A).left y.left

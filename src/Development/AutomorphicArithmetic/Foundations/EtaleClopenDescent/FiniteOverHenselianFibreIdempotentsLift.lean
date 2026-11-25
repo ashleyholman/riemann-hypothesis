@@ -155,7 +155,6 @@ private lemma fst_inj {Z : Scheme.{0}} (p : Z ⟶ Spec (CommRingCat.of A)) :
     Function.Injective (pullback.fst p (cpt A)).base := by
   have h1 : IsClosedImmersion (cpt A) :=
     IsClosedImmersion.spec_of_surjective _ IsLocalRing.residue_surjective
-  have h2 : IsClosedImmersion (pullback.fst p (cpt A)) := inferInstance
   exact (pullback.fst p (cpt A)).isClosedEmbedding.injective
 
 private lemma g_apply {Z : Scheme.{0}} (p : Z ⟶ Spec (CommRingCat.of A)) {S : Type} [CommRing S] [Algebra A S]

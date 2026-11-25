@@ -28,7 +28,6 @@ set_option linter.unusedSectionVars false
 theorem exists_dualBasis {Λ : Submodule (𝓞 E) (Matrix (Fin nT) (Fin nS) E)} (h : GoodLat Λ) :
     ∃ (k : ℕ) (y : Fin k → Matrix (Fin nT) (Fin nS) E) (l : Fin k → Matrix (Fin nT) (Fin nS) E →ₗ[F] F),
       (∀ j, y j ∈ Λ) ∧ (∀ j, ∀ x ∈ Λ, ∃ o : 𝓞 F, l j x = o) ∧ ∀ x, x = ∑ j, l j x • y j := by
-  have : IsScalarTower (𝓞 F) (𝓞 E) (Matrix (Fin nT) (Fin nS) E) := inferInstance
   let M : Submodule (𝓞 F) (Matrix (Fin nT) (Fin nS) E) := Λ.restrictScalars (𝓞 F)
   have hfin : Module.Finite (𝓞 F) M := by
     have : Module.Finite (𝓞 E) Λ := Module.Finite.iff_fg.2 h.fg

@@ -24,7 +24,6 @@ theorem exists_finite_pid_subalgebra_div_padicInt :
     apply IntermediateField.finiteDimensional_adjoin
     intro x hx
     exact ((hS x hx).extendScalars (IsFractionRing.injective ℤ_[p] (FractionRing ℤ_[p]))).isIntegral
-  haveI : Algebra.IsSeparable (FractionRing ℤ_[p]) L := inferInstance
   haveI : IsDedekindDomain (integralClosure ℤ_[p] L) :=
     integralClosure.isDedekindDomain ℤ_[p] (FractionRing ℤ_[p]) L
   haveI : Module.Finite ℤ_[p] (integralClosure ℤ_[p] L) :=

@@ -48,7 +48,6 @@ theorem UpperTheory.ConvolutionTheory.RankTwoDescent.Cp.yEq :
     UpperTheory.ConvolutionTheory.RankTwoDescent.Cp.YEq := by
   intro E _ _ _ D W M N P φ hφ ph hph
   haveI := N.haar
-  haveI : SigmaFinite N.μ := inferInstance
   obtain ⟨hp, hw, hint⟩ := UpperTheory.ConvolutionTheory.RankTwoDescent.Cp.yInt E D W M N P φ hφ
   obtain ⟨hc, K, hK, hB⟩ := UpperTheory.ConvolutionTheory.R2.Ff.wtBound ℚ ph
   obtain ⟨n, hn⟩ := hint K hK

@@ -787,7 +787,6 @@ theorem meas_det {j : ℕ} : Measurable fun x : Fin j → Fin j → ℂ => ‖(M
 end Meas
 
 theorem ae_ne_zero (ι : Type) [Fintype ι] (k : ℕ) : ∀ᵐ x : ι → Fin (k + 1) → ℂ, ∀ w, x w ≠ 0 := by
-  haveI : SigmaFinite (volume : Measure (Fin (k + 1) → ℂ)) := inferInstance
   rw [ae_all_iff]
   intro w
   have h : ∀ᵐ y : Fin (k + 1) → ℂ, y ≠ 0 := by

@@ -1032,7 +1032,6 @@ theorem moduli_of_family (hL : Out.Laws) (hL2 : Out.Laws2)
   refine ⟨{ X := X, s := sX, qproj := hqX, smooth := ?_, univ := ob, rep := ?_, unram := ?_ }⟩
   · refine smoothOfRelativeDimension_of_dim_of_directions_le (KA l) X sX D.dim hlft ?_ ?_
     · intro R _ _ x hx _ q hq'
-      haveI : IsOpenImmersion (x ≫ sq.isoPullback.hom) := inferInstance
       exact dim_generic_chart sU _ hdim R (x ≫ sq.isoPullback.hom) q hq'
     · intro K' _ _ r β x hxs hdir
       have hρsq : ρ ^ 2 = -(H.d : o) := by
@@ -1465,7 +1464,6 @@ theorem nonempty_levelQuot : Out.Laws → Out.Laws2 → (∀ (S : Scheme.{0}) (P
     rw [hπ]
     haveI := Xo₂.smooth
     haveI : Etale (spMap jK) := etale_of_numberField jK
-    haveI : SmoothOfRelativeDimension 0 (spMap jK) := inferInstance
     have := smoothOfRelativeDimension_comp D.dim 0 Xo₂.s (spMap jK)
     rwa [Nat.add_zero] at this
   have hsY : SmoothOfRelativeDimension D.dim sY := _root_.GlobalTheory.SmoothDescent.smoothOfRelativeDimension_of_etale_cover (KA l) _ Y π sY _ hG.etale hG.onto hft hsm

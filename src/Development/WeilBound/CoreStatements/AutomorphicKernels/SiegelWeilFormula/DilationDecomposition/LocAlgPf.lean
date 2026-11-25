@@ -157,7 +157,6 @@ theorem fourier_uniqueness : ∀ (m n : ℕ) (s : ℂ), s ≠ 0 → ∀ g : (Fin
       ((s * Matrix.trace ((Matrix.of u)ᴴ * Matrix.of v)).re : ℂ)) * g v = 0) → g = 0 := by
   intro m n s hs g hgc hgi hF
   have hemb : MeasurableEmbedding (entries m n) := (entries m n).toHomeomorph.measurableEmbedding
-  have hC : (volume : Measure ℂ).IsAddHaarMeasure := inferInstance
   have hV1 : (volume : Measure (Fin n → ℂ)).IsAddHaarMeasure :=
     Measure.pi.isAddHaarMeasure (fun _ => volume)
   have hV2 : (volume : Measure (Fin m → Fin n → ℂ)).IsAddHaarMeasure :=

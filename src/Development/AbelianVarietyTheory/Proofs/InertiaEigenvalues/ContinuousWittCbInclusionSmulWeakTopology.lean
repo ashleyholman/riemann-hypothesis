@@ -639,7 +639,6 @@ theorem isTopologicalAddGroup_twTop {l : ℕ} [Fact l.Prime] {K LL : FinExt l} (
   have := zlTower T
   let : TopologicalSpace (WCb l) := wTop l
   let : TopologicalSpace (TW (RW LL) T) := twTop T b
-  have : IsTopologicalRing (Cb l) := inferInstance
   have : IsTopologicalRing (WCb l) := GlobalTheory.WeakTop.isTopologicalRing_witt
   exact Topology.IsInducing.isTopologicalAddGroup (GlobalTheory.WeakTop.coords (WCb l) ↥(OL LL) b) ⟨rfl⟩
 

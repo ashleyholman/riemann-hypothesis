@@ -243,7 +243,6 @@ theorem continuous_form (hψ : IsStdChar D ψ (-1)) (hθ : IsInfFam θ) {ℓ : (
   haveI : IsTopologicalAddGroup (Formalism.L2.Theta.AE D) := IsTopologicalRing.to_topologicalAddGroup
   haveI : IsTopologicalAddGroup (WO S T) := Pi.topologicalAddGroup
   haveI : ContinuousSub (WO S T) := IsTopologicalAddGroup.to_continuousSub
-  haveI : ContinuousAdd (WO S T) := inferInstance
   refine continuous_iff_continuousAt.2 fun u₀ => ?_
   have hg : IsThetaFunO ψ S T (heisO ψ S T u₀ f) := theta_heisO_any hψ hθ hf u₀
   obtain ⟨U, hU, hl⟩ := hg.level

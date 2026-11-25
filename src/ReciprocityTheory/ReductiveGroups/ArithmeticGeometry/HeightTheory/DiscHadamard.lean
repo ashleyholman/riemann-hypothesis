@@ -533,7 +533,6 @@ theorem disc_pointwise (hd : d.AxH 𝒜) (h : d.S1) (a b : KTp K d.D d.N) (hab :
       Module.Finite.of_equiv_equiv e.symm (RingEquiv.refl _) he
     have hrank : Module.finrank (KTf K d.D d.N) (OmS (Ω c) d.D d.N) = d.delc c :=
       (Algebra.finrank_eq_of_equiv_equiv e.symm (RingEquiv.refl _) he).symm
-    have : CharZero (KTf K d.D d.N) := inferInstance
     have : Algebra.IsSeparable (KTf K d.D d.N) (OmS (Ω c) d.D d.N) :=
       Algebra.IsSeparable.of_integral _ _
     let restrict (σ : OmS (Ω c) d.D d.N →ₐ[KTf K d.D d.N] ℂ) :=

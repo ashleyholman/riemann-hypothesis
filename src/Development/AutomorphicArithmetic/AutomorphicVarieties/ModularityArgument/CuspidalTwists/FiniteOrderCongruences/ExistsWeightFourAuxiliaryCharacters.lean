@@ -186,7 +186,6 @@ theorem UpperTheory.exists_theta_character_cmDatum : UpperTheory.V.Sd.S3.ThetaEx
   have hdvd : l ∣ Nat.card (ZMod w)ˣ := by
     rw [Nat.card_eq_fintype_card, ZMod.card_units_eq_totient, Nat.totient_prime hw]
     exact (Nat.modEq_iff_dvd' hw.one_lt.le).1 hwl.symm
-  haveI : IsAlgClosed (Qbar l) := inferInstance
   haveI : NeZero (l : Qbar l) := ⟨by exact_mod_cast hlp.ne_zero⟩
   obtain ⟨ζ, hζ⟩ := HasEnoughRootsOfUnity.exists_primitiveRoot (Qbar l) l
   let z : (Qbar l)ˣ := (hζ.isUnit hlp.ne_zero).unit

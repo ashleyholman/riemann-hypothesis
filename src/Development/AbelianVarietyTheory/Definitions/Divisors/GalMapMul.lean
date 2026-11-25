@@ -98,7 +98,6 @@ abbrev Shv (R : Type) [CommRing R] : Type 2 := Sheaf (Scheme.etaleTopology.{0}) 
 variable (R : Type) [CommRing R]
 
 instance : HasSheafify (Scheme.etaleTopology.{0}) (ModuleCat.{1} (ULift.{1} R)) := by
-  have : EssentiallySmall.{1} Scheme.{0} := inferInstance
   infer_instance
 
 instance : IsGrothendieckAbelian.{1} (Shv R) := by

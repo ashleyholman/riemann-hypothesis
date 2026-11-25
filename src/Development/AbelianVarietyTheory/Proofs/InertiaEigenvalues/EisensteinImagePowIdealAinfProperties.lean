@@ -137,8 +137,6 @@ theorem mem_filtration_iff_eisenstein_pow_dvd (m : ℕ) (a : Ainf l) :
   rw [key, ker_localizedTheta_eq_span_eisenstein bk, Ideal.span_singleton_pow, Ideal.mem_span_singleton, ← map_pow]
   constructor
   · rintro ⟨y, hy⟩
-    haveI : IsLocalization (Submonoid.powers (l : Per.Ainf l)) (Per.AinfP l) :=
-      inferInstance
     obtain ⟨⟨b, s⟩, hs⟩ := IsLocalization.surj (Submonoid.powers (l : Per.Ainf l)) y
     obtain ⟨k, hk⟩ := s.2
     simp only at hs hk

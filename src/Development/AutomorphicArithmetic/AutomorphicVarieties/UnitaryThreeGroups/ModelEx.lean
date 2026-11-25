@@ -274,7 +274,6 @@ private theorem phi_kill (hGF : GlobalFiniteness) {Ω : Type} [Field Ω] [CharZe
       rwa [← D.η_ker] at h1
     · have h1 : Chr.cls ℚ Ω N g = 1 := hIne A (fun h => hv' (v.asIdeal.mul_mem_left _ (hval A v hA N h))) hg
       rw [Chr.dirG, MonoidHom.comp_apply, h1, map_one]
-  haveI hc : CompactSpace (GS Ω (S : Set (HeightOneSpectrum (𝓞 ℚ)))) := inferInstance
   haveI : NeZero (l ^ 1) := ⟨pow_ne_zero _ hl.out.ne_zero⟩
   have key : PhiCond (GS Ω (S : Set (HeightOneSpectrum (𝓞 ℚ)))) (l ^ 1) :=
     UpperTheory.V.Alg.phiCond_of_finite_H1 (l ^ 1) fun M _ _ _ _ _ ρ hρ => by

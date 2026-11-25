@@ -1664,7 +1664,6 @@ alias isClosed_UJset := _root_.GlobalTheory.AvgCont.isClosed_UJset
 
 theorem continuous_mul_left_GA {D : D7} (V : HSp D) (x : GA D V) : Continuous fun y : GA D V => x * y := by
   haveI : IsModuleTopology (AF D.host.F) (AE D) := ⟨rfl⟩
-  haveI : IsTopologicalRing (AE D) := inferInstance
   refine continuous_induced_rng.2 ?_
   exact (continuous_const_mul _).comp continuous_induced_dom
 

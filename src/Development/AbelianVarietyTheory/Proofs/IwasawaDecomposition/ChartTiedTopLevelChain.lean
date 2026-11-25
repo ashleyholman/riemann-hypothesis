@@ -822,7 +822,6 @@ theorem stepBefore_oneLevel : ∀ {B : Base} {X : PreX B.toPre} (I : TC B X), I.
     show cosetIn ((_ : (I.stp u I.mu0 (B.R.m - 1)).G c.1) • (I.stp u I.mu0 (B.R.m - 1)).rep c) = _
     rw [e, one_smul]
   have hfi : ∀ β, ((K β).lev.U.subgroupOf J.U).FiniteIndex := fun β => by
-    haveI : f.ker.FiniteIndex := inferInstance
     exact Subgroup.finiteIndex_of_le (hker β)
   obtain ⟨Yb, hYb, act, yb, horb, hstab⟩ := exists_orbits (fun β => (K β).lev.U.subgroupOf J.U) hfi
   refine ⟨J, lamJ, V, Yb, hYb, act, yb, hV1, hV2, horb, fun β => ⟨?_, fun x hx => ?_, fun κ => ?_, hchi β⟩⟩

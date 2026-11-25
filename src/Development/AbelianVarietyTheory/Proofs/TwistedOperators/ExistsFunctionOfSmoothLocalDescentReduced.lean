@@ -138,10 +138,8 @@ theorem exists_lift_geom (R S : Type) [CommRing R] [CommRing S] [Algebra R S]
     [Algebra.FiniteType R S] [Module.FaithfullyFlat R S] (k : Type) [Field k] [IsAlgClosed k]
     (χ : R →+* k) : ∃ χ' : S →+* k, χ'.comp (algebraMap R S) = χ := by
   letI : Algebra R k := χ.toAlgebra
-  haveI : Nontrivial (k ⊗[R] S) := inferInstance
   obtain ⟨m, hm⟩ := Ideal.exists_maximal (k ⊗[R] S)
   letI : Field ((k ⊗[R] S) ⧸ m) := Ideal.Quotient.field m
-  haveI : Algebra.FiniteType k (k ⊗[R] S) := inferInstance
   haveI : Module.Finite k ((k ⊗[R] S) ⧸ m) := finite_of_finite_type_of_isJacobsonRing k _
   let g : ((k ⊗[R] S) ⧸ m) →ₐ[k] k := (by
     refine @_root_.IsAlgClosed.lift _ _ _ _ _ _ _ _ _ _ _ ?_ ?_ ?_
@@ -182,7 +180,6 @@ theorem exists_of_finite_cover (K B : Type) [CommRing K] [CommRing B] [Algebra K
       χ' (a i) = F Ω (χ'.comp (IsScalarTower.toAlgHom K B (A i)))) :
     ∃ b : B, ∀ (Ω : Type) [Field Ω] [IsAlgClosed Ω] [Algebra K Ω] (χ : B →ₐ[K] Ω), χ b = F Ω χ := by
   haveI : Algebra.Smooth B (∀ i, A i) := ⟨inferInstance, inferInstance⟩
-  haveI : Module.Flat B (∀ i, A i) := inferInstance
   haveI : Module.FaithfullyFlat B (∀ i, A i) := by
     refine Module.FaithfullyFlat.of_comap_surjective fun p => ?_
     obtain ⟨i, Q, hQ⟩ := hcov p

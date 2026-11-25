@@ -260,7 +260,6 @@ theorem exists_coeff_ext (L : Type) [Field L] [NumberField L] [IsGalois ℚ L] (
     apply ι.injective
     rw [hcomp, hcomp, hab]
   have hjfin : Module.Finite W O := hfin
-  have hjint : Algebra.IsIntegral W O := inferInstance
   have : FaithfulSMul W O := (faithfulSMul_iff_algebraMap_injective W O).mpr hjinj
   have hjloc : IsLocalHom (algebraMap W O) := inferInstance
   have hjmem : ∀ a : W, j a ∈ IsLocalRing.maximalIdeal O ↔ a ∈ IsLocalRing.maximalIdeal W := by

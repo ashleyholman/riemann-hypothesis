@@ -625,7 +625,6 @@ theorem flat_localization (R C : Type) [CommRing R] [IsNoetherianRing R] [CommRi
 theorem ciFlat : CompanionTheory.ObstructionTrivialLocus.CIFlat := by
   intro R C _ _ _ _ g _ f _
   have : Algebra.IsStandardSmooth R C := Algebra.IsStandardSmoothOfRelativeDimension.isStandardSmooth g
-  have : Module.Flat R C := inferInstance
   refine Module.flat_of_isLocalized_maximal C (C ⧸ Ideal.span (Set.range f))
     (fun q _ => Localization.AtPrime q ⊗[C] (C ⧸ Ideal.span (Set.range f)))
     (fun q _ => TensorProduct.mk C _ _ 1) fun q _ => ?_
@@ -1370,7 +1369,6 @@ theorem flat_of_gens (hCI : CIFlat) {S Y Z : Scheme.{0}} [IsLocallyNoetherian S]
     letI := (s.appLE U V e).hom.toAlgebra
     have h1 : Algebra.IsStandardSmoothOfRelativeDimension g Γ(S, U) Γ(Y, V) := hs.toAlgebra
     have h2 : Algebra.IsStandardSmooth Γ(S, U) Γ(Y, V) := h1.isStandardSmooth
-    have h3 : Algebra.FiniteType Γ(S, U) Γ(Y, V) := inferInstance
     exact Algebra.FiniteType.isNoetherianRing Γ(S, U) _
   let P := hV.primeIdealOf ⟨i z, hy⟩
   let p := P.asIdeal

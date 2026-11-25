@@ -119,7 +119,6 @@ theorem LeafGenericOpenSpread_pf : LeafGenericOpenSpread := by
   have : IsNoetherian D := {}
   have hZ : IsConstructible ((U : Set D)ᶜ) :=
     ((NoetherianSpace.isCompact (U : Set D)).isConstructible U.isOpen).compl
-  have : QuasiCompact q := inferInstance
   have hI := q.isConstructible_image hZ
   obtain ⟨f, hf0, hf⟩ := exists_ne_zero_of_constructible (A := A) (q '' ((U : Set D)ᶜ)) hI (by
     rintro ⟨x, hx, hqx⟩

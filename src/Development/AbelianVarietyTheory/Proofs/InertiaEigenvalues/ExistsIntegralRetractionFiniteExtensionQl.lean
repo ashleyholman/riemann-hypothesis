@@ -97,7 +97,6 @@ theorem exists_retraction_closure (R F K L : Type) [CommRing R] [IsDomain R] [Fi
     [Field L] [Algebra K L] [Algebra R L] [IsScalarTower R K L]
     [FiniteDimensional K L] [Algebra.IsSeparable K L] :
     ∃ r : L →ₗ[K] K, r 1 = 1 ∧ ∀ x : L, IsIntegral R x → IsIntegral R (r x) := by
-  have : IsScalarTower (integralClosure R K) K L := inferInstance
   have : IsFractionRing (integralClosure R K) K :=
     integralClosure.isFractionRing_of_finite_extension F K
   have : IsScalarTower R (integralClosure R K) L := IsScalarTower.of_algebraMap_eq fun y => by

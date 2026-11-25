@@ -22,7 +22,6 @@ theorem latHaar : LatHaar := by
   unfold LatHaar
   intro V _ _ _ _ _ _ _ _ μ _ Γ _ φ hΓ s hs hs0 hstop
   have hmeas : Measurable φ := φ.continuous.measurable
-  have : (μ.map φ).IsAddHaarMeasure := inferInstance
   have hc := Measure.isAddLeftInvariant_eq_smul (μ.map φ) μ
   have hqmp : Measure.QuasiMeasurePreserving φ μ μ := by
     refine ⟨hmeas.aemeasurable, fun t ht => ?_⟩

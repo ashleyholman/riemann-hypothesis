@@ -460,7 +460,6 @@ theorem stalkGen_mem_range [IsNoetherianRing O] (Y : Model Xo c β) (hd : Dense 
   have : IsLocallyNoetherian Y.X := LocallyOfFiniteType.isLocallyNoetherian Y.s
   have : CompactSpace Y.X := QuasiCompact.compactSpace_of_compactSpace Y.s
   have : IsNoetherian Y.X := {}
-  have hq : IsProper (pullback.snd Y.s (spMap β)) := inferInstance
   have : IsLocallyNoetherian (pullback Y.s (spMap β)) := LocallyOfFiniteType.isLocallyNoetherian (pullback.snd Y.s (spMap β))
   have : CompactSpace ↥(pullback Y.s (spMap β) : Scheme.{0}) := QuasiCompact.compactSpace_of_compactSpace (pullback.snd Y.s (spMap β))
   have : IsNoetherian (pullback Y.s (spMap β)) := {}

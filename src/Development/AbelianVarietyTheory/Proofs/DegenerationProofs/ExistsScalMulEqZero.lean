@@ -32,7 +32,6 @@ theorem map_eq_generic (R : Type) [CommRing R] [IsDomain R] [IsNoetherianRing R]
     (H : ∀ x ∈ Sg, ∃ (K : Type) (_ : Field K) (t : Sp K ⟶ Sp R), Set.range t = {x} ∧
       (Over.pullback t).map f = (Over.pullback t).map g) :
     (Over.pullback (Out.jK R)).map f = (Over.pullback (Out.jK R)).map g := by
-  have : IsClosedImmersion (equalizer.ι f g).left := inferInstance
   have : LocallyOfFiniteType (equalizer f g).hom := by
     rw [← Over.w (equalizer.ι f g)]; infer_instance
   have h := isIso_generic_of_dense_fibres R (equalizer f g) X (equalizer.ι f g) Sg hD

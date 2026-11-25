@@ -91,7 +91,6 @@ theorem UpperTheory.Gal.productCup_of_system.locOne_of :
   intro hMax hVal F L _ _ _ _ _ _ d x hc hred e v hv
   obtain ⟨hle, ⟨ev, hev⟩, hbv, hinv⟩ := hVal L (rB ℂ L (xv x) {0}) e.1
   haveI := hc.smooth 0
-  haveI : Algebra.FiniteType ℂ (rB ℂ L (xv x) {0}) := inferInstance
   have hevB : ∀ b : rB ℂ L (xv x) {0}, ev ⟨b, hle b.2⟩ = e.1 b := by
     intro b
     obtain ⟨h, hb⟩ := (hev _ _).1 (hbv b)

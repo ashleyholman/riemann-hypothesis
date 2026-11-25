@@ -54,7 +54,6 @@ def multiplesSub (L : Type) [AddCommGroup L] (N : ℕ) : AddSubgroup L := (nsmul
 
 theorem finite_quot_multiplesSub [Module.Finite ℤ L] {N : ℕ} (hN : 0 < N) :
     Finite (L ⧸ multiplesSub L N) := by
-  have : Module.Finite ℤ (L ⧸ (AddSubgroup.toIntSubmodule (multiplesSub L N))) := inferInstance
   have htors : Module.IsTorsion ℤ (L ⧸ (AddSubgroup.toIntSubmodule (multiplesSub L N))) := by
     intro x
     refine ⟨⟨(N : ℤ), mem_nonZeroDivisors_of_ne_zero (by exact_mod_cast hN.ne')⟩, ?_⟩

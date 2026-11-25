@@ -1098,8 +1098,6 @@ theorem orbit_slice_integrable : OrbitSliceIntegrable := by
   have sR := sigma_RC k (ph + (n + 1)) ρ
   set μR : Measure RR := (U.muRC k (ph + (n + 1)) ρ).prod (U.muRC k (ph + (n + 1)) ρ)
   have sX : SFinite (U.muXiH (ph + (n + 1)) 0 (sigP σ)) := by
-    have b1 : SigmaFinite (volume : Measure (U.LW (sigP (n := n) σ) → ℂ)) := inferInstance
-    have b2 : SigmaFinite (volume : Measure (G.UT (ph + (n + 1)) → ℂ)) := inferInstance
     have b3 : SigmaFinite (volume : Measure ((U.LW (sigP (n := n) σ) → ℂ) × (G.UT (ph + (n + 1)) → ℂ))) := by
       rw [Measure.volume_eq_prod]; infer_instance
     unfold U.muXiH
@@ -1292,10 +1290,7 @@ theorem intG : IntG := by
     have hI2 : Integrable (fun u : G.UT (n + 1) → ℂ => (1 + ‖u‖) ^ (-a)) volume := integrable_one_add_norm hfr
     have sR := sigma_RC k (ph + (n + 1)) ρ
     have hxi : SFinite (volume : Measure (U.XiH ph (n + 1) σ)) := by
-      have c1 : SigmaFinite (volume : Measure (Fin (n + 1) → Fin ph → ℂ)) := inferInstance
       have c2 : SigmaFinite (volume : Measure (Fin ph → Fin (n + 1) → ℂ)) := inferInstance
-      have c3 : SigmaFinite (volume : Measure (U.LW σ → ℂ)) := inferInstance
-      have c4 : SigmaFinite (volume : Measure (G.UT ph → ℂ)) := inferInstance
       have c5 : SigmaFinite (volume : Measure ((Fin (n + 1) → Fin ph → ℂ) × (Fin ph → Fin (n + 1) → ℂ))) := by
         rw [Measure.volume_eq_prod]; infer_instance
       rw [Measure.volume_eq_prod]; infer_instance

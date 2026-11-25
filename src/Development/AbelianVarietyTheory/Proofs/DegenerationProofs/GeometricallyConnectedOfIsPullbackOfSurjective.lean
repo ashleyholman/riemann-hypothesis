@@ -424,7 +424,6 @@ theorem unit_on_product_eq_one {K : Type} [Field K] [IsAlgClosed K] {X : Scheme}
     rw [map_one]
     exact hu'
   have : Nonempty (Spec (.of (A ⊗[K] A))) := inferInstanceAs (Nonempty (PrimeSpectrum _))
-  have : IsOpenImmersion i := inferInstance
   have hd : Dense (Set.range i) := i.isOpenEmbedding.isOpen_range.dense (Set.range_nonempty _)
   rw [← sub_eq_zero, ← basicOpen_eq_bot_iff]
   by_contra hne

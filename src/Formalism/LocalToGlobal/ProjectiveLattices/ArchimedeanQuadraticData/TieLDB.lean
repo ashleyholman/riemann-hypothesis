@@ -125,7 +125,6 @@ theorem length_localized_eq {P : Type*} [AddCommGroup P] [Module A P]
           (Submodule.span (Localization.AtPrime p) (G : Set V)).comap
             (Submodule.span (Localization.AtPrime p) (H : Set V)).subtype) := by
   have := isLocalizedModule p H G
-  have : IsLocalizedModule p.primeCompl (locMap p H G ∘ₗ e.toLinearMap) := inferInstance
   exact ((IsLocalizedModule.iso p.primeCompl (locMap p H G ∘ₗ e.toLinearMap)).extendScalarsOfIsLocalization
     p.primeCompl (Localization.AtPrime p)).length_eq
 

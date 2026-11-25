@@ -495,7 +495,6 @@ theorem shearE_mp : MeasurePreserving (shearE σh σb) volume volume := by
     exact (fa_mp' σb _ hN).prod (fb_mp' _ hM)
   have s1 : SFinite (volume : Measure ((U.LW σh → ℂ) × (G.UT p → ℂ))) := by
     rw [Measure.volume_eq_prod]; infer_instance
-  have i1 : SigmaFinite (volume : Measure (Fin s → Fin p → ℂ)) := inferInstance
   have i2 : SigmaFinite (volume : Measure (Fin p → Fin s → ℂ)) := inferInstance
   have s2 : SFinite (volume : Measure ((Fin s → Fin p → ℂ) × (Fin p → Fin s → ℂ))) := by
     rw [Measure.volume_eq_prod]; infer_instance
@@ -570,12 +569,7 @@ theorem xiE_apply (η : U.XiH (p + s) 0 (sigQ σh σb)) :
 theorem xiE_mp : MeasurePreserving (xiE σh σb) volume (volume.prod volume) := by
   have hT := Dx2.SL.probT (p + s)
   have hTb := Dx2.SL.probT s
-  have i1 : SigmaFinite (volume : Measure (Fin s → Fin p → ℂ)) := inferInstance
   have i2 : SigmaFinite (volume : Measure (Fin p → Fin s → ℂ)) := inferInstance
-  have i3 : SigmaFinite (volume : Measure (U.LW σh → ℂ)) := inferInstance
-  have i4 : SigmaFinite (volume : Measure (G.UT p → ℂ)) := inferInstance
-  have i5 : SigmaFinite (volume : Measure (G.UT s → ℂ)) := inferInstance
-  have i6 : SigmaFinite (volume : Measure (U.LW σb → ℂ)) := inferInstance
   have h1 : MeasurePreserving (Dx2.SL.dropE ((Fin 0 → Fin (p + s) → ℂ) × (Fin (p + s) → Fin 0 → ℂ))
       ((U.LW (sigQ σh σb) → ℂ) × (G.UT (p + s) → ℂ))) volume (volume.prod volume) :=
     Dx2.SL.dropE_mp _ _ volume _
@@ -600,10 +594,7 @@ section core
 variable {V : Type} [NormedAddCommGroup V] [NormedSpace ℂ V] [CompleteSpace V]
 
 theorem sfXiH (P S : ℕ) (σ : Equiv.Perm (Fin P)) : SFinite (volume : Measure (U.XiH P S σ)) := by
-  have c1 : SigmaFinite (volume : Measure (Fin S → Fin P → ℂ)) := inferInstance
   have c2 : SigmaFinite (volume : Measure (Fin P → Fin S → ℂ)) := inferInstance
-  have c3 : SigmaFinite (volume : Measure (U.LW σ → ℂ)) := inferInstance
-  have c4 : SigmaFinite (volume : Measure (G.UT P → ℂ)) := inferInstance
   have c5 : SigmaFinite (volume : Measure ((Fin S → Fin P → ℂ) × (Fin P → Fin S → ℂ))) := by
     rw [Measure.volume_eq_prod]; infer_instance
   have c6 : SigmaFinite (volume : Measure ((U.LW σ → ℂ) × (G.UT P → ℂ))) := by

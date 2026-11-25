@@ -12,7 +12,6 @@ namespace GlobalTheory.CompanionTheory.Dblock.ComapLat
 
 theorem comap_mulVec_compact_open : ∀ {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] (n : ℕ) (g : Matrix (Fin n) (Fin n) k), IsUnit g → ∀ A : AddSubgroup (Fin n → k), IsCompact (A : Set (Fin n → k)) → IsOpen (A : Set (Fin n → k)) → IsCompact ((A.comap (Matrix.mulVecLin g).toAddMonoidHom : AddSubgroup (Fin n → k)) : Set (Fin n → k)) ∧ IsOpen ((A.comap (Matrix.mulVecLin g).toAddMonoidHom : AddSubgroup (Fin n → k)) : Set (Fin n → k)) := by
   intro k _ _ _ _ n g hg A hc ho
-  haveI : IsTopologicalRing k := inferInstance
   have hdet : IsUnit g.det := (Matrix.isUnit_iff_isUnit_det g).1 hg
   have hcont : ∀ m : Matrix (Fin n) (Fin n) k, Continuous (fun x : Fin n → k => m.mulVec x) :=
     fun m => continuous_const.matrix_mulVec continuous_id

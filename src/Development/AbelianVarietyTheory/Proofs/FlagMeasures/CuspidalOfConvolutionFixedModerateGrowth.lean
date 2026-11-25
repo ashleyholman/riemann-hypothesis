@@ -144,7 +144,6 @@ theorem reproducing_fixed : ∀ (B : RowsAut) (d : InfinitePlace B.I.F → ℝ) 
   have hrc := (GlobalTheory.ConvKernel.rconv_eq_integral B (phe B d) T hT y).2
   rw [hy] at hrc
   haveI : SecondCountableTopology B.I.Gf := (GlobalTheory.CongTop.adelic_topology B.I).2.2.1
-  haveI : FirstCountableTopology B.I.Ginf := inferInstance
   have hshift : ∀ x : B.I.GA, ∀ᵐ g ∂(B.I.muA B.μf), B.I.ext y (x * g) = f (x * g) := by
     intro x
     have hmap := (GlobalTheory.AdelicUnimod.adelic_unimodular B.I B.μf).1 x
@@ -292,8 +291,6 @@ theorem cusp_of_fixed : ∀ (B : RowsAut) (d : InfinitePlace B.I.F → ℝ) (h :
     haveI h1 : ∀ w, (muG (B.I.ε w)).IsHaarMeasure := fun w => inferInstance
     haveI h2 : ∀ w, SigmaFinite (muG (B.I.ε w)) := fun w => inferInstance
     haveI h3 : (Measure.pi fun w => muG (B.I.ε w)).IsHaarMeasure := Measure.pi.isHaarMeasure _
-    haveI h4 : SFinite (Measure.pi fun w => muG (B.I.ε w)) := inferInstance
-    haveI h5 : SFinite B.μf := inferInstance
     unfold AutInst.muA
     exact Measure.prod.instIsHaarMeasure _ _
   have main : ∀ W, B.I.IsIsot W → ∀ ν : Measure B.I.GA, B.I.IsNQuotMeas W ν →

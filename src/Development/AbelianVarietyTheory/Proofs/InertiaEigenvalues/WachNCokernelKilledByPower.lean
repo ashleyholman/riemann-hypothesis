@@ -505,7 +505,6 @@ theorem satM_free_loc {l : ℕ} [Fact l.Prime] {P : LocPrime l} (H : LocHW l P) 
   refine ⟨?_, hbc⟩
   obtain ⟨hfree, hrk⟩ := W.DD_free T₂
   haveI : Module.Finite (AA K LL) ↥(W.N T₂) := Module.Finite.iff_fg.mpr (W.N_fg T₂)
-  haveI hR : IsNoetherianRing (PowerSeries ↥(OL LL)) := inferInstance
   haveI hA : IsNoetherianRing (AA K LL) :=
     isNoetherian_of_tower (PowerSeries ↥(OL LL)) (isNoetherian_pi' (R := PowerSeries ↥(OL LL)))
   haveI hNn : IsNoetherian (AA K LL) ↥(W.N T₂) :=

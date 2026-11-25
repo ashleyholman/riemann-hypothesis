@@ -152,7 +152,6 @@ theorem psiE_coe : ⇑(psiE P Q) = fun ab : lieU P Q × lieU P Q =>
 theorem exists_omegaLeb : ∃ lam : Measure (lieU P Q), IsOmegaLeb lam := by
   let lam0 : Measure (lieU P Q) := Measure.addHaar
   let m := (lam0.prod lam0).map (psiE P Q)
-  have hm : m.IsAddHaarMeasure := inferInstance
   have hs := Measure.isAddLeftInvariant_eq_smul m volume
   set s := Measure.addHaarScalarFactor m volume with hsdef
   have hs0 : 0 < s := Measure.addHaarScalarFactor_pos_of_isAddHaarMeasure m volume

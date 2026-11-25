@@ -57,9 +57,7 @@ theorem UpperTheory.Gal.InertialTypesAlt.L.cosetSum :
     UpperTheory.Gal.InertialTypesAlt.L.CosetSum := by
   intro G _ _ _ _ _ _ _ _ μ hμ K H hKo hKc hHc hcomm ν hν ι R x V S hV hS hd
   classical
-  haveI : SFinite μ := inferInstance
   haveI : LocallyCompactSpace H := hHc.locallyCompactSpace
-  haveI : SFinite ν := inferInstance
   letI cH : CommGroup H :=
     { (inferInstance : Group H) with mul_comm := fun a b => Subtype.ext (hcomm a a.2 b b.2) }
   haveI : ν.IsInvInvariant := @Measure.IsHaarMeasure.isInvInvariant_of_regular H cH _ _ _ _ ν hν _ _

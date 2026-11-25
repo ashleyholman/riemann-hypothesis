@@ -69,8 +69,6 @@ theorem decomp {X : Type} [AddCommGroup X] [TopologicalSpace X] [IsTopologicalAd
     TopologicalSpace.Subtype.secondCountableTopology (fixS p : Set X)
   haveI : SecondCountableTopology p.ker :=
     TopologicalSpace.Subtype.secondCountableTopology (p.ker : Set X)
-  haveI : BorelSpace (fixS p) := inferInstance
-  haveI : BorelSpace p.ker := inferInstance
   haveI : BorelSpace (fixS p × p.ker) := Prod.borelSpace
   let Θ : (fixS p × p.ker) ≃ₜ+ X :=
     { toFun := fun z => z.1.1 + z.2.1

@@ -487,9 +487,6 @@ theorem integrable_red : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalS
   intro k _ _ _ _ _ _ ψ ν hψ hν R Q _ _ _ _ w β E I Φ hΦ x
   haveI := secondCountable k
   haveI := t2Space k
-  haveI : LocallyCompactSpace k := inferInstance
-  haveI : SigmaFinite ν := inferInstance
-  haveI : (Measure.pi fun _ : I => ν).IsAddHaarMeasure := inferInstance
   have hf : Continuous (fillAt β E I x) := by
     refine continuous_matrix fun r q => ?_
     simp only [fillAt, Matrix.of_apply]
@@ -518,8 +515,6 @@ theorem red_insert : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace
   intro k _ _ _ _ _ _ ψ ν hψ hν R Q _ _ _ _ w β E I e hE hI Φ x hint
   haveI := secondCountable k
   haveI := t2Space k
-  haveI : LocallyCompactSpace k := inferInstance
-  haveI : SigmaFinite ν := inferInstance
   have hmp := measurePreserving_adjoin ν I e hI
   have hfill : ∀ p : k × (I → k), fillAt β E (insert e I) x
       (fun i => if h : i.1 ∈ I then p.2 ⟨i.1, h⟩ else p.1) =

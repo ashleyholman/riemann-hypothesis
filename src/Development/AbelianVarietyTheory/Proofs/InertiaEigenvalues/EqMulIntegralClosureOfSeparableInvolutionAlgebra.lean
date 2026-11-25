@@ -137,7 +137,6 @@ theorem isPrincipalIdealRing_integralClosure {O E A : Type} [CommRing O] [IsDoma
         Ideal.Quotient.mk_surjective
     haveI := GlobalTheory.FormalIsogeny.isDiscreteValuationRing_integralClosure O E (A ⧸ I.asIdeal)
     infer_instance
-  haveI : Finite (MaximalSpectrum A) := inferInstance
   let G : (∀ I : MaximalSpectrum A, integralClosure O (A ⧸ I.asIdeal)) →ₐ[O]
       (∀ I : MaximalSpectrum A, A ⧸ I.asIdeal) :=
     Pi.algHom O _ fun I => (integralClosure O (A ⧸ I.asIdeal)).val.comp (Pi.evalAlgHom O _ I)

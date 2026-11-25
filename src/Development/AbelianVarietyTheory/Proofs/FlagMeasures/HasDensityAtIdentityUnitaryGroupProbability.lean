@@ -448,7 +448,6 @@ theorem hasDens_zero (S : Set (Matrix (Fin 0) (Fin 0) ℂ)) (μ : Measure (PI.Mt
     HasDens S μ 1 := by
   haveI : Subsingleton (EuclideanSpace ℝ (Fin 0 × Fin 0 × Bool)) :=
     ⟨fun a b => by ext p; exact p.1.elim0⟩
-  haveI : Subsingleton (lieE S) := inferInstance
   have hu : (volume : Measure (lieE S)) Set.univ = 1 := by
     have hp := (stdOrthonormalBasis ℝ (lieE S)).volume_parallelepiped
     have he : parallelepiped (stdOrthonormalBasis ℝ (lieE S)) = Set.univ :=

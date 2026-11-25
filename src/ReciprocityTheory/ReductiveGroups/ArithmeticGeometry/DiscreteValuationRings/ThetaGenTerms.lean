@@ -203,7 +203,6 @@ theorem terms_vanish [IsDiscreteValuationRing R] {ϖ : R} (hϖ : Irreducible ϖ)
     ring
   choose b hb using hab
   have := flat_B (D := D)
-  have hdom : IsDominant (DegPre.prB D.toPre (FractionRing R)).left := inferInstance
   have key : ∀ j₂ : Fin 4 → D.toPre.P.L.ι,
       (∀ k k', (DegPre.prB D.toPre (FractionRing R)).left ≫ D.toPre.famφB mu k =
         (DegPre.prB D.toPre (FractionRing R)).left ≫ D.toPre.famφB mu k' → j₂ k = j₂ k') →

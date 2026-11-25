@@ -217,7 +217,6 @@ theorem res_eq {art art' : Ideles E →* Gab E Ω} (ha : IsGlobalArtin art)
     { (inferInstance : Group (L ≃ₐ[E] L)) with
       mul_comm := fun a b => (IsMulCommutative.is_comm (M := L ≃ₐ[E] L)).comm a b }
   have : T2Space (L ≃ₐ[E] L) := krullTopology_t2
-  have : IsTopologicalGroup (L ≃ₐ[E] L) := inferInstance
   let f : Ideles E →* (L ≃ₐ[E] L) := (res L).comp art
   let f' : Ideles E →* (L ≃ₐ[E] L) := (res L).comp art'
   have hf : Continuous f := (continuous_res L).comp ha.quot.continuous
@@ -444,7 +443,6 @@ theorem local_restriction_abelianization_artin : ∀ {E Ω : Type} [Field E] [Nu
   obtain ⟨w'⟩ := GroundTheory.Global.IdeleGroup.nonempty_placesOver_of_finite (K := E) (L := L) w
   haveI : IsSepClosed Ωv := IsSepClosure.sep_closed (w.adicCompletion E)
   haveI : CharZero (w.adicCompletion E) := algebraRat.charZero _
-  haveI : Algebra.IsSeparable (w.adicCompletion E) (w'.1.adicCompletion L) := inferInstance
   let ι : w'.1.adicCompletion L →ₐ[w.adicCompletion E] Ωv := IsSepClosed.lift
   set s := restrictAb L (le_maximalAbelianExtension L)
     (artinMap E Ω (GroundTheory.Global.IdeleClassGroup.mk E (IdeleGroup.finiteEmbedding w a))) with hs

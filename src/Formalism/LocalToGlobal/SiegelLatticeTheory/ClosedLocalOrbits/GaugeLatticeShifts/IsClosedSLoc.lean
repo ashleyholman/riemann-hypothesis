@@ -104,7 +104,6 @@ theorem unique_sf (S : Subgroup G) (hS : IsClosed (S : Set G)) (μ m : Measure G
   have : IsFiniteMeasureOnCompacts μ' := ⟨fun K hK => by
     rw [hμ'd, he.comap_apply]
     exact (hK.image continuous_subtype_val).measure_lt_top⟩
-  haveI : SigmaFinite μ' := inferInstance
   haveI : SigmaFinite m' := SigmaFinite.of_map m' he.measurable.aemeasurable (by rw [hm3]; exact hmσ)
   haveI := hμ1
   haveI := hm1

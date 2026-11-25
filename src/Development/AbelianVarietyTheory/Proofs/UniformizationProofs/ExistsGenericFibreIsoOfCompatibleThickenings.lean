@@ -437,7 +437,6 @@ theorem gen_over' : (U.gen.inv.left ≫ pullback.fst G.hom (jK R)) ≫ G.hom = A
 theorem gen_injective (W : G.left.Opens) :
     Function.Injective ((U.gen.inv.left ≫ pullback.fst G.hom (jK R)).app W).hom := by
   have := U.smooth
-  have : Flat G.hom := inferInstance
   have : IsIso U.gen.inv.left := inferInstanceAs (IsIso ((Over.forget _).map U.gen.inv))
   exact (ConcreteCategory.bijective_of_isIso (U.gen.inv.left.app _)).1.comp (ExpInt.generic_app_injective G W)
 

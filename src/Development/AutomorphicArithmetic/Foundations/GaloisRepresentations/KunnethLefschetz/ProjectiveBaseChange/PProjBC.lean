@@ -35,6 +35,5 @@ theorem UpperTheory.Gal.KunnethLefschetz.projBC_holds :
     exact ⟨N, ι, MorphismProperty.of_isPullback (P := @IsClosedImmersion) hsq.flip hi, hι₂⟩
   · intro R _ X p hp
     obtain ⟨N, i, hi, rfl⟩ := hp
-    have : IsProper (GroundTheory.Arith.SchemeCoh.ProjSpace.toSpecBase R N) := inferInstance
     change IsProper (i ≫ GroundTheory.Arith.SchemeCoh.ProjSpace.toSpecBase R N)
     infer_instance

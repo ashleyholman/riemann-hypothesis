@@ -85,7 +85,6 @@ private theorem nu_pres {K : Type} [Field K] [NumberField K] {n : ℕ} (D : Type
   have := D.prob
   have hm : Measurable e := e.continuous.measurable
   have hemb : MeasurableEmbedding e := e.toHomeomorph.measurableEmbedding
-  have : IsProbabilityMeasure (D.ν.map e) := inferInstance
   have hp : MeasurePreserving e D.ν (D.ν.map e) := ⟨hm, rfl⟩
   have hs : ∀ᵐ k ∂(D.ν.map e), k ∈ D.U := by
     rw [hemb.ae_map_iff]

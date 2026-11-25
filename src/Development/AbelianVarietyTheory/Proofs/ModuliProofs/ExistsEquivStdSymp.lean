@@ -85,7 +85,6 @@ theorem exists_isSympBasis : ∀ (E : Type) [Field E] [NumberField E] [IsCMField
   have := D.proj
   have : Module.Finite ℤ D.La := Module.Finite.trans (𝓞 E) D.La
   have : Module.Flat ℤ D.La := Module.Flat.trans ℤ (𝓞 E) D.La
-  have : Module.Free ℤ D.La := inferInstance
   exact exists_equiv_stdSymp D.alt D.unimod (finrank_int_lattice D)
 
 end GlobalTheory.ZM

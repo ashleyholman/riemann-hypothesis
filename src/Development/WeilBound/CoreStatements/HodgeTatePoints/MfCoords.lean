@@ -1052,7 +1052,6 @@ private theorem inChart_push_iff {W : Scheme.{0}} (ξ : Sp Ω ⟶ W) (f : W ⟶ 
 theorem coordTie_comp {o : Type} [CommRing o] [Algebra o Ω] {κ : Type} {x : κ → Ω} {W : Scheme.{0}}
     {ξ : Sp Ω ⟶ W} (f : W ⟶ X) [IsOpenImmersion f] (hξ : IsCptGen (ξ ≫ f))
     (hr : ∀ q : Cpt (ξ ≫ f), ∃ p, push ξ f p = q) (h : CoordTie o ξ x) : CoordTie o (ξ ≫ f) x := by
-  haveI : SurjectiveOnStalks f := inferInstance
   refine ⟨hξ, fun q => ?_, fun c hc => ?_, fun c hc a => ?_⟩
   · obtain ⟨p, rfl⟩ := hr q
     obtain ⟨c, hc⟩ := h.cover p

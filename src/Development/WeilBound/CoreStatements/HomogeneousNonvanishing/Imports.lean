@@ -59,7 +59,6 @@ theorem free_int_of_projective_ringOfIntegers (E : Type) [Field E] [NumberField 
   have hinj : Function.Injective s := fun x y hxy => by
     have := congrArg (Finsupp.linearCombination (𝓞 E) id) hxy
     simpa using (LinearMap.congr_fun hs x).symm.trans (this.trans (LinearMap.congr_fun hs y))
-  haveI : Module.IsTorsionFree ℤ (L →₀ 𝓞 E) := inferInstance
   haveI : Module.IsTorsionFree ℤ L :=
     hinj.moduleIsTorsionFree (R := ℤ) s fun r m => by simp
   infer_instance

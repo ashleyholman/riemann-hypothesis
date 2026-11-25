@@ -75,7 +75,6 @@ theorem isAlgebraic_of_flat_of_formallyUnramified (W B : Type) [CommRing W] [IsD
     [Algebra.EssFiniteType W B] [Algebra.FormallyUnramified W B] : Algebra.IsAlgebraic W B := by
   let K := FractionRing W
   have hfin : Module.Finite K (K ⊗[W] B) := Algebra.FormallyUnramified.finite_of_free K _
-  have halg : Algebra.IsAlgebraic K (K ⊗[W] B) := inferInstance
   have hK : Algebra.IsAlgebraic W K := IsLocalization.isAlgebraic K (nonZeroDivisors W)
   have halgW : Algebra.IsAlgebraic W (K ⊗[W] B) := Algebra.IsAlgebraic.trans W K _
   exact Algebra.IsAlgebraic.of_injective

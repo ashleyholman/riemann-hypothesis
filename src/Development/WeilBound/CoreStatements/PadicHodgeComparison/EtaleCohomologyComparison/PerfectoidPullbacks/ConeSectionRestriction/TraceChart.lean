@@ -907,9 +907,6 @@ theorem main_abs (hinj : Function.Injective (algebraMap P A))
     haveI hpp : p.IsPrime := (Ideal.span_singleton_prime hπ.ne_zero).2 hπ
     let R : Subalgebra P F :=
       Localization.subalgebra.ofField F p.primeCompl p.primeCompl_le_nonZeroDivisors
-    haveI : IsScalarTower R F L := inferInstance
-    haveI : IsScalarTower P R L := inferInstance
-    haveI : IsLocalization.AtPrime R p := inferInstance
     have hr : ∀ a : A, algebraMap A L a ∈ (algebraMap R L).range := by
       intro a
       obtain ⟨f, g, hg, hfg⟩ := hloc a
@@ -1005,7 +1002,6 @@ theorem trace_jacobian_mem : ∀ (K : Type) [Field K] [CharZero K] (d : ℕ) (A 
   haveI : FiniteDimensional F L := finite_frac (A := A) (B := B)
   haveI : CharZero A := (RingHom.charZero_iff (algebraMap K A).injective).1 inferInstance
   haveI : CharZero F := (RingHom.charZero_iff (IsFractionRing.injective A F)).1 inferInstance
-  haveI : Algebra.IsSeparable F L := inferInstance
   have hτ : ∀ f : MvPolynomial (Fin d) K, algebraMap (MvPolynomial (Fin d) K) L f =
       MvPolynomial.aeval (fun i => algebraMap A L (t i)) f := by
     intro f

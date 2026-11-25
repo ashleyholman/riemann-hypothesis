@@ -51,7 +51,6 @@ theorem algChart [IsLocalRing R] (B : Type) [CommRing B] [Algebra R B] [Algebra.
   haveI : q.IsPrime := Ideal.comap_isPrime _ _
   obtain ⟨f, hfq, n, _, hST, hSE⟩ := Algebra.IsSmoothAt.exists_isStandardEtale_mvPolynomial (R := R) (p := q)
   haveI := hST
-  haveI : Algebra.FormallyEtale (MvPolynomial (Fin n) R) (Localization.Away f) := inferInstance
   have hf : IsUnit (eps f) := by
     by_contra h
     exact hfq ((IsLocalRing.mem_maximalIdeal _).mpr h)

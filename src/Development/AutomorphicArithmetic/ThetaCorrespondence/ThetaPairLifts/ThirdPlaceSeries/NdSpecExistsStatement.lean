@@ -907,7 +907,6 @@ theorem bjC_free : ∀ (D : D7) (B : LocBase0 D.host D.what₂) (hI : OsInt B), 
   haveI := GlobalTheory.FreeDedekindQuotient.dedekind_of_concrete D hO
   obtain ⟨e, he1, he2⟩ := GlobalTheory.FreeDedekindQuotient.exists_proj (Formalism.L2.latRelSub (D.what₂.MjLat (jOf B i)))
     (fun a ha x hx => latRel_torsionFree D hO.1 _ a ha x hx)
-  haveI : IsPrincipalIdealRing (OOf B i) := inferInstance
   have hF := GlobalTheory.FreeDedekindQuotient.free_quot (sOfC B hI i) _ e he1 he2
   exact hF
 

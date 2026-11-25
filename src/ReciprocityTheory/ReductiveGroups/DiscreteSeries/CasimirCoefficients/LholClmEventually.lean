@@ -60,7 +60,6 @@ theorem hasFDerivAt_integral_K [CompactSpace (KG ε)] {E : Type*} [NormedAddComm
     {z : Matrix (Fin n) (Fin n) ℂ} (hz : z ∈ U) :
     HasFDerivAt (fun x : 𝕄 => ∫ k, F x k ∂(muK ε)) (∫ k, F' z k ∂(muK ε)) z := by
   have : IsFiniteMeasureOnCompacts (muK ε) := by unfold muK; infer_instance
-  have : IsFiniteMeasure (muK ε) := inferInstance
   have hcont : ∀ x ∈ U, Continuous (F x) := fun x hx =>
     hF.comp_continuous (continuous_const.prodMk continuous_id) (fun _ => ⟨hx, trivial⟩)
   have hcont' : ∀ x ∈ U, Continuous (F' x) := fun x hx =>

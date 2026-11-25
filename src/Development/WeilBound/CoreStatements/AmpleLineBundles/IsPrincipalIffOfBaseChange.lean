@@ -161,7 +161,6 @@ theorem isAmpleLB_desc {K K' : Type} [Field K] [Field K'] (e : K →+* K') {X X'
   have hp' : IsProper p' := MorphismProperty.of_isPullback (P := @IsProper) H inferInstance
   have hc : CompactSpace X := QuasiCompact.compactSpace_of_compactSpace p
   have hs : X.IsSeparated := ⟨by rw [← terminal.comp_from p]; infer_instance⟩
-  have hfl : Flat (spMap e) := inferInstance
   have hsu : Surjective (spMap e) := inferInstance
   have hφ : Surjective φ := MorphismProperty.of_isPullback (P := @Surjective) H.flip hsu
   refine ⟨hL, hc, fun x => ?_⟩

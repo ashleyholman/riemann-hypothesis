@@ -339,7 +339,6 @@ theorem isClosedImmersion_coproductSliceMap (k : Type u) [Field k] (M : ℕ) {ι
     [DecidableEq ι] (e : ι → k) (he : Function.Injective e) (A : ι → Scheme.{u})
     [∀ i, IsAffine (A i)] (ρ : ∀ i, A i ⟶ affineSpaceIndexedBy k (ULift.{u, 0} (Fin M)))
     [∀ i, IsClosedImmersion (ρ i)] : IsClosedImmersion (coproductSliceMap k M e A ρ) := by
-  have haffine : IsAffine (∐ A) := inferInstance
   have hsurj : ∀ F : ↑((∐ A).presheaf.obj (Opposite.op ⊤)),
       ∃ H : ↑((affineSpaceTimesLine k M).presheaf.obj (Opposite.op ⊤)),
         (ConcreteCategory.hom (Scheme.Hom.appTop (coproductSliceMap k M e A ρ))) H = F := by
@@ -477,7 +476,6 @@ private theorem comap_ker_coproductSliceMap_eq_of_le_sliceSeparatingOpen (k : Ty
     (Scheme.Hom.ker (coproductSliceMap k M e A ρ)).comap U.ι =
       (Scheme.Hom.ker (ρ i ≫ sliceAtLastCoord k M (e i))).comap U.ι := by
   have : QuasiCompact (coproductSliceMap k M e A ρ) := quasiCompact_coproductSliceMap k M e A ρ
-  have : QuasiCompact (ρ i ≫ sliceAtLastCoord k M (e i)) := inferInstance
   have hfun : ⇑(Scheme.Opens.ι (X := A i)
         ((Opens.map (ρ i ≫ sliceAtLastCoord k M (e i)).base).obj U) ≫ Sigma.ι A i).base =
       ⇑(Sigma.ι A i).base ∘
@@ -1164,7 +1162,6 @@ theorem exists_etaleCover_closedEmbeddingIntoAffineSpace_of_smooth
         AlgebraicGeometry.Smooth g ∧ g ≫ H.ambientStruct = H'.ambientStruct ∧
         CategoryTheory.IsPullback H'.emb c g H.emb) := by
   classical
-  have hVcs : CompactSpace ↥V := inferInstance
   have hch : ∀ y : ↥V, Nonempty (PresentedLocalChart P H u r y) := fun y =>
     nonempty_presentedLocalChart hS hsm k Y V pY pV G P H u r hu y
   obtain ⟨t, ht⟩ := isCompact_univ.elim_finite_subcover
@@ -1232,7 +1229,6 @@ theorem isPullbackBlowupSequence_presentedSelection_of_smooth (E : EmbeddedResol
   have := hfsm
   have := hgsm
   have : AlgebraicGeometry.Smooth u := AlgebraicGeometry.SmoothOfRelativeDimension.smooth r u
-  have : AlgebraicGeometry.Flat u := inferInstance
   have : AlgebraicGeometry.Flat c := inferInstance
   have s1 : IsPullbackBlowupSequence (c ≫ u) (E k V'' pV'' G') (E k Y pY (C.sel k Y pY)) :=
     hsbc k Y V'' pY pV'' (C.sel k Y pY) G' f (c ≫ u) hfcomp hfpb

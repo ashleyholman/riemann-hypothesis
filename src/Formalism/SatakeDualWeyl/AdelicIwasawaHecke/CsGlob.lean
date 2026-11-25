@@ -81,7 +81,6 @@ theorem csGlob_N_fg : (csGlobN F E).FG := by
     rintro _ ⟨_, ⟨i, rfl⟩, rfl⟩
     exact ⟨i, rfl⟩
   have : Module.Finite (𝓞 F) W := Module.Finite.span_of_finite _ (Set.finite_range _)
-  have : IsNoetherian (𝓞 F) W := inferInstance
   have : IsNoetherian (𝓞 F) (csGlobN F E) := isNoetherian_of_le hle
   exact Module.Finite.iff_fg.mp inferInstance
 

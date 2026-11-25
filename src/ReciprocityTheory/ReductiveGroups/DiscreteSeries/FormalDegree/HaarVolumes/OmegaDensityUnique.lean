@@ -767,8 +767,6 @@ theorem image_est (ε : Fin n → Bool) {η : ℝ} (hη : 0 < η) : ∃ δ > 0, 
     exact sub_eq_zero.mp (norm_eq_zero.mp h0)
   have : PolishSpace (KPair ε → ℂ) := inferInstance
   have : PolishSpace (PCoord ε → ℂ) := inferInstance
-  have : PolishSpace (KCo ε) := inferInstance
-  have : PolishSpace (GCo ε) := inferInstance
   refine ⟨hS.image_of_continuousOn_injOn hAS.continuousOn hinj, fun s hs => ?_, hc1 S Lm hAS,
     hc2 S Lm hAS⟩
   have h := hB s (hSb hs) 0 (mem_ball_self hδ)

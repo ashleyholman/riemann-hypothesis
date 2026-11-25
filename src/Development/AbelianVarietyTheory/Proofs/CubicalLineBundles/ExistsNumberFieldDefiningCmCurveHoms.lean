@@ -415,7 +415,6 @@ theorem exists_common_field : ThetaUnifAV → Out.PolBaseChangeSt → ∀ (K : T
   have l₁ : ∀ C, N₁ C ≤ N := fun C => (le_iSup N₁ C).trans (le_sup_right.trans le_sup_left)
   have l₂ : ∀ C, N₂ C ≤ N := fun C => (le_iSup N₂ C).trans le_sup_right
   have hMN : M ≤ N := hMN₀.trans l₀
-  have hNf : FiniteDimensional ℚ N := inferInstance
   have hNn : NumberField N := ⟨⟩
 
   let f : 𝓞 M →+* 𝓞 N := RingOfIntegers.mapRingHom (IntermediateField.inclusion hMN).toRingHom

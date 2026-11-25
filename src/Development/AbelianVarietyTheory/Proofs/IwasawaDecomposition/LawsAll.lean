@@ -404,7 +404,6 @@ theorem finrank_red {E : Type} [Field E] [NumberField E] {n : ℕ} (N : Submodul
   let : Submodule.IsFullLattice E N := hN
   have : Module.Finite (𝓞 E) N := Submodule.IsLattice.finite E N
   have : Module.FinitePresentation (𝓞 E) N := Module.finitePresentation_of_finite _ _
-  have : Module.Flat (𝓞 E) N := inferInstance
   have : Module.Projective (𝓞 E) N := Module.Flat.projective_of_finitePresentation
   have : Finite (𝓞 E ⧸ P.asIdeal) := Ideal.finiteQuotientOfFreeOfNeBot _ P.ne_bot
   have hr : Module.finrank (𝓞 E) N = n := by

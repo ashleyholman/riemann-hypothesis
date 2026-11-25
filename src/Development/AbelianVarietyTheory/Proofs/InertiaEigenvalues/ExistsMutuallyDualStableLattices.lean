@@ -82,7 +82,6 @@ theorem exists_dual (m : V →ₗ[LL] W →ₗ[LL] LL)
         Finsupp.single_apply]
       simp only [eq_comm])
     rw [this, Basis.coord_apply]
-  haveI : IsTorsionFree O LL := inferInstance
   refine ⟨Submodule.span O (Set.range f'), Submodule.fg_span (Set.finite_range _), ?_, ?_, ?_, ?_⟩
   · exact Module.Free.of_basis (Basis.span ((LinearIndependent.iff_fractionRing O LL).mpr f'.linearIndependent))
   · rw [Submodule.span_span_of_tower, f'.span_eq]

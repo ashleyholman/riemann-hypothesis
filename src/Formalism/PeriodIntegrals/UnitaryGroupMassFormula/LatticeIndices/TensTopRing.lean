@@ -14,7 +14,6 @@ open scoped Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes TensorProd
 
 theorem tens_topRing {F E : Type} [Field F] [NumberField F] [Field E] [Algebra F E] [FiniteDimensional F E]
     (v : HeightOneSpectrum (𝓞 F)) : IsTopologicalRing (Fv F v ⊗[F] E) := by
-  haveI : Module.Finite (Fv F v) (Fv F v ⊗[F] E) := inferInstance
   haveI : IsModuleTopology (Fv F v) (Fv F v ⊗[F] E) := ⟨rfl⟩
   first
     | exact IsModuleTopology.isTopologicalRing (Fv F v) _

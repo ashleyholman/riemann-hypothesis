@@ -51,7 +51,6 @@ theorem volume_ball_half_le (La : Submodule ℤ V) [DiscreteTopology La] [IsZLat
   have : MeasurableVAdd La V := (inferInstance : MeasurableVAdd La.toAddSubgroup V)
   have : VAddInvariantMeasure La V volume :=
     (inferInstance : VAddInvariantMeasure La.toAddSubgroup V volume)
-  have : Countable La := inferInstance
   set S := ball (0 : V) (ρ / 2) with hSdef
   set A := {x : V | x ∈ La ∧ ‖x‖ ≤ ρ} with hAdef
   have hS : MeasurableSet S := measurableSet_ball

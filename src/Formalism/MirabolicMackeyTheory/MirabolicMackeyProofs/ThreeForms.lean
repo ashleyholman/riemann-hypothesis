@@ -268,7 +268,6 @@ theorem split_core (N NB : Submodule O Z) (hfg : N.FG) (hle : NB ≤ N) (a : O) 
       (∀ x ∈ W, a • x ∈ NB → x ∈ N) := by
   have hfin : Module.Finite O N := Module.Finite.iff_fg.mpr hfg
   have htfZ : Module.IsTorsionFree O Z := Module.IsTorsionFree.trans_faithfulSMul O K Z
-  have htf : Module.IsTorsionFree O N := inferInstance
   obtain ⟨n, snf⟩ := Submodule.smithNormalForm (Module.Free.chooseBasis O N) (NB.comap N.subtype)
   obtain ⟨W, h1, h2⟩ := split_of_snf (K := K) N NB a ha snf
   exact ⟨W, h1, fun x hx hax => h2 x hx (hle hax) hax⟩

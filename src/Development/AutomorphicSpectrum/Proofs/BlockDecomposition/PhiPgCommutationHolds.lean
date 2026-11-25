@@ -1089,8 +1089,6 @@ theorem eq_zero_of_mem_twKer_of_eig (ρ : Representation ℂ G V) (hρ : IsSmoot
   haveI : M.FiniteIndex := Subgroup.finiteIndex_of_finite_quotient
   let C : Subgroup L := M.normalCore
   haveI : C.Normal := Subgroup.normalCore_normal M
-  haveI : C.FiniteIndex := inferInstance
-  haveI : Finite (L ⧸ C) := inferInstance
   letI := Fintype.ofFinite (L ⧸ C)
   have hCM : C ≤ M := Subgroup.normalCore_le M
   let τ : Representation ℂ L V := ρ.comp L.subtype

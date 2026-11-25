@@ -87,8 +87,6 @@ theorem UpperTheory.V.Z.Tf.Orb.absComm :
     isClosed_eq ((continuous_inv.mul continuous_const).mul hθ) continuous_const
   haveI : LocallyCompactSpace (twCent θ δ) := hcl.isClosedEmbedding_subtypeVal.locallyCompactSpace
   haveI : SecondCountableTopology (twCent θ δ) := TopologicalSpace.Subtype.secondCountableTopology _
-  haveI : SigmaCompactSpace (twCent θ δ) := inferInstance
-  haveI : SigmaFinite μ := inferInstance
   have hmp := hP G μG hμG θ hθ l hl hθl
   have hθθ : ∀ x, (θ ^ (l - 1)) (θ x) = x := fun x => by
     rw [← pow_succ_apply, Nat.sub_add_cancel (Nat.pos_of_ne_zero hl), hθl]; rfl
@@ -430,7 +428,6 @@ theorem quotMass : QuotMass := by
   intro G _ _ _ _ _ _ _ _ μG hμG H hH μ hμ hinv ρ hρ
   haveI : LocallyCompactSpace H := hH.isClosedEmbedding_subtypeVal.locallyCompactSpace
   haveI : SecondCountableTopology H := TopologicalSpace.Subtype.secondCountableTopology (H : Set G)
-  haveI : SFinite μ := inferInstance
   haveI : MeasurableInv H := ⟨(measurable_subtype_coe.inv).subtype_mk⟩
   haveI : μ.IsMulRightInvariant := by
     have h := (inferInstance : μ.inv.IsMulRightInvariant)
@@ -515,7 +512,6 @@ theorem UpperTheory.V.Z.Tf.Orb.quotPos :
   have hfin := (hMass G μG hμG H hH μ hμ hinv ρ hρ).1
   haveI : LocallyCompactSpace H := hH.locallyCompactSpace
   haveI : SecondCountableTopology H := TopologicalSpace.Subtype.secondCountableTopology (H : Set G)
-  haveI : SFinite μ := inferInstance
   have hre : (∫ g, F g * ((ρ g).toReal : ℂ) ∂μG).re = ∫ g, (F g).re * (ρ g).toReal ∂μG := by
     have := integral_re hI
     simpa using this.symm

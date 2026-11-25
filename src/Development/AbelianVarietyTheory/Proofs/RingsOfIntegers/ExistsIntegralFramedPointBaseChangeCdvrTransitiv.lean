@@ -258,7 +258,6 @@ theorem integral_of_frMap (T T' : CDVR) (io : c.F →+* T.Fr) (iT : T.Fr →+* T
   have inj : Function.Injective (algebraMap T.V T'.V) := fun a b h => IsFractionRing.injective T.V T.Fr
     (iT.injective ((hφ a).symm.trans ((congrArg _ h).trans (hφ b))))
   have : FaithfulSMul T.V T'.V := (faithfulSMul_iff_algebraMap_injective _ _).2 inj
-  have : Module.Flat T.V T'.V := inferInstance
   obtain ⟨hx, hu, pm, hs, hf, ha⟩ := hm
   let G' := PullbackSections.sabT Out.CubePf.cubePull (spMap φ) G
   let m : SABMap G' G (spMap φ) := PullbackSections.sabM Out.CubePf.cubePull (spMap φ) G

@@ -220,7 +220,6 @@ theorem isClosedImmersion_descends_to_subring :
   intro S _ R₀ X₀ Y₀ X Y g₀ q _ _ _ _ g πX πY p hY hX hg
   have : CompactSpace Y₀ := QuasiCompact.compactSpace_of_compactSpace q
   let 𝒰 := Y₀.affineCover.finiteSubcover
-  have (i : 𝒰.I₀) : IsAffine (𝒰.X i) := inferInstance
   have key (i : 𝒰.I₀) := descends_of_isAffine S R₀ _ _ _ _ (pullback.snd g₀ (𝒰.f i)) (𝒰.f i ≫ q) _ _ _ _
     ((IsPullback.of_hasPullback πY (𝒰.f i)).flip.paste_vert hY)
     (exists_isPullback_restrict hX (𝒰.f i)).choose_spec inferInstance

@@ -1368,7 +1368,6 @@ theorem hypInv : HypInv := by
         (fun p : ℂ × Mt k r => act p.2 (embWb k r (μsec p.1) *ᵥ z')) := rfl
   rw [hdef]
   have : IsFiniteMeasureOnCompacts μW := ⟨fun K hK => hW.finite_compact K hK⟩
-  have : SigmaFinite μW := inferInstance
   have hf : AEMeasurable (fun p : ℂ × Mt k r => act p.2 (embWb k r (μsec p.1) *ᵥ z'))
       (((volume : Measure ℂ).withDensity fun ζ => ENNReal.ofReal (zWeight k (Tz k r z) (Tz k r z') ζ)).prod μW) := by
     have hs := RankOneEmbeddings.R1.secF_meas hsec

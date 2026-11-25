@@ -96,7 +96,6 @@ theorem lintegral_tuple_moving_frame : ∀ (F E : Type) [Field F] [NumberField F
   obtain ⟨i₁, i₂, i₃, i₄, -⟩ := id hR
   obtain ⟨k₁, k₂, k₃, k₄, -, -, -, hBorel, -⟩ := _root_.GlobalTheory.CompanionTheory.SW.TopK.topTens_props F E σ hCM R
   obtain ⟨hK, hW, -⟩ := _root_.GlobalTheory.CompanionTheory.SW.coord_measures_haar F E σ hCM R d b lam hlam
-  have : SigmaFinite (coordK R b lam) := inferInstance
   have hact : ∀ h : HA R σ J, Measurable (actW R σ J h :
       (Fin n → Fin (M + 1) → R ⊗[F] E) → Fin n → Fin (M + 1) → R ⊗[F] E) := by
     intro h

@@ -150,7 +150,6 @@ private theorem re_eps {l : ℕ} [Fact l.Prime] (c : Coef l) {H : Type} [Group H
     have h1 : algebraMap ℤ_[l] (PadicAlgCl l) x = algebraMap ℤ_[l] (PadicAlgCl l) y := congrArg Subtype.val hxy
     rw [IsScalarTower.algebraMap_apply ℤ_[l] ℚ_[l], IsScalarTower.algebraMap_apply ℤ_[l] ℚ_[l] _ y] at h1
     exact Subtype.ext ((algebraMap ℚ_[l] (PadicAlgCl l)).injective h1)
-  haveI : IsLocalHom (algebraMap ℤ_[l] c.O) := inferInstance
   have hc : Continuous fun g => ‖((ε g : ℤ_[l]ˣ) : ℤ_[l]) - 1‖ := by fun_prop
   refine Subgroup.isOpen_of_mem_nhds _ (g := 1)
     (Filter.mem_of_superset ((isOpen_lt hc continuous_const (g := fun _ => 1)).mem_nhds (by simp)) fun g hg => ?_)

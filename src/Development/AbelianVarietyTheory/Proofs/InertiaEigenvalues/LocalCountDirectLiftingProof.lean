@@ -226,7 +226,6 @@ theorem dualLat_rank : ∀ (D : D7), FontaineAtPlacesOverL (D := D) → admBK (D
     (D.nbr i w hw).LL hdeg (hBK (D.nd.l i) _) (Udual i w hw M hM) hdR
   haveI : IsFractionRing (Br.OLL D.nbr i w hw) (Br.LL D.nbr i w hw) :=
     (goodO_ringOfIntegers (D.nd.l i) (D.nbr i w hw).LL).1.2.2
-  haveI : IsDomain (Br.OLL D.nbr i w hw) := inferInstance
   rw [finrank_H1fT_eq (Br.PD D.loc D.nbr i w hw) (Udual i w hw M hM) (latDual i w hw M hM) (latDual_bounded i w hw M hM)]
   refine hle.trans (le_of_eq ?_)
   exact Module.finrank_fin_fun _

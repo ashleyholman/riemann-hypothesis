@@ -223,7 +223,6 @@ theorem localArtin_normU : ∀ (K L Ω : Type) [Field Ω] [Field K] [NumberField
   haveI : CharZero (v'.adicCompletion L) :=
     charZero_of_injective_algebraMap (algebraMap L (v'.adicCompletion L)).injective
   haveI : IsSepClosure (v'.adicCompletion L) (Kbar v') := ⟨inferInstance, inferInstance⟩
-  haveI : Algebra.IsSeparable (v.adicCompletion K) (v'.adicCompletion L) := inferInstance
   haveI : IsSepClosure (v.adicCompletion K) (Kbar v') :=
     isSepClosure_of_isSeparable (v.adicCompletion K) (v'.adicCompletion L) (Kbar v')
   haveI : Algebra.IsAlgebraic (v.adicCompletion K) (v'.adicCompletion L) := Algebra.IsAlgebraic.of_finite _ _

@@ -386,7 +386,6 @@ theorem exists_section {σ : E →ₐ[F] E} (h : IsCMExt F E σ) (τ : ∀ w : I
   refine ⟨fun z => ofInf (fun w => (e w).symm (r z w)) • ((1 : AF F) ⊗ₜ[F] (1 : E)) +
     ofInf (fun w => (e w).symm (s z w)) • ((1 : AF F) ⊗ₜ[F] β), ?_, fun z => ⟨?_, fun w => ?_⟩⟩
   · have : ContinuousAdd (AE F E) := IsModuleTopology.toContinuousAdd (AF F) _
-    have : ContinuousSMul (AF F) (AE F E) := inferInstance
     have c1 : Continuous fun z => ofInf (fun w => (e w).symm (r z w)) :=
       continuous_ofInf.comp (continuous_pi fun w => (e w).symm.continuous.comp (hr w))
     have c2 : Continuous fun z => ofInf (fun w => (e w).symm (s z w)) :=

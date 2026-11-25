@@ -112,13 +112,9 @@ open MeasureTheory Filter Topology Formalism.FourierDecayAlt Formalism.FourierDe
 variable {V : Type} [NormedAddCommGroup V] [NormedSpace ℂ V]
 
 instance sfAB (p : ℕ) : SigmaFinite (volume : Measure (AB p)) := by
-  have h1 : SigmaFinite (volume : Measure (Fin 1 → Fin p → ℂ)) := inferInstance
-  have h2 : SigmaFinite (volume : Measure (Fin p → Fin 1 → ℂ)) := inferInstance
   rw [Measure.volume_eq_prod]; exact Measure.prod.instSigmaFinite
 
 instance sfVU {p : ℕ} (σ : Equiv.Perm (Fin p)) : SigmaFinite (volume : Measure ((LW σ → ℂ) × (G.UT p → ℂ))) := by
-  have h1 : SigmaFinite (volume : Measure (LW σ → ℂ)) := inferInstance
-  have h2 : SigmaFinite (volume : Measure (G.UT p → ℂ)) := inferInstance
   rw [Measure.volume_eq_prod]; exact Measure.prod.instSigmaFinite
 
 theorem decay0 {n : ℕ} {Ψ : G.Mat n → V} (hΨ : KCls Ψ) (E : ℝ) (hE : 0 ≤ E) :

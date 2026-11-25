@@ -217,14 +217,12 @@ theorem bilinear_bound_of_dense_right : ∀ {E : Type} [AddCommGroup E] [Module 
   haveI : ContinuousSMul ℂ E := hp.continuousSMul
   haveI : FirstCountableTopology E := hp.firstCountableTopology
   haveI : PolynormableSpace ℂ E := hp.toPolynormableSpace
-  haveI : IsTopologicalAddGroup E := inferInstance
   set Y : Submodule ℂ E := LinearMap.range j₁ with hYdef
   have hYc : IsClosed (Y : Set E) := by simpa [Y, LinearMap.coe_range] using hcl
   haveI : IsUniformAddGroup Y := Y.toAddSubgroup.isUniformAddGroup
   haveI : CompleteSpace Y := hYc.completeSpace_coe
   haveI : FirstCountableTopology Y := Topology.IsInducing.subtypeVal.firstCountableTopology
   haveI : (𝓤 Y).IsCountablyGenerated := IsUniformAddGroup.uniformity_countably_generated
-  haveI : BarrelledSpace ℂ Y := inferInstance
   let e : X₁ ≃ₗ[ℂ] Y := LinearEquiv.ofInjective j₁ hinj
   have he : ∀ w, ((e w : Y) : E) = j₁ w := fun w => rfl
 

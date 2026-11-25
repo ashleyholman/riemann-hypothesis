@@ -298,7 +298,6 @@ variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} {D : Da
 theorem subsingleton_La (hD : D.p + D.q = 0) : Subsingleton D.La := by
   have := D.fin
   have := D.proj
-  have : Module.Flat (𝓞 E) D.La := inferInstance
   exact Module.finrank_zero_iff.mp (D.rank.trans hD)
 
 theorem isIso_zeroTriple (S : Scheme.{0}) : IsIso (Inhab.zeroTriple H S).G.hom := isIso_unit S

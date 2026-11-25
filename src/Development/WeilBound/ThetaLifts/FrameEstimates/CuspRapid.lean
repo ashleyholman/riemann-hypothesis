@@ -836,8 +836,6 @@ theorem linDer_of (hG : LineGen) (hX : LineEx) : LinDer := by
     exact ((map_ne_zero (τ w).1).2 hW.2).isUnit
   have : Module.Finite F E := Module.Finite.of_restrictScalars_finite ℚ F E
   have : IsTopologicalRing (AE F E) := IsModuleTopology.isTopologicalRing (AF F) _
-  have : IsTopologicalGroup (GL (Fin d) (AE F E)) := inferInstance
-  have : IsTopologicalGroup (UA σ W.J) := inferInstance
   obtain ⟨m, Y, c, hY, hm⟩ := mainM hJ
   choose β hβ hβY _ using fun i => hX F E σ h τ d W hW (Y i) (hY i)
   refine ⟨m, β, c, hβ, fun f f' hf γ hγ Z hZ g => ?_⟩
@@ -1668,7 +1666,6 @@ def umgComp (τ : ∀ w : InfinitePlace F, EmbOver E w) {d : ℕ} (J : Matrix (F
 theorem umg_continuousMul {d : ℕ} (J : Matrix (Fin d) (Fin d) E) : ContinuousMul (UA σ J) := by
   have : Module.Finite F E := Module.Finite.of_restrictScalars_finite ℚ F E
   have : IsTopologicalRing (AE F E) := IsModuleTopology.isTopologicalRing (AF F) _
-  have : IsTopologicalGroup (GL (Fin d) (AE F E)) := inferInstance
   exact (Subgroup.instIsTopologicalGroupSubtypeMem _).toContinuousMul
 
 theorem umg_cj_mem {d : ℕ} {W : Spc F E d} {γ : Multiplicative ℝ →* UA σ W.J} (hγ : γ ∈ Lines σ W) (x : UA σ W.J) :

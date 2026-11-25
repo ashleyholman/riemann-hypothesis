@@ -484,7 +484,6 @@ theorem quasiMeasurePreserving_skewConj : ∀ (D : D7) (ρ : ℕ) (lC : Measure 
   have : BorelSpace (skewA D ρ) := Subtype.borelSpace _
   have hcl : IsClosed (skewA D ρ : Set (Mx D ρ ρ)) := isClosed_eq continuous_adj continuous_neg
   have : LocallyCompactSpace (skewA D ρ) := hcl.isClosedEmbedding_subtypeVal.locallyCompactSpace
-  have : IsTopologicalAddGroup (skewA D ρ) := inferInstance
   have : SecondCountableTopology (skewA D ρ) := TopologicalSpace.Subtype.secondCountableTopology _
   have hc := continuous_skewConj_arg (u.1.1 : Mx D ρ ρ)
   have hH : (lC.map (skewConj u.1.1)).IsAddHaarMeasure :=
@@ -714,7 +713,6 @@ theorem fundDomain_coords : ∀ (D : D7) (V V₀ : HSp D) (ρ : ℕ) (d : HypDec
   haveI : Countable (ratMx D ρ V₀.rank) := TopologicalSpace.separableSpace_iff_countable.1 inferInstance
   haveI : BorelSpace (skewA D ρ) := Subtype.borelSpace _
   haveI : SecondCountableTopology (skewA D ρ) := TopologicalSpace.Subtype.secondCountableTopology _
-  haveI : IsTopologicalAddGroup (skewA D ρ) := inferInstance
   haveI hca : ContinuousAdd (skewA D ρ) := IsTopologicalAddGroup.toContinuousAdd
   haveI : MeasurableAdd₂ (skewA D ρ) := @ContinuousAdd.measurableMul₂ (skewA D ρ) _ _ _ _ _ hca
   obtain ⟨u1, u2, u3⟩ := GlobalTheory.UnitU.topology D ρ
@@ -722,8 +720,6 @@ theorem fundDomain_coords : ∀ (D : D7) (V V₀ : HSp D) (ρ : ℕ) (d : HypDec
   haveI : Countable (UXQ D ρ) := (GlobalTheory.UnitU.rational D ρ).1
   haveI := vU.unit.1
   haveI := vb.covol.1
-  haveI : SigmaFinite vb.μ := inferInstance
-  haveI : SigmaFinite vU.ν := inferInstance
   have hκ : ∀ b' : Mx D ρ V₀.rank, Measurable (cComm V₀ b') := by
     intro b'
     have : ContinuousSub (Mx D ρ ρ) := IsTopologicalAddGroup.to_continuousSub
@@ -857,7 +853,6 @@ theorem volN_eq_map_coords : ∀ (D : D7) (V V₀ : HSp D) (ρ : ℕ) (d : HypDe
   have hcl : IsClosed (skewA D ρ : Set (Mx D ρ ρ)) := isClosed_eq continuous_adj continuous_neg
   haveI : LocallyCompactSpace (skewA D ρ) := hcl.locallyCompactSpace
   haveI : SecondCountableTopology (skewA D ρ) := TopologicalSpace.Subtype.secondCountableTopology _
-  haveI : SigmaFinite lC := inferInstance
   haveI : SigmaFinite vb.μ := inferInstance
   haveI : SigmaFinite vU.ν := inferInstance
   haveI hm : SigmaFinite ((lC.prod (vb.μ.prod vU.ν)).map e) := e.sigmaFinite_map

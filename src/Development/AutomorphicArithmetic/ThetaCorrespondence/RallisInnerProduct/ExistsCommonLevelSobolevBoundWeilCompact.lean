@@ -732,7 +732,6 @@ theorem exists_bound_of_complete {E : Type} [AddCommGroup E] [Module ℂ E] (p :
       simpa using this
     refine ⟨x, (hp.tendsto_nhds u x).2 fun d ε hε => ?_⟩
     exact (hx d).eventually (gt_mem_nhds hε)
-  haveI : BarrelledSpace ℂ E := inferInstance
   have hlsc : LowerSemicontinuous q := by
     rw [lowerSemicontinuous_iff_isClosed_preimage]
     intro y

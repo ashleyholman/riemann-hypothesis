@@ -146,7 +146,6 @@ namespace UpperTheory.Gal.KunnethLefschetz
 
 private theorem rank_pos {K : Type} [Field K] {Z' : Scheme.{0}} (p' : Z' ⟶ TranscendenceTraces.gp K) [IsFinite p'] [Surjective p'] :
     1 ≤ p'.finrank (IsLocalRing.closedPoint K) := by
-  have hF : Flat p' := inferInstance
   obtain ⟨x, hx⟩ := p'.surjective (IsLocalRing.closedPoint K)
   have h := p'.one_le_finrank_map x
   rwa [hx] at h
@@ -777,7 +776,6 @@ theorem UpperTheory.Gal.KunnethLefschetz.finFib_holds :
   change ↑U = (Set.range t0)ᶜ at hU
   have hA : IsLocallyArtinian (pullback π t0) :=
     IsLocallyArtinian.of_locallyQuasiFinite (pullback.snd π t0)
-  have hD : DiscreteTopology ↥(pullback π t0) := inferInstance
   have hF : Finite ↥(pullback π t0) := by
     have h := (pullback.snd π t0).finite_preimage_singleton (IsLocalRing.closedPoint k)
     rw [← Set.finite_univ_iff]
@@ -1364,7 +1362,6 @@ private theorem tors_of {l : ℕ} [Fact l.Prime] {M : Type*} [AddCommGroup M] [M
   have h1 : (1 : ℚ_[l]) ⊗ₜ[ℤ_[l]] w = 0 := by
     have h2 := congrArg (fun t => (b : ℚ_[l]) • t) h
     simpa [TensorProduct.smul_tmul', hb'] using h2
-  have hloc : IsLocalizedModule (nonZeroDivisors ℤ_[l]) (TensorProduct.mk ℤ_[l] ℚ_[l] M 1) := inferInstance
   obtain ⟨c, hc⟩ := (IsLocalizedModule.eq_zero_iff (nonZeroDivisors ℤ_[l]) (TensorProduct.mk ℤ_[l] ℚ_[l] M 1)).1 h1
   exact ⟨c, nonZeroDivisors.ne_zero c.2, hc⟩
 

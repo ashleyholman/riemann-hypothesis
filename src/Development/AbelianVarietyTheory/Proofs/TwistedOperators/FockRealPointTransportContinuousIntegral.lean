@@ -180,9 +180,7 @@ theorem fockPt_transport : ∀ (D : D7) (θ : InfFam D) (σ : (D.what₂.Tau →
     MeasurableEmbedding.of_measurable_inverse hc.measurable
       (hl.isClosed_range hic hc).measurableSet hic.measurable hl
   refine ⟨hc, fun w hw => ⟨_, fockPt_fockInv h A B hw⟩, fun g hg => ?_⟩
-  haveI : SigmaFinite (volume : Measure (Fin S.rank → ℂ)) := inferInstance
   haveI : SigmaFinite (volume : Measure (Fin T.rank → Fin S.rank → ℂ)) := inferInstance
-  haveI : SigmaFinite (volume : Measure (VCx D.what₂.Tau S.rank T.rank)) := inferInstance
   refine ⟨Measure.map (fockPt σ A B) volume, g ∘ fockInv θ A B, MeasureTheory.Measure.instSFiniteMap _ _, ?_, fun H => ?_⟩
   · rw [hme.integrable_map_iff]
     have e : (g ∘ fockInv θ A B) ∘ fockPt σ A B = g := funext fun z => congrArg g (hl z)

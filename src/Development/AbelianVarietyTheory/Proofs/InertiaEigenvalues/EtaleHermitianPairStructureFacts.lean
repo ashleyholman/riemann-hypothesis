@@ -99,7 +99,6 @@ theorem addHaar_submodule_eq_zero (F : Type) [NontriviallyNormedField F] [Locall
   haveI := hμ
   haveI : ProperSpace F := ProperSpace.of_nontriviallyNormedField_of_weaklyLocallyCompactSpace F
   haveI : ContinuousAdd V := IsModuleTopology.toContinuousAdd F V
-  haveI : ContinuousSMul F V := inferInstance
 
   let e₀ : V ≃ₗ[F] (Fin (Module.finrank F V) → F) := (Module.finBasis F V).equivFun
   have hc : Continuous e₀ := IsModuleTopology.continuous_of_linearMap e₀.toLinearMap

@@ -38,12 +38,8 @@ theorem semiMeas_finite_on_compacts_and_open_pos : ∀ {G H : Type} [Group G] [T
   obtain ⟨p, hpc, hps⟩ := hp
   haveI : LocallyCompactSpace N := hN.locallyCompactSpace
   haveI : SecondCountableTopology N := inferInstanceAs (SecondCountableTopology (N : Set G))
-  haveI : IsFiniteMeasureOnCompacts ν := inferInstance
   haveI : IsLocallyFiniteMeasure ν := isLocallyFiniteMeasure_of_isFiniteMeasureOnCompacts
   haveI : SigmaFinite ν := sigmaFinite_of_locallyFinite
-  haveI : μ.IsOpenPosMeasure := inferInstance
-  haveI : ν.IsOpenPosMeasure := inferInstance
-  haveI : (μ.prod ν).IsOpenPosMeasure := inferInstance
 
   let φ : H × N → (N ⊔ s.range : Subgroup G) := fun q =>
     ⟨q.2.1 * s q.1, mul_mem (Subgroup.mem_sup_left q.2.2) (Subgroup.mem_sup_right ⟨q.1, rfl⟩)⟩

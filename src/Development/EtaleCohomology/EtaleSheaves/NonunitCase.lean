@@ -51,7 +51,6 @@ theorem AlgGlue_of (hL : IdemLift) (hF : LateralTheory.E.LZProperCut.LZHensFinit
   have hRC : R ≤ C := Algebra.adjoin_le (Set.singleton_subset_iff.mpr hgC)
   have hgi : IsIntegral A g := hint g hgB hgC
   have : Module.Finite A R := Algebra.finite_adjoin_simple_of_isIntegral hgi
-  have : IsDomain R := inferInstance
   have : ConnectedSpace ↑(Spec (CommRingCat.of R)) := by
     change ConnectedSpace (PrimeSpectrum R)
     infer_instance

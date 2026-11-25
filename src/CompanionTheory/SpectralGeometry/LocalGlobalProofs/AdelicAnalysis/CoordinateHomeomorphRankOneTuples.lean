@@ -47,7 +47,6 @@ theorem coordMap_one : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Num
   obtain ⟨-, -, -, -, -, -, hh, -⟩ := _root_.GlobalTheory.CompanionTheory.SW.TopK.topTens_props F E σ hσ R
   haveI : BorelSpace (R ⊗[F] E) := ⟨rfl⟩
   haveI := hlam
-  have hSF : SigmaFinite lam := inferInstance
   let e : R ⊗[F] E ≃ₜ (Fin d → R) := (hh d b).homeomorph _
   let em : R ⊗[F] E ≃ᵐ (Fin d → R) := e.toMeasurableEquiv
   have hem : ∀ y k, em y k = (Algebra.TensorProduct.basis R b).repr y k := fun _ _ => rfl

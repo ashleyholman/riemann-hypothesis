@@ -95,7 +95,6 @@ theorem LocIdx_main (hK : X.LevelSubgroupCharacter) (hL : X.LevelSubgroupNormali
     exact hAo.preimage continuous_subtype_val
   have hK1 : ContinuousMul K :=
     ⟨(continuous_mul.comp (continuous_subtype_val.prodMap continuous_subtype_val)).subtype_mk _⟩
-  have hK2 : SeparatelyContinuousMul K := inferInstance
   have := Subgroup.quotient_finite_of_isOpen ((LocIdx_Asub X hb hK p).subgroupOf K) hUo
   exact ⟨K, hKeq, hKc, hle, hAo, Subgroup.index_ne_zero_of_finite⟩
 

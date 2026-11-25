@@ -282,7 +282,6 @@ theorem exists_eq_smul_map_mulMap [MeasurableSpace G] [BorelSpace G] [T2Space G]
   have : (rmk mL hS hK hSK μ).IsMulLeftInvariant := isMulLeftInvariant_rmk mL hS hK hSK μ
   set c₀ := haarScalarFactor (rmk mL hS hK hSK μ) μS
   have hc₀ : rmk mL hS hK hSK μ = c₀ • μS := isMulLeftInvariant_eq_smul _ _
-  have : IsFiniteMeasure μK := inferInstance
   have hKpos : 0 < (μK univ).toReal :=
     ENNReal.toReal_pos (IsOpenPosMeasure.open_pos univ isOpen_univ univ_nonempty)
       (measure_ne_top _ _)
@@ -354,7 +353,6 @@ theorem exists_eq_smul_map_mulMap [MeasurableSpace G] [BorelSpace G] [T2Space G]
     rfl
   set c : ℝ≥0 := ⟨c₀ / (μK univ).toReal, div_nonneg c₀.2 hKpos.le⟩ with hc
   refine ⟨c, ?_⟩
-  have hreg : (map (mulMap S K) (μS.prod μK)).Regular := inferInstance
   have : (c • map (mulMap S K) (μS.prod μK)).Regular := by
     rw [ENNReal.smul_def]
     exact Measure.Regular.smul ENNReal.coe_ne_top

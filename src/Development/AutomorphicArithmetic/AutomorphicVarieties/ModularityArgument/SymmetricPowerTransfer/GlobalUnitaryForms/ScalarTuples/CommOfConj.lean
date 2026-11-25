@@ -207,7 +207,6 @@ theorem cls_abs {A M Γ G : Type} [Ring A] [CharZero A] [Ring M] [Group Γ] [Gro
         _ = 0 := by rw [← mul_assoc, hγ, h1, zero_mul]
     exact hc0 (Int.cast_eq_zero.1 h3)⟩
   haveI : Module.Free ℤ (R.comap j) := Module.free_of_finite_type_torsion_free'
-  haveI : Nontrivial (R.comap j) := inferInstance
   obtain ⟨N, hN0, hNA⟩ := exists_nat_mul_mem_principal_of_rightIdeal_index_ne_zero (B := R.comap j) (fun x hx z z' h =>
     Subtype.ext (hinjA _ x.2 (fun h' => hx (Subtype.ext h')) _ _ (congrArg Subtype.val h)))
   let good : G → Prop := fun k => ρ k⁻¹ ∈ R ∧ (N : M) * ρ k ∈ R

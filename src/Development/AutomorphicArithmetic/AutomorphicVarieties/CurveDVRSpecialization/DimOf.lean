@@ -60,8 +60,6 @@ theorem UpperTheory.V.Pr.dimOf :
   haveI : IsPrincipalIdealRing O := IsDiscreteValuationRing.toIsPrincipalIdealRing
   haveI : IsNoetherianRing O := PrincipalIdealRing.isNoetherianRing
   haveI : IsLocalRing O := IsDiscreteValuationRing.toIsLocalRing
-  haveI : NoZeroDivisors (MvPowerSeries (Fin m) O) := inferInstance
-  haveI : Nontrivial (MvPowerSeries (Fin m) O) := inferInstance
   haveI : IsDomain (MvPowerSeries (Fin m) O) := NoZeroDivisors.to_isDomain _
   haveI : IsDomain Λ := e.toMulEquiv.isDomain
   letI : Algebra Λ (B ⧸ J) := ((Ideal.Quotient.mk J).comp φ).toAlgebra

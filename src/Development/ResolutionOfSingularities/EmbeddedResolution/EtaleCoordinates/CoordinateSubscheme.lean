@@ -577,7 +577,6 @@ theorem EtaleChart.restrictToSubscheme_coordIdeal_singleton (c : EtaleChart p U 
       (c.restrictToSubscheme hU Z S h).coordIdeal {i} := by
   have hVaff : IsAffineOpen (Z.subschemeι ⁻¹ᵁ U) := isAffineOpen_preimage_subschemeι Z hU
   have hVa : IsAffine (Z.subschemeι ⁻¹ᵁ U).toScheme := hVaff
-  have hAa : IsAffine (affineSpaceFin k (m - S.card)) := inferInstance
   have e1 : (⊤ : ((Z.subschemeι ⁻¹ᵁ U).toScheme).Opens) ≤
       (Z.subschemeι ⁻¹ᵁ U).ι ⁻¹ᵁ (Z.subschemeι ⁻¹ᵁ U) := by simp
   have hL1 : (restrictIdeal (E.comap Z.subschemeι) (Z.subschemeι ⁻¹ᵁ U)).ideal

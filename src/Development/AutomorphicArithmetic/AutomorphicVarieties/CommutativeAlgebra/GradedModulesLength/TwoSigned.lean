@@ -361,7 +361,6 @@ theorem UpperTheory.V.Alg.M.length_quotient_span_eq_finsum_valuation :
       (((Module.length O (D ⧸ Ideal.span {a})).toNat : ℕ) : ℝ) = ∑ᶠ σ : D →ₐ[O] K, v (σ a) := by
   intro O _ _ _ _ _ K _ _ _ _ v hv D _ _ _ _ _ a ha
   classical
-  have : Module.Free O D := inferInstance
   obtain ⟨hF, hN⟩ := algebra_norm_eq_prod_embeddings (O := O) (K := K) a
   have hn : Algebra.norm O a ≠ 0 := Algebra.norm_ne_zero_iff.2 ha
   have hσ : ∀ σ : D →ₐ[O] K, σ a ≠ 0 := fun σ h => ha (algHom_finite_domain_injective σ (h.trans (map_zero _).symm))

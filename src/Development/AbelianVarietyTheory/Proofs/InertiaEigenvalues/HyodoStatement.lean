@@ -1316,7 +1316,6 @@ theorem GlobalTheory.cocycle_of_st_coboundary : ∀ (l : ℕ) [Fact l.Prime] (P 
     simp [hb g]
   · intro g h
     haveI : Nontrivial P.R.B := nontrivial_B P
-    haveI : Nontrivial (Bst P) := inferInstance
     apply GlobalTheory.CocycStLemma.tmul_one_injective (F := ℚ_[l]) (B := Bst P)
     simp only [add_tmul]
     rw [hc, hc g, map_mul, Module.End.mul_apply]

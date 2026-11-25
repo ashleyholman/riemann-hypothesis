@@ -478,7 +478,6 @@ theorem sq_norm_two_haar : ∀ (D : D7) (V' W : HSp D) (μ' : Measure (WO V' W))
   haveI : SecondCountableTopology (WO V' W) := i3
   haveI : T2Space (WO V' W) := i4
   haveI : DiscreteTopology (ratL W V') := i5
-  haveI : TopologicalSpace.SeparableSpace (ratL W V') := inferInstance
   haveI : Countable (ratL W V') := TopologicalSpace.separableSpace_iff_countable.1 inferInstance
   haveI : MeasurableConstVAdd (ratL W V') (WO V' W) :=
     ⟨fun c => (continuous_const.add continuous_id).measurable⟩

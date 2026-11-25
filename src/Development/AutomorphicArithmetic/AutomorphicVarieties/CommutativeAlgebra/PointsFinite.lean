@@ -336,7 +336,6 @@ theorem UpperTheory.V.Alg.points_finite :
       rw [map_inv₀]
       exact inv_le_one_of_one_le₀ (not_lt.1 h)
   have hwp : w (algebraMap O K p) < 1 := hlt _ fun _ h => by
-    haveI : IsLocalHom (algebraMap O (integralClosure O K)) := inferInstance
     refine hp.not_isUnit (IsLocalHom.map_nonunit (f := algebraMap O (integralClosure O K)) p
       (IsUnit.of_mul_eq_one (⟨_, h⟩ : integralClosure O K) (Subtype.ext ?_)))
     exact mul_inv_cancel₀ hp0

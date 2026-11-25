@@ -140,8 +140,6 @@ theorem hasQuot_descend : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E]
   haveI : Flat m.toSABMap.φ := MorphismProperty.of_isPullback pm.flip (inferInstance : Flat π)
   haveI : Surjective m.toSABMap.φ := MorphismProperty.of_isPullback pm.flip hS
   haveI : QuasiCompact m.toSABMap.φ := MorphismProperty.of_isPullback pm.flip hQ
-  haveI : EffectiveEpi π := inferInstance
-  haveI : EffectiveEpi m.toSABMap.φ := inferInstance
   obtain ⟨f, hf⟩ : ∃ f : S ⟶ Xo.X, π ≫ f = f' := ⟨_, EffectiveEpi.fac π f' c₁⟩
   obtain ⟨h, hh⟩ : ∃ h, m.toSABMap.φ ≫ h = ψ'.left ≫ n'.toSABMap.φ := ⟨_, EffectiveEpi.fac _ _ c₂⟩
   have hfs : f ≫ Xo.s = s := by rw [← cancel_epi π, reassoc_of% hf, hf']

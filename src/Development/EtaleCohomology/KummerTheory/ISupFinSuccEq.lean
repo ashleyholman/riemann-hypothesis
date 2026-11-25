@@ -49,7 +49,6 @@ theorem main (R : CommRingCat.{0}) (P : ∀ X : Scheme.{0}, (X ⟶ Spec R) → P
       rw [← hV] at hx
       obtain ⟨i, _⟩ := TopologicalSpace.Opens.mem_iSup.mp hx
       exact i.elim0
-    have : IsAffine Y := inferInstance
     exact hA Y q
   | succ n ih =>
     intro Y q _ V hA' hV

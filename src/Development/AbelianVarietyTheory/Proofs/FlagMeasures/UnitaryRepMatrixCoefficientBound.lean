@@ -134,7 +134,6 @@ theorem weil_formula_cutoff : ∀ (G : Type) [Group G] [TopologicalSpace G] [IsT
   have hH' := hH
   unfold IsHaarSub at hH'
   haveI : IsFiniteMeasureOnCompacts ν := hH'.2.1
-  haveI : SigmaFinite ν := inferInstance
   have hkey := lintegral_eq_lintegral_weight_mul_lintegral μ ν β hβ hone
   refine ⟨hkey, fun f hf => ?_⟩
   have hgm : Measurable (hf.aestronglyMeasurable.mk f) :=

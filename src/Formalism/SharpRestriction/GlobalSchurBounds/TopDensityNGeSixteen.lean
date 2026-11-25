@@ -1614,7 +1614,6 @@ theorem nuFull_of {D : D7} {L : SizeData₂ D} (hN' : DV.NprimeDef D L) (hc : Nu
       rw [e]
       exact (L.NuLat u).smul_mem _ hy
     have : Module.Finite (𝓞 D.what₂.LL) (L.NuLat u) := Module.Finite.iff_fg.2 hfg
-    have : IsNoetherian (𝓞 D.what₂.LL) (L.NuLat u) := inferInstance
     have h2 := (IsNoetherian.noetherian (((D.div.Nu u).L.map f).comap (L.NuLat u).subtype)).map (L.NuLat u).subtype
     rw [Submodule.map_comap_subtype, inf_eq_right.2 hle] at h2
     exact Submodule.fg_of_fg_map_injective f hinj h2

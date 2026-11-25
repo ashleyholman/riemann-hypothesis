@@ -145,7 +145,6 @@ theorem muConj : ∀ (n : ℕ) (ε : Fin n → Bool) (F : Matrix (Fin n) (Fin n)
         exact map_star_mul _ _)
       continuous_toFun := hcont, continuous_invFun := hcont }
   haveI := (compact_haar_holds n ε).1
-  haveI : IsProbabilityMeasure ((muK ε).map e) := inferInstance
   haveI : ((muK ε).map e).IsHaarMeasure := e.isHaarMeasure_map _
   have h : (muK ε).map e = muK ε := Measure.isHaarMeasure_eq_of_isProbabilityMeasure _ _
   have := integral_map_equiv (μ := muK ε) e.toHomeomorph.toMeasurableEquiv (fun k => F (toMK k))

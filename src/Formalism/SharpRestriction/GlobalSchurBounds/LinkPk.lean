@@ -99,7 +99,6 @@ theorem nuCommens_of {D : D7} {L : SizeData₂ D} (hNu : DV.NuDef D L) (hT : NuA
   have hle := nu_le_mram hNu hT u
   constructor
   · have : Module.Finite (𝓞 D.what₂.LL) (DV.MramL D u) := Module.Finite.iff_fg.2 (D.MramL_fg u)
-    have : IsNoetherian (𝓞 D.what₂.LL) (DV.MramL D u) := inferInstance
     have h2 := (IsNoetherian.noetherian ((L.NuLat u).comap (DV.MramL D u).subtype)).map (DV.MramL D u).subtype
     rw [Submodule.map_comap_subtype, inf_eq_right.2 hle] at h2
     exact h2

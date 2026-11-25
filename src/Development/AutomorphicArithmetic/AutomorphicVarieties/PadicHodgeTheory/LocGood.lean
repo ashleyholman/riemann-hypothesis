@@ -83,7 +83,6 @@ theorem reg (hP : LocalPublishedTheorems) {x : U.R →ₐ[O] O} (hx : IsBase D.�
   letI : Algebra ℚ_[l] (FractionRing O) := (IsFractionRing.lift hi2).toAlgebra
   haveI : IsScalarTower ℤ_[l] ℚ_[l] (FractionRing O) :=
     IsScalarTower.of_algebraMap_eq fun x => (IsFractionRing.lift_algebraMap hi2 x).symm
-  haveI : IsLocalization (Algebra.algebraMapSubmonoid O ℤ_[l]⁰) (FractionRing O) := inferInstance
   haveI : Module.Finite ℚ_[l] (FractionRing O) := Module.Finite.of_isLocalization ℤ_[l] O ℤ_[l]⁰
   obtain ⟨-, n, P, φ, -, -, ⟨y, hy, hyP⟩, hPt, -⟩ := _root_.GlobalTheory.OrdLoc.saturatedOrdinaryIdeal_smooth_at_residualRep hP D U (FractionRing O) x hx
   exact ⟨y, hy, fun a ha => hyP a (hPt ▸ ha)⟩
@@ -967,7 +966,6 @@ theorem UpperTheory.V.Loc.locGood :
     letI : Algebra ℚ_[l] (FractionRing O) := (IsFractionRing.lift hi2).toAlgebra
     haveI : IsScalarTower ℤ_[l] ℚ_[l] (FractionRing O) :=
       IsScalarTower.of_algebraMap_eq fun x => (IsFractionRing.lift_algebraMap hi2 x).symm
-    haveI : IsLocalization (Algebra.algebraMapSubmonoid O (nonZeroDivisors ℤ_[l])) (FractionRing O) := inferInstance
     haveI : Module.Finite ℚ_[l] (FractionRing O) :=
       Module.Finite.of_isLocalization ℤ_[l] O (nonZeroDivisors ℤ_[l])
     obtain ⟨x, hx, -⟩ := univEx D U

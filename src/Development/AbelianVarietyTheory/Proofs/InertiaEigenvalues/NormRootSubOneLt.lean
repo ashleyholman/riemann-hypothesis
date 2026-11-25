@@ -152,8 +152,6 @@ theorem rel_trace (hn : ∀ (g : GQ l) (x : Om l), ‖g x‖ = ‖x‖) (K : Fin
     IntermediateField.normalClosure ℚ_[l] (IntermediateField.adjoin ℚ_[l] {β}) (Om l)
   have hβE : β ∈ E := IntermediateField.le_normalClosure _
     (IntermediateField.mem_adjoin_simple_self _ β)
-  haveI : FiniteDimensional ℚ_[l] E := inferInstance
-  haveI : Normal ℚ_[l] E := inferInstance
   haveI : E.fixingSubgroup.FiniteIndex := by
     haveI := Subgroup.quotient_finite_of_isOpen E.fixingSubgroup E.fixingSubgroup_isOpen
     exact Subgroup.finiteIndex_of_finite_quotient

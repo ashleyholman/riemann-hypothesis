@@ -746,7 +746,6 @@ theorem saturated_ker (E E' : HermitianBundle.{0} K) (q : E.carrier →ₗ[𝓞 
   intro a x ha hx
   rw [LinearMap.mem_ker, map_smul] at hx
   rw [LinearMap.mem_ker]
-  have : Module.IsTorsionFree (𝓞 K) E'.carrier := inferInstance
   exact (smul_eq_zero.mp hx).resolve_left ha
 
 def barMap (E E' : HermitianBundle.{0} K) (P : Submodule (𝓞 K) E.carrier) (hP : E.Saturated P)

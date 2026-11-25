@@ -322,7 +322,6 @@ theorem kernel_freeA : ∀ (D : Formalism.BasicNotions.D7) (HW : HWOf D.loc) (F 
   have hproj := (HW l).W_proj K s LL h T₁
   set N₀ := (W.N T₁).comap ((W.map ι).restrictScalars (AA K LL)) with hN₀
   haveI : Module.Free W.EE (W.DD T₀) := (W.DD_free T₀).1
-  haveI : IsNoetherianRing ↥(OL LL) := inferInstance
   haveI : IsNoetherianRing (PowerSeries ↥(OL LL)) := inferInstance
   haveI : IsNoetherianRing (AA K LL) :=
     inferInstanceAs (IsNoetherianRing (ZMod (Module.finrank ℚ_[l] ↥(K0 K)) → PowerSeries ↥(OL LL)))

@@ -1546,10 +1546,6 @@ theorem exists_measW_prescribed :
   obtain ⟨μHf, hHf, hHeq⟩ := GlobalTheory.St.HaarSplit.exists_haar_map_prod_eq eH μHinf μH
   obtain ⟨μNf, hNf, hNeq⟩ := GlobalTheory.St.HaarSplit.exists_haar_map_prod_eq eN μNinf μN
   obtain ⟨μSf, hSH, hSeq⟩ := PI.UnitaryGroupMassFormula.MeasWCore.product_decomposition_holds F E σ n J r P T hCM hJ hP μNf μHf hNf hHf
-  have : SigmaCompactSpace (Hsub (Ainf F) σ J P) := inferInstance
-  have : SigmaCompactSpace (Nsub (Ainf F) σ J P) := inferInstance
-  have : SigmaCompactSpace (Hsub (Af F) σ J P) := inferInstance
-  have : SigmaCompactSpace (Nsub (Af F) σ J P) := inferInstance
   have : SigmaFinite μHinf := inferInstance
   have : SigmaFinite μNinf := inferInstance
   have : SigmaFinite μHf := inferInstance

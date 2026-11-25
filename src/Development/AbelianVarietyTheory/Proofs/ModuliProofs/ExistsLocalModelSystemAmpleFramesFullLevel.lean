@@ -432,7 +432,6 @@ theorem GlobalTheory.Models.exists_quotient_model : ∀ (E : Type) [Field E] [Nu
     have h2 : IsFinite (Spec.map (CommRingCat.ofHom b)) := hfin
     rw [IsFinite.SpecMap_iff] at h2
     have : Module.Finite O' O := h2
-    have : Algebra.IsIntegral O' O := inferInstance
     exact Ideal.eq_bot_of_comap_eq_bot (R := O') hp
   have hpre : Function.Injective (pullback.fst s' (spMap β')) := by
     obtain ⟨-, -, hfr'⟩ := hβ'
@@ -904,7 +903,6 @@ theorem Cpt.exists_extension_of_above (C : Cpt c t₀ β) (C' : Cpt c' t₀' β'
     simpa only [Category.assoc, pullback.lift_snd] using this
   have hπf : IsFinite A.π := by
     have h4 := A.fin
-    have h5 : IsFinite (pullback.fst C.s (spMap b)) := inferInstance
     have h6 : A.π = pullback.lift A.π C'.s A.π_over ≫ pullback.fst C.s (spMap b) := (pullback.lift_fst _ _ _).symm
     rw [h6]; infer_instance
   have hπd : IsDominant A.π := by

@@ -144,7 +144,6 @@ variable {Ω : Type} [Field Ω] [CharZero Ω] [IsAlgClosure ℚ Ω]
 private theorem sq_mem_galOf (K : Type) [Field K] [NumberField K] [Algebra K Ω] (h : Module.finrank ℚ K = 2) (s : G ℚ Ω) :
     s * s ∈ galOf ℚ K Ω := by
   haveI : Algebra.IsQuadraticExtension ℚ K := ⟨h⟩
-  haveI : IsGalois ℚ K := inferInstance
   have h1 : Nat.card (K ≃ₐ[ℚ] K) = 2 := by rw [IsGalois.card_aut_eq_finrank, h]
   have h2 : AlgEquiv.restrictNormalHom K (s * s) = 1 := by
     rw [map_mul, ← sq, ← h1, pow_card_eq_one']
@@ -671,7 +670,6 @@ theorem UpperTheory.GalN.V.L.wup :
     ∀ (F Ω : Type) [Field F] [NumberField F] [Field Ω] [Algebra F Ω] [IsAlgClosure F Ω] (l : ℕ) [Fact l.Prime] (n : ℕ) (r : G F Ω →* GL (Fin n) (Qbar l)) (K : Type) [Field K] [NumberField K] [Algebra F K] [Algebra K Ω] [IsScalarTower F K Ω], Unlinked r → Unlinked (r.comp (AlgEquiv.restrictScalarsHom F : G K Ω →* G F Ω)) := by
   intro F Ω _ _ _ _ _ l _ n r K _ _ _ _ _ hU
   intro w hl A hA hfin
-  haveI : Finite (K →ₐ[F] Ω) := inferInstance
   set v := HeightOneSpectrum.under (𝓞 F) w with hvdef
   have hAv : IsPlaceOver A v := GlobalTheory.AboveL.SatBC.isPlaceOver_under hA
   have hlv : (l : 𝓞 F) ∉ v.asIdeal := by

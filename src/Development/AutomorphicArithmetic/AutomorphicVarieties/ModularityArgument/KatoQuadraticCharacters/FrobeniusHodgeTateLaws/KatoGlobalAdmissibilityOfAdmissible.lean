@@ -240,7 +240,6 @@ theorem UpperTheory.V.Z.Kato.Joint.aqBd :
   obtain ⟨S0, hS0⟩ := GlobalTheory.RhoAdm.frob_trace_det ι e W g χ hatt
   have hc := (Continuous.matrix_trace
     (Units.continuous_val.comp (GlobalTheory.RhoAdm.untw_cont e W χ hN.cont hχ))).norm
-  haveI : CompactSpace (Ω ≃ₐ[ℚ] Ω) := inferInstance
   obtain ⟨C, hC⟩ := (isCompact_range hc).bddAbove
   obtain ⟨k, hk⟩ := GlobalTheory.KummerEisensteinGalois.exists_le_l_pow l (max C (∑ q ∈ S0, ‖ι.symm (g.a q)‖))
   refine ⟨k, fun q hq => le_trans ?_ hk⟩
@@ -682,7 +681,6 @@ private theorem uniform_continuity_galois_group (K Ω : Type) [Field K] [Field �
 theorem UpperTheory.V.Z.Kato.Joint.unif :
     UpperTheory.V.Z.Kato.Joint.Unif := by
   intro l _ Ω _ _ _ f hf δ hδ
-  haveI : IsGalois ℚ Ω := inferInstance
   exact uniform_continuity_galois_group ℚ Ω f hf δ hδ
 end -- clump:auto
 end -- clump:auto
@@ -1005,7 +1003,6 @@ private theorem extend {M : Type} [AddCommGroup M] [Module ℤ_[l] M] (B : Submo
     have := norm_zl a
     rw [ha, norm_zero] at this
     exact norm_eq_zero.1 this.symm
-  haveI : Module.Flat ℤ_[l] (Qbar l) := inferInstance
   have hinj : Function.Injective (B.subtype.baseChange (Qbar l)) :=
     Module.Flat.lTensor_preserves_injective_linearMap (M := Qbar l) B.subtype B.injective_subtype
   obtain ⟨s, hs⟩ := LinearMap.exists_leftInverse_of_injective (B.subtype.baseChange (Qbar l))

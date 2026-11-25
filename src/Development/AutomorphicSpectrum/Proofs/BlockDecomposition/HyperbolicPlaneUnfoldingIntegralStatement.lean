@@ -1104,8 +1104,6 @@ theorem isHaarMeasure_map_splitHomeo :
   have : LocallyCompactSpace π.ker := hclosed.isClosedEmbedding_subtypeVal.locallyCompactSpace
   have : SecondCountableTopology π.ker :=
     TopologicalSpace.Subtype.secondCountableTopology (π.ker : Set P)
-  have : SigmaCompactSpace π.ker := inferInstance
-  have : SigmaFinite ν := inferInstance
   set Φ := splitHomeo ι π hι hπ hπι with hΦdef
   have hΦm : Measurable Φ := Φ.continuous.measurable
   have hinv : (Measure.map Φ (ν.prod μ₁)).IsMulLeftInvariant := by

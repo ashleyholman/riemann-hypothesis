@@ -879,7 +879,6 @@ theorem UpperTheory.V.Pa.hom_desc :
     have h3 : closure ({x} : Set A'.Γ) = {x} :=
       h2.eq_singleton_of_mem (subset_closure (Set.mem_singleton x))
     exact closure_eq_iff_isClosed.mp h3
-  have hT2 : T2Space A'.Γ := inferInstance
   let q : A'.Γ →* B'.Γ := a.p.liftOfRightInverse (Function.surjInv a.surj)
     (Function.rightInverse_surjInv a.surj) ⟨b.p.comp h.p, hk⟩
   have hq : ∀ x, q (a.p x) = b.p (h.p x) := fun x =>

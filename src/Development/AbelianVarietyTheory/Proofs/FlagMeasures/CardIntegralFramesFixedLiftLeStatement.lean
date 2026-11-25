@@ -470,7 +470,6 @@ theorem exists_reps_ideal_inv_lattice (K V : Type) [Field K] [NumberField K]
     exact Subtype.ext (smul_right_injective V hj₀0 h')
   have : Module.Finite (𝓞 K) P := Module.Finite.of_injective f hf
   have : Module.FinitePresentation (𝓞 K) P := Module.finitePresentation_of_finite _ _
-  have : Module.Flat (𝓞 K) P := inferInstance
   have : Module.Projective (𝓞 K) P := Module.Flat.projective_of_finitePresentation
   have hcard := _root_.Formalism.HermitianLatticeCounting.P.projective_quotient_card K P J hJ
   have hN : Ideal.absNorm J ≠ 0 := by rwa [Ne, Ideal.absNorm_eq_zero_iff]

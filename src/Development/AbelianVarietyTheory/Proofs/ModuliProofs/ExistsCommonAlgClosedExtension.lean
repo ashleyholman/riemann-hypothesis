@@ -20,7 +20,6 @@ theorem exists_common_algClosed_extension (K₀ K K' : Type) [Field K₀] [Field
       RingHom.comp j i = RingHom.comp j' i' := by
   letI : Algebra K₀ K := i.toAlgebra
   letI : Algebra K₀ K' := i'.toAlgebra
-  haveI : Nontrivial (K ⊗[K₀] K') := inferInstance
   obtain ⟨m, hm⟩ := Ideal.exists_maximal (K ⊗[K₀] K')
   letI : Field ((K ⊗[K₀] K') ⧸ m) := Ideal.Quotient.field m
   let φ : (K ⊗[K₀] K') →+* AlgebraicClosure ((K ⊗[K₀] K') ⧸ m) :=

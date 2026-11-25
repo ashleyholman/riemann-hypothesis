@@ -49,7 +49,6 @@ theorem sInter_mem_cosetSelectors (N : Subgroup G) (hN : IsClosed (N : Set G))
       hKmul ⟨T, hT⟩ t (Set.mem_sInter.1 ht T hT) k (Subgroup.mem_iInf.1 hk ⟨T, hT⟩)
   · intro x
     have : IsClosed (N : Set G) := hN
-    have : T2Space (G ⧸ N) := inferInstance
     have hne' : (⋂ T : c, ((T : Set G) ∩ {t | (t : G ⧸ N) = x})).Nonempty := by
       refine IsCompact.nonempty_iInter_of_directed_nonempty_isCompact_isClosed _ ?_ ?_ ?_ ?_
       · intro T T'
@@ -154,7 +153,6 @@ theorem exists_closed_transversal (N : Subgroup G) [N.Normal] (hN : IsClosed (N 
 theorem exists_continuous_section (N : Subgroup G) [N.Normal] (hN : IsClosed (N : Set G)) :
     ∃ s : G ⧸ N → G, Continuous s ∧ (∀ c, (s c : G ⧸ N) = c) ∧ s 1 = 1 := by
   have : IsClosed (N : Set G) := hN
-  have : T2Space (G ⧸ N) := inferInstance
   obtain ⟨T, hTc, hex, huniq⟩ := exists_closed_transversal N hN
   have : CompactSpace T := isCompact_iff_compactSpace.mp hTc.isCompact
   let f : T → G ⧸ N := fun t => (t : G)

@@ -1364,12 +1364,10 @@ def Frame.sp {d : ℕ} {P : SP d} (F : Frame P) (hw : Etale F.w) : SP d where
   cl := IsClosedImmersion.spec_of_surjective _ Ideal.Quotient.mk_surjective
   smX := by
     have := P.smX
-    have : SmoothOfRelativeDimension 0 F.w := inferInstance
     simpa using (inferInstance : SmoothOfRelativeDimension (0 + (P.e + d)) (F.w ≫ P.p))
   smZ := by
     have hz : Etale F.z := MorphismProperty.of_isPullback F.cart hw
     have := P.smZ
-    have : SmoothOfRelativeDimension 0 F.z := inferInstance
     have e : Spec.map (CommRingCat.ofHom (Ideal.Quotient.mk F.I)) ≫ F.w ≫ P.p = F.z ≫ P.ι ≫ P.p := by
       rw [← Category.assoc, F.cart.w, Category.assoc]
     rw [e]

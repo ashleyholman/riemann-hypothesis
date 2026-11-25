@@ -17,8 +17,6 @@ variable (R : Type) [CommRing R]
 instance pcFreeP : PreservesColimitsOfShape WalkingSpan (freeP R) := by
   have : PreservesColimitsOfShape WalkingSpan (ModuleCat.free (ULift.{1} R)) :=
     (ModuleCat.adj (ULift.{1} R)).leftAdjoint_preservesColimits.preservesColimitsOfShape
-  have : PreservesColimitsOfShape WalkingSpan (uliftFunctor.{1, 0} ⋙ ModuleCat.free (ULift.{1} R)) :=
-    inferInstance
   unfold freeP; infer_instance
 
 instance pcFree : PreservesColimitsOfShape WalkingSpan (free R) := by

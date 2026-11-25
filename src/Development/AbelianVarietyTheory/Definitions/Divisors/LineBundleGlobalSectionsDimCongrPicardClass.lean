@@ -147,7 +147,6 @@ theorem isCompleteCurve_range (i : Y ⟶ X) [IsClosedImmersion i] [IsIntegral Y]
       rfl
     change IsProper ((Scheme.IdealSheafData.vanishingIdeal _).subschemeι ≫ _)
     rw [e]
-    have : IsIso i.toImage := inferInstance
     have e₂ : i.ker.subschemeι = inv i.toImage ≫ i := by
       rw [IsIso.eq_inv_comp]; exact i.toImage_imageι
     rw [e₂, Category.assoc]

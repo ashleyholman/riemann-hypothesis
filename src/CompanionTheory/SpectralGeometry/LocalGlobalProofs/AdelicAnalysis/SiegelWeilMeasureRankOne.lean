@@ -416,10 +416,7 @@ theorem size_neg_pow_integrable : ∀ (F E : Type) [Field F] [NumberField F] [Fi
   have hes : Continuous e.symm :=
     continuous_pi fun a => continuous_pi fun i => hcs.comp ((continuous_apply i).comp (continuous_apply a))
   let W := Fin n → Fin M → Fin d → InfinitePlace F → ℝ
-  haveI b1 : BorelSpace (Fin d → InfinitePlace F → ℝ) := inferInstance
-  haveI s1 : SecondCountableTopology (Fin d → InfinitePlace F → ℝ) := inferInstance
   haveI b2 : BorelSpace (Fin M → Fin d → InfinitePlace F → ℝ) := Pi.borelSpace
-  haveI s2 : SecondCountableTopology (Fin M → Fin d → InfinitePlace F → ℝ) := inferInstance
   haveI b3 : BorelSpace W := Pi.borelSpace
   haveI : (Measure.map e μ).IsAddHaarMeasure := e.isAddHaarMeasure_map μ he hes
   obtain ⟨N, hN⟩ := exists_nat_gt (Module.finrank ℝ W : ℝ)

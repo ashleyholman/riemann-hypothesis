@@ -25,7 +25,6 @@ private theorem finOfHaus {l : ℕ} [Fact l.Prime] {V M : Type} [AddCommGroup V]
   classical
   haveI : Module.IsTorsionFree ℤ_[l] V := Module.IsTorsionFree.trans ℚ_[l]
   haveI : Module.IsTorsionFree ℤ_[l] M := hi.moduleIsTorsionFree _ (map_smul i)
-  haveI : Module.Flat ℤ_[l] M := inferInstance
   have hs : ∀ y : TensorProduct ℤ_[l] (ResidueField ℤ_[l]) M, ∃ m : M,
       TensorProduct.mk ℤ_[l] (ResidueField ℤ_[l]) M 1 m = y :=
     TensorProduct.mk_surjective ℤ_[l] M (ResidueField ℤ_[l]) residue_surjective
@@ -42,7 +41,6 @@ private theorem finOfHaus {l : ℕ} [Fact l.Prime] {V M : Type} [AddCommGroup V]
     simpa using h3.fintype_card_le_finrank
   haveI : Module.Finite (ResidueField ℤ_[l]) (TensorProduct ℤ_[l] (ResidueField ℤ_[l]) M) :=
     Module.rank_lt_aleph0_iff.1 (hr.trans_lt (Cardinal.natCast_lt_aleph0))
-  haveI : Module.Finite ℤ_[l] (ResidueField ℤ_[l]) := inferInstance
   haveI : Module.Finite ℤ_[l] (TensorProduct ℤ_[l] (ResidueField ℤ_[l]) M) :=
     Module.Finite.trans (ResidueField ℤ_[l]) _
   haveI : Module.Finite ℤ_[l] (M ⧸ (maximalIdeal ℤ_[l] • ⊤ : Submodule ℤ_[l] M)) :=
@@ -91,7 +89,6 @@ private theorem evCongr {l : ℕ} [Fact l.Prime] {V M X : Type} [AddCommGroup V]
   classical
   haveI : Module.IsTorsionFree ℤ_[l] V := Module.IsTorsionFree.trans ℚ_[l]
   haveI : Module.IsTorsionFree ℤ_[l] M := hi.moduleIsTorsionFree _ (map_smul i)
-  haveI : Module.Free ℤ_[l] M := inferInstance
   let e := Module.finBasis ℤ_[l] M
   have h3 := (LinearIndependent.iff_fractionRing ℤ_[l] ℚ_[l]).1
     (e.linearIndependent.map' i (LinearMap.ker_eq_bot.2 hi))

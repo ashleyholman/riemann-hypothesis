@@ -198,7 +198,6 @@ theorem exists_param {B : Type} [CommRing B] [Algebra R B] [Algebra.Smooth R B] 
       ∀ {A : Type} [CommRing A] [Algebra R A] [Algebra (Localization.Away (e f)) A] [IsScalarTower R (Localization.Away (e f)) A]
         (φ : B →ₐ[R] A), IsUnit (φ f) → ∃ ψ : S →ₐ[Localization.Away (e f)] A, (ψ.restrictScalars R).comp toS = φ := by
   obtain ⟨f, hfq, n, _, hST, hSE⟩ := Algebra.IsSmoothAt.exists_isStandardEtale_mvPolynomial (R := R) (p := p.comap e)
-  have h₀ : Algebra.FormallyEtale (MvPolynomial (Fin n) R) (Localization.Away f) := inferInstance
   let S := Localization.Away (algebraMap R (Localization.Away f) (e f))
   have : Algebra.FormallyEtale (Localization.Away f) S := Algebra.FormallyEtale.of_isLocalization
     (Submonoid.powers (algebraMap R (Localization.Away f) (e f)))

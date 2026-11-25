@@ -90,7 +90,6 @@ omit [DecidableEq C] in
 theorem isAddHaarMeasure_volM (m : Measure k) [m.IsAddHaarMeasure] (B : Type*) [Fintype B] :
     (volM m A B).IsAddHaarMeasure := by
   haveI := secondCountable k; haveI := t2Space k
-  haveI : (Measure.pi fun _ : B => m).IsAddHaarMeasure := inferInstance
   exact Measure.pi.isAddHaarMeasure (fun _ : A => (Measure.pi fun _ : B => m))
 
 

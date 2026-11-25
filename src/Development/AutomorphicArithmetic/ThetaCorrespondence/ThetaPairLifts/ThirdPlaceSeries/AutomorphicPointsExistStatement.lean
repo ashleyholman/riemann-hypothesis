@@ -877,8 +877,6 @@ theorem automorphic_points_exist : ∀ (D : D7) (cf : CharFrame D) (jE : D.host.
   rw [hbot, finrank_bot] at h0
   have hne0 := X.nd.eig_ne i x
   apply hne0
-  have : Module.Finite (FractionRing (X.nd.O i)) (TensorProduct (X.nd.O i) (FractionRing (X.nd.O i)) (X.nd.Mt i)) :=
-    inferInstance
   exact Submodule.finrank_eq_zero.1 h0
 end GlobalTheory.AutPts
 end

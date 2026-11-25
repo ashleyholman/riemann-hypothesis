@@ -87,7 +87,6 @@ theorem isPreimmersion_toNormalization (Z : Scheme.{0}) [IsIntegral Z] {L : Type
   let ψ : CommRingCat.of L ⟶ Γ(Spec (.of L), f ⁻¹ᵁ U) :=
     (Scheme.ΓSpecIso (.of L)).inv ≫ (Spec (.of L)).presheaf.map (homOfLE le_top).op
   have : IsIso (homOfLE (le_top : f ⁻¹ᵁ U ≤ ⊤)) := ⟨homOfLE htop.ge, rfl, rfl⟩
-  have hψ : IsIso ψ := inferInstance
   have happ : f.app U = Z.presheaf.germ U _ hxU ≫ φ ≫ ψ := by
     simp only [f, ψ, Scheme.Hom.comp_app, Scheme.fromSpecStalk_app hxU, Category.assoc]
     rw [Scheme.Hom.naturality, Scheme.ΓSpecIso_inv_naturality_assoc φ]
@@ -405,7 +404,6 @@ theorem exists_univ {S : Scheme.{0}} (G : Over S) [GrpObj G] [IsSeparated G.hom]
   have haq : IsAffineHom (pullback.snd u.left (η[G]).left) := by rw [hq]; infer_instance
   let e : Sp R ⟶ G.left := w ≫ (η[G]).left
   have hK : IsAffine (pullback u.left e) := by
-    have : IsAffine (pullback (pullback.snd u.left (η[G]).left) w) := inferInstance
     exact .of_isIso (pullbackLeftPullbackSndIso u.left (η[G]).left w).inv
   let K := pullback u.left e
   let ψ : CommRingCat.of R ⟶ Γ(K, ⊤) := Spec.preimage (K.isoSpec.inv ≫ pullback.snd u.left e)

@@ -288,7 +288,6 @@ theorem mp_toVec {d : ℕ} (b : Module.Basis (Fin d) F E) (n : ℕ) (lam : Measu
   haveI : BorelSpace (R ⊗[F] E) := ⟨rfl⟩
   let cK : R ⊗[F] E ≃ₜ (Fin d → R) := (t7 d b).homeomorph _
   have hH := (GlobalTheory.CompanionTheory.SW.coord_measures_haar F E σ hcm R d b lam inferInstance).1
-  haveI : SigmaFinite (coordK R b lam) := inferInstance
   have hcK : MeasurePreserving cK (coordK R b lam) (Measure.pi fun _ => lam) :=
     mp_comap cK.toMeasurableEquiv _
   have mp1 := (MeasurePreserving.id (Measure.pi fun _ : Fin n => lam)).prod

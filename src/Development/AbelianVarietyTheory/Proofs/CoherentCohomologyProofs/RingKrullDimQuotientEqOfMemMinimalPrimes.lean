@@ -117,7 +117,6 @@ theorem isAlgebraic_of_quasiFiniteAt (R S : Type*) [CommRing R] [IsDomain R] [Co
     [Algebra.QuasiFiniteAt R q] : Algebra.IsAlgebraic R S := by
   have : Algebra.QuasiFiniteAt R (⊥ : Ideal S) := .of_le (Q := q) bot_le
   let := Localization.AtPrime.algebraOfLiesOver (⊥ : Ideal R) (⊥ : Ideal S)
-  have : Module.Finite (⊥ : Ideal R).ResidueField (⊥ : Ideal S).ResidueField := inferInstance
   have : Algebra.IsAlgebraic (⊥ : Ideal R).ResidueField (⊥ : Ideal S).ResidueField :=
     Algebra.IsAlgebraic.of_finite _ _
   have : Algebra.IsAlgebraic R (⊥ : Ideal R).ResidueField :=

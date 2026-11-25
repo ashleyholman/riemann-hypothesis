@@ -1520,9 +1520,6 @@ theorem latY_span {a : ℕ} (Y : Submodule (D.nd.O i) (Fin a → Fin D.R.nV → 
 
 theorem latY_free {a : ℕ} (Y : Submodule (D.nd.O i) (Fin a → Fin D.R.nV → KK D.nd i)) (hY : Y.FG) :
     Module.Free (Br.OLL D.nbr i w hw) ↥(latY i w hw Y) := by
-  letI : CommRing (Br.OLL D.nbr i w hw) := inferInstance
-  letI : AddCommGroup ↥(latY i w hw Y) := inferInstance
-  letI : Module (Br.OLL D.nbr i w hw) ↥(latY i w hw Y) := inferInstance
   haveI : Module.Finite (Br.OLL D.nbr i w hw) ↥(latY i w hw Y) :=
     Module.Finite.iff_fg.2 (latY_fg i w hw Y hY)
   haveI : NoZeroSMulDivisors (Br.OLL D.nbr i w hw) ↥(latY i w hw Y) := by
@@ -1538,9 +1535,6 @@ theorem latY_free {a : ℕ} (Y : Submodule (D.nd.O i) (Fin a → Fin D.R.nV → 
       intro h0; apply hc; exact Subtype.val_injective h0
     have := (smul_eq_zero.1 h2).resolve_left hc'
     exact Subtype.ext this
-  haveI : IsPrincipalIdealRing (Br.OLL D.nbr i w hw) := inferInstance
-  haveI : IsDomain (Br.OLL D.nbr i w hw) := inferInstance
-  haveI : IsTorsionFree (Br.OLL D.nbr i w hw) ↥(latY i w hw Y) := inferInstance
   exact @Module.free_of_finite_type_torsion_free' (Br.OLL D.nbr i w hw) inferInstance
     ↥(latY i w hw Y) inferInstance inferInstance inferInstance inferInstance inferInstance inferInstance
 

@@ -21,7 +21,6 @@ theorem modK_units : ∀ {F : Type} [Field F] [ValuativeRel F] [TopologicalSpace
   have := hM.loc
   have := hM.char0
   have := hM.haar.haar
-  have hreg : M.mu.Regular := inferInstance
   have hO0 : M.mu (M.L.O : Set E) ≠ 0 := hOo.measure_ne_zero M.mu ⟨0, M.L.O.zero_mem⟩
   have hOt : M.mu (M.L.O : Set E) ≠ ∞ := hOc.measure_lt_top.ne
   have hmodK : ∀ u : Eˣ, M.modK u = (distribHaarChar E u : ℝ) := by

@@ -540,7 +540,6 @@ theorem muC_mem (Y : SerSide X E) (i : D.ntw.Tw) (j : Fin D.R.m) (b : Bool)
   obtain ⟨d, hd⟩ := de_frac Y.Z.good i j b x
   have e2 : (((Y.Z.ρ.B i j b).G.mu PP w : Circle) : ℂ) = Y.Z.ρ.e i b (a * d) := by
     rw [e1, Base.mu, MonoidHom.mul_apply, Circle.coe_mul, map_mul, ha, hd]
-  haveI : Finite (kP PP)ˣ := inferInstance
   have hfin : ((Y.Z.ρ.B i j b).G.mu PP w) ^ Nat.card (kP PP)ˣ = 1 := by
     rw [← map_pow, pow_card_eq_one', map_one]
   rw [e2]

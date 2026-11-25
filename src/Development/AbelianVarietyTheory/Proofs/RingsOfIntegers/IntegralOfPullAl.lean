@@ -58,7 +58,6 @@ theorem prB_app_injective (D : DegPre V) (F : Type) [Field F] [Algebra (Fraction
   have := D.P.isAb.smooth
   have := GC.isDominant_jFR (V := V) F
   have h₁ := IsSchemeTheoreticallyDominant.of_isDominant (DegPre.jFR (R := V) F)
-  have hf : Flat D.P.A.hom := inferInstance
   have hq : QuasiCompact (DegPre.jFR (R := V) F) := by
     generalize DegPre.jFR (R := V) F = q
     exact quasiCompact_of_compactSpace q

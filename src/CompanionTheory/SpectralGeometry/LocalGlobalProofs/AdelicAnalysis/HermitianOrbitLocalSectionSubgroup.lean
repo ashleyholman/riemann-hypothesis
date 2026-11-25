@@ -399,7 +399,6 @@ theorem hermR_unit_diagonalisable : ∀ (F E : Type) [Field F] [NumberField F] [
   intro F E _ _ _ _ _ σ hσ R _ _ _ _ n S hS
   obtain ⟨hart, -, h2, hinv, hδ, hfix, hunit⟩ := _root_.GlobalTheory.CompanionTheory.SW.KAlg.algebra_tensor_invol F E σ hσ R
   haveI : IsArtinianRing (R ⊗[F] E) := hart
-  haveI : Finite (MaximalSpectrum (R ⊗[F] E)) := inferInstance
   have hrep := _root_.GlobalTheory.CompanionTheory.SW.UnitRep.exists_isUnit_hform (R ⊗[F] E) (sigR R σ) hinv h2 hδ
   obtain ⟨g, d, hg, hd, hgd⟩ :=
     _root_.GlobalTheory.CompanionTheory.SW.RingDiag.diagonalise (R ⊗[F] E) (sigR R σ) hinv hrep n (S : Matrix (Fin n) (Fin n) (R ⊗[F] E)) S.2 hS

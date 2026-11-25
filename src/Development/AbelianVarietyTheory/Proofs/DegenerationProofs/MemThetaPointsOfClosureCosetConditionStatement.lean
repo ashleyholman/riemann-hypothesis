@@ -511,7 +511,6 @@ theorem exists_charts (hL : Laws) (hL2 : Laws2) (o₀ : Obj D l b s₀) {F L : T
     have := isThetaPt_comp (hv p) q
     simpa only [hr] using this
   haveI : CompactSpace W.left := by
-    have : QuasiCompact (W.hom ≫ s) := inferInstance
     exact QuasiCompact.compactSpace_of_compactSpace (W.hom ≫ s)
   obtain ⟨Ix, hJ₀⟩ := isCompact_univ.elim_finite_subcover (fun p : W.left => Set.range (x p))
     (fun p => (x p).isOpenEmbedding.isOpen_range) (fun p _ => Set.mem_iUnion.2 ⟨p, hp p⟩)

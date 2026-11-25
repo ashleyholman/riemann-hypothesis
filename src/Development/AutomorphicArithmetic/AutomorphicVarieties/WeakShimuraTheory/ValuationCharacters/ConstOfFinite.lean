@@ -275,7 +275,6 @@ theorem nice {R : Type} [CommRing R] [IsNoetherianRing R] [IsLocalRing R] (ϖ : 
   haveI : ∀ k : κ, Finite {q : Ideal R // q ∈ (b k).minimalPrimes ∧ ∀ i, ¬ a i ≤ q} := fun k =>
     ((Ideal.finite_minimalPrimes_of_isNoetherianRing R (b k)).subset
       (fun q (hq : q ∈ {q : Ideal R | q ∈ (b k).minimalPrimes ∧ ∀ i, ¬ a i ≤ q}) => hq.1)).to_subtype
-  haveI : Finite T := inferInstance
   let c : ι ⊕ T → Ideal R := Sum.elim a (fun t => t.2.1)
   have hc : ∀ j, UpperTheory.V.Pr.qdim (c j) < N := by
     rintro (i | ⟨k, q, hq, hqa⟩)
@@ -323,7 +322,6 @@ theorem curve (l : ℕ) [Fact l.Prime] (O R : Type) [CommRing O] [IsLocalRing O]
     ∃ (K : Type) (_ : Field K) (_ : Finite K) (_ : Algebra O K) (j : R →ₐ[O] PowerSeries K),
       (∀ x, j x = 0 ↔ x ∈ p) ∧ ∀ x ∈ maximalIdeal R, PowerSeries.constantCoeff (j x) = 0 := by
   haveI := hp
-  haveI : Nontrivial (R ⧸ p) := inferInstance
   haveI : IsCO O (R ⧸ p) :=
     co_quot O R (R ⧸ p) (Ideal.Quotient.mkₐ O p) (Ideal.Quotient.mkₐ_surjective O p)
   haveI : IsAdicComplete (maximalIdeal (R ⧸ p)) (R ⧸ p) := IsCO.complete (O := O)

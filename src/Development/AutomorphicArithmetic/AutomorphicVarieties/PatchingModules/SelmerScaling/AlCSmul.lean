@@ -326,7 +326,6 @@ theorem UpperTheory.V.Pa.dualEx :
   intro l _ S hK3
   haveI := S.d6
   haveI := S.U.fin
-  haveI : Module.Finite S.Bh S.U.N := inferInstance
   let Bs : Submodule S.F (S.G.G₀ → Matrix (Fin S.n) (Fin S.n) S.F) :=
     { carrier := BdM S.h S.x S.F
       add_mem' := by

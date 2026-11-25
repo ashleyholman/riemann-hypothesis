@@ -27,8 +27,6 @@ theorem isUnit_discr_of_isMaximal_map {R S : Type} [CommRing R] [IsLocalRing R] 
   haveI : Finite (R ⧸ maximalIdeal R) := ‹Finite (ResidueField R)›
   haveI : Module.Finite (R ⧸ maximalIdeal R) (S ⧸ Ideal.map (algebraMap R S) (maximalIdeal R)) :=
     Module.Finite.of_basis (basisQuotient b)
-  haveI : Algebra.IsSeparable (R ⧸ maximalIdeal R) (S ⧸ Ideal.map (algebraMap R S) (maximalIdeal R)) :=
-    inferInstance
   have h1 : Ideal.Quotient.mk (maximalIdeal R) (Algebra.discr R b) =
       Algebra.discr (R ⧸ maximalIdeal R) (basisQuotient b) := by
     rw [Algebra.discr_def, Algebra.discr_def, RingHom.map_det]

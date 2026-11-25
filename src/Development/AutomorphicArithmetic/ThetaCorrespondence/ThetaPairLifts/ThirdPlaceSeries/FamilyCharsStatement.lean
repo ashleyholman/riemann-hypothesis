@@ -239,7 +239,6 @@ theorem under_ne_alt (hP : _root_.GlobalTheory.Fam.PackageHypotheses W) (t : W.P
     simpa using h2
   haveI : Finite (kP P') := Nat.finite_of_card_ne_zero (by rw [hcard]; exact hq.ne_zero)
   have : P'.asIdeal.IsPrime := P'.isPrime
-  haveI : Nontrivial (kP P') := inferInstance
   haveI : Fintype (kP P') := Fintype.ofFinite _
   have h0g : ((D.host.g k : ℕ) : kP P') = 0 := by
     have := (Ideal.Quotient.eq_zero_iff_mem (I := P'.asIdeal)).2 hmemE'

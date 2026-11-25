@@ -156,7 +156,6 @@ theorem UpperTheory.integral_unfoldedIntegrand_eq_zetaIntegral :
         ∫ q, Un.Hh D χ φ Φ s q ∂((ideleMeasure ℚ).prod ((ideleMeasure ℚ).prod M₀.κ)) = Zu D M₀ χ φ Φ s := by
   intro E _ _ D χ φ M₀ Φ s h
   haveI := M₀.prob
-  haveI : SFinite (ideleMeasure ℚ) := inferInstance
   exact fub3 (ideleMeasure ℚ) (ideleMeasure ℚ) M₀.κ
     (fun y k => Wo D φ (em E (aE y * gl k)) * ((χ.1 y : ℂˣ) : ℂ) * ((ab y : ℝ) : ℂ) ^ (s - 1))
     (fun z k => (Φ fun j => ((z : (A ℚ)ˣ) : A ℚ) * row k j) * ((ab z : ℝ) : ℂ) ^ (2 * s)) h
@@ -841,7 +840,6 @@ theorem UpperTheory.measurable_whittaker_idele_diagTorus_mul :
   have h2 : Continuous fun q : (IdeleGroup ℚ × G1 ℚ) × (Fin 2 → A ℚ) => φ (nE D q.2 * em E (aE q.1.1 * gl q.1.2)) * ψ (q.2 1) :=
     (h.cont.comp ((hn.comp continuous_snd).mul (h1.comp continuous_fst))).mul
       (hψ.comp ((continuous_apply 1).comp continuous_snd))
-  have : BorelSpace ((IdeleGroup ℚ × G1 ℚ) × (Fin 2 → A ℚ)) := inferInstance
   exact (h2.measurable.stronglyMeasurable.integral_prod_right' (ν := (adeleMeasurePi ℚ).restrict (FS2 ℚ))).measurable
 end -- clump:auto
 end -- clump:auto

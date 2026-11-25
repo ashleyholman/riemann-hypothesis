@@ -284,7 +284,6 @@ theorem UpperTheory.haar_decomposition_norm_one_gl2 :
       have e2 : fin1 ((x.2 * y.2 : AdelicGLn.integralFiniteGL K 2) : FA K 2) = fin1 (x.2 : FA K 2) * fin1 (y.2 : FA K 2) := by
         simp [fin1]
       rw [e1, e2, mul_assoc, mul_assoc, ← mul_assoc (fin1 (x.2 : FA K 2)), (hcomm y.1 (x.2 : FA K 2)).symm.eq, mul_assoc]
-    haveI : IsProbabilityMeasure (κ₂.prod ν) := inferInstance
     refine ⟨ν, Measure.map p (κ₂.prod ν), hνp, hνo, inferInstance,
       map_right_inv κ₂ ν p hpm (continuous_mul.measurable) hps hmul hκ.right hνr, ?_⟩
     intro F hFc

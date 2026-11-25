@@ -193,7 +193,6 @@ theorem measure_finite_eq_zero (μ₁ : Measure F) [μ₁.IsAddHaarMeasure] {s :
 
 instance isAddHaarMeasure_matrixMeasure_finSq (μ₁ : Measure F) [μ₁.IsAddHaarMeasure] :
     (matrixMeasure (n := Fin m) μ₁).IsAddHaarMeasure := by
-  have : (Measure.pi fun _ : Fin m => μ₁).IsAddHaarMeasure := inferInstance
   unfold matrixMeasure
   exact Measure.pi.isAddHaarMeasure _
 

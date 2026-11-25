@@ -188,7 +188,6 @@ theorem exists_cuspForm_of_isZKFinite (v : CuspL2 μ) (hv : IsZKFinite μ v) :
       ∀ (s : {r : ℝ // 0 < r}) (g : AdelicGLn.AdelicGL K n),
         (φ : AdelicGLn.AdelicGL K n → ℂ) (centralSection K n s * g) = (φ : AdelicGLn.AdelicGL K n → ℂ) g := by
   obtain ⟨hs, hK, hZ⟩ := hv
-  have hνH : (Measure.haar : Measure (archGroup K n)).IsHaarMeasure := inferInstance
   obtain ⟨κ, U, Φ, C, hκt, hκv, hU, hrep, hb, hΦU, hcusp⟩ :=
     exists_contRep_of_zkFinite μ Measure.haar v hs hK hZ
   have hΦκ := eq_integral_of_integrated_eq μ Measure.haar hrep hb hκt hκv

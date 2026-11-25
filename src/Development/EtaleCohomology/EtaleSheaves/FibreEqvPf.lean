@@ -89,7 +89,6 @@ theorem StalkFib_of (hZB : BaseAIC) (hSA : StalkAIC) : StalkFib := by
   have hB := hZB c hZs hSs x
   have hK := hSA S hSs x
   have : IsIntegral (pullback c (S.fromSpecStalk x) : Scheme.{0}) := hB.1
-  have : ConnectedSpace (pullback c (S.fromSpecStalk x) : Scheme.{0}) := inferInstance
   have : CompactSpace (pullback c (S.fromSpecStalk x) : Scheme.{0}) :=
     QuasiCompact.compactSpace_of_compactSpace (pullback.snd c (S.fromSpecStalk x))
   have : QuasiSeparatedSpace (pullback c (S.fromSpecStalk x) : Scheme.{0}) :=

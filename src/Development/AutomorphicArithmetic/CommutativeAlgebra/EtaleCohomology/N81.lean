@@ -525,7 +525,6 @@ theorem EtAffNbhd_of : LateralTheory.E.SHSectionPf.EtAffNbhd := by
   obtain ⟨p, hp⟩ := 𝒰.covers v
   let ι := 𝒰.f (𝒰.idx v)
   have : IsOpenImmersion ι := inferInstanceAs (IsOpenImmersion (𝒰.f (𝒰.idx v)))
-  have : Etale ι := inferInstance
   have : Etale (ι ≫ g) := inferInstance
   let f : A ⟶ _ := Spec.preimage (ι ≫ g)
   have hfg : Spec.map f = ι ≫ g := Spec.map_preimage _
@@ -560,9 +559,6 @@ theorem key (A B : Type) [CommRing A] [CommRing B] [Algebra A B] [Algebra.Etale 
   let P := Q.comap (algebraMap A B)
   have : Q.LiesOver P := ⟨rfl⟩
   letI := Localization.AtPrime.algebraOfLiesOver P Q
-  have : Algebra.IsUnramifiedAt A Q := inferInstance
-  have : Module.Finite P.ResidueField Q.ResidueField := inferInstance
-  have : IsScalarTower A P.ResidueField Q.ResidueField := inferInstance
   set x := algebraMap B Q.ResidueField c
   have hx : IsIntegral P.ResidueField x := Algebra.IsIntegral.isIntegral x
   let p := minpoly P.ResidueField x
@@ -901,7 +897,6 @@ theorem HKCoprod_of : LateralTheory.E.CoprodPf.HKCoprod := by
   intro R _ ι K c hc F n
   have h1 : HasColimitsOfSize.{1, 1} (Shv R) := IsGrothendieckAbelian.hasColimits.{1} (Shv R)
   have h0 : HasColimitsOfSize.{0, 0} (Shv R) := hasColimitsOfSizeShrink.{0, 0, 1, 1} (Shv R)
-  have : HasColimitsOfShape (Discrete ι) (Shv R) := inferInstance
   exact bij c (fun p => isColimitOfPreserves (HomologicalComplex.eval _ _ p) hc) n
 
 end LateralTheory.E.HKCoprodPf

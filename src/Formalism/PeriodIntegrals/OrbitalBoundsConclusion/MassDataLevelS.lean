@@ -203,11 +203,8 @@ theorem prodNH_of {r : ℕ} (P : Frame E n r) (M : MeasW σ J P) (hM : M.IsTextN
   have := hH
   have : SecondCountableTopology (HA (Af F) σ J) := secondCountable_HAf σ J
   have : SecondCountableTopology (Hsub (Af F) σ J P) := Topology.IsEmbedding.subtypeVal.secondCountableTopology
-  have : WeaklyLocallyCompactSpace (Hsub (Af F) σ J P) := inferInstance
-  have : IsFiniteMeasureOnCompacts M.μHf := inferInstance
   have : IsLocallyFiniteMeasure M.μHf := isLocallyFiniteMeasure_of_isFiniteMeasureOnCompacts
   have : SigmaFinite M.μHf := sigmaFinite_of_locallyFinite
-  have : SFinite (amb M.μHf) := inferInstance
   have hmul : Measurable fun p : HA (Af F) σ J × HA (Af F) σ J => p.1 * p.2 := measurable_mul
   intro f hf
   have e1 : ∫⁻ k, f (k : HA (Af F) σ J) ∂M.μSf = ∫⁻ x, f x ∂(amb M.μSf) :=

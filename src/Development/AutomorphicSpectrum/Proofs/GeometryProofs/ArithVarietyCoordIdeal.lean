@@ -89,7 +89,6 @@ theorem dedekind_finite_of_finite [CharZero Ω] (hf : FiniteDimensional ℚ (alg
     mem_algebraicClosure_iff'.2 ((IsIntegralClosure.isIntegral_iff (A := A) (R := ℤ)).2 ⟨a, rfl⟩).tower_top
   letI : Algebra A L := ((algebraMap A Ω).codRestrict L.toSubalgebra.toSubring hmem).toAlgebra
   have hcoe : ∀ a : A, ((algebraMap A L a : L) : Ω) = algebraMap A Ω a := fun _ => rfl
-  haveI : IsScalarTower ℤ A L := inferInstance
   haveI : NumberField L := ⟨⟩
   haveI : IsIntegralClosure A ℤ L := by
     refine ⟨fun a b hab => IsIntegralClosure.algebraMap_injective A ℤ Ω ?_, fun {v} => ?_⟩

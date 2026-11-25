@@ -261,7 +261,6 @@ theorem length_quotient_smul_range_le_finrank_mul : ∀ (O K : Type) [CommRing O
   haveI : Module.Finite O N' := Module.Finite.iff_fg.mpr (Submodule.fg_span (s.finite_toSet.image g))
   let e : N' →ₗ[O] W := f ∘ₗ N'.subtype
   have he : Function.Injective e := hf.comp N'.injective_subtype
-  haveI : Module.IsTorsionFree K W := inferInstance
   haveI : Module.IsTorsionFree O W :=
     Module.IsTorsionFree.comap (S := K) (algebraMap O K)
       (fun r hr => IsRegular.of_ne_zero (by

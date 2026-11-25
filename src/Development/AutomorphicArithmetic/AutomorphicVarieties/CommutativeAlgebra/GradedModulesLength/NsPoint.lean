@@ -47,7 +47,6 @@ private theorem ns_prime (B A K : Type) [CommRing B] [CommRing A] [Field K] [Alg
     (P : Ideal A) [P.IsPrime] (hP : ∀ b, algebraMap B A b ∈ P ↔ algebraMap B K b = 0) :
     ∃ Q : Ideal (K ⊗[B] A), Q.IsPrime ∧ ∀ a : A, (1 : K) ⊗ₜ[B] a ∈ Q ↔ a ∈ P := by
   let p : Ideal B := P.under B
-  haveI : p.IsPrime := inferInstance
   have h1 : p ≤ RingHom.ker (algebraMap B K) := fun b hb => (hP b).1 hb
   have h2 : p.primeCompl ≤ (IsUnit.submonoid K).comap (algebraMap B K) := fun b hb =>
     (isUnit_iff_ne_zero.2 (fun h => hb ((hP b).2 h)) : IsUnit (algebraMap B K b))

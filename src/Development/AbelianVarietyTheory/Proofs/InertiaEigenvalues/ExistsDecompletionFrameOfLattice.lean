@@ -1126,7 +1126,6 @@ theorem card_eq_finrank_mul_card {Z O R T : Type} [CommRing Z] [Nontrivial Z] [C
 theorem nontrivial_tensor_of_free {Z O S : Type} [CommRing Z] [CommRing O]
     [Nontrivial O] [Algebra Z O] [Module.Free Z O] [CommRing S] [Nontrivial S] [Algebra Z S] :
     Nontrivial (O ⊗[Z] S) := by
-  haveI : Module.FaithfullyFlat Z O := inferInstance
   infer_instance
 
 set_option synthInstance.maxHeartbeats 400000 in

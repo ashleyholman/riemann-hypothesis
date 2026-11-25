@@ -32,7 +32,6 @@ theorem subsingleton_cohomology_two_of_isComplex (v : InfinitePlace K.1) (hv : v
     rw [IsGalois.card_aut_eq_finrank, h1]
   have : Subsingleton Gal(AlgebraicClosure v.Completion/v.Completion) :=
     (Nat.card_eq_one_iff_unique.1 hcard).1
-  have : DiscreteTopology Gal(AlgebraicClosure v.Completion/v.Completion) := inferInstance
   exact ModuleCat.isZero_iff_subsingleton.1
     ((isZero_groupCohomology_succ_of_subsingleton _ 1).of_iso (cohomologyIsoGroupCohomology _ 2))
 

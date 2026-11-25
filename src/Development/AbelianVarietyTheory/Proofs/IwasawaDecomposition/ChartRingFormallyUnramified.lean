@@ -40,7 +40,6 @@ theorem formallyUnramified_residue_comp_of_isEtaleCompletion :
   haveI : CharZero (ResidueField A) := RingHom.charZero (ResidueField.map φ)
   letI := (ResidueField.map φ).toAlgebra
   haveI : Module.Finite (ResidueField A) (ResidueField (ChartRing k m e)) := hfin'
-  haveI : Algebra.IsSeparable (ResidueField A) (ResidueField (ChartRing k m e)) := inferInstance
   exact Algebra.FormallyUnramified.of_isSeparable _ _
 
 end GlobalTheory.GenFan

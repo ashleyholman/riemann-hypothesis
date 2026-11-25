@@ -128,7 +128,6 @@ theorem isFGTop_comap_lsmul_one : ∀ {p : ℕ} {O : Type} [CommRing O] [IsDomai
   haveI : Module.Finite O (1 : Submodule O (FractionRing O)) := by
     rw [Module.Finite.iff_fg, Submodule.one_eq_span]
     exact Submodule.fg_span (Set.finite_singleton _)
-  haveI : IsNoetherian O (1 : Submodule O (FractionRing O)) := inferInstance
   let f : S →ₗ[O] (1 : Submodule O (FractionRing O)) :=
     (LinearMap.lsmul O (FractionRing O) ((p : O) ^ n)).restrict (fun x hx => hx)
   refine Module.Finite.of_injective f ?_

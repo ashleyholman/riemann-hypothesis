@@ -77,7 +77,6 @@ instance finite_zpowers_quotient_unitsPow (y : Kˣ) :
     rintro _ ⟨x, rfl⟩
     rw [Subgroup.mem_subgroupOf]
     exact ⟨(x : Kˣ), rfl⟩
-  have : Group.FG (Subgroup.zpowers y) := inferInstance
   have := Subgroup.finiteIndex_range_powMonoidHom_of_fg (Subgroup.zpowers y) (NeZero.ne n)
   have := Subgroup.finiteIndex_of_le hle
   exact Subgroup.finite_quotient_of_finiteIndex

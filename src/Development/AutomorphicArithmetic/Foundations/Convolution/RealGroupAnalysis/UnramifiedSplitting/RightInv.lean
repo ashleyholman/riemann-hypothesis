@@ -15,7 +15,6 @@ open scoped Classical
 
 private lemma countable_gam (K : Type) [Field K] [NumberField K] : Countable (Gam K) := by
   haveI : Countable K := by
-    have : Module.Finite ℚ K := inferInstance
     obtain ⟨n, f, hf⟩ := Module.Finite.exists_fin' ℚ K
     exact hf.countable
   haveI : Countable (Matrix (Fin 2) (Fin 2) K) := inferInstanceAs (Countable (Fin 2 → Fin 2 → K))

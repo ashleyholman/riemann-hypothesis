@@ -95,8 +95,6 @@ private lemma restr_inj : RestrInj := by
     constructor
     intro X Y f hf
     haveI := incl_flat S
-    haveI : Mono ((sheafToPresheaf S.smallEtaleTopology (ModuleCat.{1} (ULift.{1} R))).map f) :=
-      inferInstance
     haveI : Mono (((incl S).op.lan : _ ⥤ (Over S)ᵒᵖ ⥤ ModuleCat.{1} (ULift.{1} R)).map
         ((sheafToPresheaf S.smallEtaleTopology (ModuleCat.{1} (ULift.{1} R))).map f)) :=
       lan_mono (incl S) (fun J _ _ _ => exact_filtered R J) _

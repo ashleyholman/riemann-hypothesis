@@ -411,8 +411,6 @@ theorem GlobalTheory.CompanionTheory.PcFc.mean_blocks : ∀ {D : D7} {n ρ p : �
     obtain ⟨γ, hγ, hk⟩ := hcov b
     rw [← hper γ hγ b]
     exact hC _ hk
-  haveI : (m.μ.prod m.lz).IsAddHaarMeasure := inferInstance
-  haveI : (lp.prod (m.μ.prod m.lz)).IsAddHaarMeasure := inferInstance
   have hin : m.μ.prod m.lz (m.𝓕 ×ˢ m.𝓖) = 1 := by rw [Measure.prod_prod, hx3, hz3, one_mul]
   have hc : Continuous fun u => Φ (blk (D := D) hn u) := hΦ.comp (blk hn).continuous
   have prodDomain {A B : Type} [AddGroup A] [AddGroup B] [MeasurableSpace A] [MeasurableSpace B]

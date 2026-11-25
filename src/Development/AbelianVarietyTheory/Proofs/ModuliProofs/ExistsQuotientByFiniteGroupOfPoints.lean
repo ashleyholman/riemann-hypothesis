@@ -158,8 +158,6 @@ lemma exists_lift {I : Type} {A Z : Over S} (x : I → (𝟙_ (Over S) ⟶ A)) [
     rw [← Over.w (constDesc x), ← Category.assoc, key, Over.w]), Over.OverMorphism.ext key⟩
 
 lemma epi_toUnit {k : Type} [Field k] (W : Over (Sp k)) [Nonempty W.left] : Epi (toUnit W) := by
-  have : Flat W.hom := inferInstance
-  have : Surjective W.hom := inferInstance
   have : Epi W.hom := Flat.epi_of_flat_of_surjective _
   have : Epi (toUnit W).left := by
     have h := Over.w (toUnit W)

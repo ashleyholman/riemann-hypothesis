@@ -29,7 +29,6 @@ theorem exists_isConstK_of_locDerK :
     convert Spec.map_id (CommRingCat.of K)
     ext x
     simp
-  have : Flat A₀.hom := inferInstance
 
   have hρ : IsPullback (pullback.fst A₀.hom (spMap (algebraMap K (DualNumber K)))) (pullback.snd _ _)
       A₀.hom (spMap (algebraMap K (DualNumber K))) := IsPullback.of_hasPullback _ _

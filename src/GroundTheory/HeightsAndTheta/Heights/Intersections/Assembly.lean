@@ -1498,7 +1498,6 @@ theorem RegularityLocalFinite.proof (hD : regularityLocalDimension_holds.Stateme
   have := hloc
   have := hnoeth
   have : P.IsPrime := hP.2.1.1
-  have : IsDomain (locRing P W) := inferInstance
   have : Ring.KrullDimLE 1 (locRing P W) := ReciprocityTheory.ChartRestriction.G.AI.krullDimLE_one_of_krullDim_eq hdim
   have hfinRes : Finite (IsLocalRing.ResidueField (locRing P W)) :=
     (regularityLocalResidue_holds.proof K ι P s a W (fun i => i.elim0) hP hs hsP hW).1

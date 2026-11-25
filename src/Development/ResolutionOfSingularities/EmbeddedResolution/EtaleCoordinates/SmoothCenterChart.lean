@@ -754,8 +754,6 @@ private theorem formallySmooth_quotient_map_of_isLocalization (k : Type u) [Comm
     (h : Algebra.FormallySmooth k (R ⧸ I)) :
     Algebra.FormallySmooth k (A ⧸ Ideal.map (algebraMap R A) I) := by
   have := h
-  have hloc : IsLocalization (Algebra.algebraMapSubmonoid (R ⧸ I) M)
-      (A ⧸ Ideal.map (algebraMap R A) I) := inferInstance
   have : Algebra.FormallyEtale (R ⧸ I) (A ⧸ Ideal.map (algebraMap R A) I) :=
     Algebra.FormallyEtale.of_isLocalization (Algebra.algebraMapSubmonoid (R ⧸ I) M)
   have : IsScalarTower k (R ⧸ I) (A ⧸ Ideal.map (algebraMap R A) I) := by

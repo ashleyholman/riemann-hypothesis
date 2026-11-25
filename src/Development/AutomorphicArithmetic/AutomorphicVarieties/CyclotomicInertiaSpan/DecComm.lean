@@ -20,7 +20,6 @@ private theorem ringEquiv_eq_frobenius_pow_of_algebraic_over_zmod {k : Type} [Fi
   haveI : FiniteDimensional (ZMod p) L := IntermediateField.adjoin.finiteDimensional hy
   haveI : Finite L := Module.finite_of_finite (ZMod p)
   letI : Fintype L := Fintype.ofFinite L
-  haveI : Normal (ZMod p) L := inferInstance
   let ψ' : k ≃ₐ[ZMod p] k := AlgEquiv.ofRingEquiv (f := ψ) (fun x => by
     have h := congrArg (fun g : ZMod p →+* k => g x)
       (Subsingleton.elim (ψ.toRingHom.comp (algebraMap (ZMod p) k)) (algebraMap (ZMod p) k))

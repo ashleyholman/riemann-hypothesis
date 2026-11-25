@@ -266,8 +266,6 @@ private theorem exists_isMonHom_lift_of_isMonHom_baseChange (X : Type) [AddCommG
       pullback.fst G.hom (Spec.map (CommRingCat.ofHom (Ideal.Quotient.mk I))) ⁻¹ᵁ W
     have : IsClosedImmersion (Spec.map (CommRingCat.ofHom (Ideal.Quotient.mk I))) :=
       IsClosedImmersion.spec_of_surjective _ Ideal.Quotient.mk_surjective
-    have : IsClosedImmersion (pullback.fst G.hom (Spec.map (CommRingCat.ofHom (Ideal.Quotient.mk I)))) :=
-      inferInstance
     have hW' : IsAffineOpen W' := hW.preimage _
     have hf₁W : f₁.left ⁻¹ᵁ W' = ⊤ := by
       have h1 : f₁.left ≫ pullback.fst G.hom (Spec.map (CommRingCat.ofHom (Ideal.Quotient.mk I))) =

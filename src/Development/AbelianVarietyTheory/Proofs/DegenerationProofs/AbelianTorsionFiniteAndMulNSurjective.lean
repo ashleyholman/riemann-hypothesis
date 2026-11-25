@@ -28,7 +28,6 @@ theorem surjective_mulN_of_isAbelianScheme (K : Type) [Field K] (B : Over (Sp K)
   have : IsProper ((mulN B n).left ≫ B.hom) := by rw [Over.w]; infer_instance
   have : IsProper (mulN B n).left := IsProper.of_comp _ B.hom
   have : IsLocallyNoetherian B.left := LocallyOfFiniteType.isLocallyNoetherian B.hom
-  have : LocallyOfFinitePresentation (mulN B n).left := inferInstance
   have : ConnectedSpace B.left := GeometricallyConnected.connectedSpace_of_subsingleton B.hom
   have hc : IsClopen (Set.range (mulN B n).left) :=
     ⟨(mulN B n).left.isClosedMap.isClosed_range, (mulN B n).left.isOpenMap.isOpen_range⟩

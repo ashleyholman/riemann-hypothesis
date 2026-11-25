@@ -306,7 +306,6 @@ theorem UpperTheory.V.ML.pick :
   haveI : CharZero Ω := charZero_of_injective_algebraMap (algebraMap ℚ Ω).injective
   haveI : IsAlgClosed Ω := IsAlgClosure.isAlgClosed ℚ
   haveI : Algebra.IsAlgebraic ℚ Ω := IsAlgClosure.isAlgebraic
-  haveI : IsGalois ℚ Ω := inferInstance
   have hlp := hl.out
   have hm0 : m ≠ 0 := by have := hD.pos; omega
   have hN0 : N₀ ≠ 0 := fun h => hlp.ne_one (by have := hD.cop; rwa [h, Nat.coprime_zero_left] at this)

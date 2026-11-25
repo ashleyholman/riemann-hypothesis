@@ -218,7 +218,6 @@ theorem locNonPosGlue_holds : LocNonPosGlue := by
   subst hF₀eq
   have hφc : Continuous φ.1 := GlobalTheory.CompanionTheory.ConstTerm.continuous_of_isOpen_stab φ hA.level
   let μ : Measure (GA E N) := Measure.haar
-  have : μ.IsHaarMeasure := inferInstance
   set a : ℝ → GA E N := aT E N r with ha
   have hcomm : ∀ s t, a s * a t = a t * a s := aT_comm E N r
   have hlt : ∀ ε : ℝ, 0 < ε → c.re < An.rho E N r + ε := by

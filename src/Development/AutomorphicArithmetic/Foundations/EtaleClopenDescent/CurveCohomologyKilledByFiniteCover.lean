@@ -116,7 +116,6 @@ private noncomputable def ringC : Cocone (ringD A K L) where
 private theorem ringC_isColimit [Algebra.IsAlgebraic K L] : Nonempty (IsColimit (ringC A K L)) := by
   haveI := idx_directed K L
   haveI : Nonempty (Idx K L) := ⟨⟨⊥, inferInstance⟩⟩
-  haveI : IsFiltered (Idx K L) := inferInstance
   haveI : ReflectsColimitsOfShape (Idx K L) (forget CommRingCat) :=
     reflectsColimitsOfShape_of_reflectsIsomorphisms
   refine ⟨isColimitOfReflects (forget CommRingCat) ?_⟩
@@ -323,8 +322,6 @@ theorem UpperTheory.module_finite_integralClosure_finiteExt_perfect :
   letI : Algebra (FractionRing A) F := FractionRing.liftAlgebra A F
   letI : Algebra (FractionRing (MvPolynomial (Fin s) k)) (FractionRing A) :=
     FractionRing.liftAlgebra _ (FractionRing A)
-  haveI : FiniteDimensional (FractionRing (MvPolynomial (Fin s) k)) (FractionRing A) :=
-    inferInstance
   haveI : FiniteDimensional (FractionRing A) F := by
     refine Module.Finite.of_equiv_equiv (FractionRing.algEquiv A K).symm.toRingEquiv
       (RingEquiv.refl F) ?_
@@ -442,7 +439,6 @@ theorem UpperTheory.smooth_of_normal_curve_perfectField :
         (c.appLE ⊤ V (by simp)).hom := by
     intro V hV a b ha hb hab
     haveI : Nonempty V := ⟨⟨a, ha⟩⟩
-    have hdom : IsDomain Γ(C, V) := inferInstance
     let ι := (Scheme.ΓSpecIso (CommRingCat.of Ω)).commRingCatIsoToRingEquiv
     let ψ : Ω →+* Γ(C, V) := (c.appLE ⊤ V (by simp)).hom.comp ι.symm.toRingHom
     have hφ : (c.appLE ⊤ V (by simp)).hom = ψ.comp ι.toRingHom := by

@@ -633,7 +633,6 @@ theorem exists_trace_eq_finsum : ∀ (R B : Type) [CommRing R] [CommRing B] [Alg
   intro R B _ _ _ hfin het b
   classical
   have : Module.FinitePresentation R B := .of_finite_of_finitePresentation R B
-  have : Module.Flat R B := inferInstance
   have : Module.Projective R B := Module.Flat.projective_of_finitePresentation
   obtain ⟨n, f, g, -, -, hfg⟩ := Module.Finite.exists_comp_eq_id_of_projective R B
   refine ⟨LinearMap.trace R _ (g ∘ₗ Algebra.lmul R B b ∘ₗ f), fun Ω _ _ φ => ?_⟩
@@ -649,7 +648,6 @@ theorem exists_trace_eq_finsum : ∀ (R B : Type) [CommRing R] [CommRing B] [Alg
   set e := Algebra.FormallyEtale.equivPiOfIsSepClosed Ω (Ω ⊗[R] B) with he
   haveI : Module.Finite Ω (PrimeSpectrum (Ω ⊗[R] B) → Ω) := Module.Finite.equiv e.toLinearEquiv
   haveI : IsArtinianRing (Ω ⊗[R] B) := isArtinian_of_tower Ω inferInstance
-  haveI : Finite (PrimeSpectrum (Ω ⊗[R] B)) := inferInstance
   haveI : Fintype (PrimeSpectrum (Ω ⊗[R] B)) := Fintype.ofFinite _
   rw [← Algebra.trace_eq_of_algEquiv e, trace_pi_self]
   let S := {χ : B →+* Ω // χ.comp (algebraMap R B) = φ}

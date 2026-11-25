@@ -1100,9 +1100,7 @@ theorem card_isReps_inv (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace 
   intro hR hR'
   letI : MeasurableSpace (GL (A ⊕ D) k) := borel _
   haveI : BorelSpace (GL (A ⊕ D) k) := ⟨rfl⟩
-  haveI : IsTopologicalGroup (GL (A ⊕ D) k) := inferInstance
   haveI : LocallyCompactSpace (GL (A ⊕ D) k) := inferInstance
-  haveI : SecondCountableTopology (GL (A ⊕ D) k) := inferInstance
   obtain ⟨hJo, hJc⟩ := GlobalTheory.ParahoricOpenCompact.isOpen_isCompact_parahoric k A D
 
   have hRI : ∀ (μ : Measure (GL (A ⊕ D) k)) [μ.IsHaarMeasure], μ.IsMulRightInvariant := by

@@ -34,7 +34,6 @@ private theorem exists_basis_of_pid {D K Z : Type} [CommRing D] [IsDomain D]
     ∃ b : Module.Basis (Fin (Module.finrank K Z)) K Z, Submodule.span D (Set.range b) = M := by
   have : Module.Finite D M := Module.Finite.iff_fg.mpr hM
   have : Module.IsTorsionFree D Z := Module.IsTorsionFree.trans_faithfulSMul D K Z
-  have : Module.Free D M := inferInstance
   let c := Module.finBasis D M
   let v : Fin (Module.finrank D M) → Z := fun i => (c i : Z)
   have hli : LinearIndependent D v := c.linearIndependent.map' M.subtype M.ker_subtype

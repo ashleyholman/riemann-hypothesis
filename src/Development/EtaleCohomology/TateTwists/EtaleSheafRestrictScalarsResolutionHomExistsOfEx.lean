@@ -80,7 +80,6 @@ theorem etaleSheaf_restrictScalars_resolution_hom_exists_of_exact (hE : EtaleShe
   have : (res R (G.obj F)).IsKInjective := inferInstanceAs IR.cochainComplex.IsKInjective
   have : (res R (G.obj F)).IsStrictlyGE 0 := inferInstanceAs (IR.cochainComplex.IsStrictlyGE 0)
   let s := (G.mapHomologicalComplex (ComplexShape.up ℤ)).map IS.ι'
-  have : QuasiIso s := inferInstance
   let f0 := (HomologicalComplex.singleMapHomologicalComplex G (ComplexShape.up ℤ) 0).hom.app F ≫ IR.ι'
   obtain ⟨g, ⟨h⟩⟩ := restr_ex_hom_ext_of_qis (L := res R (G.obj F)) s f0
   refine ⟨fun n => g.f n, fun i j => (g.comm i j).symm, ?_⟩

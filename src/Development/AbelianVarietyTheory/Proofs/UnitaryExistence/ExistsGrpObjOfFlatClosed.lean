@@ -83,7 +83,6 @@ theorem exists_grpObj_of_flat_closed {S S' : Scheme.{0}} (f : S' ⟶ S)
   have h1 : Flat (𝟙_ (Over S)).hom := inferInstanceAs (Flat (𝟙 S))
   have h2 : Flat (Ga ⊗ Ga).hom := inferInstanceAs (Flat (pullback.fst Ga.hom Ga.hom ≫ Ga.hom))
   have hm : Mono io := (Over.forget S).mono_of_mono_map (inferInstanceAs (Mono io.left))
-  have hm' : Mono ((Over.pullback f).map io) := inferInstance
   have h' : e.inv ≫ (Over.pullback f).map io = i := by rw [← h, e.inv_hom_id_assoc]
   have hmi : Mono i := by rw [← h']; infer_instance
   obtain ⟨o, ⟨ho, -⟩, -⟩ := existsUnique_lift_of_flat f io η[P]

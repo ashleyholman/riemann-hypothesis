@@ -136,7 +136,6 @@ theorem l2_one_eq_integral_fundamentalDomain_div_volume {E : Type} [Field E] [Nu
       change ψ (ψ.symm (y : I2.Vsp T.dim) + z) = (y : I2.Vsp T.dim) + ψ z
       simp
   have hcA : Countable A := by
-    have : Countable (Submodule.span ℤ (Set.range T.b)) := inferInstance
     refine Function.Injective.countable
       (f := fun a : A => (⟨ψ a, (hL a).1 a.2⟩ : Submodule.span ℤ (Set.range T.b))) ?_
     intro a a' h

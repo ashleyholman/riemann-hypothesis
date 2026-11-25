@@ -244,7 +244,6 @@ theorem ι_inj : Function.Injective fun ψ : (TF (R := R) E).left ⟶ X => (ιE 
   intro a b h
   have : Epi (ιE R E F).left := by
     show Epi (Spec.map (CommRingCat.ofHom (algebraMap E F)))
-    have : Flat (Spec.map (CommRingCat.ofHom (algebraMap E F))) := inferInstance
     have : Surjective (Spec.map (CommRingCat.ofHom (algebraMap E F))) :=
       ⟨fun u => ⟨IsLocalRing.closedPoint F, Subsingleton.elim _ _⟩⟩
     exact Flat.epi_of_flat_of_surjective _

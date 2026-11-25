@@ -144,7 +144,6 @@ theorem UpperTheory.V.U3.exists_dat :
       {l : ℕ} [Fact l.Prime] {c : Coef l} {N : ℕ} [NeZero N] {e : ℕ} {ψ : DirichletCharacter c.O N}, GD Ω K l e ψ → Nonempty (Dat Ω K c e ψ) := by
   intro Ω _ _ _ K _ _ _ l hl c N _ e ψ h
   haveI : Algebra.IsQuadraticExtension ℚ K := ⟨h.quad⟩
-  haveI : IsGalois ℚ K := inferInstance
   haveI : IsAlgClosed Ω := IsAlgClosure.isAlgClosed ℚ
   haveI : Algebra.IsAlgebraic K Ω := Algebra.IsAlgebraic.tower_top (K := ℚ) K
   haveI : IsAlgClosure K Ω := ⟨inferInstance, inferInstance⟩

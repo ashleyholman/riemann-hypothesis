@@ -161,7 +161,6 @@ theorem grpObj_of_dense_open :
       φ ≫ i.left = (ι[A]).left ≫ φ → j ≫ e.left = (η[A]).left ≫ φ →
       ∃ _ : GrpObj G, μ[G] = m ∧ η[G] = e ∧ ι[G] = i ∧ IsCommMonObj G ∧ IsGrpPullback A G j φ := by
   intro Z U _ _ j _ G _ _ A _ _ φ h m i e hm hi he
-  have : Flat G.hom := inferInstance
   have : Flat (𝟙_ (Over Z)).hom := GlobalTheory.ExtUnique.flat_tensorUnit
   have : Flat (G ⊗ G).hom := GlobalTheory.ExtUnique.flat_tensorObj G G
   have : Flat ((G ⊗ G) ⊗ G).hom := GlobalTheory.ExtUnique.flat_tensorObj (G ⊗ G) G

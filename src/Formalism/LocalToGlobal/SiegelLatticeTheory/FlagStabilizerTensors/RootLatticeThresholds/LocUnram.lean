@@ -155,7 +155,6 @@ private theorem algebraMap_Fp_Ep_injective :
 private theorem algebraMap_mem_O_of_mem_integers (a : (D.s.atP p).Fp)
     (ha : a ∈ 𝒪[(D.s.atP p).Fp]) :
     algebraMap (D.s.atP p).Fp (D.s.atP p).Ep a ∈ (D.s.atP p).O := by
-  haveI : IsScalarTower 𝒪[(D.s.atP p).Fp] (D.s.atP p).Fp (D.s.atP p).Ep := inferInstance
   rw [(D.s.atP p).O_def]
   have h := isIntegral_algebraMap (R := 𝒪[(D.s.atP p).Fp]) (A := (D.s.atP p).Ep) (x := (⟨a, ha⟩ : 𝒪[(D.s.atP p).Fp]))
   first
@@ -197,7 +196,6 @@ private theorem exists_eq_algebraMap_add_mul_omega (ω : (D.s.atP p).Ep) (hne : 
 
 theorem trace_mem (y : (D.s.atP p).Ep) (hy : y ∈ (D.s.atP p).O) :
     ∃ s ∈ 𝒪[(D.s.atP p).Fp], y + (D.s.atP p).cj y = algebraMap (D.s.atP p).Fp (D.s.atP p).Ep s := by
-  haveI : IsScalarTower 𝒪[(D.s.atP p).Fp] (D.s.atP p).Fp (D.s.atP p).Ep := inferInstance
   obtain ⟨θ, c, tr, nm, hθ, hc, hcp, htr, hnm⟩ := exists_theta p
   have hc' : ((D.s.atP p).ιE θ - (D.s.atP p).cj ((D.s.atP p).ιE θ)) ^ 2 =
       algebraMap (D.s.atP p).Fp (D.s.atP p).Ep ((D.s.atP p).ιF (c : D.host.F)) := by
@@ -345,7 +343,6 @@ theorem coords_mem (θ : D.host.E) (c tr nm : 𝓞 D.host.F) (hθ : IsIntegral �
     rw [e]
     exact Subring.mul_mem _ hs (iotaF_inv_mem p c hcp)
   refine ⟨?_, hb⟩
-  haveI : IsScalarTower 𝒪[(D.s.atP p).Fp] (D.s.atP p).Fp (D.s.atP p).Ep := inferInstance
   refine (Valuation.integer.integers _).mem_of_integral
     ((isIntegral_algebraMap_iff (B := (D.s.atP p).Ep)).1 ?_)
   have e : algebraMap (D.s.atP p).Fp (D.s.atP p).Ep a = y - algebraMap (D.s.atP p).Fp (D.s.atP p).Ep b * (D.s.atP p).ιE θ := by

@@ -74,7 +74,6 @@ theorem UpperTheory.V.Af.jumpsOpen {F Ω : Type} [Field F] [NumberField F] [Fiel
     | zero =>
       intro ρ M κ _ _ _ _
       refine ⟨fun i => i.elim0, fun τ a => ?_⟩
-      have : Subsingleton (TensorProduct ℚ_[l] (Fin 0 → ↥L.1) (Loc.PP l).R.BdR) := inferInstance
       simp [multV, Module.finrank_zero_of_subsingleton]
     | succ n ih =>
       intro ρ M κ hρ hM hκ hd

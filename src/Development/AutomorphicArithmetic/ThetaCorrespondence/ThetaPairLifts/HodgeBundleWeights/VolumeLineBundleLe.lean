@@ -700,7 +700,6 @@ theorem _root_.GlobalTheory.T.exists_integral_projective_closure_of_linearSystem
     refine eq_top_of_span ev u hu hg _ (fun a => ⟨_, hconst a⟩) fun k l hl => ?_
     exact ⟨_, eq_div_of_mul_eq hl (hrat (fun _ => l) ((hmem (fun _ => l)).2 hl) k)⟩
   let e : Y.functionField ≃+* Ω := RingEquiv.ofBijective φ ⟨RingHom.injective _, hsurj⟩
-  have hft : LocallyOfFiniteType (j ≫ PSpace.str K m) := inferInstance
   refine ⟨Y, hY, j ≫ PSpace.str K m, B, LB.isLB_pull (ProjSpace.O1_isLB K m) _, t,
     e.symm.toRingHom, ⟨m, j, hj, rfl⟩, dim_of_trdeg _ e hconst (trdeg_eq ev D hg hD),
     ProjSpace.iSup_nonzeroLocus_secPull (ProjSpace.iSup_nonzeroLocus_coord K m) _, e.symm.bijective, fun a => ?_,

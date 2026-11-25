@@ -374,7 +374,6 @@ theorem GlobalTheory.exists_bundleIso_extending_generic : Laws → Laws2 → ∀
   have := GlobalTheory.GenericExt.isOpenImmersion_jK R
   have : IsDominant (jK R) := DVR.isDominant_jK
   have := IsSchemeTheoreticallyDominant.of_isDominant (jK R)
-  have : IsDominant (pullback.fst G'.hom (jK R)) := inferInstance
   have hF : ΦK.hom.left ≫ pullback.fst G.hom (jK R) = pullback.fst G'.hom (jK R) ≫ ψ.hom.left := by
     rw [← hψ]
     exact pullback.lift_fst _ _ _

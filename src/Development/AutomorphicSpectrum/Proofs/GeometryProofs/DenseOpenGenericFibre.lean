@@ -25,7 +25,6 @@ theorem exists_dense_open : ∀ (E : Type) [Field E] [NumberField E] [IsCMField 
   haveI : NumberField c.F := {}
   haveI hpre : IsPreimmersion π :=
     IsPreimmersion.of_isLocalization (R := 𝓞 c.F) (S := c.F) (nonZeroDivisors (𝓞 c.F))
-  haveI hfst : IsPreimmersion (pullback.fst (f ≫ Y.s) π) := inferInstance
   have hcond : (pullback.fst (f ≫ Y.s) π ≫ f) ≫ Y.s = pullback.snd (f ≫ Y.s) π ≫ π := by
     rw [Category.assoc, pullback.condition]
   set g := pullback.lift (pullback.fst (f ≫ Y.s) π ≫ f) (pullback.snd (f ≫ Y.s) π) hcond with hg

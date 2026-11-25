@@ -102,7 +102,6 @@ private theorem wcoc_top {Ω : Type} [Field Ω] [Algebra ℚ Ω] [IsAlgClosed Ω
   haveI : NeZero (l ^ n) := ⟨pow_ne_zero n hl⟩
   haveI : CharZero Ω := charZero_of_injective_algebraMap (algebraMap ℚ Ω).injective
   haveI : CharZero X.K := charZero_of_injective_algebraMap (algebraMap Ω X.K).injective
-  haveI : CharZero (topL X M) := inferInstance
   have hζ := isPrimitiveRoot_topZeta X M hl n
   have hσL := isTopLift_topLift X hM0 hσ
   have hτL := isTopLift_topLift X hM0 hτ

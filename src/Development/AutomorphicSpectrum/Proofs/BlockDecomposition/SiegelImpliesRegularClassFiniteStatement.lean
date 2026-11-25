@@ -261,7 +261,6 @@ theorem archMat_entries_bounded_of_isCompact (F E : Type) [Field F] [NumberField
     obtain ⟨b, hb⟩ := hC.bddAbove_image hc.continuousOn
     exact ⟨b, fun g hg => hb ⟨g, hg, rfl⟩⟩
   choose b hb using hb
-  haveI : Fintype (InfinitePlace F) := inferInstance
   refine ⟨∑ w : InfinitePlace F, ∑ τ : EmbOver E w, ∑ i : Fin n, ∑ j : Fin n, |b w τ i j|,
     Finset.sum_nonneg fun w _ => Finset.sum_nonneg fun τ _ => Finset.sum_nonneg fun i _ =>
       Finset.sum_nonneg fun j _ => abs_nonneg _, fun g hg w τ i j => ?_⟩

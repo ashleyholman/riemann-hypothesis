@@ -39,7 +39,6 @@ theorem exists_monotone_compact_exhaustion :
   intro k _ _ _ _ N U hU hcl
   haveI : SecondCountableTopology (GL (Fin N) k) := GlobalTheory.SplitFlip.secondCountable_GL
   haveI : LocallyCompactSpace (GL (Fin N) k) := GlobalTheory.SplitFlip.locallyCompact_GL
-  haveI : SigmaCompactSpace (GL (Fin N) k) := inferInstance
   let S := {L : Subgroup (GL (Fin N) k) // IsCompact (L : Set (GL (Fin N) k)) ∧ L ≤ U}
   let K : ℕ → Set (GL (Fin N) k) := compactCovering (GL (Fin N) k)
   have hstep : ∀ (j : ℕ) (A : S), ∃ B : S,

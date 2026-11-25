@@ -79,7 +79,6 @@ theorem exists_opens_smoothOfRelativeDimension_of_isPullback {X X₀ S S₀ : Sc
 theorem exists_smoothOfRelativeDimension :
     ∀ (R K : Type) [CommRing R] [IsDomain R] [IsNoetherianRing R] [Field K] [Algebra R K] [IsFractionRing R K] (n : ℕ) (X X₀ : Scheme.{0}) (f : X ⟶ Sp R) (f₀ : X₀ ⟶ Sp K) (φ : X₀ ⟶ X), IsPullback φ f₀ f (spMap (algebraMap R K)) → IsProper f → SmoothOfRelativeDimension n f₀ → ∃ a : R, a ≠ 0 ∧ ∀ (R' : Type) [CommRing R'] (g : R →+* R'), IsUnit (g a) → ∀ (X' : Scheme.{0}) (π : X' ⟶ X) (f' : X' ⟶ Sp R'), IsPullback π f' f (spMap g) → SmoothOfRelativeDimension n f' := by
   intro R K _ _ _ _ _ _ n X X₀ f f₀ φ h hf hf₀
-  have : LocallyOfFinitePresentation f := inferInstance
   have : Flat (spMap (algebraMap R K)) := flat_specMap_localization (nonZeroDivisors R) K
   have : IsPreimmersion (spMap (algebraMap R K)) :=
     IsPreimmersion.of_isLocalization (nonZeroDivisors R)

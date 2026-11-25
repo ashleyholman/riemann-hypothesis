@@ -154,12 +154,6 @@ theorem isVacSph_of (L : IsLocRep M ψ om v ω ρ) (H : IsHowe M v ω) (hKX : Is
     IsVacSph M om v ω := by
   classical
   haveI : IsTopologicalRing (AE F E) := IsModuleTopology.isTopologicalRing (AF F) (AE F E)
-  haveI : IsTopologicalGroup (GL (Fin n) (AE F E)) := inferInstance
-  haveI : IsTopologicalGroup (GL (Fin d) (AE F E)) := inferInstance
-  haveI : IsTopologicalGroup (UA σ X.J) := inferInstance
-  haveI : IsTopologicalGroup (UA σ W.J) := inferInstance
-  haveI : IsTopologicalGroup (KSub σ X v) := inferInstance
-  haveI : IsTopologicalGroup (KSub σ W v) := inferInstance
   haveI : CompactSpace (KSub σ X v) := isCompact_iff_compactSpace.1 hKX
   haveI : CompactSpace (KSub σ W v) := isCompact_iff_compactSpace.1 hKW
   refine ⟨H.fixW, fun φ hφ => ?_, fun φ hφ => ?_⟩

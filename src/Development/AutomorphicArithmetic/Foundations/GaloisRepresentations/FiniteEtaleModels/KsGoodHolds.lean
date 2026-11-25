@@ -717,7 +717,6 @@ theorem UpperTheory.Gal.FiniteEtaleModels.descExt_of :
     · rw [← Category.assoc, ← Category.assoc]
       refine hker Ω _ _ ?_
       rw [Category.assoc, Category.assoc, ← hj', pullback.condition_assoc]
-  have hee : EffectiveEpi j' := inferInstance
   let z : pullback s e ⟶ Y := EffectiveEpi.desc j' y (fun {T} g₁ g₂ h => by
     calc g₁ ≫ y = (pullback.lift g₁ g₂ h ≫ pullback.fst j' j') ≫ y := by rw [pullback.lift_fst]
       _ = (pullback.lift g₁ g₂ h ≫ pullback.snd j' j') ≫ y := by

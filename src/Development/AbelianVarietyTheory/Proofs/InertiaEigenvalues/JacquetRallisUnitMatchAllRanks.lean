@@ -805,7 +805,6 @@ theorem GlobalTheory.JR.fourB_descFn : ∀ (F E : Type) [NontriviallyNormedField
   obtain ⟨ν, hν⟩ : ∃ ν : Measure (Matrix.unitaryGroup (Fin r) E), ν = M.μU.restrict (tsupport α) := ⟨_, rfl⟩
   haveI : IsFiniteMeasure ν := by
     rw [hν]; exact isFiniteMeasure_restrict.2 hαc.isCompact.measure_lt_top.ne
-  haveI : IsFiniteMeasureOnCompacts (P.prod ν) := inferInstance
   have hψc := continuous_of_isStdChar hψ
   have htr : Continuous (fun e : E => Algebra.trace F E e) :=
     LinearMap.continuous_of_finiteDimensional (Algebra.trace F E)
@@ -1074,8 +1073,6 @@ theorem orbL_descFn : ∀ (F E : Type) [NontriviallyNormedField F] [Nontrivially
   haveI : LocallyCompactSpace (unitary A.L) := (isClosed_unitary (R := A.L)).locallyCompactSpace
   haveI : SecondCountableTopology (unitary A.L) :=
     (isClosed_unitary (R := A.L)).isClosedEmbedding_subtypeVal.isEmbedding.secondCountableTopology
-  haveI : SigmaFinite ν := inferInstance
-  haveI : SigmaFinite M.μU := inferInstance
   haveI : M.μU.IsMulRightInvariant := (_root_.GlobalTheory.JR.UnitChar.posChar_trivial_and_unimodular F E r).2 M
   have huc : Continuous (A.uHom hx) := continuous_induced_rng.2 ((continuous_mulMat A j).comp continuous_subtype_val)
   have hinvc : Continuous fun g : unitaryGroup (Fin r) E => g⁻¹ := continuous_inv

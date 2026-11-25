@@ -71,7 +71,6 @@ theorem component_basic : LocalPublishedTheorems → ∀ {l : ℕ} [Fact l.Prime
   letI : Algebra ℚ_[l] (FractionRing O) := (IsFractionRing.lift hi2).toAlgebra
   haveI : IsScalarTower ℤ_[l] ℚ_[l] (FractionRing O) :=
     IsScalarTower.of_algebraMap_eq fun x => (IsFractionRing.lift_algebraMap hi2 x).symm
-  haveI : IsLocalization (Algebra.algebraMapSubmonoid O (nonZeroDivisors ℤ_[l])) (FractionRing O) := inferInstance
   haveI : Module.Finite ℚ_[l] (FractionRing O) :=
     Module.Finite.of_isLocalization ℤ_[l] O (nonZeroDivisors ℤ_[l])
   obtain ⟨x, hx, hxu⟩ := univEx D U

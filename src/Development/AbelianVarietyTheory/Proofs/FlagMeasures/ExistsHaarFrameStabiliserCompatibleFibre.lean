@@ -919,7 +919,6 @@ theorem weil_formula : ∀ (G X : Type) [Group G] [TopologicalSpace G] [IsTopolo
   letI : MeasurableSpace (G ⧸ H) := borel _
   haveI : BorelSpace (G ⧸ H) := ⟨rfl⟩
   haveI : LocallyCompactSpace H := hH.isClosedEmbedding_subtypeVal.locallyCompactSpace
-  haveI : SigmaCompactSpace (G ⧸ H) := inferInstance
   let φ : G ⧸ H → X := orbitMap G x0
   have hφc : Continuous φ := (QuotientGroup.isQuotientMap_mk H).continuous_iff.mpr hc0
   have hφ : MeasurableEmbedding φ :=

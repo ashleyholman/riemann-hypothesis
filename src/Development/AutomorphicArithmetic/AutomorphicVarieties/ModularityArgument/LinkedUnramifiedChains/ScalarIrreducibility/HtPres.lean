@@ -73,7 +73,6 @@ theorem UpperTheory.V.J.htPres :
   haveI : IsCO O O := IsCO.self O
   haveI : IsCO O (MvPowerSeries (Fin N) O) := co_mvps O O (Fin N)
   haveI : IsNoetherianRing (MvPowerSeries (Fin N) O) := MvPowerSeries.isNoetherianRing O
-  haveI : NoZeroDivisors (MvPowerSeries (Fin N) O) := inferInstance
   haveI : IsDomain (MvPowerSeries (Fin N) O) := NoZeroDivisors.to_isDomain _
   haveI hP : (Q.comap p).IsPrime := Ideal.comap_isPrime p Q
   have hdim : ringKrullDim (MvPowerSeries (Fin N) O) = ((N + 1 : ℕ) : WithBot ℕ∞) := (CA.cl_cm.1 O N).2

@@ -289,8 +289,6 @@ theorem uniq_of_trans : IdemEx → NullSing → Trans → Uniq := by
 
   haveI := hν.fin
   haveI := hν'.fin
-  haveI : SigmaFinite ν := inferInstance
-  haveI : SigmaFinite ν' := inferInstance
   have hinv : ∀ g : gS V e × Mx D r t, ∃ g', ∀ y, T g' (T g y) = y ∧ T g (T g' y) = y := by
     intro g
     refine ⟨(g.1⁻¹, -g.2), fun y => ⟨?_, ?_⟩⟩

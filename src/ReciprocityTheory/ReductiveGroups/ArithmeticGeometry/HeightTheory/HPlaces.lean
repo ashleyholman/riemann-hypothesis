@@ -220,7 +220,6 @@ theorem places_over_height_one_prime (𝒜 : (c : ι) → WT → Submodule (Ω c
     Module.Finite.of_equiv_equiv e.symm (RingEquiv.refl _) hc
   have hrk : Module.finrank (KTf K d.D d.N) (OmS (Ω c) d.D d.N) = d.delc c :=
     (Algebra.finrank_eq_of_equiv_equiv e.symm (RingEquiv.refl _) hc).symm
-  have : Algebra.IsSeparable (KTf K d.D d.N) (OmS (Ω c) d.D d.N) := inferInstance
   have hcomp : ∀ x : OT K d.D d.N,
       algebraMap (Op d.D d.N la) (OmS (Ω c) d.D d.N) (algebraMap (OT K d.D d.N) (Op d.D d.N la) x) =
         d.OTtoS c x := by

@@ -39,7 +39,6 @@ structure AmbientEmbedding {S : Scheme.{u}} (s : BlowupSequenceData S) (n : ℕ)
 private theorem isClosedImmersion_isoObjZero_hom_comp {S X : Scheme.{u}} (ι : S ⟶ X)
     [AlgebraicGeometry.IsClosedImmersion ι] (s : BlowupSequenceData S) :
     AlgebraicGeometry.IsClosedImmersion (s.isoZero.hom ≫ ι) := by
-  have : AlgebraicGeometry.IsClosedImmersion s.isoZero.hom := inferInstance
   infer_instance
 
 private theorem isNoetherian_blowup_of_isNoetherian (hno : BlowupPreservesNoetherian.{u})
@@ -109,7 +108,6 @@ private theorem exists_closedImmersion_blowup_imageIdealSheaf_of_lt_length (hres
           (_root_.FunctorialResolution.Blowup.schemeImageIdeal σ (s.center n)) σ.ker := by
   have := hσ
   have := hA
-  have : AlgebraicGeometry.IsLocallyNoetherian A := inferInstance
   exact exists_closedImmersion_blowup_of_isBlowupAlongIdealSheaf hres σ (s.center n) (s.map n) (s.isBlowup n hn) hc
 
 @[no_expose]

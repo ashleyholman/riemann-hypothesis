@@ -59,7 +59,6 @@ theorem meanX_translate : ∀ (D : D7) (V W : HSp D) (a b : ℕ) (P : Matrix (Fi
     congr 1; abel
   rw [e1]
   haveI : Countable D.host.E := by
-    haveI : FiniteDimensional ℚ D.host.E := inferInstance
     exact (Module.finBasis ℚ D.host.E).equivFun.injective.countable
   have hmp : MeasurePreserving (fun y : Mx D a b => y₀ + y) μ μ := measurePreserving_add_left μ y₀
   have hemb : MeasurableEmbedding (fun y : Mx D a b => y₀ + y) := (MeasurableEquiv.addLeft y₀).measurableEmbedding

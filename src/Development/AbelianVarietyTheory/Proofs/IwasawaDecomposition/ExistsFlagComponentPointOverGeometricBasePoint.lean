@@ -22,8 +22,6 @@ variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : ReciprocityTheo
 
 theorem isClosed_range_π (C : FlagCpt Z e) : IsClosed (Set.range C.π) := by
   have hZ : IsProper Z.s := projProper O Z.X Z.s Z.proj
-  have : IsProper (genStr Z) := inferInstance
-  have : IsSeparated (genStr Z ≫ spMap e.toRingHom) := inferInstance
   have : IsProper (C.π ≫ genStr Z ≫ spMap e.toRingHom) := by rw [C.π_str]; infer_instance
   have : IsProper C.π := IsProper.of_comp C.π (genStr Z ≫ spMap e.toRingHom)
   exact C.π.isClosedMap.isClosed_range

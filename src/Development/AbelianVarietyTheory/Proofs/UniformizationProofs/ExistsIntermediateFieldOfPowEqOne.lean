@@ -181,7 +181,6 @@ theorem exists_intermediateField_of_pow_eq_one {V : Type} [CommRing V]
 
 theorem epi_specMap {K L : Type} [Field K] [Field L] (σ : K →+* L) :
     Epi (Spec.map (CommRingCat.ofHom σ)) := by
-  have : Flat (Spec.map (CommRingCat.ofHom σ)) := inferInstance
   have : Surjective (Spec.map (CommRingCat.ofHom σ)) :=
     ⟨fun u => ⟨IsLocalRing.closedPoint L, Subsingleton.elim _ _⟩⟩
   exact Flat.epi_of_flat_of_surjective _
@@ -199,8 +198,6 @@ theorem exists_finite_extension_torsion_lift : UnramExtSt → ∀ (V : Type) [Co
   choose K hK hK' b hb using fun x : s =>
     exists_intermediateField_of_pow_eq_one G hN (residue V) f hr x.1 (hs x.1 x.2)
   let L : IntermediateField (ResidueField V) Ω := ⨆ x, K x
-  have : FiniteDimensional (ResidueField V) L := inferInstance
-  have : Algebra.IsSeparable (ResidueField V) L := inferInstance
   obtain ⟨W, _, _, _, _, _, hfin, hinj, hloc, -, e, he⟩ := hU V L
   let σ : ResidueField W →+* Ω := (algebraMap L Ω).comp e.toRingHom
   have hcomp : (σ.comp (residue W)).comp (algebraMap V W) = f := by

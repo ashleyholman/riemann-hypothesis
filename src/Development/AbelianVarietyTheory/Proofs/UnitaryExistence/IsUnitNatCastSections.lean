@@ -81,7 +81,6 @@ theorem etale_mulN_torsion_dvr :
   have h3 : LocallyOfFiniteType ((mulN G n).left ≫ G.hom) := by rw [Over.w]; infer_instance
   have h4 := locallyOfFiniteType_of_comp (mulN G n).left G.hom
   have h5 : IsLocallyNoetherian G.left := LocallyOfFiniteType.isLocallyNoetherian G.hom
-  have h6 : LocallyOfFinitePresentation (mulN G n).left := inferInstance
   have h : Etale (mulN G n).left := Etale.of_formallyUnramified_of_flat _
   exact ⟨h, MorphismProperty.of_isPullback (P := @Etale) (MulEtaleDvr.isPullback_torsion G n) h⟩
 

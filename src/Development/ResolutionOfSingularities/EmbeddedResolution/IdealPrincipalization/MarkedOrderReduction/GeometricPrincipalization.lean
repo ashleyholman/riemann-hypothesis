@@ -161,7 +161,6 @@ theorem isOpen_setOf_stalkIdeal_eq_bot {X : Scheme.{u}} [AlgebraicGeometry.IsLoc
 private theorem isLocallyNoetherian_of_isAdmissible (T : MarkedIdealWithBoundary.{u}) (hT : T.IsAdmissible) :
     AlgebraicGeometry.IsLocallyNoetherian T.scheme := by
   have := hT.locallyOfFiniteType
-  have : IsNoetherianRing T.base := inferInstance
   constructor
   intro U
   exact @isNoetherianRing_sections T.base _ _ T.scheme T.structMap _ U
@@ -815,7 +814,6 @@ theorem monomialGeometryHypotheses_of_monomialCaseHypotheses (hR : MonomialCaseH
       exact FunctorialResolution.EmbeddedResolution.exists_mem_intersectionComponents_pullbackOverField_of_flat T hT Y k' q g hT' J C hC y hy
     smooth_components_down := by
       intro T hT Y q h hsm hq hV J C' hC'
-      have : AlgebraicGeometry.Flat h := inferInstance
       have hV' : (T.pullbackOverField Y T.base q h).IsAdmissible := by
         rw [MarkedIdealWithBoundary.pullbackOverField_eq_pullbackAlong]
         exact hV
@@ -830,7 +828,6 @@ theorem monomialGeometryHypotheses_of_monomialCaseHypotheses (hR : MonomialCaseH
       exact FunctorialResolution.EmbeddedResolution.exists_intersectionComponents_mapsTo_of_flat T hT Y T.base q h hV' J C' hC''
     smooth_components_up := by
       intro T hT Y q h hsm hq hV J C hC y hy
-      have : AlgebraicGeometry.Flat h := inferInstance
       have hV' : (T.pullbackOverField Y T.base q h).IsAdmissible := by
         rw [MarkedIdealWithBoundary.pullbackOverField_eq_pullbackAlong]
         exact hV
@@ -976,7 +973,6 @@ theorem orderAt_controlledTransform_le_of_orderAt_eq_on_center :
   have : CharZero T.base := hT.charZero
   have : AlgebraicGeometry.Smooth T.structMap := hT.smooth
   have hN : AlgebraicGeometry.IsNoetherian T.scheme := hT.isNoetherian
-  have hlocNoeth : AlgebraicGeometry.IsLocallyNoetherian T.scheme := inferInstance
   have hLN' : AlgebraicGeometry.IsLocallyNoetherian X' :=
     isLocallyNoetherian_of_isBlowupAlongIdealSheaf π Z hπ
   have hsub : (Z.support : Set ↥T.scheme) ⊆ orderAtLeastLocus J c := by
@@ -1060,7 +1056,6 @@ private theorem coord_injective (hU : IsAffineOpen U) (c : EtaleChart p U m)
   let inst : Algebra (MvPolynomial (ULift.{u} (Fin m)) k) Γ(X, U) := c.algebra
   have : Algebra.Etale (MvPolynomial (ULift.{u} (Fin m)) k) Γ(X, U) := c.algebra_etale hU
   have : Nontrivial Γ(X, U) := nontrivial_sections_of_mem hU x hx
-  have : Module.Flat (MvPolynomial (ULift.{u} (Fin m)) k) Γ(X, U) := inferInstance
   have := Module.Flat.isTorsionFree (R := MvPolynomial (ULift.{u} (Fin m)) k) (M := Γ(X, U))
   have hinj0 : Function.Injective
       (algebraMap (MvPolynomial (ULift.{u} (Fin m)) k) Γ(X, U)) :=

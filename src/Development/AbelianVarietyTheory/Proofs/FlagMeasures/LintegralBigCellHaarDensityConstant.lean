@@ -1143,7 +1143,6 @@ theorem volume_image_eq (A B F : Type) [NormedAddCommGroup A] [InnerProductSpace
         simp [mul_pow, Finset.mul_sum, ← mul_assoc, add_assoc] }
   have h0 := (measurePreserving_inv_sqrt_two_smul r).comp
     (GlobalTheory.volume_preserving_ofLp_complex (Fin r))
-  haveI : SFinite (((2 : ℝ≥0∞) ^ r) • (volume : Measure (Fin r → ℂ))) := inferInstance
   have h1 := (h0.prod (MeasurePreserving.id (volume : Measure B))).comp
     (WithLp.volume_preserving_ofLp (EuclideanSpace ℂ (Fin r)) B)
   have h2 := ((WithLp.volume_preserving_ofLp A A).prod h1).comp

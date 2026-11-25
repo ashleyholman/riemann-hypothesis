@@ -59,7 +59,6 @@ theorem rat_mat {γ : G D n} (h : γ ∈ GF D n) :
 theorem det_rat {γ : G D n} (h : γ ∈ GF D n) (a : GL (Fin n) (AE D)) (ha : blkA (mat γ) = a.1) :
     ∃ u : D.host.Eˣ, Matrix.GeneralLinearGroup.det a = Units.map (incA D).toMonoidHom u := by
   haveI : Nontrivial (AF D.host.F) := inferInstanceAs (Nontrivial (Ainf D.host.F × Af D.host.F))
-  haveI : Nontrivial (AE D) := inferInstance
   obtain ⟨x, hx⟩ := rat_mat h
   have e : ((Matrix.GeneralLinearGroup.det a : (AE D)ˣ) : AE D) = incA D (blkA x).det := by
     rw [RingHom.map_det]

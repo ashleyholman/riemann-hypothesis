@@ -166,7 +166,6 @@ theorem integrable_fou (hψ : Continuous ψ) {f : Matrix (Fin n) (Fin r) k → �
   letI : MeasurableSpace (Matrix (Fin n) (Fin r) k) := GlobalTheory.SplitWeil.matrixMeasurableSpace
   haveI : BorelSpace (Matrix (Fin n) (Fin r) k) := inferInstanceAs (BorelSpace (Fin n → Fin r → k))
   haveI : (volM ν (Fin n) (Fin r)).IsAddHaarMeasure := Measure.pi.isAddHaarMeasure _
-  haveI : IsFiniteMeasureOnCompacts (volM ν (Fin n) (Fin r)) := inferInstance
   have hc : Continuous fun y : Matrix (Fin n) (Fin r) k => f y * (ψ (trace (x * y)) : ℂ) :=
     hf.1.continuous.mul (continuous_subtype_val.comp
       (hψ.comp ((continuous_const.matrix_mul continuous_id).matrix_trace)))

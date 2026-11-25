@@ -34,9 +34,7 @@ theorem vol_image_mulVec (v : HeightOneSpectrum (𝓞 F)) {n : ℕ} (μ : Measur
     PI.UnitaryGroupMassFormula.LocJacTyp.BM.secondCountable_Fv v
   haveI : SecondCountableTopology B := inferInstance
   haveI : BorelSpace K := ⟨rfl⟩
-  haveI : TopologicalSpace.PseudoMetrizableSpace (Fin n → B) := inferInstance
   haveI : SigmaCompactSpace (Fin n → B) := inferInstance
-  haveI : IsLocallyFiniteMeasure μ := inferInstance
   let V := Fin n → B
   let f : V →ₗ[K] V := (Matrix.mulVecLin M.1).restrictScalars K
   let b := Module.Free.chooseBasis K V

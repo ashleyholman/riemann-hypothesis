@@ -499,7 +499,6 @@ theorem latT_basis : ∀ (l : ℕ) [Fact l.Prime] (Γ : Type) [Group Γ] (a m : 
     · right; exact h
   haveI tf1 : Module.IsTorsionFree ℤ_[l] (Matrix (Fin a) (Fin a) (Om l)) :=
     inferInstanceAs (Module.IsTorsionFree ℤ_[l] (Fin a → Fin a → Om l))
-  haveI : Module.IsTorsionFree ℤ_[l] (latT ρs t M) := inferInstance
   haveI : Module.Free ℤ_[l] (latT ρs t M) := Module.free_of_finite_type_torsion_free'
   let b := Module.finBasis ℤ_[l] (latT ρs t M)
   refine ⟨_, fun s => (b s : Fin m → Matrix (Fin a) (Fin a) (Om l)), ?_, fun s => (b s).2, ?_⟩

@@ -19,8 +19,6 @@ theorem sublattice_count : ∀ (K V : Type) [Field K] [NumberField K] [StarRing 
   intro K V _ _ _ _ _ _ _ _ h _ _ _ M hM i hi
   have : Module.Finite (𝓞 K) M := Module.Finite.iff_fg.mpr hM.fg
   have : Module.IsTorsionFree (𝓞 K) V := Module.IsTorsionFree.trans_faithfulSMul (𝓞 K) K V
-  have : Module.IsTorsionFree (𝓞 K) M := inferInstance
-  have : Module.Flat (𝓞 K) M := inferInstance
   have : Module.FinitePresentation (𝓞 K) M := Module.finitePresentation_of_finite _ _
   have : Module.Projective (𝓞 K) M := Module.Flat.projective_of_finitePresentation
   have hr : Module.finrank (𝓞 K) M ≤ Module.finrank K V := by

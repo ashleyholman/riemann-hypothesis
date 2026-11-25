@@ -86,7 +86,6 @@ theorem isIrreducible_of_jhMult_eq_one {s N : ℕ} {d : Fin s → ℕ} (e : (Σ 
     obtain ⟨S, f, hf⟩ := hsub
     haveI := GlobalTheory.SmGL.Model.nontrivial_of_isIrreducible hτ
     haveI : Subsingleton (Jacquet B (unipRad k e)) := (Submodule.mkQ_surjective _).subsingleton
-    haveI : Subsingleton S.toSubmodule := inferInstance
     exact not_subsingleton _ (Function.Surjective.subsingleton hf)
   show IsSimpleOrder (Subrepresentation B)
   refine { exists_pair_ne := ⟨⊥, ⊤, fun h => ?_⟩, eq_bot_or_eq_top := fun S => ?_ }

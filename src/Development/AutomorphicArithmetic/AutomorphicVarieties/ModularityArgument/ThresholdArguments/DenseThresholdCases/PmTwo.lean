@@ -1570,7 +1570,6 @@ private theorem pf_lift {g : G T.F Ω} (hg : resQ T.F g ∈ T.K.fixingSubgroup) 
 private theorem pf_sqK (g : G ℚ Ω) : g ^ 2 ∈ T.K.fixingSubgroup := by
   haveI : Algebra.IsAlgebraic ℚ Ω := IsAlgClosure.isAlgebraic
   haveI : IsAlgClosed Ω := IsAlgClosure.isAlgClosed ℚ
-  haveI : IsGalois ℚ Ω := inferInstance
   have hi : T.K.fixingSubgroup.index = 2 := by
     rw [← T.degK]
     exact (IntermediateField.finrank_eq_fixingSubgroup_index Ω T.K).symm

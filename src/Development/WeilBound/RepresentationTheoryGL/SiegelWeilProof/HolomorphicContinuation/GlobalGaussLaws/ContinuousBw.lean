@@ -77,7 +77,6 @@ theorem continuous_Bw {θ : InfFam D} (hθ : IsInfFam θ) {V : HSp D} {τ : D.wh
     {Ψ : Mx D V.rank n → ℂ} (hΨ : AwayCls θ τ fr Ψ) (x : Mx D V.rank n) :
     Continuous (Bw ψ V θ τ fr Ψ x) := by
   have := GlobalTheory.Doubling.isTopologicalRing_tens (F := D.host.F) (E := D.host.E) (R := AF D.host.F)
-  have : ContinuousSub (Mx D V.rank n) := inferInstance
   refine (cont_of_away hθ hΨ).mul ?_
   have htr : Continuous (trA (D := D)) := by
     have : IsModuleTopology (AF D.host.F) (AE D) := ⟨rfl⟩

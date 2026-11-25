@@ -641,7 +641,6 @@ theorem et_equiv_continuous (F E : Type) [NontriviallyNormedField F] [Nontrivial
   haveI : LocallyCompactSpace F := Unram.lcF E
   haveI : CompleteSpace F := IsRightUniformAddGroup.completeSpace_of_weaklyLocallyCompactSpace F
   haveI : Module.Finite F E := Module.finite_of_finrank_eq_succ (Unram.finrank_eq (F := F) (E := E))
-  haveI : FiniteDimensional F (Fin r → E) := inferInstance
   haveI : IsTopologicalAddGroup A.L := IsModuleTopology.topologicalAddGroup F A.L
   haveI : ContinuousSMul F A.L := IsModuleTopology.toContinuousSMul F A.L
   refine ⟨?_, ?_⟩

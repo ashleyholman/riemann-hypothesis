@@ -36,7 +36,6 @@ def projectiveLineAffineChartOverIntegers : Spec (CommRingCat.of (Polynomial ℤ
 
 instance : IsOpenImmersion projectiveLineAffineChartOverIntegers := by
   unfold projectiveLineAffineChartOverIntegers
-  haveI : IsIso (Spec.map awayEquiv.toCommRingCatIso.hom) := inferInstance
   haveI : IsOpenImmersion (Spec.map awayEquiv.toCommRingCatIso.hom) := IsOpenImmersion.of_isIso _
   exact IsOpenImmersion.comp (Spec.map awayEquiv.toCommRingCatIso.hom) (Proj.awayι _ _ _ _)
 

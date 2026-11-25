@@ -268,7 +268,6 @@ theorem UpperTheory.V.Z.J.crOfPot :
     rintro _ ⟨g, rfl⟩
     exact (GK K').normalCore_le g.2
   have h : K'.1 ≤ K.1 := by
-    have : IsGalois ℚ_[l] (Om l) := inferInstance
     rw [← InfiniteGalois.fixedField_fixingSubgroup K.1, ← InfiniteGalois.fixedField_fixingSubgroup K'.1]
     exact IntermediateField.fixedField_le hle
   have t1 := crys_res K' K LL h _ hcr

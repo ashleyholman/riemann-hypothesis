@@ -25,7 +25,6 @@ open IsLocalRing
 open IsLocalRing in
 theorem _root_.GlobalTheory.exists_arithFrobenius_absGalois (V K : Type) [CommRing V] [IsDomain V] [IsDiscreteValuationRing V] [Field K] [CharZero K] [Algebra V K] [IsFractionRing V K] (hfin : Finite (IsLocalRing.ResidueField V)) (Ω : Type) [Field Ω] [Algebra K Ω] [IsAlgClosure K Ω] [Algebra V Ω] [IsScalarTower V K Ω] [IsLocalRing (integralClosure V Ω)] : ∃ φ : Ω ≃ₐ[K] Ω, ∀ x : integralClosure V Ω, ∃ y : integralClosure V Ω, (y : Ω) = φ x ∧ y - x ^ Nat.card (IsLocalRing.ResidueField V) ∈ IsLocalRing.maximalIdeal (integralClosure V Ω) := by
   classical
-  haveI : Algebra.IsIntegral K Ω := inferInstance
   letI : TopologicalSpace (integralClosure V Ω) := ⊥
   haveI : DiscreteTopology (integralClosure V Ω) := ⟨rfl⟩
   haveI : ContinuousSMul (Ω ≃ₐ[K] Ω) (integralClosure V Ω) := by
@@ -56,8 +55,6 @@ theorem _root_.GlobalTheory.exists_arithFrobenius_absGalois (V K : Type) [CommRi
   letI : Field (V ⧸ maximalIdeal V) := Ideal.Quotient.field _
   letI : Field (integralClosure V Ω ⧸ maximalIdeal (integralClosure V Ω)) :=
     Ideal.Quotient.field _
-  haveI : Algebra.IsIntegral (V ⧸ maximalIdeal V)
-      (integralClosure V Ω ⧸ maximalIdeal (integralClosure V Ω)) := inferInstance
   haveI : Algebra.IsAlgebraic (V ⧸ maximalIdeal V)
       (integralClosure V Ω ⧸ maximalIdeal (integralClosure V Ω)) := Algebra.IsIntegral.isAlgebraic
   obtain ⟨g, hg⟩ := Ideal.Quotient.stabilizerHom_surjective_of_profinite (G := Ω ≃ₐ[K] Ω)

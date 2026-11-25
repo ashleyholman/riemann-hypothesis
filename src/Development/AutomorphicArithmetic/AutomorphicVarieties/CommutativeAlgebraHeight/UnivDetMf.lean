@@ -905,7 +905,6 @@ private theorem pair [IsNoetherianRing O] [IsAdicComplete (maximalIdeal O) O] [F
   obtain ⟨H, hH⟩ := exists_comap_level D (maximalIdeal A) h.cont k
   obtain ⟨H', hH'⟩ := exists_comap_level D' (maximalIdeal A') h'.cont k'
   let K : Subgroup G := (H.toOpenSubgroup : Subgroup G) ⊓ (H'.toOpenSubgroup : Subgroup G)
-  haveI hKn : K.Normal := inferInstance
   have hKo : IsOpen (K : Set G) := H.toOpenSubgroup.isOpen.inter H'.toOpenSubgroup.isOpen
   haveI : Finite (G ⧸ K) := Subgroup.quotient_finite_of_isOpen K hKo
   obtain ⟨D0, hD0⟩ := hH K inf_le_left

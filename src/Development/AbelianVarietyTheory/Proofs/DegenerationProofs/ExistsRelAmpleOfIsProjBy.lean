@@ -43,8 +43,6 @@ theorem isProjBy_of_fieldExtension {K₀ K : Type} [Field K₀] [Field K] (i : K
     (hA : Out.RelAmple A L) : GlobalTheory.AbLaw.IsProjBy A₀.hom := by
   have : Subsingleton (Spec (CommRingCat.of K₀)) := inferInstanceAs (Subsingleton (PrimeSpectrum K₀))
   have : Nonempty (Spec (CommRingCat.of K)) := inferInstanceAs (Nonempty (PrimeSpectrum K))
-  have : Flat (Out.specOf i) := inferInstance
-  have : Surjective (Out.specOf i) := inferInstance
   have : IsProper A.hom := MorphismProperty.of_isPullback (P := @IsProper) h inferInstance
   have : CompactSpace A₀.left := QuasiCompact.compactSpace_of_compactSpace A₀.hom
   have : QuasiSeparatedSpace A₀.left := quasiSeparatedSpace_of_quasiSeparated A₀.hom

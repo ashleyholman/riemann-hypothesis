@@ -1129,7 +1129,6 @@ end UpperTheory.V.Pa.B2
 theorem UpperTheory.V.Pa.B2.cohAxIso :
     ∀ (l : ℕ) [Fact l.Prime] (L : Loc) (G G' : Glob l L) (e : G.Hom G') (d : ℕ) (dv : L.Vl → ℕ), Function.Injective e.p → CohAx G d dv → CohAx G' d dv := by
   intro l _ L G G' e d dv hinj hG
-  haveI : T2Space G'.Γ := inferInstance
   let q : G.Γ ≃* G'.Γ := MulEquiv.ofBijective e.p ⟨hinj, e.surj⟩
   have hq : Continuous q := e.cont
   have hqs : Continuous q.symm :=

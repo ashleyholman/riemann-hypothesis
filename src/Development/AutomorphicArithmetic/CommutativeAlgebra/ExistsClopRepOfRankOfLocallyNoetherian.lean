@@ -161,7 +161,6 @@ theorem good_of_cover : ∀ (A B : Type) [CommRing A] [CommRing B] [Algebra A B]
     exact h
   have : IsZariskiLocalAtTarget @Flat.{0} :=
     HasRingHomProperty.instIsZariskiLocalAtTarget (P := @Flat.{0})
-  have : IsZariskiLocalAtTarget @IsFinite.{0} := inferInstance
   have h1 : IsFinite (I.subschemeι ≫ pullback.snd _ g) :=
     of_isPullback_openImmersions @IsFinite.{0} _ f hcov _ _ H hfin
   have h2 : Flat (I.subschemeι ≫ pullback.snd _ g) :=
@@ -1559,7 +1558,6 @@ theorem UpperTheory.exists_clopRepOfRank_of_locallyNoetherian :
   haveI := hfin'
   haveI := hflat'
   haveI : IsLocallyNoetherian H := LocallyOfFiniteType.isLocallyNoetherian h
-  haveI : Etale (pullback.snd G.hom h) := inferInstance
   haveI : IsOpenImmersion u :=
     UpperTheory.isOpenImmersion_of_closedImmersion_flat_etale u (pullback.snd G.hom h) inferInstance hcl hflat' inferInstance
   let Y : Over S := Over.mk h

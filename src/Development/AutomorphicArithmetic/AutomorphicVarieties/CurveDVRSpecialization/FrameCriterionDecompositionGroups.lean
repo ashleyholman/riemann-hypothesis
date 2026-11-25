@@ -61,7 +61,6 @@ theorem UpperTheory.frame_criterion_decomposition_groups :
     exact (galEmbTop (W.Lp L) L Ω).2.1
   haveI hN1 : U1.Normal := (Φ.Ψ.normal_ker).comap ρ
   let U : Subgroup (G (W.Lp L) Ω) := U1 ⊓ U2 ⊓ U3
-  haveI : U.Normal := inferInstance
   have hOU : IsOpen (U : Set (G (W.Lp L) Ω)) := (hO1.inter hO2).inter hO3
   let g' : G (W.Lp L) Ω := W.resP L Ω g
   obtain ⟨w, A, p, σ', -, hp, hpM, -, hpw, hnorm, -, hA, hIne, hFrob, hσU⟩ :=

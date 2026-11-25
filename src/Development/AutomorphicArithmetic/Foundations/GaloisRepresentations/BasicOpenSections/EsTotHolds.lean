@@ -828,7 +828,6 @@ theorem wtVal : FibExt → SecGen → ClopenAt → WtVal := by
   classical
   let r : pullback T.p y ⟶ Spec (CommRingCat.of V) := pullback.snd T.p y
   let v : pullback T.p y ⟶ T.Z := pullback.fst T.p y
-  have hrfin : IsFinite r := inferInstance
   have hcond : v ≫ T.p = r ≫ y := pullback.condition
   let z₁ : gp (IsLocalRing.ResidueField V) ⟶ pullback T.p y := pullback.lift z₀ (resPt V) hz₀
   have hz₁r : z₁ ≫ r = resPt V := pullback.lift_snd _ _ _
@@ -845,7 +844,6 @@ theorem wtVal : FibExt → SecGen → ClopenAt → WtVal := by
   obtain ⟨ψ, hψ, hsum⟩ : ∃ ψ : Spec (CommRingCat.of V) → ℤ, IsLocallyConstant ψ ∧
       ∀ (Ω : Type) [Field Ω] [IsAlgClosed Ω] (x : gp Ω ⟶ Spec (CommRingCat.of V)),
         ψ (pt x) = ∑ᶠ z ∈ fib r x, w Ω (z ≫ v) * φ (pt z) := hw.1 (TranscendenceTraces.Sq.of T.p y) φ hφ
-  have hconn : PreconnectedSpace (Spec (CommRingCat.of V)) := inferInstance
   have hψc : ψ (pt η) = ψ (pt (resPt V)) := hψ.apply_eq_of_preconnectedSpace _ _
 
   have hcl : ψ (pt (resPt V)) = w _ z₀ := by
@@ -1185,7 +1183,6 @@ private theorem exists_generic {O : Type} [CommRing O] [IsDomain O] {Y : Scheme.
 theorem UpperTheory.Gal.Mod.baseFacts :
     BaseFacts := by
   intro p O _ _ _ ϖ hϖ hp0 hpu Y g _
-  haveI : Flat g := inferInstance
   haveI : IsLocallyNoetherian Y := LocallyOfFiniteType.isLocallyNoetherian g
   have hbo : Y.basicOpen (p : Γ(Y, ⊤)) = Y.basicOpen (fn g (p : O)) := by
     rw [natCast_eq_fn g p]

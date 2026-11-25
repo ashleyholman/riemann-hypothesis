@@ -277,7 +277,6 @@ theorem exists_integral_descent {LL : Type} [Field LL] [NumberField LL] (L0 : In
     exact RingOfIntegers.ext (rd.injective this)
   haveI : FaithfulSMul (𝓞 L0) O := (faithfulSMul_iff_algebraMap_injective _ _).mpr hsinj
   haveI : Module.IsTorsionFree (𝓞 L0) O := FaithfulSMul.to_isTorsionFree _ _
-  haveI : Module.Flat (𝓞 L0) O := inferInstance
   obtain ⟨d, hd⟩ := IsLocalization.exist_integer_multiples_of_finite (nonZeroDivisors (𝓞 L0)) α
   choose A hA using hd
   have hA' : ∀ p, (A p : L0) = ((d : 𝓞 L0) : L0) * α p := fun p => (hA p).trans (Algebra.smul_def _ _)

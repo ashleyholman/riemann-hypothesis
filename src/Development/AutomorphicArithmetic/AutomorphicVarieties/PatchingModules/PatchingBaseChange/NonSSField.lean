@@ -34,7 +34,6 @@ private theorem UpperTheory.Reformulated.B.Qe15.compositum (K κ₁ κ₂ : Type
     [Algebra K κ₁] [Algebra K κ₂] :
     ∃ (κ : Type) (_ : Field κ) (j₁ : κ₁ →+* κ) (j₂ : κ₂ →+* κ),
       ∀ x : K, j₁ (algebraMap K κ₁ x) = j₂ (algebraMap K κ₂ x) := by
-  haveI : Nontrivial (κ₁ ⊗[K] κ₂) := inferInstance
   obtain ⟨m, hm⟩ := Ideal.exists_maximal (κ₁ ⊗[K] κ₂)
   refine ⟨(κ₁ ⊗[K] κ₂) ⧸ m, Ideal.Quotient.field m,
     (Ideal.Quotient.mk m).comp

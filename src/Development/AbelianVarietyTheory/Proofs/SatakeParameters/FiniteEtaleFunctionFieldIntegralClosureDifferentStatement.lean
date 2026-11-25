@@ -215,7 +215,6 @@ theorem isIntegrallyClosed_sections_of_smooth_complex :
   let e : Γ(Sp ℂ, ⊤) ≃+* ℂ := (Scheme.ΓSpecIso (CommRingCat.of ℂ)).commRingCatIsoToRingEquiv
   letI : Field Γ(Sp ℂ, ⊤) := (e.toMulEquiv.isField (Field.toIsField ℂ)).toField
   have : Nonempty U := ⟨⟨_, hg⟩⟩
-  have : IsDomain Γ(Z, U) := inferInstance
   exact GlobalTheory.isIntegrallyClosed_of_smooth Γ(Sp ℂ, ⊤) Γ(Z, U)
 
 end GlobalTheory

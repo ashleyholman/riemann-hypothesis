@@ -472,7 +472,6 @@ theorem lintegral_chartS_of_unitary (F E : Type) [Field F] [NumberField F] [Fiel
   obtain ⟨k₁, k₂, k₃, k₄, -, -, -, hBorel, -⟩ := _root_.GlobalTheory.CompanionTheory.SW.TopK.topTens_props F E σ hCM R
   obtain ⟨hK, hW, -⟩ := _root_.GlobalTheory.CompanionTheory.SW.coord_measures_haar F E σ hCM R d b lam hlam
   have hJ' := (_root_.GlobalTheory.CompanionTheory.WeilSiegel.HypStep.hypOne_isHermND_and_e0_mem F E σ hCM M J hJ).1
-  have : SigmaFinite (coordK R b lam) := inferInstance
   have hBK : BorelSpace (R ⊗[F] E) := ⟨rfl⟩
   have hBt := hBorel 1 n
   have hHaar := hW 1 n
@@ -769,7 +768,6 @@ theorem hermSplit : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Number
   obtain ⟨hinv, -⟩ := HaarCoord.conj_facts hcm
   obtain ⟨hK, -, hH⟩ := coord_measures_haar F E σ hcm R d b lam hlam
   haveI : BorelSpace (R ⊗[F] E) := ⟨rfl⟩
-  haveI : SigmaFinite (coordK R b lam) := inferInstance
   obtain ⟨a1, a2, a3, a4, -⟩ := _root_.GlobalTheory.CompanionTheory.SW.HermTop.herm_top F E σ hcm R 1
   obtain ⟨c1, c2, c3, c4, -⟩ := _root_.GlobalTheory.CompanionTheory.SW.HermTop.herm_top F E σ hcm R n
   haveI : (coordHerm R σ b lam 1).IsAddHaarMeasure := hH 1
@@ -777,8 +775,6 @@ theorem hermSplit : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Number
   haveI : SigmaFinite (coordW R b lam 1 n) := by
     unfold coordW
     infer_instance
-  haveI : SigmaFinite (coordHerm R σ b lam 1) := inferInstance
-  haveI : SigmaFinite (coordHerm R σ b lam n) := inferInstance
   refine ⟨blockHomeo R hinv t5 n, fun S => ⟨rfl, fun j => rfl, fun i j => rfl⟩, ?_⟩
   obtain ⟨h1, hh1, mp1⟩ := coordHerm_equiv σ hcm R b lam 1
   obtain ⟨hn, hhn, mpn⟩ := coordHerm_equiv σ hcm R b lam n

@@ -105,9 +105,6 @@ theorem lam_ballU_le (p q : ℕ) (lam : Measure (lieU p q)) (h : IsOmegaLeb lam)
   have : LocallyCompactSpace (lieU p q) := hcl.isClosedEmbedding_subtypeVal.locallyCompactSpace
   have : SecondCountableTopology (lieU p q) :=
     hcl.isClosedEmbedding_subtypeVal.isEmbedding.secondCountableTopology
-  have : OpensMeasurableSpace (lieU p q × lieU p q) := inferInstance
-  have : IsLocallyFiniteMeasure lam := inferInstance
-  have : SigmaFinite lam := inferInstance
   have hc : Continuous fun ab : lieU p q × lieU p q =>
       (ab.1 : Matrix (Fin p ⊕ Fin q) (Fin p ⊕ Fin q) ℂ) +
         Complex.I • (ab.2 : Matrix (Fin p ⊕ Fin q) (Fin p ⊕ Fin q) ℂ) :=

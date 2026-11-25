@@ -78,7 +78,6 @@ private theorem valuation_le_uniformizer_inertia {K Ω : Type} [Field K] [Number
   have hu : IsPlaceOver A (w.under (𝓞 E)) := fun y => by
     have := hw (algebraMap (𝓞 E) (𝓞 M) y)
     exact this
-  haveI : (w.asIdeal.under (𝓞 E)).LiesOver v.asIdeal := inferInstance
   have := valuation_le_uniformizer_div A (w.under (𝓞 E)) hu (algebraMap (𝓞 K) (𝓞 E) π)
     (unramified_uniformizer_divides π v.asIdeal hπ (w.asIdeal.under (𝓞 E)) hun) ⟨_, hxE⟩ h1
   exact this

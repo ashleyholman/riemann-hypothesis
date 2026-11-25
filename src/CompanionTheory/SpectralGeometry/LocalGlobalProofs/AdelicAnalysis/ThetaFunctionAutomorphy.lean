@@ -153,7 +153,6 @@ theorem muF_latN : ∀ (F : Type) [Field F] [NumberField F] [MeasurableSpace (A 
   haveI := hlc
   haveI := hsc
   haveI := ht2
-  haveI : SigmaFinite lf := inferInstance
   have hscale := (_root_.GlobalTheory.CompanionTheory.SW.Core.Scale.lf_scale F lf hH h1).1
   have hNF : ((N : F)) ≠ 0 := Nat.cast_ne_zero.mpr hN.ne'
   have hnorm : ((Algebra.norm ℚ (N : F) : ℚ) : ℝ) = (N : ℝ) ^ Module.finrank ℚ F := by

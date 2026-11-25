@@ -56,7 +56,6 @@ lemma projective_of_fg (L : Submodule (𝓞 E) (Fin n → E)) (hL : L.FG) :
     Module.Projective (𝓞 E) L := by
   haveI : Module.Finite (𝓞 E) L := Module.Finite.iff_fg.2 hL
   haveI : Module.FinitePresentation (𝓞 E) L := Module.finitePresentation_of_finite _ _
-  haveI : Module.Flat (𝓞 E) L := inferInstance
   exact Module.Flat.projective_of_finitePresentation
 
 omit [NumberField E] in

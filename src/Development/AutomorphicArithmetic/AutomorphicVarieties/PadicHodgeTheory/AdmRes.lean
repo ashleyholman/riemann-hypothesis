@@ -118,7 +118,6 @@ theorem UpperTheory.V.Loc.isCrys_isDR_restrict_openSubgroup :
     rintro _ ⟨g, rfl⟩
     exact ⟨g, rfl⟩
   have h : K.1 ≤ K'.1 := by
-    have : IsGalois ℚ_[l] (Om l) := inferInstance
     rw [← InfiniteGalois.fixedField_fixingSubgroup K.1, ← InfiniteGalois.fixedField_fixingSubgroup K'.1]
     exact IntermediateField.fixedField_le hle
   have t2 := transport (φ := φ.comp H.subtype) (ρ := (ρ.comp H.subtype : Representation A H V))

@@ -301,7 +301,6 @@ private theorem reg {n : ℕ} {k : Type} [Field k] (Z : SubM k n) (hZ : CR Z) (x
   let ψ : Z →+* Module.End k (Fin n → k) :=
     ((Matrix.toLinAlgEquiv' (R := k) (n := Fin n)).toAlgHom.comp Z.val).toRingHom
   let iM : Module Z (Fin n → k) := Module.compHom (Fin n → k) ψ
-  have : IsSemisimpleModule Z (Fin n → k) := inferInstance
   let f : Module.End Z (Fin n → k) :=
     { toFun := (x *ᵥ ·), map_add' := Matrix.mulVec_add x, map_smul' := fun a v => by
         show x *ᵥ ((a : Mat k n) *ᵥ v) = (a : Mat k n) *ᵥ (x *ᵥ v)

@@ -153,8 +153,6 @@ theorem transl_nC : ∀ (D : D7) (S S₀ : HSp D) (ρ : ℕ) (d : HypDec S S₀ 
   haveI : SecondCountableTopology (Mx D ρ ρ) := i3
   haveI : BorelSpace (skewA D ρ) := Subtype.borelSpace _
   haveI : SecondCountableTopology (skewA D ρ) := Topology.IsEmbedding.subtypeVal.secondCountableTopology
-  haveI : MeasurableAdd₂ (skewA D ρ) := inferInstance
-  haveI : MeasurableAdd (skewA D ρ) := inferInstance
   let s : UX D ρ → skewA D ρ := fun u => skewConj (u⁻¹).1.1 c'
   have hinv : Continuous fun u : UX D ρ => (u⁻¹).1.1 := Units.continuous_coe_inv.comp continuous_subtype_val
   have hs : Continuous s := by
@@ -208,7 +206,6 @@ theorem haar_coords : ∀ (D : D7) (S S₀ : HSp D) (ρ : ℕ) (d : HypDec S S�
   have hcl : IsClosed ((skewA D ρ : Set (Mx D ρ ρ))) := isClosed_eq continuous_adj continuous_neg
   haveI : LocallyCompactSpace (skewA D ρ) := hcl.isClosedEmbedding_subtypeVal.locallyCompactSpace
   haveI : SecondCountableTopology (skewA D ρ) := hcl.isClosedEmbedding_subtypeVal.isEmbedding.secondCountableTopology
-  haveI : T2Space (skewA D ρ) := inferInstance
   let μ : Measure (UX D ρ) := Measure.haar
   let lB : Measure (Mx D ρ S₀.rank) := Measure.addHaar
   let lC : Measure (skewA D ρ) := Measure.addHaar

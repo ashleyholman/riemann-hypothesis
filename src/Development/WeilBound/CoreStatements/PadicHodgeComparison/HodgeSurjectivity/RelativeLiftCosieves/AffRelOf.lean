@@ -98,7 +98,6 @@ end AffineRelativeForms
 open AffineRelativeForms in
 theorem affRelOf_pf : AffRelOf := by
   intro hSite hOn hAff hNat hForm K _ _ W Z q i _ hQ V d d' hc hc' a
-  have : Mono i := inferInstance
   have hS := hSite K W Z W q i i
   have h0 : ∀ T, inU (i ≫ q) (i ⁻¹ᵁ V) T → inU q V ((smS i rfl).G.obj T) := fun T h => (hS.2.2.2.2.1 V T).1 h
   have h2 : ∀ T, inU q V ((smS i rfl).G.obj T) → inU (i ≫ q) (i ⁻¹ᵁ V) T := fun T h => (hS.2.2.2.2.1 V T).2 h

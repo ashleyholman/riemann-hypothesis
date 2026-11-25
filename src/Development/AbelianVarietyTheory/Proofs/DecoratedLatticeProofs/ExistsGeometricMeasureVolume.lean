@@ -128,7 +128,6 @@ theorem haar_prod : ∀ (D : D7) (V : HSp D) (μf : Measure (GfC V)), μf.IsHaar
   haveI : LocallyCompactSpace (GfC V) := hf.locallyCompactSpace
   let e := GlobalTheory.AdelicSplit.splitEquiv V
   let μi : Measure (GinfC V) := Measure.haar
-  haveI : SFinite μf := inferInstance
   refine ⟨Measure.map e (μi.prod μf), μi, ContinuousMulEquiv.isHaarMeasure_map _ e, fun S E => ?_⟩
   have hset : {h : GA D V | ∃ a ∈ S, ∃ k ∈ E, h = (a : GA D V) * k} = e '' (S ×ˢ E) := by
     ext h

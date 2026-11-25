@@ -181,9 +181,7 @@ theorem redIntegrable : RedIntegrable := by
 theorem innerXYOfReduced : InnerXYOfReduced := by
   intro hOm hRI hSplit hAmp m β t c ht V _ _ _ Φ hint
   have hmp := (hSplit m β).2
-  have i2 : StandardBorelSpace (XY m) := inferInstance
   have i4 : MeasurableSpace.CountablyGenerated (RedCoord m) := inferInstance
-  have i5 : MeasurableSpace.CountablySeparated (RedCoord m) := inferInstance
   have hemb : MeasurableEmbedding (redOf m) := hmp.measurable.measurableEmbedding (hSplit m β).1.injective
   have hfun : (fun p : XY m =>
       psi β (g0 ((-1) ^ (m + 3) * (c * t ^ (m + 1))) p.1 / t) • amp β m Φ (c * t ^ (m + 1)) t p) =

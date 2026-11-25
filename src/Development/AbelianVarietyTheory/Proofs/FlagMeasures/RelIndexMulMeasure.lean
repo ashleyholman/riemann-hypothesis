@@ -69,8 +69,6 @@ theorem modK_algebraMap : ∀ {F : Type} [Field F] [ValuativeRel F] [Topological
     rw [← (IsDiscreteValuationRing.irreducible_iff_uniformizer ϖ).mp hϖ]
     rfl
   intro x hx
-  have : IsTopologicalAddGroup E := inferInstance
-  have : M.mu.Regular := inferInstance
   have hsmul : ∀ (a : F) (y : E), a ∈ 𝒪[F] → y ∈ M.L.O → a • y ∈ M.L.O := fun a y ha hy => by
     rw [Algebra.smul_def]
     exact M.L.O.mul_mem ((GlobalTheory.UnramOrder.algebraMap_mem_iff M.L a).mpr ha) hy

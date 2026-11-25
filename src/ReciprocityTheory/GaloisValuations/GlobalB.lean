@@ -268,7 +268,6 @@ theorem exists_frob_over {A : ValuationSubring Ω} {v : HeightOneSpectrum (𝓞 
   letI : Field (IntCl F Ω ⧸ Q) := Ideal.Quotient.field Q
   letI : Field (𝓞 F ⧸ v.asIdeal) := Ideal.Quotient.field v.asIdeal
   letI : Fintype (𝓞 F ⧸ v.asIdeal) := Fintype.ofFinite _
-  haveI hBi : Algebra.IsIntegral (𝓞 F) (IntCl F Ω) := inferInstance
   haveI : Algebra.IsIntegral (𝓞 F ⧸ v.asIdeal) (IntCl F Ω ⧸ Q) :=
     Ideal.Quotient.algebra_isIntegral_of_liesOver Q v.asIdeal
   haveI : Algebra.IsAlgebraic (𝓞 F ⧸ v.asIdeal) (IntCl F Ω ⧸ Q) := Algebra.IsIntegral.isAlgebraic

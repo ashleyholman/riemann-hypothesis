@@ -99,8 +99,6 @@ theorem relAmple_of_fieldExtension [IsProper f] (hM : M.IsLB) {K₀ K : Type} [F
   obtain ⟨φ, hφ, H⟩ := exists_isPullback h₁ h₂ _ rfl
   have : Subsingleton (Spec (CommRingCat.of K₀)) := inferInstanceAs (Subsingleton (PrimeSpectrum K₀))
   have : Nonempty (Spec (CommRingCat.of K)) := inferInstanceAs (Nonempty (PrimeSpectrum K))
-  have : Flat (Out.specOf i) := inferInstance
-  have : Surjective (Out.specOf i) := inferInstance
   have hp : IsProper f₁ := MorphismProperty.of_isPullback (P := @IsProper) h₁ ‹_›
   have : IsProper (Over.mk f₁).hom := hp
   have : IsProper f₂ := MorphismProperty.of_isPullback (P := @IsProper) h₂ ‹_›

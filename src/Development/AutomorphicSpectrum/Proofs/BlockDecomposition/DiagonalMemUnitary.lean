@@ -482,7 +482,6 @@ theorem exists_hw_image (E1 E2 : Fin n → Fin n → Module.End ℂ V)
     (E : KMod n) (htop : (⨆ μ, wtDual E μ) = ⊤) (t : (E.V →L[ℂ] ℂ) →ₗ[ℂ] V) (ht : t ∈ invA σ E) (ht0 : t ≠ 0) :
     ∃ (μ : Fin n → ℤ) (ξ : E.V →L[ℂ] ℂ), ξ ∈ wtDual E μ ∧ t ξ ≠ 0 ∧ t ξ ∈ hwSp E1 E2 (wtR μ) := by
   have hg := gl_kF hP
-  have hfd : FiniteDimensional ℂ (LinearMap.range t) := inferInstance
   have hσ : ∀ k, ∀ w ∈ LinearMap.range t, σ k w ∈ LinearMap.range t := by
     rintro k _ ⟨ξ, rfl⟩
     exact ⟨_, ht k ξ⟩

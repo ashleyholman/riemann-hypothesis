@@ -73,8 +73,6 @@ theorem containsRayField_comp (K E L : Type) [Field K] [NumberField K] [Field E]
   haveI := P.isMaximal
   set q := P.asIdeal.under (𝓞 E)
   set p := q.under (𝓞 K)
-  haveI : q.IsMaximal := inferInstance
-  haveI : p.IsMaximal := inferInstance
   have hrel : Ideal.relNorm (𝓞 K) q = p ^ q.inertiaDeg (𝓞 K) := Ideal.relNorm_eq_pow_of_isMaximal q p
   refine ⟨q.inertiaDeg (𝓞 K) * f, Algebra.intNorm (𝓞 K) (𝓞 E) α, ?_, ?_, dvd_intNorm_sub_one K E n α h3⟩
   · rw [h1, pow_mul, ← map_pow Ideal.absNorm p, ← hrel, Ideal.absNorm_relNorm]

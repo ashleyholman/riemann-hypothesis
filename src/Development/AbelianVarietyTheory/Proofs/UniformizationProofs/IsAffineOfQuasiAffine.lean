@@ -122,7 +122,6 @@ theorem isAffine_of_quasiAffine {X S : Scheme.{0}} [IsAffine S] [X.IsQuasiAffine
   have : UniversallyClosed (X.toSpecΓ ≫ Spec.map f.appTop) := by
     rw [← Scheme.toSpecΓ_naturality]; infer_instance
   have : UniversallyClosed X.toSpecΓ := .of_comp_of_isSeparated _ (Spec.map f.appTop)
-  have : Surjective X.toSpecΓ := inferInstance
   exact ⟨isIso_of_isOpenImmersion_of_opensRange_eq_top _
     (top_unique fun x _ => X.toSpecΓ.surjective x)⟩
 

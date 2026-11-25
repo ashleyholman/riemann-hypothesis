@@ -43,7 +43,6 @@ theorem isIntegral_of_flat_of_isIntegral_genericFibre (T K : Type) [CommRing T] 
   have := IsSchemeTheoreticallyDominant.of_isDominant (spMap (algebraMap T K))
   let g := pullback.fst f (spMap (algebraMap T K))
   have : IsReduced X := IsSchemeTheoreticallyDominant.isReduced g
-  have : IsDominant g := inferInstance
   have h : IsIrreducible (closure (Set.range g)) := by
     rw [← Set.image_univ]
     exact ((IrreducibleSpace.isIrreducible_univ _).image g g.continuous.continuousOn).closure

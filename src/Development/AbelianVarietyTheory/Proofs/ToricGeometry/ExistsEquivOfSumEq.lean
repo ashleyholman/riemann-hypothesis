@@ -238,7 +238,6 @@ theorem exists_isPeriod (E : Type) [Field E] [NumberField E] [IsCMField E] (H : 
   haveI := D.proj
   haveI : Module.Finite ℤ D.La := Module.Finite.trans (𝓞 E) D.La
   haveI : Module.Flat ℤ D.La := Module.Flat.trans ℤ (𝓞 E) D.La
-  haveI : Module.Free ℤ D.La := inferInstance
   obtain ⟨J, hJ, hinv, hpos, htr⟩ := D.dom
   let ρ₀ : 𝓞 E →+* Module.End ℤ D.La := (Algebra.lsmul ℤ ℤ D.La : 𝓞 E →ₐ[ℤ] Module.End ℤ D.La)
   let ρ : 𝓞 E →+* Module.End ℝ (ℝ ⊗[ℤ] D.La) :=

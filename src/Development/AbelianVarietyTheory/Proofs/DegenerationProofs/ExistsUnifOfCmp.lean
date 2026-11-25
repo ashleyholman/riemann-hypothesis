@@ -236,7 +236,6 @@ theorem fe_of_expandsAt (hR : AdmBase R I) (U : UnifPre I D A G) {k : ℕ} (hU :
     (pullback.fst G.hom (jK R)) (fun _ => pullback.fst G.hom (jK R)) (fun _ => (Category.comp_id _).symm) σ
   obtain ⟨E, r', hr', σ', f', hσ', hf', hE'⟩ := hU s
   have := U.smooth
-  have : Flat G.hom := inferInstance
   have e : (TF (R := R) (FractionRing R)).hom = jK R := by
     show Spec.map _ ≫ Spec.map _ = _
     rw [← Spec.map_comp]; rfl
@@ -253,7 +252,6 @@ theorem fe_of_expandsAt (hR : AdmBase R I) (U : UnifPre I D A G) {k : ℕ} (hU :
     inferInstanceAs (QuasiCompact (Spec.map (CommRingCat.ofHom (algebraMap R (FractionRing R)))))
   have h₃ : QuasiCompact (TF (R := R) (FractionRing R)).hom := e ▸ h₅
   have := D.toPre.P.isAb.smooth
-  have : Flat D.toPre.P.A.hom := inferInstance
   have hF := fun α => ExpansionFunction.eq_iff_comb_eq_zero D.toPre.P.isLB D.toPre.P.A.hom
     (fst (TF (R := R) (FractionRing R)) D.toPre.P.A).left
     ((Over.w (DegPre.prB D.toPre (FractionRing R))).trans hw) (DVR.GC.famφ_eq D.toPre (FractionRing R) α)

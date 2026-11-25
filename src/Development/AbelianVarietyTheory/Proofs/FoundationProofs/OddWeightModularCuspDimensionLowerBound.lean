@@ -1441,7 +1441,6 @@ theorem sum_finrank_le_finrank_cuspForm (Γ : Subgroup SL(2, ℤ)) (r : ℕ) (s 
     funext j; ext τ
     have := Matrix.eq_zero_of_mulVec_eq_zero (hdet τ) (hvec τ)
     exact congrFun this j
-  haveI : FiniteDimensional ℂ (Π j, ModularForm 𝒮ℒ (k - w j)) := inferInstance
   calc ∑ j, Module.finrank ℂ (ModularForm 𝒮ℒ (k - w j))
       = Module.finrank ℂ (Π j, ModularForm 𝒮ℒ (k - w j)) := (Module.finrank_pi_fintype ℂ).symm
     _ ≤ Module.finrank ℂ (CuspForm Γ k) := LinearMap.finrank_le_finrank_of_injective hinj

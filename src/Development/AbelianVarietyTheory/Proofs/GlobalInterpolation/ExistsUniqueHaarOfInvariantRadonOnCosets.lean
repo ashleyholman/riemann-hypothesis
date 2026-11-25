@@ -61,7 +61,6 @@ theorem measurable_cosetMeasure_open (hH : IsClosed (H : Set G)) (ν : Measure H
   haveI : LocallyCompactSpace H := hH.isClosedEmbedding_subtypeVal.locallyCompactSpace
   haveI : SecondCountableTopology H := TopologicalSpace.Subtype.secondCountableTopology _
   haveI : IsLocallyFiniteMeasure ν := isLocallyFiniteMeasure_of_isFiniteMeasureOnCompacts
-  haveI : ν.Regular := inferInstance
   refine measurable_of_Ioi fun c => IsOpen.measurableSet ?_
   rw [← (QuotientGroup.isQuotientMap_mk H).isOpen_preimage, isOpen_iff_mem_nhds]
   intro g hg

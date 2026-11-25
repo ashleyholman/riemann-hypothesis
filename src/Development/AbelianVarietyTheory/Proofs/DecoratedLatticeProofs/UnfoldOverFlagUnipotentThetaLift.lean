@@ -192,8 +192,6 @@ theorem integral_base_term_coords : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ
   obtain ⟨c1, c2, c3, c4⟩ := GlobalTheory.Mem.TrueRecord.top_NFlag V (GlobalTheory.MixPer.isIsoSub_e d)
   obtain ⟨hN1, hN2, hN3⟩ := vN.unit
   haveI := vW.haar
-  haveI : SFinite vN.ν := inferInstance
-  haveI : SFinite vW.μ := inferInstance
   obtain ⟨sb, sU⟩ := GlobalTheory.Unf.sFinite_vol D ρ V₀.rank vb vU
   haveI : IsFiniteMeasure (vb.μ.restrict vb.𝓕) :=
     ⟨by rw [Measure.restrict_apply_univ, vb.covol.2.2]; exact ENNReal.one_lt_top⟩

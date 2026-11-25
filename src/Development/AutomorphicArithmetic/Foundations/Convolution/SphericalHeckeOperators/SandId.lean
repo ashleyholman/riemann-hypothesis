@@ -299,7 +299,6 @@ private theorem sum_vanish {A : Type*} [Group A] (L R : Subgroup A) [Fintype (A 
   haveI : R.FiniteIndex := Subgroup.finiteIndex_of_finite_quotient
   let P : Subgroup A := (L ⊓ R).normalCore
   haveI : P.Normal := Subgroup.normalCore_normal _
-  haveI : P.FiniteIndex := inferInstance
   have hPL : P ≤ L := (Subgroup.normalCore_le _).trans inf_le_left
   have hPR : P ≤ R := (Subgroup.normalCore_le _).trans inf_le_right
   letI : Fintype (A ⧸ P) := Fintype.ofFinite _

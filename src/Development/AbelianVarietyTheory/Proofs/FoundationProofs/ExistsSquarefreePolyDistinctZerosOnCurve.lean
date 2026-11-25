@@ -25,9 +25,6 @@ theorem reduced_fibres_almost_all (k A : Type) [Field k] [IsAlgClosed k] [CharZe
     [Module.Finite k[X] A] [Module.Free k[X] A] :
     ∃ δ : k[X], δ ≠ 0 ∧ ∀ α : k, δ.eval α ≠ 0 → ∀ Q : Ideal A, Q.IsMaximal →
       algebraMap k[X] A (X - C α) ∉ Q ^ 2 := by
-  haveI : Module.IsTorsionFree k[X] A := inferInstance
-  haveI : FaithfulSMul k[X] A := inferInstance
-  haveI : Algebra.IsSeparable (FractionRing k[X]) (FractionRing A) := inferInstance
   have hD := differentIdeal_ne_bot (A := k[X]) (B := A)
   obtain ⟨d, hd, hd0⟩ := Submodule.exists_mem_ne_zero_of_ne_bot hD
   have hc := Ideal.comap_ne_bot_of_integral_mem hd0 hd (Algebra.IsIntegral.isIntegral (R := k[X]) d)

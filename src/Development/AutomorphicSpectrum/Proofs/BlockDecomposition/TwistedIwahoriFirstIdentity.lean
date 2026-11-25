@@ -873,7 +873,6 @@ theorem isClosed_Nup {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k]
     [IsNonarchimedeanLocalField k] (N : ℕ) : IsClosed (Nup k N : Set (GL (Fin N) k)) := by
   letI := IsTopologicalAddGroup.rightUniformSpace k
   haveI := isUniformAddGroup_of_addCommGroup (G := k)
-  haveI : T2Space k := inferInstance
   have hc : ∀ i j, Continuous fun g : GL (Fin N) k => (g : Matrix (Fin N) (Fin N) k) i j :=
     fun i j => Units.continuous_val.matrix_elem i j
   set e := stdBlocks (ones N) (sum_ones N) with he
@@ -903,7 +902,6 @@ theorem killN : ∀ {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [
   obtain ⟨htT, hdom, hstr⟩ := hG
   letI := IsTopologicalAddGroup.rightUniformSpace k
   haveI := isUniformAddGroup_of_addCommGroup (G := k)
-  haveI : T2Space k := inferInstance
   obtain ⟨s, hs, hd1, hd2, hd3⟩ := hdom 0 hl
   have hs' : torEmb k N s = t := by simpa using hs
   have d1 : ∀ n ∈ J ⊓ Nup k N, t * n * t⁻¹ ∈ J ⊓ Nup k N := by

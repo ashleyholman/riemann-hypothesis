@@ -52,7 +52,6 @@ theorem measurePreserving_left (I : AutInst) (μf : Measure I.Gf) [μf.IsHaarMea
   unfold AutInst.muA
   have h0 : ∀ v, (muG (I.ε v)).IsMulLeftInvariant := fun v => inferInstance
   have h1 : (Measure.pi fun v => muG (I.ε v)).IsMulLeftInvariant := inferInstance
-  have h2 : ((Measure.pi fun v => muG (I.ε v)).prod μf).IsMulLeftInvariant := inferInstance
   exact measurePreserving_mul_left _ g
 
 theorem integral_unfold_kernel : ∀ (B : RowsAut) (φ F : B.I.GA → ℂ) (x : B.I.GA), (∀ᵐ z ∂(B.I.muA B.μf), ∀ γ ∈ B.I.GFset, F (γ * z) = F z) → Integrable (fun g => φ g * F (x * g)) (B.I.muA B.μf) → IntegrableOn (fun z => kern B.I φ x z * F z) B.fund (B.I.muA B.μf) ∧ ∫ g, φ g * F (x * g) ∂(B.I.muA B.μf) = ∫ z in B.fund, kern B.I φ x z * F z ∂(B.I.muA B.μf) := by

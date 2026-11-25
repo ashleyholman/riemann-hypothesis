@@ -129,7 +129,6 @@ theorem finite_cover_pow {O K : Type} [CommRing O] [Field K] [Algebra O K] (ϖ :
   classical
   set I : Ideal O := Ideal.span {ϖ ^ (N + M)} with hIdef
   have ha : algebraMap O K (ϖ ^ N) ≠ 0 := by rw [map_pow]; exact pow_ne_zero _ hϖ
-  haveI : Finite (m → n → O ⧸ I) := inferInstance
   haveI : Fintype (m → n → O ⧸ I) := Fintype.ofFinite _
   let lift : (m → n → O ⧸ I) → m → n → O :=
     fun q i j => Function.surjInv (Ideal.Quotient.mk_surjective (I := I)) (q i j)

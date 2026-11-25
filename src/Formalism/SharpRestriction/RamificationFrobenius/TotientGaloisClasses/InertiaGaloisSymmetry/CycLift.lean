@@ -59,7 +59,6 @@ theorem inertia_lift [IsGalois ℚ L] (P : Ideal (𝓞 E)) (Q : Ideal (𝓞 L)) 
     (hσ : ∀ x : 𝓞 E, σ • x - x ∈ P) :
     ∃ τ : L ≃ₐ[ℚ] L, (∀ x, algebraMap E L (σ x) = τ (algebraMap E L x)) ∧ ∀ y : 𝓞 L, τ • y - y ∈ Q := by
   have : IsGalois E L := IsGalois.tower_top_of_isGalois ℚ E L
-  have hinv : Algebra.IsInvariant (𝓞 E) (𝓞 L) (L ≃ₐ[E] L) := inferInstance
   let τ₀ : L ≃ₐ[ℚ] L := σ.liftNormal L
   have h₀ : ∀ x, algebraMap E L (σ x) = τ₀ (algebraMap E L x) := fun x => (AlgEquiv.liftNormal_commutes σ L x).symm
   have hunder : (τ₀⁻¹ • Q).under (𝓞 E) = Q.under (𝓞 E) := by

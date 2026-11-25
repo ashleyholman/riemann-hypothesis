@@ -127,7 +127,6 @@ theorem exists_integral_change (hL : EvLaws Xo c) (hM : ∀ la, ModelAt Xo c la)
         ∀ w' : FrPt Xo c T.Fr, FrMap ψ w w' → Integral T io w' := by
   obtain ⟨la, hla⟩ := exists_place_le (W.comap (algebraMap c.F L))
   obtain ⟨Y, hY⟩ := hM la
-  haveI : IsDiscreteValuationRing (la.valuation c.F).valuationSubring := inferInstance
   obtain ⟨J, -, P, hP⟩ := exists_finite_pchart_cover GlobalTheory.abelianSchemeLaws_all.2.secTwist E H Dw l Xo c hL.bc
     (la.valuation c.F).valuationSubring Y hY
   obtain ⟨j, e, he, χ, w, t₀, hg, hw, h₀⟩ := hP L W (fun a => hla a.2) y₀

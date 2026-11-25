@@ -421,7 +421,6 @@ theorem exists_trace_ne_zero_adjoinRoot (l : ℕ) [Fact l.Prime] (p : (ZMod l)[X
     ∃ z : AdjoinRoot p, Algebra.trace (ZMod l) (AdjoinRoot p) z ≠ 0 := by
   haveI : Fact (Irreducible p) := ⟨hp⟩
   haveI : FiniteDimensional (ZMod l) (AdjoinRoot p) := (AdjoinRoot.powerBasis hp.ne_zero).finite
-  haveI : Algebra.IsSeparable (ZMod l) (AdjoinRoot p) := inferInstance
   obtain ⟨z, hz⟩ := Algebra.trace_surjective (ZMod l) (AdjoinRoot p) 1
   exact ⟨z, by rw [hz]; exact one_ne_zero⟩
 

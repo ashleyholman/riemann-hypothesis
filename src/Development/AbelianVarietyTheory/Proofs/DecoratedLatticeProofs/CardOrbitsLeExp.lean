@@ -242,7 +242,6 @@ theorem exists_determining_lattice (P : HeightOneSpectrum (𝓞 E)) (N : Submodu
       ∀ x ∈ N, φ x = ψ x := by
   have : Module.Finite (𝓞 E) N := Module.Finite.iff_fg.2 (Submodule.IsLattice.fg (self := hN))
   have : Module.FinitePresentation (𝓞 E) N := Module.finitePresentation_of_finite _ _
-  have : Module.Flat (𝓞 E) N := inferInstance
   have : Module.Projective (𝓞 E) N := Module.Flat.projective_of_finitePresentation
   have : Finite (𝓞 E ⧸ P.asIdeal) := Ideal.finiteQuotientOfFreeOfNeBot _ P.ne_bot
   have hr : Module.finrank (𝓞 E) N ≤ n := by

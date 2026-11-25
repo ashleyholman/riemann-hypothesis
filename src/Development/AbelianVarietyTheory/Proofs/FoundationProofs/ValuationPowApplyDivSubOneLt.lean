@@ -105,7 +105,6 @@ theorem _root_.GlobalTheory.mem_of_wild_of_pow_mem_open_normal :
     have e := congrArg σ hy'
     rw [hsy, map_mul, map_natCast, hy'] at e
     exact (mul_left_cancel₀ hn0 e).symm
-  have : IsGalois E Ω := inferInstance
   have hcl : IsClosed (H : Set (Ω ≃ₐ[E] Ω)) := H.isClosed_of_isOpen hH
   have hH' := InfiniteGalois.fixingSubgroup_fixedField (⟨H, hcl⟩ : ClosedSubgroup (Ω ≃ₐ[E] Ω))
   have hmem : σ ∈ (IntermediateField.fixedField H).fixingSubgroup := by

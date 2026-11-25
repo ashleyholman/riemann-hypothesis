@@ -91,8 +91,6 @@ theorem LeafKumMuSurjUnit_pf : LeafKumMuSurjUnit := by
   let P : Scheme.{0}ᵒᵖ ⥤ ModuleCat.{1} (ULift.{1} ℤ) := Scheme.Γ ⋙ unitsF
   let η := toSheafify Scheme.etaleTopology P
   let pw : P ⟶ P := Functor.whiskerLeft Scheme.Γ (LateralTheory.E.H2CurveOrder.LeafKumSeqPf.powNat q)
-  have hsurj : Presheaf.IsLocallySurjective Scheme.etaleTopology η := inferInstance
-  have hinj : Presheaf.IsLocallyInjective Scheme.etaleTopology η := inferInstance
   have hS1 : Presheaf.imageSieve η s ∈ Scheme.etaleTopology U := Presheaf.imageSieve_mem Scheme.etaleTopology η (U := op U) s
   have hnat : ∀ {V : Scheme.{0}} (x : P.obj (op V)),
       (LateralTheory.E.H2CurveOrder.LeafKumSeqPf.powGm q).hom.app (op V) (η.app (op V) x) = η.app (op V) (pw.app (op V) x) := by

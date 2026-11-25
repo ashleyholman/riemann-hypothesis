@@ -48,19 +48,7 @@ private theorem measurePreserving_prod_map {α β γ δ : Type*} {mα : MeasureS
   hf.prod hg
 
 theorem splitX_mp : MeasurePreserving (splitX (k := k) (j := j) (ρ := ρ)) volume volume := by
-  haveI a0_ : SFinite (volume : Measure (ℝ)) := inferInstance
-  haveI a1_ : SFinite (volume : Measure (ℂ)) := inferInstance
-  haveI a2_ : SFinite (volume : Measure (Fin j → ℂ)) := inferInstance
-  haveI a3_ : SFinite (volume : Measure (Fin j → ℝ)) := inferInstance
-  haveI a4_ : SFinite (volume : Measure (G.UT j → ℂ)) := inferInstance
-  haveI a5_ : SFinite (volume : Measure (Fin (2 * ρ + k + 1) → ℂ)) := inferInstance
-  haveI a6_ : SFinite (volume : Measure (Fin (2 * ρ + k + 1) → Fin j → ℂ)) := inferInstance
-  haveI a7_ : SFinite (volume : Measure (Fin (2 * (1 + ρ) + k + 1) → Fin j → ℂ)) := inferInstance
-  haveI a8_ : SFinite (volume : Measure (Fin (2 * ρ + k + 1) → Fin 1 → ℂ)) := inferInstance
-  haveI a9_ : SFinite (volume : Measure (G.UT 1 → ℂ)) := inferInstance
-  haveI a10_ : SFinite (volume : Measure (Fin 1 → ℝ)) := inferInstance
   haveI a11_ : SFinite (volume : Measure (Fin 1 → Fin j → ℂ)) := inferInstance
-  haveI a12_ : SFinite (volume : Measure (G.UT (j + 1) → ℂ)) := inferInstance
   haveI a13_ : SFinite (volume : Measure (Fin (j + 1) → ℝ)) := inferInstance
   haveI a14_ : SFinite (volume : Measure (Fin (2 * ρ + k + 1) → Fin (j + 1) → ℂ)) := inferInstance
   haveI hP : ∀ {α β : Type} [MeasureSpace α] [MeasureSpace β] [SFinite (volume : Measure α)]

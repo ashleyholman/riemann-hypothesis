@@ -996,7 +996,6 @@ theorem AffCover.geometricallyIntegral : ∀ (F Ω Ω' : Type) [Field F] [Field 
     obtain ⟨U, W, t, hU, hW, hz, hUW, ht, hR⟩ := h.2 z'
     have hWne : (W : Set M.Z).Nonempty := ⟨_, hUW z' hz⟩
     obtain ⟨i, hi, -⟩ := exists_openImmersion_tensor M hW hWne (IsPullback.of_hasPullback M.s (spMap (algebraMap F K)))
-    have : Nontrivial (M.ringOn W ⊗[F] K) := inferInstance
     have : IsIntegral (Sp (M.ringOn W ⊗[F] K)) := isIntegral_of_isOpenImmersion i
     have : IsDomain (M.ringOn W ⊗[F] K) := (affine_isIntegral_iff (CommRingCat.of _)).1 this
     have := isDomain_mvPolynomial_tensor (F := F) (M.ringOn W) K (Fin r)

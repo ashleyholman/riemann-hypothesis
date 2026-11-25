@@ -86,7 +86,6 @@ theorem exists_finite_frac (V' K' V'' L : Type) [CommRing V'] [IsDomain V'] [Fie
   let a₂ : Algebra K' L := j.toAlgebra
   have : IsScalarTower V' V'' L := IsScalarTower.of_algebraMap_eq' rfl
   have : IsScalarTower V' K' L := IsScalarTower.of_algebraMap_eq' t.symm
-  have : IsLocalization (Algebra.algebraMapSubmonoid V'' (nonZeroDivisors V')) L := inferInstance
   have h : Module.Finite K' L := Module.Finite.of_isLocalization V' V'' (nonZeroDivisors V')
   exact ⟨j, h, t⟩
 

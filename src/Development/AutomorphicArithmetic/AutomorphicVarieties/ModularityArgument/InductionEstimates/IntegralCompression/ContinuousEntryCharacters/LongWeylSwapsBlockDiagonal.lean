@@ -213,8 +213,6 @@ private theorem hm_haar : Haar4 hm ∧ hm.IsOpenPosMeasure := by
   haveI : hm.IsMulRightInvariant := by
     refine ⟨fun g => ?_⟩
     haveI : (Measure.map (· * g) hm).IsHaarMeasure := Measure.isHaarMeasure_map_mul_right hm g
-    haveI : IsProbabilityMeasure (Measure.map (· * g) hm) :=
-      inferInstance
     exact Measure.isHaarMeasure_eq_of_isProbabilityMeasure _ _
   haveI : hm.IsInvInvariant := by
     refine ⟨?_⟩

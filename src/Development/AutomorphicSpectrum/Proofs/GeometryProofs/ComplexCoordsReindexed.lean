@@ -31,7 +31,6 @@ theorem isUnit_natCast_of_local {A : Type*} [CommRing A] (φ : A →+* ℂ) [IsL
 
 theorem unitAt_centre {ξ' : Spec (CommRingCat.of Ω) ⟶ X'} (z : Spec (CommRingCat.of ℂ) ⟶ X')
     (h : genPt ξ' ⤳ centre z) (r : ℕ) (hr : r.Prime) : unitAt ξ' ⟨centre z, h⟩ (r : Ω) := by
-  have hz : IsLocalHom (Scheme.stalkClosedPointTo z).hom := inferInstance
   have hu : IsUnit ((r : X'.presheaf.stalk (centre z))) := isUnit_natCast_of_local (Scheme.stalkClosedPointTo z).hom r hr
   have hu' : IsUnit ((r : Ω)) := by
     have := hu.map (genMap ξ' ⟨centre z, h⟩)

@@ -45,11 +45,9 @@ theorem isUnit_cst_of_ne_zero {R : Type} [CommRing R] [IsDomain R] {Z : Scheme.{
 
 private theorem injective_app_pullback_fst_of_flat {R : Type} [CommRing R] [IsDomain R] (G : Over (Spec (CommRingCat.of R))) [Flat G.hom]
     (W : G.left.Opens) : Function.Injective ((pullback.fst G.hom (jK R)).app W).hom := by
-  haveI : QuasiCompact (pullback.fst G.hom (jK R)) := inferInstance
   haveI : IsSchemeTheoreticallyDominant (jK R) := by
     unfold jK
     exact SchemeDominantSpecMap.isSchemeTheoreticallyDominant_specMap _ (IsFractionRing.injective R (FractionRing R))
-  haveI : IsSchemeTheoreticallyDominant (pullback.fst G.hom (jK R)) := inferInstance
   exact Scheme.Hom.app_injective _ W
 
 private theorem isUnit_gs_scal_of_ne_zero {R : Type} [CommRing R] [IsDomain R] (D : DegPre R) (y : (D.BF (FractionRing R)).left)

@@ -595,7 +595,6 @@ private theorem autP (hP : _root_.UpperTheory.V.Af.HypothesesH') (hn : 1 ≤ n) 
       rw [← map_natCast (residue c.O), residue_eq_zero_iff]
       exact hmem
     have : CharP (c.O ⧸ maximalIdeal c.O) l := inferInstanceAs (CharP (ResidueField c.O) l)
-    have : PerfectRing (ResidueField c.O) l := inferInstance
     let lift := Perfection.lift l (ResidueField c.O) (c.O ⧸ maximalIdeal c.O)
     let j := lift (RingHom.id (ResidueField c.O))
     let τ := (Perfection.teichmuller l (maximalIdeal c.O)).comp j.toMonoidHom
@@ -708,7 +707,6 @@ theorem UpperTheory.V.Z.Desc.W.jTwist_of_alt : TypeGd → _root_.UpperTheory.V.Z
         rw [← map_natCast (residue c.O), residue_eq_zero_iff]
         exact hmem
       have : CharP (c.O ⧸ maximalIdeal c.O) l := inferInstanceAs (CharP (ResidueField c.O) l)
-      have : PerfectRing (ResidueField c.O) l := inferInstance
       let lift := Perfection.lift l (ResidueField c.O) (c.O ⧸ maximalIdeal c.O)
       let j := lift (RingHom.id (ResidueField c.O))
       let τ := (Perfection.teichmuller l (maximalIdeal c.O)).comp j.toMonoidHom

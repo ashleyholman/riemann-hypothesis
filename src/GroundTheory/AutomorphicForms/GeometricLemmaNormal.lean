@@ -528,7 +528,6 @@ theorem relIndex_inf_map_conj_diagPow (ν : Fin n → ℤ) :
   let μ : Measure (PatIdx T → F) := Measure.pi fun _ => GroundTheory.LocalField.haarIntegers F
   have := Measures.metrizableSpace F
   have := Measures.sigmaCompactSpace F
-  have : μ.Regular := inferInstance
   have hMc : IsCompact (M : Set (GL (Fin n) F)) := by
     rw [Subgroup.coe_map]
     exact (isCompact_inf_integralGL hT hTt hU hUc).image (conjHomeomorph _).continuous

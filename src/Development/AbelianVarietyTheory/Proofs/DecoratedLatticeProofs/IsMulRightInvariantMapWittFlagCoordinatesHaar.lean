@@ -121,12 +121,7 @@ theorem isMulRightInvariant_map_coord : ∀ (D : D7) (V V₀ : HSp D) (ρ : ℕ)
   have := vb.covol.1
   have := vU.unit.1
   have : vU.ν.IsMulRightInvariant := (GlobalTheory.UnitU.isUnitU_exists_unique_rightInvariant D ρ).2.2 _ vU.unit
-  have : SFinite vb.μ := inferInstance
-  have : SFinite vU.ν := inferInstance
-  have : MeasurableAdd₂ (Mx D ρ ρ) := inferInstance
   have : MeasurableAdd₂ (skewA D ρ) := measurableAdd₂_addSubgroup _
-  have : MeasurableAdd₂ (Mx D ρ V₀.rank) := inferInstance
-  have : MeasurableMul (UX D ρ) := inferInstance
   refine isMulRightInvariant_map _ e ?_
   rintro ⟨c', b', u'⟩
   refine ⟨_, measurePreserving_triple lC vb.μ vU.ν (measurable_shift V₀ ρ c' b') (continuous_UX_mul b').measurable u', ?_⟩

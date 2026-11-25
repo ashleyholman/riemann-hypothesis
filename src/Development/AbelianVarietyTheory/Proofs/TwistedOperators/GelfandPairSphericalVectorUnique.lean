@@ -225,8 +225,6 @@ theorem hecke_comm (K : Subgroup G) (θ : G → G) (hmul : ∀ x y, θ (x * y) =
   haveI : (M.comap ψ).FiniteIndex := ⟨by
     rw [Subgroup.index_comap_of_surjective _ hψ.surjective]; exact Subgroup.FiniteIndex.index_ne_zero⟩
   let N : Subgroup K := M ⊓ M.comap ψ
-  haveI : N.Normal := inferInstance
-  haveI : N.FiniteIndex := inferInstance
   letI : Fintype (K ⧸ N) := Fintype.ofFinite _
   have hN : N ≤ N.comap ψ := by
     intro n hn

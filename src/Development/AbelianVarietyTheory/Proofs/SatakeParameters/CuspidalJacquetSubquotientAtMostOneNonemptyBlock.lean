@@ -33,7 +33,6 @@ theorem block_unique_of_isCuspidal : ∀ (k : Type) [Field k] [ValuativeRel k] [
   have hs := hσ.2 s' b f hU
   have hn := GlobalTheory.ProdSupport.nontrivial_piTensor X hX
   obtain ⟨S, g, hg⟩ := hsub
-  have hS : Subsingleton S.toSubmodule := inferInstance
   exact not_subsingleton _ (Function.Surjective.subsingleton hg)
 
 end GlobalTheory.SmGL.CuspRow

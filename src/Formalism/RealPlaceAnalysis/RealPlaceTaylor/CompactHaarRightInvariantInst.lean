@@ -108,8 +108,6 @@ lemma compact_haar_right_invariant (n : ℕ) (ε : Fin n → Bool) (k : KG ε) :
     unfold muK
     infer_instance
   have hm : Measurable (fun x : KG ε => x * k) := measurable_mul_const k
-  haveI : IsProbabilityMeasure (Measure.map (fun x => x * k) (muK ε)) :=
-    inferInstance
   haveI : IsMulLeftInvariant (Measure.map (fun x => x * k) (muK ε)) := by
     constructor
     intro g
@@ -129,8 +127,6 @@ theorem compact_haar_holds : KHaar := by
     unfold muK
     infer_instance
   refine ⟨compact_haar_probability n ε, fun k => map_mul_left_eq_self _ k, fun k => compact_haar_right_invariant n ε k, ?_⟩
-  haveI : IsProbabilityMeasure (Measure.map (fun x : KG ε => x⁻¹) (muK ε)) :=
-    inferInstance
   haveI : IsMulLeftInvariant (Measure.map (fun x : KG ε => x⁻¹) (muK ε)) := by
     constructor
     intro g

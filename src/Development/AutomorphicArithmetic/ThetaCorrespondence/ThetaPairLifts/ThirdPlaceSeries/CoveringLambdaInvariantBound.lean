@@ -690,7 +690,6 @@ theorem slopeMax_sq_span_le : ∀ (K K' V V' : Type) [Field K] [NumberField K] [
   haveI : Module.Finite K K' := Module.Finite.of_restrictScalars_finite ℚ K K'
   haveI : IsAlgClosure K (AlgebraicClosure K') := ⟨inferInstance, Algebra.IsAlgebraic.trans K K' _⟩
   let F : Type := IntermediateField.normalClosure K K' (AlgebraicClosure K')
-  haveI : IsGalois K F := inferInstance
   haveI : NumberField F := NumberField.of_module_finite K F
   have hL' := fg_span_image ι hL
   obtain ⟨M, hM, hM0, hMs⟩ := exists_slope_eq hN' hL' (span_image_ne_bot ι hli h0)

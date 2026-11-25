@@ -754,7 +754,6 @@ theorem dual_lattice_inclusion : DualIncl := by
       rw [hf] at hx'
       exact Submodule.span_mono (by rintro _ ⟨_, ⟨i, rfl⟩, rfl⟩; exact ⟨i, rfl⟩) hx'
     have : Module.Finite (𝓞 I.F) W := Module.Finite.span_of_finite _ (Set.finite_range _)
-    have : IsNoetherian (𝓞 I.F) W := inferInstance
     have : IsNoetherian (𝓞 I.F) N := isNoetherian_of_le hle
     have hN : N ≠ ⊥ := by
       intro h

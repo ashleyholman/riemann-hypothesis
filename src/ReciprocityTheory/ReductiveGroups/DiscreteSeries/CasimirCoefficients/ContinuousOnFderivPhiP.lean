@@ -229,7 +229,6 @@ lemma hasFDerivAt_intG [CompactSpace (KG ε)] (T : KType ε Λ) (μ : Fin n → 
     {z : Matrix (Fin n) (Fin n) ℂ} (hz : z ∈ Uset ε) :
     HasFDerivAt (fun x : 𝕄 => ∫ k, Gint T μ x k ∂(muK ε)) (∫ k, GintD T μ z k ∂(muK ε)) z := by
   have : IsFiniteMeasureOnCompacts (muK ε) := by unfold muK; infer_instance
-  have : IsFiniteMeasure (muK ε) := inferInstance
   have hU : IsOpen (Uset ε : Set 𝕄) := isOpen_Uset
   obtain ⟨r, hr, hball⟩ := Metric.isOpen_iff.mp hU z hz
   have hδ : (0 : ℝ) < r / 2 := half_pos hr

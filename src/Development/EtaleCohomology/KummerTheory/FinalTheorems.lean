@@ -18,11 +18,9 @@ abbrev SlShv (Λ : Type) [CommRing Λ] (S : Scheme.{0}) : Type 2 :=
   Sheaf (Scheme.etaleTopology.over S) (ModuleCat.{1} (ULift.{1} Λ))
 
 instance (Λ : Type) [CommRing Λ] (S : Scheme.{0}) : HasSheafify (Scheme.etaleTopology.over S) (ModuleCat.{1} (ULift.{1} Λ)) := by
-  have : EssentiallySmall.{1} (Over S) := inferInstance
   infer_instance
 
 instance (Λ : Type) [CommRing Λ] (S : Scheme.{0}) : IsGrothendieckAbelian.{1} (SlShv Λ S) := by
-  have : EssentiallySmall.{1} (Over S) := inferInstance
   exact Sheaf.isGrothendieckAbelian_of_essentiallySmall _ (ModuleCat.{1} (ULift.{1} Λ))
 
 def rst {X S : Scheme.{0}} (p : X ⟶ S) {V U : Over S} (g : V ⟶ U) : pullback p V.hom ⟶ pullback p U.hom :=

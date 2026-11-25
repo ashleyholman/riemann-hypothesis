@@ -968,7 +968,6 @@ theorem exists_piTensor_equiv : ∀ (s : ℕ) (Γ : Fin s → Type) [∀ a, Grou
   | zero =>
     intro Γ _ _ _ _ V _ _ ρ _ hi
     refine ⟨fun a => a.elim0, ?_⟩
-    haveI : Subsingleton (∀ a : Fin 0, Γ a) := inferInstance
     obtain ⟨f⟩ := exists_linearEquiv_of_subsingleton hi
     have h1 : ∀ (g : ∀ a : Fin 0, Γ a) (v : V), ρ g v = v := fun g v => by
       rw [Subsingleton.elim g 1, map_one]; rfl

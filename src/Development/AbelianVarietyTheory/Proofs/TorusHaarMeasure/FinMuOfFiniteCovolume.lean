@@ -91,12 +91,7 @@ theorem measurableSet_cellOver {r : ℕ} (X : Data E r) {x0 : Frame X.Ψ r} (ho 
     {FF : Set (V (nd X))} (hm : MeasurableSet FF) (hO : FF ⊆ OmF X x0) :
     MeasurableSet (cellOver X x0 FF) := by
   have _ := hO
-  have : TopologicalSpace.IsCompletelyMetrizableSpace (Fin r → Fin r → ℂ) := inferInstance
-  have : TopologicalSpace.IsCompletelyMetrizableSpace (Frame X.Ψ r) := inferInstance
   have : TopologicalSpace.SeparableSpace (Frame X.Ψ r) := inferInstance
-  have : PolishSpace (V (nd X)) := inferInstance
-  have : PolishSpace (Frame X.Ψ r) := inferInstance
-  have : PolishSpace (V (nd X) × Frame X.Ψ r) := inferInstance
   refine MeasurableSet.image_of_continuousOn_injOn (hm.prod (measurableSet_Bor X.Ψ)) ?_ ?_
   · refine (continuous_pi fun τ => ?_).continuousOn
     exact (((continuous_apply τ).comp ((FundSetPf.cont_cpt X x0).comp continuous_fst)).matrix_mul

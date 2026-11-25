@@ -29,7 +29,6 @@ theorem isIrreducible_fibre_pullback {X Y S : Scheme.{0}} (f : X ⟶ S) (g : Y �
   have h1 := irr f hf
   have h2 := irr g hg
   have h3 : GeometricallyIrreducible (pullback.snd f i) := geometricallyIrreducible_of_isAlgClosed _
-  have h4 : IrreducibleSpace ↥(pullback (pullback.snd f i) (pullback.snd g i)) := inferInstance
   let m := pullback.map (pullback.snd f i) (pullback.snd g i) f g (pullback.fst f i) (pullback.fst g i) i
     pullback.condition.symm pullback.condition.symm
   have hm : Set.range m = (pullback.fst f g ≫ f) ⁻¹' Set.range i := by

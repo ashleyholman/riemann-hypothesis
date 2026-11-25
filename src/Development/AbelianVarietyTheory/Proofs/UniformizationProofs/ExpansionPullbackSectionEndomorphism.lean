@@ -101,7 +101,6 @@ theorem term_eq_zero [IsNoetherianRing R] (hI : I ≤ Ideal.jacobson ⊥) (k : �
     (x : IntSec U k × ∀ α, IntTerm D k α) (hx : x ∈ expansionPairs U k) (h : genericSec U k x.1 = 0) :
     x.2 α = 0 := by
   have := U.smooth
-  have : Flat G.hom := inferInstance
   have hd := GlobalTheory.ExtUnique.spec_fractionRing R (FractionRing R)
   have : IsSchemeTheoreticallyDominant (jK R) := hd.2
   have : QuasiCompact (jK R) := hd.1

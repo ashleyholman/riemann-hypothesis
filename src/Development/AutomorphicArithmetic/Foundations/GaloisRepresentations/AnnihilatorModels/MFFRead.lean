@@ -43,7 +43,6 @@ theorem etale_pullback_snd {S : Scheme.{0}} (A : Over S) [GrpObj A] [IsCommMonOb
     rw [hi, map_one] at h
     exact h.symm
   obtain ⟨j, hj, -⟩ := GlobalTheory.LatticeTorsion.existsUnique_torsion A' c i' hi'
-  have : Mono i' := inferInstance
   have hjm : Mono j := mono_of_mono_fac hj
   have hjml : Mono j.left := inferInstanceAs (Mono ((Over.forget _).map j))
   have hju : FormallyUnramified j.left := inferInstance
@@ -52,7 +51,6 @@ theorem etale_pullback_snd {S : Scheme.{0}} (A : Over S) [GrpObj A] [IsCommMonOb
     exact MorphismProperty.comp_mem @FormallyUnramified _ _ hju inferInstance
   have : Flat K'.hom := by change Flat (pullback.snd K.hom y); infer_instance
   have : IsFinite K'.hom := by change IsFinite (pullback.snd K.hom y); infer_instance
-  have : LocallyOfFinitePresentation K'.hom := inferInstance
   exact Etale.of_formallyUnramified_of_flat K'.hom
 
 theorem finrank_eq_card : ∀ (S : Scheme.{0}) (A : Over S) [GrpObj A] [IsCommMonObj A], IsAbelianScheme A → ∀ (K : Over S) (i : K ⟶ A) (c : ℕ), Mono i → IsFinite K.hom → Flat K.hom → i ^ c = 1 → ∀ (k : Type) [Field k] [IsAlgClosed k], (c : k) ≠ 0 → ∀ (y : Sp k ⟶ S) (z : Sp k), K.hom.finrank (y z) = Nat.card (Over.mk y ⟶ K) := by

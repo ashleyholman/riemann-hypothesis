@@ -166,7 +166,6 @@ private theorem exists_eq_of_prod {M : Type} [Monoid M] {n : ℕ} (f g : Fin n �
     (h : ∀ x, ∏ j, (X - C (f j x)) = ∏ j, (X - C (g j x))) (j : Fin n) : ∃ i, g i = f j := by
   have hc := GlobalTheory.CharDeg.card_fiber_eq_of_sum_eq f g (fun x => GlobalTheory.CharDeg.sum_eq_of_prod_eq _ _ (h x)) (f j)
   haveI : Nonempty {i // f i = f j} := ⟨⟨j, rfl⟩⟩
-  haveI : Finite {i // g i = f j} := inferInstance
   have hpos : 0 < Nat.card {i // g i = f j} := hc ▸ Nat.card_pos
   obtain ⟨⟨i, hi⟩⟩ := (Nat.card_pos_iff.1 hpos).1
   exact ⟨i, hi⟩

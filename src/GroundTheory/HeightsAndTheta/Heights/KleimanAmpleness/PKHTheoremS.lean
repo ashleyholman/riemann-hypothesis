@@ -158,7 +158,6 @@ theorem KHTheoremS.proof (hFree : KH.TheoremSFreeStatement) (hSES : KH.CechSESSt
   ·
 
     intro d
-    have : IsNoetherianRing (MRingOver S ι) := inferInstance
     let c₁ : ℕ := (c₃ + ∑ k, |d k|).toNat
     let diag : M →ₗ[MRingOver S ι] KH.CechC S ι M 0 :=
       LinearMap.pi fun I => LocalizedModule.mkLinearMap (KH.cellMon S I.1) M

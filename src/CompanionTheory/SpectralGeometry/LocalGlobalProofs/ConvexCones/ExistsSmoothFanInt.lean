@@ -98,7 +98,6 @@ theorem hasRedCover_int : ∀ (X : Type) [AddCommGroup X] [Module.Finite ℤ X] 
   obtain ⟨X₁, _, m₁, hproj, r, B₁, hr, hB₁, hp₁, hBr⟩ := hB
   obtain rfl : m₁ = AddCommGroup.toIntModule X₁ := Subsingleton.elim _ _
   have : Module.Finite ℤ X₁ := Module.Finite.of_surjective r hr
-  have : Module.Free ℤ X₁ := inferInstance
   obtain ⟨σ, hσ⟩ := Module.projective_lifting_property r LinearMap.id hr
   have hrσ : ∀ y, r (σ y) = y := fun y => LinearMap.congr_fun hσ y
   obtain ⟨b, d, d', u, t, hd, -, -, hg, -⟩ :=
@@ -616,13 +615,11 @@ namespace GlobalTheory.CompanionTheory.Ar.Fan
 theorem hasRedCover_int_proj (Y : Type) [AddCommGroup Y] [m : Module ℤ Y] [Module.Finite ℤ Y] [Module.Projective ℤ Y] :
     HasRedCover (id : ℤ → ℤ) Y := by
   obtain rfl : m = AddCommGroup.toIntModule Y := Subsingleton.elim _ _
-  have : Module.Free ℤ Y := inferInstance
   exact hasRedCover_int Y
 
 theorem dominates_int_proj (Y : Type) [AddCommGroup Y] [m : Module ℤ Y] [Module.Finite ℤ Y] [Module.Projective ℤ Y] :
     Dominates (id : ℤ → ℤ) Y := by
   obtain rfl : m = AddCommGroup.toIntModule Y := Subsingleton.elim _ _
-  have : Module.Free ℤ Y := inferInstance
   exact _root_.GlobalTheory.CompanionTheory.Ar.Fan.dominates_int Y
 
 theorem exists_smooth_fan_int : ∀ g : ℕ, ∃ φ : InvFun ℤ, IsPolFan id g φ ∧ NoSelfInt id g φ := by

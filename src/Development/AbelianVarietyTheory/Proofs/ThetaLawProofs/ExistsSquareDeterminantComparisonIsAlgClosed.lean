@@ -171,7 +171,6 @@ theorem exists_enum_ker_transpose : Out.Laws → ∀ (K : Type) [Field K] [IsAlg
   classical
   haveI := x.P.isAb.comm
   haveI := x.P.isAb.smooth
-  haveI : LocallyOfFiniteType x.P.A.hom := inferInstance
   have hm0 : m ≠ 0 := by
     rintro rfl
     exact hm Nat.cast_zero

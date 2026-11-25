@@ -72,7 +72,6 @@ theorem card_dvd_minkM : Formalism.HermitianLatticeCounting.S6.MinkowskiBound �
   have : Module.Finite (𝓞 E) L := Module.Finite.iff_fg.2 hfg
   have : Module.Finite ℤ L := Module.Finite.trans (𝓞 E) L
   have : HasUniqueDiv V := HasUniqueDiv.of_isTorsionFree E V
-  have : Module.Free ℤ L := inferInstance
   rw [← finrank_int_eq L hL]
   let b := Module.finBasis ℤ L
   let r : G →* Module.End ℤ L :=

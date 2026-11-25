@@ -196,7 +196,6 @@ theorem IsOrdAbove.unique {v : HeightOneSpectrum (𝓞 F)} (hv : v ∉ S)
     (IntermediateField.normalClosure_le_iff_of_normal (K₂ := maxUnramifiedOutside F Ω S)).2 (sup_le hEle hE'le)
   have hEM : E ≤ M := le_sup_left.trans (IntermediateField.le_normalClosure _)
   have hE'M : E' ≤ M := le_sup_right.trans (IntermediateField.le_normalClosure _)
-  have : FiniteDimensional F M := inferInstance
   have : IsGalois F M := ⟨⟩
   have := NumberField.of_module_finite F M
   obtain ⟨W, hW, hWx⟩ := exists_place_valuation_eq_of_le S hEM hMle w (hw ▸ hv)

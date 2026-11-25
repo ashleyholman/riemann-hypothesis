@@ -25,7 +25,6 @@ theorem adicCompletion_trace_norm_continuous : ∀ (K L : Type) [Field K] [Numbe
   letI := f.toAlgebra
   intro hfd
   letI : NontriviallyNormedField (v.adicCompletion K) := Valued.toNontriviallyNormedField _ _
-  haveI : CompleteSpace (v.adicCompletion K) := inferInstance
   haveI : ContinuousSMul (v.adicCompletion K) (v'.adicCompletion L) := continuousSMul_of_algebraMap _ _ hf
   refine ⟨LinearMap.continuous_of_finiteDimensional _, ?_⟩
   let b := Module.finBasis (v.adicCompletion K) (v'.adicCompletion L)

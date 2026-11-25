@@ -61,7 +61,6 @@ theorem frame_at_of_smooth [IsCommMonObj G] (hs : Smooth G.hom) (M : LieModel G 
   letI : Algebra Γ(X, U) Γ(G.left, W) := (G.hom.appLE U W e).hom.toAlgebra
   haveI : Algebra.IsStandardSmooth Γ(X, U) Γ(G.left, W) := hsm
   haveI : Nonempty W := ⟨⟨s p.1, hx⟩⟩
-  haveI : Nontrivial Γ(G.left, W) := inferInstance
   let c := Module.finBasis Γ(G.left, W) Ω[Γ(G.left, W)⁄Γ(X, U)]
   obtain ⟨d, w, hd⟩ := exists_isCoord c
   have hc : IsChart (A := Γ(X, U)) (B := Γ(G.left, W)) hW.fromSpec hU.fromSpec :=

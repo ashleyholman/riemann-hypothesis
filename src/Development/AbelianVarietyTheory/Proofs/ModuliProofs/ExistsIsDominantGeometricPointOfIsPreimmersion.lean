@@ -62,7 +62,6 @@ theorem exists_opens_isOpenImmersion_extending_section : ∀ (X U : Scheme.{0}) 
   let W : Y.Opens :=
     IsNormalScheme.component ⟨_, irreducibleComponent_mem_irreducibleComponents y⟩
   have hy : y ∈ W := mem_irreducibleComponent
-  have : IsIntegral W.toScheme := inferInstance
   let q : W.toScheme ⟶ X := W.ι ≫ p
   have := isDominant_pullback_fst_of_isOpenMap j q q.isOpenMap
   have : ∀ z, IsIso ((pullback.fst q j).stalkMap z) :=

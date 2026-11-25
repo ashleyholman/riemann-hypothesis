@@ -851,9 +851,6 @@ theorem weil_formula : ∀ (G X : Type) [Group G] [TopologicalSpace G] [IsTopolo
   have : LocallyCompactSpace (MulAction.stabilizer G x₀) := hemb.locallyCompactSpace
   have : SecondCountableTopology (MulAction.stabilizer G x₀) :=
     hemb.isEmbedding.secondCountableTopology
-  have : SigmaCompactSpace (MulAction.stabilizer G x₀) := inferInstance
-  have : IsLocallyFiniteMeasure μ' := inferInstance
-  have : SigmaFinite μ' := inferInstance
   have hae : ∀ᵐ y ∂ν, ∃ g : G, g • x₀ = y := hnull
   have hΦ : Measurable fun p : X × MulAction.stabilizer G x₀ => s₀ p.1 * (p.2 : G) :=
     (hs₀m.comp measurable_fst).mul (measurable_subtype_coe.comp measurable_snd)

@@ -21,7 +21,6 @@ def OsConcrete (D : D7) : Prop :=
 theorem OsRingOfIntegers_of_concrete (D : D7) (h : OsConcrete D) : OsRingOfIntegers D := by
   obtain ⟨hinj, K, hK⟩ := h
   letI : NumberField D.what₂.LL := D.nfLL
-  haveI : FiniteDimensional ℚ K := inferInstance
   haveI : NumberField K := { to_charZero := inferInstance, to_finiteDimensional := inferInstance }
   let g : 𝓞 K →+* D.what₂.LL := (algebraMap K D.what₂.LL).comp (algebraMap (𝓞 K) K)
   have hg : Function.Injective g :=

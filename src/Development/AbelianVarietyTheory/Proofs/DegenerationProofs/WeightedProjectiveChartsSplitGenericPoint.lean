@@ -1014,7 +1014,6 @@ theorem exists_rep [IsAffine S] [LocallyOfFiniteType H.hom] (C : Charts H.left) 
   let inc : W ⟶ H := Over.homMk (C.W a).ι rfl
   have : IsAffine W.left := C.aff a
   have : LocallyOfFiniteType W.hom := inferInstanceAs (LocallyOfFiniteType ((C.W a).ι ≫ H.hom))
-  have : QuasiCompact W.hom := inferInstance
   let X : Over S := W ⊗ W ⊗ W
   have hX₁ : LocallyOfFiniteType X.hom := by
     change LocallyOfFiniteType (pullback.fst W.hom (pullback.fst W.hom W.hom ≫ W.hom) ≫ W.hom)
@@ -1294,7 +1293,6 @@ theorem zero_rep {S : Scheme.{0}} (X : Over S) [LocallyOfFiniteType X.hom] [Quas
       have h' : y.left ≫ AffineSpace.homOfVector X.hom p = y.left ≫ AffineSpace.homOfVector X.hom q :=
         AffineSpace.hom_ext (by simp) fun i => (e p i).trans ((h i).trans (e q i).symm)
       exact Over.OverMorphism.ext h'
-  have : IsClosedImmersion (equalizer.ι f g).left := inferInstance
   refine ⟨equalizer f g, equalizer.ι f g, ?_, ?_, (key _ _).1 (equalizer.condition f g), fun Y y h =>
     ⟨equalizer.lift y ((key _ _).2 h), equalizer.lift_ι _ _⟩⟩
   · rw [← Over.w (equalizer.ι f g)]; infer_instance

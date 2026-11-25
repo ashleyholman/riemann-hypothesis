@@ -232,7 +232,6 @@ theorem exists_emb_through_coeff : ∀ (E : Type) [Field E] [NumberField E] [IsC
   have hle : Nat.card (E →+* ℂ_[p]) ≤ Nat.card (E →+* ℂ) := by
     rw [Nat.card_eq_fintype_card, Nat.card_eq_fintype_card, NumberField.Embeddings.card E ℂ,
       NumberField.Embeddings.card E ℂ_[p]]
-  haveI : Finite (E →+* ℂ_[p]) := inferInstance
   obtain ⟨τ, hτ⟩ := (hinj.bijective_of_nat_card_le hle).2 s
   exact ⟨τ, hτ.symm⟩
 

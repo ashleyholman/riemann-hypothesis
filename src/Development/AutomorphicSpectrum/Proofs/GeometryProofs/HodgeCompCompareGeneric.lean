@@ -88,7 +88,6 @@ theorem image_eq_of_domBy : ∀ (E : Type) [Field E] [NumberField E] [IsCMField 
     rw [this, Category.id_comp, hξ]
     simp only [Category.assoc]
   have hbase : (z ≫ 𝔐.f) ≫ Y.s = (z₀ ≫ 𝔐₀.f) ≫ Y.s := by
-    have hsepZ : IsSeparated (specZIsTerminal.from (Sp (𝓞 c.F))) := inferInstance
     refine ext_of_isDominant_of_isSeparated (X := Sp W) (specZIsTerminal.from (Sp (𝓞 c.F)))
       (specZIsTerminal.hom_ext _ _) (spMap W.subtype) ?_
     simp only [← Category.assoc] at hgen ⊢

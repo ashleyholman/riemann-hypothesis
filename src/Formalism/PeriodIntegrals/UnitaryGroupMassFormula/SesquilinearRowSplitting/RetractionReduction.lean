@@ -63,7 +63,6 @@ theorem retraction_reduction : RetrStep := by
   intro E V _ _ _ _ _ _ Λ N hNΛ hfg hsat
   let N' : Submodule (𝓞 E) Λ := N.comap Λ.subtype
   have : Module.Finite (𝓞 E) Λ := Module.Finite.iff_fg.mpr hfg
-  haveI : Module.Finite (𝓞 E) (Λ ⧸ N') := inferInstance
   haveI : NoZeroSMulDivisors (𝓞 E) (Λ ⧸ N') := by
     refine ⟨fun {o q} hq => ?_⟩
     by_cases ho : o = 0

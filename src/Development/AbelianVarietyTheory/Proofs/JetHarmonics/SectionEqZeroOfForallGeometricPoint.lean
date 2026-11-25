@@ -46,7 +46,6 @@ theorem eq_zero_of_forall_point (O F : Type) [CommRing O] [Field F] [IsAlgClosed
 
 theorem finite_algHom (O F : Type) [CommRing O] [Field F] [Algebra O F] (A : Type) [CommRing A]
     [Algebra O A] [Module.Finite O A] : Finite (A →ₐ[O] F) := by
-  have : Finite (TensorProduct O F A →ₐ[F] F) := inferInstance
   exact Finite.of_equiv _ (Algebra.TensorProduct.liftEquivRight O F A F).symm
 
 theorem affine_case (O F : Type) [CommRing O] [Field F] [IsAlgClosed F] [Algebra O F]

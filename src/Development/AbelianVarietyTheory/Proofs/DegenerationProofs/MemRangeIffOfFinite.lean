@@ -487,7 +487,6 @@ theorem exists_finite_normal_containing : ∀ (R₁ : Type) [CommRing R₁] [IsD
   haveI : FiniteDimensional K K₂ :=
     IntermediateField.finiteDimensional_adjoin (fun x _ => Algebra.IsIntegral.isIntegral x)
   haveI : CharZero K := IsFractionRing.charZero_of_isFractionRing R₁
-  haveI : Algebra.IsSeparable K K₂ := inferInstance
   let R₂ := integralClosure R₁ K₂
   haveI : IsFractionRing R₂ K₂ := IsIntegralClosure.isFractionRing_of_finite_extension R₁ K K₂ R₂
   haveI hfin : Module.Finite R₁ R₂ := IsIntegralClosure.finite R₁ K K₂ R₂

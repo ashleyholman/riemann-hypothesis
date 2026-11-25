@@ -192,7 +192,6 @@ theorem exists_generic_mem_nonzeroLocus : ∀ (R : Type) [CommRing R] [IsDomain 
   haveI hN : IsLocallyNoetherian (Sp R) := by unfold Sp; infer_instance
   haveI hGI : GeometricallyIntegral G.hom :=
     GlobalTheory.geometricallyIntegral_of_smooth_of_geometricallyConnected_fibres G.hom
-  haveI hGR : GeometricallyReduced G.hom := inferInstance
   haveI hRed : AlgebraicGeometry.IsReduced G.left :=
     GeometricallyReduced.isReduced_of_flat_of_isLocallyNoetherian G.hom
   have hgen : GeneralizingMap G.hom.base := Flat.generalizingMap G.hom

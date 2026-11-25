@@ -118,7 +118,6 @@ theorem wqUnique_of (hw : QmuWeight) (hl : QmuLift) : PI.WeilQuotMeas.WqUnique :
   have hν : ν.IsHaarMeasure := by rw [hνdef]; infer_instance
   haveI := hν
   haveI : SecondCountableTopology H := TopologicalSpace.Subtype.secondCountableTopology (H : Set G)
-  haveI : SigmaFinite ν := inferInstance
   obtain ⟨w, hwm, hwW⟩ := hw G H hH ν hν
   obtain ⟨l, hlI, hlF, hlW⟩ := hl G H hH ν hν ρ hK hinv
   obtain ⟨l', hlI', hlF', hlW'⟩ := hl G H hH ν hν ρ' hK' hinv'

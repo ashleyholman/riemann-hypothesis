@@ -118,7 +118,6 @@ theorem exists_ext_frac {A B : Type} [CommRing A] [IsDomain A] [CommRing B] [IsD
     ∃ g : FractionRing B →+* ℂ, ∀ a : A, g (algebraMap B _ (algebraMap A B a)) = f (algebraMap A _ a) := by
   letI : Algebra A ℂ := (f.comp (algebraMap A (FractionRing A))).toAlgebra
   haveI : Algebra.IsIntegral A B := Algebra.IsIntegral.of_finite A B
-  haveI : Algebra.IsAlgebraic A B := inferInstance
   haveI : Algebra.IsAlgebraic B (FractionRing B) := IsLocalization.isAlgebraic _ (nonZeroDivisors B)
   haveI : Algebra.IsAlgebraic A (FractionRing B) := Algebra.IsAlgebraic.trans A B (FractionRing B)
   have hA : Function.Injective (algebraMap A (FractionRing B)) := by

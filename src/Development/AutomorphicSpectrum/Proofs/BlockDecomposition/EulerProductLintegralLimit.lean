@@ -85,9 +85,6 @@ theorem measurableSet_primV (F E : Type) [Field F] [NumberField F] [Field E] [Nu
     (d : ℕ) (b : Module.Basis (Fin d) F E) (v : HeightOneSpectrum (𝓞 F)) :
     MeasurableSet (primV σ J b v) := by
   haveI := GlobalTheory.AdelicUnitaryTop.properSpace_adicCompletion F v
-  haveI : LocallyCompactSpace (Fv F v) := inferInstance
-  haveI : SecondCountableTopology (Fv F v) := inferInstance
-  haveI : T2Space (Fv F v) := inferInstance
   obtain ⟨-, -, -, t2, -⟩ := GlobalTheory.CompanionTheory.SW.TopK.topTens_props F E σ hσ (Fv F v)
   haveI := t2
   obtain ⟨-, lc, sc, -, -, hact⟩ := GlobalTheory.CompanionTheory.SW.TopH.topH_props F E σ hσ (M + 2) (hypOne J)

@@ -28,7 +28,6 @@ theorem UpperTheory.V.Ws.Pt.cycIne :
   obtain ⟨σ, hσI, hσu⟩ := GlobalTheory.CycInertia.cycZ_Ine_surjective Ω l A hA u
   let ι : F →ₐ[ℚ] Ω := IsScalarTower.toAlgHom ℚ F Ω
   let f : ℕ → (F →ₐ[ℚ] Ω) := fun k => ((σ ^ k : Ω ≃ₐ[ℚ] Ω) : Ω →ₐ[ℚ] Ω).comp ι
-  haveI : Finite (F →ₐ[ℚ] Ω) := inferInstance
   obtain ⟨a, b, hab, he⟩ := Finite.exists_ne_map_eq_of_infinite f
   have key : ∀ a b : ℕ, a < b → f a = f b →
       ∃ N : ℕ, 0 < N ∧ ∀ x : F, (σ ^ N) (algebraMap F Ω x) = algebraMap F Ω x := by

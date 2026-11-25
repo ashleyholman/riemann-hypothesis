@@ -1371,7 +1371,6 @@ theorem quotLIntegral_eq_tsum [SecondCountableTopology G] [T2Space G]
   haveI : μH.IsInvInvariant := by
     letI : CommGroup H := { (inferInstance : Group H) with
       mul_comm := fun a b => Subtype.ext (hcomm a a.2 b b.2) }
-    haveI : μH.Regular := inferInstance
     exact Measure.IsHaarMeasure.isInvInvariant_of_regular μH
   have hFm : Measurable Fn := measurable_of_right_invariant hU hFU
   rw [quotLIntegral_eq hFm hFH (rho_isQuotNormaliser hU hUc hH hcomm hcov huniq)]
@@ -1403,7 +1402,6 @@ theorem h2U : PositivityTheory.Rg.Tf.Loc.QuotientIntegralCompactOpen := by
   haveI := GlobalTheory.CompanionTheory.GLMeasure.secondCountable_GL F n
   obtain ⟨_, _⟩ := GlobalTheory.CompanionTheory.GLMeasure.secondCountable_t2_local_field F
   haveI : T2Space (Matrix (Fin n) (Fin n) F) := inferInstanceAs (T2Space (Fin n → Fin n → F))
-  haveI : T2Space (GL (Fin n) F) := inferInstance
   exact quotLIntegral_eq_tsum μG H μH U hUo hUc hH hcomm Fn hFH hFU Rp hcov huniq
 
 end GlobalTheory.CompanionTheory.QuotU

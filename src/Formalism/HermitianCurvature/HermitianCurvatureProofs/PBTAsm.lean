@@ -847,12 +847,8 @@ theorem mp_rearr (S : B.RealPlaceData k r Wp Wq) (w : Equiv.Perm (Fin (r + 1))) 
   haveI : IsFiniteMeasureOnCompacts S.μW' := ⟨fun K hK => S.haarW'.finite_compact K hK⟩
   haveI : IsFiniteMeasureOnCompacts μ0 := ⟨fun K hK => hμ0.finite_compact K hK⟩
   haveI : IsFiniteMeasureOnCompacts μ0' := ⟨fun K hK => hμ0'.finite_compact K hK⟩
-  haveI t1 : SFinite S.μW := inferInstance
   haveI t2 : SFinite μ0 := inferInstance
-  haveI t5 : SFinite S.μW' := inferInstance
   haveI t6 : SFinite μ0' := inferInstance
-  haveI t3 : SFinite (volume : Measure (C2.LPidx w → ℂ)) := inferInstance
-  haveI t4 : SFinite (volume : Measure (G.UT (r + 1) → ℂ)) := inferInstance
   have h1 := (inE_mp S.μW (volume : Measure (C2.LPidx w → ℂ)) μ0).prod
     (inE_mp S.μW' (volume : Measure (G.UT (r + 1) → ℂ)) μ0')
   have h2 := _root_.Formalism.FourierDecayAlt.P.Dx2.SL.measurePreserving_prod_middle_swap (volume : Measure (C2.LPidx w → ℂ)) (S.μW.prod μ0)

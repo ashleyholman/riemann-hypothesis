@@ -496,7 +496,6 @@ theorem mem_of_dense_of_forall_specializes {X : Scheme.{0}} [IsLocallyNoetherian
   obtain ⟨V, hV, hzV, -⟩ := exists_isAffineOpen_mem_and_subset (X := X) (U := ⊤) (x := z) trivial
   have : IsAffine V := hV
   have : IsNoetherian V.toScheme := {}
-  have : NoetherianSpace V.toScheme := inferInstance
   let z' : V.toScheme := ⟨z, hzV⟩
   have hC := irreducibleComponent_mem_irreducibleComponents z'
   obtain ⟨o, ho, ⟨u, huo⟩, hoC⟩ :=

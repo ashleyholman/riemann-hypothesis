@@ -68,7 +68,6 @@ theorem exists_cover_irr : ∀ (R K : Type) [CommRing R] [IsDomain R] [IsDiscret
   obtain ⟨-, hn, hl⟩ := GlobalTheory.isReduced_isNormalScheme_isLocallyNoetherian_of_smooth_over_field
     ((Sp R).residueField c) (f.fiber c) (f.fiberToSpecResidueField c) hs
   have hn' : GlobalTheory.IsNormalScheme (f.fiber c) := GlobalTheory.IsNormalScheme.of_pred hn
-  have : CompactSpace (f.fiber c) := inferInstance
   have : IsNoetherian (f.fiber c) := {}
   have hfin : (irreducibleComponents (f.fiber c)).Finite :=
     TopologicalSpace.NoetherianSpace.finite_irreducibleComponents

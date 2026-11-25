@@ -1423,7 +1423,6 @@ theorem quotientByFiniteFlat_of_freeQuotient (hF : GlobalTheory.CompanionTheory.
   obtain ⟨hq1, hq2, hq3⟩ := hT.isFiniteLocallyFree hG
   have hq4 := hT.surjective
   have hq : IsPullback ((fst _ A ≫ h) * snd _ A) (snd _ A) q q := hgam ▸ hT.1
-  have hqc : QuasiCompact q.left := inferInstance
   obtain ⟨inst, hcomm, hhom, hker⟩ := GlobalTheory.AbelianQuotient.exists_grpObj h q hq
   have hw : q.left ≫ Y.hom = A.hom := Over.w q
   have hsnd : IsFinite (snd (sp (R₀ := R) B) A).left := by

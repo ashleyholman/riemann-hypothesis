@@ -59,7 +59,6 @@ theorem setIntegral_add_right {nS nT : ℕ} (ν : Measure (WOF F E nS nT)) (𝓕
     ⟨fun a r x => add_left_comm a (r : WOF F E nS nT) x⟩
   haveI : Countable (ratLF F E nS nT) := by
     haveI : Countable E := by
-      haveI : FiniteDimensional ℚ E := inferInstance
       exact ((Module.finBasis ℚ E).equivFun).injective.countable
     have : Countable (Matrix (Fin nT) (Fin nS) E) := inferInstanceAs (Countable (Fin nT → Fin nS → E))
     exact (Set.countable_range ((incAF F E).toAddMonoidHom.mapMatrix (m := Fin nT) (n := Fin nS))).to_subtype

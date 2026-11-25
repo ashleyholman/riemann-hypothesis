@@ -478,7 +478,6 @@ theorem minpolyCoeff : LateralTheory.E.E4.LeafMinpolyCoeff := by
   intro k L _ _ _ s hs F hF x hx i
   subst hF
   have : UniqueFactorizationMonoid (Algebra.adjoin k {s}) := hs.uniqueFactorizationMonoid_adjoin
-  have : IsIntegrallyClosed (Algebra.adjoin k {s}) := inferInstance
   rw [minpoly.isIntegrallyClosed_eq_field_fractions' (IntermediateField.adjoin k {s}) hx, coeff_map]
   exact ((minpoly (Algebra.adjoin k {s}) x).coeff i).2
 

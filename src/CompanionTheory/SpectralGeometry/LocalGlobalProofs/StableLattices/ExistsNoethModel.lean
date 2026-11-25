@@ -64,7 +64,6 @@ theorem relAmple_of_span {S S' : Type} [CommRing S] [CommRing S'] (τ : S →+* 
     Out.RelAmple (Over.mk (pullback.snd B.hom (spMap τ))) (M.pull (pullback.fst B.hom (spMap τ))) := by
   let f := pullback.snd B.hom (spMap τ)
   have : IsProper (Over.mk f).hom := inferInstanceAs (IsProper f)
-  have : IsProper f := inferInstance
   have hB := IsPullback.of_hasPullback B.hom (spMap τ)
   refine GlobalTheory.AmpleLocal.relAmple_of_locally (Sp S') (Over.mk f) _ (pull_isLB hM _) inferInstance inferInstance
     fun s => ?_

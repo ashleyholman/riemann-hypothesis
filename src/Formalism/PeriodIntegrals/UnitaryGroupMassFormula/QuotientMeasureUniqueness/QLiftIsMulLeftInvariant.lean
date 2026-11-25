@@ -210,8 +210,6 @@ theorem qmuLift : QmuLift := by
   intro G _ _ _ _ _ _ _ _ H hH ν hν ρ hρK hρg
   have : LocallyCompactSpace H := hH.isClosedEmbedding_subtypeVal.locallyCompactSpace
   have : SecondCountableTopology H := TopologicalSpace.Subtype.secondCountableTopology (H : Set G)
-  have : SigmaCompactSpace H := inferInstance
-  have : SigmaFinite ν := inferInstance
   exact ⟨qLift ν ρ, qLift_isMulLeftInvariant ν ρ hρg,
     qLift_finite hH ν ρ hρK, fun f hf => lintegral_qLift ν ρ hf⟩
 

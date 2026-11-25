@@ -48,8 +48,6 @@ theorem isAffineOpen_domain_of_isPullback (hU : IsAffineOpen U) (B : BlowupChart
     (hB : IsPullback B.chart.map (π.resLE U B.domain B.domain_le) (coordBlowupSubstMap k m S s) c.map) :
     IsAffineOpen B.domain := by
   have hUaff : IsAffine U.toScheme := hU
-  have hA : IsAffine (affineSpaceFin k m) := inferInstance
-  have hP : IsAffine (Limits.pullback (coordBlowupSubstMap k m S s) c.map) := inferInstance
   exact IsAffine.of_isIso hB.isoPullback.hom
 
 theorem quotientMk_comp_appLE_eq_zero_of_mem (hU : IsAffineOpen U) (Z : X.IdealSheafData)

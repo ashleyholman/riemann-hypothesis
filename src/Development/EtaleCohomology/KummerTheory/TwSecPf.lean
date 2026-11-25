@@ -31,7 +31,6 @@ theorem mem_max_iff {A B : Type} [CommRing A] [CommRing B] [IsLocalRing A] [IsLo
 
 theorem henselian_of_equiv {A B : Type} [CommRing A] [CommRing B] (e : A ≃+* B) [hA : HenselianLocalRing A] :
     HenselianLocalRing B := by
-  haveI : Nontrivial A := inferInstance
   haveI : Nontrivial B := e.injective.nontrivial
   haveI : IsLocalRing B := IsLocalRing.of_surjective' (e : A →+* B) e.surjective
   refine { is_henselian := ?_ }

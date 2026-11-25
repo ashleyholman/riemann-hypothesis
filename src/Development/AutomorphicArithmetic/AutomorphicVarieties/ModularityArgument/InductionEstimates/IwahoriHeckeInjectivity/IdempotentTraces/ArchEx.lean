@@ -723,7 +723,6 @@ theorem UpperTheory.V.Z.InvariantSubmoduleMonicPolynomial.EA.vecEx :
     exact FiniteDimensional.of_injective f fun a b h =>
       Subtype.ext (Subtype.ext (congrArg (fun z : A => (z : AdelicGLn.AdelicGL K 2 → ℂ)) h))
   let Y : Submodule ℂ (LL μ) := W.map (Dp.clsL μ)
-  haveI hYfd : FiniteDimensional ℂ Y := inferInstance
   have hcen : ∀ ψ ∈ W, ψ ∈ centralCuspForms K 2 := fun ψ h => h.1.1
   have hYσ : ∀ (k : archCompact K 2), ∀ y ∈ Y, rightRegularRep (Gam K 2) μ (arc1 k) y ∈ Y := by
     rintro k _ ⟨ψ, hψ, rfl⟩

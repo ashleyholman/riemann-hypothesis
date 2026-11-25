@@ -339,7 +339,6 @@ theorem torsion_of_tate {E : Type} [Field E] [NumberField E] [IsCMField E] (H : 
     haveI : Module.Finite (𝓞 E) D.La := D.fin
     haveI : Module.Finite ℤ D.La := Module.Finite.trans (𝓞 E) D.La
     haveI : Module.Flat ℤ D.La := Module.Flat.trans ℤ (𝓞 E) D.La
-    haveI : Module.Free ℤ D.La := inferInstance
     obtain ⟨h, hh⟩ := Module.projective_lifting_property (Int.castAddHom (ZMod N)).toIntLinearMap
       ((AddMonoidHom.mulLeft v).comp ψ).toIntLinearMap (fun z => by
         obtain ⟨w, hw⟩ := ZMod.intCast_surjective z

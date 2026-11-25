@@ -392,7 +392,6 @@ theorem weight : ∀ (k : Type) [Field k] [IsAlgClosed k] (X : Type) [AddCommGro
   let H := splitTorus (Sp k) X
   obtain ⟨_, _⟩ := GlobalTheory.TrivDescentCompare.smooth_conn T
   obtain ⟨_, _⟩ := GlobalTheory.TrivDescentCompare.smooth_conn (TQ.torus (Sp k) X)
-  have : TwoUniqueSums X := inferInstance
   have : Smooth (H ⊗ G).hom := inferInstanceAs (Smooth (pullback.fst H.hom G.hom ≫ H.hom))
   have : GeometricallyConnected (pullback.fst H.hom G.hom) :=
     MorphismProperty.of_isPullback (P := @GeometricallyConnected) (IsPullback.of_hasPullback H.hom G.hom).flip ‹_›

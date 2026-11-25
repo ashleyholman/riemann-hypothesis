@@ -88,7 +88,6 @@ theorem UpperTheory.V.Loc.potCrysOf :
     exact isCompact_iff_compactSpace.1 Bw.Kw.1.fixingSubgroup_isClosed.isCompact
   haveI : CompactSpace ↥(Dec (F := F) (placeJ j)) :=
     Bw.e.symm.surjective.compactSpace Bw.e_symm_cont
-  haveI : T2Space ↥(Dec (F := F) (placeJ j)) := inferInstance
   let r₀ := r.comp (Dec (F := F) (placeJ j)).subtype
   have hc0 : Continuous fun g => ((r₀ g : GL (Fin n) (Om l)) : Matrix (Fin n) (Fin n) (Om l)) :=
     Units.continuous_val.comp (hr.comp continuous_subtype_val)
@@ -108,7 +107,6 @@ theorem UpperTheory.V.Loc.potCrysOf :
     intro x
     rw [hφψ, AlgEquiv.commutes]
   have h : Bw.Kw.1 ≤ K.1 := by
-    have : IsGalois ℚ_[l] (Om l) := inferInstance
     rw [← InfiniteGalois.fixedField_fixingSubgroup K.1, ← InfiniteGalois.fixedField_fixingSubgroup Bw.Kw.1]
     exact IntermediateField.fixedField_le hle
   refine ⟨K, h, ?_⟩

@@ -107,7 +107,6 @@ theorem mem_of_forall_ringEquiv_fixed {Ω : Type} [Field Ω] [IsAlgClosed Ω] [C
     simp at this
   · have hcA : IsAlgebraic k c := by simpa [Transcendental] using hc
     have hzA : c ∈ algebraicClosure k Ω := (mem_algebraicClosure_iff).2 hcA
-    have : IsGalois k (algebraicClosure k Ω) := inferInstance
     obtain ⟨r, hr⟩ := (InfiniteGalois.mem_range_algebraMap_iff_fixed
       (k := k) (K := algebraicClosure k Ω) ⟨c, hzA⟩).2 (by
         intro σ₀

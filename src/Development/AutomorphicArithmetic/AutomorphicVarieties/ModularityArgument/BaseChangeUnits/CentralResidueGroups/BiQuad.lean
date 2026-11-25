@@ -57,7 +57,6 @@ private theorem exists_compositum (k K K' Ω : Type) [Field k] [Field K] [Field 
   haveI : IsGalois k b.fieldRange := IsGalois.of_algEquiv b.equivFieldRange
   haveI : FiniteDimensional k M := IntermediateField.finiteDimensional_sup _ _
   haveI : Normal k M := IntermediateField.normal_sup k Ω _ _
-  haveI : Algebra.IsSeparable k M := inferInstance
   haveI : IsGalois k M := ⟨⟩
   refine ⟨M, inferInstance, inferInstance, iK, iK', inferInstance, t1, t2, t3, t4, inferInstance, ?_, ?_⟩
   · refine { is_comm := ⟨fun σ τ => ?_⟩ }
@@ -69,7 +68,6 @@ private theorem exists_compositum (k K K' Ω : Type) [Field k] [Field K] [Field 
 
 private theorem abelian_of_two (K : Type) [Field K] [NumberField K] (h : Module.finrank ℚ K = 2) : IsAbelianGalois ℚ K := by
   haveI : Algebra.IsQuadraticExtension ℚ K := ⟨h⟩
-  haveI : IsCyclic (K ≃ₐ[ℚ] K) := inferInstance
   exact IsAbelianGalois.of_isCyclic ℚ K
 
 end UpperTheory.V.Z.Bc

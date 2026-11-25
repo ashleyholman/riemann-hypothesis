@@ -19,7 +19,6 @@ theorem UpperTheory.V.Tower.cycRange :
   have hmu := muQ L Ω l
   haveI : IsAlgClosed Ω := IsAlgClosure.isAlgClosed L
   haveI : CharZero Ω := charZero_of_injective_algebraMap (algebraMap L Ω).injective
-  haveI : IsGalois L Ω := inferInstance
   haveI : NeZero (l : Ω) := ⟨by exact_mod_cast (Fact.out : l.Prime).ne_zero⟩
   haveI : NeZero l := ⟨(Fact.out : l.Prime).ne_zero⟩
   have hinj := (algebraMap L Ω).injective

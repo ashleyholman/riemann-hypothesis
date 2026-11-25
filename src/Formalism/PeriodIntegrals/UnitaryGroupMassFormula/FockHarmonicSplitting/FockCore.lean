@@ -87,7 +87,6 @@ lemma exists_orth [Fintype σ] (K : Submodule ℂ (MvPolynomial σ ℂ)) (n : �
   letI : InnerProductSpace ℂ (FockV σ) := by
     first
     | exact InnerProductSpace.ofCore (fockCore (σ := σ)).toCore
-  haveI hproj : K'.HasOrthogonalProjection := inferInstance
   let g : FockV σ := f
   let P := K'.orthogonalProjection g
   have hP : ∀ x ∈ K', inner ℂ x (g - (P : FockV σ)) = 0 := by

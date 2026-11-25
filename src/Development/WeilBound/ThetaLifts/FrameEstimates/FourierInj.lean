@@ -31,7 +31,6 @@ theorem polish_of_lc (G : Type) [AddCommGroup G] [TopologicalSpace G] [IsTopolog
   have : IsUniformAddGroup G := isUniformAddGroup_of_addCommGroup
   have : CompleteSpace G := IsRightUniformAddGroup.completeSpace_of_weaklyLocallyCompactSpace G
   have : (uniformity G).IsCountablyGenerated := IsUniformAddGroup.uniformity_countably_generated
-  have : TopologicalSpace.IsCompletelyMetrizableSpace G := inferInstance
   infer_instance
 
 variable {X A : Type} [TopologicalSpace X] [PolishSpace X] [MeasurableSpace X] [BorelSpace X]

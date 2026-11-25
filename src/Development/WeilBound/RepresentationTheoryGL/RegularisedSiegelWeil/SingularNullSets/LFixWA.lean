@@ -354,8 +354,6 @@ theorem ft_good (Q : Matrix (Fin r) (Fin r) D.host.E) (hQ : Q.det ≠ 0) (hψ : 
   refine ⟨S₁ ∪ S₂, fun S hS e he n μ hμ Φ hΦ => ?_⟩
   obtain ⟨i1, -⟩ := GlobalTheory.TowerRestrict.lattice_Mx D r n
   have : BorelSpace (Mx D r n) := ⟨rfl⟩
-  have : MeasurableAdd (Mx D r n) := inferInstance
-  have : μ.IsAddRightInvariant := inferInstance
   have h1 := hS₁ S (fun v h => hS (Finset.mem_union_left _ h)) n
   have h2 := hS₂ S (fun v h => hS (Finset.mem_union_right _ h)) n
   change Good S e (fun x => ∫ y, Φ y * kap ψ Q x y ∂μ)

@@ -119,8 +119,6 @@ lemma exists_comb {X : Type} [AddCommGroup X] [Module.Finite ℤ X] (S : X →+ 
   let S' : X →ₗ[ℤ] X →ₗ[ℤ] ℂ := LinearMap.mk₂ ℤ (fun x y => S x y) (by simp) (by simp) (by simp) (by simp)
   let L := TensorProduct.lift S'
   let M := LinearMap.range L
-  haveI : Module.Finite ℤ M := inferInstance
-  haveI : Module.Free ℤ M := inferInstance
   let b := Module.finBasis ℤ M
   let f : X → X → M := fun x y => ⟨S x y, x ⊗ₜ y, by simp [L, S']⟩
   refine ⟨_, fun i => (b i : ℂ), fun i => LinearMap.mk₂ ℤ (fun x y => b.repr (f x y) i) ?_ ?_ ?_ ?_, ?_, ?_⟩

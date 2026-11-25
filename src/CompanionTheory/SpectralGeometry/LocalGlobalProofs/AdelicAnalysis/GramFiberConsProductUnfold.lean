@@ -115,7 +115,6 @@ theorem measurable_chi (D : StageData σ J t n b lam m₁ m' s B₀ a κ₁ cm)
   obtain ⟨h1, h2, h3, h4, h5, hact⟩ := _root_.GlobalTheory.CompanionTheory.SW.TopH.topH_props F E σ D.hCM (M + 1) _ hJ' R
   have hact' := (hact n).1.measurable
   obtain ⟨hK, -, -⟩ := _root_.GlobalTheory.CompanionTheory.SW.coord_measures_haar F E σ D.hCM R d b lam D.hlam
-  haveI : SigmaFinite (coordK R b lam) := inferInstance
   haveI : SigmaFinite (coordW R b lam n M) := by unfold coordW; infer_instance
   have hG : Measurable fun q : ((Fin 1 → Fin (M + 1) → R ⊗[F] E) × (Fin n → R ⊗[F] E)) ×
       (Fin n → Fin M → R ⊗[F] E) =>

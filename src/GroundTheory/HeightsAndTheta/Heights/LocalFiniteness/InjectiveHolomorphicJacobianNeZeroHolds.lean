@@ -358,7 +358,6 @@ theorem CMHeightAddDim.proof (hreg : CMRegularElement.Statement.{u}) : CMHeightA
   refine le_antisymm ?_ ?_
   ·
     have : Nontrivial (B ⧸ J) := Ideal.Quotient.nontrivial_iff.mpr hJ
-    have : Nonempty (PrimeSpectrum (B ⧸ J)) := inferInstance
     rw [show ringKrullDim (B ⧸ J) = Order.krullDim (PrimeSpectrum (B ⧸ J)) from rfl,
       Order.krullDim_eq_iSup_coheight_of_nonempty, ← WithBot.coe_add, ENat.add_iSup,
       WithBot.coe_iSup (OrderTop.bddAbove _)]

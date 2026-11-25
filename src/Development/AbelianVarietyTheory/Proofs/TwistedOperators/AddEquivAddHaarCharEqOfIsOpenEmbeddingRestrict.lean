@@ -35,7 +35,6 @@ theorem addEquivAddHaarChar_eq_of_isOpenEmbedding :
   let μ : Measure G := Measure.addHaar
   let ν : Measure G' := μ.comap j
   haveI : ν.IsAddHaarMeasure := Measure.IsAddHaarMeasure.comap (mH := inferInstance) μ hj
-  haveI : ν.Regular := inferInstance
   have hjm : ∀ s, MeasurableSet s → MeasurableSet ((j : G' → G) '' s) :=
     fun s hs => hj.measurableEmbedding.measurableSet_image' hs
   have hem : ∀ s, MeasurableSet s → MeasurableSet ((e : G → G) '' s) :=

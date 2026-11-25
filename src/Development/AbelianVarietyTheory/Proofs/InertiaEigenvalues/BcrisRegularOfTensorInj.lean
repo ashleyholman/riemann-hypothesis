@@ -325,8 +325,6 @@ theorem exists_isPrimitiveRoot_tilt (l : ℕ) [hl : Fact l.Prime] (m : ℕ) (hm 
 theorem nonempty_algClosure_zmod_to_tilt :
     ∀ (l : ℕ) [Fact l.Prime], Nonempty (AlgebraicClosure (ZMod l) →+* Per.Fl l) := by
   intro l hl
-  haveI : IsDomain (Per.Fl l) := inferInstance
-  haveI : CharP (Per.Fl l) l := inferInstance
   let Ω := AlgebraicClosure (FractionRing (Per.Fl l))
   let j : Per.Fl l →+* Ω :=
     (algebraMap (FractionRing (Per.Fl l)) Ω).comp (algebraMap (Per.Fl l) (FractionRing (Per.Fl l)))
@@ -383,7 +381,6 @@ theorem σC_root_of_unity {m n : ℕ} {g : GQ l} (hm : 0 < m) (hg : ∀ x : Om l
 
 theorem tilt_root_eq_one {c : Per.Fl l} {m : ℕ} (hlm : ¬ l ∣ m) (hc : c ^ m = 1)
     (h0 : PreTilt.coeff 0 c = 1) : c = 1 := by
-  have : IsDomain (Per.Fl l) := inferInstance
   by_contra hne
   have h1 : (∑ i ∈ Finset.range m, c ^ i) * (c - 1) = 0 := by rw [geom_sum_mul, hc, sub_self]
   have h2 : (∑ i ∈ Finset.range m, c ^ i) = 0 :=

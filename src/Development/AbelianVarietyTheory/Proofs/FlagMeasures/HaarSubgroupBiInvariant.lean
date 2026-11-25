@@ -114,8 +114,6 @@ theorem unimodular_of_contracted {G : Type} [Group G] [TopologicalSpace G] [IsTo
     rw [hE.comap_apply]
     exact (hK.image continuous_subtype_val).measure_lt_top⟩
   haveI : NeZero μ := ⟨fun h => hne (by rw [← hμ, h, Measure.map_zero])⟩
-  haveI : TopologicalSpace.PseudoMetrizableSpace N := inferInstance
-  haveI : μ.Regular := inferInstance
   haveI : μ.IsHaarMeasure := {}
   have hmod : ∀ g : N, modularCharacterFun g = 1 := by
     intro g

@@ -1601,7 +1601,6 @@ theorem normDescent : ∀ (K E : Type) [Field K] [NumberField K] [Field E] [Numb
   haveI := 𝔓.isMaximal
   set q := 𝔓.asIdeal with hq
   set p := q.under (𝓞 K) with hpd
-  haveI : p.IsMaximal := inferInstance
   have hrel : Ideal.relNorm (𝓞 K) q = p ^ q.inertiaDeg (𝓞 K) := Ideal.relNorm_eq_pow_of_isMaximal q p
   have hab : Ideal.absNorm q = Ideal.absNorm p ^ q.inertiaDeg (𝓞 K) := by
     rw [← map_pow Ideal.absNorm p, ← hrel, Ideal.absNorm_relNorm]

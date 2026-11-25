@@ -1265,8 +1265,6 @@ theorem vol_cube (r : ℕ) {R : ℝ} (hR : 0 ≤ R) :
   rw [ENNReal.ofReal_pow (by positivity)]
 
 theorem sfinite_PPar (k r : ℕ) : SFinite (volume : Measure (PPar k r)) := by
-  have : SFinite (volume : Measure (Fin r → Fin (k + 1) → ℂ)) := inferInstance
-  have : SFinite (volume : Measure ((UT r → ℂ) × (Fin r → ℝ))) := inferInstance
   infer_instance
 
 theorem vol_PPar (k r : ℕ) (S : Set (Fin r → Fin (k + 1) → ℂ)) (T : Set (UT r → ℂ)) (U : Set (Fin r → ℝ)) :

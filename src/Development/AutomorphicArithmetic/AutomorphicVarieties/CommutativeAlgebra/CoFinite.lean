@@ -91,7 +91,6 @@ theorem UpperTheory.V.Alg.co_finite :
   haveI : IsNoetherianRing R := IsCO.toIsNoetherian (O := O)
   haveI : IsNoetherian R R' := inferInstance
   haveI hN : IsNoetherianRing R' := isNoetherian_of_tower R this
-  haveI : Algebra.IsIntegral R R' := inferInstance
   haveI hcompl : IsAdicComplete (maximalIdeal R) R := IsCO.complete (O := O)
   have hcomap : ∀ P : Ideal R', P.IsPrime → maximalIdeal R ≤ P.comap (algebraMap R R') → P = maximalIdeal R' := by
     intro P hP hle

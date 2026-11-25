@@ -446,7 +446,6 @@ theorem tendsto_truncSum : Equi → CountBd → ∀ (F : Type) [Field F] [Number
   have : LocallyCompactSpace (Ainf F) := hlocI.2.1
   have : SecondCountableTopology (Ainf F) := hlocI.2.2.1
   have := hli.1
-  have : SigmaFinite li := inferInstance
   have hsf : ∀ v, SigmaFinite (lam v) := fun v => by
     have hloc : IsLocR (Fv F v) := GlobalTheory.CompanionTheory.SW.LocFv.isLocR_Fv F v
     have : BorelSpace (Fv F v) := ⟨rfl⟩

@@ -155,7 +155,6 @@ theorem weilUnit_eq_of_weilIs (c : CubicalStr G L) (N : ℕ) {T : Over S} [Subsi
     have g := fun b => (gm_pull (𝟙 V.toScheme) V.ι ⟨p, hp⟩ ⊤ trivial b).trans (by rw [Category.id_comp])
     exact (g _).symm.trans (this.trans (g _))
   apply Units.ext
-  have hi : IsIso (V.ι.stalkMap (show V.toScheme from ⟨p, hp⟩)) := inferInstance
   apply (ConcreteCategory.bijective_of_isIso (V.ι.stalkMap (show V.toScheme from ⟨p, hp⟩))).1
   have s : ∀ b : Γ(T.left, ⊤)ˣ, (V.ι.stalkMap ⟨p, hp⟩).hom (gm (𝟙 T.left) p ⊤ b).val = (gm V.ι ⟨p, hp⟩ ⊤ b).val := fun b => by
     rw [gm_val _ p ⊤ trivial, gm_val V.ι ⟨p, hp⟩ ⊤ trivial]

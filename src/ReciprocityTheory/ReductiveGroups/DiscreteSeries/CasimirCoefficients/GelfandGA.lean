@@ -191,7 +191,6 @@ theorem psM_contDiffOn {ε : Fin n → Bool} {Λ : Fin n → ℝ} (T : KType ε 
     ContDiffOn ℂ ∞ (psM T μ) (Ps1.Uset ε) := by
   have := compactSpace_KG ε
   have : IsFiniteMeasureOnCompacts (muK ε) := by unfold muK; infer_instance
-  have : IsFiniteMeasure (muK ε) := inferInstance
   have hφ : ContDiffOn ℂ ∞ (Ps1.PhiP μ) (OmegaSet n : Set 𝕄) := fun z hz =>
     (contDiffAt_phiM μ hz).contDiffWithinAt
   have hL : Continuous (Lop T) :=

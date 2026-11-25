@@ -145,7 +145,6 @@ theorem GlobalTheory.CompanionTheory.SW.EulerInt.euler_int : ∀ (F E : Type) [F
     exact ⟨K.2.2.1, K.2.2.2.2.2.2.2.1 n M⟩
   haveI : ∀ v : HeightOneSpectrum (𝓞 F), SecondCountableTopology (Fv F v ⊗[F] E) := fun v => (KVb v).1
   haveI : ∀ v : HeightOneSpectrum (𝓞 F), BorelSpace (Fin n → Fin M → Fv F v ⊗[F] E) := fun v => (KVb v).2
-  haveI : SigmaFinite minf := inferInstance
   haveI : ∀ v, SigmaFinite (m v) := fun v => inferInstance
   obtain ⟨-, hsum, S₀, hEP⟩ := hEu
   have hbad := hpure.2.1

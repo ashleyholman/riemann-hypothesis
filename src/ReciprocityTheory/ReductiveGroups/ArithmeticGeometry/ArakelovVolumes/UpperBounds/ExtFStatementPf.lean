@@ -23,8 +23,6 @@ def chartE (X : Data E r) : Frame X.Ψ r ≃L[ℂ] V (Module.finrank ℂ (Frame 
   ContinuousLinearEquiv.ofFinrankEq (finrank_euclideanSpace_fin).symm
 
 theorem haar_frame (X : Data E r) : (volume : Measure (Frame X.Ψ r)).IsAddHaarMeasure := by
-  haveI h0 : (volume : Measure ℂ).IsAddHaarMeasure := inferInstance
-  haveI h0' : SigmaFinite (volume : Measure ℂ) := inferInstance
   haveI h1 : (volume : Measure (Fin r → ℂ)).IsAddHaarMeasure := by
     rw [volume_pi]; exact Measure.pi.isAddHaarMeasure _
   haveI h2 : (volume : Measure (Fin r → Fin r → ℂ)).IsAddHaarMeasure := by

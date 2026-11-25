@@ -62,7 +62,6 @@ theorem kappa_real {F : Type} [Field F] [NumberField F] (ψ : AddChar (AF F) ℂ
     κ.im = 0 ∧ 0 ≤ κ.re := by
   haveI : BorelSpace (AF F) := ⟨rfl⟩
   haveI : SecondCountableTopology (fixE ε) := TopologicalSpace.Subtype.secondCountableTopology _
-  haveI : OpensMeasurableSpace (fixE ε × fixE ε) := inferInstance
   have hψn : ∀ x, ‖ψ x‖ = 1 := hψ.2.1
   have hconj : ∀ x, (starRingEnd ℂ) (ψ x) = ψ (-x) := by
     intro x
@@ -470,9 +469,6 @@ theorem oneD : OneD := by
   haveI := hν
   haveI : SecondCountableTopology (fixE ε) := TopologicalSpace.Subtype.secondCountableTopology _
   haveI : SecondCountableTopology (AddMonoidHom.mulLeft ε).ker := TopologicalSpace.Subtype.secondCountableTopology _
-  haveI : SigmaCompactSpace (fixE ε) := inferInstance
-  haveI : SigmaCompactSpace (AddMonoidHom.mulLeft ε).ker := inferInstance
-  haveI : SigmaFinite ν := inferInstance
   obtain ⟨c, hc, hdec⟩ := decomp (AddMonoidHom.mulLeft ε) hp hpp db ν (Measure.addHaar)
   have hloc := fun v => GlobalTheory.CompanionTheory.SW.LocFv.isLocR_Fv F v
   haveI : ∀ v : HeightOneSpectrum (𝓞 F), IsTopologicalRing (Fv F v) := fun v => (hloc v).1

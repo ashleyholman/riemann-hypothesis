@@ -309,7 +309,6 @@ private theorem smallF_change (ν : kˣ →* ℂˣ) (a' d : ℕ) (Ψ : Matrix (F
   unfold smallF
   obtain ⟨_, _⟩ := Model.secondCountable_and_t2_local_field (k := k)
   have : BorelSpace (GL (Fin a') k) := borel_GL
-  have : MeasurableMul (GL (Fin a') k) := inferInstance
   rw [← integral_mul_left_eq_self (μ := haarVol (KO k (Fin a'))) (fun y : GL (Fin a') k =>
     Ψ (y.val * (Y * M)) * (ν (gdet y) : ℂ) * apow (gdet y) ((Fintype.card (Fin d) : ℂ) / 2)) g, ← integral_const_mul]
   congr 1

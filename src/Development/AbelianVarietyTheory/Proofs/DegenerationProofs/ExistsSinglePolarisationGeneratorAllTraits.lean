@@ -83,7 +83,6 @@ theorem exists_finite_normal_adjoin_algebraic :
     IntermediateField.adjoin (FractionRing R) {s}
   have : FiniteDimensional (FractionRing R) L :=
     IntermediateField.adjoin.finiteDimensional (Algebra.IsIntegral.isIntegral s)
-  have : Algebra.IsSeparable (FractionRing R) L := inferInstance
   have hfin : Module.Finite R (integralClosure R L) :=
     IsIntegralClosure.finite R (FractionRing R) L (integralClosure R L)
   have hfr : IsFractionRing (integralClosure R L) L :=

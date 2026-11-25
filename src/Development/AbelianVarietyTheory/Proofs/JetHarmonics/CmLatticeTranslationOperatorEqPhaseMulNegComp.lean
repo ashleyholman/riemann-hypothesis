@@ -364,7 +364,6 @@ theorem exists_theta_eq_sum_prod : ∀ (q : ℕ) (g : ℕ) (S : Setup g) (x : Fi
     rw [map_nsmul, Pi.smul_apply, nsmul_eq_mul, Basic.cmLatticeHermitianForm_mul_left, natCast_mul_im]
     ring
   have := hS.2.2.2.1
-  have : Module.Finite ℤ S.La := inferInstance
   have : AddGroup.FG S.La := Module.Finite.iff_addGroup_fg.1 inferInstance
   have := AddSubgroup.finiteIndex_range_nsmulAddMonoidHom_of_fg S.La hN0
   have : A.FiniteIndex := AddSubgroup.finiteIndex_of_le (H := (nsmulAddMonoidHom (∏ j, a j)).range) (by

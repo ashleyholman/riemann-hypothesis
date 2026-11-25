@@ -78,7 +78,6 @@ theorem length_le {C S : Type} [AddCommGroup C] [Module O C] [Module ℤ_[l] C] 
     (h : ∀ x, Ψ x = 0 → x ∈ B) :
     Module.length O C ≤ Module.length O B +
       Module.length O (O ⧸ Ideal.span {(l : O)}) * Module.length ℤ_[l] S := by
-  haveI : IsLocalHom (algebraMap ℤ_[l] O) := inferInstance
   rw [Module.length_eq_add_of_exact B.subtype B.mkQ B.subtype_injective B.mkQ_surjective
     (LinearMap.exact_subtype_mkQ B)]
   refine add_le_add le_rfl ?_
@@ -97,7 +96,6 @@ theorem length_le {C S : Type} [AddCommGroup C] [Module O C] [Module ℤ_[l] C] 
   have h3 := h1.trans h2
   rw [← length_quot O, IsLocalRing.length_restrictScalars ℤ_[l] O (C ⧸ B),
     IsLocalRing.length_restrictScalars ℤ_[l] O (O ⧸ Ideal.span {(l : O)}), mul_right_comm] at h3
-  haveI : Module.Finite (IsLocalRing.ResidueField ℤ_[l]) (IsLocalRing.ResidueField O) := inferInstance
   refine (ENat.mul_le_mul_right_iff ?_ ?_).1 h3
   · exact Module.length_pos.ne'
   · exact Module.length_ne_top

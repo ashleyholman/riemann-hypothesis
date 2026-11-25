@@ -83,7 +83,6 @@ theorem induced_eq (H : Subgroup G) (hcl : IsClosed (H : Set G)) (μ : Measure G
   have : LocallyCompactSpace H := hcl.isClosedEmbedding_subtypeVal.locallyCompactSpace
   have : SecondCountableTopology H := Topology.IsEmbedding.subtypeVal.secondCountableTopology
   have : SigmaCompactSpace H := sigmaCompactSpace_of_locallyCompact_secondCountable
-  have : SFinite ν := inferInstance
   have hmulc : ∀ x : G, Measurable (fun h : H => x * (h : G)) := fun x =>
     (continuous_const.mul continuous_subtype_val).measurable
   set κ : G ⧸ H → Measure G := fun q => ν.map (fun h : H => q.out * (h : G)) with hκdef

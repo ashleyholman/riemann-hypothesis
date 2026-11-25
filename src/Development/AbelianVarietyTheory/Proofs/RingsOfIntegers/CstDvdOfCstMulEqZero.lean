@@ -194,7 +194,6 @@ theorem expandsAtUpTo_succ {V : Type} [CommRing V] [IsDomain V] [IsDiscreteValua
     (h : ExpandsAtUpTo U (e + 1) k σ f S (ϖ * c)) : ExpandsAtUpTo U e k σ f S c := by
   intro y J hJ
   have : Smooth G.hom := U.smooth
-  have : Flat G.hom := inferInstance
   have hq : thickMap V (maximalIdeal V) e G ≫ pGl U (e + 1) = pGl U e := U.gt_q e
   have hf : thickMap V (maximalIdeal V) e G ≫ fGl (maximalIdeal V) G (e + 1) = fGl (maximalIdeal V) G e :=
     thickMap_comp_fGl _ e G

@@ -191,7 +191,6 @@ theorem isRadical_ideal_of_restrictIdeal_eq_coordIdeal {X : Scheme.{u}} {k : Typ
     have : q.IsPrime := hq.isPrime
     have := isRegularLocalRing_localization_atPrime_etale k (n - S.card)
       (Γ(X, U) ⧸ Z.ideal ⟨U, hU⟩) q
-    have : IsDomain (Localization.AtPrime q) := inferInstance
     exact ⟨fun x hx => hx.eq_zero⟩
   exact (Ideal.isRadical_iff_quotient_reduced _).mpr hred
 

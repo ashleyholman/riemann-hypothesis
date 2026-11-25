@@ -354,7 +354,6 @@ theorem fin_right {G : Type} [Group G] [TopologicalSpace G] [IsTopologicalGroup 
   have hU : (ν.map (· * g)) univ = ν univ := by
     rw [Measure.map_apply hg MeasurableSet.univ, preimage_univ]
   have hu0 : ν univ ≠ 0 := fun h => h0 (Measure.measure_univ_eq_zero.1 h)
-  have hfin : IsFiniteMeasure (ν.map (· * g)) := inferInstance
   rw [measure_eq_div_smul (ν.map (· * g)) ν (s := univ) hu0 (measure_ne_top ν univ), hU,
     ENNReal.div_self hu0 (measure_ne_top ν univ), one_smul]
 

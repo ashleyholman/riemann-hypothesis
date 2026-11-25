@@ -13,7 +13,6 @@ theorem iterLine_of_isPullback {S P : Scheme.{0}} {q : P ⟶ S} (hq : IterLine q
   induction hq with
   | iso e he =>
     intro X P' g a q' h
-    have : IsIso (pullback.snd e g) := inferInstance
     have hq' : q' = h.isoPullback.hom ≫ pullback.snd e g := (IsPullback.isoPullback_hom_snd h).symm
     rw [hq']
     exact IterLine.iso _ inferInstance

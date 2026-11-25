@@ -144,7 +144,6 @@ private theorem unit_pow {v : HeightOneSpectrum (𝓞 E)} {p : ℕ} (hp : ((p : 
   have hM : ∃ M : ℕ, 0 < M ∧ Valued.v ((x : v.adicCompletion E) ^ M - 1) < 1 := by
     let O := v.adicCompletionIntegers E
     let y : O := ⟨x, hx.le⟩
-    haveI : Finite (IsLocalRing.ResidueField O) := inferInstance
     obtain ⟨a, b, hab, e⟩ := Finite.exists_ne_map_eq_of_infinite fun n : ℕ => IsLocalRing.residue O (y ^ n)
     wlog hlt : a < b generalizing a b
     · exact this b a hab.symm e.symm (lt_of_le_of_ne (not_lt.1 hlt) hab.symm)

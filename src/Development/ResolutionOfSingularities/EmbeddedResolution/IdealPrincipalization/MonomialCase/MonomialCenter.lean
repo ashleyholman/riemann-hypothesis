@@ -155,8 +155,6 @@ theorem orderAt_eq_sum_indicator_support (hGeom : MonomialGeometryHypotheses.{u}
   classical
   have : CharZero T.base := hT.valid.charZero
   have : AlgebraicGeometry.Smooth T.structMap := hT.valid.smooth
-  have : AlgebraicGeometry.Smooth U.ι := inferInstance
-  have : AlgebraicGeometry.Smooth (U.ι ≫ T.structMap) := inferInstance
   have h1 : orderAt (T.ideal.comap U.ι) ⟨x, hx⟩ = orderAt T.ideal x :=
     orderAt_comap T.base T.structMap U.ι T.ideal ⟨x, hx⟩
   have h2 : orderAt (T.ideal.comap U.ι) ⟨x, hx⟩

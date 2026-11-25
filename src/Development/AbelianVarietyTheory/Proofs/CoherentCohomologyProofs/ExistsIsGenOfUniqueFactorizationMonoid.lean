@@ -30,7 +30,6 @@ theorem invertible_of_isLocalizedModule_span {A M : Type*} [CommRing A] [AddComm
       Module.finitePresentation_of_projective _ _
   let d (r : s) : Module.Dual A M →ₗ[A] Module.Dual (B r) (N r) :=
     IsLocalizedModule.mapExtendScalars (.powers r.1) (j r) (Algebra.linearMap A (B r)) (B r)
-  have hd (r : s) : IsLocalizedModule (.powers r.1) (d r) := inferInstance
   have hd' (r : s) (ξ : Module.Dual A M) (m : M) : d r ξ (j r m) = algebraMap A (B r) (ξ m) :=
     IsLocalizedModule.map_apply (.powers r.1) (j r) (Algebra.linearMap A (B r)) ξ m
   let e (r : s) : Module.Dual (B r) (N r) ⊗[A] N r ≃ₗ[A] B r :=

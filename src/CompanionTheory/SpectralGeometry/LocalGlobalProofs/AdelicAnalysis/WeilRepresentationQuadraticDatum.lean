@@ -156,7 +156,6 @@ lemma pi_Gs (lf : Measure (A F)) (hlf : lf.IsAddHaarMeasure) (h1 : lf (Oh F) = 1
   obtain ⟨hlc, hsc, -⟩ := _root_.GlobalTheory.CompanionTheory.SW.Core.AfTop.finiteAdele_topology F
   haveI := hlc
   haveI := hsc
-  haveI : SigmaFinite lf := inferInstance
   have h := (_root_.GlobalTheory.CompanionTheory.SW.Core.PiScale.pi_scale F lf hlf h1 ι).1 g hg (Set.univ.pi fun _ => S)
     (MeasurableSet.univ_pi fun _ => hS)
   rw [Gs, h, Measure.pi_pi]
@@ -306,7 +305,6 @@ theorem naQuad : ∀ (F : Type) [Field F] [NumberField F] [MeasurableSpace (A F)
   haveI := hlc
   haveI := hsc
   haveI := ht2
-  haveI : SigmaFinite lf := inferInstance
   obtain ⟨hnorm, -, -⟩ := (_root_.GlobalTheory.CompanionTheory.SW.Core.StdChar.main F).2 ψ hψ
   obtain ⟨-, -, -, -, -, -, -, -, -, -, -, -, hL⟩ := _root_.GlobalTheory.CompanionTheory.SW.Core.SelfDual.finiteAdeles_selfDual F lf hlf h1 ψ hψ
   have hO : IsCompact (perp (fun x y => ψ (x * y)) (Oh F)) ∧

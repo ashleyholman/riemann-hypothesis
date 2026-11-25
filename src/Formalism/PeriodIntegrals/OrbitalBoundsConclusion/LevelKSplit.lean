@@ -1040,7 +1040,6 @@ theorem pres_snd
   have hc : Continuous e := continuous_psiE R1 R2
   have hcs : Continuous e.symm := continuous_psiE_symm R1 R2
   let P0 : Measure ((Fin M → R1 ⊗[F] E) × (Fin M → R2 ⊗[F] E)) := ν1.prod μ
-  have : P0.IsAddHaarMeasure := inferInstance
   let P : Measure (Fin M → (R1 × R2) ⊗[F] E) := P0.map e.symm
   have : P.IsAddHaarMeasure := e.symm.isAddHaarMeasure_map P0 hcs hc
   have hP := hV (lift R1 R2 σ J g) P inferInstance

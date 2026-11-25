@@ -461,7 +461,6 @@ theorem exists_lift_ext {k : Type} [Field k] {Y Z : Scheme.{0}} (f : Y ⟶ Z) (u
   · generalize z ≫ pullback.snd f u = a
     have : Surjective a := ⟨fun x => ⟨(default : PrimeSpectrum k'), Subsingleton.elim (α := PrimeSpectrum k) _ _⟩⟩
     have : Subsingleton (Sp k) := inferInstanceAs (Subsingleton (PrimeSpectrum k))
-    have : Flat a := inferInstance
     exact Flat.epi_of_flat_of_surjective a
   · rw [Category.assoc, Category.assoc, pullback.condition]
 
@@ -1013,7 +1012,6 @@ theorem exists_quotient_triple_family : ∀ (E : Type) [Field E] [NumberField E]
       rigid := ⟨t.PP.rig, t.PP.rigGen⟩, sym := sym_of_isSymmetric t.PP t.sym, ample := hamp, ktriv := hK }
   have hn : 0 < p ^ 2 := pow_pos hp 2
   have := hB.comm
-  have hred : IsReduced (Sp R) := inferInstance
   have hc : ∀ (k : Type) [Field k] [IsAlgClosed k] (x : Sp k ⟶ Sp R),
       Nat.card {z : Over.mk x ⟶ t.G // z ≫ ψ = 1} = (p ^ 2) ^ g := fun k _ _ x => by
     rw [← pow_mul]; exact (hker k x).1

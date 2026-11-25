@@ -117,7 +117,6 @@ theorem local_mass_le : ∀ (B : RowsAut) (U : Set B.I.GA), 1 ≤ B.I.n → IsCo
   obtain ⟨hl, hrt, -⟩ := _root_.GlobalTheory.AdelicUnimod.adelic_unimodular B.I B.μf
   have hfund := B.fund_spec
   have hD := hfd B.μf B.fund hfund
-  have : BorelSpace B.I.GA := inferInstance
   have : (B.I.muA B.μf).IsMulLeftInvariant := ⟨hl⟩
   have hr : ∀ y, ∃ γ : Γ, B.I.rep B.fund y = (γ : B.I.GA) * y ∧ B.I.rep B.fund y ∈ B.fund := by
     intro y
@@ -672,7 +671,6 @@ theorem convolutionSmoothL2 : ConvolutionSmoothL2 := by
   obtain ⟨hR1, hmul, hnorm, hcont, hext⟩ := GlobalTheory.RightRegFund.rightReg_unitary_continuous B
   haveI : (muInf B.I).IsHaarMeasure := by unfold muInf; infer_instance
   haveI : SigmaFinite (muInf B.I) := by unfold muInf; infer_instance
-  haveI : BorelSpace B.I.GA := inferInstance
   have hμ : B.I.muA B.μf = (muInf B.I).prod B.μf := rfl
   haveI : (B.I.muA B.μf).IsMulLeftInvariant := by rw [hμ]; infer_instance
   haveI : IsFiniteMeasureOnCompacts (B.I.muA B.μf) := by rw [hμ]; infer_instance

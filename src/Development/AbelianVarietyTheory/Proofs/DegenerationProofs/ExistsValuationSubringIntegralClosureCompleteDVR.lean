@@ -19,7 +19,6 @@ theorem isIntegral_or_isIntegral_inv (O : Type) [CommRing O] [IsDomain O] [CharZ
   let L : IntermediateField K F := IntermediateField.adjoin K {x}
   have : FiniteDimensional K L :=
     IntermediateField.adjoin.finiteDimensional (Algebra.IsIntegral.isIntegral x)
-  have : CharZero K := inferInstance
   have : Module.Finite O (integralClosure O L) := IsIntegralClosure.finite O K L _
   have : IsDiscreteValuationRing (integralClosure O L) :=
     ReciprocityTheory.ChartRestriction.G.T0.FiniteAlgebraLocalCompletion.cl_dvr O K L

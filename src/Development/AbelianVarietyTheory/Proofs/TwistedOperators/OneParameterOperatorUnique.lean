@@ -75,8 +75,6 @@ open GlobalTheory.WeilAdm.HaarSplit
 
 private theorem opensMeasurableSpace_pi_mixedSpace (F : Type) [Field F] [NumberField F] (κ : Type) [Fintype κ] :
     OpensMeasurableSpace (κ → mixedEmbedding.mixedSpace F) := by
-  haveI : SecondCountableTopology (mixedEmbedding.mixedSpace F) := inferInstance
-  haveI : BorelSpace (mixedEmbedding.mixedSpace F) := inferInstance
   infer_instance
 
 theorem exists_haar (F : Type) [Field F] [NumberField F] (κ : Type) [Fintype κ]
@@ -97,9 +95,6 @@ theorem exists_haar (F : Type) [Field F] [NumberField F] (κ : Type) [Fintype κ
   obtain ⟨ν, hν⟩ : ∃ ν : Measure (κ → FiniteAdeleRing (𝓞 F) F), ν = Measure.addHaar := ⟨_, rfl⟩
   haveI : ν.IsAddHaarMeasure := by rw [hν]; infer_instance
   haveI : SFinite ν := by rw [hν]; infer_instance
-  haveI : SFinite μ := inferInstance
-  haveI : MeasurableAdd (κ → FiniteAdeleRing (𝓞 F) F) := inferInstance
-  haveI : MeasurableAdd (κ → mixedEmbedding.mixedSpace F) := inferInstance
   let h : ((κ → mixedEmbedding.mixedSpace F) × (κ → FiniteAdeleRing (𝓞 F) F)) ≃ₜ (κ → AdeleRing (𝓞 F) F) :=
     { toEquiv := (splitE F κ).toEquiv
       continuous_toFun := continuous_splitE F κ

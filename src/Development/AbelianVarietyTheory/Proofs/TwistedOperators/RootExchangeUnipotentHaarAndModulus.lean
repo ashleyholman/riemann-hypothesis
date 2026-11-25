@@ -426,8 +426,6 @@ theorem map_affine {a : Type} [Fintype a] [DecidableEq a] (L : Matrix a a k) (hL
     Measurable (fun e => L.mulVec e + b) ∧
       (Measure.pi fun _ : a => ν).map (fun e => L.mulVec e + b) = Measure.pi fun _ : a => ν := by
   obtain ⟨_, _⟩ := SplitWeil.Model.secondCountable_and_t2_local_field (k := k)
-  have : TopologicalSpace.PseudoMetrizableSpace k := inferInstance
-  have : SigmaCompactSpace k := inferInstance
   have : IsLocallyFiniteMeasure ν := inferInstance
   let g : GL a k := Matrix.GeneralLinearGroup.mkOfDetNeZero L (hL ▸ one_ne_zero)
   have hg : Matrix.GeneralLinearGroup.det g = 1 := Units.ext hL

@@ -566,16 +566,10 @@ theorem exists_lidx_eq_mul (K K' : Type) [Field K] [NumberField K] [Field K'] [N
     rw [IsScalarTower.algebraMap_apply (𝓞 K) (𝓞 K') O', ← IsScalarTower.algebraMap_apply (𝓞 K') O' K',
       ← IsScalarTower.algebraMap_apply]
   letI : Algebra O O' := Localization.AtPrime.algebraOfLiesOver P.asIdeal P'.asIdeal
-  have : Localization.AtPrime.IsLiesOverAlgebra P.asIdeal P'.asIdeal := inferInstance
-  have : IsScalarTower (𝓞 K) O O' := inferInstance
-  have : IsLocalHom (algebraMap O O') := inferInstance
   have : IsDiscreteValuationRing O :=
     IsLocalization.AtPrime.isDiscreteValuationRing_of_dedekind_domain (𝓞 K) P.ne_bot _
   have : IsDiscreteValuationRing O' :=
     IsLocalization.AtPrime.isDiscreteValuationRing_of_dedekind_domain (𝓞 K') P'.ne_bot _
-  have : FaithfulSMul O O' := inferInstance
-  have : Module.Flat O O' := inferInstance
-  have : IsLocalHom (algebraMap O O) := inferInstance
   refine ⟨(maximalIdeal O').ramificationIdx O, ramificationIdx_maximalIdeal_pos O O', ?_⟩
   have hlen : ∀ M N : Submodule (𝓞 K) (Fin d → K), N ≤ M →
       Formalism.HermitianLatticesTheory.locLen P'.asIdeal (Submodule.span (𝓞 K') (ψ '' (M : Set (Fin d → K))))

@@ -40,7 +40,6 @@ theorem adjA_high {D : Type*} [AddCommGroup D] [Module ℂ D] {W : Type*} [AddCo
       Submodule.subtype_apply] at hy ⊢
     exact hΦ y y.2 hy
   set Tb : Module.End ℂ (M ⧸ p) := p.mapQ p TM hp
-  have : FiniteDimensional ℂ (LinearMap.range Φ') := inferInstance
   have : FiniteDimensional ℂ (M ⧸ p) := LinearEquiv.finiteDimensional Φ'.quotKerEquivRange.symm
   have hfin := Module.End.finite_hasEigenvalue Tb
   refine ⟨∑ μ ∈ hfin.toFinset, ‖μ‖, fun y hy θ hθ hTy => ?_⟩

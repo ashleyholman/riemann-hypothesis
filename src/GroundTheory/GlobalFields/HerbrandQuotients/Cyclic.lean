@@ -104,7 +104,6 @@ theorem finite_kerModRange_of_smul_mem {A : Type*} [AddCommGroup A] [Module.Fini
     (f g : A →+ A) {n : ℤ} (hn : n ≠ 0) (h : ∀ x ∈ f.ker, n • x ∈ g.range) :
     Finite (KerModRange f g) := by
   have hfin : Module.Finite ℤ f.ker := by
-    have : Module.Finite ℤ (LinearMap.ker f.toIntLinearMap) := inferInstance
     exact Module.Finite.equiv (R := ℤ)
       ((LinearEquiv.refl ℤ (LinearMap.ker f.toIntLinearMap)) : _ ≃ₗ[ℤ] f.ker)
   have hq : Module.Finite ℤ (KerModRange f g) :=

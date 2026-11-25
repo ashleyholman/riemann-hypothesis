@@ -922,7 +922,6 @@ theorem fewEq : FewEqSt := by
     have : IsSeparated (s ≫ terminal.from (Sp R)) := inferInstance
     rw [Subsingleton.elim (s ≫ terminal.from (Sp R)) (terminal.from X)] at this
     exact ⟨this⟩
-  haveI : Flat s := inferInstance
 
   let A := {q : M.ι × X.Opens // IsAffineOpen q.2 ∧ q.2 ≤ M.U q.1}
   let V : A → X.Opens := fun a => a.1.2

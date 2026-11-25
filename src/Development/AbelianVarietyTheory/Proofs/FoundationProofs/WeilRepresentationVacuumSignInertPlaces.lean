@@ -394,7 +394,6 @@ theorem exists_linear_projection {O E V : Type*} [CommRing O] [IsDedekindDomain 
   haveI : Module.Finite O B := Module.Finite.iff_fg.2 (h₁.sup h₃)
   haveI : Module.IsTorsionFree O V := Module.IsTorsionFree.trans_faithfulSMul O E V
   haveI : Module.FinitePresentation O B := Module.finitePresentation_of_finite O B
-  haveI : Module.Flat O B := inferInstance
   haveI : Module.Projective O B := Module.Flat.projective_of_finitePresentation
   let p : (L₁ × L₃) →ₗ[O] B := LinearMap.coprod (Submodule.inclusion le_sup_left) (Submodule.inclusion le_sup_right)
   have hp : Function.Surjective p := by

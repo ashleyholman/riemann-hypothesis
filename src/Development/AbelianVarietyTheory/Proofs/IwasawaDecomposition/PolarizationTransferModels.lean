@@ -42,7 +42,6 @@ theorem map_injective {R S : Type} [CommRing R] [IsDomain R] [IsDiscreteValuatio
   letI := f.toAlgebra
   have : FaithfulSMul R S := (faithfulSMul_iff_algebraMap_injective _ _).2 hf
   have : IsLocalHom (algebraMap R S) := ‹IsLocalHom f›
-  have : Module.Flat R S := inferInstance
   have : Module.FaithfullyFlat R S := Module.FaithfullyFlat.of_flat_of_isLocalHom
   rw [← Ideal.comap_map_eq_self_of_faithfullyFlat (B := S) I, ← Ideal.comap_map_eq_self_of_faithfullyFlat (B := S) J]
   exact congrArg _ h

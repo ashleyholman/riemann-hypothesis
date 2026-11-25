@@ -567,7 +567,6 @@ theorem UpperTheory.V.Af.Smo.convCont :
     intro g x
     rw [norm_mul]
     exact mul_le_mul_of_nonneg_right (hch g x) (norm_nonneg _)
-  haveI i1 : (volume : Measure (Rinf E)).IsAddHaarMeasure := inferInstance
   haveI i2 : (volume : Measure (Fin n → Rinf E)).IsAddHaarMeasure := Measure.pi.isAddHaarMeasure _
   haveI i3 : (volume : Measure (Lie E n)).IsAddHaarMeasure := Measure.pi.isAddHaarMeasure _
   have hint : Integrable (fun x => C * ‖α x‖) := (α.integrable.norm).const_mul C
@@ -1522,7 +1521,6 @@ private theorem exists_schwartz_integral_eq_one {X : Type} [NormedAddCommGroup X
 theorem UpperTheory.V.Af.Smo.seedConv :
     UpperTheory.V.Af.Smo.ChartCont → UpperTheory.V.Af.Smo.SeedConv := by
   intro h E _ _ _ n W hW y hy
-  haveI i1 : (volume : Measure (Rinf E)).IsAddHaarMeasure := inferInstance
   haveI i2 : (volume : Measure (Fin n → Rinf E)).IsAddHaarMeasure := Measure.pi.isAddHaarMeasure _
   haveI i3 : (volume : Measure (Lie E n)).IsAddHaarMeasure := Measure.pi.isAddHaarMeasure _
   refine exists_schwartz_integral_eq_one volume (chart W 1) (invSet E n) (toL y.val) ?_ ?_ ?_

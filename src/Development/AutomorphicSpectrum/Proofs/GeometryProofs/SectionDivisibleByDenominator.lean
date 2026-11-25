@@ -182,8 +182,6 @@ theorem semiAb_props : ∀ (L : Type) [Field L] [NumberField L] (G : Over (Sp (�
   have := hG.smooth
   have := hG.geomConnected
   have hgi : GeometricallyIntegral G.hom := GlobalTheory.grpObj_geometricallyIntegral_of_smooth _ G
-  have : IsNoetherianRing (𝓞 L) := inferInstance
-  have : IsLocallyNoetherian (Sp (𝓞 L)) := inferInstance
   have hI : IsIntegral G.left := GeometricallyIntegral.isIntegral_of_isLocallyNoetherian G.hom
   have hN : IsLocallyNoetherian G.left := LocallyOfFiniteType.isLocallyNoetherian G.hom
   refine ⟨hI, fun W hW => ⟨?_, ?_, ?_⟩⟩
@@ -1045,7 +1043,6 @@ theorem section_dvd_of_torsVal : ∀ (E : Type) [Field E] [NumberField E] [IsCMF
         simp only [TopologicalSpace.Opens.coe_bot, Set.mem_empty_iff_false, iff_false]
         exact fun hx => hne ⟨x, hx⟩
       subst hW0
-      haveI : Subsingleton Γ(D.t.G.left, ⊥) := inferInstance
       exact ⟨0, Subsingleton.elim _ _⟩)
   exact ⟨s', hs'⟩
 

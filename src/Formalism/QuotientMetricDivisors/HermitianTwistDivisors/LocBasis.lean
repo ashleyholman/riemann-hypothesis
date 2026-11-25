@@ -130,7 +130,6 @@ theorem semilocal_basis_exists :
     rw [Module.Finite.iff_fg]
     refine ⟨s, ?_⟩
     rw [hN, ← hs, Submodule.span_span_of_tower]
-  have : Module.IsTorsionFree (A w) N := inferInstance
   let b := Module.Free.chooseBasis (A w) N
   let v : Module.Free.ChooseBasisIndex (A w) N → Fin d → K := fun i => (b i : Fin d → K)
   have hliA : LinearIndependent (A w) v := b.linearIndependent.map' N.subtype N.ker_subtype

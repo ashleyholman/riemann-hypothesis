@@ -169,7 +169,6 @@ theorem exists_denominator_of_isField_localization (B A : Type) [CommRing B] [Co
   haveI : CharZero (Localization M) := algebraRat.charZero _
   let K := Localization M
   let A' := Localization (Algebra.algebraMapSubmonoid A M)
-  haveI : IsReduced A' := inferInstance
   haveI : Algebra.FiniteType K A' := by
     haveI : IsLocalization (Submonoid.map (algebraMap B A) M) A' :=
       inferInstanceAs (IsLocalization (Algebra.algebraMapSubmonoid A M) A')
@@ -263,7 +262,6 @@ theorem isNilpotent_tmul_sub_tmul_of_const_on_fibres :
     ∀ (B A : Type) [CommRing B] [CommRing A] [Algebra ℂ B] [Algebra ℂ A] [Algebra B A] [IsScalarTower ℂ B A] [Algebra.FiniteType ℂ A] (f : A), (∀ χ χ' : A →ₐ[ℂ] ℂ, (∀ b : B, χ (algebraMap B A b) = χ' (algebraMap B A b)) → χ f = χ' f) → IsNilpotent (f ⊗ₜ[B] (1 : A) - (1 : A) ⊗ₜ[B] f) := by
   intro B A _ _ _ _ _ _ _ f h
   have : Algebra.FiniteType B A := Algebra.FiniteType.of_restrictScalars_finiteType ℂ B A
-  have : Algebra.FiniteType A (A ⊗[B] A) := inferInstance
   have : Algebra.FiniteType ℂ (A ⊗[B] A) := Algebra.FiniteType.trans (S := A) inferInstance inferInstance
   apply isNilpotent_of_forall_algHom_eq_zero
   intro ω

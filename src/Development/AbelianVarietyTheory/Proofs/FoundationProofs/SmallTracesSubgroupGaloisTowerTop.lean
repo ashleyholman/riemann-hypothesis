@@ -244,7 +244,6 @@ theorem small_traces_subgroup : ∀ (p : ℕ) [Fact p.Prime] (Ω : Type) [Field 
   let K : Subgroup (Gal p Ω) := ⨅ n, Gn T n
   let H' : Subgroup ↥K := H.subgroupOf K
   let U' : Subgroup ↥H' := U.subgroupOf H'
-  haveI : U'.FiniteIndex := inferInstance
   haveI : Finite (↥H' ⧸ U') := Subgroup.finite_quotient_of_finiteIndex
   letI : Fintype (↥H' ⧸ U') := Fintype.ofFinite _
   have hU'sep : AlmostSep v U' := _root_.GlobalTheory.AlmostEt.almostSep_subgroupOf Ω v ↥K U H' hUsep

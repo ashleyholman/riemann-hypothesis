@@ -42,7 +42,6 @@ theorem key {B : Scheme.{0}} (U : B.Etale) (x : U.left) (Ω : Type) [Field Ω]
     have hw : (a j).left ≫ U.hom = (V j).hom := MorphismProperty.Over.w (a j)
     show _ = O.ι ≫ e j ≫ (V j).hom
     exact (Category.assoc _ _ _).trans (congrArg (O.ι ≫ ·) ((Category.assoc _ _ _).trans (congrArg (e j ≫ ·) hw)))) trivial
-  have hOI : IsOpenImmersion O.ι := inferInstance
   let l' := IsOpenImmersion.lift O.ι (l j) hrange
   have hl' : l' ≫ O.ι = l j := IsOpenImmersion.lift_fac _ _ _
   obtain ⟨k, g, hg', hlg'⟩ : ∃ (k : J) (g : (V k).left ⟶ (O : Scheme)),

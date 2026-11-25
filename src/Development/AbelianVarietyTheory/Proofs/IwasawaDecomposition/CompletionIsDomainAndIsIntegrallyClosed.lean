@@ -307,7 +307,6 @@ theorem isReduced_of_normal (n : ℕ)
     intro q hq hxq
     obtain ⟨e⟩ := _root_.GlobalTheory.adicCompletion_quotient_ringEquiv N I q
     haveI : IsDomain (N ⧸ q) := Ideal.Quotient.isDomain q
-    haveI : Algebra.EssFiniteType N (N ⧸ q) := inferInstance
     haveI hess : @Algebra.EssFiniteType ℤ (N ⧸ q) _ _ (Ring.toIntAlgebra _) := by
       letI := Ring.toIntAlgebra (N ⧸ q)
       haveI : IsScalarTower ℤ N (N ⧸ q) := .of_algebraMap_eq fun z => by simp
@@ -347,7 +346,6 @@ theorem isReduced_of_dim_le : ∀ (n : ℕ) (D : Type) [CommRing D] [IsDomain D]
     exact IsFractionRing.injective D (FractionRing D) this
   have hdimN : ringKrullDim N ≤ (n : WithBot ℕ∞) := by
     rw [ReciprocityTheory.CA.ringKrullDim_eq_of_isIntegral_of_injective hinj]; exact hdim
-  haveI : Algebra.EssFiniteType D N := inferInstance
   haveI hessN : @Algebra.EssFiniteType ℤ N _ _ (Ring.toIntAlgebra _) := by
     letI := Ring.toIntAlgebra N
     haveI : IsScalarTower ℤ D N := .of_algebraMap_eq fun z => by simp
@@ -1150,7 +1148,6 @@ theorem exists_conductor_adicCompletion_of_essFiniteType : ∀ (A : Type) [CommR
   obtain ⟨r, B, _, _, _, _, _, _, 𝔫, _, hinj, hloc⟩ := _root_.GlobalTheory.normal_local_is_localisation_of_finite_over_polynomial A
   obtain ⟨p, _, C, _, _, _, _, _, 𝔪, _, hinjC, hlocC, hcomap⟩ :=
     exists_finite_over_localization_atPrime_below (MvPolynomial (Fin r) ℤ) B A 𝔫 hinj
-  have hTreg : IsRegularLocalRing (Localization.AtPrime p) := inferInstance
   obtain ⟨_, _⟩ := _root_.GlobalTheory.isDomain_and_isIntegrallyClosed_of_isRegularLocalRing (Localization.AtPrime p)
   have := _root_.GlobalTheory.RegularCompletion.isRegularLocalRing_adicCompletion (Localization.AtPrime p)
   obtain ⟨_, _⟩ := _root_.GlobalTheory.isDomain_and_isIntegrallyClosed_of_isRegularLocalRing
@@ -1299,7 +1296,6 @@ theorem completion_isDomain_and_isIntegrallyClosed :
     intro q hq _
     obtain ⟨e⟩ := hquot A m q
     haveI : IsDomain (A ⧸ q) := Ideal.Quotient.isDomain q
-    haveI : Algebra.EssFiniteType A (A ⧸ q) := inferInstance
     haveI hess : @Algebra.EssFiniteType ℤ (A ⧸ q) _ _ (Ring.toIntAlgebra _) := by
       letI := Ring.toIntAlgebra (A ⧸ q)
       haveI : IsScalarTower ℤ A (A ⧸ q) := .of_algebraMap_eq fun z => by simp

@@ -302,7 +302,6 @@ theorem exists_finite_extension_primitive_residue :
   · let F := AlgebraicClosure (FractionRing V)
     have hpos : 0 < n ^ j := pow_pos hn.pos j
     have : NeZero (n ^ j) := ⟨hpos.ne'⟩
-    have : NeZero ((n ^ j : ℕ) : F) := inferInstance
     obtain ⟨z, hz⟩ := HasEnoughRootsOfUnity.exists_primitiveRoot F (n ^ j)
     let W : Subalgebra V F := Algebra.adjoin V {z}
     have hzW : z ∈ W := Algebra.subset_adjoin rfl
@@ -374,8 +373,6 @@ theorem sval_eq_zero_of_faithfullyFlat_base : ∀ (R W : Type) [CommRing R] [Com
     exact RingHom.faithfullyFlat_algebraMap_iff.2 inferInstance
   obtain ⟨_, _⟩ := hg
   let p : pullback (r ≫ Y.hom) g ⟶ Z := pullback.fst _ _
-  have : Flat p := inferInstance
-  have : Surjective p := inferInstance
   obtain ⟨z', rfl⟩ := p.surjective z
   obtain ⟨ρ, hρ⟩ := hρ
   choose J' hJ' using fun χ : pullback (r ≫ Y.hom) g ⟶ X => exists_chart hL (χ z')
@@ -1426,7 +1423,6 @@ theorem main : Laws → Laws2 → AllPre fun {V} _ _ _ {D} {_} {_} _ _ U => D.Ta
   · obtain ⟨j, hj⟩ := hnv f' g' h hff hgg hconv
     by_contra! hn
     haveI := D.P.isAb.smooth
-    haveI : Flat D.P.A.hom := inferInstance
     haveI : IsAffine (TA V W).left := inferInstanceAs (IsAffine (Spec _))
     haveI : IsAffine (TF (R := V) (Kbar V)).left := inferInstanceAs (IsAffine (Spec _))
     refine hj (sec_eq_zero_of_sval_whiskerRight_eq_zero _ D.P.A _ _ φ hφ _ D.P.L D.P.isLB _ _ _ (h α)

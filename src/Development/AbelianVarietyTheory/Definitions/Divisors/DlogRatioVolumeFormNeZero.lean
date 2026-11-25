@@ -88,7 +88,6 @@ variable {k : Type} [Field k] {K : Type} [Field K] [Algebra k K] {F : Type} [Fie
 theorem IsFinCover.of_charZero [CharZero F] (pd : IsPd k x) (fin : FiniteDimensional F K)
     (smooth : ∀ i, Algebra.Smooth k (rB k K x {i})) : IsFinCover k K x := by
   have := fin
-  have : Algebra.IsSeparable F K := inferInstance
   exact ⟨pd, fin, smooth⟩
 
 

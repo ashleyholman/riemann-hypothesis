@@ -16,7 +16,6 @@ abbrev EtTop (B : Scheme.{0}) : GrothendieckTopology B.Etale := Scheme.smallEtal
 abbrev SShv (B : Scheme.{0}) (q : ℕ) : Type 2 := Sheaf (EtTop B) (ModuleCat.{1} (ULift.{1} (ZMod q)))
 
 instance (B : Scheme.{0}) (q : ℕ) : HasSheafify (EtTop B) (ModuleCat.{1} (ULift.{1} (ZMod q))) := by
-  have : EssentiallySmall.{1} B.Etale := inferInstance
   infer_instance
 
 noncomputable instance (B : Scheme.{0}) (q : ℕ) : HasDerivedCategory.{2} (SShv B q) := HasDerivedCategory.standard _

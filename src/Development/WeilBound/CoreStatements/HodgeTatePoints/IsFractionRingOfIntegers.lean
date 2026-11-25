@@ -77,7 +77,6 @@ theorem bc_iso : ∀ (A K : Type) [CommRing A] [IsDomain A] [Field K] [Algebra A
   have h1 : finrank O (O ⊗[A] M) = finrank O (LinearMap.range j) := by
     rw [finrank_baseChange_flat, finrank_lattice M hM, hr, finrank_lattice L hL, hrk]
   have h2 := j.rank_range_add_rank_ker
-  haveI : Module.Finite O (LinearMap.range j) := inferInstance
   rw [← finrank_eq_rank O (O ⊗[A] M), ← finrank_eq_rank O (LinearMap.range j), h1] at h2
   have h3 : Module.rank O (LinearMap.ker j) = 0 := by
     rw [add_comm] at h2

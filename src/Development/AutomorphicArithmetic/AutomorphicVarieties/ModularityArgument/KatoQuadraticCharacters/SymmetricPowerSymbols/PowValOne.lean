@@ -792,7 +792,6 @@ theorem UpperTheory.V.Z.Kato.Sym.PT.ptIs :
   · classical
     haveI : CharZero Ω := charZero_of_injective_algebraMap (algebraMap ℚ Ω).injective
     haveI : CharZero X.K := charZero_of_injective_algebraMap (algebraMap Ω X.K).injective
-    haveI : IsGalois (topL X M) (topBar X M) := inferInstance
     obtain ⟨B, hB⟩ := lcGeo (topF X M) (topL X M) (topBar X M) _ η hlc
     refine ⟨B.image e, fun h h' hh hh' hb => ?_⟩
     refine hB _ (hD h hh).2 _ (hD h' hh').2 fun b hbB => e.injective ?_

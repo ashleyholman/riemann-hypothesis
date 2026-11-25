@@ -18,7 +18,6 @@ theorem UpperTheory.V.AlgebraTools.exists_idem_topNil :
   classical
   let S := Algebra.adjoin R (Set.range T)
   have : Module.Finite R S := by
-    have : IsNoetherian R (Subalgebra.toSubmodule S) := inferInstance
     exact (inferInstance : Module.Finite R (Subalgebra.toSubmodule S))
   have : IsMulCommutative S := Algebra.isMulCommutative_adjoin R (by
     rintro _ ⟨i, rfl⟩ _ ⟨j, rfl⟩ _

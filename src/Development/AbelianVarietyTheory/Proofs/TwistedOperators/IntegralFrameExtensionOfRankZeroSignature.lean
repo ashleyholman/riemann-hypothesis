@@ -76,9 +76,7 @@ theorem exists_model_int (hD : Dw.p + Dw.q = 0) (Xo : Moduli Dw l) (c : Coeff l)
   obtain ⟨h₁, h₂⟩ := isIso_moduli GlobalTheory.card_torsion_abelianVariety hD Xo
   let k := spMap (IntermediateField.inclusion c.le).toRingHom
   let β := Int.castRingHom c.F
-  have hk : IsIso (pullback.snd Xo.s k) := inferInstance
   let j : Xo.XF c ⟶ pullback (𝟙 (Sp ℤ)) (spMap β) := pullback.snd Xo.s k ≫ inv (pullback.snd _ _)
-  have hj : IsIso j := inferInstance
   have hs : Function.Surjective j := (inferInstance : Surjective j).1
   refine ⟨{ X := Sp ℤ, s := 𝟙 _, normal := ZJ.isNormalScheme_sp ℤ, proj := Inhab.isProjOver_id ℤ
             flat := inferInstance, jQ := j, jQ_over := (Category.assoc _ _ _).trans ((congrArg (_ ≫ ·) (IsIso.inv_hom_id _)).trans (Category.comp_id _))

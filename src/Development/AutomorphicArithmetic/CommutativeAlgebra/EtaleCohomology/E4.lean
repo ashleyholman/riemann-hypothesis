@@ -235,7 +235,6 @@ theorem dim_lt_of_closedEmbedding {Z Y : Type*} [TopologicalSpace Z] [Topologica
 
 theorem LeafBdry_of : LateralTheory.E.LeafGeoCut.LeafBdry := by
   intro Y B W p ι hι hirr hfin hne
-  have : IsClosedImmersion (pullback.fst p ι) := inferInstance
   refine dim_lt_of_closedEmbedding _ (pullback.fst p ι).isClosedEmbedding hfin ?_
   rw [Scheme.Pullback.range_fst, ← preimage_compl]
   exact hne
@@ -345,7 +344,6 @@ theorem dim_basicOpen (k A : Type) [Field k] [CommRing A] [IsDomain A] [Algebra 
   let B := Localization.Away g
   have hle : Submonoid.powers g ≤ nonZeroDivisors A := powers_le_nonZeroDivisors_of_noZeroDivisors hg
   have : IsDomain B := IsLocalization.isDomain_localization hle
-  have : Algebra.FiniteType A B := inferInstance
   have : Algebra.FiniteType k B := Algebra.FiniteType.trans (S := A) inferInstance inferInstance
   have : FaithfulSMul A B :=
     (faithfulSMul_iff_algebraMap_injective _ _).mpr (IsLocalization.injective B hle)
@@ -921,7 +919,6 @@ theorem subsingleton_of_dim {X : Scheme.{0}} [IsIntegral X] (hd : topologicalKru
 theorem leafPtIso (k : Type) [Field k] [IsAlgClosed k] {X : Scheme.{0}} [IsIntegral X] (p : X ⟶ Sp k) [IsProper p]
     (hd : topologicalKrullDim X ≤ 0) : IsIso p := by
   haveI := subsingleton_of_dim hd
-  haveI : IsAffine X := inferInstance
   let F : CommRingCat.of k ⟶ Γ(X, ⊤) := (Scheme.ΓSpecIso _).inv ≫ p.appTop
   have hfin : p.appTop.hom.Finite := finite_appTop_of_universallyClosed k p
   have hFfin : F.hom.Finite := by
@@ -1386,7 +1383,6 @@ theorem stalk_facts (Ω : Type) [Field Ω] {C : Scheme.{0}} [IsIntegral C] (c : 
       ringKrullDim (C.presheaf.stalk y) ≤ 1 := by
   obtain ⟨-, hp, hs⟩ := hc
   have : Smooth c := SmoothOfRelativeDimension.smooth (n := 1) c
-  have : LocallyOfFiniteType c := inferInstance
   have : IsLocallyNoetherian C := LocallyOfFiniteType.isLocallyNoetherian c
   refine ⟨inferInstance, ?_, ?_⟩
   · have := GlobalTheory.isIntegrallyClosed_stalk_spec_field Ω (c y)
@@ -1467,7 +1463,6 @@ theorem etale_open_spreading_out_over_finitely_generated_subalgebra : LateralThe
   obtain ⟨hfp, hqc, hqs⟩ := hp
   have : Algebra.FiniteType k R := (Subalgebra.fg_iff_finiteType R).mp hR
   have : IsNoetherianRing R := Algebra.FiniteType.isNoetherianRing k R
-  have : LocallyOfFiniteType p := inferInstance
   have : IsLocallyNoetherian A := LocallyOfFiniteType.isLocallyNoetherian p
   have : CompactSpace A := QuasiCompact.compactSpace_of_compactSpace p
   have : IsNoetherian A := {}
@@ -1600,7 +1595,6 @@ theorem LeafReducedSmooth_of : LateralTheory.E.QuasiFiniteDescent.LeafReducedSmo
   intro k _ Ω _ _ R _ D q hq
   have : Smooth q := hq.smooth
   have : _root_.IsReduced R := isReduced_of_injective R.val Subtype.val_injective
-  have : AlgebraicGeometry.IsReduced (Spec (CommRingCat.of R)) := inferInstance
   exact GlobalTheory.isReduced_of_smooth_of_isReduced q
 
 end LateralTheory.E.ReducedOfSmooth

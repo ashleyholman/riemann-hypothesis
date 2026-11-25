@@ -56,10 +56,8 @@ theorem exists_lift_geometric (R S : Type) [CommRing R] [CommRing S] [Algebra R 
     [Module.Finite R S] [Module.FaithfullyFlat R S] (k : Type) [Field k] [IsAlgClosed k]
     (χ : R →+* k) : ∃ χ' : S →+* k, χ'.comp (algebraMap R S) = χ := by
   letI : Algebra R k := χ.toAlgebra
-  haveI : Nontrivial (k ⊗[R] S) := inferInstance
   obtain ⟨m, hm⟩ := Ideal.exists_maximal (k ⊗[R] S)
   letI : Field ((k ⊗[R] S) ⧸ m) := Ideal.Quotient.field m
-  haveI : Module.Finite k ((k ⊗[R] S) ⧸ m) := inferInstance
   let g : ((k ⊗[R] S) ⧸ m) →ₐ[k] k := (by
     refine @_root_.IsAlgClosed.lift _ _ _ _ _ _ _ _ _ _ _ ?_ ?_ ?_
     solve_by_elim* (maxDepth := 2) only [*,

@@ -97,7 +97,6 @@ theorem UpperTheory.V.Af.Tw.frobInert :
   intro F L Ω _ _ _ _ _ _ _ _ _ _ _ h2 v A hU hA σ hσ hn
   obtain ⟨w, hw, hwv⟩ := place_between (L := L) hA
   have : Algebra.IsQuadraticExtension F L := ⟨h2⟩
-  have : IsGalois F L := inferInstance
   have hq : normV v ≠ 0 := by
     rw [normV, ← Submodule.cardQuot_apply, ← Ideal.absNorm_apply]
     exact (lt_trans zero_lt_one (NumberField.HeightOneSpectrum.one_lt_absNorm v)).ne'

@@ -807,7 +807,6 @@ theorem hasRedCover (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host
     obtain ⟨i, hi⟩ := Module.projective_def'.1 (inferInstance : Module.Projective (𝓞 E) X)
     exact Module.Projective.of_split (i.restrictScalars ℤ) ((Finsupp.linearCombination (𝓞 E) id).restrictScalars ℤ)
       (LinearMap.ext fun x => LinearMap.congr_fun hi x)
-  haveI : Module.Free ℤ X := inferInstance
   obtain ⟨n, hn⟩ : ∃ n, Module.finrank ℤ X = n := ⟨_, rfl⟩
   obtain ⟨B₀, hB₀, hB₀'⟩ := _root_.GlobalTheory.DefForm.exists_posDef_realForm E H X
   have hF := _root_.GlobalTheory.RedTh.finite_balanced_actions E H n

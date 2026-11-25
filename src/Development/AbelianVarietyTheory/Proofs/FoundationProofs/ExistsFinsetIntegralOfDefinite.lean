@@ -57,7 +57,6 @@ theorem discrete_XF (hq : Dw.q = 0) : DiscreteTopology (Xo.XF c) := by
   have h0 : SmoothOfRelativeDimension 0 Xo.s := hd ▸ Xo.smooth
   have h1 : Etale Xo.s := (Etale.iff_smoothOfRelativeDimension_zero _).2 h0
   let f := pullback.snd Xo.s (spMap (IntermediateField.inclusion c.le).toRingHom)
-  have h2 : Etale f := inferInstance
   have h3 : LocallyQuasiFinite f := GlobalTheory.TangentCrit.locallyQuasiFinite_of_formallyUnramified f
   have s₀ : Sp c.F := (⟨⊥, Ideal.isPrime_bot⟩ : PrimeSpectrum c.F)
   have h4 := f.isDiscrete_preimage_singleton s₀

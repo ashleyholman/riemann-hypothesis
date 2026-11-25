@@ -606,7 +606,6 @@ theorem haarLie_eq_lebN : ∀ k r : ℕ,
   have hi : Function.Injective fun q : EE k r => (Matrix.of.symm (Phi q) : Mt k r) := fun q q' h =>
     (coord_homeo k r).1.injOn trivial trivial h
   haveI : PolishSpace (EE k r) := by
-    haveI : SecondCountableTopology (EE k r) := inferInstance
     haveI : TopologicalSpace.IsCompletelyMetrizableSpace (EE k r) := MetricSpace.toIsCompletelyMetrizableSpace
     exact {}
   have hm : MeasurableEmbedding fun q : EE k r => (Matrix.of.symm (Phi q) : Mt k r) :=

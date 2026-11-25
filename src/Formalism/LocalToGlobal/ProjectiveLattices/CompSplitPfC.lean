@@ -28,7 +28,6 @@ theorem cspC_inj : Function.Injective (algebraMap S (S ⊗[P] FractionRing P)) :
   apply _root_.PositivityTheory.HtPt.Htat.Hens.stage_inj <;> assumption
 
 theorem cspC_artinian : IsArtinianRing (S ⊗[P] FractionRing P) := by
-  haveI : Algebra.Etale (FractionRing P) (FractionRing P ⊗[P] S) := inferInstance
   haveI : Module.Finite (FractionRing P) (FractionRing P ⊗[P] S) :=
     Algebra.FormallyUnramified.finite_of_free (FractionRing P) _
   haveI : IsArtinianRing (FractionRing P ⊗[P] S) := IsArtinianRing.of_finite (FractionRing P) _

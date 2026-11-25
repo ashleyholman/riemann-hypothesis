@@ -18,7 +18,6 @@ theorem UpperTheory.Gal.crystallineComparison.Mod.kerRead_of :
   haveI := M.smooth
   haveI := T.fin
   haveI : Smooth M.s := SmoothOfRelativeDimension.smooth (D.a * (D.n - 1)) M.s
-  haveI : LocallyOfFiniteType M.s := inferInstance
   haveI : IsLocallyNoetherian M.X := LocallyOfFiniteType.isLocallyNoetherian M.s
   haveI : IsLocallyNoetherian T.Y := LocallyOfFiniteType.isLocallyNoetherian T.s
   have hcz : CharZero (FractionRing V) := by

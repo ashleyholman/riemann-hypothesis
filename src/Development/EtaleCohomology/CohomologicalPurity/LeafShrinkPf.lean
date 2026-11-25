@@ -17,7 +17,6 @@ theorem shrink_away {n : ℕ} {R S : Type} [CommRing R] [CommRing S] (ψ : R →
       ((algebraMap S (Localization.Away u)).comp ψ)).IsStandardSmoothOfRelativeDimension n :=
     zero_add n ▸ (IsStandardSmoothOfRelativeDimension.algebraMap_isLocalizationAway
       (algebraMap S (Localization.Away u) v)).comp h
-  have hB : IsLocalization.Away (u * v) B := inferInstance
   let eT : B ≃ₐ[S] T := IsLocalization.algEquiv (Submonoid.powers (u * v)) B T
   have h3 : ((algebraMap S B).comp ψ).IsStandardSmoothOfRelativeDimension n := by
     rw [IsScalarTower.algebraMap_eq S (Localization.Away u) B, RingHom.comp_assoc]; exact h2

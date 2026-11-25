@@ -293,10 +293,6 @@ private lemma exists_const_lintegral_comp_continuousLinearEquiv {n a b : ℕ} (A
       ∫⁻ z in B, h (A.symm z) = (K : ℝ≥0∞) * ∫⁻ x in (A : V n → V a × V b) ⁻¹' B, h x := by
   haveI hvolF : (volume : Measure (V a × V b)).IsAddHaarMeasure := by
     rw [Measure.volume_eq_prod]
-    haveI : (volume : Measure (V a)).IsAddHaarMeasure := inferInstance
-    haveI : (volume : Measure (V b)).IsAddHaarMeasure := inferInstance
-    haveI : SigmaFinite (volume : Measure (V a)) := inferInstance
-    haveI : SigmaFinite (volume : Measure (V b)) := inferInstance
     first
       | infer_instance
   set ν : Measure (V n) := Measure.map (A.symm : V a × V b → V n) volume with hν

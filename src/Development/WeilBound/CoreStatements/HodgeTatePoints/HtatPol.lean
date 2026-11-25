@@ -145,7 +145,6 @@ theorem pol_lattice : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H 
   haveI := D.fin
   haveI := D.proj
   have hfinZ : Module.Finite ℤ D.La := Module.Finite.trans (𝓞 E) D.La
-  haveI : Module.IsTorsionFree (𝓞 E) D.La := inferInstance
   haveI : Module.IsTorsionFree ℤ D.La := Module.IsTorsionFree.trans (𝓞 E)
   obtain ⟨u, hu⟩ := exists_finrank_family_mod_smul D.La (D.p + D.q) D.rank (p : 𝓞 E)
     (Nat.cast_ne_zero.mpr (Fact.out : p.Prime).ne_zero)

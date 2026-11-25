@@ -67,8 +67,6 @@ theorem normSq_det_hb {k : ℕ} {μ : Matrix (Fin (k + 1)) (Fin (k + 1)) ℂ} (h
 
 theorem lebInvB : LebInvB := by
   intro k μ hμ
-  have h1 : (volume : Measure ℂ).IsAddHaarMeasure := inferInstance
-  have h2 : (volume : Measure (Fin k → ℂ)).IsAddHaarMeasure := inferInstance
   have h3 : (volume : Measure ((Fin k → ℂ) × ℂ)).IsAddHaarMeasure := Measure.prod.instIsAddHaarMeasure _ _
   set f : ((Fin k → ℂ) × ℂ) →ₗ[ℝ] ((Fin k → ℂ) × ℂ) := (blkLin k μ).restrictScalars ℝ with hfdef
   have hdet : LinearMap.det f = 1 := by

@@ -73,10 +73,7 @@ theorem isMeasLevW_exists
     (MF.phiR F v).toMulEquiv.isHaarMeasure_map (m0 ((Formalism.L2.Host.tauPl D).symm v)) (MF.phiR F v).continuous (MF.phiR F v).symm.continuous
   set μi := Measure.pi fun v => (m0 ((Formalism.L2.Host.tauPl D).symm v)).map (MF.phiR F v)
   have hμi : μi.IsHaarMeasure := Measure.pi.isHaarMeasure _
-  have hsi : SFinite μi := inferInstance
-  have hsf : SFinite μf := inferInstance
   have hmm : MeasurableMul (UI.instV (MF.toFrames F)).Gf := inferInstance
-  have hmi : MeasurableMul ((v : InfinitePlace D.host.F) → Formalism.REAL.UJ ((MF.toFrames F).ε v)) := inferInstance
   have hprod : (μi.prod μf).IsHaarMeasure := Measure.prod.instIsHaarMeasure μi μf
   let μA : Measure (UI.instV (MF.toFrames F)).GA := μi.prod μf
   haveI hμA : μA.IsHaarMeasure := hprod

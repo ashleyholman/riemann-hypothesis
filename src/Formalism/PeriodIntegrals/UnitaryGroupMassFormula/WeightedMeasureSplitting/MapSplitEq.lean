@@ -41,14 +41,8 @@ theorem mwCore_of (hH : SplitH) (hN : SplitN) (hC : ContSplit) (hS : SProd) :
   obtain ⟨μSf, hSH, hSeq⟩ := hS F E σ n J r P T hCM hJ hP μNf μHf inferInstance inferInstance
   have := hHinf
   have := hNinf
-  have : SigmaCompactSpace (Hsub (Ainf F) σ J P) := inferInstance
-  have : SigmaCompactSpace (Nsub (Ainf F) σ J P) := inferInstance
-  have : SigmaCompactSpace (Hsub (Af F) σ J P) := inferInstance
-  have : SigmaCompactSpace (Nsub (Af F) σ J P) := inferInstance
   have : SigmaFinite μHinf := inferInstance
   have : SigmaFinite μNinf := inferInstance
-  have : SigmaFinite μHf := inferInstance
-  have : SigmaFinite μNf := inferInstance
   refine ⟨{ μH := (μHinf.prod μHf).map eH, μHinf := μHinf, μHf := μHf,
             μN := (μNinf.prod μNf).map eN, μNinf := μNinf, μNf := μNf, μSf := μSf,
             μSv := fun v => Measure.haar }, ?_, rfl, rfl⟩

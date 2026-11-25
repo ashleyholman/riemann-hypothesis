@@ -1427,9 +1427,7 @@ theorem countable_gl : Countable (GL (Fin r) E) := by
   exact (Units.val_injective (α := Matrix (Fin r) (Fin r) E)).countable
 
 theorem sFinite_frame : SFinite (volume : Measure (Frame X.Ψ r)) := by
-  have : SigmaFinite (volume : Measure (Fin r → ℂ)) := inferInstance
   have : SigmaFinite (volume : Measure (Fin r → Fin r → ℂ)) := inferInstance
-  have : SigmaFinite (volume : Measure (X.Ψ → Fin r → Fin r → ℂ)) := inferInstance
   infer_instance
 
 theorem unfold_frames (Δ : Subgroup (GL (Fin r) E)) (𝓛 : Set (Lt E r)) (hun : ∀ γ ∈ Δ, IsUn X γ)

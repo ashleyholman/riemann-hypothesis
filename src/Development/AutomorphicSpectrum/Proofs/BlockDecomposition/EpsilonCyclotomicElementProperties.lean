@@ -119,7 +119,6 @@ theorem integral_prime_dvd_epsilon_zero_sub_one (ε : Eps l) : pFlat l ∣ ((ε.
   exact Ideal.mem_span_singleton.1 h
 
 theorem epsilon_one_sub_one_not_isUnit (ε : Eps l) : ¬ IsUnit ((ε.e 1 : Ob l) - 1) := fun h => by
-  haveI : CharP (Ob l) l := inferInstance
   have h1 : IsUnit (((ε.e 1 : Ob l) - 1) ^ l) := h.pow l
   have e : (ε.e 1 : Ob l) ^ l = ε.e 0 := by
     have := congrArg Units.val (ε.succ 0)

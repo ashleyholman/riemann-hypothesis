@@ -103,10 +103,8 @@ theorem sum_twOrbit_eq_zero {G V : Type} [CommGroup G] [TopologicalSpace G] [IsT
   have : L₁.FiniteIndex := Subgroup.finiteIndex_of_finite_quotient
   set C : Subgroup L := (M ⊓ L₁).normalCore with hC
   have : C.Normal := Subgroup.normalCore_normal _
-  have : C.FiniteIndex := inferInstance
   have : Fintype (L ⧸ C) := Fintype.ofFinite _
   have hCM : C ≤ M ⊓ L₁ := Subgroup.normalCore_le _
-  have : Finite (L₁ ⧸ C.subgroupOf L₁) := inferInstance
   have : Fintype (L₁ ⧸ C.subgroupOf L₁) := Fintype.ofFinite _
   have h0 := hsum C (hCM.trans inf_le_left)
   rw [sum_out_refine (hCM.trans inf_le_right) (twOrbit ρ L θ v)
@@ -122,7 +120,6 @@ theorem eq_zero_of_twKer :
   classical
   have : CompactSpace L := isCompact_iff_compactSpace.mp hL
   have : Finite (L ⧸ L₁) := Subgroup.quotient_finite_of_isOpen _ hL₁
-  have : L₁.Normal := inferInstance
   have : Fintype (L ⧸ L₁) := Fintype.ofFinite _
   have key : ∀ a ∈ R, ∑ q : L ⧸ L₁, twOrbit ρ L (χ a) v q.out = 0 := fun a ha =>
     sum_twOrbit_eq_zero ρ hρ L hL L₁ hL₁ v hv (χ a) (hχ a ha) (hker a ha)

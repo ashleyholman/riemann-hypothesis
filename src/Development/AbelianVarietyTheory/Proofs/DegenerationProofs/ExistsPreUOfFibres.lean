@@ -256,7 +256,6 @@ theorem nonempty_biTriv (h₁ : Laws) (h₂ : Laws2) [IsLocalRing R] [IsNoetheri
   have : GeometricallyConnected ((Over.pullback (red J)).obj (thickObj R I e G)).hom := by
     change GeometricallyConnected (pullback.snd (thickObj R I e G).hom _)
     infer_instance
-  have : ConnectedSpace (Sp ((R ⧸ I ^ (e + 1)) ⧸ J)) := inferInstance
   have := (GroupConn.connectedSpace_group _ ((Over.pullback (red J)).obj (thickObj R I e G))).1
   have hp := isGrpPullback_pullback (thickObj R I e G) (red J)
   obtain ⟨Q₀, c⟩ := exists_tq_baseChange _ _ _ X _ _ _ hp Q

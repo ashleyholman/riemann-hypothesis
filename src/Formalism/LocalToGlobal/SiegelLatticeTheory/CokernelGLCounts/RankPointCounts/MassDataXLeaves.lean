@@ -83,7 +83,6 @@ theorem classFinite_holds : MassDataMassesW.ClassFinite := by
   have hF := Formalism.L2.SG.Closed.ClassFin_holds X u hK
   have hc := PIW.MassDataColumns.class_sets_equal_card X hb hK u (_root_.Formalism.L2.SG.AdBridge.adBridgeGF_main X.B.I)
     (Formalism.L2.SG.Closed.level_subgroup_properties X)
-  have hne : Nonempty (Formalism.L2.SG.ColsDim.Classes (Formalism.L2.SG.PoincareInHH.PoincareSetting.iotaF X u) (Formalism.L2.SG.PoincareInHH.PoincareSetting.Ku X u hK)) := inferInstance
   haveI : Finite (Formalism.L2.SG.ColsDim.Classes (Formalism.L2.SG.PoincareInHH.PoincareSetting.iotaF X u) (Formalism.L2.SG.PoincareInHH.PoincareSetting.Ku X u hK)) := hF
   have hfin : Finite (PIW.MassDataColumns.ClsHA X hb u) := by
     have hpos : 0 < Nat.card (Formalism.L2.SG.ColsDim.Classes (Formalism.L2.SG.PoincareInHH.PoincareSetting.iotaF X u) (Formalism.L2.SG.PoincareInHH.PoincareSetting.Ku X u hK)) :=

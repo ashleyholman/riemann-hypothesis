@@ -107,7 +107,6 @@ theorem lengthBaseChangeLocal : LengthBaseChangeLocal := by
     · exact ((v.isUnit.map (algebraMap O O₁)).ne_zero) h
     · exact (pow_ne_zero _ (mul_ne_zero u.ne_zero (pow_ne_zero _ hϖ₁.ne_zero))) h
   have : Module.IsTorsionFree O O₁ := Module.isTorsionFree_iff_algebraMap_injective.2 hinj
-  have : Module.Flat O O₁ := inferInstance
   rw [Module.length_ne_top_iff] at hQ
   refine LengthBaseChangeAlt.length_baseChange_eq_mul (ε : ℕ∞) ?_ Q hQ
   intro S _ _ hS

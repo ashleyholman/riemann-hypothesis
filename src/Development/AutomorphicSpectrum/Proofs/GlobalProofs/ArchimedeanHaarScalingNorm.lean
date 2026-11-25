@@ -344,11 +344,8 @@ theorem integral_pure_indicator_char : ∀ (F : Type) [Field F] [NumberField F] 
     haveI : SecondCountableTopology (Ainf F × Af F) := (GlobalTheory.CompanionTheory.AdeleTop.adele_top F).1.2.1
     exact (Topology.IsEmbedding.of_comp (f := fun x : Ainf F => (x, (0 : Af F))) (g := Prod.fst)
       (by fun_prop) continuous_fst Topology.IsEmbedding.id).secondCountableTopology
-  haveI : LocallyCompactSpace (Ainf F) := inferInstance
   haveI : IsLocallyFiniteMeasure laminf := isLocallyFiniteMeasure_of_isFiniteMeasureOnCompacts
   haveI : IsLocallyFiniteMeasure lf := isLocallyFiniteMeasure_of_isFiniteMeasureOnCompacts
-  haveI : SFinite laminf := inferInstance
-  haveI : SFinite lf := inferInstance
   set χ : Af F → ℂ := fun u => psiF ψ (u * sndA F b) with hχ
   have hχadd : ∀ x y, χ (x + y) = χ x * χ y := fun x y => by
     simp only [hχ, add_mul, psiF_add]

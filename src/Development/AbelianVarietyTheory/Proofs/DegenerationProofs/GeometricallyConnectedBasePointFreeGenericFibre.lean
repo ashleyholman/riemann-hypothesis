@@ -289,7 +289,6 @@ theorem geometricallyConnected_genericFibre_of_dense :
   let t : T ⟶ S := a ≫ hW.fromSpec
   have : IsLocallyNoetherian T := LocallyOfFiniteType.isLocallyNoetherian t
   have : IsNoetherian T := {}
-  have : QuasiCompact t := inferInstance
   have : IsLocallyNoetherian (pullback f t) :=
     LocallyOfFiniteType.isLocallyNoetherian (pullback.snd f t)
   have : CompactSpace ↥(pullback f t) :=

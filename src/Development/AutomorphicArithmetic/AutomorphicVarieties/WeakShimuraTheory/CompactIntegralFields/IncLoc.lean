@@ -1412,7 +1412,6 @@ theorem UpperTheory.V.Ws.x1 :
         RingHom.ker π = Ideal.span (Set.range f) ∧ b + 2 + 2 * T.d ≤ a + 2 * Nat.card T.ι := by
   intro hp Ω _ _ _ l _ c D T hF hD c' h s hs R _ _ _ P hP
   haveI : IsAlgClosure T.F Ω := ⟨IsAlgClosure.isAlgClosed ℚ, Algebra.IsAlgebraic.tower_top (K := ℚ) _⟩
-  haveI : IsGalois T.F Ω := inferInstance
   haveI := fin_res c'
   have hstd := (UpperTheory.V.Ws.std hp D T hF ∅ c' h).1 (Finset.notMem_empty 0)
   haveI := hstd.char

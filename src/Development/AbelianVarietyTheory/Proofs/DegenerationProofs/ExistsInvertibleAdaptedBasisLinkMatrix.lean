@@ -151,7 +151,6 @@ theorem linearIndependent_generic {R : Type} [CommRing R] [IsDomain R] {I : Idea
     LinearIndependent (FractionRing R) (fun i => genericSec U.toUnifPre k (σ i)) := by
   choose F hF using hF
   have := D.toPre.P.isAb.smooth
-  have : Flat D.toPre.P.A.hom := inferInstance
   have e : (TF (R := R) (FractionRing R)).hom = jK R := by
     show Spec.map _ ≫ Spec.map _ = _
     rw [← Spec.map_comp]; rfl

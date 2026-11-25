@@ -22,7 +22,6 @@ theorem UpperTheory.V.LDataCardLeFinrank.classFix :
   intro F Ω _ _ _ _ _ N _ K _ _ _ φ g h hg
   haveI : CharZero Ω := (RingHom.charZero_iff (algebraMap F Ω).injective).mp inferInstance
   letI : Algebra F K := φ.toRingHom.toAlgebra
-  haveI : IsScalarTower ℚ F K := inferInstance
   haveI : Algebra.IsAlgebraic F K := Algebra.IsAlgebraic.tower_top (K := ℚ) F
   haveI : IsAlgClosed Ω := IsAlgClosure.isAlgClosed F
   let ι : K →ₐ[F] Ω := (by

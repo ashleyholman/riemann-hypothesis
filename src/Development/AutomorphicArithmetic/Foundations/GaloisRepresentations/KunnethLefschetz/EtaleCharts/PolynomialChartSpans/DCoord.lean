@@ -46,7 +46,6 @@ private theorem etale_diff (u : Fin D → B)
     MvPolynomial.eval₂Hom (Algebra.TensorProduct.includeRight : B →ₐ[R] B ⊗[R] B).toRingHom
       (fun k => u k ⊗ₜ[R] (1 : B))
   letI algPT : Algebra (MvPolynomial (Fin D) B) (B ⊗[R] B) := hm.toAlgebra
-  have t2 : IsScalarTower (MvPolynomial (Fin D) R) B (B ⊗[R] B) := inferInstance
   have hcomp : (algebraMap (MvPolynomial (Fin D) R) (B ⊗[R] B)) =
       hm.comp (MvPolynomial.map (algebraMap R B)) := by
     apply MvPolynomial.ringHom_ext
@@ -59,7 +58,6 @@ private theorem etale_diff (u : Fin D → B)
     IsScalarTower.of_algebraMap_eq fun p => by
       have := congrArg (fun f => f p) hcomp
       simpa [RingHom.algebraMap_toAlgebra] using this
-  have t4 : IsScalarTower R (MvPolynomial (Fin D) R) (B ⊗[R] B) := inferInstance
   have hf : IsBaseChange (MvPolynomial (Fin D) R)
       (IsScalarTower.toAlgHom R B (MvPolynomial (Fin D) B)).toLinearMap :=
     (inferInstance : Algebra.IsPushout R (MvPolynomial (Fin D) R) B (MvPolynomial (Fin D) B)).out

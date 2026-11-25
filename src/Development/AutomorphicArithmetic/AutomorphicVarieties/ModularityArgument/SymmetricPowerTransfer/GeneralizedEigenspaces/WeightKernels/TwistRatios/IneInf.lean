@@ -77,7 +77,6 @@ theorem UpperTheory.V.Z.Sym.Ga.ineInf :
     ∀ (L Ω : Type) [Field L] [NumberField L] [Field Ω] [Algebra L Ω] [IsAlgClosure L Ω] (l : ℕ) [Fact l.Prime] (A : ValuationSubring Ω), A.valuation (l : Ω) < 1 → ∀ H : Subgroup (G L Ω), IsOpen (H : Set (G L Ω)) → ∃ s ∈ H, s ∈ Ine (F := L) A ∧ ¬ IsOfFinOrder (cycBar L Ω l s) := by
   intro L Ω _ _ _ _ _ l _ A hA H hH
   haveI : CharZero Ω := charZero_of_injective_algebraMap (algebraMap L Ω).injective
-  haveI : IsScalarTower ℚ L Ω := inferInstance
   haveI : Algebra.IsAlgebraic L Ω := IsAlgClosure.isAlgebraic
   haveI : IsAlgClosure ℚ Ω := ⟨IsAlgClosure.isAlgClosed L, Algebra.IsAlgebraic.trans ℚ L Ω⟩
   haveI : IsGalois L Ω := IsAlgClosure.isGalois L Ω

@@ -43,8 +43,6 @@ theorem residueField_fg_trdeg_of_isStandardSmoothOfRelativeDimension {K B : Type
     rwa [← hqo.over] at this
   haveI : Algebra.IsAlgebraic (MvPolynomial (Fin d) K) q.ResidueField := by
     let := Localization.AtPrime.algebraOfLiesOver (⊥ : Ideal (MvPolynomial (Fin d) K)) q
-    have : Module.Finite (⊥ : Ideal (MvPolynomial (Fin d) K)).ResidueField q.ResidueField :=
-      inferInstance
     have : Algebra.IsAlgebraic (MvPolynomial (Fin d) K)
         (⊥ : Ideal (MvPolynomial (Fin d) K)).ResidueField :=
       IsLocalization.isAlgebraic _ (nonZeroDivisors (MvPolynomial (Fin d) K))

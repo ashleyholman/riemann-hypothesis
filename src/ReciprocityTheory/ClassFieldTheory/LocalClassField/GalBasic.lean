@@ -15,7 +15,6 @@ open _root_.Neutral.B1 ReciprocityTheory.Coh Function
 variable (p : ℕ) [Fact p.Prime] (K L : IntermediateField ℚ_[p] (PadicAlgCl p))
 
 scoped instance isGalois_GB : IsGalois K (PadicAlgCl p) := by
-  have : IsGalois ℚ_[p] (PadicAlgCl p) := inferInstance
   infer_instance
 
 scoped instance : CompactSpace (GK p K) := inferInstance

@@ -49,7 +49,6 @@ theorem mass_of_subgroup [MeasurableSpace (A F)] [BorelSpace (A F)] (lf : Measur
     (hI : ∀ r : 𝓞 F, r ∈ I ↔ ι r ∈ H) (hI0 : I ≠ ⊥) :
     lf (H : Set (A F)) = ((Ideal.absNorm I : ℝ≥0∞))⁻¹ := by
   obtain ⟨-, -, -, -, hOo, hd, hint, -⟩ := _root_.GlobalTheory.CompanionTheory.SW.Core.AfTop.finiteAdele_topology F
-  haveI : IsTopologicalRing (A F) := inferInstance
   have : Finite (𝓞 F ⧸ I) := Ideal.finiteQuotientOfFreeOfNeBot I hI0
   haveI := Fintype.ofFinite (𝓞 F ⧸ I)
   let rep : (𝓞 F ⧸ I) → 𝓞 F := fun t => Quotient.out t

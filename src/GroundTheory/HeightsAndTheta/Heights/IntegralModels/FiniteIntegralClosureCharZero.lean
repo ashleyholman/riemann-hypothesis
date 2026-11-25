@@ -338,8 +338,6 @@ theorem finite_integralClosure_of_charZero
   have : IsFractionRing A' K := integralClosure.isFractionRing_of_finite_extension K K
   have : CharZero K := charZero_of_injective_algebraMap (IsFractionRing.injective A K)
   have : Algebra.IsSeparable K L := Algebra.IsSeparable.of_integral K L
-  have : IsScalarTower A' K L := inferInstance
-  have : IsScalarTower A A' L := inferInstance
   have : Module.Finite A' (integralClosure A' L) :=
     IsIntegralClosure.finite A' K L (integralClosure A' L)
   have : Module.Finite A (integralClosure A' L) := Module.Finite.trans A' _

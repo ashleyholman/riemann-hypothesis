@@ -18,7 +18,6 @@ theorem UpperTheory.V.CA.c3a :
   intro C R _ _ _ _ _ x _ h
   obtain ⟨-, ⟨e⟩, -⟩ := UpperTheory.V.CA.cpl_uniq x h
   have hflat : Module.Flat C R := by
-    have h1 : Module.Flat (Localization.AtPrime x) (Cpl x) := inferInstance
     have h2 : Module.Flat C (Localization.AtPrime x) := IsLocalization.flat _ x.primeCompl
     have h3 : Module.Flat C (Cpl x) := Module.Flat.trans C (Localization.AtPrime x) (Cpl x)
     exact Module.Flat.of_linearEquiv e.toLinearEquiv

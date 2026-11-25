@@ -229,7 +229,6 @@ theorem locSm_theta {E : Type} [NormedAddCommGroup E] [NormedSpace ℝ E] {ψ : 
     {f : WO S T → ℂ} (hf : IsThetaFunO ψ S T f) (M : E →+ WO S T) (hM : Continuous M)
     (h0 : ∀ t, (M t).map (finPart D) = 0) : LocSm fun x t => f (x + M t) := by
   intro x₀
-  have : IsTopologicalAddGroup (AE D) := inferInstance
   have : IsTopologicalAddGroup (WO S T) := Pi.topologicalAddGroup
   have : ContinuousSub (WO S T) := IsTopologicalAddGroup.to_continuousSub
   obtain ⟨co, c1, c2, c3⟩ := exists_coMat D T.rank S.rank

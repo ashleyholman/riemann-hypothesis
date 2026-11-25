@@ -446,8 +446,6 @@ theorem kd_dk_eq_map (ε : Fin n → Bool) (μp : Measure (UNgrp (pOf ε))) [μp
   have : Measure.IsHaarMeasure ((μp.prod μq).map (kdPsi ε)) :=
     Measure.isHaarMeasure_map _ (kdPsi ε) (continuous_kdPsi ε) (kdPsi_surjective ε)
       (by rw [Filter.cocompact_eq_bot]; exact Filter.tendsto_bot)
-  have : IsProbabilityMeasure ((μp.prod μq).map (kdPsi ε)) :=
-    inferInstance
   have h0 : (Measure.haar : Measure (KG ε)) Set.univ ≠ 0 :=
     isOpen_univ.measure_ne_zero _ Set.univ_nonempty
   have htop : (Measure.haar : Measure (KG ε)) Set.univ ≠ ⊤ :=

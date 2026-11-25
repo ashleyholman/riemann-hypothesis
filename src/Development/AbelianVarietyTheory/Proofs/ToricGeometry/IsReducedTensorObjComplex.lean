@@ -22,7 +22,6 @@ theorem isReduced_tensorObj_complex :
 
   have : GeometricallyReduced X.hom :=
     ReducedSubgroup.geometricallyReduced_of_perfectField (k := ℂ) X.hom
-  have : Flat X.hom := inferInstance
   have : IsLocallyNoetherian Y.left := LocallyOfFiniteType.isLocallyNoetherian Y.hom
   change IsReduced (Limits.pullback X.hom Y.hom)
   infer_instance

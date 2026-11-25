@@ -132,10 +132,8 @@ theorem isProper_iff_of_split (K : Type) [Field K] (H : Over (Sp K)) [GrpObj H] 
     have := hB.proper
     have := hB.smooth
     have : LocallyOfFinitePresentation (q.left ≫ B.hom) := by rw [Over.w q]; infer_instance
-    have : LocallyOfFiniteType (q.left ≫ B.hom) := inferInstance
     have : LocallyOfFiniteType q.left := locallyOfFiniteType_of_comp _ B.hom
     have : IsLocallyNoetherian B.left := LocallyOfFiniteType.isLocallyNoetherian B.hom
-    have : LocallyOfFinitePresentation q.left := inferInstance
     have : IsOpenImmersion q.left := IsOpenImmersion.of_flat_of_mono _
     have : IsIso q.left := isIso_of_isOpenImmersion_of_opensRange_eq_top _
       (TopologicalSpace.Opens.ext q.left.surjective.range_eq)

@@ -1274,7 +1274,6 @@ theorem GlobalTheory.SS.frobenius_on_torsion : ∀ (k : Type) [Field k] [IsAlgCl
   · intro hle
     have hgg : g ≤ g' := by omega
     have := hgiso hgg
-    have : QuasiCompact qB.left := inferInstance
     let T : TorusExtension N :=
       { X := X, B := B, isAbelian := hB, q := qB, q_hom := hq_hom, q_flat := hq_flat,
         q_surjective := hq_surj, q_quasiCompact := inferInstance, i := i, i_hom := hi_hom, isKernel := hq_pb }

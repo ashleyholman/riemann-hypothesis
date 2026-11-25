@@ -606,7 +606,6 @@ theorem map_mul_left (F : Type) [Field F] [NumberField F] (v : HeightOneSpectrum
     (lam : Measure (Fv F v)) (hl : lam.IsAddHaarMeasure) (n : (Fv F v)ˣ) :
     lam.map (fun t => (n : Fv F v) * t) = (‖(n : Fv F v)‖₊)⁻¹ • lam := by
   have : SecondCountableTopology (Fv F v) := PI.UnitaryGroupMassFormula.LocJacTyp.BM.secondCountable_Fv v
-  have : lam.Regular := inferInstance
   have hc : Continuous fun t : Fv F v => (n : Fv F v) * t := continuous_const.mul continuous_id
   ext S hS
   rw [Measure.map_apply hc.measurable hS, nnnorm_eq_distribHaarChar, ← map_inv]

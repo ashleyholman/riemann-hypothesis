@@ -172,7 +172,6 @@ private theorem exists_dvr_quotient_of_complete_local {A R : Type} [CommRing A] 
   letI : Algebra (FractionRing A) (FractionRing R) := FractionRing.liftAlgebra A (FractionRing R)
   haveI : IsScalarTower A (FractionRing A) (FractionRing R) :=
     FractionRing.isScalarTower_liftAlgebra A (FractionRing R)
-  haveI : FiniteDimensional (FractionRing A) (FractionRing R) := inferInstance
   obtain ⟨hfin, hdvr⟩ :=
     UpperTheory.V.Pr.T.completeDVRExt (A := A) (K := FractionRing A) (L := FractionRing R)
   have hmem : ∀ r : R, algebraMap R (FractionRing R) r ∈ integralClosure A (FractionRing R) :=

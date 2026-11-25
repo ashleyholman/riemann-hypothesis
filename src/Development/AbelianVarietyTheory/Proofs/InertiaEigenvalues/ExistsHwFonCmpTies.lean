@@ -362,8 +362,6 @@ theorem faithH : ∀ (l : ℕ) [Fact l.Prime] (P : LocPrime l) (AI : LocAinf l P
   haveI : FiniteDimensional ℚ_[l] L.1 := L.2
   let E : IntermediateField ℚ_[l] (Om l) := IntermediateField.normalClosure ℚ_[l] L.1 (Om l)
   have hLE : L.1 ≤ E := IntermediateField.le_normalClosure _
-  haveI : FiniteDimensional ℚ_[l] E := inferInstance
-  haveI : Normal ℚ_[l] E := inferInstance
   haveI : E.fixingSubgroup.FiniteIndex := by
     haveI := Subgroup.quotient_finite_of_isOpen E.fixingSubgroup E.fixingSubgroup_isOpen
     exact Subgroup.finiteIndex_of_finite_quotient

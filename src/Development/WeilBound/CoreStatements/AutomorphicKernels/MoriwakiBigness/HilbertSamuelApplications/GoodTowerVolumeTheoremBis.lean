@@ -546,7 +546,6 @@ theorem orbit_abstract {p : ℕ} (hp : p.Prime) (hd : ¬ (p : ℤ) ∣ NumberFie
   let f : Sg → Sg := fun τ => ⟨φ τ.1, (hker τ.1).trans τ.2⟩
   have hfi : Function.Injective f := fun a b h =>
     Subtype.ext (φ.injective (congrArg Subtype.val h))
-  haveI : Finite Sg := inferInstance
   let φ' : Equiv.Perm Sg := Equiv.ofBijective f (Finite.injective_iff_bijective.1 hfi)
   let σ : Sg → (𝓞 E ⧸ w₀) →+* k := fun τ => Ideal.Quotient.lift w₀ (r τ.1) fun a ha => by
     have : a ∈ RingHom.ker (r τ.1) := by rw [τ.2]; exact ha

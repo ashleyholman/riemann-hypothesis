@@ -46,7 +46,6 @@ theorem inner_R_sub_eq_intervalIntegral :
   have ftc : ∀ x, ∫ s in (0 : ℝ)..t, f' (x * c s) = f (x * c t) - f (x * 1) := fun x => by
     rw [intervalIntegral.integral_eq_sub_of_hasDerivAt (fun s _ => hd x s)
       ((hcf.comp (continuous_const.mul hc)).intervalIntegrable _ _), h0]
-  haveI : SigmaFinite μ := inferInstance
   haveI : SigmaFinite (quotMeasure Γ μ) :=
     SigmaFinite.of_map _ (measurePreserving_sec (Γ := Γ) (μ := μ)).measurable.aemeasurable
       (by rw [(measurePreserving_sec (Γ := Γ) (μ := μ)).map_eq]; infer_instance)

@@ -42,7 +42,6 @@ theorem exists_galois_level_finset (T : Finset ℚ̄) (hT : ∀ y ∈ T, y ∈ m
   have : FiniteDimensional K.1 A :=
     IntermediateField.finiteDimensional_adjoin fun y _ => Algebra.IsIntegral.isIntegral y
   let N' : IntermediateField K.1 ℚ̄ := IntermediateField.normalClosure K.1 A ℚ̄
-  have hN'f : FiniteDimensional K.1 N' := inferInstance
   have hN'n : Normal K.1 N' := inferInstance
   have hN'le : N' ≤ maxUnramifiedOutside K.1 ℚ̄ S :=
     IntermediateField.normalClosure_le_iff_of_normal.2

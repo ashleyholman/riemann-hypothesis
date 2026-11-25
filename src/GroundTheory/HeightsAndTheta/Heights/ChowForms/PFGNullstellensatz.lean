@@ -20,9 +20,7 @@ theorem FGNullstellensatz.proof : FGNullstellensatz.Statement := by
     rw [Ideal.jacobson, Submodule.mem_sInf]
     rintro m ⟨-, hm⟩
     let _ : Field (D ⧸ m) := Ideal.Quotient.field m
-    have : Algebra.FiniteType F (D ⧸ m) := inferInstance
     have : Module.Finite F (D ⧸ m) := finite_of_finite_type_of_isJacobsonRing F (D ⧸ m)
-    have : Algebra.IsAlgebraic F (D ⧸ m) := inferInstance
     let ψ : (D ⧸ m) →ₐ[F] AlgebraicClosure F := (by
       refine @_root_.IsAlgClosed.lift _ _ _ _ _ _ _ _ _ _ _ ?_ ?_ ?_
       solve_by_elim* (maxDepth := 2) only [*,

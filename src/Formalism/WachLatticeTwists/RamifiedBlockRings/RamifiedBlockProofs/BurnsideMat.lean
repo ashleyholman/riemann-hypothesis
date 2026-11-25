@@ -224,7 +224,6 @@ theorem noeth : StatNoeth := by
     intro a ha
     choose F hF using hint a ha
     exact ⟨F, by funext x'; ext i j; exact hF x' i j⟩
-  haveI : IsNoetherian O (LinearMap.range L) := inferInstance
   haveI h1 : IsNoetherian O (Subalgebra.toSubmodule R') := isNoetherian_of_le hle
   haveI h2 : IsNoetherian O R' := h1
   exact isNoetherian_of_tower O h2

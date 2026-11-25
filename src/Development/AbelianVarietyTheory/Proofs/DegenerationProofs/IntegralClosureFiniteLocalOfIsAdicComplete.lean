@@ -60,7 +60,6 @@ theorem integralClosure_finite_local_of_isAdicComplete :
           IsFractionRing (integralClosure R L) L := by
   intro R _ _ _ _ _ _ hR L _ _ _ _ _
   have : CharZero (FractionRing R) := IsFractionRing.charZero_of_isFractionRing R
-  have : Algebra.IsSeparable (FractionRing R) L := inferInstance
   have hfin : Module.Finite R (integralClosure R L) :=
     IsIntegralClosure.finite R (FractionRing R) L (integralClosure R L)
   have hfr : IsFractionRing (integralClosure R L) L :=

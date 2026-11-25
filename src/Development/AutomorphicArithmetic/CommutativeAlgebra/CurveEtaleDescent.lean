@@ -152,8 +152,6 @@ private theorem eqv_tw_map_closedImmersion_surjective (hB3 : B3) (hE1 : E1) (q :
   intro A' _ s _
   have hqA : IsUnit (q : A') := by
     simpa using (unit_map q s hq).map (Scheme.ΓSpecIso (CommRingCat.of A')).hom.hom
-  haveI : IsClosedImmersion (pullback.snd (δ ≫ 𝟙 Z) s) := inferInstance
-  haveI : Surjective (pullback.snd (δ ≫ 𝟙 Z) s) := inferInstance
   have h1 := eqv_tw_map_closedImmersion_surjective_spec hE1 q i hqA (pullback.snd (δ ≫ 𝟙 Z) s)
   have hM : pullback.map (δ ≫ 𝟙 Z) s (𝟙 Z) s δ (𝟙 _) (𝟙 Z) (by simp) (by simp) ≫ pullback.snd (𝟙 Z) s =
       pullback.snd (δ ≫ 𝟙 Z) s := by
@@ -253,15 +251,11 @@ theorem UpperTheory.cech_descent_twist_of_proper_surjective_strictly_henselian :
     have s0 := IsPullback.of_hasPullback p (bpt A)
     rw [← IsPullback.isoIsPullback_hom_fst _ _ s0 s12, Functor.map_comp, Functor.map_comp]
     have hf1 : Eqv (ZMod q) (sch.map (pullback.fst p r)) (tw q i) := hE2 q A hA hq p i
-    haveI : IsIntegralHom (pullback.fst (pullback.snd p r) u) := inferInstance
     haveI : UniversallyInjective (pullback.fst (pullback.snd p r) u) :=
       MorphismProperty.of_isPullback (P := @UniversallyInjective) (IsPullback.of_hasPullback (pullback.snd p r) u).flip inferInstance
-    haveI : Surjective (pullback.fst (pullback.snd p r) u) := inferInstance
     have hf2 := eqv_tw_map_integral_univInjective_surjective hA3 hB3 hB4 hE1 q i (pullback.fst (pullback.snd p r) u)
       (unit_map q (pullback.snd p r) hqk)
     exact (hcomp _ _ _ _ _).1 (hiso _ _ _ inferInstance) ((hcomp _ _ _ _ _).1 hf2 hf1)
-  haveI : IsProper (pullback.snd g (bpt A)) := inferInstance
-  haveI : Surjective (pullback.snd g (bpt A)) := inferInstance
   haveI : CompactSpace ↑(pullback g (bpt A) : Scheme.{0}) := by
     rw [← isCompact_univ_iff]
     simpa using QuasiCompact.isCompact_preimage (f := pullback.snd g (bpt A)) _ isOpen_univ isCompact_univ

@@ -102,7 +102,6 @@ theorem almostSep_of_moves : ∀ (L : Type) [Field L] (v : Valuation L ℝ≥0) 
     N.FiniteIndex → (∀ σ : G, σ ∉ N → Moves v (Fix L N) σ) → AlmostSep v N := by
   intro L _ v G _ _ hv N hN hfi hmov r hr
   classical
-  haveI : Finite (G ⧸ N) := inferInstance
   letI : Fintype (G ⧸ N) := Fintype.ofFinite _
   set s : Finset (G ⧸ N) := Finset.univ.erase 1 with hs
   obtain ⟨t, ht1, hrt⟩ := exists_lt_one_lt_pow r hr s.card

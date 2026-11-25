@@ -1123,7 +1123,6 @@ theorem exists_orbit_lift : ∀ (E : Type) [Field E] [NumberField E] [IsCMField 
     obtain ⟨j, hj⟩ := idx.surjective (τ, i)
     obtain ⟨rfl, rfl⟩ : τ = (idx j).1 ∧ i = (idx j).2 := by rw [hj]; exact ⟨rfl, rfl⟩
     exact h a j
-  haveI : Inhabited (Frame (U.X k).Ψ N) := inferInstance
   choose! x₁ hx₁ hr₁ using fun (w : ℂ) (hw : T < w.im) => honto (P w) (hP w hw).1.1
   obtain ⟨xx, hxd, hxx⟩ := _root_.GlobalTheory.HolFrameLift.exists_holomorphic_frames E N (U.X k) {w : ℂ | T < w.im} x₁ hx₁
     (hall fun a j => (differentiableOn_pi.1 (hPd a) j).congr fun w hw => hr₁ w hw a j)

@@ -471,11 +471,8 @@ theorem mem_span_eigen_of_baseChange_eigen (l : ℕ) [Fact l.Prime] (M S : Type)
     rw [IsScalarTower.algebraMap_eq ℤ_[l] ℚ_[l] (PadicAlgCl l), RingHom.coe_comp]
     exact (algebraMap ℚ_[l] (PadicAlgCl l)).injective.comp (IsFractionRing.injective ℤ_[l] ℚ_[l])
   haveI : FaithfulSMul ℤ_[l] (PadicAlgCl l) := (faithfulSMul_iff_algebraMap_injective _ _).2 hinj0
-  haveI : Module.IsTorsionFree ℤ_[l] (PadicAlgCl l) := inferInstance
-  haveI : Module.Flat ℤ_[l] (PadicAlgCl l) := inferInstance
   obtain ⟨P, hP, z, rfl⟩ := Submodule.exists_fg_le_eq_rTensor_subtype x'
   haveI : Module.Finite ℤ_[l] P := Module.Finite.iff_fg.2 hP
-  haveI : Module.Free ℤ_[l] P := inferInstance
   let ω := Module.Free.chooseBasis ℤ_[l] P
   let Φ : P ⊗[ℤ_[l]] B →ₗ[ℤ_[l]] PadicAlgCl l ⊗[ℤ_[l]] M :=
     (B.subtype.lTensor (PadicAlgCl l)) ∘ₗ (P.subtype.rTensor B)

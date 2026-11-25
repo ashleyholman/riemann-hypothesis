@@ -137,7 +137,6 @@ theorem sabMap_exists_iso_pullback {E : Type} [Field E] [NumberField E] [IsCMFie
 theorem conj_comp_eq_id_pow {S : Scheme.{0}} {A B A' B' : Over S} [GrpObj A] [GrpObj B] [GrpObj A'] [GrpObj B']
     (u : A ≅ B) (u' : A' ≅ B') [IsMonHom u.hom] (f : B ⟶ B') (f' : B' ⟶ B) (N : ℕ) (h : f ≫ f' = 𝟙 B ^ N) :
     (u.hom ≫ f ≫ u'.inv) ≫ (u'.hom ≫ f' ≫ u.inv) = 𝟙 A ^ N := by
-  have : IsMonHom u.inv := inferInstance
   simp only [Category.assoc, Iso.inv_hom_id_assoc]
   rw [reassoc_of% h, MonObj.pow_comp, MonObj.comp_pow]
   simp
@@ -378,7 +377,6 @@ theorem frPt_descends_finite :
     ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l) (K L : Type) [Field K] [Field L] [Algebra c.F K] [Algebra c.F L] (φ : K →ₐ[c.F] L) (z : FrPt Xo c L), φ.toRingHom.IsIntegral → ∃ (M : Type) (_ : Field M) (_ : Algebra c.F M) (i : K →ₐ[c.F] M) (j : M →ₐ[c.F] L) (z₁ : FrPt Xo c M), j.comp i = φ ∧ i.toRingHom.Finite ∧ FrMap j z₁ z := by
   intro E _ _ _ H Dw l Xo c K L _ _ _ _ φ z hφ
   obtain ⟨p, ψ, u, hu⟩ := GlobalTheory.FlagTan.fromTest_of_isLocalRing z
-  haveI : Algebra.FiniteType c.F p.R := inferInstance
   obtain ⟨M, _, _, i, j, χ, h1, h2, h3⟩ := exists_finite_factor φ hφ ψ
   obtain ⟨z₁, hz⟩ := GlobalTheory.FlagTan.exists_frMap χ u
   exact ⟨M, inferInstance, inferInstance, i, j, z₁, h1, h2,

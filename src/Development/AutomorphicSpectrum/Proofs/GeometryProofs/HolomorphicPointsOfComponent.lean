@@ -30,7 +30,6 @@ theorem const_of_root {n : ℕ} (f : (Fin n → ℂ) → ℂ) (hf : Differentiab
   have hne : p.map (Int.castRingHom ℂ) ≠ 0 := (hp.map _).ne_zero
   have hfin : ((p.map (Int.castRingHom ℂ)).rootSet ℂ).Finite := Polynomial.rootSet_finite _ _
   haveI : Finite ((p.map (Int.castRingHom ℂ)).rootSet ℂ) := hfin
-  haveI : DiscreteTopology ((p.map (Int.castRingHom ℂ)).rootSet ℂ) := inferInstance
   refine IsPreconnected.constant_of_mapsTo (convex_ball _ _).isPreconnected
     (T := (p.map (Int.castRingHom ℂ)).rootSet ℂ) ⟨inferInstance⟩ hf.continuousOn (fun x hx => ?_) hb hb'
   rw [Polynomial.mem_rootSet]

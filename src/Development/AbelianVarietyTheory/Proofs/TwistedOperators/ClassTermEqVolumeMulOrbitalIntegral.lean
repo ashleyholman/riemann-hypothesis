@@ -123,7 +123,6 @@ theorem exists_weight (H : Type) [Group H] [TopologicalSpace H] [IsTopologicalGr
   · exact hprod.lintegral_prod_right'
   · intro y
     haveI : Countable Γ := by
-      haveI : TopologicalSpace.SeparableSpace Γ := inferInstance
       exact TopologicalSpace.separableSpace_iff_countable.mp inferInstance
     haveI : Countable (Γ.subgroupOf (cent γ)) := by
       refine Function.Injective.countable (f := fun h : Γ.subgroupOf (cent γ) => (⟨((h : cent γ) : H), h.2⟩ : Γ)) ?_

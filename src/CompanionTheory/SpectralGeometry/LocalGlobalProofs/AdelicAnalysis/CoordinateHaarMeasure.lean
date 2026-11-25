@@ -179,7 +179,6 @@ theorem hermCoord_isHomeomorph [IsTopologicalRing R] [CharZero F] {σ : E →ₐ
     (hsig : Continuous (sigR R σ)) (htr : Continuous (Algebra.trace R (R ⊗[F] E))) :
     IsHomeomorph (hermCoord R σ n) := by
   have hincl : Continuous fun r : R => r ⊗ₜ[F] (1 : E) := by
-    have : IsModuleTopology R R := inferInstance
     have := IsModuleTopology.continuous_of_linearMap (R := R) (A := R) (B := R ⊗[F] E)
       (Algebra.linearMap R (R ⊗[F] E))
     have e : (fun r : R => r ⊗ₜ[F] (1 : E)) = ⇑(Algebra.linearMap R (R ⊗[F] E)) := by
@@ -249,8 +248,6 @@ theorem coord_measures_haar : ∀ (F E : Type) [Field F] [NumberField F] [Field 
     intro x y
     funext k
     simp
-  haveI a1 : MeasurableAdd (R ⊗[F] E) := inferInstance
-  haveI a2 : SigmaFinite (coordK R b lam) := inferInstance
   refine ⟨hK, ?_, ?_⟩
   · intro n M
     unfold coordW
@@ -258,12 +255,7 @@ theorem coord_measures_haar : ∀ (F E : Type) [Field F] [NumberField F] [Field 
     infer_instance
   · intro n
     haveI : BorelSpace (HermR R σ n) := ⟨rfl⟩
-    haveI a3 : (Measure.pi fun _ : {p : Fin n × Fin n // p.1 < p.2} => coordK R b lam).IsAddHaarMeasure :=
-      inferInstance
     haveI a4 : (Measure.pi fun _ : Fin n => lam).IsAddHaarMeasure := inferInstance
-    haveI a5 : ((Measure.pi fun _ : Fin n => lam).prod
-        (Measure.pi fun _ : {p : Fin n × Fin n // p.1 < p.2} => coordK R b lam)).IsAddHaarMeasure :=
-      inferInstance
     exact HaarCoord.haar_comap (HaarCoord.hermCoord R σ n) (HaarCoord.hermCoord_add R σ n)
       (HaarCoord.hermCoord_isHomeomorph R hinv h2 hδ hσδ n t5 t6) _
 

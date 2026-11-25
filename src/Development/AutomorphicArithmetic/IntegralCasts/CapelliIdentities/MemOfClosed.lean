@@ -52,7 +52,6 @@ theorem aux6 : ∀ (K : Type) [Field K] [ValuativeRel K]
   Module.Finite (ZMod l) (IsLocalRing.ResidueField ↥(ValuativeRel.valuation K).integer) := by
   intro K _ _ _ _ l _ _
   letI := algRes K l
-  haveI : Finite (IsLocalRing.ResidueField (ValuativeRel.valuation K).integer) := inferInstance
   exact Module.Finite.of_finite
 
 attribute [local instance] aux4 aux6

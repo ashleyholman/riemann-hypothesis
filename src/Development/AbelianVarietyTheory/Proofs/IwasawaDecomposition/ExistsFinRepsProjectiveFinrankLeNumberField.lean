@@ -131,7 +131,6 @@ theorem exists_fin_reps_projective_finrank_le :
   let P : T → Prop := fun t => Module.Finite (𝓞 E) (g t) ∧ Module.Projective (𝓞 E) (g t) ∧
     Module.finrank (𝓞 E) (g t) ≤ q
   let S := {t : T // P t}
-  haveI : Finite S := inferInstance
   let eS := Finite.equivFin S
   refine ⟨Nat.card S, fun k => g (eS.symm k).1, fun k => (eS.symm k).2, ?_⟩
   intro X _ _ _ _ hq

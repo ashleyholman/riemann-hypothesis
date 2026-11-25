@@ -145,7 +145,6 @@ theorem UpperTheory.Gal.projectedFormsSystemPart.autAway_alt (PH : _root_.UpperT
       rw [← map_natCast (residue c.O), residue_eq_zero_iff]
       exact hlm
     have : CharP (c.O ⧸ maximalIdeal c.O) l := inferInstanceAs (CharP (ResidueField c.O) l)
-    have : PerfectRing (ResidueField c.O) l := inferInstance
     let j : ResidueField c.O →+* Perfection (c.O ⧸ maximalIdeal c.O) l :=
       Perfection.lift l (ResidueField c.O) (c.O ⧸ maximalIdeal c.O)
         (RingHom.id (ResidueField c.O))

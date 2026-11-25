@@ -204,8 +204,6 @@ theorem twKer_reflect : ∀ {G V W : Type} [Group G] [TopologicalSpace G] [IsTop
   haveI : M.FiniteIndex := Subgroup.finiteIndex_of_finite_quotient
   let C : Subgroup L := M.normalCore
   haveI : C.Normal := Subgroup.normalCore_normal M
-  haveI : C.FiniteIndex := inferInstance
-  haveI : Finite (L ⧸ C) := inferInstance
   have hCM : C ≤ M := Subgroup.normalCore_le M
   have hmain := mem_span_of_normal (ρ.comp L.subtype) (σ.comp L.subtype) χ C (hCM.trans hMχ) f hf
     (fun g x => hfi g x) v (by

@@ -55,7 +55,6 @@ theorem existsUnique_isMonHom_of_map_lattice :
   have : Smooth P.A.hom := SmoothOfRelativeDimension.smooth P.g P.A.hom
   have : IsReduced P.A.left := isReduced_of_smooth_complex P.A.left P.A.hom inferInstance
   have := P'.3
-  have : IsSeparated P'.A.hom := inferInstance
   apply ComplexPoints.over_hom_ext_of_complexPoints
   intro x
   obtain ⟨z, rfl⟩ := u.3 x

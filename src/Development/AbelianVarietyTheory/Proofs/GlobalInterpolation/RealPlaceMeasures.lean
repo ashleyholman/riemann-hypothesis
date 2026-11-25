@@ -594,7 +594,6 @@ theorem mp_colrow {ι : Type} [Fintype ι] (s : ι → ℂ) (hs : ∀ i, ‖s i�
   have hA := (hsh1.comp ((MeasurePreserving.id volume).prod hI)).smul_measure ((2 : ℝ≥0∞) ^ n * 2 ^ n)
   have hB := ((MeasurePreserving.id volume).prod hS).comp
     (hsh2.comp ((MeasurePreserving.id (volume : Measure (ι → ℂ))).prod hsc))
-  haveI : SFinite (((2 : ℝ≥0∞) ^ n • volume : Measure (ι → ℂ))) := inferInstance
   rw [Measure.prod_smul_right] at hB
   rw [Measure.prod_smul_left, Measure.prod_smul_right, smul_smul]
   convert hB.comp hA using 1

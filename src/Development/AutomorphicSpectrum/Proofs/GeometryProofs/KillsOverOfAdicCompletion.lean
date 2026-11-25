@@ -44,7 +44,6 @@ theorem UpperTheory.Reformulated.B.MorphismExtOfSpecQuotients.main :
   let g' : X' ⟶ Y' := Over.homMk g h.symm
   have : IsSeparated Y'.hom := ‹_›
   have : IsAffine X'.left := inferInstanceAs (IsAffine (Spec (CommRingCat.of A)))
-  have hcl : IsClosedImmersion (equalizer.ι f' g').left := inferInstance
   have hfac : ∀ n, ∃ l : UpperTheory.Reformulated.B.MorphismExtOfSpecQuotients.Sp (A ⧸ I n) ⟶ (equalizer f' g').left,
       l ≫ (equalizer.ι f' g').left = UpperTheory.Reformulated.B.MorphismExtOfSpecQuotients.spMap (Ideal.Quotient.mk (I n)) := by
     intro n

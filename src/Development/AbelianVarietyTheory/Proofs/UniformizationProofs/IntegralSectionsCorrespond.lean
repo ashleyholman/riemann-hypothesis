@@ -350,7 +350,6 @@ theorem scale_of_restrict {k : ℕ} {σ₀ σ : H0 U.LG.L k} {s : U.SecK k} {r :
       (scal (pullback.snd G.hom (jK R) ≫ jK R) r)) (c : R) (i) :
     (SecOps.secScale (scal G.hom c) σ).f i = resTop _ (scal G.hom (c * r)) * σ₀.f i := by
   have := U.smooth
-  have : Flat G.hom := inferInstance
   exact ExpInt.secIsMul_trans (p := G.hom) (a := c) (ρ := SecOps.secScale (scal G.hom c) σ) (fun _ => rfl)
     (ExpInt.secIsMul_of_generic G U.LG.isLB k σ₀ σ s r h₀ h) i
 

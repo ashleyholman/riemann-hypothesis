@@ -22,7 +22,6 @@ theorem frob_inv_mul_mem_inertia : ∀ (E Ω : Type) [Field E] [NumberField E] [
 
   haveI : v.asIdeal.IsMaximal := v.isMaximal
   letI : Field (𝓞 E ⧸ v.asIdeal) := Ideal.Quotient.field _
-  haveI : Finite (𝓞 E ⧸ v.asIdeal) := inferInstance
   letI : Fintype (𝓞 E ⧸ v.asIdeal) := Fintype.ofFinite _
   set p := ringChar (𝓞 E ⧸ v.asIdeal) with hpdef
   haveI : CharP (𝓞 E ⧸ v.asIdeal) p := ringChar.charP _

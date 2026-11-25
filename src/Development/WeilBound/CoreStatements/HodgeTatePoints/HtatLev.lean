@@ -58,7 +58,6 @@ theorem exists_ef_one (hpq : 0 < D.p + D.q) : ∃ a b, D.EF a b = 1 := by
   have : Module.Finite (𝓞 E) D.La := D.fin
   have : Module.Finite ℤ D.La := Module.Finite.trans (𝓞 E) D.La
   have : Module.Flat ℤ D.La := Module.Flat.trans ℤ (𝓞 E) D.La
-  have : Module.Free ℤ D.La := inferInstance
   have : Nontrivial D.La := Module.nontrivial_of_finrank_pos (R := 𝓞 E) (by rw [D.rank]; exact hpq)
   let B := Module.Free.chooseBasis ℤ D.La
   obtain ⟨i⟩ := B.index_nonempty

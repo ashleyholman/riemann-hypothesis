@@ -324,8 +324,6 @@ theorem nonempty_cEmb_of_pos_nV : ∀ (p : ℕ) [Fact p.Prime] (G : Formalism.Ma
     rw [← S.p_unif.maximalIdeal_eq] at h
     exact Nat.finite_of_card_ne_zero (h ▸ pow_ne_zero _ (Fact.out : p.Prime).ne_zero)
   haveI : Finite (ResidueField G.O) := by
-    haveI : Module.Finite (G.P.W v) (ResidueField G.O) := inferInstance
-    haveI : Algebra.IsIntegral (G.P.W v) (ResidueField G.O) := inferInstance
     exact Module.finite_of_finite (ResidueField (G.P.W v))
 
   obtain ⟨p', hp', K₀, e, e₀, hfd, he⟩ := exists_ringEquiv_integralClosure_padicInt G.O G.Kf

@@ -152,7 +152,6 @@ theorem formIdeal_le_ker_pt_iff (J : Ideal (MvPolynomial (Fin (n + 1)) R)) (c : 
     rw [h2, zero_mul]
   · intro h
     have := isProper_str R n
-    have : QuasiCompact (pt c v hv ≫ PSpace.str R n) := inferInstance
     have : QuasiCompact (pt c v hv) := QuasiCompact.of_comp _ (PSpace.str R n)
     refine iSup_le fun p => Scheme.IdealSheafData.le_of_iSup_eq_top
       (fun i => ⟨chart R n i, isAffineOpen_chart R n i⟩) (iSup_chart R n) fun i => ?_

@@ -51,7 +51,6 @@ variable {R : Type} [CommRing R] [IsDomain R] {T : Type} [CommGroup T]
 
 theorem isAffineOpen_of_fin (Γ : QFGroup R T) {U : Γ.G.left.Opens} (hF : Γ.IsFinOpenSub U) : IsAffineOpen U := by
   have := hF.finite
-  have : IsAffineHom (U.ι ≫ Γ.G.hom) := inferInstance
   exact isAffine_of_isAffineHom (U.ι ≫ Γ.G.hom)
 
 theorem top_le_iff_mem {X Y : Scheme.{0}} (x : Y ⟶ X) (U : X.Opens) : ⊤ ≤ x ⁻¹ᵁ U ↔ ∀ z, x z ∈ U :=

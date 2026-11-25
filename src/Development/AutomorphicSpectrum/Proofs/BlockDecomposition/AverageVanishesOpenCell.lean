@@ -40,7 +40,6 @@ theorem eq_zero_of_eig_of_mem_twKer {G V : Type} [Group G] [TopologicalSpace G] 
   classical
   obtain ⟨M, hM, hs⟩ := exists_sum_eq_zero hρ hL θ hθ hx
   haveI : M.FiniteIndex := hM
-  haveI : M.normalCore.FiniteIndex := inferInstance
   haveI : M.normalCore.Normal := Subgroup.normalCore_normal _
   haveI : Finite (L ⧸ M.normalCore) := Subgroup.finite_quotient_of_finiteIndex
   letI : Fintype (L ⧸ M.normalCore) := Fintype.ofFinite _

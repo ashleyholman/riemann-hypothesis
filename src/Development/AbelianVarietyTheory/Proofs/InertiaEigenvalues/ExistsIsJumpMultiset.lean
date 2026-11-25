@@ -234,10 +234,8 @@ theorem multV_diagRep (hF : IsField BdR) [FiniteDimensional Qp LL] {t : ℕ} (χ
     multV PD (diagRep χ) τ a = ∑ c, multV PD (charRep (χ c)) τ a := by
   induction t with
   | zero =>
-    haveI : Subsingleton ((Fin 0 → LL) ⊗[Qp] BdR) := inferInstance
     simp [multV, Module.finrank_zero_of_subsingleton]
   | succ t ih =>
-    haveI : Module.Finite Qp (Fin t → LL) := inferInstance
     haveI := finite_ddR_of_isField PD hF (charRep (χ 0))
     haveI := finite_ddR_of_isField PD hF (diagRep fun c : Fin t => χ c.succ)
     rw [Fin.sum_univ_succ, ← ih]

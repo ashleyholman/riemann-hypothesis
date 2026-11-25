@@ -631,7 +631,6 @@ theorem exists_anFacts_definite (D : D7) (T : Top D) (h : LawsP T) (j : ℕ) (hj
   obtain ⟨t, ht, ⟨Fl⟩⟩ := GlobalTheory.GenericFlat.exists_generic_flatAt D T h j hj N wL wF w Tn _ A
   classical
   let ι : Type := Σ k : (T.U j T.σ₀).Comp, Fin (Fl.Fl k).δ
-  have : Fintype ι := inferInstance
   let en : Fin (Fintype.card ι) ≃ ι := (Fintype.equivFin ι).symm
   let xs : Fin (Fintype.card ι) → R.Y := fun q =>
     e.symm ⟨(en q).1, ⟨(Fl.Fl (en q).1).xs (en q).2, (Fl.Fl (en q).1).xs_mem _⟩⟩

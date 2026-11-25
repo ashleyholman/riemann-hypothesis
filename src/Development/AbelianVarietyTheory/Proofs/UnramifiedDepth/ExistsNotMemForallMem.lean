@@ -252,7 +252,6 @@ theorem card_hom_le {M k ι : Type} [CommRing M] [CommRing k] [IsDomain k] [Fini
     apply hf
     ext x
     exact AlgHom.congr_fun h x
-  haveI : Finite (M →ₐ[ZMod l] k) := inferInstance
   exact (Nat.card_le_card_of_injective F hF).trans ((card_algHom_le_finrank (ZMod l) M k).trans hfr)
 
 theorem hom_eq_of_ker {O k ι : Type} [CommRing O] [CommRing k] [IsDomain k] [Finite ι] (l : ℕ) (hl : l.Prime)

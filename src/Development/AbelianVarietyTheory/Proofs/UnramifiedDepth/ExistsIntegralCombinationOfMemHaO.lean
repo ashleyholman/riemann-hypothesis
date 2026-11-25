@@ -40,7 +40,6 @@ theorem exists_integral_basis_linear_coordinates :
   haveI : FaithfulSMul V C := (faithfulSMul_iff_algebraMap_injective V C).2 hinj
   let M : Submodule V C := Submodule.span V (s : Set C)
   haveI : Module.Finite V M := Module.Finite.span_of_finite V s.finite_toSet
-  haveI : Module.Free V M := inferInstance
   have hMR : ∀ x ∈ M, x ∈ R := by
     intro x hx
     induction hx using Submodule.span_induction with

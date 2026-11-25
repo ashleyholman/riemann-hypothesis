@@ -56,7 +56,6 @@ theorem under_eq_iff_conjPl {F : Type} [Field F] [NumberField F] [Algebra F L] (
     (hr : Module.finrank F L = 2) (hc : c ≠ 1) (w w' : HeightOneSpectrum (𝓞 L)) :
     w'.under (𝓞 F) = w.under (𝓞 F) ↔ (w' = w ∨ ConjPl c.toRingEquiv w w') := by
   have : Algebra.IsQuadraticExtension F L := { finrank_eq_two' := hr }
-  have : IsGalois F L := inferInstance
   have hall : ∀ σ : L ≃ₐ[F] L, σ = 1 ∨ σ = c := by
     intro σ
     have hcard : Nat.card (L ≃ₐ[F] L) = 2 := by rw [IsGalois.card_aut_eq_finrank, hr]

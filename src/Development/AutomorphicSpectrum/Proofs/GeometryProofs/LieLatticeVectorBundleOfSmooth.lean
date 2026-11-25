@@ -418,7 +418,6 @@ theorem frame_at (hs : SmoothOfRelativeDimension g G.hom) (M : LieModel G ξ E) 
   haveI : Algebra.IsStandardSmoothOfRelativeDimension g Γ(X, U) Γ(G.left, V) := hsm
   haveI := Algebra.IsStandardSmoothOfRelativeDimension.isStandardSmooth g (R := Γ(X, U)) (S := Γ(G.left, V))
   haveI : Nonempty V := ⟨⟨s p.1, hx⟩⟩
-  haveI : Nontrivial Γ(G.left, V) := inferInstance
   have hfr : Module.finrank Γ(G.left, V) Ω[Γ(G.left, V)⁄Γ(X, U)] = g := by
     rw [Module.finrank, Algebra.IsStandardSmoothOfRelativeDimension.rank_kaehlerDifferential g]
     simp

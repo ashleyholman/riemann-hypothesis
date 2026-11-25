@@ -80,7 +80,6 @@ theorem exists_flat_closure : ∀ (T K : Type) [CommRing T] [IsDomain T] [IsDisc
   have hi' : IsClosedImmersion i' := hi
   have hw : i' ≫ pullback.snd X.hom j = Z.hom := Over.w i
   let f : Z.left ⟶ X.left := i' ≫ pullback.fst X.hom j
-  have hqc : QuasiCompact f := inferInstance
   have : QuasiCompact (f.toImage ≫ f.imageι) := by rw [f.toImage_imageι]; infer_instance
   have : QuasiCompact f.toImage := QuasiCompact.of_comp f.toImage f.imageι
   have hdom := isSchemeTheoreticallyDominant_toImage f

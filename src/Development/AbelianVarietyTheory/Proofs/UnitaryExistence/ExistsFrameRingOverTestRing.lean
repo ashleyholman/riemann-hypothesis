@@ -50,7 +50,6 @@ theorem exists_frameRing_reduced {K : Type} [Field K] {J : Type} [Fintype J] (m 
     have h0 : (Y τ).det ∣ d :=
       Dvd.dvd.mul_left (Finset.dvd_prod_of_mem (fun τ => (Y τ).det) (Finset.mem_univ τ)) _
     exact isUnit_of_dvd_unit (map_dvd (algebraMap P A) h0) hd
-  have hPred : IsReduced P := inferInstance
   have hPft : Algebra.FiniteType R P := inferInstance
   have hAft : Algebra.FiniteType P A := inferInstance
   have hPft' : Algebra.FiniteType K P := Algebra.FiniteType.trans inferInstance hPft

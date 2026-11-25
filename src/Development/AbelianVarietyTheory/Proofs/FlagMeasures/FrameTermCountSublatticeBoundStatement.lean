@@ -155,7 +155,6 @@ theorem restrict_reps (hR : ¬ IsField R) {M : Type} [AddCommGroup M] [Module R 
     [Module.IsTorsionFree R M] (N : Submodule R M) (hfin : Finite (M ⧸ N)) :
     ∃ S : Finset (N →ₗ[R] R), S.card ≤ Nat.card (M ⧸ N) ∧
       ∀ ψ : N →ₗ[R] R, ∃ ψ₀ ∈ S, ∃ χ : M →ₗ[R] R, ψ - ψ₀ = χ ∘ₗ N.subtype := by
-  haveI : Module.Flat R M := inferInstance
   haveI : Module.FinitePresentation R M := Module.finitePresentation_of_finite R M
   haveI : Module.Projective R M := Module.Flat.projective_of_finitePresentation
   have h := _root_.Formalism.HermitianLatticeCounting.P.cardCokernelRestriction R M R N hR hfin

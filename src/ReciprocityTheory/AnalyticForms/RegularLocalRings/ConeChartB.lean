@@ -68,7 +68,6 @@ theorem finrank_cotangentSpace_locAt {σ : Type} [Fintype σ] (I : Ideal (MvPoly
     (z : σ → ℂ) [IsLocalRing (locAt I z)] :
     Module.finrank (ResidueField (locAt I z)) (CotangentSpace (locAt I z))
       + Module.finrank ℂ (jacSpanAt I z) = Fintype.card σ := by
-  haveI : IsNoetherianRing (locAt I z) := inferInstance
   haveI : Nontrivial (locRing (I.map (renR σ : MvPolynomial σ ℂ →+* _)) (renPt z)) :=
     (locAtEquiv I z).symm.toEquiv.nontrivial
   haveI : IsLocalRing (locRing (I.map (renR σ : MvPolynomial σ ℂ →+* _)) (renPt z)) :=

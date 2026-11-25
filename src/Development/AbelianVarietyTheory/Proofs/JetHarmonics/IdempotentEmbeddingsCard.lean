@@ -105,8 +105,6 @@ theorem card_emb : ∀ (E : Type) [Field E] [NumberField E] (p : ℕ) [Fact p.Pr
       ⟨fun x => ⟨x, rfl⟩, by
         rintro _ ⟨x, rfl⟩
         simp [← mul_assoc, he]⟩
-    haveI : Module.Free ℤ_[p] (ℤ_[p] ⊗[ℤ] 𝓞 E) := inferInstance
-    haveI : Module.Finite ℤ_[p] (ℤ_[p] ⊗[ℤ] 𝓞 E) := inferInstance
     rw [hproj.trace] at ht
     have hterm : ∀ σ : E →ₐ[ℚ] C, algebraMap O C (tauExt (Φ σ) e) =
         if Φ σ ∈ Emb (O := O) e then 1 else 0 := by

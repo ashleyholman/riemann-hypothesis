@@ -702,7 +702,6 @@ private theorem cyc_hom_ext {K Ω : Type} [Field K] [CharZero K] [Field Ω] [Cha
 private theorem card_gal (M q : ℕ) [NeZero M] [NeZero (q * M)] (K K' : Type) [Field K] [NumberField K]
     [IsCyclotomicExtension {M} ℚ K] [Field K'] [NumberField K'] [IsCyclotomicExtension {q * M} ℚ K'] [Algebra K K']
     [IsGalois K K'] (hq : q.Prime) (hc : q.Coprime M) : Nat.card (K' ≃ₐ[K] K') = q - 1 := by
-  haveI : IsScalarTower ℚ K K' := inferInstance
   haveI : FiniteDimensional K K' := Module.Finite.of_restrictScalars_finite ℚ K K'
   have h1 := IsCyclotomicExtension.finrank K' (Polynomial.cyclotomic.irreducible_rat (NeZero.pos (q * M)))
   have h2 := IsCyclotomicExtension.finrank K (Polynomial.cyclotomic.irreducible_rat (NeZero.pos M))
@@ -718,7 +717,6 @@ theorem UpperTheory.norm_cyclotomic_prime_layer_eq_nrm_generator :
   classical
   haveI : CharZero Ω := charZero_of_injective_algebraMap (algebraMap ℚ Ω).injective
   haveI : Fact q.Prime := ⟨hq⟩
-  haveI : IsScalarTower ℚ K K' := inferInstance
   haveI : FiniteDimensional K K' := Module.Finite.of_restrictScalars_finite ℚ K K'
   haveI : IsGalois ℚ K' := IsCyclotomicExtension.isGalois {q * M} ℚ K'
   haveI : IsGalois K K' := IsGalois.tower_top_of_isGalois ℚ K K'

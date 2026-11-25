@@ -165,8 +165,6 @@ private theorem indep_of_frac {k Ω B D : Type} [Field k] [Field Ω] [CommRing B
 private theorem tied_tensor_inj : ∀ (l : ℕ) [Fact l.Prime] (P : LocPrime l) (AI : LocAinf l P), LocTied l P AI → ∀ (m : ℕ) (x : Fin m → Om l), LinearIndependent ↥(MaximalUnramifiedExtension l) x → ∀ b : Fin m → P.R.B, ∑ i, algebraMap (Om l) P.R.BdR (x i) * P.ιB (b i) = 0 → ∀ i, b i = 0 := by
   intro l _ P AI T m x hx b hb
   obtain ⟨hD, -, hι, -⟩ := GlobalTheory.Per.TiedField.tied_field l P AI T
-  haveI : IsGalois ℚ_[l] (Om l) := inferInstance
-  haveI : IsGalois ↥(MaximalUnramifiedExtension l) (Om l) := inferInstance
   refine indep_of_frac (k := ↥(MaximalUnramifiedExtension l)) hD (algebraMap (Om l) P.R.BdR) (P.ιB : P.R.B →+* P.R.BdR) hι
     (fun c => ⟨algebraMap ↥(MaximalUnramifiedExtension l) P.R.B c, _root_.GlobalTheory.MemLoc.FitsEx.iota_alg P c⟩) ?_ m x hx b hb
   intro a c y hc h

@@ -474,7 +474,6 @@ theorem valued_coeff_minpoly_le_one (e : ℕ) (he : 0 < e)
   haveI : IsUltrametricDist (v.adicCompletion K) :=
     inferInstanceAs (@IsUltrametricDist (v.adicCompletion K)
       (Valued.toNormedField (v.adicCompletion K) ℤᵐ⁰).toDist)
-  haveI : CompleteSpace (v.adicCompletion K) := inferInstance
   choose c hc using (exists_valued_eq (v := v) : ∀ γ : ℤᵐ⁰, ∃ c : v.adicCompletion K, Valued.v c = γ)
   have hmono : ∀ a b : v.adicCompletion K, Valued.v a ≤ Valued.v b → ‖a‖ ≤ ‖b‖ :=
     fun a b h => Valued.toNormedField.norm_le_iff.2 h

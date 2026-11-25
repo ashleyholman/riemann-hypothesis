@@ -139,7 +139,6 @@ theorem unifCont : ∀ {Ω : Type} [Field Ω] [Algebra ℚ Ω] [IsAlgClosure ℚ
       (∀ x ∈ E0, s' x = x) → ‖f (s * s') - f s‖ < δ := by
   intro Ω _ _ _ E _ f hf δ hδ
   classical
-  haveI : CompactSpace (Ω ≃ₐ[ℚ] Ω) := inferInstance
   have key : ∀ x : Ω ≃ₐ[ℚ] Ω, ∃ V ∈ nhds (1 : Ω ≃ₐ[ℚ] Ω), ∀ a ∈ V, ∀ b ∈ V, ‖f (x * a * b) - f x‖ < δ / 2 := by
     intro x
     have hc : Continuous fun p : (Ω ≃ₐ[ℚ] Ω) × (Ω ≃ₐ[ℚ] Ω) => f (x * p.1 * p.2) :=

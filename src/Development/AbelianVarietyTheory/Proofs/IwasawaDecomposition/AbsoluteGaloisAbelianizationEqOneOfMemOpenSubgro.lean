@@ -17,7 +17,6 @@ theorem eq_one_of_forall_isOpen_subgroup : ∀ (E Ω : Type) [Field E] [NumberFi
   by_contra hne
   haveI : IsClosed ((commutator (G E Ω)).topologicalClosure : Set (G E Ω)) :=
     Subgroup.isClosed_topologicalClosure _
-  have hT1 : T1Space (Gab E Ω) := inferInstance
   have hopen : IsOpen ({g}ᶜ : Set (Gab E Ω)) := isOpen_compl_singleton
   have hmem : ((QuotientGroup.mk : G E Ω → Gab E Ω) ⁻¹' {g}ᶜ) ∈ nhds (1 : G E Ω) := by
     refine (hopen.preimage QuotientGroup.continuous_mk).mem_nhds ?_

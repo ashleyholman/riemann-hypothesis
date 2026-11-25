@@ -565,7 +565,6 @@ theorem isPullback_toImage_comp {U P Z : Scheme.{0}} (j : U ⟶ P) (q : P ⟶ Z)
     (h : j ≫ q = v) [QuasiCompact j] [IsSeparated q] [Flat v] [Mono v] :
     IsPullback (𝟙 U) j.toImage v (j.imageι ≫ q) := by
   have Hu := IsPullback.of_hasPullback v q
-  have : Mono (pullback.snd v q) := inferInstance
   let c : U ⟶ pullback v q := pullback.lift (𝟙 U) j (by simpa using h.symm)
   have hc₁ : c ≫ pullback.fst _ _ = 𝟙 U := pullback.lift_fst _ _ _
   have hc₂ : c ≫ pullback.snd _ _ = j := pullback.lift_snd _ _ _

@@ -103,14 +103,8 @@ theorem continuous_St (v : InfinitePlace E) {ka : Kers Ma} {kb : Kers Mb} {ψ : 
     (hkb : ∀ w, Continuous (fun t : G b => kb w t.val) ∧ HasCompactSupport (fun t : G b => kb w t.val))
     (hψ : IsFinM ψ) (i : Io Ma Mb κ) (q : Ix (Ma v)) (p : H E a b) :
     Continuous fun z : G a => St v μa μb ν ka kb ψ f i q (p * ιA v z) := by
-  haveI : SigmaFinite μa := inferInstance
   haveI : SigmaFinite μb := inferInstance
-  haveI : SigmaFinite ν := inferInstance
   haveI : IsLocallyFiniteMeasure (restA μa μb ν v) := by unfold restA; infer_instance
-  haveI : SecondCountableTopology (RA E a b v) := inferInstance
-  haveI : LocallyCompactSpace (RA E a b v) := inferInstance
-  haveI : FirstCountableTopology (G a × RA E a b v) := inferInstance
-  haveI : LocallyCompactSpace (G a × RA E a b v) := inferInstance
   unfold St
   refine continuous_finsetSum _ fun j _ => ?_
   obtain ⟨hc, hcs⟩ := cA_props v hka hkb hψ i j
@@ -136,13 +130,9 @@ theorem Rv_eq (hF : CompatFub) (D : Dom E a b) (hC : Compat D μa μb ν) (v : I
     (hψ : IsFinM ψ) {c : ℂ} (hc : c ≠ 0) (hrep : conv D.μ (tens ka kb ψ) f = c • f) (i : Io Ma Mb κ)
     (q0 : Ix (Ma v)) (p : H E a b) :
     Rv v μa μb ν ka kb ψ f i p = c⁻¹ • ∫ t, ka v t.val (St v μa μb ν ka kb ψ f i q0 (p * ιA v t)) ∂μa := by
-  haveI : SigmaFinite μa := inferInstance
   haveI : SigmaFinite μb := inferInstance
-  haveI : SigmaFinite ν := inferInstance
   haveI : SigmaFinite (restA μa μb ν v) := by unfold restA; infer_instance
   haveI : IsFiniteMeasureOnCompacts (restA μa μb ν v) := by unfold restA; infer_instance
-  haveI : IsFiniteMeasureOnCompacts ((restA μa μb ν v).prod μa) := inferInstance
-  haveI : SecondCountableTopology (RA E a b v) := inferInstance
   haveI : LocallyCompactSpace (RA E a b v) := inferInstance
   haveI : FirstCountableTopology (RA E a b v × G a) := inferInstance
   haveI : LocallyCompactSpace (RA E a b v × G a) := inferInstance
@@ -461,13 +451,7 @@ theorem integral_splitB (hF : CompatFub) (D : Dom E a b) (hC : Compat D μa μb 
     haveI : SigmaFinite μb := inferInstance
     haveI : SigmaFinite ν := inferInstance
     haveI : SigmaFinite (Measure.pi fun _ : InfinitePlace E => μa) := inferInstance
-    haveI : SigmaFinite (Measure.pi fun _ : InfinitePlace E => μb) := inferInstance
-    haveI : SigmaFinite (Measure.pi fun _ : {w : InfinitePlace E // w ≠ v} => μb) := inferInstance
-    haveI : SigmaFinite ((Measure.pi fun _ : InfinitePlace E => μb).prod ν) := inferInstance
     haveI : SigmaFinite (restB μa μb ν v) := by unfold restB; infer_instance
-    haveI : IsFiniteMeasureOnCompacts (Measure.pi fun _ : InfinitePlace E => μa) := inferInstance
-    haveI : IsFiniteMeasureOnCompacts (Measure.pi fun _ : InfinitePlace E => μb) := inferInstance
-    haveI : IsFiniteMeasureOnCompacts ((Measure.pi fun _ : InfinitePlace E => μb).prod ν) := inferInstance
     set M := (Measure.pi fun _ : InfinitePlace E => μa).prod ((Measure.pi fun _ : InfinitePlace E => μb).prod ν) with hM
     haveI : IsFiniteMeasureOnCompacts M := by rw [hM]; infer_instance
     have hmp := measurePreserving_eqB (a := a) μa μb ν v

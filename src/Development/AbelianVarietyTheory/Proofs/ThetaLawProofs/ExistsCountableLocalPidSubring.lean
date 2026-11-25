@@ -69,7 +69,6 @@ theorem exists_countable_local_pid_subring (R : Type) [CommRing R] [IsDomain R] 
     exact this.countable
   refine ⟨R₀, hlr, hpid, hc, fun x hx => Subfield.subset_closure ⟨x, hx, rfl⟩, hloc, ?_⟩
   have : IsLocalHom (algebraMap R₀ R) := hloc
-  have : Module.Flat R₀ R := inferInstance
   exact Module.FaithfullyFlat.of_flat_of_isLocalHom
 
 end GlobalTheory

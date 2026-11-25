@@ -22,7 +22,6 @@ theorem zero_acyc (H : LateralTheory.E.t_E2Cut.Hyp) (q : ℕ) (A : Type) [CommRi
     intro x
     obtain ⟨Y, f, -, -, hx⟩ := H.a5 (ZMod q) (Spec (CommRingCat.of A)) (tw q i) n hn x
     have : IsEmpty (Spec (CommRingCat.of A)) := inferInstanceAs (IsEmpty (PrimeSpectrum A))
-    have : IsIso (sch.map f) := inferInstance
     have hy : pull _ (inv (sch.map f)) _ _ (pull _ (sch.map f) _ _ x) = x := by
       rw [← pull_comp, IsIso.inv_hom_id, pull_id]
     rw [← hy, hx, map_zero]

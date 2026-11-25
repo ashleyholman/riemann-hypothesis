@@ -38,9 +38,6 @@ theorem noetherianSpace_pullback {X : Scheme.{0}} {O F : Type} [CommRing O] [Fie
     (hs : IsProjOver s) (β : O →+* F) : TopologicalSpace.NoetherianSpace ↥(pullback s (spMap β)) := by
   obtain ⟨N, i, hi, rfl⟩ := hs
   have := isProper_str O N
-  have : IsProper (i ≫ PSpace.str O N) := inferInstance
-  have hl : LocallyOfFiniteType (pullback.snd (i ≫ PSpace.str O N) (spMap β)) := inferInstance
-  have hq : QuasiCompact (pullback.snd (i ≫ PSpace.str O N) (spMap β)) := inferInstance
   have : IsLocallyNoetherian (pullback (i ≫ PSpace.str O N) (spMap β)) :=
     LocallyOfFiniteType.isLocallyNoetherian (pullback.snd _ _)
   have : CompactSpace ↥(pullback (i ≫ PSpace.str O N) (spMap β)) :=

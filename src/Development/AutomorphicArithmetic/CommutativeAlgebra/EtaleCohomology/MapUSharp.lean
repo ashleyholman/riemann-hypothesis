@@ -965,11 +965,8 @@ theorem UpperTheory.Gal.crystallineComparison.normInt_of :
   intro hNE hBC hIS hCI hLP l d R S _ _ _ h hcl ι _ s
   haveI hfin : Module.Finite R S := h.fin
   haveI het := h.et
-  haveI : Module.Finite (Localization.Away (l : R)) (Localization.Away (l : R) ⊗[R] S) := inferInstance
-  haveI : Algebra.FinitePresentation (Localization.Away (l : R)) (Localization.Away (l : R) ⊗[R] S) := inferInstance
   haveI : Module.FinitePresentation (Localization.Away (l : R)) (Localization.Away (l : R) ⊗[R] S) :=
     Module.FinitePresentation.of_finite_of_finitePresentation _ _
-  haveI : Module.Flat (Localization.Away (l : R)) (Localization.Away (l : R) ⊗[R] S) := inferInstance
   haveI : Module.Projective (Localization.Away (l : R)) (Localization.Away (l : R) ⊗[R] S) :=
     Module.Flat.projective_of_finitePresentation
   obtain ⟨N', hN'⟩ := hNE (Localization.Away (l : R)) (Localization.Away (l : R) ⊗[R] S) ι (fun k => 1 ⊗ₜ s k)

@@ -44,7 +44,6 @@ theorem UpperTheory.V.Chr.levGal :
     exact (Subgroup.index_map_of_bijective (MulEquiv.bijective _) _).symm
   refine ⟨IsAbelianGalois.of_algHom j, hfin, ?_⟩
   intro Ω _ _ _ _
-  haveI : IsScalarTower ℚ E Ω := inferInstance
   haveI : IsAlgClosure E Ω :=
     ⟨IsAlgClosure.isAlgClosed ℚ, Algebra.IsAlgebraic.tower_top (K := ℚ) E⟩
   have heq : galOf ℚ E Ω = levH ℚ Ω H := by

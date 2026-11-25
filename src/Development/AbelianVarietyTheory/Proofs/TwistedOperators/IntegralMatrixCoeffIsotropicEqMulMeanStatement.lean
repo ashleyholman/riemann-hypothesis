@@ -423,7 +423,6 @@ theorem smear : ∀ (D : D7) (V W : HSp D) (a b : ℕ) (P : Matrix (Fin W.rank) 
   haveI : BorelSpace (WO V W) := ⟨rfl⟩
   haveI hfμ : IsFiniteMeasure (μ.restrict 𝓨) := ⟨by rw [Measure.restrict_apply_univ, h1]; exact ENNReal.one_lt_top⟩
   haveI : Countable D.host.E := by
-    haveI : FiniteDimensional ℚ D.host.E := inferInstance
     exact (Module.finBasis ℚ D.host.E).equivFun.injective.countable
   haveI : Countable (Matrix (Fin W.rank) (Fin V.rank) D.host.E) :=
     inferInstanceAs (Countable (Fin W.rank → Fin V.rank → D.host.E))

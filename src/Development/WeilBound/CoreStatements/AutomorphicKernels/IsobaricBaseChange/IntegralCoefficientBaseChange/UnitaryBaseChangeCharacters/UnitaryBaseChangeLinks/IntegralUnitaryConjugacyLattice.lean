@@ -317,7 +317,6 @@ theorem exists_mul_invol_eq_of_fixed_unit {R : Type} [CommRing R] [Finite R] [Is
     (τ : R →+* R) (hτ : ∀ a, τ (τ a) = a) {b : R} (hb : IsUnit (τ b - b)) {x : R} (hx : IsUnit x)
     (hxτ : τ x = x) : ∃ z : R, IsUnit z ∧ z * τ z = x := by
   classical
-  haveI : IsArtinianRing R := inferInstance
   have hsurj : Function.Surjective τ := fun a => ⟨τ a, hτ a⟩
   obtain ⟨tI, hmem, htt⟩ : ∃ tI : MaximalSpectrum R → MaximalSpectrum R,
       (∀ I y, y ∈ (tI I).asIdeal ↔ τ y ∈ I.asIdeal) ∧ ∀ I, tI (tI I) = I := by

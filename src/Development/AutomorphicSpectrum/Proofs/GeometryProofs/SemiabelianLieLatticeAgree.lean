@@ -601,8 +601,6 @@ theorem lat_eq_of_normal : ∀ (X : Scheme.{0}) (Ω : Type) [Field Ω] (ξ : Sp 
   haveI := hS'.smooth
   haveI := _root_.GlobalTheory.CompanionTheory.Ar.LieStalk.isFractionRing_regAt X Ω ξ hξ p
   obtain ⟨hdom, hic⟩ := hnorm p.1
-  haveI : IsDomain (regAt ξ p) := inferInstance
-  haveI : IsNoetherianRing (X.presheaf.stalk p.1) := inferInstance
   haveI : IsNoetherianRing (regAt ξ p) := isNoetherianRing_of_ringEquiv _ (regIso hξ p)
   haveI : IsIntegrallyClosed (regAt ξ p) := IsIntegrallyClosed.of_equiv (regIso hξ p)
   haveI : FiniteDimensional Ω E := (_root_.GlobalTheory.CompanionTheory.Ar.lieModel_finite_projective X G Ω ξ E M).1

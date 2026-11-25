@@ -343,7 +343,6 @@ theorem lintegral_le_of_balls {N : ℕ} {Y : Type} [TopologicalSpace Y] [T2Space
     rw [Measure.smul_apply, smul_eq_mul, hνa A hA.measurableSet]
     refine ENNReal.mul_lt_top hK.lt_top ?_
     exact (measure_mono (image_mono Set.inter_subset_left)).trans_lt (hA.image hΘ).measure_lt_top⟩
-  haveI : IsLocallyFiniteMeasure (K • ν) := inferInstance
   have hle : volume.restrict U ≤ K • ν := by
     refine Measure.le_iff.2 fun A hA => ?_
     rw [Measure.restrict_apply hA]

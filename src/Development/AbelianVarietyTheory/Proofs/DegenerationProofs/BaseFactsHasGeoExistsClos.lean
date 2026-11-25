@@ -814,7 +814,6 @@ theorem GlobalTheory.ZH.Clos.Ext.hasTests_and_indep : GlobalTheory.UT.LL → ∀
     exact h
   obtain ⟨c', hc', hf⟩ := (hτ' _ (hx.trans hr)).2 ((hτ _ hx).1 ⟨c, hc, rfl⟩)
   refine ⟨c', hc', ?_⟩
-  have : Mono ex.core.G.ι := inferInstance
   rw [← cancel_mono ex.core.G.ι, Category.assoc, Category.assoc]
   exact hf
 end -- clump:auto

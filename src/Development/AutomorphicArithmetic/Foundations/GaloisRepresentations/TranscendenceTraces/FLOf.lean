@@ -121,7 +121,6 @@ theorem UpperTheory.Gal.TranscendenceTraces.phiQis_of :
     (Φ.mapHomologicalComplex (ComplexShape.up ℤ)).map (resAug F)
   haveI hφ : QuasiIso φ :=
     (inferInstance : QuasiIso ((Φ.mapHomologicalComplex (ComplexShape.up ℤ)).map (resAug F)))
-  haveI he : QuasiIso e.inv := inferInstance
   refine ⟨e.inv ≫ φ, quasiIso_comp e.inv φ, ?_⟩
   erw [HomologicalComplex.comp_f]
   rw [← Category.assoc]

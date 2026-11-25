@@ -152,7 +152,6 @@ theorem exists_small : ∀ (D : Formalism.BasicNotions.D7) (N : NData D.R D.host
   have := normal_of_comm c₂
   let H₀ : Subgroup (GE N) := H ⊓ (K₁ ⊓ (K₂ ⊓ ⨅ s : T, K s))
   have hK : (⨅ s : T, K s).Normal := Subgroup.normal_iInf_normal fun s => n s
-  have hn₀ : H₀.Normal := inferInstance
   have ho₀ : IsOpen (H₀ : Set (GE N)) := by
     refine hH.inter (o₁.inter (o₂.inter ?_))
     change IsOpen ((⨅ s : T, K s : Subgroup (GE N)) : Set (GE N))

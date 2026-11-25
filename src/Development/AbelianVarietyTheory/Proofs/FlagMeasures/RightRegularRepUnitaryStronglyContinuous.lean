@@ -25,7 +25,6 @@ theorem isRightReg_props (I : AutInst) (μf : Measure I.Gf) [μf.IsHaarMeasure] 
   obtain ⟨Γ, hΓ, hc, -, hfd⟩ := _root_.GlobalTheory.RatDiscrete.rational_points I
   obtain ⟨hl, hrt, -⟩ := _root_.GlobalTheory.AdelicUnimod.adelic_unimodular I μf
   have hD := hfd μf fund hfund
-  have : BorelSpace I.GA := inferInstance
   have : (I.muA μf).IsMulLeftInvariant := ⟨hl⟩
   have : (I.muA μf).IsMulRightInvariant := ⟨hrt⟩
   have : IsFiniteMeasureOnCompacts (I.muA μf) := by

@@ -456,7 +456,6 @@ private theorem exists_rep {B : Type} [CommRing B] [StarRing B] [Algebra ℂ B] 
   let C := S.topologicalClosure
   have hmc : ∀ u v : C, u * v = v * u := (S.commRingTopologicalClosure hcomm).mul_comm
   haveI hcl : IsClosed (C : Set (H →L[ℂ] H)) := S.isClosed_topologicalClosure
-  letI : CStarAlgebra C := inferInstance
   letI : CommCStarAlgebra C := { mul_comm := hmc }
   let G : C →⋆ₐ[ℂ] C(WeakDual.characterSpace ℂ C, ℂ) := (gelfandStarTransform C).toStarAlgHom
   have hmem : ∀ y, R y ∈ C := fun y => S.le_topologicalClosure ⟨y, rfl⟩

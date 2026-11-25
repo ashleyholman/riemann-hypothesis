@@ -82,7 +82,6 @@ theorem tw_pull_triv {X X' : Scheme.{0}} (N : LB X') (π : X' ⟶ X) :
 theorem nontrivial_secOnR_triv {R : Type} [CommRing R] {X : Scheme.{0}} [Nonempty X]
     (f : X ⟶ Spec (CommRingCat.of R)) : Nontrivial (SecOnR f (Inh.trivLB X) ⊤) := by
   have : Nonempty (⊤ : X.Opens) := ⟨⟨Classical.arbitrary X, trivial⟩⟩
-  have : Nontrivial Γ(X, ⊤) := inferInstance
   exact ((SecOnR.of f _ ⊤).symm ≪≫ₗ secOnTrivEquiv ⊤).toEquiv.nontrivial
 
 theorem cechLB_acyclic_of_additive : ∀ (K : Type) [Field K] [IsAlgClosed K] (P : PolAV (Spec (CommRingCat.of K))) (M : LB P.A.left), M.IsLB → (∃ w : LB.Iso (M.pull μ[P.A].left) (tw (M.pull (fst P.A P.A).left) (M.pull (snd P.A P.A).left) 1), w.IsGen) → (∀ (σ : LB.Sec M) i, σ.f i = 0) → ∀ (κ : Type) [LinearOrder κ] [Fintype κ] (D : κ → P.A.left.Opens), (∀ i, IsAffineOpen (D i)) → ⨆ i, D i = ⊤ → (cechLB P.A.hom M D).Acyclic := by

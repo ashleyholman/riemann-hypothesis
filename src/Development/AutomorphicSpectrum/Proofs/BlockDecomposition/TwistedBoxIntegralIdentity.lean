@@ -30,7 +30,6 @@ theorem setIntegral_inter_box_of_twists {k : Type} [Field k] [ValuativeRel k] [T
   haveI : SigmaFinite (GlobalTheory.CompanionTheory.MirPair.piHaar ν m) := by
     unfold GlobalTheory.CompanionTheory.MirPair.piHaar
     infer_instance
-  haveI : (GlobalTheory.CompanionTheory.MirPair.piHaar ν m).IsAddRightInvariant := inferInstance
   set μ := GlobalTheory.CompanionTheory.MirPair.piHaar ν m with hμ
   have hbox : ∀ s : kˣ, GlobalTheory.SplitWeil.FourierPi.box (Fin m) s = (GlobalTheory.CompanionTheory.BZOnto.PerpSmall.box m s : Set (Fin m → k)) := by
     intro s

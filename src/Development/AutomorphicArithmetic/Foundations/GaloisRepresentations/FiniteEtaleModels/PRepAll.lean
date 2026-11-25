@@ -549,7 +549,6 @@ theorem etale_of_killed_tangent_trivial : ∀ (p : ℕ) [Fact p.Prime] (D : Datu
   intro p _ D R _ b N w0 r S _ s o H i hfin hflat hkill hrep htan
   haveI := hfin
   haveI := hflat
-  haveI : LocallyOfFinitePresentation H.hom := inferInstance
   have hinv : ∀ {T : Over S} (a : T ⟶ o.A) (f : o.A ⟶ o.A) [IsMonHom f], a⁻¹ ≫ f = (a ≫ f)⁻¹ := by
     intro T a f _
     refine eq_inv_of_mul_eq_one_left ?_

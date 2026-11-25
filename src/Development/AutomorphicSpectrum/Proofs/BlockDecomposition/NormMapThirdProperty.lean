@@ -358,8 +358,6 @@ theorem mem_of_includeRight_mem_map :
     by_contra h
     rw [not_nontrivial_iff_subsingleton] at h
     exact not_subsingleton O' (Module.subsingleton O O')
-  have : Module.FaithfullyFlat O O' := inferInstance
-  have : Module.FaithfullyFlat R (R ⊗[O] O') := inferInstance
   let c : O' ⊗[O] R ≃ₐ[O] R ⊗[O] O' := Algebra.TensorProduct.comm O O' R
   have hc : ∀ y : R, c (Algebra.TensorProduct.includeRight y) = algebraMap R (R ⊗[O] O') y := by
     intro y

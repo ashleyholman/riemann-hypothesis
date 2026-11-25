@@ -92,7 +92,6 @@ theorem resK_of_resolution_principalisation (H₁ : ResolutionCharZero) (H₂ : 
     first
     | exact LocallyOfFiniteType.isLocallyNoetherian (s ≫ i ≫ PSpace.str K M)
   have : IsNoetherian X₁ := by first | exact ⟨⟩
-  have : NoetherianSpace X₁ := inferInstance
   have hI : ∀ C ∈ irreducibleComponents X₁, ¬ C ⊆ (I.support : Set X₁) := by
     refine SncBlowup.not_subset_of_dense_compl ?_
     rw [hIs]; simpa using hd₁

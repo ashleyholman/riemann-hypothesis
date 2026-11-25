@@ -215,7 +215,6 @@ theorem UpperTheory.local_class_field_theory_of_open_embedding :
   haveI := hext
   haveI : Algebra.IsAlgebraic K.1 (Om l) := Algebra.IsAlgebraic.tower_top (K := ℚ_[l]) K.1
   haveI : IsAlgClosure K.1 (Om l) := ⟨inferInstance, inferInstance⟩
-  haveI : IsSepClosure K.1 (Om l) := inferInstance
   obtain ⟨hc1, hc2⟩ := GlobalTheory.fixingSubgroupEquiv_bicontinuous ℚ_[l] (Om l) K.1
   let ε : G ≃* Gal(Om l/K.1) := e.trans K.1.fixingSubgroupEquiv
   have hε : Continuous ε := hc1.comp he
@@ -1103,7 +1102,6 @@ theorem UpperTheory.V.Loc.abStruct :
     simp
   obtain ⟨hfin, p, t, hp, ht, h1, h2, h3⟩ := UpperTheory.localField_units_structure_theorem K l
   haveI := hfin
-  haveI : IsCyclic ↥(CommGroup.primaryComponent Kˣ l) := inferInstance
   obtain ⟨hAf, hAc, πA, aA, mA, hπc, hac, hmo, hA1, hA2, hA3, hA4, hA5⟩ :=
     as_core (l := l) θ hc hi hd hE hbA v _ hϖ (by rw [hker]; exact GroundTheory.LocalField.isCompact_unitFiltrationUnits 0)
       (by rw [hker]; exact GroundTheory.LocalField.isOpen_unitFiltrationUnits 0) D hD

@@ -60,7 +60,6 @@ theorem kummer_generator_of_char : ∀ (K Ω : Type) [Field K] [CharZero K] [Fie
     exact this
   haveI : FiniteDimensional K F := hFfin
   let ι := {φ : F →ₐ[K] Ω // ∃ g ∈ H, r g = φ}
-  haveI : Finite (F →ₐ[K] Ω) := inferInstance
   haveI : Fintype ι := Fintype.ofFinite ι
   let s : ι → (Ω ≃ₐ[K] Ω) := fun i => i.2.choose
   have hsH : ∀ i, s i ∈ H := fun i => i.2.choose_spec.1

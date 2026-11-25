@@ -559,8 +559,6 @@ theorem exists_smooth_proper_model : ∀ (k : Type) [CommRing k] (X : Scheme.{0}
   have sm₁' : Smooth (pullback.snd f₀ (Spec.map (CommRingCat.ofHom ψ₁))) := sm₁
   have pr₂' : IsProper (pullback.snd (pullback.snd f₀ (Spec.map (CommRingCat.ofHom ψ₁)))
       (Spec.map (CommRingCat.ofHom ψ₂))) := pr₂
-  have sm₂' : Smooth (pullback.snd (pullback.snd f₀ (Spec.map (CommRingCat.ofHom ψ₁)))
-      (Spec.map (CommRingCat.ofHom ψ₂))) := inferInstance
   let ψ₃ : R₂ →+* φ₂.range := φ₂.rangeRestrict
   have e₃ : φ₂.range.subtype.comp ψ₃ = φ₂ := by ext x; rfl
   have ft₃ : Algebra.FiniteType ℤ φ₂.range :=
@@ -1016,7 +1014,6 @@ theorem exists_model_relSnc : ∀ (k : Type) [Field k] (X : Scheme.{0}) (f : X �
   have hpb' : IsPullback π' f g (spMap R'.subtype) := by
     refine IsPullback.of_right ?_ hg' hρ
     rw [hπ', ← hcomp]; exact hpb
-  haveI : IsProper g := inferInstance
   refine ⟨R', pullback f₁ (spMap χ), g, π', fun i => (L₁ i).pull ρ, fun i => Cartier.secPull (σ₁ i) ρ, hZ,
     M₁.pull ρ, pull_isLB hM₁ ρ, finiteType_adjInv R hR _, inferInstance, hpb', fun i => ?_, ?_⟩
   · rw [hcl i, ← hπ', pull_comp]; rfl
@@ -1260,7 +1257,6 @@ private theorem compactSpace_of_projOver {R : Type} [CommRing R] {X : Scheme.{0}
     (h : IsProjOver f) : CompactSpace X := by
   obtain ⟨m, i, hi, rfl⟩ := h
   have := isProper_str R m
-  have : IsProper (i ≫ PSpace.str R m) := inferInstance
   exact QuasiCompact.compactSpace_of_compactSpace (i ≫ PSpace.str R m)
 
 end GlobalTheory.LogResVanish
@@ -1858,7 +1854,6 @@ theorem GlobalTheory.vanishing_logRes_pushforward_and_local : ∀ (k : Type) [Fi
       (by rw [cls_pull hNc s, cls_tens hN (isLB_lbPow hHl c), cls_lbPow hHl, cls_pull hN s,
         cls_lbPow (pull_isLB hHl s), cls_pull hHl s, map_add, map_nsmul])
     exact (cohOn.mapIso Γ(Y, ⊤) ⊤ j iso).toEquiv.subsingleton_congr.2 (key _ _ hNc hTc ec j hj)
-  have : (GlobalTheory.structureModule Y).IsQuasicoherent := inferInstance
   have := Twist.isQuasicoherent_twist (F := GlobalTheory.structureModule Y) hA0
   have := Twist.isQuasicoherent_twist (F := twist (GlobalTheory.structureModule Y) (toLB (-F))) (pull_isLB hN s)
   have hdown := _root_.GlobalTheory.passage_down_of_twist_vanishing X Y s _ H hH hev

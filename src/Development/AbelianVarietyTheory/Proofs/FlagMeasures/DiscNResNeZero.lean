@@ -182,7 +182,6 @@ theorem proj_rank {K W : Type} [Field K] [NumberField K] [AddCommGroup W] [Modul
     Module.Finite (𝓞 K) C ∧ Module.Projective (𝓞 K) C ∧ Module.finrank (𝓞 K) C ≤ Module.finrank K W := by
   have : Module.Finite (𝓞 K) C := Module.Finite.iff_fg.2 hC
   have : Module.IsTorsionFree (𝓞 K) W := Module.IsTorsionFree.trans_faithfulSMul (𝓞 K) K W
-  have : Module.Flat (𝓞 K) C := inferInstance
   have : Module.FinitePresentation (𝓞 K) C := Module.finitePresentation_of_finite _ _
   exact ⟨inferInstance, Module.Flat.projective_of_finitePresentation,
     (GlobalTheory.CongIndex.finrank_le_finrank_span C).trans (Submodule.finrank_le _)⟩
@@ -1277,7 +1276,6 @@ theorem sublat_count {K V : Type} [Field K] [NumberField K] [AddCommGroup V] [Mo
         (x : ℝ) ^ (((Module.finrank K V) : ℝ) + cf K) := by
   have : Module.Finite (𝓞 K) L := Module.Finite.iff_fg.2 hL
   have : Module.IsTorsionFree (𝓞 K) V := Module.IsTorsionFree.trans_faithfulSMul (𝓞 K) K V
-  have : Module.Flat (𝓞 K) L := inferInstance
   have : Module.FinitePresentation (𝓞 K) L := Module.finitePresentation_of_finite _ _
   have : Module.Projective (𝓞 K) L := Module.Flat.projective_of_finitePresentation
   obtain ⟨h1, h2⟩ := _root_.Formalism.SLP.P.card_submodules_of_index_le K L x hx

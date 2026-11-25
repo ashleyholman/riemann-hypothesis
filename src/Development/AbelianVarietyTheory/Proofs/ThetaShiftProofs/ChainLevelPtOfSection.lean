@@ -648,7 +648,6 @@ theorem exists_chart_heq {S : Scheme.{0}} {G : Over S} [GrpObj G] {L L' : RigLB 
   exact ⟨i, HEq.rfl, rfl⟩
 
 theorem epi_spMap_field {K F : Type} [Field K] [Field F] (f : K →+* F) : Epi (spMap f) := by
-  have : Flat (spMap f) := inferInstance
   have : Surjective (spMap f) := ⟨fun y => ⟨default, Subsingleton.elim _ _⟩⟩
   exact Flat.epi_of_flat_of_surjective _
 

@@ -142,7 +142,6 @@ theorem map_eq_self_of_iterate {G : Type*} [Group G] [TopologicalSpace G] [IsTop
     (μ : Measure G) [μ.IsHaarMeasure] (ψ : G ≃ₜ* G) (N : ℕ) (hN : N ≠ 0)
     (hψ : ∀ x, ψ^[N] x = x) : μ.map ψ = μ := by
   have hm : Measurable ψ := ψ.continuous.measurable
-  haveI : (μ.map ψ).IsHaarMeasure := inferInstance
   set c := (μ.map ψ).haarScalarFactor μ with hc
   have hμc : μ.map ψ = c • μ := isMulLeftInvariant_eq_smul _ _
   have hk : ∀ k : ℕ, μ.map (ψ^[k]) = c ^ k • μ := by

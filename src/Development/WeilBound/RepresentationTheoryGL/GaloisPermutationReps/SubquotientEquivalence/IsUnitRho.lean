@@ -42,7 +42,6 @@ theorem st3 : St1a → St1b → St2 → St3a → St3 := by
   intro h1a h1b h2 h3a E Ω _ _ _ _ _ A w h φ hφ n c hn
   obtain ⟨γ, hγ1, hγ2⟩ := h2 E Ω A w h φ hφ
   have hq : Nat.card 𝓀[w.adicCompletion E] = normV w := card_res w
-  have : Finite 𝓀[w.adicCompletion E] := inferInstance
   obtain ⟨lab, hlab1, hlab2⟩ := h3a 𝓀[w.adicCompletion E] n hn
   set q := Nat.card 𝓀[w.adicCompletion E] with hqdef
 

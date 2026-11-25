@@ -77,7 +77,6 @@ theorem exists_valuation_pow_eq (K Ω : Type) [Field K] [Field Ω] [Algebra K Ω
       rw [WithAbs.norm_toAbs_eq]; exact ha.ne'⟩
   haveI : IsUltrametricDist (WithAbs f) :=
     IsUltrametricDist.isUltrametricDist_of_isNonarchimedean_norm fun x y => hna x.ofAbs y.ofAbs
-  haveI : IsScalarTower K (WithAbs f) Ω := inferInstance
   haveI : Algebra.IsAlgebraic (WithAbs f) Ω := Algebra.IsAlgebraic.tower_top (K := K) (WithAbs f)
   have hmin : ∀ x : Ω, minpoly (WithAbs f) x = (minpoly K x).map (algebraMap K (WithAbs f)) := by
     intro x

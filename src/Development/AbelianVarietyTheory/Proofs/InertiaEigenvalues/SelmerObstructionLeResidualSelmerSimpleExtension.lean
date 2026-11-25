@@ -1050,7 +1050,6 @@ theorem smul_eq_zero_of_simple {K : Type} [AddCommGroup K] [Module Λ K] (hK : I
 theorem finite_of_simple [Module.Finite (X.O0 i) Λ] {K : Type} [AddCommGroup K] [Module Λ K]
     (hK : IsSimpleModule Λ K) : Finite K := by
   haveI := X.twistBaseCoefficientRing_residueField_finite i
-  haveI : Module.Finite (ResidueField (X.O0 i)) (ResidueField Λ) := inferInstance
   haveI : Finite (ResidueField Λ) := Module.finite_of_finite (ResidueField (X.O0 i))
   obtain ⟨I, hI, ⟨e⟩⟩ := isSimpleModule_iff_quot_maximal.1 hK
   rw [eq_maximalIdeal hI] at e

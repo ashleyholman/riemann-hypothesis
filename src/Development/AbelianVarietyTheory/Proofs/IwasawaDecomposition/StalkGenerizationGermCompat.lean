@@ -25,7 +25,6 @@ theorem flat_fromSpecStalk (X : Scheme.{0}) (x : X) : Flat (X.fromSpecStalk x) :
 theorem isIso_stalkMap_fromSpecStalk (X : Scheme.{0}) (x : X) (y : Spec (X.presheaf.stalk x)) :
     IsIso ((X.fromSpecStalk x).stalkMap y) := by
   have := flat_fromSpecStalk X x
-  have hs : SurjectiveOnStalks (X.fromSpecStalk x) := inferInstance
   refine (ConcreteCategory.isIso_iff_bijective _).mpr ⟨?_, (X.fromSpecStalk x).stalkMap_surjective y⟩
   have hl : IsLocalHom ((X.fromSpecStalk x).stalkMap y).hom := inferInstance
   have h := Flat.stalkMap (X.fromSpecStalk x) y

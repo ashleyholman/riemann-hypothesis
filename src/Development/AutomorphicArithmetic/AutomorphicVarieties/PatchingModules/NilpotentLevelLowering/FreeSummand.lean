@@ -223,7 +223,6 @@ theorem UpperTheory.V.AlgebraTools.exists_groupRing_surj :
     rw [Nat.card_congr Multiplicative.toAdd, Nat.card_zmod]
   obtain ⟨hloc, hmax, -, -⟩ := UpperTheory.V.CF.grLocal l Λ (∀ s, Multiplicative (ZMod (l ^ e s))) hlm hpg
   haveI := hloc
-  haveI hCOΛ : UpperTheory.V.Alg.IsCO Λ Λ := inferInstance
   haveI hCO : UpperTheory.V.Alg.IsCO Λ (MonoidAlgebra Λ (∀ s, Multiplicative (ZMod (l ^ e s)))) := by
     apply UpperTheory.V.Alg.co_finite Λ Λ
     intro x

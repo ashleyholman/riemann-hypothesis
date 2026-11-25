@@ -622,8 +622,6 @@ theorem meas_chAt (T : ℝ) (v : ι) : Measurable (fun x : (∀ q : CBlk r, CSpc
 theorem meas_Bk (T : ℝ) (p : CBlk r) :
     Measurable (fun z : (∀ q : CBlk r, CSpc ι k q) × (∀ q : CBlk r, CSpc ι k q) => Bk T p z.1 z.2) := by
   haveI : SecondCountableTopology ((WlocSk.NB.CI k r → ℂ) × (Fin r → ℝ)) := inferInstance
-  haveI : OpensMeasurableSpace (((WlocSk.NB.CI k r → ℂ) × (Fin r → ℝ)) × ((WlocSk.NB.CI k r → ℂ) × (Fin r → ℝ))) :=
-    inferInstance
   have hφ : Continuous fun cc : ((WlocSk.NB.CI k r → ℂ) × (Fin r → ℝ)) × ((WlocSk.NB.CI k r → ℂ) × (Fin r → ℝ)) =>
       ((WlocSk.NB.phi0 cc.1.1 cc.1.2 : Matrix (Fin (2 * r + k + 1)) (Fin (2 * r + k + 1)) ℂ), cc.2.1) :=
     (WlocSk.NB.continuous_nilpotent_chart.comp continuous_fst).prodMk (continuous_fst.comp continuous_snd)

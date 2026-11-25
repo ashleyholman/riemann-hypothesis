@@ -75,7 +75,6 @@ theorem exists_integral_point_through (O B : Type) [CommRing O] [IsDomain O] [Is
   have : IsNoetherianRing D' := IsLocalization.isNoetherianRing (Submonoid.powers sb) D' inferInstance
   have : Algebra.FiniteType O D :=
     Algebra.FiniteType.of_surjective (Ideal.Quotient.mkₐ O q) Ideal.Quotient.mk_surjective
-  have : Algebra.FiniteType O D' := inferInstance
   have hDinj : Function.Injective (algebraMap D D') := IsLocalization.injective D' hpow
 
   let f : B →+* D' := (algebraMap D D').comp (Ideal.Quotient.mk q)
@@ -148,7 +147,6 @@ theorem exists_integral_point_through (O B : Type) [CommRing O] [IsDomain O] [Is
   have : Algebra.IsIntegral O D' := Algebra.IsIntegral.of_finite O D'
   have : FiniteDimensional K L := Module.Finite.of_isLocalization O D' (nonZeroDivisors O)
   have : CharZero K := charZero_of_injective_algebraMap (IsFractionRing.injective O K)
-  have : Algebra.IsSeparable K L := inferInstance
   have hVfin : Module.Finite O (integralClosure O L) := IsIntegralClosure.finite O K L (integralClosure O L)
   have hdvr : IsDiscreteValuationRing (integralClosure O L) := FiniteAlgebraLocalCompletion.cl_dvr O K L
 

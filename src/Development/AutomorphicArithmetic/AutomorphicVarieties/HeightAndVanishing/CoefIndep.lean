@@ -68,7 +68,6 @@ theorem UpperTheory.V.Base.qoExt :
   haveI : FaithfulSMul O O' := (faithfulSMul_iff_algebraMap_injective O O').mpr hinj
   haveI : Module.Finite O O' := Module.Finite.of_restrictScalars_finite ℤ_[l] O O'
   haveI : Module.Free O O' := Module.free_of_finite_type_torsion_free'
-  haveI : IsLocalHom (algebraMap O O') := inferInstance
   have hf : Module.length O' (O' ⧸ Ideal.map (algebraMap O O') (IsLocalRing.maximalIdeal O)) * eO l O =
       eO l O' := by
     obtain ⟨n, u, hu⟩ := IsDiscreteValuationRing.eq_unit_mul_pow_irreducible hlO hϖ

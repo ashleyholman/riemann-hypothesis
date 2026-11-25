@@ -86,7 +86,6 @@ theorem reproducing_formula : ∀ (B : RowsAut) (d : InfinitePlace B.I.F → ℝ
   intro B d h hd hn hdec hb hfin T hT y f hf
   obtain ⟨hT2, hL, hS, -⟩ := GlobalTheory.CongTop.adelic_topology B.I
   obtain ⟨hl, -⟩ := GlobalTheory.AdelicUnimod.adelic_unimodular B.I B.μf
-  have : BorelSpace B.I.GA := inferInstance
   have : (B.I.muA B.μf).IsMulLeftInvariant := ⟨hl⟩
   obtain ⟨hp, htc, -, -⟩ := _root_.GlobalTheory.TauLipschitz.tauLip B.I hn
   obtain ⟨hphc, hphb, hphi⟩ := _root_.GlobalTheory.Dec.PhMajProof.phMaj B d h hd hdec

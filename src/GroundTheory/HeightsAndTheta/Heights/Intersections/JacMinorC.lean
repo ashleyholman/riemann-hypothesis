@@ -75,7 +75,6 @@ theorem exists_jacobian_minor_not_mem_charZero {F : Type} [Field F] [CharZero F]
   have hmk' : ∀ f, Ideal.Quotient.mk 𝔭 f = aeval xb f := fun f => by
     rw [← hmk, Ideal.Quotient.mkₐ_eq_mk]
 
-  haveI : Algebra.FiniteType F A := inferInstance
   obtain ⟨s0, hs1, hs2⟩ := ReciprocityTheory.CA.exists_dim_trdeg_field (K := F) (A := A)
   have hs0 : s0 = d := by
     have : (s0 : WithBot ℕ∞) = (d : WithBot ℕ∞) := hs1.symm.trans hd

@@ -101,7 +101,6 @@ theorem restrict_torus_smul_comm : ∀ (E : Type) [Field E] [NumberField E] [IsC
       TorusPart.PELUnif.torus_comp_act P h₀ m₀' a, ← Category.assoc, ← Category.assoc,
       ← SplitTorus.torusMap_comp, ← SplitTorus.torusMap_comp] at e
     haveI : Mono (TorusPart.PELUnif.torus P h₀ m₀') := hmono
-    have : Nonempty (Sp (ResidueField V)) := inferInstance
     exact SplitTorus.torusMap_injective ((cancel_mono _).1 e)
   intro a x
   have k := DFunLike.congr_fun (key2 (H.bar a)) x

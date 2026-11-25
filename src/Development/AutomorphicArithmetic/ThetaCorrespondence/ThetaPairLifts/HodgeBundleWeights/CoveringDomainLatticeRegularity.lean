@@ -1104,7 +1104,6 @@ theorem generates_of_flat {E : Type} [Field E] [NumberField E] [IsCMField E] {H 
   intro hgen
   letI := φ.toAlgebra
   have : FaithfulSMul R R₂ := (faithfulSMul_iff_algebraMap_injective _ _).2 hφ
-  have : Module.Flat R R₂ := inferInstance
   haveI : IsSeparated G.G.hom := G.semi.separated
   haveI : QuasiCompact G.G.hom := G.semi.quasiCompact
   haveI : CompactSpace G.G.left := QuasiCompact.compactSpace_of_compactSpace G.G.hom

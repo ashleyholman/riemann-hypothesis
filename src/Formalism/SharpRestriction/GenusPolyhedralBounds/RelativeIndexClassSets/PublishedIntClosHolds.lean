@@ -72,7 +72,6 @@ private theorem fld_lemma_3 (O K A : Type) [CommRing O] [IsDomain O] [IsDiscrete
   letI : Field (A ⧸ M) := Ideal.Quotient.field M
   haveI : FiniteDimensional K (A ⧸ M) :=
     Module.Finite.of_surjective (Ideal.Quotient.mkₐ K M).toLinearMap (Ideal.Quotient.mkₐ_surjective K M)
-  haveI : Algebra.IsSeparable K (A ⧸ M) := inferInstance
   refine ⟨IsIntegralClosure.finite O K (A ⧸ M) (integralClosure O (A ⧸ M)),
     IsIntegralClosure.isDedekindDomain O K (A ⧸ M) (integralClosure O (A ⧸ M)), ?_⟩
   intro h

@@ -352,9 +352,7 @@ theorem injective_coordMap (n : ℕ) (t : ℂ) (ht : t ≠ 0) : Function.Injecti
   rw [h5]
 
 theorem embedding_coordMap (n : ℕ) (t : ℂ) (ht : t ≠ 0) : MeasurableEmbedding (coordMap n t) := by
-  have h1 : TopologicalSpace.SeparableSpace (BlockCoord n) := inferInstance
   have h2 : TopologicalSpace.IsCompletelyMetrizableSpace (BlockCoord n) := inferInstance
-  have h3 : PolishSpace (BlockCoord n) := inferInstance
   exact (continuous_coordMap n t).measurableEmbedding (injective_coordMap n t ht)
 
 theorem pointwise_red {V : Type} [NormedAddCommGroup V] [NormedSpace ℂ V] (β : ℂ) (m : ℕ)
@@ -572,8 +570,6 @@ theorem omConverges : OmConverges := by
       rw [finrank_block]
       have e : (((m + 1) * (m + 1 + 3) : ℕ) : ℝ) = ((m : ℝ) + 1) * ((m : ℝ) + 4) := by push_cast; ring
       rw [e]; exact hA
-    have i1 : SecondCountableTopology ((UT (m + 1) → ℂ) × (Fin (m + 1) → ℂ)) := inferInstance
-    have i2 : BorelSpace ((UT (m + 1) → ℂ) × (Fin (m + 1) → ℂ)) := inferInstance
     have i3 : BorelSpace (BlockCoord (m + 1)) := inferInstance
     have j1 : (volume : Measure ((UT (m + 1) → ℂ) × (Fin (m + 1) → ℂ))).IsAddHaarMeasure :=
       Measure.prod.instIsAddHaarMeasure _ _

@@ -181,7 +181,6 @@ theorem card_eq_dim : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H 
   have hoi : IsOpenImmersion j := hL.1
   have hs : SmoothOfRelativeDimension Dw.dim (genStr T.Z) := T.smooth
   have hi : IsIso (spMap e.toRingHom) := inferInstanceAs (IsIso (Spec.map e.toCommRingCatIso.hom))
-  have h0 : SmoothOfRelativeDimension 0 (spMap e.toRingHom) := inferInstance
   have h2 : SmoothOfRelativeDimension (Dw.dim + 0) (genStr T.Z ≫ spMap e.toRingHom) := inferInstance
   rw [Nat.add_zero] at h2
   have h1 : SmoothOfRelativeDimension (0 + Dw.dim) (j ≫ genStr T.Z ≫ spMap e.toRingHom) := inferInstance

@@ -395,7 +395,6 @@ theorem integral_indicatorFin_smul_arch : ∀ (D : D7) (V : HSp D) (μa : ∀ w,
   haveI : νF.IsHaarMeasure := hF.2.2.1
   haveI : ∀ w, SigmaFinite (μa w) := fun w => inferInstance
   haveI : SigmaFinite (Measure.pi μa) := Measure.pi.sigmaFinite _
-  haveI : SigmaFinite νF := inferInstance
   exact integral_indicator_smul_of_measurePreserving
     (archFinEquiv D.sp.cm.sig V.gram).toHomeomorph.toMeasurableEquiv
     ⟨(archFinEquiv D.sp.cm.sig V.gram).toHomeomorph.toMeasurableEquiv.measurable, hmap⟩ hB hBf ha

@@ -45,7 +45,6 @@ theorem exists_map_eq_smul {D : D7} (X : Formalism.L2.SG.HidaSetting.HidaSetting
   obtain ⟨h1, h2, h3, h4, h5⟩ := Formalism.IndefR.Eqv.ga_facts D (D.sp.Y 0)
   haveI := X.B.haar
   haveI := X.B.sf
-  haveI : BorelSpace X.B.I.GA := inferInstance
   haveI : (X.B.I.muA X.B.μf).IsHaarMeasure := Measure.prod.instIsHaarMeasure _ _
   set μ' := Measure.map (iotaX X h).toMulEquiv.symm (X.B.I.muA X.B.μf) with hμ'
   haveI hH : μ'.IsHaarMeasure :=

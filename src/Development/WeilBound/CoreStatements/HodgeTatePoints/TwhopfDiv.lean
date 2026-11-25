@@ -56,7 +56,6 @@ theorem points_div : ∀ (V : Type) [CommRing V] [IsDomain V] [ValuationRing V] 
   have : IsSeparated (φ.left ≫ G.hom) := by rw [Over.w]; infer_instance
   have : IsSeparated φ.left := IsSeparated.of_comp _ G.hom
   have : IsLocallyNoetherian G.left := LocallyOfFiniteType.isLocallyNoetherian G.hom
-  have : LocallyOfFinitePresentation φ.left := inferInstance
   have ho : IsOpen (Set.range φ.left) := φ.left.isOpenMap.isOpen_range
   have hs : Function.Surjective φ.left := by
     have := GlobalTheory.ZJ.OmTest.surjective_mulN G N (by rw [hφ]; exact ho)

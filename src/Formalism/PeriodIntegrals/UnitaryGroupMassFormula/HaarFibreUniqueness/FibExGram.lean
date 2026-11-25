@@ -364,7 +364,6 @@ theorem gramFilt_gen {F E : Type} [Field F] [NumberField F] [Field E] [NumberFie
     rcases Nat.eq_zero_or_pos M with h0 | h0
     · subst h0
       exfalso
-      have : Nontrivial (Fv F v ⊗[F] E) := inferInstance
       exact hx.ne_zero ⟨0, ha1⟩ (funext fun j => j.elim0)
     · exact h0
   let i0 : Fin a := ⟨0, ha1⟩

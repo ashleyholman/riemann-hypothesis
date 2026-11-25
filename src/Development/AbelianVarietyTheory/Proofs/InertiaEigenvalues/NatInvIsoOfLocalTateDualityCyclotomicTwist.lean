@@ -630,7 +630,6 @@ theorem isAdicComplete_of_padicCoeff {p : ℕ} {O : Type} [CommRing O] [IsDomain
   haveI := h.ring
   haveI := h.compact
   haveI := isPrecomplete_of_compact_isAdic _ h.adic
-  haveI : IsHausdorff (IsLocalRing.maximalIdeal O) O := inferInstance
   exact ⟨⟩
 
 end GlobalTheory

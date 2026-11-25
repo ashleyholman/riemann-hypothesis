@@ -259,7 +259,6 @@ theorem slice {D : ℕ} (b : Module.Basis (Fin D) ℝ (V F κ)) : ∃ μ, IsHaar
   have : BorelSpace (κ → AF F) := ⟨rfl⟩
   have : SigmaCompactSpace (κ → Af F) := sigmaCompactSpace_of_locallyCompact_secondCountable
   set ν : Measure (κ → Af F) := Measure.addHaar with hν
-  have : SFinite ν := inferInstance
   have : MeasurableAdd (κ → Af F) := ContinuousAdd.measurableAdd
   have : ν.IsAddHaarMeasure := by rw [hν]; infer_instance
   have : ((volume : Measure (Fin D → ℝ)).prod ν).IsAddHaarMeasure := Measure.prod.instIsAddHaarMeasure _ ν

@@ -450,8 +450,6 @@ theorem chart_stalk {B : Type} [CommRing B] (θ : B →+* Ω) (j : Spec (.of B) 
     exact h5
   haveI : p.asIdeal.IsPrime := p.isPrime
   let p' : PrimeSpectrum.Top B := p
-  haveI hloc : IsLocalization.AtPrime ((structurePresheafInCommRingCat B).stalk p') p'.asIdeal :=
-    inferInstance
   refine ⟨(StructureSheaf.toStalk B p ≫ e.inv).hom, ?_, ?_, ?_⟩
   · intro b
     exact (hg _).trans (genMap_toStalk θ p h' b)

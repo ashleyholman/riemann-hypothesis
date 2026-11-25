@@ -15,8 +15,6 @@ open MeasureTheory
 namespace PositivityTheory.SiegelWeilFormula.KFock
 
 theorem volume_isAddHaar (m n : ℕ) : (volume : Measure (Fin m → Fin n → ℂ)).IsAddHaarMeasure := by
-  have h2 : (volume : Measure (Fin n → ℂ)).IsAddHaarMeasure := inferInstance
-  have h3 : SigmaFinite (volume : Measure (Fin n → ℂ)) := inferInstance
   exact Measure.pi.isAddHaarMeasure _
 
 variable {G H K : Type}

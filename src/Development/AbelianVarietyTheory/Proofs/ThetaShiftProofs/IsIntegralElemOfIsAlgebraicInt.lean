@@ -111,7 +111,6 @@ theorem arcι_C_injective (Dw : Datum H) (K : Type) [Field K] :
 theorem exists_const (Dw : Datum H) (K : Type) [Field K] [CharZero K] (s : ArcS Dw K) (hs : AlgZ s) :
     ∃ x : K, s = arcι Dw K (PowerSeries.C (R := K) x) := by
   have : CharZero (LaurentSeries K) := (HahnSeries.C : K →+* LaurentSeries K).charZero_iff (RingHom.injective _) |>.1 ‹_›
-  have : IsIntegrallyClosed (MvPolynomial (ArcLt Dw) (LaurentSeries K)) := inferInstance
   obtain ⟨P, hP, hPa⟩ := exists_of_localization (K := LaurentSeries K) (R := MvPolynomial (ArcLt Dw) (LaurentSeries K))
     (S := ArcS Dw K) (Submonoid.powers (arcDet Dw K))
     (powers_le_nonZeroDivisors_of_noZeroDivisors (arcDet_ne_zero Dw K)) MvPolynomial.C hs

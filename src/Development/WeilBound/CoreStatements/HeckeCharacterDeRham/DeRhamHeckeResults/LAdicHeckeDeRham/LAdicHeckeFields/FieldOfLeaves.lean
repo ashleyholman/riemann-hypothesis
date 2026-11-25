@@ -1597,8 +1597,6 @@ theorem pre_period (HT : TiltLeaf) (K : FinExt l) (χ : ↥(GK K) →* (↥K.1)�
   obtain ⟨hq2, hlq, hπl, hnπ, hnμ⟩ := _root_.GlobalTheory.CompanionTheory.LTPer.uniformiser_facts K π hπ
   haveI : FiniteDimensional ℚ_[l] ↥K.1 := K.2
   let K' : IntermediateField ℚ_[l] (Om l) := IntermediateField.normalClosure ℚ_[l] ↥K.1 (Om l)
-  haveI : FiniteDimensional ℚ_[l] K' := inferInstance
-  haveI : Normal ℚ_[l] K' := inferInstance
   obtain ⟨S, hW, hO, hG, hI, hE⟩ := GlobalTheory.CompanionTheory.LTPer.lattice_main K'
   have hμK : ∀ x, μ x ∈ K' := fun x => AlgHom.fieldRange_le_normalClosure μ ⟨x, rfl⟩
   have hint : ∀ c : ↥(OL K), IsIntegral ℤ_[l] (μ (c : ↥K.1)) := fun c =>

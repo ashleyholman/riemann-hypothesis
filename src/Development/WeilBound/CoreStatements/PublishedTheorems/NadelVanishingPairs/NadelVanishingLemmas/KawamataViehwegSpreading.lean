@@ -142,7 +142,6 @@ theorem subsingleton_coh_pull_of_ker_le : ∀ (R : Type) [CommRing R] [IsNoether
     Subsingleton (coh (LB.toMod (M.pull π₂)) q) := by
   intro R _ _ X f _ _ M hM κ₁ κ₂ _ _ g₁ g₂ X₁ X₂ f₁ f₂ π₁ π₂ h₁ h₂ hker q hsub
   haveI : CompactSpace X := by
-    have : QuasiCompact f := inferInstance
     exact ⟨(QuasiCompact.isCompact_preimage (f := f) _ isOpen_univ isCompact_univ)⟩
   obtain ⟨ι, _, U, hU, hUtop⟩ :=
     GlobalTheory.QCoh.exists_finite_affine_cover_of_isCompact (X := X) (W := ⊤) isCompact_univ
@@ -1014,7 +1013,6 @@ theorem vanishing_charZero_fibre_of_finiteType : ∀ (R k : Type) [CommRing R] [
   haveI : IsNoetherianRing R := Algebra.FiniteType.isNoetherianRing ℤ R
   haveI hstab := smoothOfRelativeDimension_isStableUnderBaseChange (n := d)
   haveI : Smooth f := SmoothOfRelativeDimension.smooth d f
-  haveI : Flat f := inferInstance
   let KR := FractionRing R
   let ι : KR →+* k := IsFractionRing.lift hφ
   have hφι : φ = ι.comp (algebraMap R KR) := by
@@ -1043,7 +1041,6 @@ theorem vanishing_charZero_fibre_of_finiteType : ∀ (R k : Type) [CommRing R] [
   have h1 := IsPullback.of_hasPullback (pullback.snd f (spMap χ)) (spMap c)
   haveI : SmoothOfRelativeDimension d (pullback.snd (pullback.snd f (spMap χ)) (spMap c)) :=
     MorphismProperty.of_isPullback (P := @SmoothOfRelativeDimension d) h1 inferInstance
-  haveI : IsProper (pullback.snd (pullback.snd f (spMap χ)) (spMap c)) := inferInstance
   have hsp2 : spMap c ≫ spMap χ = spMap (c.comp χ) := by
     simp only [spMap, CommRingCat.ofHom_comp, Spec.map_comp]
   have hρ : IsPullback (pullback.fst (pullback.snd f (spMap χ)) (spMap c) ≫ pullback.fst f (spMap χ))

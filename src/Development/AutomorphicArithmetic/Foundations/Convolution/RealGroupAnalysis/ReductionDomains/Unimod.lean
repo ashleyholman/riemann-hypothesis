@@ -65,7 +65,6 @@ theorem UpperTheory.ConvolutionTheory.R2.M.unimod :
       have e := map_mul (Measure.modularCharacter (G := G1 F)) x x⁻¹
       rw [mul_inv_cancel, map_one, hx, one_mul] at e
       exact e.symm
-  haveI : μ.InnerRegular := inferInstance
   refine ⟨fun g => ?_⟩
   rw [Measure.map_right_mul_eq_modularCharacterFun_smul μ g,
     show Measure.modularCharacterFun g = 1 from hall g, one_smul]

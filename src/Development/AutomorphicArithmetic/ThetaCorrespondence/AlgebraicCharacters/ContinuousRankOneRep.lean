@@ -157,7 +157,6 @@ private theorem emb_norm {l : ℕ} [Fact l.Prime] (w : HeightOneSpectrum (𝓞 L
   haveI : ContinuousSMul ((below K w).adicCompletion K) (Qbar l) := continuousSMul_of_algebraMap _ _ τ.2
   haveI : ContinuousSMul ((below K w).adicCompletion K) (w.adicCompletion L) :=
     continuousSMul_of_algebraMap _ _ (continuous_completionMap _ _)
-  haveI : FiniteDimensional ((below K w).adicCompletion K) (w.adicCompletion L) := inferInstance
   haveI : CharZero ((below K w).adicCompletion K) := algebraRat.charZero _
   have h := Algebra.norm_eq_prod_embeddings ((below K w).adicCompletion K) (Qbar l) y
   refine h.trans ?_
@@ -561,8 +560,6 @@ private theorem eo_abs {k K Ω : Type} [Field k] [Field K] [Field Ω] [CharZero 
   haveI : CharZero k := (algebraMap k K).charZero
   haveI : IsAlgClosed Ω := IsAlgClosure.isAlgClosed k
   haveI : Algebra.IsAlgebraic k Ω := IsAlgClosure.isAlgebraic
-  haveI : Normal k Ω := inferInstance
-  haveI : IsGalois k Ω := inferInstance
   constructor
   · intro τ
     letI : Algebra K Ω := τ₀.toRingHom.toAlgebra
