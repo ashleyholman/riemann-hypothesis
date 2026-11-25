@@ -1,7 +1,7 @@
 module
 
 public import Development.AbelianVarietyTheory.Definitions.Jets.SumIoPrAlt
-public import Development.AbelianVarietyTheory.Proofs.JetHarmonics.DerivedActionDiscreteSeriesPropertiesStatement
+public import Development.AbelianVarietyTheory.Proofs.JetHarmonics.DerivedActionDiscreteSeriesProperties
 import Formalism.FormalDegreeBessel.FormalDegreeRatio.CapelliHighestWeightConjugated
 import Formalism.HermitianCurvature.HermitianCurvatureProofs.SmoothAdd
 import Formalism.PeriodIntegrals.UnitaryGroupMassFormula.CapelliEigenvalues.HeckeMultiplication

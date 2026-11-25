@@ -1,7 +1,7 @@
 module
 
 public import GroundTheory.LocalFields.LowerIndex
-public import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.CapelliComplements.GeneralBFactAlt
+public import Lemmata.GeneralBFactLast.Imports
 public import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.RamificationLowerIndex
 import Mathlib.Order.CompletePartialOrder
 import Mathlib.Tactic.TypeStar

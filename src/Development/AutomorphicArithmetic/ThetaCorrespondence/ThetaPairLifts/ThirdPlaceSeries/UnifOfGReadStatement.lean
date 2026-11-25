@@ -1,7 +1,0 @@
-module
-
-public import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.FamilyConstants
-public import Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.ThirdPlaceSeries.UnifOfGRead
-import Development.AbelianVarietyTheory.Definitions.LatticeFrames.MiStarOfMid
-
-@[expose] public section

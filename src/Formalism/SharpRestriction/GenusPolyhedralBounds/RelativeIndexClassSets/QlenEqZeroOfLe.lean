@@ -1,7 +1,8 @@
 module
 
 public import Formalism.SharpRestriction.GenusPolyhedralBounds.RelativeIndexClassSets.SUnitsEulerDifference
-public import Formalism.LogFactorialIndices.LogProductFormula
+public import Formalism.LogFactorialIndices.SignedSubspaceIndex.IdxBase
+public import Formalism.LogFactorialIndices.SignedSubspaceIndex.IdxDet
 
 @[expose] public section
 

@@ -2,7 +2,7 @@ module
 
 public import Development.WeilBound.RepresentationTheoryGL.CasimirAlgebra.KugaCoordinates.IsStarRep
 public import Mathlib.Analysis.Calculus.Deriv.Prod
-public import Development.AutomorphicArithmetic.IntegralCasts.CapelliIdentities.CapelliComplements.ProductIdentities
+public import Lemmata.ProductIdentities.ProdInvZpowMulOfProdZpowEqOne
 public import Development.AbelianVarietyTheory.Proofs.TwistedOperators.CapelliOfGelfand
 public import Development.AbelianVarietyTheory.Definitions.SemilocalFrames.PosPartUnitaryMul
 public import Development.AbelianVarietyTheory.Proofs.FlagMeasures.GelfValTwoEqCvalR
