@@ -96,9 +96,6 @@ theorem abstract_double_coset_adjoint : ∀ (G X Γ ι κ : Type) [Group G] [Mea
     have h1 := he (e.symm q)
     have h2 := hPQ (e.symm q) x
     simp only [Equiv.apply_symm_apply] at h1 h2
-    have hx1 : (φ q.2)⁻¹ • (α q.1)⁻¹ • (α q.1 * φ q.2) • x = x := by
-      rw [smul_smul, smul_smul, ← mul_assoc, mul_assoc _ (α q.1)⁻¹, inv_mul_cancel, mul_one,
-        inv_mul_cancel, one_smul]
     have hx2 : (α q.1)⁻¹ • (α q.1 * φ q.2) • x = φ q.2 • x := by
       rw [smul_smul, ← mul_assoc, inv_mul_cancel, one_mul]
     have hx3 : (α q.1 * φ q.2) • x = φ (e.symm q).1 • β (e.symm q).2 • x := by

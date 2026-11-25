@@ -151,7 +151,6 @@ theorem exists_bound {f : ℤ → M} {m₀ : ℤ} (hf : ∀ k < m₀, f k = 0) (
     ∃ N : ℕ, ∀ j : ℕ, N ≤ j → f (k - j) = 0 := by
   refine ⟨(k - m₀ + 1).toNat, fun j hj => hf _ ?_⟩
   have h1 := Int.self_le_toNat (k - m₀ + 1)
-  have h2 : (((k - m₀ + 1).toNat : ℕ) : ℤ) ≤ (j : ℤ) := by exact_mod_cast hj
   omega
 
 theorem conv_add {f : ℤ → M} {m₀ : ℤ} (hf : ∀ k < m₀, f k = 0) (e e' : PowerSeries L) :

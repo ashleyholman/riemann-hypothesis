@@ -679,7 +679,6 @@ theorem eulerDerivation_eisensteinPow_final_bound {f g r G : K⟦X⟧} (m B : �
     (hfg : f - g = E K l e ^ B * r) :
     ∃ h ∈ A O K, ∃ k : ℕ, (l : K⟦X⟧) ^ k * N K g = E K l e ^ m * h := by
   obtain ⟨d, rfl⟩ := Nat.exists_eq_add_of_le hB
-  have hX := X_pow_eq (K := K) (l := l) (e := e)
   set h' := G - (E K l e ^ (d + 1) * N K r +
     ((m + d + 1 : ℕ) : K⟦X⟧) * E K l e ^ d * ((e : K⟦X⟧) * X ^ e) * r) with hh'
   have hgf : g = f - E K l e ^ (m + d + 1) * r := by rw [show m + d + 1 = m + 1 + d by omega, ← hfg]; ring

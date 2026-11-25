@@ -297,7 +297,6 @@ theorem weilPairJ (hI : CompanionTheory.Lime.BM.Inputs2) (hRT : ReproTr) (hL2 : 
 
   obtain ⟨hyiU, hyi⟩ := Formalism.MainNotions.S.Inh.unitary_group_inv_mem yc hyc
   set yi := Formalism.QuantumDeterminants.Hpk D.R.k D.R.rS * ycᴴ * Formalism.QuantumDeterminants.Hpk D.R.k D.R.rS with hyidef
-  have hyi' : yc * yi = 1 := mul_eq_one_comm.mp hyi
   set yJ : Formalism.REAL.UJ (X.B.I.ε (vOf X τ)) :=
     Formalism.L2.SG.RealObj.InfCut.JacobianCoordinates.JL.ujOf _ (inUJ_tr (transpC' C τ) hyiU) with hyJ
   have hTyJ : Matrix.of (Tm C τ yJ) = yi := by

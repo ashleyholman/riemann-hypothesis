@@ -453,7 +453,6 @@ theorem mem_of_inZZ (F : DFun R n G) {r : ℕ} {Dt : TopData n r} (M : ModTh F D
   obtain ⟨hL, hC, hP, hS⟩ := hlat
   rw [sh_zero_eq] at hP
   obtain ⟨z0, z1, zG, zB⟩ := hZ i
-  have hv := vv_ne_zero k
   have hφ : (F.D (chr 1)).φ i (g (i - 1)) ∈ sh 1 (M.Nχ 0 i) := by
     obtain ⟨y, hy, e⟩ := mem_sh_iff_exists.1 (hZ (i - 1)).2.1
     obtain ⟨u, hu⟩ := R.φ_v

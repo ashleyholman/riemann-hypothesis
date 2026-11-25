@@ -116,7 +116,6 @@ theorem exists_integral_model (O Γ : Type) [CommRing O] [IsDomain O] [IsPrincip
   have hφi : Function.Injective φ := IsFractionRing.injective O (FractionRing O)
   let c : (Fin n → O) →ₗ[O] (Fin n → FractionRing O) :=
     (Algebra.linearMap O (FractionRing O)).compLeft (Fin n)
-  have hc : ∀ v, c v = φ ∘ v := fun v => rfl
   let L : Submodule O (Fin n → O) := (W.restrictScalars O).comap c
   have hLm : ∀ v, v ∈ L ↔ φ ∘ v ∈ W := fun v => Iff.rfl
   have hsm : ∀ (x : O) (v : Fin n → O), φ ∘ (x • v) = φ x • (φ ∘ v) := by

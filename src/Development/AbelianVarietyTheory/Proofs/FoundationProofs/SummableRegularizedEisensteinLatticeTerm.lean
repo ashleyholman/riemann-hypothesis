@@ -40,7 +40,6 @@ lemma ne_zero_of_near {z w : ℂ} (hz : z ≠ 0) (hw : ‖w - z‖ ≤ ‖z‖ /
 lemma zpow_neg_lip (n : ℕ) {z u v : ℂ} (hz : z ≠ 0)
     (hu : ‖u - z‖ ≤ ‖z‖ / 2) (hv : ‖v - z‖ ≤ ‖z‖ / 2) :
     ‖u ^ (-(n:ℤ)) - v ^ (-(n:ℤ))‖ ≤ n * (2 / ‖z‖) ^ (n + 1) * ‖u - v‖ := by
-  have hz' : 0 < ‖z‖ := norm_pos_iff.mpr hz
   have hmem : ∀ w ∈ Metric.closedBall z (‖z‖ / 2), ‖w - z‖ ≤ ‖z‖ / 2 := by
     intro w hw; simpa [Metric.mem_closedBall, dist_eq_norm] using hw
   have hd : ∀ w ∈ Metric.closedBall z (‖z‖ / 2), HasDerivAt (fun x : ℂ => x ^ (-(n:ℤ)))
@@ -52,7 +51,6 @@ lemma zpow_neg_lip (n : ℕ) {z u v : ℂ} (hz : z ≠ 0)
     (fun w hw => by
       rw [(hd w hw).deriv]
       have hw' : ‖z‖ / 2 ≤ ‖w‖ := half_le_norm (hmem w hw)
-      have hwpos : 0 < ‖w‖ := by linarith
       rw [norm_mul, norm_zpow]
       have e1 : ‖(((-(n:ℤ)) : ℤ) : ℂ)‖ = n := by simp
       have e2 : -(n:ℤ) - 1 = -((n + 1 : ℕ) : ℤ) := by push_cast; ring
@@ -169,8 +167,6 @@ theorem difdif_bound (j L : ℕ) (v : ℤ × ℤ) (τ : ℍ) (hj : 1 ≤ j) (hL 
   set B : ℝ := max C 0 * (L * ‖w‖) ^ 2 / ‖z‖ ^ 3 with hB
   have hz0 : z ≠ 0 := by
     intro h; rw [h, norm_zero] at h1; linarith
-  have hzpos : 0 < ‖z‖ := norm_pos_iff.mpr hz0
-  have hLpos : (0 : ℝ) < L := by exact_mod_cast hL
   have hterm : ∀ r' ∈ Finset.range L, ∀ r ∈ Finset.range L,
       ‖trm j 0 z - trm j 0 (z + (r : ℂ) * w) - trm j 0 (z + (r' : ℂ) * w)
         + trm j 0 (z + (r' : ℂ) * w + (r : ℂ) * w)‖ ≤ B := by
@@ -191,7 +187,6 @@ theorem difdif_bound (j L : ℕ) (v : ℤ × ℤ) (τ : ℍ) (hj : 1 ≤ j) (hL 
     refine key.trans ?_
     have hpow : ‖z‖ ^ 3 ≤ ‖z‖ ^ (j + 2) := pow_le_pow_right₀ h1 (by omega)
     have hp3 : 0 < ‖z‖ ^ 3 := by positivity
-    have hM : 0 ≤ max C 0 := le_max_right _ _
     calc C * ‖(r' : ℂ) * w‖ * ‖(r : ℂ) * w‖ / ‖z‖ ^ (j + 2)
         ≤ max C 0 * ‖(r' : ℂ) * w‖ * ‖(r : ℂ) * w‖ / ‖z‖ ^ (j + 2) := by
           gcongr; exact le_max_left _ _
@@ -223,7 +218,6 @@ theorem latsum_summable : ∀ (j L : ℕ) (v : ℤ × ℤ) (τ : ℍ), 1 ≤ j �
   have hrτ : 0 < EisensteinSeries.r τ := EisensteinSeries.r_pos τ
   set M : ℝ := R / EisensteinSeries.r τ + 1 with hM
   set K : ℝ := max C 0 * (L * ‖w‖) ^ 2 with hK
-  have hK0 : 0 ≤ K := by positivity
   rw [← (finTwoArrowEquiv ℤ).summable_iff]
   have hs : Summable fun y : Fin 2 → ℤ => K * (EisensteinSeries.r τ ^ 3)⁻¹ * ‖y‖ ^ (-(3 : ℝ)) :=
     (EisensteinSeries.summable_one_div_norm_rpow (by norm_num : (2 : ℝ) < 3)).mul_left _

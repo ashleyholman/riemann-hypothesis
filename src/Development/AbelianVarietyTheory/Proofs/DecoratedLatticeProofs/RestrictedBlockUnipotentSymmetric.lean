@@ -659,8 +659,6 @@ theorem inv_adj {K : Type} [CommRing K] {n ρ k : ℕ} {M : GL (Fin n) K} (hM : 
   have h1 : M ∈ unip K n := hM.1
   have h := unip_mul_entry ((unip K n).inv_mem h1) h1 (show i < j by show i.val < j.val; omega)
     (fun l hil hlj => by
-      have a : i.val < l.val := hil
-      have b : l.val < j.val := hlj
       omega)
   rw [inv_mul_cancel, Units.val_one, Matrix.one_apply_ne (by intro e; rw [e] at hij; omega)] at h
   linear_combination -h
@@ -1177,7 +1175,6 @@ theorem flagCond_dual_unipSym : ∀ (K : Type) [CommRing K] (n ρ k : ℕ), n = 
   have hN : ∀ p q : Fin (2 * ρ + k + 1), ρ + k < p.val → q.val ≤ p.val →
       ((M⁻¹ : GL (Fin (2 * ρ + k + 1)) K) : Matrix (Fin (2 * ρ + k + 1)) (Fin (2 * ρ + k + 1)) K) p q = (1 : Matrix (Fin (2 * ρ + k + 1)) (Fin (2 * ρ + k + 1)) K) p q := by
     intro p q hp hq
-    have hp2 := p.2
     have hq2 := q.2
     have h1 := congrFun (congrFun hkey ⟨dualIdx ρ k p.val, dualIdx_lt' p.2⟩) q
     rw [mul_flagGram_apply, flagGram_mul_apply, transpose_apply] at h1
@@ -1225,7 +1222,6 @@ theorem flagCond_dual_unipSym : ∀ (K : Type) [CommRing K] (n ρ k : ℕ), n = 
       · intro h; exact absurd (Finset.mem_univ _) h
   have hall : ∀ i j : Fin (2 * ρ + k + 1), j.val ≤ i.val → (M : Matrix (Fin (2 * ρ + k + 1)) (Fin (2 * ρ + k + 1)) K) i j = (1 : Matrix (Fin (2 * ρ + k + 1)) (Fin (2 * ρ + k + 1)) K) i j := by
     intro i j hji
-    have hi2 := i.2
     by_cases h1 : j.val < ρ
     · have h := hM.1 i j h1 hji
       simp only [Matrix.sub_apply, sub_eq_zero] at h

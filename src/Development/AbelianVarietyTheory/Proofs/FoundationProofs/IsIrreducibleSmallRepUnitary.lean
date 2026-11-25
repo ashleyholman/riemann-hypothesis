@@ -85,7 +85,6 @@ theorem exists_killed_of_rowDivClosed {n k : ℕ} (M : Submodule ℂ (MvPolynomi
   obtain ⟨d, hd⟩ := ne_zero_iff.mp hne'
   have hnn := (lhwin_weight_nonneg d).trans (hH d (mem_support_iff.2 hd))
   have hab' : (a.val : ℤ) < b.val := by exact_mod_cast (Fin.lt_def.mp hab)
-  have hk' : (1 : ℤ) ≤ j := by exact_mod_cast hj
   have hlt : ((Nat.find hex : ℕ) : ℤ) + j * ((a.val : ℤ) - b.val) < (Nat.find hex : ℕ) := by
     nlinarith
   have hmin := Nat.find_min hex (m := (((Nat.find hex : ℕ) : ℤ) + j * ((a.val : ℤ) - b.val)).toNat)

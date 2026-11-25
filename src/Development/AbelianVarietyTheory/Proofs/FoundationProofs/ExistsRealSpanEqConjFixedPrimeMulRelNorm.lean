@@ -442,8 +442,6 @@ theorem exists_fixed_uniformizer (hq : IsQuad δ θ σ) (s : 𝓞 E ≃+* 𝓞 E
   obtain ⟨π, hπ⟩ := w.intValuation_exists_uniformizer
   have hπ1 : π ∈ w.asIdeal := by
     rw [← pow_one w.asIdeal, ← w.intValuation_le_pow_iff_mem, hπ]; simp
-  have hπ2 : π ∉ w.asIdeal ^ 2 := by
-    rw [← w.intValuation_le_pow_iff_mem, hπ, WithZero.exp_le_exp]; norm_num
   by_cases h1 : π + s π ∈ w.asIdeal ^ 2
   · refine ⟨y * π + s (y * π), by rw [map_add (f := _), hss, add_comm], hchar _
       (add_mem (Ideal.mul_mem_left _ _ hπ1) (hP _ (Ideal.mul_mem_left _ _ hπ1))) fun h2 => ?_⟩
@@ -578,7 +576,6 @@ theorem exists_span_eq_prime_mul_norm : ∀ (D : D7) (P : Ideal (𝓞 D.host.E))
     rw [Ideal.pointwise_smul_def, ← Ideal.map_coe s]
     congr 1
     exact RingHom.ext fun x => RingOfIntegers.ext (Formalism.L2.Pj.barE_eq_conj D x).symm
-  have hd : (0 : ℝ) < D.host.d := by exact_mod_cast D.host.hyp.2.1.pos
   have hθsq := D.host.sqrtMinusD_sq
   have hθc := Formalism.L2.Pj.cc_sqrtMinusD D
   have hθ0 : D.host.sqrtMinusD ≠ 0 := by

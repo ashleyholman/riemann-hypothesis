@@ -573,9 +573,6 @@ theorem exists_eq_glue (hn : (hRes h U).Nondegenerate) (L : Submodule (𝓞 K) V
       field_simp
       ring)
   have hpr : ∀ v, v = (pr v : V) + (-((T : K)⁻¹ * h z v)) • z := fun v => by simp [pr]
-  have hsur : Function.Surjective pr := fun u => ⟨u, by
-    have e : (u : V) + (0 : K) • z = _ := (by simp : (u : V) + (0 : K) • z = u).trans (hpr u)
-    exact (decomp_unique h hT hz hU e).1.symm⟩
   let N : Submodule (𝓞 K) U := L.map (pr.restrictScalars (𝓞 K))
   have hN : Submodule.IsLattice K N := by
     exact Submodule.IsLattice.of_fg K (hL.fg.map _)

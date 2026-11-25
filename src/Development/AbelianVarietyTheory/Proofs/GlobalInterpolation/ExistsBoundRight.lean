@@ -280,7 +280,6 @@ theorem exists_height : ∃ C : ℝ, 0 < C ∧ ∀ (N : ℕ) [NeZero N] (χ : Di
   clear_value δ S L
   refine ⟨T', hT1, hT2, ?_⟩
   intro s hs1 hs2 hsim
-  have hT'pos : 0 < T' := by linarith
   have hLs : LFunction χ s ≠ 0 := by
     intro h0
     have hs1' : s ≠ 1 := by
@@ -307,7 +306,6 @@ theorem exists_height : ∃ C : ℝ, 0 < C ∧ ∀ (N : ℕ) [NeZero N] (χ : Di
     have e1 : 0 ≤ B * (4 * L ^ 2 - 1) := mul_nonneg hB h4L
     have e2 : 0 ≤ C * L ^ 2 := mul_nonneg hC.le (sq_nonneg L)
     have e3 : 0 ≤ C ^ 2 * L ^ 2 := mul_nonneg (sq_nonneg C) (sq_nonneg L)
-    have e4 : 0 ≤ L ^ 2 := sq_nonneg L
     linarith
   · push Not at hre
     obtain ⟨Z, hZm, hZc, hdiff⟩ := hloc N χ hprim s (by linarith) hre.le (by rw [hsim]; linarith) hLs

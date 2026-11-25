@@ -67,7 +67,6 @@ section Val
 variable {T : CDVR} {p : ℕ} [Fact p.Prime] (X : ValExt T p)
 
 theorem log_v_p_neg : Real.log (X.v (p : X.C) : ℝ) < 0 := by
-  have hp0 : (p : X.C) ≠ 0 := Nat.cast_ne_zero.2 (Fact.out : p.Prime).ne_zero
   have hpos : (0 : ℝ) < (X.v (p : X.C) : ℝ) := by
     have : X.v (p : X.C) ≠ 0 := by simpa using (Fact.out : p.Prime).ne_zero
     exact_mod_cast pos_iff_ne_zero.2 this
@@ -296,7 +295,6 @@ theorem le_nuFac {f : Lt1 Dw} {k : ℕ} {r : EReal}
 omit [StarRing (𝓞 E)] in
 theorem not_isUnit_of_overLa (la : PointsOfFlagModel.abelian₂ p c) {e : ℕ} (ho : OverLa la.1 T.V io e) : ¬ IsUnit (p : T.V) := by
   intro hu
-  have hp0 : (p : 𝓞 c.F) ≠ 0 := Nat.cast_ne_zero.2 (Fact.out : p.Prime).ne_zero
   have h1 : la.1.valuation c.F (p : c.F) < 1 := by
     have := (la.1.valuation_lt_one_iff_mem (K := c.F) (p : 𝓞 c.F)).2 la.2
     simpa using this

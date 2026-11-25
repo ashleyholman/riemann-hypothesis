@@ -211,7 +211,6 @@ theorem _root_.GlobalTheory.StepData.mul_mem_of_hat_cosetInd_ne_zero : ∀ (k : 
       have hq : Submodule.Quotient.mk (p := _root_.GlobalTheory.StepData.box n c)
           (y + Pi.single i ((c : k) * t)) = Submodule.Quotient.mk y := by
         rw [Submodule.Quotient.mk_add, (Submodule.Quotient.mk_eq_zero _).2 hvmem, add_zero]
-      have hv0 := (Submodule.Quotient.mk_eq_zero _).2 hvmem
       split_ifs with h₁ h₂ h₂
       · rfl
       · exact absurd (hq.symm.trans h₁) h₂

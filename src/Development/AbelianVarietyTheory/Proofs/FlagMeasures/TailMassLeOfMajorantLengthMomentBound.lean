@@ -48,7 +48,6 @@ theorem tail_mass_le : ∀ (k r : ℕ) {Wp : Type} [NormedAddCommGroup Wp] [Inne
     refine le_mul_of_one_le_left' ?_
     rw [ENNReal.one_le_ofReal]
     have h1 : (1 : ℝ) ≤ 4 ^ q := one_le_pow₀ (by norm_num)
-    have h2 : (0 : ℝ) ≤ r := Nat.cast_nonneg r
     simp only [pow_zero, one_pow, inv_one, mul_one]
     nlinarith
   · set T : ℝ := 2 ^ (j + 1) * H₁ / 2 with hTdef
@@ -76,7 +75,6 @@ theorem tail_mass_le : ∀ (k r : ℕ) {Wp : Type} [NormedAddCommGroup Wp] [Inne
       refine (mul_le_mul_right (hM a) _).trans (le_of_eq ?_)
       rw [← mul_assoc, ← ENNReal.ofReal_mul (by positivity)]
       congr 2
-      have hH0 : H₁ ≠ 0 := by linarith
       have h4 : (4 : ℝ) ^ q = 2 ^ (2 * q) := by rw [pow_mul]; norm_num
       rw [hT', h4, pow_succ, mul_pow, mul_pow]
       field_simp

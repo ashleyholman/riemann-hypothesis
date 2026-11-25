@@ -318,7 +318,6 @@ theorem sup_translate_le : ∀ (D : D7), admG1 D → ∀ (cc : Ideal (𝓞 D.hos
     (La D (tor0 D cc δ) L L') (Or.inr ⟨L, L', hL, hL', rfl⟩)
   set T := tor0 D cc δ with hT
   have hd : (0 : ℝ) < D.host.d := by exact_mod_cast D.host.hyp.2.1.pos
-  have hsd : 0 < Real.sqrt D.host.d := Real.sqrt_pos.2 hd
   have ha : 0 < area T.abelian₂ := area_pos (lamOf D cc δ) P hP
   have hc : (((Real.sqrt (area T.abelian₂))⁻¹ : ℝ) : ℂ) ≠ 0 := by
     exact_mod_cast (inv_pos.2 (Real.sqrt_pos.2 ha)).ne'

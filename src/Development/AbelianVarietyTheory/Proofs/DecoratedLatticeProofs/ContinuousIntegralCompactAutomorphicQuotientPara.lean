@@ -29,7 +29,6 @@ theorem continuous_setIntegral_of_unif {G P : Type*} [MeasurableSpace G] [Topolo
     (hcl : ∀ p₀, ∀ ε : ℝ, 0 < ε → ∀ᶠ p in nhds p₀, ∀ g, ‖K g p - K g p₀‖ < ε) :
     Continuous fun p => ∫ g in 𝓕, K g p ∂μ := by
   refine continuous_iff_continuousAt.2 fun p₀ => Metric.tendsto_nhds.2 fun ε hε => ?_
-  have hm : 0 ≤ μ.real 𝓕 := measureReal_nonneg
   have hδ : 0 < ε / (μ.real 𝓕 + 1) := by positivity
   filter_upwards [hcl p₀ _ hδ] with p hp
   rw [dist_eq_norm, ← integral_sub (hint p) (hint p₀)]

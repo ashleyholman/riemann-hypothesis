@@ -441,14 +441,12 @@ theorem gap_arith (hk : 1 ≤ k) {C : ℝ} (hC : 100 ≤ C) :
       (((3 * (r + 1) : ℕ) : ℝ) * ((2 * r + k + 1 : ℕ) : ℝ) ^ 2 + ((2 * r + k + 1 : ℕ) : ℝ) ^ 3)) ∧
     Pv.AmpDD.GapCell k r (C * ((2 * r + 2 : ℕ) : ℝ) ^ ((9 : ℝ) / 2) *
       (((3 * (r + 1) : ℕ) : ℝ) * ((2 * r + k + 1 : ℕ) : ℝ) ^ 2 + ((2 * r + k + 1 : ℕ) : ℝ) ^ 3)) := by
-  have hr0 : (0 : ℝ) ≤ r := Nat.cast_nonneg r
   have hk1 : (1 : ℝ) ≤ k := by exact_mod_cast hk
   set n : ℝ := ((2 * r + k + 1 : ℕ) : ℝ) with hn
   have hne : n = 2 * r + k + 1 := by rw [hn]; push_cast; ring
   set m : ℝ := 2 * ((r : ℝ) + 1) with hm
   have hme : ((2 * r + 2 : ℕ) : ℝ) = m := by rw [hm]; push_cast; ring
   have hm2 : 2 ≤ m := by linarith
-  have hmn : m ≤ n := by linarith
   set s := Real.sqrt m with hs
   have hs1 : 1 ≤ s := Real.one_le_sqrt.2 (by linarith)
   have hpow : m ^ ((9 : ℝ) / 2) = m ^ 4 * s := by
@@ -485,7 +483,6 @@ theorem gap_arith (hk : 1 ≤ k) {C : ℝ} (hC : 100 ≤ C) :
   have hAG : ThreeDimData.AG k r ≤ 4 * n ^ 3 := by
     unfold ThreeDimData.AG
     have : ((k : ℝ) + r) * ((r : ℝ) + 1) ≤ n * n := mul_le_mul (by linarith) (by linarith) (by linarith) (by linarith)
-    have e : n ^ 2 = n * n := by ring
     calc _ = 4 * (((k : ℝ) + r) * ((r : ℝ) + 1)) := by ring
       _ ≤ _ := by linarith
   have hAG0 : 0 ≤ ThreeDimData.AG k r := by unfold ThreeDimData.AG; positivity

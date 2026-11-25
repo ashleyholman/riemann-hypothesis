@@ -212,8 +212,6 @@ theorem term_bound : ∀ (D : D7), Inp D → ∀ (S : Finset ℕ) (dl : ℕ → 
       hval, zero_add]
   have hsp : p ∣ M * Q → SplitIn D p := fun h =>
     hQ.2 p hp (hMp.symm.dvd_of_dvd_mul_left h)
-  have he0 : 0 ≤ (if p = D.host.d then (p : ℝ) ^ (((P.a * ∑ τ, P.n τ : ℕ) : ℝ) / 4) else 1) := by
-    split_ifs <;> positivity
   rw [← rpow_collect hp0, Pair.term, ← map_minorZ, hF]
   refine bd_applyAt0 (lam := lam) D (by positivity) _ _ (minorZ_homogeneous D T) fun f => ?_
   refine bd_coord D (by positivity) (by positivity) (tor0 D ⊤ δ) (fun _ _ => rfl)

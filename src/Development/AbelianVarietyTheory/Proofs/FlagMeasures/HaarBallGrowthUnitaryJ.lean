@@ -120,7 +120,6 @@ theorem hs_le_of_cols (n : ℕ) (ε : Fin n → Bool) (s : Bool) (h : Matrix (Fi
   have C : ∑ i, ∑ j, (‖h i j‖ ^ 2 - e i * (e j * ‖h i j‖ ^ 2) + σ * (e j * ‖h i j‖ ^ 2)
       - σ * (e i * ‖h i j‖ ^ 2)) ≤ ∑ i, ∑ j, 4 * (if ε j = s then ‖h i j‖ ^ 2 else 0) := by
     refine Finset.sum_le_sum fun i _ => Finset.sum_le_sum fun j _ => ?_
-    have h0 : 0 ≤ ‖h i j‖ ^ 2 := by positivity
     simp only [he, hσ]
     cases ε i <;> cases ε j <;> cases s <;> simp <;> linarith
   have D : ∑ i, ∑ j, σ * (e j * ‖h i j‖ ^ 2) = ∑ i, ∑ j, σ * (e i * ‖h i j‖ ^ 2) := by
@@ -273,7 +272,6 @@ lemma hs_le_of_dOp {n : ℕ} {g : Matrix (Fin n) (Fin n) ℂ} {r : ℝ} (h : dOp
     have h6 : ‖(EuclideanSpace.single j (1 : ℂ) : EuclideanSpace ℂ (Fin n))‖ = 1 := by simp
     rw [h6, mul_one] at h3
     exact h4.trans (h3.trans h1)
-  have hp := Real.exp_pos r
   calc hs g ≤ ∑ _i : Fin n, ∑ _j : Fin n, Real.exp r ^ 2 :=
         Finset.sum_le_sum fun i _ => Finset.sum_le_sum fun j _ =>
           pow_le_pow_left₀ (norm_nonneg _) (h2 i j) 2

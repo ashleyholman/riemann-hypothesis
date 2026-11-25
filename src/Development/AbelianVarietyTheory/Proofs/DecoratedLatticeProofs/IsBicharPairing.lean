@@ -109,7 +109,6 @@ theorem exists_box_subset {U : Set (Matrix Y Y' k)} (hU : U ∈ 𝓝 0) : ∃ a 
   obtain ⟨s, hs⟩ := exists_cball_subset h
   refine ⟨s, fun x hx => ?_⟩
   have := hs (show (s : k) ∈ cball s from le_refl (valuation k (s : k))) ((s : k)⁻¹ • x) fun r q => by
-    have h0 : valuation k (s : k) ≠ 0 := by simp
     rw [Matrix.smul_apply, smul_eq_mul, map_mul, map_inv₀, Units.val_one, map_one]
     exact inv_mul_le_one_of_le₀ (hx r q) zero_le'
   rwa [smul_inv_smul₀ s.ne_zero] at this

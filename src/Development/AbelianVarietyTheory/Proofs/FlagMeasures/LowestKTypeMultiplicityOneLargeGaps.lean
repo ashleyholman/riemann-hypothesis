@@ -623,7 +623,6 @@ theorem form_eq_zero_of_casK (V : Type) [NormedAddCommGroup V] [InnerProductSpac
     rw [hc, Complex.re_ofReal_mul, re_inner_self_indexArray]
   have hpos := nPos V n ε E lam g u j hE hU hu hfd hgap G hN
   rw [hre] at hpos
-  have hgn : 0 < g - 2 * (n : ℝ) := by linarith
   have hk : 0 < 2 * ((j : ℝ) + 1) * (g - 2 * (n : ℝ)) := by positivity
   have hsq : ‖G‖ ^ 2 ≤ 0 := by nlinarith [sq_nonneg ‖G‖]
   have hG0 : G = 0 := by

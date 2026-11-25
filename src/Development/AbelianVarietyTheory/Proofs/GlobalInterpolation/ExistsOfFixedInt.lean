@@ -447,10 +447,6 @@ theorem exists_next [Nontrivial A] (hc : ∀ a, c (c a) = a) (hJ : ∀ i j, c (J
       refine ⟨y, hy, ?_⟩
       show π y = y
       rw [hπ]; simp [h]
-  have hqc : c q = q := by
-    have := congrArg c hpq
-    rw [map_mul, hpc, map_one] at this
-    linear_combination q * this - c q * hpq
 
   have h1 : ∀ y ∈ N, q * hform c J y y ∈ O := by
     intro y hy

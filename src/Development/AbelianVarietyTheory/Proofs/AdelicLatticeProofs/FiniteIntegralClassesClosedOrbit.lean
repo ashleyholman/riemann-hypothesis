@@ -169,8 +169,6 @@ theorem core {m : ℕ} (d : Fin m → ℕ) (v : TIdx ι d → ℂ)
       rw [norm_mul, norm_mul]
       set W := ‖act d v (K t * D t * N t) j‖
       set X := ‖∏ l, e t (j.2 l)‖
-      have hX : 0 ≤ X := norm_nonneg _
-      have hW : 0 ≤ W := norm_nonneg _
       refine pow_le_pow_left₀ (by positivity) ?_ 2
       rw [le_div_iff₀ hc]
       calc W * X * X * c ≤ W * X * X * W := by gcongr
@@ -257,7 +255,6 @@ theorem borel_harishChandra : ∀ (ι : Type) [Fintype ι] [DecidableEq ι] [Lin
       rcases ratio t i j with h | h
       · rw [h]; simp
       · have hp := (t.2.1.pos i).le
-        have hq := (t.2.1.pos j).le
         have hn : ‖(t.1.2.2 i j : ℂ)‖ ≤ max 1 C := by
           rw [Complex.norm_real]; exact (t.2.1.bdd i j).trans (le_max_right _ _)
         calc _ = (t.1.2.1 i * (t.1.2.1 j)⁻¹) * ‖(t.1.2.2 i j : ℂ)‖ := by ring
@@ -708,7 +705,6 @@ theorem finite_integral_classes_closed_orbit : ∀ (ι : Type) [Fintype ι] [Dec
   · left
     have : w j = 0 := by
       rw [hz0] at hz
-      have hDq : (D : ℚ) ≠ 0 := by positivity
       simpa [hD.ne'] using hz
     simp [this]
   · right

@@ -560,7 +560,6 @@ theorem localMassFactor_eq_of_mem_badPrimes (hK : IsCMUnram K) (hF : IsFixF K F)
     rwa [finrank_top] at this
   obtain ⟨m, hm'⟩ : ∃ m, Module.finrank K V = m + 1 := ⟨_, (Nat.sub_add_cancel hm).symm⟩
   have hpos := alphaStd_pos hK hF h𝔭 m
-  have hq0 : (0 : ℝ) < qIn P := by exact_mod_cast (by omega : 0 < qIn P)
   rw [lamP, alpha_discriminant_holds K F V hK hF h hs hd M hlat hM.1.2 𝔭 h𝔭 b a hJ, hv, hcJ, hdisc, hm',
     Nat.add_sub_cancel, mul_one]
   have hstep : alphaStd K 𝔭 (m + 1) =

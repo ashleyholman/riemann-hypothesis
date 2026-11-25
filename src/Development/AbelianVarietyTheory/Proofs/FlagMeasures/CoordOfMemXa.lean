@@ -312,7 +312,6 @@ theorem inN_of_nset (h : IsReal H k r σ Φ) (ht : ∀ a, t a ≠ 0)
     simp [bvec, Pi.single_apply, this]
   · refine mem_Xa_of_coord h ht he le_rfl fun i hi => ?_
     have hz : ∀ j : Fin (2 * r + k + 1), r + k < j.val → Φ y j = 0 := fun j hj => by
-      have hj2 := j.2
       let a : Fin r := ⟨2 * r + k - j.val, by omega⟩
       have e : esI k r a = j := Fin.ext (by simp only [esI, a]; omega)
       have h0 : H.B y (F.e a.castSucc) = 0 := by rw [← H.herm, hy, star_zero]

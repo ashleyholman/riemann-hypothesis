@@ -52,9 +52,7 @@ theorem setIntegral_Ioo_pow_mul_div (c m : ℕ) (hm : 1 ≤ m) (hc : 1 ≤ c) :
     0 ≤ ∫ t in Set.Ioo (0 : ℝ) (1 / 2), t ^ (c * m) * ((c : ℝ) / t) ∧
     ∫ t in Set.Ioo (0 : ℝ) (1 / 2), t ^ (c * m) * ((c : ℝ) / t) ≤ 1 := by
   rw [setIntegral_Ioo_pow_mul_div_eq c m hm hc]
-  have hcpos : (0 : ℝ) < c := by exact_mod_cast hc
   have hmpos : (1 : ℝ) ≤ m := by exact_mod_cast hm
-  have hpow0 : (0 : ℝ) ≤ (1 / 2 : ℝ) ^ (c * m) := by positivity
   have hpow1 : (1 / 2 : ℝ) ^ (c * m) ≤ 1 := pow_le_one₀ (by norm_num) (by norm_num)
   have hcm : ((c * m : ℕ) : ℝ) = (c : ℝ) * m := by push_cast; ring
   rw [hcm]

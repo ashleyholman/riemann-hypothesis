@@ -28,7 +28,6 @@ theorem fdegOf_eq_of_isFdeg {n : ℕ} {H : Type} [NormedAddCommGroup H] [InnerPr
     push_cast
     simp only [RCLike.ofReal, Complex.coe_algebraMap]
     ring
-  have hn : 0 < ‖w‖ := norm_pos_iff.mpr hw
   unfold fdegOf
   rw [h3]
   field_simp

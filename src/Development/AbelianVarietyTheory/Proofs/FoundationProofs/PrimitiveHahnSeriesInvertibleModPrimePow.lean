@@ -190,7 +190,6 @@ theorem core (A : ValuationSubring Ω) (c : Ω) (hnil : ∀ x ∈ A.nonunits, �
     ⟨hSwf.min hSne, hSwf.min_mem hSne, fun r hr => hSwf.min_le hSne hr⟩
   obtain ⟨hu0, huinv⟩ := hi0
   set u := P.coeff i0 with hudef
-  have huA : u ∈ A := hP.1 i0
   have hi0L : ∃ k : ℤ, -i0 * L = k := by
     obtain ⟨k, hk⟩ := hPL i0 hu0; exact ⟨-k, by rw [neg_mul, hk]; push_cast; ring⟩
 

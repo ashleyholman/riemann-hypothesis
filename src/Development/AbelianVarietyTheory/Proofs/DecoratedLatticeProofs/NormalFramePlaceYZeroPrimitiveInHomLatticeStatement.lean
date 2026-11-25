@@ -344,7 +344,6 @@ theorem normalFr_incAdj_yZero_mem_latO_iff : ∀ {D : D7} (ψ : AddChar (AF D.ho
   have hxi1 : valuation l.k (ofSplit l.q).xi = 1 := by
     have h2 := hsc (0 + 1 + 1)
     rwa [hstep, map_mul, hsc 0, one_mul] at h2
-  have hxi0 : (ofSplit l.q).xi ≠ 0 := fun h0 => by simp [h0] at hxi1
   have hjs : j ≤ l.s + 1 := by have := l.hs; omega
   have hd : j + 1 + 2 * ρ = l.s + 1 := by have := l.hs; omega
   have hjm : j + 1 < D.R.m := by omega

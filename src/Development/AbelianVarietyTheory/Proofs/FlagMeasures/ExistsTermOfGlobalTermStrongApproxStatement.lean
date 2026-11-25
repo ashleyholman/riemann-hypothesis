@@ -154,7 +154,6 @@ theorem GCoord.c_eq_one_of_gS_mem : ∀ (D : D7) (X : HidaSetting D) (Y : Full X
     · simp [gpart, hchar, Ne.symm hne]
   have hδ := Y.δ_pin p i hi
   have hne : ∀ j, ((D.host.g j : ℕ) : D.host.E) ≠ 0 := fun j => Nat.cast_ne_zero.2 (D.host.g_prime j).ne_zero
-  have hneF : ∀ j, ((D.host.g j : ℕ) : D.host.F) ≠ 0 := fun j => Nat.cast_ne_zero.2 (D.host.g_prime j).ne_zero
   have key := c.c_eq p
   have hone : algebraMap (D.s.atP p).Fp (D.s.atP p).Ep ((G.c p).val) = algebraMap (D.s.atP p).Fp (D.s.atP p).Ep 1 := by
     rw [key]
@@ -564,7 +563,6 @@ theorem mem_lat_span_smul_iff (A : Places F E sig) {n : ℕ} (p : HeightOneSpect
     x ∈ A.lat p (Ideal.span {a} • Λ) ↔ ∃ z ∈ A.lat p Λ, x = (A.loc p).ιE (a : E) • z := by
   let φ : (Fin n → (A.loc p).Ep) →ₗ[(A.L p).O] (Fin n → (A.loc p).Ep) :=
     (LinearMap.lsmul (A.loc p).Ep (Fin n → (A.loc p).Ep) ((A.loc p).ιE (a : E))).restrictScalars (A.L p).O
-  have hφ : ∀ v, φ v = (A.loc p).ιE (a : E) • v := fun v => rfl
   have hbc : ∀ v : Fin n → E, A.bc p (a • v) = φ (A.bc p v) := by
     intro v
     funext i

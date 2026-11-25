@@ -375,12 +375,7 @@ private lemma le_of_sq_le_sq_of_nonneg {a b : ℝ} (hb : 0 ≤ b) (h : a ^ 2 ≤
 theorem hsDist_section_mul_block : ∀ (P Q P' Q' : ℕ) (e : Option (Fin P' ⊕ Fin Q') ≃ (Fin P ⊕ Fin Q)) (j : UpqT P' Q' → UpqT P Q), IsBlockEmb e j → ∀ t : ℝ, 1 < t → ∃ δ : ℝ, 0 < δ ∧ ∀ (y : Sp P Q) (a : UpqT P Q), ptSq e y < δ → act a (baseVec e) = y → (∀ b, ‖UpqT.mat a (e none) (e (some b))‖ = ‖y (e (some b))‖) → (∀ i b, ‖(UpqT.mat a - 1) (e (some i)) (e (some b))‖ = ‖y (e (some i))‖ * ‖y (e (some b))‖ / ‖1 + y (e none)‖) → ∀ g : UpqT P' Q', ptSq e y + hsDist g ≤ t * hsDist (a * j g) ∧ hsDist (a * j g) ≤ t * (ptSq e y + hsDist g) := by
   intro P Q P' Q' e j hj t ht
   set η : ℝ := (t - 1) / (3 * t) with hη
-  have hηpos : 0 < η := div_pos (by linarith) (by linarith)
-  have hη3 : η < 1 / 3 := by
-    rw [hη, div_lt_iff₀ (by linarith)]; linarith
   set c : ℝ := η / 3 with hc
-  have hcpos : 0 < c := by positivity
-  have hc1 : c < 1 := by linarith
   refine ⟨min 1 (c ^ 2), lt_min one_pos (by positivity), ?_⟩
   intro y a hy hya hrow hblk g
   have hyc : ptSq e y < c ^ 2 := lt_of_lt_of_le hy (min_le_right _ _)
@@ -1134,7 +1129,6 @@ theorem tanBall_mul (t r : ℝ) (ht : 0 < t) :
 theorem tanBall_ne (r : ℝ) (hr : 0 < r) :
     (volume : Measure (ℝ × Sp P Q)) {x | tanSq x < r} ≠ 0 ∧
       (volume : Measure (ℝ × Sp P Q)) {x | tanSq x < r} ≠ ⊤ := by
-  have hH : (volume : Measure (ℝ × Sp P Q)).IsAddHaarMeasure := Measure.prod.instIsAddHaarMeasure _ _
   refine ⟨(continuous_tanSq.isOpen_preimage _ isOpen_Iio).measure_ne_zero _ ⟨0, ?_⟩, ?_⟩
   · show tanSq (0 : ℝ × Sp P Q) < r
     simp [tanSq, hr]
@@ -1388,7 +1382,6 @@ theorem const_eq_one (e : Option (Fin P' ⊕ Fin Q') ≃ (Fin P ⊕ Fin Q)) (he 
     have hr0' : (0 : ℝ) < r := hr0
     have hmin : min δ 1 ≤ δ := min_le_left _ _
     have hmin1 : min δ 1 ≤ 1 := min_le_right _ _
-    have hrr : 0 ≤ r ^ 2 := sq_nonneg r
     have hup : ∀ y, qf y = sg (e none) → ∀ g', σ y * j g' ∈ {g : UpqT P Q | hsDist g < r ^ 2} →
         (y, g') ∈ {p : Sp P Q × UpqT P' Q' | ptSq e p.1 + hsDist p.2 < (t * r) ^ 2} := by
       intro y hy g' hg
@@ -1397,7 +1390,6 @@ theorem const_eq_one (e : Option (Fin P' ⊕ Fin Q') ≃ (Fin P ⊕ Fin Q)) (he 
         rw [GlobalTheory.RealPlaceCompare.act_mul, hjs, hσ.2 y hy]
       have hp := ptSq_act_le e (σ y * j g')
       rw [hact] at hp
-      have hsm : ptSq e y < min δ 1 := by linarith
       obtain ⟨hn1, hn2⟩ := hσ2 y hy (ne1 y (by linarith))
       have hb := (hδ y (σ y) (by linarith) (hσ.2 y hy) hn1 hn2 g').1
       have h3 : t ^ 2 * hsDist (σ y * j g') < t ^ 2 * r ^ 2 := mul_lt_mul_of_pos_left hg' ht2p
@@ -1414,7 +1406,6 @@ theorem const_eq_one (e : Option (Fin P' ⊕ Fin Q') ≃ (Fin P ⊕ Fin Q)) (he 
         linarith
       have htr : (t⁻¹ * r) ^ 2 ≤ r ^ 2 := pow_le_pow_left₀ (mul_pos htip hr0').le htr1 2
       have hd := hsDist_nonneg g'
-      have hsm : ptSq e y < min δ 1 := by linarith
       obtain ⟨hn1, hn2⟩ := hσ2 y hy (ne1 y (by linarith))
       have hb := (hδ y (σ y) (by linarith) (hσ.2 y hy) hn1 hn2 g').2
       have h3 : t ^ 2 * (ptSq e y + hsDist g') < t ^ 2 * (t⁻¹ * r) ^ 2 :=

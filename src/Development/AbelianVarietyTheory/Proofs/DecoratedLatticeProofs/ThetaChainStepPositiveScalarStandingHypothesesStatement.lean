@@ -571,7 +571,6 @@ theorem normX : ∀ {D : D7} {G : Type} [Group G] [Fintype G] {Pl0 T : Type} {A 
   have hd : (0 : ℝ) < Module.finrank ℂ R.cX.W := by exact_mod_cast Module.finrank_pos
   have hP : (0 : ℝ) < ∏ τ, ‖(v0 τ : R.MX.H τ)‖ ^ 2 :=
     Finset.prod_pos fun τ _ => pow_pos (norm_pos_iff.2 (hv τ)) 2
-  have hA : (0 : ℝ) < ‖a‖ ^ 2 := pow_pos (norm_pos_iff.2 hna) 2
   refine ⟨(Module.finrank ℂ R.cX.W : ℝ) * (∏ τ, ‖(v0 τ : R.MX.H τ)‖ ^ 2) / ‖a‖ ^ 2, by positivity, fun t => ⟨?_, ?_⟩⟩
   · have hi := GlobalTheory.DefiniteMult.top_injective R hm.inf hm.cX hm.prX hm.HX t
     refine ⟨fun x y e => ?_, fun z => ?_⟩
@@ -1325,7 +1324,6 @@ theorem lFull_holds : ∀ D : D7, LFull D := by
     have hre : ∀ l : ℕ, l < D.R.t → 1 < (x + 1 / 2 + ((D.R.t : ℂ) - 1) / 2 - l).re := by
       intro l hl
       have : (l : ℝ) + 1 ≤ D.R.t := by exact_mod_cast hl
-      have hr0 : (0 : ℝ) ≤ D.R.r := Nat.cast_nonneg _
       simp
       linarith
     show _ = GlobalTheory.LFun.eulerProd T (GlobalTheory.LFun.twist (chainPar c B k)

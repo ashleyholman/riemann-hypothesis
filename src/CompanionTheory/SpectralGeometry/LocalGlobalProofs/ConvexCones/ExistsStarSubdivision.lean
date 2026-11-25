@@ -714,7 +714,6 @@ theorem exists_starFun_strict : ∀ (O : Type) [CommRing O] [IsDedekindDomain O]
     have hlinγ : ∀ β, InRCone γ β → (ℓ β : ℝ) = N * ψ.evalZ β := fun β hβ => StarKey.ell_eq_of_inRCone hγ.linear hsw hβ
     have hcast : (((h' β₀).toNat : ℕ) : ℝ) = (h' β₀ : ℝ) := by
       rw [← Int.cast_natCast, Int.toNat_of_nonneg hp'.le]
-    have hH0 : (0 : ℝ) < h' β₀ := by exact_mod_cast hp'
     have hN0 : (0 : ℝ) < N := by exact_mod_cast hN
     refine ⟨N * (h' β₀).toNat, (D₀ : ℤ) • (((K : ℤ) * h' β₀) • ℓ + (N : ℤ) • h'), by
       have : 0 < (h' β₀).toNat := by omega
@@ -813,8 +812,6 @@ theorem exists_starSubdivision : ∀ (O : Type) [CommRing O] [IsDedekindDomain O
     rw [starFun_evalZ]
     have h1 := (hψ X hX).pos β hβ hp h0
     have h2 : 0 ≤ (starDepth bar ψ w).evalZ β := starDepth_eval_nonneg _
-    have hK' : (0 : ℝ) < K := by exact_mod_cast hK
-    have hD' : (0 : ℝ) < D := by exact_mod_cast hD
     positivity
   exact ⟨starFun bar ψ w K D, _root_.GlobalTheory.CompanionTheory.Ar.Fan.StarPolyhedralFan.isPolyFan_star O bar hb q ψ w _ hψ hW hstar hint hpos,
     isTwG_starFun htψ (_root_.GlobalTheory.CompanionTheory.Ar.Fan.StarDepthTwist.isTwG_starDepth O bar w0 hb ψ w htψ htw) K D, _root_.GlobalTheory.PolFan.subordinate_of_isStarOf _ bar q ψ w _ hstar, hstar⟩

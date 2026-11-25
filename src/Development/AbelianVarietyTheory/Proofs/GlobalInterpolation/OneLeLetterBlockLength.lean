@@ -60,8 +60,6 @@ theorem b'_Sc_le (h : SizeLstar L) : L.sc.b' + L.Sc ≤ L.sc.b := by
   have hb := one_le_b L
   have hS := L.Sc_pos
   have he := L.etaSz_pos
-  have hm0 : (0 : ℝ) ≤ D.R.m := Nat.cast_nonneg _
-  have hN0 : (0 : ℝ) ≤ D.R.N D.R.m := Nat.cast_nonneg _
   have hmt : (D.R.m : ℝ) ≤ D.R.t := by
     have : D.R.m ≤ D.R.t := by have := D.R.three_m_lt_t; omega
     exact_mod_cast this

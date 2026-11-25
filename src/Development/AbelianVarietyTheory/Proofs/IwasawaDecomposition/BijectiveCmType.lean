@@ -58,7 +58,6 @@ theorem isAlg_of {L : Type} [Field L] [NumberField L] [_root_.NumberField.IsTota
 
 theorem even_pow {z : ℂ} (hz : z ≠ 0) (c : ℤ) :
     (z / ((‖z‖ : ℝ) : ℂ)) ^ (2 * c) = z ^ c * (starRingEnd ℂ z) ^ (-c) := by
-  have hc : starRingEnd ℂ z ≠ 0 := by simpa using hz
   have h : (z / ((‖z‖ : ℝ) : ℂ)) ^ (2 : ℤ) = z / starRingEnd ℂ z := by
     rw [zpow_ofNat, div_pow, ← Complex.mul_conj', sq, mul_div_mul_left _ _ hz]
   rw [zpow_mul, h, div_zpow, zpow_neg, div_eq_mul_inv]

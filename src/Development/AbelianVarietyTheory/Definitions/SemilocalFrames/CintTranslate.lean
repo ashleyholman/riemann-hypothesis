@@ -27,8 +27,6 @@ lemma ratio_eq {A B B' : AddSubgroup W} {φ : W → ℂ} (h : Fine A φ B) (h' :
   have i2 : (B ⊓ B').relIndex B' ≠ 0 := fun z => hC (by rw [← m2, z, zero_mul])
   have s1 := _root_.GlobalTheory.SumRefinement.sum_refine h inf_le_left i1
   have s2 := _root_.GlobalTheory.SumRefinement.sum_refine h' inf_le_right i2
-  have c1 : (B.relIndex A : ℂ) ≠ 0 := by exact_mod_cast h.2.1
-  have c2 : (B'.relIndex A : ℂ) ≠ 0 := by exact_mod_cast h'.2.1
   have c3 : (((B ⊓ B').relIndex B : ℕ) : ℂ) ≠ 0 := by exact_mod_cast i1
   have c4 : (((B ⊓ B').relIndex B' : ℕ) : ℂ) ≠ 0 := by exact_mod_cast i2
   have m : (((B ⊓ B').relIndex B : ℕ) : ℂ) * (B.relIndex A : ℂ) = (((B ⊓ B').relIndex B' : ℕ) : ℂ) * (B'.relIndex A : ℂ) := by

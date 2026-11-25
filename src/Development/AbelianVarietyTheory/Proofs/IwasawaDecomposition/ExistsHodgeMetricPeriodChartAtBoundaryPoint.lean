@@ -1535,7 +1535,6 @@ theorem exists_hodge_period_chart : ∀ (E : Type) [Field E] [NumberField E] [Is
     rw [(hrel z hz).2]
     try (funext k; simp [Complex.real_smul])
   obtain ⟨hP1, hY⟩ := periodChart_rescale X.dim a ha g rk τ₀ B r' hP hr' hr'1.le
-  have hr'0 : (r' : ℂ) ≠ 0 := Complex.ofReal_ne_zero.2 hr'.ne'
   have hball : ∀ u ∈ GlobalTheory.IndefiniteRowSideFullHecke.HodgePeriodGram.polydisc X.dim 1, r' • u ∈ Metric.ball (0 : Fin X.dim → ℂ) r := by
     intro u hu
     rw [mem_ball_zero_iff, norm_smul, Real.norm_of_nonneg hr'.le]

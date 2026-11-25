@@ -152,7 +152,6 @@ theorem _root_.GlobalTheory.ToricData.finite_form_le (be : LinearMap.BilinForm �
     have h2 : |(c i : ℝ)| ≤ ‖(fun j => (c j : ℝ))‖ := by
       simpa [Real.norm_eq_abs] using norm_le_pi_norm (fun j => (c j : ℝ)) i
     have h6 := Nat.le_ceil ((C : ℝ) / m)
-    have h7 : (0 : ℝ) ≤ ⌈(C : ℝ) / m⌉₊ := Nat.cast_nonneg _
     have h3 : (|c i| : ℝ) ≤ R := by
       rw [hR]
       push_cast

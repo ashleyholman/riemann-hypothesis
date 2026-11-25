@@ -93,8 +93,6 @@ theorem numbers : ∀ (D : D7) (B : WeightFamilies.Prov D) (P : ModuliIntegralCh
   obtain ⟨hql, -, -, hTc, -, -⟩ := h3
   rw [Real.rpow_zero, one_mul, hCR, hRR] at hql
   rw [e1, e2, e3] at hTc
-  have hDF' : (1 : ℝ) ≤ (WeightAlgebra.DF wL : ℝ) := by exact_mod_cast hDF
-  have hrd0 : 0 < D.host.rdE := by linarith
   have hq : (0 : ℝ) < (qq D : ℝ) := lt_of_lt_of_le (by positivity) hql
   have hc : WeightAlgebra.cc D large₂ C2 A2 CR wL = D.host.rdE ^ 7 * WeightFamilies.PPv D large₂ C2 A2 * (WeightAlgebra.DF wL : ℝ) ^ 2 / (qq D : ℝ) := by
     unfold WeightAlgebra.cc; rw [hCR, hRR]

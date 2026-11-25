@@ -18,7 +18,6 @@ theorem harishChandraNodesFarApart_of_cubic_node_gap : ∀ D : D7, D.NodeGap (4 
   have h := H D.u₀ τ i.1 hi
   rw [D.hcW_b D.u₀ τ] at h
   simp only [Fin.eta] at h
-  have ht : (0 : ℝ) ≤ (D.R.t : ℝ) := by positivity
   have hc : (0 : ℝ) ≤ ((D.R.N D.R.m : ℕ) : ℝ) ^ 3 := by positivity
   have key : (((D.R.t : ℚ) + 2 * ((D.R.N D.R.m : ℕ) : ℚ) ^ 3 + 1 : ℚ) : ℝ) ≤
       (((D.hc τ).b ⟨i.1 + 1, hi⟩ - (D.hc τ).b i : ℚ) : ℝ) := by

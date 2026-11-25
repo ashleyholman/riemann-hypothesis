@@ -399,7 +399,6 @@ theorem eq_one_of_fix {z z' : Fin (2 * r + k + 1) → ℂ} (hz : inWb k r z) (hz
     rw [hQ, Matrix.mul_sub, ← Matrix.mul_assoc, Matrix.sub_mul c 1 A, hcA]
     simp
   have h6 : ∀ i j, r + k < i.val → Q i j = 0 := fun i j hi => by
-    have hi2 := i.2
     have := congrFun (congrFun h4 (Sum.inl (Fin.castSucc ⟨2 * r + k - i.val, by omega⟩))) j
     rw [hA, conjTranspose_fromCols_eq_fromRows_conjTranspose, Matrix.fromRows_mul, Matrix.fromRows_mul,
       Matrix.fromRows_apply_inl, FH_row] at this

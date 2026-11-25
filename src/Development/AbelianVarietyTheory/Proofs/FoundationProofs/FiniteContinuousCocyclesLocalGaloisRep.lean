@@ -253,7 +253,6 @@ theorem _root_.GlobalTheory.LocalH1Finiteness.finite_cocycles_of_compact_cover {
       obtain ⟨h, rfl⟩ := hφs g
       rw [Pi.smul_apply, norm_smul, norm_pow, hnorm]
       have hCg : ‖c (φ h)‖ ≤ C := hC _ ⟨h, Set.mem_univ _, rfl⟩
-      have hpos : (0 : ℝ) < (l : ℝ) ^ n := pow_pos hl0 n
       calc (l : ℝ)⁻¹ ^ n * ‖c (φ h)‖ ≤ (l : ℝ)⁻¹ ^ n * (l : ℝ) ^ n :=
             mul_le_mul_of_nonneg_left (hCg.trans hnC.le) (pow_nonneg (inv_nonneg.2 hlR) _)
         _ = 1 := by rw [← mul_pow, inv_mul_cancel₀ hl0.ne', one_pow]

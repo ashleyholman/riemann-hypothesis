@@ -1012,7 +1012,6 @@ theorem exists_orthonormal (D : D7) (N N' : ℕ) (hev : Even (N * N')) :
       rw [← ε.prod_comp (fun t => a (ε.symm t).1.1)]
       simp only [Equiv.symm_apply_apply, Fintype.prod_prod_type, Finset.prod_const, Finset.card_univ,
         Fintype.card_fin, ← pow_mul, Finset.prod_pow]
-      have hev' : Even (N' * N) := mul_comm N N' ▸ hev
       first | exact hev.isSquare_pow _)
   exact ⟨e, fun i j => by rw [← hh]; exact he i j⟩
 

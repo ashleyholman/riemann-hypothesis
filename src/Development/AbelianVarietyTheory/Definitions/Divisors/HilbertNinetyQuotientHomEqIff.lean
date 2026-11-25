@@ -261,8 +261,6 @@ def IsLagr (J : Matrix β β E) {ν : Type} [Fintype ν] [DecidableEq ν] (Cy : 
 variable [Invertible (2 : R)]
 
 theorem isLagr_diagCols (JB : Matrix β β E) : IsLagr c (dbl JB) (diagCols β : Matrix (β ⊕ β) β E) := by
-  have h2 : algebraMap R E (⅟(2 : R)) + algebraMap R E (⅟(2 : R)) = 1 := by
-    rw [← map_add (f := _), invOf_two_add_invOf_two, map_one]
   have h1 : (1 : Matrix β β E).map c = 1 := Matrix.map_one _ (map_zero c) (map_one c)
   have h1' : (-1 : Matrix β β E).map c = -1 := by rw [Matrix.map_neg _ (map_neg c), h1]
   have h3 : ∀ s : Matrix β β E, (fromRows 1 s : Matrix (β ⊕ β) β E).map c = fromRows 1 (s.map c) := fun s => by

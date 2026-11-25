@@ -145,14 +145,12 @@ theorem exists_small_not_conj {E : Type} [Field E] [CharZero E] (K : Intermediat
     ⟨Polynomial.X ^ 2 + Polynomial.C (d : ℤ), Polynomial.monic_X_pow_add_C _ two_ne_zero, by simp [sq, hs]⟩
   let B : 𝓞 K := ⟨s, hint⟩
   let j : E →+* ℂ_[q] := ι.toRingHom.comp φ
-  let jK : K →+* ℂ_[q] := j.comp (algebraMap K E)
   have hc' : c (s : E) = -(s : E) := hc
   have hsE : (s : E) * (s : E) = -(d : E) := by
     have := congrArg (fun x : K => (x : E)) hs
     simpa using this
   have hcoe : ∀ u : ℤ, (((B + u : 𝓞 K) : K) : E) = (s : E) + (u : E) := by
     intro u; push_cast; rfl
-  have hle : ∀ y : 𝓞 K, ‖j ((y : K) : E)‖ ≤ 1 := fun y => norm_le_one_of_int jK y
 
   have hodd : ∀ u : ℤ, (q : ℤ) ∣ 2 * u → (q : ℤ) ∣ u := by
     intro u h

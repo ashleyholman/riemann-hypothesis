@@ -739,8 +739,6 @@ theorem vec_rel (B : Base S T) (hB : B.Good) (hbT : Lev.IsBaseFrame T B.F.βT B.
   refine Finset.sum_congr rfl fun γ hγ => ?_
   rw [hlaw k hk γ hγ, smul_smul]
   congr 1
-  have hne : ((B.mu x : Circle) : ℂ) ^ k * ((Ideal.absNorm P.asIdeal : ℕ) : ℂ) ^ (k * (S.rank / 2)) ≠ 0 :=
-    mul_ne_zero (pow_ne_zero _ (Circle.coe_ne_zero _)) (pow_ne_zero _ (Nat.cast_ne_zero.2 hq0))
   field_simp
 
 end GlobalTheory.DistRel

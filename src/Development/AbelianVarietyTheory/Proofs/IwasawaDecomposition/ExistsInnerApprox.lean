@@ -41,7 +41,6 @@ theorem avgBd_sobCont : ∀ (n : ℕ) (ε : Fin n → Bool) (H : Type) [NormedAd
       ((h.continuousOn_Dw (hS j i) (hw j)).mono hZU).norm
   obtain ⟨K₀, hK₀⟩ := hZ.exists_bound_of_continuousOn hc
   set K := max K₀ 0 with hKdef
-  have hK0 : 0 ≤ K := le_max_right _ _
   have hK : ∀ y ∈ Z, ∑ j, ∑ i, ‖Dw σ (S j i) (σ y (w j))‖ ≤ K := fun y hy =>
     ((le_abs_self _).trans (hK₀ y hy)).trans (le_max_left _ _)
   set K' := ∑ j, ∑ i, ‖Dw σ (S j i) (T (w j))‖ with hK'

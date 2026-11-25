@@ -281,7 +281,6 @@ theorem sandwich (S : Set A) (J : V →L[ℝ] A) (P : A →L[ℝ] V) (hP : ∀ x
     intro a b ha hb
     exact k2 (a, b) (by simp [Prod.norm_def, ha, hb]) (hmul _ (hexp _) _ (hexp _))
   have L1 : Λ 1 = 0 := by rw [← e0]; exact hl.self_of_nhds
-  have hδ : 0 < min δ1 (min δ2 δ3) := by positivity
   have m1 : min δ1 (min δ2 δ3) ≤ δ1 := min_le_left _ _
   have m2 : min δ1 (min δ2 δ3) ≤ δ2 := (min_le_right _ _).trans (min_le_left _ _)
   have m3 : min δ1 (min δ2 δ3) ≤ δ3 := (min_le_right _ _).trans (min_le_right _ _)

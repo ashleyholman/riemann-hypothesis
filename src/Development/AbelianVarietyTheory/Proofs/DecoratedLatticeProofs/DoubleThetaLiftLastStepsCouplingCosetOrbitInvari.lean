@@ -354,7 +354,6 @@ theorem lst_model {D : D7} {c : GlobalTheory.SeeSaw.Comm D} {v : GlobalTheory.Se
       (∀ q, O.1 q = Set.indicator {x | ∀ r l, x r l ∈ 𝒪[Q.k]} (fun _ => (1 : ℂ)) q.1 *
         Set.indicator {x | ∀ r l, x r l ∈ 𝒪[Q.k]} (fun _ => (1 : ℂ)) q.2) ∧ c.lst Q.s h (v.τ Q.s h) s₁ X₁ X₂ = Λ O := by
   classical
-  have hs := Q.hs
   have hsc := Q.sc_ne Q.s
   obtain ⟨T₁, hT₁, hX₁⟩ := (_root_.GlobalTheory.LocMod.indicator_vac D Q.k Q.q Q.unit _ _ _ _ (Q.FY Q.s (0 + 1) (by omega)) (Q.FY (Q.s + 1) 0 rfl) c.ψ Q.ψk
     hc.std Q.char Q.cond _ _ (hv.sd Q.s (by omega)) (hv.sd (Q.s + 1) (by omega)) (Q.latY _ _ _) (Q.latY _ _ _)).2 X₁ h₁

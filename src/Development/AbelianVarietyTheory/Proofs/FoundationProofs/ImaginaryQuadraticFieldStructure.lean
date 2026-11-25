@@ -141,7 +141,6 @@ theorem exists_similitude (a : ℚ) (ha : 0 < a) :
     ∃ A : Fin 4 → Fin 4 → ℚ, (∀ j j', a * ∑ k, A j k * A j' k = if j = j' then 1 else 0) ∧
       ∀ k k', a * ∑ j, A j k * A j k' = if k = k' then 1 else 0 := by
   obtain ⟨p, q, r, s, h⟩ := Nat.sum_four_squares (a.num.natAbs * a.den)
-  have hn : (0 : ℚ) < a.num := by exact_mod_cast Rat.num_pos.2 ha
   have h1 : ((a.num.natAbs : ℕ) : ℚ) = a.num := by
     rw [Nat.cast_natAbs, abs_of_pos (Rat.num_pos.2 ha)]
   have h2 : (p : ℚ) ^ 2 + q ^ 2 + r ^ 2 + s ^ 2 = a.num * a.den := by

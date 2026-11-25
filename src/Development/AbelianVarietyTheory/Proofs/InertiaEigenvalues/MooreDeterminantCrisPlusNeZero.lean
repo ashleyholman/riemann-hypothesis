@@ -818,7 +818,6 @@ namespace GlobalTheory.PMon.Gauss
 theorem tc_injective (l : ℕ) [Fact l.Prime] : Function.Injective (tc l) := by
   intro a b hab
   obtain ⟨j, hj⟩ := GlobalTheory.MemLoc.exists_isCrisP l
-  have hinj := GlobalTheory.MemLoc.crisP_injective l j hj
   have key : ∀ y : Formalism.Per.Fl l, j (tc l y) =
       algebraMap (Formalism.Per.AinfP l) (Formalism.Per.BdRp l)
         (algebraMap (Formalism.Per.Ainf l) (Formalism.Per.AinfP l) (Formalism.Per.tm y)) := by
@@ -1374,7 +1373,6 @@ theorem digit_step {h s : ℕ} (hs : s < h) {W W' : Formalism.Per.Acris l}
     rw [← zpow_natCast] at b
     exact (zpow_le_zpow_iff_right_of_lt_one₀ inv_l_pos inv_l_lt_one).1 b
   obtain ⟨m, rfl⟩ : ∃ m : ℕ, n = m := ⟨n.toNat, (Int.toNat_of_nonneg (by omega)).symm⟩
-  have hkm : k ≤ m := by exact_mod_cast hk
   obtain ⟨u, -, hu⟩ := _root_.GlobalTheory.PMon.Gauss.one_digit l h s hs (W - zc l c * W') ((l : Formalism.Per.Acris l) ^ m * W')
     (by rw [iter_lpow, he]; ring) (lpow_ne_zero hW' m)
     (by rw [map_mul, map_pow, map_natCast]; linear_combination (l : Formalism.Per.Acris l) ^ m * hrV)
@@ -1505,7 +1503,6 @@ theorem map_ne_zero_pt : ∀ y : Formalism.Per.Ainf l, y ≠ 0 →
     have hl0 : (0 : ℝ) < l := lt_trans one_pos hl
     exact mul_pos (Real.rpow_pos_of_pos (norm_pos_iff.2 hne) _) (pow_pos (inv_pos.2 hl0) _)
   have hN0 : N 0 = 0 := by
-    have hz : ∀ n : ℕ, (0 : ℝ) ^ ((1 : ℝ) / (l : ℝ) ^ n) = 0 := fun n => Real.zero_rpow (by positivity)
     rw [← map_zero (algebraMap (Formalism.Per.Ainf l) (Formalism.Per.Acris l)), hA]
     have hz' : ∀ n : ℕ, (0 : ℝ) ^ (((l : ℝ) ^ n)⁻¹) = 0 := fun n => Real.zero_rpow (by positivity)
     simp [hz']

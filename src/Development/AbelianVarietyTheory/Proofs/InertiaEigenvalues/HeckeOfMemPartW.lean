@@ -106,7 +106,6 @@ theorem params_eq {q r t : ℕ} (hq : q ≠ 0) {B B' : Multiset ℂˣ} (hB : B.c
         GlobalTheory.LFun.satEig q r B' j) :
     (B.map fun a : ℂˣ => (a : ℂ)) = (B'.map fun a : ℂˣ => ((a * z * y⁻¹ : ℂˣ) : ℂ)) + str q z t := by
   have hs := sqrt_ne hq
-  have hz := z.ne_zero
   have hy := y.ne_zero
   refine eq_of_prod_eq (by simp [str, hB, hB']) (mul_ne_zero (pow_ne_zero (r + t) hs) (inv_ne_zero hs)) fun Y => ?_
   have e := GlobalTheory.ThetaPrimeHecke.poly_id q r t ((z : ℂ)⁻¹ * (Real.sqrt q : ℂ) ^ r)

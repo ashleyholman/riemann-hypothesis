@@ -59,7 +59,6 @@ def wtJumps {a : ℕ} (lam : DomWeight a) : Finset ℤ :=
 theorem strictMono_jump {a : ℕ} (lam : DomWeight a) : StrictMono fun k : Fin a => ((k : ℕ) : ℤ) - lam.w k := by
   intro i j hij
   have h1 := lam.anti hij.le
-  have h2 : (i : ℕ) < j := hij
   simp only
   omega
 

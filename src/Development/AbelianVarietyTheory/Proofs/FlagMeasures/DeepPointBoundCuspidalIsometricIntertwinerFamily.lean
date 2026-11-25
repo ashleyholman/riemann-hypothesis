@@ -745,7 +745,6 @@ theorem norm_le_of_mean_zero {X : Type} [MeasurableSpace X] (ν : Measure X) [Is
     rw [hval, integral_const] at h
     simpa [Complex.norm_real, abs_of_nonneg hS0] using h
   have hsq := Real.sq_sqrt hS0
-  have hs0 := Real.sqrt_nonneg S
   nlinarith
 
 theorem norm_le_of_cusp (I : AutInst) (μf : Measure I.Gf) [μf.IsHaarMeasure] [SigmaFinite μf] (g : ℕ)
@@ -1396,9 +1395,6 @@ theorem deep_bound_family : ∀ (B : RowsAut) (Cg : ℝ) (n₀ : ℕ) (d : Infin
     (8 * q * GlobalTheory.IndefiniteRowSideFullHecke.DeepKernelRadiusBound.dimN B) 0 (by simp) x (self_mem_omega B.I x W hρ0) (B.tens B.w)
     (GlobalTheory.IndefiniteRowSideFullHecke.OrthonormalPlaceBasis.tens_w_mem B hDS 0).1
   rw [(GlobalTheory.IndefiniteRowSideFullHecke.OrthonormalPlaceBasis.tens_w_mem B hDS 0).2, mul_one] at key
-  have hA0 : 0 ≤ 2 * GlobalTheory.IndefiniteRowSideFullHecke.DeepKernelRadiusBound.radRh B q (least B.I x) * Real.sqrt B.I.f *
-      GlobalTheory.IndefiniteRowSideFullHecke.DeepKernelRadiusBound.stepBe B.I.n b (8 * q * GlobalTheory.IndefiniteRowSideFullHecke.DeepKernelRadiusBound.dimN B + GlobalTheory.IndefiniteRowSideFullHecke.DeepKernelRadiusBound.dimN B) :=
-    mul_nonneg (mul_nonneg (mul_nonneg (by norm_num) hρ0) (Real.sqrt_nonneg _)) hβ0
   have hsq := pow_le_pow_left₀ (norm_nonneg _) key 2
   rw [mul_pow, ← pow_mul, Real.sq_sqrt hK0] at hsq
   refine hsq.trans (le_of_eq ?_)

@@ -46,7 +46,6 @@ theorem pointwiseNormSq_le_l2_of_firstMinimum (hsup : GSupStatement) (Y : GT ι)
   by_cases hι : Fintype.card ι = 0
   · simp [hι]
   have h1 := le_firstMinimum_of_period_lower_bound Y hι hmin
-  have hpi : 0 < Real.sqrt Real.pi := Real.sqrt_pos.mpr Real.pi_pos
   have h2 : 0 < Y.la1 := hlam.trans_le h1
   gcongr
 

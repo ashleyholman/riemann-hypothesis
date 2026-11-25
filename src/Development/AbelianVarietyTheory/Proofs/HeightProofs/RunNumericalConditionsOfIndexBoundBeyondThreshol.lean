@@ -24,9 +24,7 @@ theorem indexBound_threeTerm_constant_le_real (n m4 u r C Z : ℝ) (hZ : 2000 �
     (hm0 : 0 ≤ m4) (hm : m4 ≤ Z) (hu1 : 1 ≤ u) (hu : u ^ 4 ≤ 16 * Z ^ 5) (hr : r ≤ Z) :
     max (16200 * Real.pi * n * m4 * u ^ 4) (max (u ^ 4 * n + 2 * u ^ 3) (r * u ^ 3)) ≤ C * Z ^ 12 := by
   have hZ1 : (1 : ℝ) ≤ Z := by linarith
-  have hZ0 : (0 : ℝ) ≤ Z := by linarith
   have hC0 : (0 : ℝ) ≤ C := by linarith
-  have hu0 : (0 : ℝ) ≤ u := by linarith
   have h34 : u ^ 3 ≤ 16 * Z ^ 5 := (pow_le_pow_right₀ hu1 (by norm_num)).trans hu
   have hZ2 : (4000000 : ℝ) ≤ Z ^ 2 := by nlinarith
   have hW0 : 0 ≤ C * Z ^ 10 := by positivity
@@ -37,18 +35,15 @@ theorem indexBound_threeTerm_constant_le_real (n m4 u r C Z : ℝ) (hZ : 2000 �
     (pow_le_pow_right₀ hZ1 hk).trans (le_mul_of_one_le_left (by positivity) hC)
   refine max_le ?_ (max_le ?_ ?_)
   · have hpi : Real.pi ≤ 4 := Real.pi_le_four
-    have hpi0 : 0 ≤ Real.pi := Real.pi_pos.le
     calc 16200 * Real.pi * n * m4 * u ^ 4 ≤ 16200 * 4 * (C * Z ^ 4) * Z * (16 * Z ^ 5) := by gcongr
       _ = 1036800 * (C * Z ^ 10) := by ring
       _ ≤ C * Z ^ 12 := by linarith
   · have a1 : u ^ 4 * n ≤ (16 * Z ^ 5) * (C * Z ^ 4) := by gcongr
     have a2 : C * Z ^ 9 ≤ C * Z ^ 10 := mul_le_mul_of_nonneg_left (pow_le_pow_right₀ hZ1 (by norm_num)) hC0
     have a3 := hk 5 (by norm_num)
-    have a4 : (16 * Z ^ 5) * (C * Z ^ 4) = 16 * (C * Z ^ 9) := by ring
     linarith
   · have a1 : r * u ^ 3 ≤ Z * (16 * Z ^ 5) := by gcongr
     have a3 := hk 6 (by norm_num)
-    have a4 : Z * (16 * Z ^ 5) = 16 * Z ^ 6 := by ring
     linarith
 
 theorem indexBoundConstant_le_pagePolynomial_of_runConditions : ∀ (D : D7) (B : WeightFamilies.Prov D) (P : ModuliIntegralCharts.Prov D) (j : ℕ) (X : PJ D B P j) (large₂ : SizeData₂ D) (H : KHyp) (C2 A2 CT : ℝ) (ka wL wF : WeightFamilies.Wt D j) (Tn nP nW : ℕ) (h0 : ℝ), InR D j → PageRun large₂ X H C2 A2 CT ka wL wF Tn nP nW h0 → flipOneThree D nW ≤ WeightFamilies.PPv D large₂ C2 A2 := by
@@ -61,7 +56,6 @@ theorem indexBoundConstant_le_pagePolynomial_of_runConditions : ∀ (D : D7) (B 
   rw [e] at hCZ h12
   have hZ : 2000 ≤ zBase large₂ := by
     have h1 : (1000 : ℝ) ^ 20 ≤ C2 ^ 20 := pow_le_pow_left₀ (by norm_num) hC 20
-    have h2 : (2000 : ℝ) ≤ 1000 ^ 20 := by norm_num
     linarith
   have hL : 1 ≤ large₂.sc.L := by
     unfold Scale.L; exact Real.one_le_rpow large₂.sc.one_lt_alt.le large₂.sc.eps_pos.le
@@ -167,11 +161,6 @@ theorem three_le_DF_of_SetC {D : D7} {B : WeightFamilies.Prov D} {P : ModuliInte
   have h4 : (3 : ℤ) ≤ ((ka.aP τ i : ℤ) - ((WeightFamilies.dimY D j : ℤ) + 2) * nW - 2 * D.R.r) / (Tp D j T : ℤ) := by
     rw [Int.le_ediv_iff_mul_le hTp]
     unfold Tp
-    have e1 : (2 * (T : ℤ) ^ 2) ≤ (ka.aP τ i : ℤ) := by exact_mod_cast h2
-    have e2 : ((WeightFamilies.dimY D j : ℤ) + 2) * nW + 2 * D.R.r ≤ T := by exact_mod_cast hnW
-    have e3 : 40 * ((WeightFamilies.dimY D j : ℤ) + 2) ≤ T := by exact_mod_cast h40
-    have e4 : (0 : ℤ) ≤ (WeightFamilies.dimY D j : ℤ) := Int.natCast_nonneg _
-    have e5 : (80 : ℤ) ≤ T := by linarith
     have e6 : 80 * (T : ℤ) ≤ (T : ℤ) ^ 2 := by nlinarith
     push_cast
     linarith

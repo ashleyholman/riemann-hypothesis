@@ -274,7 +274,6 @@ theorem exists_neg_eig {ε : Fin n → Bool} {X : Matrix (Fin n) (Fin n) ℂ} (h
   have e1 := sum_eig hXn hV _ h1 (fun t => if t = -hX.eigenvalues j then (1 : ℝ) else 0)
   have e2 := sum_eig hXn hU _ h2 (fun t => if t = -hX.eigenvalues j then (1 : ℝ) else 0)
   beta_reduce at e1 e2
-  have key := e1.symm.trans e2
   by_contra hne
   push Not at hne
   have h0 : ∑ i, (if hX.eigenvalues i = -hX.eigenvalues j then (1 : ℝ) else 0) = 0 :=

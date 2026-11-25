@@ -36,7 +36,6 @@ theorem countHyp_isKTypeOf_lowKSub : ∀ (B : RowsAut) (Cg : ℝ) (n₀ : ℕ) (
     rw [hrk v] at this
     exact_mod_cast this
   have hg : h ≤ |B.lam v a - B.lam v c| := hgap v a c hac
-  have hn : (0 : ℝ) ≤ B.I.n := Nat.cast_nonneg _
   nlinarith
 
 end GlobalTheory.Dec

@@ -296,7 +296,6 @@ theorem measMu_of_eig : ∀ (l : ℕ) [Fact l.Prime] (ι : PadicAlgCl l ≃+* �
   have hu : ∀ x, ‖ι.symm (hat θ x)‖ ≤ 1 := fun x => GlobalTheory.zs_norm_hat_le_one ι hN θ x
   refine ⟨?_, ?_, ?_, ?_⟩
   · intro m hm f f' hf hff'
-    have hf' := measMu_parity_succ hp m f f' hff' s hf
     have hMF : MF (2 * e + 1) (N * l ^ (m + 1)) (ch χ) (Zm (2 * e + 1) l (hat θ) (ch (θ * χ))
         (fun A d => f ((A : ZMod (l ^ m)) * (d : ZMod (l ^ m))⁻¹))) := by
       have := _root_.GlobalTheory.EisM.zm_fun_mf (2 * e + 1) N l m (θ⁻¹ * (θ * χ)) θ (θ * χ) f (by omega) hodd hN hp hm hlN rfl

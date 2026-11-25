@@ -146,7 +146,6 @@ theorem chart_levels : ∀ (D : D7) (e : AE D) (P : Pl D.host.E) (v : HeightOneS
   intro D e P v π he hπ
   obtain ⟨φ, hφ, hres⟩ := GlobalTheory.ThetaSupport.exists_chart_levels he hπ
   obtain ⟨hi, -⟩ := GlobalTheory.IdemRes.resS_idem_eq_one D e P he
-  have hπe : π e = 1 := hπ.map_e he.1.1
   have hint : ∀ N : Datum.EAf D, toEAf D e * N ∈ Formalism.L2.Herm.intAf D.host.F D.host.E ↔
       GlobalTheory.SplitHecke.IsInt (GlobalTheory.SplitHecke.Ov D v) (φ N) := by
     intro N

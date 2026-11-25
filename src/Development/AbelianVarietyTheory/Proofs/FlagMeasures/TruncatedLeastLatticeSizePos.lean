@@ -194,7 +194,6 @@ theorem count_le (I : AutInst) (x y : I.GA) (r : InfinitePlace I.F → ℝ) (hn 
   rw [hinj.ncard_image, ← Real.exp_sum, ← Real.exp_mul, card_places, mul_one_div, mul_assoc 2 (I.n ^ 2)] at hle
   refine hle.trans (pow_le_pow_left₀ (by positivity) ?_ _)
   have h1 : (1 : ℝ) ≤ Real.sqrt I.n := Real.one_le_sqrt.2 (by exact_mod_cast hn)
-  have h2 := Real.exp_pos ((∑ v, r v) / I.f)
   gcongr
   linarith
 

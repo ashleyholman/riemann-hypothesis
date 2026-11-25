@@ -296,8 +296,6 @@ theorem comb_natAdd (q : ℕ) {n c : ℕ} (e : Fin c → ℤ) (z : Sp E n) (l : 
     simp [Loc.eN, this]
     ring
   · intro i _ hib
-    have hne : ¬ ((Fin.natAdd n b).1 = n + i.1) := by
-      intro h; apply hib; ext; simp at h; omega
     have : (if i.1 = 0 then Loc.inX E n c z else 0) (Fin.natAdd n b) = 0 := by
       split_ifs <;> simp [hx]
     have hne' : ¬ (b.1 = i.1) := fun h => hib (Fin.ext h).symm
@@ -324,7 +322,6 @@ theorem twNF_imp_matNF : ∀ (X : Fields) (Pr : Primes X) (R : Ranks) (j : ℕ) 
   obtain ⟨n, z, hn, hz, hcrit⟩ := hT
   refine ⟨fun i => n i.1, z, fun i => hn i.1, hz, ?_⟩
   have hq := GlobalTheory.Proof.NormalFormAtPrime.qOf_ne_zero P
-  have hzV := (mem_stdAt_iff z).1 hz
   ext y
   have hmem : y ∈ h '' (lamYat (Pr := Pr) (R := R) j P : Set _) ↔ h⁻¹ y ∈ lamYat (Pr := Pr) (R := R) j P := by
     constructor

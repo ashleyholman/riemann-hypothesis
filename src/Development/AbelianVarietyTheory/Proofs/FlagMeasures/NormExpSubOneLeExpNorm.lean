@@ -219,7 +219,6 @@ theorem near_arch : ∀ (n : ℕ) (k X : Matrix (Fin n) (Fin n) ℂ) (ep : ℝ),
       linarith [le_abs_self (k * (E - 1)).trace.re]
     have hk1 : ‖k - 1‖ ^ 2 ≤ 4 * (s * t) ^ 2 := by
       rw [norm_sq_eq_hs, hs_unitary_sub_one hk]
-      have hE0 := norm_nonneg (E - 1)
       have : s * ‖E - 1‖ ≤ s * (2 * (t * t)) := by
         rw [htt]; exact mul_le_mul_of_nonneg_left hdel (by linarith)
       nlinarith

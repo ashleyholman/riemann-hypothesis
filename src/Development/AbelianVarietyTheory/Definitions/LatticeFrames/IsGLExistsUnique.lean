@@ -132,7 +132,6 @@ theorem nabs_agree (h : AtTwist (R := R) sel mu cst σ₀ P ι s W) (hok : cst.O
     rw [_root_.zpow_neg]
     exact eq_inv_of_mul_eq_one_left this.symm
   have hs := sg_sq sel mu cst σ₀ P ι s W h hok
-  have hs0 : W.sg ≠ 0 := fun h0 => by simp [h0] at hs
   have key : ∀ t : ℤ, (((qOf P.1 : ℝ) ^ ((t : ℝ) / 2) : ℝ) : ℂ) = W.sg ^ t * σ₀ (cst.sq P ^ t) := fun t => by
     rw [map_zpow₀, h.sq, mul_zpow, ← mul_assoc, ← mul_zpow, ← pow_two, hs, _root_.one_zpow, one_mul, ← Complex.ofReal_zpow,
       Real.sqrt_eq_rpow, ← Real.rpow_intCast, ← Real.rpow_mul hq0.le]

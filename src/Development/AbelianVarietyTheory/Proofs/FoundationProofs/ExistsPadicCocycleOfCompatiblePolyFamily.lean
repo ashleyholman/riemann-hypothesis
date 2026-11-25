@@ -554,7 +554,6 @@ theorem step (N l w : ℕ) [Fact l.Prime] (hN : 0 < N) (hl2 : l ≠ 2) (hlN : ¬
   haveI : NeZero (l ^ (n + 1)) := ⟨pow_ne_zero _ hp.ne_zero⟩
   obtain ⟨z', hz', hz'n⟩ := _root_.GlobalTheory.KZ.H3.exists_coc_near N l w hN hp hl2 hlN hw Φ hΦ (n + 1)
   set c := ZMod.castHom (pow_dvd_pow l (Nat.le_succ n)) (ZMod (l ^ n)) with hc
-  have L := GlobalTheory.KZ.polySlash_laws (ZMod (l ^ n))
   have L' := GlobalTheory.KZ.polySlash_laws (ZMod (l ^ (n + 1)))
   let r : SL(2, ℤ) → MvPolynomial (Fin 2) (ZMod (l ^ n)) := fun δ => MvPolynomial.map c (z' δ)
   have hr : IsCoc w (Gam N l) r := by

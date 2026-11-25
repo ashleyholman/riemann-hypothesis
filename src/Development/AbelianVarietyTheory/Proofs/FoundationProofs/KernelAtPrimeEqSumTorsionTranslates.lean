@@ -144,10 +144,6 @@ theorem Bd.mul {p : ℕ} [Fact p.Prime] {lam : Qbar →+* ℂ_[p]} {C C' : ℝ} 
 
 theorem bd_of_pow_mul_eq_one {p : ℕ} [Fact p.Prime] (lam : Qbar →+* ℂ_[p]) {z : ℂ} {n m : ℕ}
     (hn : n ≠ 0) (hm : Nat.Coprime m p) (h : z ^ n * (m : ℂ) = 1) : Bd lam 1 z := by
-  have hm0 : (m : ℂ) ≠ 0 := by
-    intro h0
-    rw [h0, mul_zero] at h
-    exact zero_ne_one h
   have hz : z ∈ Qbar := by
     rw [mem_algebraicClosure_iff]
     apply IsAlgebraic.of_pow (Nat.pos_of_ne_zero hn)

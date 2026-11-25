@@ -59,15 +59,11 @@ theorem eq_of_shifted_residues_eq :
   have ha : StrictAnti a := by
     intro i j hij
     have h4 := hν hij.le
-    have h5 : i.val < j.val := hij
-    have h6 := j.isLt
     show ν j + (N - 1 - j.val) < ν i + (N - 1 - i.val)
     omega
   have hb : StrictAnti b := by
     intro i j hij
     have h4 := hμ hij.le
-    have h5 : i.val < j.val := hij
-    have h6 := j.isLt
     show μ j + (N - 1 - j.val) < μ i + (N - 1 - i.val)
     omega
   let z : Fin N := ⟨0, hN⟩

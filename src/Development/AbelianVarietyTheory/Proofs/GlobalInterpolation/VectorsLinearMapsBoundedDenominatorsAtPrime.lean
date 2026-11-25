@@ -29,7 +29,6 @@ theorem exists_intAt_pow_mul {E : Type} [Field E] [NumberField E] (P : HeightOne
     set u := WithZero.log (P.valuation E (qOf P : E))
     set w := WithZero.log (P.valuation E a)
     have h2 : w ≤ (w.toNat : ℤ) := Int.self_le_toNat w
-    have h3 : (0 : ℤ) ≤ (w.toNat : ℤ) := Int.natCast_nonneg _
     rw [nsmul_eq_mul]
     nlinarith
   obtain ⟨m, h⟩ := key

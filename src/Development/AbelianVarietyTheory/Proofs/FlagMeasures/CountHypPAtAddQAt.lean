@@ -106,7 +106,6 @@ theorem countHyp_numerics : ∀ (B : RowsAut) (Cg : ℝ) (n₀ : ℕ) (d : Infin
       8 * 10 ^ 14 * (Cg + 4) * (B.I.n : ℝ) ^ 19 * (B.I.f : ℝ) ^ 5 * Real.log (b * B.I.rd) := by
     have e1 : 40 * (B.I.n : ℝ) ^ 2 * Real.sqrt q ≤ 40 * (B.I.n : ℝ) ^ 2 * B.I.n :=
       mul_le_mul_of_nonneg_left hsq (by positivity)
-    have e2 : 40 * (B.I.n : ℝ) ^ 2 * B.I.n = 40 * (B.I.n : ℝ) ^ 3 := by ring
     linarith
   refine ⟨hCg, hrd, hf, hcard, hpq, h2q, hrk, hmin, hd, hX, htpos, ?_, _, rfl, hgap, ?_, ?_, ?_, ?_, hs40⟩
   · intro hq1
@@ -133,7 +132,6 @@ theorem countHyp_numerics : ∀ (B : RowsAut) (Cg : ℝ) (n₀ : ℕ) (d : Infin
       obtain ⟨l1, l2⟩ := abs_le.mp (hlam v₀ a)
       obtain ⟨l3, l4⟩ := abs_le.mp (hlam v₀ a')
       have hdiff : |B.lam v₀ a - B.lam v₀ a'| ≤ 2 * b ^ 2 := abs_le.mpr ⟨by linarith, by linarith⟩
-      have hb0 : 0 ≤ b ^ 2 := by positivity
       linarith
   · intro v
     rw [hrk v]
@@ -152,7 +150,6 @@ theorem countHyp_numerics : ∀ (B : RowsAut) (Cg : ℝ) (n₀ : ℕ) (d : Infin
     rw [Real.rpow_two] at r2
     have e1 : 120 * (B.I.n : ℝ) * (q : ℝ) ^ ((3 : ℝ) / 2) ≤ 120 * (B.I.n : ℝ) * (B.I.n : ℝ) ^ 2 :=
       mul_le_mul_of_nonneg_left (r1.trans r2) (by positivity)
-    have e2 : 120 * (B.I.n : ℝ) * (B.I.n : ℝ) ^ 2 = 120 * (B.I.n : ℝ) ^ 3 := by ring
     linarith
 
 end GlobalTheory.Dec

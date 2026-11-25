@@ -15,12 +15,10 @@ theorem deep_exponent_core (X τ be n g : ℝ) (q : ℕ) (hX : 16 ≤ X) (hq : 1
     (hg0 : 0 ≤ g) (hg : g ≤ X) :
     (X ^ (96 * q) * (2 * τ) ^ 16) * ((6 * be) * Real.exp 1 * (289 * n / τ ^ 4)) * g ^ 2 * X
       ≤ Real.exp (-1) := by
-  have hX0 : 0 < X := by linarith
   obtain ⟨Y, hYdef⟩ : ∃ Y : ℝ, Y = X ^ q := ⟨_, rfl⟩
   have hXY : X ≤ Y := by
     rw [hYdef]; simpa using pow_le_pow_right₀ (by linarith : (1 : ℝ) ≤ X) hq
   have hY16 : 16 ≤ Y := le_trans hX hXY
-  have hY0 : 0 < Y := by linarith
   have hτY : τ * Y ^ 11 ≤ 1 := by
     have h1 : X⁻¹ ^ (11 * q) * Y ^ 11 = 1 := by
       rw [hYdef, ← pow_mul, inv_pow, mul_comm q 11]
@@ -74,7 +72,6 @@ theorem deep_region_exponents : ∀ (n f q : ℕ) (rd g b : ℝ) (τ : ℝ), 8 �
   have hNr : (N : ℝ) = (n : ℝ) ^ 2 * f := by rw [hN]; push_cast; ring
   have hn0 : (0 : ℝ) ≤ n := by linarith
   have hf0 : (0 : ℝ) ≤ f := by linarith
-  have hrd0 : 0 ≤ rd := by linarith
   have hg0 : 0 ≤ g := by linarith
   have hb0 : 0 ≤ b := by linarith
   have hnf : (n : ℝ) ≤ n * f := le_mul_of_one_le_right hn0 hf1

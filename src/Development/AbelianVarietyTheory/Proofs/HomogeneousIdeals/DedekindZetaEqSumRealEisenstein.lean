@@ -527,7 +527,6 @@ theorem LFunction_one_and_mean_log_eta [NeZero d] (h2 : finrank ℚ K = 2) (hD :
     (((∑ c, Real.log ((τ c).im * ‖ModularForm.eta (τ c)‖ ^ 4)) / classNumber K : ℝ) : ℂ)
       = (Real.eulerMascheroniConstant - Real.log (2 * √d) : ℝ)
         - deriv χ.LFunction 1 / χ.LFunction 1 := by
-  have hd0 := discr_pos h2 hD
   have hh : (0 : ℝ) < classNumber K := by exact_mod_cast classNumber_pos K
   have hA := tendsto_finsetSum Finset.univ fun c _ => tendsto_realEisenstein_sub_pole (τ c)
   replace hA := hA.congr (f₂ := fun s : ℝ => (∑ c, ∑' p : {p : ℤ × ℤ // p ≠ 0},
@@ -574,7 +573,6 @@ theorem covolume_lattice_eq {L : PeriodPair} {a : ℂ} {τ : ℍ} (ha : a ≠ 0)
     ext x
     simp only [h, PeriodPair.mem_lattice, L']
     exact exists₂_congr fun m n => by rw [show a * (m * τ + n) = m * (a * τ) + n * a by ring]
-  have hy := τ.im_pos
   rw [e, ZLattice.covolume_eq_det_mul_measureReal _ _ L'.latticeBasis
     Complex.orthonormalBasisOneI.toBasis,
     MeasureTheory.measureReal_congr (ZSpan.fundamentalDomain_ae_parallelepiped _ _),
@@ -605,8 +603,6 @@ theorem latticeLogPeriod_eq {L : PeriodPair} {a : ℂ} {τ : ℍ} (ha : a ≠ 0)
     (h : ∀ x, x ∈ L.lattice ↔ ∃ m n : ℤ, a * (m * (τ : ℂ) + n) = x) :
     latticeLogPeriod L = Real.log (4 * π * τ.im * ‖ModularForm.eta τ‖ ^ 4) := by
   have h1 := norm_ne_zero_iff.2 (ModularForm.eta_ne_zero τ.2)
-  have h2 := norm_ne_zero_iff.2 ha
-  have hy := τ.im_pos
   rw [latticeLogPeriod, covolume_lattice_eq ha h, log_norm_lattice_discriminant ha h,
     show (4 : ℝ) = 2 ^ 2 by norm_num]
   simp (disch := positivity) only [Real.log_mul, Real.log_div, Real.log_pow]
@@ -625,12 +621,10 @@ theorem chowla_selberg_eta {τ : ClassGroup (𝓞 K) → ℍ} (hτ : ∀ c, IsId
       = (Real.eulerMascheroniConstant + Real.log (2 * π / √d) : ℝ)
         - deriv χ.LFunction 1 / χ.LFunction 1 := by
   have h := (LFunction_one_and_mean_log_eta h2 hD hd hχ σ hτ).2
-  have hd0 := discr_pos h2 hD
   have hh : (0 : ℝ) < classNumber K := by exact_mod_cast classNumber_pos K
   have e : ∀ c, Real.log (4 * π * (τ c).im * ‖ModularForm.eta (τ c)‖ ^ 4)
       = Real.log (4 * π) + Real.log ((τ c).im * ‖ModularForm.eta (τ c)‖ ^ 4) := fun c => by
     have h1 := norm_ne_zero_iff.2 (ModularForm.eta_ne_zero (τ c).2)
-    have hy := (τ c).im_pos
     rw [mul_assoc, Real.log_mul (by positivity) (by positivity)]
   have e2 : Real.log (2 * π / √d) = Real.log (4 * π) - Real.log (2 * √d) := by
     rw [← Real.log_div (by positivity) (by positivity)]

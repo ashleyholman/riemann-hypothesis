@@ -144,7 +144,6 @@ variable {L : Type} [Field L] [Valued L (WithZero (Multiplicative ℤ))] {σ : L
 
 theorem antitone_tExp {d : Fin (n / 2) → ℤ} (hd : Dom d) : Antitone (tExp n (n / 2) d) := fun i j hij => by
   have h0 : (i : ℕ) ≤ j := hij
-  have h1 := j.2
   unfold tExp
   split_ifs with a b c e f g k l
   · exact hd.1 h0

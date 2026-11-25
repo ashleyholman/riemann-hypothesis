@@ -23,7 +23,6 @@ theorem ρ₀_pos (bk : BK K) : 0 < bk.ρ₀ := by
   exact NNReal.rpow_pos hl0
 
 theorem ρ₀_pow (bk : BK K) : bk.ρ₀ ^ bk.Ep.natDegree = (l : ℝ≥0)⁻¹ := by
-  have hl0 : (0 : ℝ≥0) < l := Nat.cast_pos.2 hl.out.pos
   have he : (bk.Ep.natDegree : ℝ) ≠ 0 := Nat.cast_ne_zero.2 bk.deg_pos.ne'
   unfold BK.ρ₀
   rw [← NNReal.rpow_natCast, ← NNReal.rpow_mul, neg_mul, one_div, inv_mul_cancel₀ he, NNReal.rpow_neg_one]

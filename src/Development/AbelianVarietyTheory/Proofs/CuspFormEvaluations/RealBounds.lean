@@ -24,13 +24,11 @@ theorem real_bounds (f r m ρ w D q t : ℝ) (hf : 1 ≤ f) (hr : 1 ≤ r) (hm :
     4 * D * (7 + Real.log (q * D)) + 2 * f * m + 1 ≤ t ∧
     f * r * Real.log 2 + 2 * (2 * f * m) + 3 + (D + 1) * (r * Real.log r + 3 * r + 3) ≤ t := by
   have hρ1 : (1 : ℝ) ≤ ρ := by linarith
-  have hρ0 : (0 : ℝ) < ρ := by linarith
   have hN : r ≤ f * r := by nlinarith
   have hN1 : 1 ≤ f * r := by linarith
   have hfρ : f ≤ ρ := by nlinarith
   have hfm : f * m ≤ ρ := by nlinarith
   have hm2 : m ^ 2 ≤ ρ := by nlinarith
-  have hd0 : 0 ≤ 2 * f * m := by positivity
   have hd : 2 * f * m ≤ 2 * ρ := by linarith
   have hwρ : w ≤ ρ := hw.trans hf2
   have hlog2 : Real.log 2 ≤ 1 := by
@@ -43,11 +41,9 @@ theorem real_bounds (f r m ρ w D q t : ℝ) (hf : 1 ≤ f) (hr : 1 ≤ r) (hm :
   obtain ⟨S, hS⟩ : ∃ S, S = 90 * (N + D) := ⟨_, rfl⟩
   rw [← hS] at hq ht ⊢
   have hS180 : 180 ≤ S := by linarith
-  have hS0 : 0 < S := by linarith
   have hB : 0 < S * (ρ ^ 7) ^ 4 := by positivity
   have hDr : 1 ≤ D * r := one_le_mul_of_one_le_of_one_le hD hr
   have hDDr : D ≤ D * r := by nlinarith
-  have hrDr : r ≤ D * r := by nlinarith
   have hq' : D * r * (S * (ρ ^ 7) ^ 4) ≤ q := by linarith
   have hBq : S * (ρ ^ 7) ^ 4 ≤ q := by
     have := mul_le_mul_of_nonneg_right hDr hB.le
@@ -74,14 +70,11 @@ theorem real_bounds (f r m ρ w D q t : ℝ) (hf : 1 ≤ f) (hr : 1 ≤ r) (hm :
   · have h1 : (2 * f * m) ^ 2 * (2 * w * ρ) * (f * S * (ρ ^ 7) ^ 3) ≤
         (2 * ρ) ^ 2 * (2 * ρ * ρ) * (ρ * S * (ρ ^ 7) ^ 3) := by
       gcongr
-    have h2 : (2 * ρ) ^ 2 * (2 * ρ * ρ) * (ρ * S * (ρ ^ 7) ^ 3) = 8 * (S * ρ ^ 26) := by ring
-    have h3 : S * (ρ ^ 7) ^ 4 = ρ ^ 2 * (S * ρ ^ 26) := by ring
     have h4 : 0 < S * ρ ^ 26 := by positivity
     have h5 : 8 * (S * ρ ^ 26) < ρ ^ 2 * (S * ρ ^ 26) :=
       mul_lt_mul_of_pos_right (by nlinarith) h4
     linarith
   · have h1 : 90 * m ^ 2 * (2 * f * m) ^ 2 * ρ ≤ 90 * ρ * (2 * ρ) ^ 2 * ρ := by gcongr
-    have h2 : 90 * ρ * (2 * ρ) ^ 2 * ρ = 360 * ρ ^ 4 := by ring
     linarith
   · have h1 : Real.log q = Real.log (q / 16) + Real.log 16 := by
       rw [Real.log_div hq0.ne' (by norm_num)]; ring
@@ -137,7 +130,6 @@ theorem runOK_of_le : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (r 
   have hc4 : DF ≤ q := by exact_mod_cast c4
   have hq1 : 1 ≤ q := hDF.trans hc4
   have hq0 : (0 : ℝ) < q := by linarith
-  have hρ0 : 0 < I2.PT.rd E := by linarith
   have hd : (I2.dstar (E := E) m : ℝ) = 2 * I2.PT.f E * m := by unfold I2.dstar; push_cast; ring
   intro X hX hdim
   subst hX

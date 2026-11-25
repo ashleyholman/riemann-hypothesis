@@ -259,7 +259,6 @@ theorem unitary_neg_same : ∀ (F E : Type) [Field F] [NumberField F] [Field E] 
   subst hJ
   have e := (hR_neg_eq (AF F) σ J).symm
   let ψ : HA (AF F) σ J ≃* HA (AF F) σ (-J) := MulEquiv.subgroupCongr e
-  have hψ : ∀ h : HA (AF F) σ J, HA.mat (AF F) σ (-J) (ψ h) = HA.mat (AF F) σ J h := fun h => rfl
   let φ : HA (AF F) σ J ≃ₜ* HA (AF F) σ (-J) :=
     { ψ with
       continuous_toFun := Continuous.subtype_mk continuous_subtype_val _

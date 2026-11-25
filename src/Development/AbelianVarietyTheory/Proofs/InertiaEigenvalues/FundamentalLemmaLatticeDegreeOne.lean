@@ -1147,7 +1147,6 @@ theorem flAt_one : FLAt 1 := by
   have hh : 2 ≤ h := Fintype.one_lt_card_iff.2 ⟨x2, y2, h2⟩
   let e : n ≃ Fin h := Fintype.equivFin n
   set U0 : Matrix n n P.R.BdR := (U 0 : Matrix n n P.R.BdR) with hU0
-  have hI := _root_.GlobalTheory.PMon.bdR_tied l P AI T
 
   let lam : Fin h → P.R.BdR := fun k => U0 (e.symm k) x2
   have hlam0 : ∀ k, lam k ∈ Fil P 0 := fun k => (hU 0).1 _ _

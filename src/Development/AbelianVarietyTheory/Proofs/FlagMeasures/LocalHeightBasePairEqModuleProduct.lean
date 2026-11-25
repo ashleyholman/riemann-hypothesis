@@ -445,8 +445,6 @@ theorem htPlace : Formalism.L2.SG.NGHTie.HTPlace := by
   refine ⟨hP1, hP2.trans ?_⟩
   have hs1 : ∀ l, ((Formalism.L2.SG.NGLocModel.zOf Y).M p).modK ((D.s.atP p).ιE (sgnL D.host.E D.R.rS l)) = 1 := by
     intro l
-    have hO : ((Formalism.L2.SG.NGLocModel.zOf Y).M p).L.O = (D.s.atP p).O :=
-      ((Formalism.L2.SG.NGLocModel.zOf Y).agree p).2.2.2.1
     have hm : (D.s.atP p).ιE (sgnL D.host.E D.R.rS l) ∈ ((Formalism.L2.SG.NGLocModel.zOf Y).M p).L.O := by
       unfold sgnL
       rw [map_prod]

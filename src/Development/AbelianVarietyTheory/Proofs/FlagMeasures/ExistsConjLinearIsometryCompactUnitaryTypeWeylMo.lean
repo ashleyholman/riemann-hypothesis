@@ -478,7 +478,6 @@ theorem exists_conj_weyl : ∀ (k n : ℕ) (h : k = n) (lam : DomWeight n) (u : 
     rw [hr]
     exact_mod_cast hrR0
   let j1 : W →ₗ[ℂ] MvPolynomial (Fin k × Fin k) ℂ := r • j0
-  have hj1 : ∀ ξ, j1 ξ = r • j0 ξ := fun _ => rfl
   have hjapp : ∀ ξ, ((conjL (Fin k × Fin k)).comp j1 : W →ₗ⋆[ℂ] MvPolynomial (Fin k × Fin k) ℂ) ξ =
       MvPolynomial.map (starRingEnd ℂ) (r • j0 ξ) := fun _ => rfl
   refine ⟨(conjL (Fin k × Fin k)).comp j1, ?_, ?_, ?_, ?_⟩

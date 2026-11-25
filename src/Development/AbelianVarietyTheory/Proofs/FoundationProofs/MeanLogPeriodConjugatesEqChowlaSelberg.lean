@@ -99,7 +99,6 @@ theorem exists_family (h2 : Module.finrank ℚ K = 2) (σ : K →+* ℂ) (hσ : 
   let ρ : 𝓞 k →+* N := i.comp (algebraMap (𝓞 k) k)
   let f : 𝓞 k →+* 𝓞 N := RingOfIntegers.mapRingHom i
   let _ : Algebra K N := (σ.codRestrict N fun a => hkN (hσk a)).toAlgebra
-  have ha : ∀ x : K, ((algebraMap K N x : N) : ℂ) = σ x := fun _ => rfl
   have m₁ : ∀ C (x : K), (∀ b ∈ (𝔟 C : Ideal (𝓞 K)), IsIntegral ℤ (x * (b : K))) →
       DefinedOver (algebraMap (𝓞 k) k) (P I) (v I) (P (J C)) (v (J C)) N (c (J C) / c I * σ x) := fun C x hx =>
     (e₁ C _ fun z hz => by

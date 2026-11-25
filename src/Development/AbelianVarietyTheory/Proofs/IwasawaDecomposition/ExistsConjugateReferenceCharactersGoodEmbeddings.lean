@@ -183,7 +183,6 @@ theorem exists_conj (D : D7) (Q : Par D) (χ₀ : (AE D)ˣ →* Circle) (hH : Is
     have hl : Function.Bijective ℓ := Finite.injective_iff_bijective.1 fun ρ ρ' h =>
       tauE_injective D (by rw [← hℓ ρ, h, hℓ])
     have h1 : ψ x = 1 := by
-      obtain ⟨y, hy1⟩ := hy _ (hb x).1
       have h2 : χ₀ (b x) = 1 := by
         rw [hk _ ((hb x).2.trans hx)]
         refine Finset.prod_eq_one fun τ _ => ?_

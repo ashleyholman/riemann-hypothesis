@@ -260,7 +260,6 @@ theorem cmRing_idempotent_unitRatio_identity {R : Type} [CommRing R] (c : R →+
     (h2 : e * c e = 0) (hd : c d * d = 1) (hx : x = d * c x) :
     (e * d + (1 - e)) * ((e + c e) + (1 - (e + c e)) * x) =
       d * c ((e * d + (1 - e)) * ((e + c e) + (1 - (e + c e)) * x)) := by
-  have h3 : c e * c e = c e := by rw [← map_mul, h1]
   have k : (e * d + (1 - e)) * ((e + c e) + (1 - (e + c e)) * x) = e * d + c e + (1 - (e + c e)) * x := by
     linear_combination (d - 1) * (1 - x) * (h1 + h2)
   rw [k]

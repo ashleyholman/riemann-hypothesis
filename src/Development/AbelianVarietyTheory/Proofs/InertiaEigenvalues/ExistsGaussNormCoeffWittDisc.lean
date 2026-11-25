@@ -58,7 +58,6 @@ theorem aPre_mono (n a b c : ℕ) :
 theorem norm_W_mono (hl : 0 < l) (a c : ℕ) :
     ‖algebraMap W (PreDisc l (0 : W) 1) ((l : W) ^ a) *
       IsLocalization.Away.invSelf (S := PreDisc l (0 : W) 1) (l : W) ^ c‖ ≤ (l : ℝ) ^ c / (l : ℝ) ^ a := by
-  have hl' : (0 : ℝ) < l := Nat.cast_pos.2 hl
   exact gauge_le l (0 : W) 1 (by positivity) (Submodule.subset_span ⟨a, 0, c, by field_simp; simp, by simp⟩)
 
 theorem norm_aPre_le (hl : 0 < l) (hρ : ρ ≤ 1) (y : PreDisc l (X : W⟦X⟧) ρ) (n : ℕ) :
@@ -67,7 +66,6 @@ theorem norm_aPre_le (hl : 0 < l) (hρ : ρ ≤ 1) (y : PreDisc l (X : W⟦X⟧)
     le_of_forall_gt_imp_ge_of_dense fun r hr =>
       h r ((norm_nonneg y).trans_lt hr) (mem_ball_of_gauge_lt l _ ρ hr) n
   have hρ' : (ρ : ℝ) ≤ 1 := by exact_mod_cast hρ
-  have hl' : (0 : ℝ) < l := Nat.cast_pos.2 hl
   have hadd : ∀ (r : ℝ) (n : ℕ) (z w : PreDisc l (0 : W) 1), ‖z‖ * (ρ : ℝ) ^ n ≤ r → ‖w‖ * (ρ : ℝ) ^ n ≤ r →
       ‖z + w‖ * (ρ : ℝ) ^ n ≤ r := fun r n z w hz hw =>
     (mul_le_mul_of_nonneg_right (gauge_add_le_max l (0 : W) 1 z w) (by positivity)).trans
@@ -179,7 +177,6 @@ theorem exists_coeff_disc : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l) (bk : BK
       ∀ y, Filter.Tendsto (fun n => ‖a n y‖ * (ρ : ℝ) ^ n) Filter.atTop (nhds 0) := by
   intro l _ K bk ρ hρ0 hρ1
   have hl : 0 < l := (Fact.out : l.Prime).pos
-  have hl' : (0 : ℝ) < l := Nat.cast_pos.2 hl
   have hc := fun n => continuous_aPre l (W := Wq l bk.a) ρ hl hρ0 hρ1.le n
   let A : ℕ → (bk.DS ρ →+ Disc l (0 : Wq l bk.a) 1) := fun n => (aPre l ρ n).completion (hc n)
   have hA : ∀ n y, A n (ofPre l (X : bk.S) ρ y) = ofPre l (0 : Wq l bk.a) 1 (aPre l ρ n y) := fun n y =>

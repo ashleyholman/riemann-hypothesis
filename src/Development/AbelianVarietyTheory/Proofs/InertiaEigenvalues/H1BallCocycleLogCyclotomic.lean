@@ -313,7 +313,6 @@ theorem coeff_eq_zero {act : GQ l →* (PadicComplex l ≃+* PadicComplex l)} {�
     (ha : IsActC act) (hχ : IsCyc χ) (K : FinExt l) (s : ℕ) (hs : Lev l s)
     (α : PadicComplex l) (hα : α ∈ inC (Ks K s)) (b : PadicComplex l)
     (hb : ∀ σ ∈ Gj K s, logC χ σ * α = act σ b - b) : α = 0 := by
-  have hl0 : (l : PadicComplex l) ≠ 0 := by exact_mod_cast (Fact.out : l.Prime).ne_zero
   obtain ⟨⟨γ, hγ⟩, -⟩ := _root_.GlobalTheory.Cyc.gen_dense l act χ ha hχ K s hs
   obtain ⟨T1a, T1b, -, -, T1e, -⟩ := _root_.GlobalTheory.TateDecomp.tate_decomposition l act χ ha hχ K s hs.1
   obtain ⟨n, hn⟩ := exists_scale b

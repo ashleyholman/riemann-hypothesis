@@ -210,7 +210,6 @@ theorem eL_vecMul_embHom (k : Type) [CommRing k] (r : ℕ) (g : Matrix (Fin r) (
 
 theorem act_emb_lift (k : Type) [CommRing k] (r : ℕ) (g : GL (Fin r) k) (Z : Gl r k) (μ l : k) :
     act (GlobalTheory.JR.Step.emb r k g) (GlobalTheory.JR.Step.lift Z μ l) = GlobalTheory.JR.Step.lift (act g Z) μ l := by
-  have hinv : ((emb r k g)⁻¹ : GL (Fin (r + 1)) k) = emb r k g⁻¹ := (map_inv _ _).symm
   simp only [act, lift, emb, Units.coe_map]
   refine Prod.ext ?_ (Prod.ext ?_ (Prod.ext ?_ rfl))
   · exact embHom_mul_full_mul k r _ _ Z

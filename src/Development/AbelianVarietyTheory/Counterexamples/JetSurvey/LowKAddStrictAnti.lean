@@ -66,7 +66,6 @@ theorem rhoN_add_rhoC {n : ℕ} (ε : Fin n → Bool) (a : Fin n) :
   have e2 : (univ.filter fun b : Fin n => b < a) = Finset.Iio a := by ext; simp
   rw [e1, Fin.card_Ioi] at h1
   rw [e2, Fin.card_Iio] at h2
-  have ha := a.isLt
   have h3 : ((n - 1 - (a : ℕ) : ℕ) : ℝ) = (n : ℝ) - 1 - a := by
     rw [Nat.sub_sub, Nat.cast_sub (by omega)]; push_cast; ring
   have h1' := congrArg (Nat.cast : ℕ → ℝ) h1

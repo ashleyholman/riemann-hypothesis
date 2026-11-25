@@ -641,7 +641,6 @@ theorem coef_dag (hST : AdjLaw ψ S T) (hTS : AdjLaw ψ T S) {X : Type} (x : X �
   · show starRingEnd ℂ (c p) = _
     rw [hc p, MeasurableEquiv.restrict_map, hpre, integral_map_equiv, ← integral_conj, hx p]
     refine integral_congr_ae (Filter.Eventually.of_forall fun w => ?_)
-    have ew : eM.symm (eM w) = w := eM.symm_apply_apply w
     show starRingEnd ℂ (x p w * starRingEnd ℂ (Φ w)) =
       dag T S (x p) (eM w) * starRingEnd ℂ (dag T S Φ (eM w))
     simp only [dag]

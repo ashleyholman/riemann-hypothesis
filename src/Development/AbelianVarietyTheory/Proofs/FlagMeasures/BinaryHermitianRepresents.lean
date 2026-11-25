@@ -29,25 +29,6 @@ theorem _root_.GlobalTheory.Mass.binary_hermitian_represents : _root_.Formalism.
   let b' : _root_.Formalism.HermitianLattices.Ext.L3.cmF K := ⟨b, memF b hb⟩
   let n' : _root_.Formalism.HermitianLattices.Ext.L3.cmF K := ⟨n, memF n hn⟩
   let δ : _root_.Formalism.HermitianLattices.Ext.L3.cmF K := ⟨w * w, memF _ (by rw [star_mul, hw]; ring)⟩
-  have hnegδ : _root_.Formalism.HermitianLattices.Ext.L3.TotPos ((-δ : _root_.Formalism.HermitianLattices.Ext.L3.cmF K) : K) := by
-    unfold _root_.Formalism.HermitianLattices.Ext.L3.TotPos
-    intro ψ
-    have h1 : ψ (star w) = (starRingEnd ℂ) (ψ w) := hK.2.1 ψ w
-    rw [hw, map_neg] at h1
-    have hre : (ψ w).re = 0 := by
-      have := congrArg Complex.re h1
-      simp at this
-      linarith
-    have hne : ψ w ≠ 0 := (map_ne_zero ψ).2 hw0
-    have him : (ψ w).im ≠ 0 := by
-      intro him
-      exact hne (Complex.ext hre him)
-    simp [δ, Complex.mul_re, hre]
-    positivity
-  have hδneg : ∀ φ : _root_.Formalism.HermitianLattices.Ext.L3.cmF K →+* ℝ, φ δ < 0 := by
-    intro φ
-    have := (_root_.Formalism.HermitianLattices.Ext.L3.totPos_iff hK (-δ)).1 hnegδ φ
-    simpa using this
   have ha' : a' ≠ 0 := fun h => ne_of_pos a hpa (congrArg Subtype.val h)
   have hb' : b' ≠ 0 := fun h => ne_of_pos b hpb (congrArg Subtype.val h)
   have hn' : n' ≠ 0 := fun h => ne_of_pos n hpn (congrArg Subtype.val h)

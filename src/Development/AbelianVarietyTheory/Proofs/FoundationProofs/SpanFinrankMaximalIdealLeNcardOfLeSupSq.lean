@@ -316,7 +316,6 @@ theorem le_height_of_trdeg_quotient_eq {B : Type*} [CommRing B] (φ : A →+* B)
     rw [faithfulSMul_iff_algebraMap_injective, injective_iff_map_eq_zero]
     intro v hv
     exact hp.le ((Ideal.Quotient.eq_zero_iff_mem (I := p)).mp hv)
-  have hq : (x.comap φ).IsMaximal := Ideal.comap_isMaximal_of_surjective φ hφ
   have hq' : ((x.comap φ).map (Ideal.Quotient.mk p)).IsPrime :=
     Ideal.isPrime_map_quotientMk_of_isPrime hpx
   have hle : (maximalIdeal V).map (algebraMap V (A ⧸ p)) ≤

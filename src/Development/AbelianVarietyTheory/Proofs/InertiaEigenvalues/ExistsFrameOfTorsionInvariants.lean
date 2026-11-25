@@ -125,7 +125,6 @@ theorem exists_invariant_basis {F₀ F R M D : Type} [Field F₀] [Field F] [Com
       (∀ y ∈ V, (∀ d, t d y = y) → ∃ c : Fin s → F₀, y = ∑ j, κ (ι (c j)) • w j) := by
   classical
   let : Module F M := Module.compHom M κ
-  have hs : ∀ (c : F) (y : M), c • y = κ c • y := fun _ _ => rfl
   let V' : Submodule F M := { V with smul_mem' := fun c y hy => hV c y hy }
   have h1 := GlobalTheory.stable_le_span_invariants_of_semilinear_family F M D σ t V' hσ (fun d c y _ => hsl d c y)
     hst hav hid

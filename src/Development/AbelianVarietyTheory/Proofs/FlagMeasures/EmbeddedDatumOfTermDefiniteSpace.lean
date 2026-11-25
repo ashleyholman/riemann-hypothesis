@@ -722,7 +722,6 @@ theorem isDat_datOf : ∀ (K V W : Type) [Field K] [NumberField K] [StarRing K] 
   rw [hlat0, hdat, q1, q2]
   refine ⟨hP, hgI, ?_, ?_, ?_⟩
   · have h1' : (1 : ℝ) ≤ N.iI g Λ := by exact_mod_cast hiI
-    have h0 : (0 : ℝ) ≤ N.gI g Λ := Nat.cast_nonneg _
     nlinarith
   · intro τ x hx
     have hpos := hH'PD τ (φ x) ((LinearEquiv.map_ne_zero_iff φ).2 hx)

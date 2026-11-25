@@ -386,14 +386,6 @@ theorem GlobalTheory.DivPtLocalCard.card_DQ_eq : ∀ (D : D7) (S T : HSp D) (ΛS
       ext i j
       simp only [Ψ, Matrix.map_apply, h1]
     rw [this, GlobalTheory.DivPtLocalCard.gl_cancel']
-  have hinj : ∀ y y' : WO S T, c • y = y → c • y' = y' → Φ y = Φ y' → y = y' := by
-    intro y y' hy hy' H
-    have H' : y.map (cw hP) = y'.map (cw hP) := by
-      rw [← GlobalTheory.DivPtLocalCard.gl_cancel b a (y.map (cw hP)), ← GlobalTheory.DivPtLocalCard.gl_cancel b a (y'.map (cw hP))]
-      exact congrArg (fun M => b.1 * M * (a⁻¹).1) H
-    ext i j
-    rw [hent y hy i j, hent y' hy' i j]
-    exact congrArg ι (congrFun (congrFun H' i) j)
   have hdiv : ∀ y : ↥(GlobalTheory.DivPtFourier.divPts Λ c N), Φ y ∈ GlobalTheory.DivPtLocal.locDiv P N T.rank S.rank := by
     rintro ⟨y, hy1, hy2⟩
     rw [← hIntN, ← map_nsmul]

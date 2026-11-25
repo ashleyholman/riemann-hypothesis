@@ -766,7 +766,6 @@ theorem sumAt_eeI_eq_phiJ {N : ℕ} (k s : ℕ) (hN : N = k + 2 * s + 1) (M : Mt
     unfold sumAt
     simp only [← Finset.sum_add_distrib]
     refine Finset.sum_congr rfl (fun a _ => Finset.sum_congr rfl (fun b _ => ?_))
-    have hb := b.isLt
     unfold eeI IsW
     split_ifs <;> first | omega | simp
   have h1 : (∑ a : Fin (k + 2 * s + 1), ∑ b : Fin (k + 2 * s + 1),

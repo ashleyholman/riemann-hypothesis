@@ -58,7 +58,6 @@ theorem exists_cdvr_completion_integral_iff :
 
     rw [mem_range_algebraMap_iff_valV_le_one, withZero_le_one_iff_log_nonpos ha, withZero_le_one_iff_log_nonpos hb]
     have h := hv y
-    have he' : (0 : ℤ) < e := by exact_mod_cast he
     constructor <;> intro h' <;> nlinarith
 
 end GlobalTheory

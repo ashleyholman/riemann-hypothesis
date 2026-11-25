@@ -150,7 +150,6 @@ theorem hc_sizes (eps cD ch : ℝ) (h0 : 0 < eps) (h1 : eps < 1 / 52) (hcD : 0 �
   have hXp : 0 < s.X' := by linarith
   have hk : (R.k : ℝ) ≤ s.x ^ (5 : ℝ) := le_trans (by exact_mod_cast hkr) hr
   have hD1 : 1 ≤ s.x ^ cD := Real.one_le_rpow hx1' hcD
-  have h5 : 1 ≤ s.x ^ (5 : ℝ) := Real.one_le_rpow hx1' (by norm_num)
   have hsplit : s.x ^ (cD + 6) = s.x ^ cD * s.x ^ (5 : ℝ) * s.x := by
     rw [show cD + 6 = cD + 5 + 1 by ring, Real.rpow_add hxp, Real.rpow_add hxp, Real.rpow_one]
   have hDle : (Delv s cD : ℝ) ≤ 2 * s.x ^ cD := by
@@ -224,8 +223,6 @@ theorem exists_hc_family : ∀ eps cD ch C8 : ℝ, 0 < eps → eps < 1 / 52 → 
     else if (eTau τ : R.GG) ∈ H.thickPlaces then ⌈s.b⌉ else ⌈s.w'' R.n⌉
   obtain ⟨sh, hsh, hMU⟩ := UpperTheory.Mu.exists_shift H eTau base τ0
   let ε : ℤ := (sh : ℤ)
-  have hε : 0 ≤ ε ∧ ε < (NumberField.Units.torsionOrder H.E : ℤ) :=
-    ⟨Int.natCast_nonneg _, Int.ofNat_lt.2 hsh⟩
   let b1 : Tau → ℤ := fun τ => base τ + if τ = τ0 then ε else 0
   let U0 : Tau → ℤ := fun τ =>
     if h : ∃ t : H.TT, (eTau τ : R.GG) = R.tau1 t then aT h.choose + κ - 1

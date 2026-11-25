@@ -38,7 +38,6 @@ theorem abs_inner_le_of_isRed (b : Fin d → E) (hr : IsRed b) (c : Fin d → �
   classical
   set x := ∑ l, (c l : ℝ) • b l with hx
   set s := (2 : ℝ) ^ ((d : ℝ) / 2) with hs
-  have hs0 : 0 < s := by positivity
   by_cases hc : c = 0
   · simp [hx, hc]
   obtain ⟨t, ht, hmax⟩ := exists_max_image (univ.filter fun l => c l ≠ 0) id

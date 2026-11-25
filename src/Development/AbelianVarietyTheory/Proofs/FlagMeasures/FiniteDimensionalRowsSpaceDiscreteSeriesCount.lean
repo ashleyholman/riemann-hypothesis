@@ -187,8 +187,6 @@ theorem deep_mul_volume_le (hV : GlobalTheory.FlagMeas.AbsoluteVolume) (B : Rows
   set m : ℝ := (B.μf (B.I.Kg B.g)).toReal with hm
   have hm0 : 0 < m := ENNReal.toReal_pos hKg0.ne' hKgfin
   have hcp : 0 < ∏ v, c v := Finset.prod_pos fun v _ => hc0 v
-  have hXp : 0 < bigX B b := by linarith
-  have hgp : (0 : ℝ) < B.g := by linarith
   set Y : ℝ := (B.g : ℝ) ^ (2 * N) * bigX B b ^ N with hY
   have hY0 : 0 < Y := by positivity
   have hv2 : ENNReal.ofReal (∏ v, c v) * B.I.muA B.μf B.fund ≤ ENNReal.ofReal (Y * m) := by
@@ -304,8 +302,6 @@ theorem vol_lt_top (hV : GlobalTheory.FlagMeas.AbsoluteVolume) (B : RowsAut) (p 
     MeasurableSet.univ (by simp)).2
   refine ⟨hpos, ?_⟩
   choose c hc0 hc hcu using fun v => GlobalTheory.GaugeConst.exists_unique_isGauge B.I.n (B.I.ε v)
-  have hf0 : (0 : ℝ) ≤ B.I.f := by positivity
-  have hrd1 : (1 : ℝ) ≤ B.I.rd := hrd
   have hx := hV B.I p q hs hq hn (2 * B.I.f * B.I.rd + B.I.rd + 2) (by nlinarith) (by nlinarith)
     (by nlinarith) c B.μf
   first | unfold GlobalTheory.FlagMeas.gaugeVol at hx
@@ -553,7 +549,6 @@ theorem rows_finiteDimensional : GlobalTheory.DSId.DecGap → GlobalTheory.FlagM
       have ht0 : 0 ≤ (tau1 B.I x)⁻¹ := inv_nonneg.mpr (le_trans hm.le htau)
       have ht1 : (tau1 B.I x)⁻¹ ≤ m⁻¹ := inv_anti₀ hm htau
       have ht2 : (tau1 B.I x)⁻¹ ^ (2 * B.I.n ^ 2 * B.I.f) ≤ M := pow_le_pow_left₀ ht0 ht1 _
-      have ht3 : 0 ≤ (tau1 B.I x)⁻¹ ^ (2 * B.I.n ^ 2 * B.I.f) := pow_nonneg ht0 _
       have h4 : (C * (tau1 B.I x)⁻¹ ^ (2 * B.I.n ^ 2 * B.I.f)) ^ 2 ≤ C ^ 2 * M ^ 2 := by
         rw [mul_pow]
         gcongr

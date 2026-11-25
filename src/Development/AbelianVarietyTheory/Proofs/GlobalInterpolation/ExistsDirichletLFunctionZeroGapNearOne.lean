@@ -150,7 +150,6 @@ lemma of_region {x c d t r : ℝ} (hx : 1 ≤ x) (hc : 0 < c) (hcd : c ≤ d) (h
   linarith
 
 lemma log_le_sqrt {x : ℝ} (hx : 1 ≤ x) : Real.log (3 * x) ≤ 4 * √x := by
-  have hs : 0 < √x := Real.sqrt_pos.2 (by linarith)
   have hsq : √x * √x = x := Real.mul_self_sqrt (by linarith)
   have h1 : Real.log (3 * x) ≤ Real.log ((2 * √x) ^ 2) :=
     Real.log_le_log (by linarith) (by nlinarith)

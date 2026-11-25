@@ -142,7 +142,6 @@ theorem exists_aut (D : D7) (M : IntermediateField ℚ ℂ) (ρ : M →ₐ[ℚ] 
   · exact ⟨AlgEquiv.refl, fun _ => rfl, fun τ => h.elim τ⟩
   have hmul : ∀ g h : D.R.GG, D.host.sigmaOf (g * h) = D.host.sigmaOf g * D.host.sigmaOf h :=
     fun g h => map_mul _ g h
-  have hone : D.host.sigmaOf 1 = 1 := map_one _
   have key : ∀ (τ : D.what₂.Tau) (g : D.R.GG) (x : D.host.E),
       embT D τ (D.host.sigmaOf g x) = D.host.φ₀ (D.host.sigmaOf ((D.eTau τ : D.R.GG) * g) x) := by
     intro τ g x

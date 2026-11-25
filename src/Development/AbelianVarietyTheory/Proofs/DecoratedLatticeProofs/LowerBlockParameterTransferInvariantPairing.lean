@@ -410,7 +410,6 @@ theorem KO_of_int {g : GL D k} (hg : ∀ i j, g.1 i j ∈ 𝒪[k]) (hg' : ∀ i 
   let A : Matrix D D 𝒪[k] := fun i j => ⟨_, hg i j⟩
   let B : Matrix D D 𝒪[k] := fun i j => ⟨_, hg' i j⟩
   have hA : inc A = g.1 := rfl
-  have hB : inc B = (g⁻¹).1 := rfl
   have inj : Function.Injective (inc : Matrix D D 𝒪[k] → Matrix D D k) := map_injective Subtype.val_injective
   have h1 : inc (1 : Matrix D D 𝒪[k]) = 1 := Matrix.map_one _ (map_zero _) (map_one _)
   refine ⟨⟨A, B, inj ?_, inj ?_⟩, Units.ext hA⟩

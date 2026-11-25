@@ -37,9 +37,6 @@ lemma thr_le {n : ℕ} (hn : 1 ≤ n) (ε : Fin n → Bool) : thrStar ε ≤ 40 
     have : qOf ε ≤ n := by simpa [qOf] using Finset.card_filter_le Finset.univ (fun a => ε a = false)
     exact_mod_cast this
   have hq0 : (S7.q0 ε : ℝ) ≤ n := le_trans (by exact_mod_cast min_le_left _ _) hp
-  have h0 : (0 : ℝ) ≤ S7.q0 ε := Nat.cast_nonneg _
-  have hp0 : (0 : ℝ) ≤ pOf ε := Nat.cast_nonneg _
-  have hq1 : (0 : ℝ) ≤ qOf ε := Nat.cast_nonneg _
   have e2 : (n : ℝ) ≤ n ^ 2 := by nlinarith
   have e3 : (n : ℝ) ^ 2 ≤ n ^ 3 := by nlinarith
   have h1 : (n : ℝ) * pOf ε * qOf ε ≤ n ^ 3 := by

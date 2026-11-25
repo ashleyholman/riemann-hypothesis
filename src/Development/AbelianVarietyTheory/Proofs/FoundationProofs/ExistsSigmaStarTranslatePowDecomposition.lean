@@ -82,8 +82,6 @@ theorem ratio_pow_add (hΛ : IsLat Λ) {t : ℂ} {N : ℕ} (hN : 0 < N) (ht : (N
     have h2 : sgStar Λ (z + l) = 0 := (hΛ.sg_eq_zero _).2 (add_mem hz hl)
     rw [h1, h2, div_zero, div_zero]
   · have hs : sgStar Λ z ≠ 0 := fun h0 => hz ((hΛ.sg_eq_zero z).1 h0)
-    have hzl : z + l ∉ Λ := fun h' => hz (by simpa using sub_mem h' hl)
-    have hsl : sgStar Λ (z + l) ≠ 0 := fun h0 => hzl ((hΛ.sg_eq_zero _).1 h0)
     have hsn : (if l / 2 ∈ Λ then (1 : ℂ) else -1) ≠ 0 := by split_ifs <;> norm_num
     have la := hΛ.sg_law hl (z + t)
     have lb := hΛ.sg_law hl z
@@ -202,7 +200,6 @@ theorem exists_decomp : ∀ (Λ : AddSubgroup ℂ), IsLat Λ → ∀ (t : ℂ) (
     intro z hz
     have hzΛ : z ∉ Λ := hz
     have hs : sgStar Λ z ≠ 0 := fun h0 => hzΛ ((hσ0 z).1 h0)
-    have hz' : z ∉ L.lattice := fun h' => hzΛ ((hL z).2 h')
     have hq := hpt z hzΛ
     have hApt : A.eval (L.weierstrassP z) = P.eval (L.weierstrassP z - L.weierstrassP v) := by
       rw [hP, Polynomial.eval_comp]; simp

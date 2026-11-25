@@ -111,7 +111,6 @@ theorem eq_pow_of_growth (h : ℕ → ℕ) (g : ℕ) (G : ℕ → Prop) (hG : �
       nlinarith [Nat.mul_le_mul_left (n ^ 2) hj]
     obtain ⟨m', a1, a2, hm'⟩ : ∃ m', m' ≤ m ∧ m ≤ m' + 1 ∧ G m' :=
       (hG (m - 1)).elim (fun x => ⟨_, by omega, by omega, x⟩) fun x => ⟨_, by omega, by omega, x⟩
-    have hm1 := hpos m' hm'
     refine ⟨m', by omega, ?_⟩
     have l4 : n ^ 2 * j ≤ m' * (m' + 8) := by nlinarith
     have l5 : h (m' ^ 2) ≤ h (n ^ 2 * j) := hmono (by nlinarith)

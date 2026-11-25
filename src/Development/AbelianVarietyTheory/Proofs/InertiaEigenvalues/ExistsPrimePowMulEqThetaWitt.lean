@@ -146,7 +146,6 @@ theorem step {K : FinExt l} (bk : BK K) (y : Om l) (hyK : y ∈ K.1) (hyU : y �
       exact absurd hd1 (not_lt.2 (one_le_zpow₀ hl1.le hk0))
     calc (l : ℝ) ^ k ≤ (l : ℝ) ^ (-1 : ℤ) := zpow_le_zpow_right₀ hl1.le (by omega)
       _ = (l : ℝ)⁻¹ := zpow_neg_one _
-  have hl0 : (l : Om l) ≠ 0 := Nat.cast_ne_zero.2 hl.out.ne_zero
   refine ⟨WittVector.teichmuller l z, (y - yt) / (l : Om l), div_mem hdK (natCast_mem _ l),
     div_mem hdU (natCast_mem _ l), ?_, ?_⟩
   · rw [norm_div, _root_.GlobalTheory.UnramValue.norm_l, div_inv_eq_mul]

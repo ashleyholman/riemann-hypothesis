@@ -77,7 +77,6 @@ theorem exists_siegel_basis : ∀ (n : ℕ) (Y : Type) [AddCommGroup Y] (b₀ : 
     fun i => pow_pos (ha i) 2, fun i j => ?_⟩
   · have h2 := hstep p q hq
     have h3 := ha p
-    have h4 := ha q
     show a p ^ 2 ≤ 4 * a q ^ 2
     nlinarith
   · rw [← hM, hbe, hbe]

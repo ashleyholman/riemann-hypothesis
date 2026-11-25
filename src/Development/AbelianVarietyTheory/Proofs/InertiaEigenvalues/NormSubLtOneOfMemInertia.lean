@@ -1269,7 +1269,6 @@ namespace GlobalTheory.PMon.Ram
 theorem card_add_two_mul_card_inf_le_of_not_le {G : Type} [Group G] [Finite G] (H J : Subgroup G)
     (h : ¬ H ≤ J) : Nat.card ↥H + 2 * Nat.card ↥(H ⊓ J) ≤ 2 * Nat.card ↥H := by
   obtain ⟨k, hk⟩ := Subgroup.card_dvd_of_le (inf_le_left : H ⊓ J ≤ H)
-  have hpos : 0 < Nat.card ↥(H ⊓ J) := Nat.card_pos
   have hposH : 0 < Nat.card ↥H := Nat.card_pos
   have hk1 : k ≠ 1 := by
     rintro rfl
@@ -1445,7 +1444,6 @@ theorem jumpSum_kernel_le_six_mul :
   have htow := differentExponent_tower F M L
   have hram := ramificationIndex_tower F M L
   have hjs : jumpSum (wild F L) ⊤ J + 2 * differentExponent M L ≤ 2 * differentExponent F L := _root_.GlobalTheory.PMon.Ram.jumpSum_add_two_mul_differentExponent_fixedField_le F L J
-  have key : jumpSum (wild F L) ⊤ J ≤ 2 * ((_root_.Ideal.ramificationIdx (_root_.IsLocalRing.maximalIdeal (_root_.Valuation.integer (_root_.ValuativeRel.valuation L))) (_root_.Valuation.integer (_root_.ValuativeRel.valuation M))) * differentExponent F M) := by omega
   have hML : (_root_.Ideal.ramificationIdx (_root_.IsLocalRing.maximalIdeal (_root_.Valuation.integer (_root_.ValuativeRel.valuation L))) (_root_.Valuation.integer (_root_.ValuativeRel.valuation M))) * differentExponent F M ≤ (_root_.Ideal.ramificationIdx (_root_.IsLocalRing.maximalIdeal (_root_.Valuation.integer (_root_.ValuativeRel.valuation L))) (_root_.Valuation.integer (_root_.ValuativeRel.valuation M))) * ((_root_.Ideal.ramificationIdx (_root_.IsLocalRing.maximalIdeal (_root_.Valuation.integer (_root_.ValuativeRel.valuation M))) (_root_.Valuation.integer (_root_.ValuativeRel.valuation F))) * (3 * e)) :=
     Nat.mul_le_mul_left _ hdM.le
   have : (_root_.Ideal.ramificationIdx (_root_.IsLocalRing.maximalIdeal (_root_.Valuation.integer (_root_.ValuativeRel.valuation L))) (_root_.Valuation.integer (_root_.ValuativeRel.valuation M))) * ((_root_.Ideal.ramificationIdx (_root_.IsLocalRing.maximalIdeal (_root_.Valuation.integer (_root_.ValuativeRel.valuation M))) (_root_.Valuation.integer (_root_.ValuativeRel.valuation F))) * (3 * e)) * 2 = 6 * E := by

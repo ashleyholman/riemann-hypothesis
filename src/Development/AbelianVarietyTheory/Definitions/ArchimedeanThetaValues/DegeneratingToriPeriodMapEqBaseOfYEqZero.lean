@@ -527,11 +527,9 @@ theorem finite_be_le (R : ℤ) : {μ : A.X | A.be μ μ ≤ R}.Finite := by
   refine (Set.finite_Icc (fun i => -(R + A.be (b i) (b i))) (fun i => R + A.be (b i) (b i))).subset ?_
   rintro _ ⟨μ, hμ, rfl⟩
   have hμ' : A.be μ μ ≤ R := hμ
-  have h0 := A.be_self_nonneg μ
   have key : ∀ i, -(R + A.be (b i) (b i)) ≤ A.be μ (b i) ∧ A.be μ (b i) ≤ R + A.be (b i) (b i) := fun i => by
     have h1 := A.be_self_nonneg (μ + b i)
     have h2 := A.be_self_nonneg (μ - b i)
-    have h3 := A.be_self_nonneg (b i)
     simp only [map_add (f := _), map_sub, LinearMap.add_apply, LinearMap.sub_apply, A.be_symm (b i) μ] at h1 h2
     constructor <;> omega
   exact ⟨fun i => (key i).1, fun i => (key i).2⟩

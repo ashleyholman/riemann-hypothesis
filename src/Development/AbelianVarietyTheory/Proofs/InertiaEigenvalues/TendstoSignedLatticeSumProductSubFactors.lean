@@ -1307,9 +1307,6 @@ theorem GlobalTheory.UnitLemma.Desc.hh_prod_tendsto : ∀ (K : UQ) (B₁ B₂ : 
     have e0 := a0.2 hwin hmid
     have e1 := a1.2 (win_inl S₁ S₂ L k p hwin) (mid_inl S₁ S₂ L k p hmid)
     have e2 := a2.2 (win_inr S₁ S₂ L k p hwin) (mid_inr S₁ S₂ L k p hmid)
-    have hA : (algebraMap K.O (B₁.A × B₂.A) a ^ (2 * k)) =
-        ((algebraMap K.O B₁.A a ^ (2 * k), algebraMap K.O B₂.A a ^ (2 * k)) : B₁.A × B₂.A) :=
-      Prod.ext (by simp) (by simp)
     have key : term (B₁.prod B₂) (Sum.elim (fun i => ((π₁ i, 1) : B₁.A × B₂.A)) (fun j => ((1, π₂ j) : B₁.A × B₂.A)))
           (S₁.map Function.Embedding.inl) (S₂.map Function.Embedding.inr)
           (algebraMap K.O (B₁.A × B₂.A) a ^ (2 * k)) 1 M =

@@ -171,9 +171,6 @@ theorem norm_term (K : FinExt l) (i : ℕ) (hi : 2 ≤ i) (ζ : Om l) (hζ : IsP
     rw [← pow_succ]
     congr 1
     omega
-  have hD' : (0 : ℝ) < (l : ℝ) ^ (i - 1 - 1) * ((l : ℝ) - 1) := by
-    apply mul_pos (pow_pos hl0 _)
-    linarith
   refine ⟨n, ?_, ?_⟩
   · rw [hn]
     congr 1

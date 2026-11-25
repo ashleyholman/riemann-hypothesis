@@ -27,7 +27,6 @@ theorem log_factorial_pow_mul_factorial_pow_le :
   have hn1 : (1 : ℝ) ≤ n := by exact_mod_cast hn
   have hf1 : (0 : ℝ) < (n.factorial : ℝ) := by exact_mod_cast n.factorial_pos
   have hf2 : (0 : ℝ) < (R₀.factorial : ℝ) := by exact_mod_cast R₀.factorial_pos
-  have hln : 0 ≤ Real.log (n : ℝ) := Real.log_nonneg hn1
   have hlR : 0 ≤ Real.log R := Real.log_nonneg hR
   have h0 : (0 : ℝ) ≤ (R₀ : ℝ) := Nat.cast_nonneg _
   have h1 : Real.log (n.factorial : ℝ) ≤ n * Real.log n := by

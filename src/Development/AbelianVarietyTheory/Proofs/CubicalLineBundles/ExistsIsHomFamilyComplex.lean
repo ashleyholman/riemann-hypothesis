@@ -40,7 +40,6 @@ theorem hermForm_of_isQuadLattice {g : ℕ} (hg : g = 1) {Λ : Submodule ℤ (Fi
     (hpos : ∀ z : Fin g → ℂ, z ≠ 0 → 0 < (hermForm Hm z z).re) {Ef : LinearMap.BilinForm ℤ Λ}
     (hE : ∀ a b : Λ, (Ef a b : ℝ) = (hermForm Hm a b).im) (hb : Function.Surjective Ef) (z w : ℂ) :
     hermForm Hm (fun _ => c * z) (fun _ => c * w) = 2 * z * starRingEnd ℂ w / Real.sqrt d := by
-  have hs : (0 : ℝ) < Real.sqrt d := Real.sqrt_pos.2 (by exact_mod_cast hd)
   set r : ℝ := (hermForm Hm (fun _ => c) (fun _ => c)).re with hr
   have hr0 : 0 < r := hpos _ fun h => hc (congrFun h ⟨0, by omega⟩)
   have hre : hermForm Hm (fun _ => c) (fun _ => c) = (r : ℂ) :=

@@ -458,7 +458,6 @@ theorem sq_le_exp (C A g T : ℕ) (G r L : ℝ) (hG : 1 ≤ G) (hT : 1 ≤ T) (h
       Real.exp (L + ((g : ℝ) * Real.log (8 + 32 * (g : ℝ) * (r / 2)) + 2 * (((C : ℝ) + 4) * A * Real.log (G * T)))) := by
   have hT' : (1 : ℝ) ≤ T := by exact_mod_cast hT
   have hGT : 1 ≤ G * T := one_le_mul_of_one_le_of_one_le hG hT'
-  have hx : (0 : ℝ) < 2 * (g : ℝ) * r + 1 := by positivity
   have h8 : (0 : ℝ) < 8 + 32 * (g : ℝ) * (r / 2) := by positivity
   have e1 : Real.exp ((g : ℝ) * Real.log (8 + 32 * (g : ℝ) * (r / 2))) = 8 ^ g * (2 * (g : ℝ) * r + 1) ^ g := by
     rw [Real.exp_nat_mul, Real.exp_log h8, ← mul_pow]; congr 1; ring
@@ -478,7 +477,6 @@ theorem sq_le_exp (C A g T : ℕ) (G r L : ℝ) (hG : 1 ≤ G) (hT : 1 ≤ T) (h
   have b3 : (3 : ℝ) ≤ 8 ^ g := by
     calc (3 : ℝ) ≤ 8 ^ 1 := by norm_num
       _ ≤ 8 ^ g := pow_le_pow_right₀ (by norm_num) hg
-  have hG0 : 0 ≤ G := by linarith
   calc G ^ (C * A * 2) * ((T : ℝ) * G) ^ (2 * (2 * g) * 2) * (3 * (2 * (g : ℝ) * r + 1) ^ g) * Real.exp L
       ≤ (G * T) ^ (2 * (C * A)) * (G * T) ^ (8 * A) * (8 ^ g * (2 * (g : ℝ) * r + 1) ^ g) * Real.exp L := by gcongr
     _ = _ := by ring

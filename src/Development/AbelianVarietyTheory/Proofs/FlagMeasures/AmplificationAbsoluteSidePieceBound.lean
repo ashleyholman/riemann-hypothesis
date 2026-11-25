@@ -281,7 +281,6 @@ theorem inv_bound {r : ℕ} (N : Matrix (Fin r) (Fin r) ℂ) (a : Fin r → ℝ)
   cases r with
   | zero => exact ⟨fun i => i.elim0, fun c => c.elim0⟩
   | succ n =>
-  have hdet0 : 0 < ‖N.det‖ := norm_pos_iff.2 hdet
   have hR0 : 0 ≤ R := by linarith
   have hcol : ∀ b, 0 ≤ eucl (fun d => (a d : ℂ) * N d b) := fun b => Real.sqrt_nonneg _
   have hainv0 : ∀ b, 0 ≤ (a b)⁻¹ := fun b => (inv_pos.2 (ha b)).le
@@ -667,7 +666,6 @@ theorem volume_product_le : ∀ (r : ℕ) (R₀ De : ℝ), 1 ≤ r → 1 ≤ R�
   have hx : (1 : ℝ) ≤ ((s + 1 : ℕ) : ℝ) := by exact_mod_cast hr
   generalize ((s + 1 : ℕ) : ℝ) = x at hx ⊢
   have hpi : Real.pi ≤ 4 := Real.pi_le_four
-  have hpi0 : 0 ≤ Real.pi := Real.pi_pos.le
   have h24 : (2 : ℝ) ≤ 4 := by norm_num
   have hms : 2 * m * s ≤ (s + 1) * s * s := Nat.mul_le_mul_right s hm
   calc _ ≤ ((4 : ℝ) * (R₀ ^ (2 * (s + 1)) * De) ^ 2) ^ m * ((4 * (x * R₀ ^ (4 * s + 2) * De ^ 2) ^ 2) ^ m * (4 * (x * R₀ ^ (4 * s + 2) * De ^ 2)) ^ (s + 1)) * ((4 * (x * R₀ ^ (2 * s + 1) * De) ^ 2) ^ (3 * (s + 1)) * 4 * (x * R₀ ^ (2 * s + 1) * De) ^ (2 * (s + 1) ^ 2 + 2 * (s + 1)) * 4 ^ ((s + 1) ^ 2)) := by
@@ -1209,7 +1207,6 @@ theorem vol_gram_codim_three : ∀ (k r : ℕ), 1 ≤ r → 2 * r + 6 ≤ k → 
   · refine le_trans (measure_mono fun B hB => ?_)
       (le_trans (key M (2 * y) (by positivity) (by positivity)) (ENNReal.ofReal_le_ofReal ?_))
     · exact ⟨hB.1, hB.2.2⟩
-    have hpi := Real.pi_pos
     have h1 : (1 / (s.factorial : ℝ)) ^ j ≤ ((Real.exp 1 / s) ^ s) ^ j :=
       pow_le_pow_left₀ (by positivity) (inv_factorial_le s hs1) j
     have h2 : M ^ (2 * j ^ 2) ≤ 4 * M ^ (2 * j ^ 2 + 2 * j) := by

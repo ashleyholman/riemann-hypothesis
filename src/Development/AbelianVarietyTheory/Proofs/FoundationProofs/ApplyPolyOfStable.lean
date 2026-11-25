@@ -191,7 +191,6 @@ theorem exists_fixed_near : ∀ (l : ℕ) [Fact l.Prime] (c : Coef l), ∃ c₁ 
     have h0 : k - c₁ = 0 := by omega
     simpa [Cg, h0] using hx
   · obtain ⟨y, hyH, hxy⟩ := hC (inertiaC c) x ‖((l : ℕ) : Qbar l) ^ k‖ (fun g hg => hfix g hg.1 hg.2)
-    have hlpos : (0 : ℝ) < l := by linarith
     have key : C * ‖((l : ℕ) : Qbar l) ^ k‖ ≤ ‖((l : ℕ) : Qbar l) ^ (k - c₁)‖ := by
       rw [norm_pow, norm_pow, hl]
       have e : (l : ℝ)⁻¹ ^ k = (l : ℝ)⁻¹ ^ (k - c₁) * (l : ℝ)⁻¹ ^ c₁ := by
@@ -920,10 +919,8 @@ theorem small_top (hW : IntVal W) (j : ℕ) (hj : 1 ≤ j) : Small (W := W) j �
   have ha1 : ((l : ℝ)⁻¹) ^ (n + 1) ≤ 1 / (4 * D) := (pow_le_pow_of_le_one hq0.le hq1.le (by omega)).trans hn.le
   have ha2 : ((l : ℝ)⁻¹) ^ (n + m + 1) ≤ 1 / (4 * D) := (pow_le_pow_of_le_one hq0.le hq1.le (by omega)).trans hn.le
   have ha3 : ((l : ℝ)⁻¹) ^ (n + m + 1) ≤ δ / (4 * D) := (pow_le_pow_of_le_one hq0.le hq1.le (by omega)).trans hm.le
-  have hX := norm_nonneg x
   set u := ε + 1 / (4 * D) * ‖x‖ with hu
   set v := ε + δ / (4 * D) * ‖x‖ with hv
-  have hu0 : 0 ≤ u := by positivity
   have hv0 : ε ≤ v := le_add_of_nonneg_right (by positivity)
   have k0 : ‖x - y₀‖ ≤ A * u := h₀.trans (by rw [hu]; gcongr)
   have k1 : ‖x - y‖ ≤ A * u := h₁.trans (by rw [hu]; gcongr)
@@ -1087,7 +1084,6 @@ theorem GlobalTheory.IntTate.integral_tate_inertia : ∀ (l : ℕ) [Fact l.Prime
   obtain ⟨ι, hι⟩ := exists_compat ℚ A hA
   obtain ⟨G, ⟨C, hC⟩, hG⟩ := small_finset (intVal_Kur (l := l)) j hj (F.image ι)
   have hl1 : (1 : ℝ) < l := by exact_mod_cast hl.out.one_lt
-  have hq0 : (0 : ℝ) < (l : ℝ)⁻¹ := inv_pos.mpr (by linarith)
   obtain ⟨c, hc⟩ := pow_unbounded_of_one_lt C hl1
   refine ⟨c, fun n x hx H => ?_⟩
   have : CharZero Ω := charZero_of_injective_algebraMap (algebraMap ℚ Ω).injective
@@ -1338,7 +1334,6 @@ theorem norm_le_of_cgA {A : ValuationSubring Ω} {j : Ω →+* Qbar l} (hj : ∀
 
 theorem val_l_lt_one {A : ValuationSubring Ω} {j : Ω →+* Qbar l} (hj : ∀ x, x ∈ A ↔ ‖j x‖ ≤ 1) :
     A.valuation (l : Ω) < 1 := by
-  have h0 : (l : Ω) ≠ 0 := fun h => l_ne_zero (l := l) (by rw [← map_natCast j, h, map_zero])
   by_contra hc
   have h1 : A.valuation (l : Ω)⁻¹ ≤ 1 := by
     rw [map_inv₀]; exact inv_le_one_of_one_le₀ (not_lt.1 hc)

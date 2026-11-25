@@ -58,7 +58,6 @@ theorem mean_prod_eq_pow : ∀ (Λ : AddSubgroup ℂ), (∃ w₁ w₂ : ℂ, Lin
   obtain ⟨hc, F, hFm, hF⟩ := exists_strict_domain Λ hΛ
   let ec : V ≃L[ℝ] (Fin r → ℂ) := e.toContinuousLinearEquiv
   let em : V ≃ᵐ (Fin r → ℂ) := ec.toHomeomorph.toMeasurableEquiv
-  have hem : ∀ x, em x = e x := fun _ => rfl
   have hAc : Countable A := by
     refine Function.Injective.countable
       (f := fun (a : A) (k : Fin r) => (⟨e a k, (hA a).1 a.2 k⟩ : Λ)) ?_

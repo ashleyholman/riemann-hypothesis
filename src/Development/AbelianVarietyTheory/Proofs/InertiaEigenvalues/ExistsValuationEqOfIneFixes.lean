@@ -104,7 +104,6 @@ theorem ramificationIdx_eq_one {K Ω L : Type} [Field K] [NumberField K] [Field 
   refine ⟨hwv, ?_⟩
   have hv0 := v.ne_bot
   have hw0 := w.ne_bot
-  have hP0 : P ≠ ⊥ := Ideal.ne_bot_of_liesOver_of_ne_bot hv0 P
   have := v.isMaximal
   have := w.isMaximal
   have : Finite (𝓞 K ⧸ v.asIdeal) := Ideal.finiteQuotientOfFreeOfNeBot _ hv0

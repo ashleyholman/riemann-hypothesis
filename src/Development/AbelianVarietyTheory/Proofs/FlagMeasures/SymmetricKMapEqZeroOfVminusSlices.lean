@@ -218,10 +218,7 @@ theorem jet_map_eq_zero : ∀ (V : Type) [NormedAddCommGroup V] [InnerProductSpa
     have hpos := nPos V n ε E lam g u j hgl hun hhi hfd hgap f hN
     rw [hre] at hpos
     have hcoef : 0 < 2 * ((j : ℝ) + 1) * (g - 2 * (n : ℝ)) := by
-      have h1 : (0 : ℝ) < (j : ℝ) + 1 := by positivity
-      have h2 : (0 : ℝ) < g - 2 * (n : ℝ) := by linarith
       positivity
-    have h4 : 2 * ((j : ℝ) + 1) * (g - 2 * (n : ℝ)) * ‖f‖ ^ 2 ≤ 0 := by nlinarith
     have h5 : ‖f‖ ^ 2 = 0 := le_antisymm (by nlinarith) (by positivity)
     simpa using h5
 

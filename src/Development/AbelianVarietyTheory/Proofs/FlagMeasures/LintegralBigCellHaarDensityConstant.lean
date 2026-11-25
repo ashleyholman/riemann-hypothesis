@@ -216,7 +216,6 @@ private theorem bigCell_mul_bigCell_star (k r : ℕ) (x : Fin r → ℂ) (hx : �
   ext i j
   rw [Matrix.mul_apply]
   have hj := j.isLt
-  have hi := i.isLt
   by_cases h1 : j.val < r
   · obtain ⟨a, ha⟩ : ∃ a : Fin r, a.val = j.val := ⟨⟨j.val, h1⟩, rfl⟩
     obtain ⟨p, hp⟩ : ∃ p : Fin (2 * r + k + 1), p.val = 2 * r + k - j.val := ⟨⟨2 * r + k - j.val, by omega⟩, rfl⟩
@@ -366,7 +365,6 @@ lemma lev_sw (i : Fin (2 * r + k + 1)) : lev k r (sw k r i) + lev k r i = 2 * r 
 
 lemma hpk_apply (i j : Fin (2 * r + k + 1)) : Hpk k r i j = if j = sw k r i then sg k r i else 0 := by
   have hi := i.isLt
-  have hj := j.isLt
   have hs := sw_val (k := k) (r := r) i
   unfold Hpk sg
   simp only [Fin.ext_iff]

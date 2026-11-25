@@ -250,8 +250,6 @@ theorem mul_star_anisotropic_proper : ∀ (F E : Type) [NontriviallyNormedField 
     rw [norm_smul] at hd1
     apply Real.le_sqrt_of_sq_le
     rw [le_div_iff₀ hc0]
-    have hzpos : 0 < ‖z‖ := norm_pos_iff.mpr hz0
-    have hdpos : 0 < ‖d‖ := norm_pos_iff.mpr hd0
 
     have hdz : (‖d‖ * ‖z‖) ^ 2 ≤ 1 := by
       have : 0 ≤ ‖d‖ * ‖z‖ := by positivity

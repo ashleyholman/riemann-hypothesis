@@ -96,8 +96,6 @@ theorem polyChart_smooth_fraction_lift : ∀ (K F₀ V : Type) [Field K] [Field 
   subst hR
   let e : MvPolynomial V R₀ ≃ₐ[K] (polyChartHom V R₀).range :=
     AlgEquiv.ofInjective _ (polyChartHom_injective V R₀)
-  have he : ∀ p, ((e p : (polyChartHom V R₀).range) : FractionRing (MvPolynomial V F₀))
-      = polyChartHom V R₀ p := fun p => rfl
   have heC : ∀ (a : R₀) (h : algebraMap F₀ (FractionRing (MvPolynomial V F₀)) a ∈
       (polyChartHom V R₀).range), (⟨_, h⟩ : (polyChartHom V R₀).range) = e (C a) :=
     fun a h => Subtype.ext (polyChartHom_C V R₀ a).symm

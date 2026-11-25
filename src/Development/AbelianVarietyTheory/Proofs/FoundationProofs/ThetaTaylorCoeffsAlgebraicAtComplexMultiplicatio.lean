@@ -596,7 +596,6 @@ theorem pow_smul_liftY (hG : admG1 D) {L : Submodule (𝓞 D.host.E) (Fin N → 
       (D.host.φ₀ ((ε : D.host.K) : D.host.E) • δ • embV D (tor0 D cc δ) (b i)) := by
     simp only [← Nat.cast_smul_eq_nsmul ℂ]
     funext τ i j
-    have hp' : (p : ℂ) ≠ 0 := by exact_mod_cast hp
 
     simp only [liftY, Pi.smul_apply, embV_apply, Finset.sum_apply, Matrix.smul_apply,
     Matrix.sum_apply, smul_eq_mul, map_mul, map_sum, map_div₀, map_pow,

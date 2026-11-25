@@ -22,7 +22,6 @@ theorem h1fGen_tied : ∀ (l : ℕ) [Fact l.Prime] (P : LocPrime l) (AI : LocAin
   obtain ⟨s, hs, hcard⟩ := _root_.GlobalTheory.H1fGeneratorsAlt.h1fT_generators l P AI hT K (↥LL.1) (↥(OL LL)) hO T hDR
   have hBK := _root_.GlobalTheory.BlochKatoTied.blochKatoDim_of_tied l P AI hT K LL hG.1 T.V T.ρ hcont hC
   refine ⟨s, hs, ?_⟩
-  have h0 : (0 : ℤ) ≤ (finrank ↥LL.1 ↥(H0V T.ρ) : ℤ) := by positivity
   set_option synthInstance.maxHeartbeats 200000 in
     have hc : ((s.card + finrank ↥LL.1 ↥(H0V T.ρ) : ℕ) : ℤ) ≤ ((finrank ↥LL.1 (FiniteCohomology (P.PD K) T.ρ) + finrank ↥LL.1 T.V : ℕ) : ℤ) := by
       exact_mod_cast hcard

@@ -938,7 +938,6 @@ theorem evalLaw_low : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpac
   intro k _ _ _ _ _ _ ψ ν hψ hν n n' _ _ _ _ c ρ M _ _ L hc hL l i hi hil E hfix hlow hEsub hlE
   unfold GlobalTheory.PartRed.EvalLaw
   intro b Φ
-  have hlc := l.isLt
   let r : Fin c := ⟨i.val - 1, by omega⟩
   have hr : r.val + 1 = i.val := by show i.val - 1 + 1 = i.val; omega
   have hrl' : r.val < l.val := by show i.val - 1 < l.val; omega

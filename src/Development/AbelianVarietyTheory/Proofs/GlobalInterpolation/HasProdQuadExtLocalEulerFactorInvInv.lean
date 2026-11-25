@@ -304,12 +304,10 @@ private theorem eulerFac_hasProd_and_primesOver_card_le_two {σ : E →ₐ[F] E}
     exact inv_anti₀ (by positivity) (pow_le_pow_right₀ (by linarith) hM)
   have hq4 : (q ^ 2)⁻¹ ≤ 1 / 4 := by
     rw [one_div]; exact inv_anti₀ (by norm_num) (by nlinarith)
-  have hx4 : x ≤ 1 / 4 := by linarith
   rcases _root_.GlobalTheory.EtaEulerProduct.inert_or_split h hs hE v with ⟨hF, hn, hQ⟩ | ⟨hF, hn, hQ⟩
   · set t : ℝ := (-1) ^ M * x with htdef
     have habs : |t| = x := by
       rw [htdef, abs_mul, abs_pow, abs_neg, abs_one, one_pow, one_mul, abs_of_pos hx0]
-    have ht : |t| ≤ 1 / 4 := habs ▸ hx4
     have hval : ∀ Q ∈ v.asIdeal.primesOver (𝓞 E), _root_.Formalism.HermitianLatticesTheory.eulerFac E M Q = (1 - t)⁻¹ := by
       intro Q hQm
       unfold _root_.Formalism.HermitianLatticesTheory.eulerFac

@@ -395,7 +395,6 @@ theorem norm_x_le_one_of_nsmul_eq_zero (K : Type) [NormedField K] [IsUltrametric
     (h0 : N • (WeierstrassCurve.Affine.Point.some x y h) = 0) : ‖x‖ ≤ 1 := by
   by_contra hx
   push Not at hx
-  have M0 : 0 ≤ ‖x‖⁻¹ := by positivity
   have hP : Near ‖x‖ (Affine.Point.some x y h) := le_refl _
   have key : ∀ k : ℕ, Near ‖x‖ (k • Affine.Point.some x y h) ∧
       ‖param (k • Affine.Point.some x y h) - (k : K) * (x / y)‖ ≤ ‖x‖⁻¹ := by

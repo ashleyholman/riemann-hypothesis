@@ -95,7 +95,6 @@ theorem exists_adj_selfDual_step : ∀ {R X M : Type} [CommRing R] [AddCommGroup
       smul_mem' := fun r a ha => ⟨A.smul_mem r ha.1, fun t ht => by
         rw [h.adj]
         exact ha.2 _ (T.smul_mem _ ht)⟩ }
-  have hS : ∀ a, a ∈ S ↔ a ∈ A ∧ ∀ t ∈ T, γ a t = 1 := fun a => Iff.rfl
   have hSA : S ≤ A := fun a ha => ha.1
   have hidx : A.toAddSubgroup.relIndex T.toAddSubgroup ≠ 0 := fun h0 =>
     hAB (AddSubgroup.relIndex_eq_zero_of_le_right (fun t ht => hTB ht) h0)

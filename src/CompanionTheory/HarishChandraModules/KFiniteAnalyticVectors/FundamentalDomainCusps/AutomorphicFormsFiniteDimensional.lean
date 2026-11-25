@@ -615,8 +615,6 @@ theorem adelic_cusp_of_infinite_cusp : CuspInf → CongK → CuspAdel := by
       · rw [indicator_of_notMem (show w.2 ∉ (Kp : Set I.Gf) from hw), indicator_of_notMem
           (show k * w.2 ∉ (Kp : Set I.Gf) from fun h => hw ((Kp.mul_mem_cancel_left hk).1 h))]
     rw [e1, ← mul_assoc ((g, f) : I.GA), show ((g, f) : I.GA) * (1, k) = (g, f * k) by simp]
-  have hind : Integrable ((Kp : Set I.Gf).indicator fun _ => (((μf Kp).toReal⁻¹ : ℝ) : ℂ)) μf :=
-    (integrable_indicator_iff hKo.measurableSet).2 (integrableOn_const hK1)
   have h0 := hv (fun g => h (g, s)) ⟨hhc.comp (by fun_prop), B, fun _ => hB _⟩
     (fun γ hγ g => by
       obtain ⟨xf, hxf, hGF⟩ := hMK s γ hγ

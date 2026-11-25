@@ -229,8 +229,6 @@ theorem exists_scalar {D : D7} (hI : Inp D) {cc : Ideal (𝓞 D.host.K)} {δ : �
   have hw1 : MI D cc 1 (P' * w.map (inc D) * Q) := by
     have := ((hb' _ _ hw).of_dvd (one_dvd _)).add hz0
     rwa [Matrix.mul_sub, Matrix.sub_mul, e2, sub_add_cancel] at this
-  have hd : (w - z').map (inc D) = w.map (inc D) - z'.map (inc D) := by
-    ext i j; simp
   have hd' : (z' - w).map (inc D) = z'.map (inc D) - w.map (inc D) := by
     ext i j; simp
   have hdiff : MI D cc m0 ((z' - w).map (inc D)) := by

@@ -802,7 +802,6 @@ theorem top_side_integral_tendsto_zero : ∀ (g : ℂ → ℂ) (K c : ℝ) (m : 
     Tendsto (fun S : ℝ => ∫ t in (0:ℝ)..1, g (Complex.I + t * (τ - Complex.I) + S * Complex.I)) atTop (𝓝 0) := by
   intro g K c m τ _ hc hg hτ
   set B : ℝ := 2 + ‖τ - Complex.I‖ with hB
-  have hB0 : 0 ≤ B := by positivity
   set F : ℝ → ℝ := fun S => |K| * Real.exp (-c * (1 + S)) * (B + S) ^ m with hF
   have hpt : ∀ S : ℝ, 0 ≤ S → ∀ t ∈ Set.uIoc (0:ℝ) 1,
       ‖g (Complex.I + t * (τ - Complex.I) + S * Complex.I)‖ ≤ F S := by
@@ -946,7 +945,6 @@ theorem eichler_tail : ∀ (w : ℕ) (F : ℍ → ℂ) (C c : ℝ), MDifferentia
   have hb3 := (_root_.GlobalTheory.vertRay_integral_expPow_bound (g j) C c w (τ : ℂ) (hg j).continuousOn hc (hgb j) hτ).2
   have hch : ‖(w.choose j : ℂ)‖ ≤ 2 ^ w := by
     rw [Complex.norm_natCast]; exact_mod_cast Nat.choose_le_two_pow w j
-  have hnn : 0 ≤ C * Real.exp (-c * τ.im) * (1 + ‖(τ:ℂ)‖) ^ w * M := (norm_nonneg _).trans hb3
   calc ‖(w.choose j : ℂ)‖ * ‖∫ s in Ioi (0:ℝ), g j ((τ : ℂ) + s * Complex.I)‖
       ≤ 2 ^ w * (C * Real.exp (-c * τ.im) * (1 + ‖(τ:ℂ)‖) ^ w * M) :=
         mul_le_mul hch hb3 (norm_nonneg _) (by positivity)
@@ -1207,7 +1205,6 @@ theorem _root_.GlobalTheory.HeckeFamilyMatrices.QConst.qconst : ∀ (w n : ℕ) 
       have := norm_add_le (τ : ℂ) (n : ℂ)
       rw [hτn, Complex.norm_natCast] at this
       linarith
-    have hn0 : (0 : ℝ) ≤ n := Nat.cast_nonneg n
     have e1 := hbound τ (by rw [hτim]; exact hy) ((1 + n) + y) (by rw [hτn]; linarith) x
     have e2 := hbound _ (by rw [hτ'im]; exact hy) ((1 + n) + y) hτ'n (x + n)
     rw [hτim] at e1
@@ -1377,7 +1374,6 @@ theorem strip_eval_decay : ∀ (w n : ℕ) (a : ℂ) (V : ℍ → ℂ[X]) (C' c 
       _ = (w + 1) * (K * 4 ^ w) * (τ.im ^ (2 * w) / Real.exp (c * τ.im)) := by
         rw [div_eq_mul_inv]; ring
   have hT0 : 0 ≤ (w + 1) * (K * 4 ^ w) * (τ.im ^ (2 * w) / Real.exp (c * τ.im)) := by positivity
-  have hr0 : 0 ≤ τ.im ^ (-(w : ℝ) / 2) := Real.rpow_nonneg hpos.le _
   have hr1 : τ.im ^ (-(w : ℝ) / 2) ≤ 1 := by
     refine Real.rpow_le_one_of_one_le_of_nonpos hy1 ?_
     have : (0 : ℝ) ≤ w := Nat.cast_nonneg w
@@ -1594,14 +1590,12 @@ private lemma exists_norm_eval_le_mul_im_rpow_of_slP_invariant (Γ : Subgroup SL
     have he := eval_eq_denom_pow_mul_eval_of_slP_invariant w V γ τ (hmem _) (hrel γ hγ τ)
     have hD := sl_denom_ne_zero γ τ
     set D := ((γ 1 0 : ℤ) : ℂ) * τ + ((γ 1 1 : ℤ) : ℂ) with hDdef
-    have hDpos : 0 < ‖D‖ := norm_pos_iff.2 hD
     have hx : (‖D‖ ^ (2 : ℕ)) ^ (-(w : ℝ) / 2) = (‖D‖ ^ w)⁻¹ := by
       rw [← Real.rpow_natCast ‖D‖ 2, ← Real.rpow_mul (norm_nonneg _),
         show ((2 : ℕ) : ℝ) * (-(w : ℝ) / 2) = -(w : ℝ) by push_cast; ring,
         Real.rpow_neg (norm_nonneg _), Real.rpow_natCast]
     rw [he, im_sl_smul_eq_im_div_normSq_denom, ← hDdef, Real.div_rpow τ.im_pos.le (Complex.normSq_nonneg _),
       Complex.normSq_eq_norm_sq, hx, norm_mul, norm_pow]
-    have hw : 0 < ‖D‖ ^ w := pow_pos hDpos w
     field_simp
   obtain ⟨C, hC⟩ := ModularGroup.exists_bound_of_subgroup_invariant_of_isBigO
     (f := fun τ : ℍ => ‖eval (τ : ℂ) (V τ)‖ * τ.im ^ (-(w : ℝ) / 2))

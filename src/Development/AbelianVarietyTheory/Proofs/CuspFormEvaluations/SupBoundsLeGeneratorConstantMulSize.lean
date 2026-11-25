@@ -29,7 +29,6 @@ theorem gc_arith (f r L A n s lam lp a b M : ℝ) (hf : 2 ≤ f) (hr : 6 ≤ r) 
   have hs3 : 13 ≤ s := by linarith
   have hAs : A ≤ s := by linarith
   have hns : n ≤ s := by linarith
-  have hFns : F * n ≤ s := by linarith
   have hZ : 24 ≤ F * L := by linarith [mul_le_mul hfr hL (by norm_num) (by linarith)]
   have hLZ : L ≤ F * L := le_mul_of_one_le_left (by linarith) (by linarith)
   have hrL : r * L ≤ F * L := mul_le_mul_of_nonneg_right hrf (by linarith)

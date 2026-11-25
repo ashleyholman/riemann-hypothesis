@@ -19,7 +19,6 @@ theorem nodeGap_poly {x Y n f m k r t N M L S c₁ c₂ H : ℝ} (hx : 200 ≤ x
       c₁ * r ^ 19 * f ^ 5 * L ≤ H ∧ 4 * N ^ 3 + 2 * t + 6 ≤ H ∧ c₂ * k * m ^ ((9 : ℝ) / 2) ≤ H ∧
       2 * M ^ 3 + t + 3 ≤ H ∧ 120 * r * m ^ ((3 : ℝ) / 2) ≤ H ∧ N * m ^ 10 ≤ H ∧ 16 * m * N ≤ H := by
   have hx1 : 1 ≤ x := by linarith
-  have hx0 : 0 ≤ x := by linarith
   have mono : ∀ a b : ℕ, a ≤ b → x ^ a ≤ x ^ b := fun a b h => pow_le_pow_right₀ hx1 h
   have hP : 0 ≤ x ^ 1299 := by positivity
   have hQ : x ^ 1299 ≤ x ^ 1299 * Y := le_mul_of_one_le_right hP hY
@@ -38,7 +37,6 @@ theorem nodeGap_poly {x Y n f m k r t N M L S c₁ c₂ H : ℝ} (hx : 200 ≤ x
     calc m ^ ((3 : ℝ) / 2) ≤ m ^ ((2 : ℕ) : ℝ) := Real.rpow_le_rpow_of_exponent_le hm1 (by norm_num)
       _ = m ^ 2 := Real.rpow_natCast _ _
       _ ≤ x ^ 2 := by gcongr
-  have hm0 : 0 ≤ m := by linarith
   have hN3 : N ^ 3 ≤ x ^ 1299 := by
     calc N ^ 3 ≤ (x ^ 402) ^ 3 := by gcongr
       _ = x ^ 1206 := by ring
@@ -144,7 +142,6 @@ theorem szRow_nodeGap : SzRow (fun C D L => (12 * L.sc.b / lStar L + 2 * D.R.t +
     have e : h0 L = (h0v L.sc ch : ℝ) := by
       unfold h0; rw [hV.eta_eq]; field_simp
     have := Nat.le_ceil (L.sc.x ^ ch)
-    have h0' : (0 : ℝ) ≤ (⌈L.sc.x ^ ch⌉₊ : ℕ) := Nat.cast_nonneg _
     rw [e]; unfold h0v; push_cast; linarith
   have hH : L.sc.x ^ 1300 * L.sc.x ^ cD ≤ h0 L := by
     refine le_trans ?_ hh0

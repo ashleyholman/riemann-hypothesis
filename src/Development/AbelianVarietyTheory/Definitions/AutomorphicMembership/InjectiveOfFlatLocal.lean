@@ -34,7 +34,6 @@ theorem exists_etale_local (V : Type) [CommRing V] [IsLocalRing V] [IsNoetherian
       (j : k →+* ResidueField W), Module.Finite V W ∧ Algebra.Etale V W ∧
       j.comp (algebraMap k₀ k) = (ResidueField.map (algebraMap V W)).comp φ := by
   let pb := Field.powerBasisOfFiniteOfSeparable k₀ k
-  have hm := minpoly.monic pb.isIntegral_gen
   have hs : ((minpoly k₀ pb.gen).map φ).Separable := Polynomial.Separable.map (Algebra.IsSeparable.isSeparable k₀ pb.gen)
   obtain ⟨g, hgm, hg, hdvd⟩ := Polynomial.exists_monic_irreducible_factor ((minpoly k₀ pb.gen).map φ) (fun h => by
     have := Polynomial.degree_eq_zero_of_isUnit h

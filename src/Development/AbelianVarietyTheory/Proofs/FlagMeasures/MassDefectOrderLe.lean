@@ -124,7 +124,6 @@ theorem mass_defect_order_le : ∀ {F : Type} [Field F] [ValuativeRel F] [Topolo
       push_cast
       ring
     rw [e]
-    have hn : (0 : ℝ) ≤ (S.q : ℝ) ^ S.a := zpow_nonneg (Nat.cast_nonneg _) _
     gcongr
   have s1 := (_root_.GlobalTheory.HL.sumData_mass_eq_sumCls L r k S (fun d Λ => S.be d Λ = β) (fun h hh d Λ hT hP => by
     have := (_root_.GlobalTheory.FrameAct.stabiliser_acts_on_terms L r k S d Λ hT h hh).2.2.2.2.2.1

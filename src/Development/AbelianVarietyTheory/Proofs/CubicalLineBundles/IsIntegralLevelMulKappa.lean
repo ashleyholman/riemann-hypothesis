@@ -131,9 +131,7 @@ theorem transv_model : ∀ (D : D7) (T : Core D) (h : LawsCore T) (j : ℕ), InR
         exact h0 ((Xx.cmType _).2 fun h1 => hc ⟨_, h1⟩)
     have h1 := Xx.ξ0_abs ⟨τ, hτ⟩
     rw [habs] at h1
-    have hN' : (0 : ℝ) < Ideal.absNorm D.host.ccK := by exact_mod_cast hN
     have hd' : (0 : ℝ) < D.host.d := by exact_mod_cast hd
-    have hs := Real.sqrt_pos.2 hd'
     have hk : Xx.k0 = 2 / ((Ideal.absNorm D.host.ccK : ℝ) * Real.sqrt D.host.d) := by
       rw [div_eq_mul_one_div, h1]; ring
     have hss := Real.mul_self_sqrt hd'.le

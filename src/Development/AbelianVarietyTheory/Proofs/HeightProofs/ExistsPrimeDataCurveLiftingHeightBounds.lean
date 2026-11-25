@@ -896,8 +896,6 @@ theorem exists_primeData_heights : ∀ (D : D7) (T : Top D) (h : LawsP T) (j : �
   obtain ⟨-, -, -, -, -, -, PLam, lNc, hPL, hlNc, hI1, w2, hw2, t2, ht2, hnz2, hs2⟩ := hH4
   have hPI : PI4 D j PLam lNc ≤ max 1 (PI4 D j (1009 * Zb D large₂) (81 * Zb D large₂ ^ 2)) :=
     (auxiliaryCuspFormConstant_monotone D j hPL hlNc).trans (le_max_right _ _)
-  have hsz : (0 : ℝ) ≤ wL.size := by linarith
-  have hdm : (0 : ℝ) ≤ (WeightFamilies.dimY D j : ℝ) := Nat.cast_nonneg _
   have hs2' : ∀ σ, Real.log ((recB h.toLawsCore).supN j w2 σ t2) ≤
       max 1 (PI4 D j (1009 * Zb D large₂) (81 * Zb D large₂ ^ 2)) * (WeightFamilies.dimY D j : ℝ) * wL.size := fun σ =>
     (hs2 σ).trans (by gcongr)

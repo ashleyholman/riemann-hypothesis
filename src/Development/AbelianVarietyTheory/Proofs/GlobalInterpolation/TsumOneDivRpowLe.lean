@@ -12,7 +12,6 @@ namespace GlobalTheory.LLower
 
 theorem tsum_one_div_rpow_le {σ : ℝ} (hσ : 1 < σ) :
     ∑' n : ℕ, 1 / ((n : ℝ) + 1) ^ σ ≤ σ / (σ - 1) := by
-  have hσ0 : 0 < σ := by linarith
   have anti : AntitoneOn (fun t : ℝ => t ^ (-σ)) (Set.Ici ((1 : ℕ) : ℝ)) := by
     intro x hx y hy hxy
     simp only [Set.mem_Ici, Nat.cast_one] at hx hy
@@ -86,9 +85,7 @@ theorem norm_LFunction_ge (q : ℕ) [NeZero q] (χ : DirichletCharacter ℂ q) (
     have hprod' : LSeries (fun n => (χ n : ℂ)) s * LSeries (fun n => χ n * (moebius n : ℂ)) s = 1 :=
       hprod
     rw [← norm_mul, hprod', norm_one]
-  have hd : 0 < s.re - 1 := by linarith
   rw [div_le_iff₀ hσ]
-  have hA : 0 ≤ ‖LSeries (fun n => (χ n : ℂ)) s‖ := norm_nonneg _
   calc s.re - 1 = (s.re - 1) * (‖LSeries (fun n => (χ n : ℂ)) s‖ *
         ‖LSeries (fun n => χ n * (moebius n : ℂ)) s‖) := by rw [hn, mul_one]
     _ ≤ (s.re - 1) * (‖LSeries (fun n => (χ n : ℂ)) s‖ * (s.re / (s.re - 1))) := by

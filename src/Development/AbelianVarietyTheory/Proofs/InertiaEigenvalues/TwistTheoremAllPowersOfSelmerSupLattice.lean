@@ -568,8 +568,6 @@ theorem admissibleIndexBoundAllPowers_of_conditions (D : Formalism.BasicNotions.
   have hε : 0 < eps' / C := div_pos heps hCpos
   generalize eps' / C = ε at hε hεC
   have hle : ∀ c : ℝ, c ≤ C → c * ε ≤ eps' := fun c hc => hεC ▸ mul_le_mul_of_nonneg_right hc hε.le
-  have c1 : (0 : ℝ) ≤ (SigG bkP i).card := Nat.cast_nonneg _
-  have c2 : (0 : ℝ) ≤ D.R.m := Nat.cast_nonneg _
   have c3 : (0 : ℝ) ≤ D.R.t * (4 * R) := by positivity
   have he0 := e_pos (l_ne_zero_Ok i 0).2.2 (l_not_unit i 0).2.2
   obtain ⟨M, hM, k, e, hk, hkM, he, Hev⟩ := exists_level i R Dd (2 + ∑ y, nB y) M₀ {s // goodS bkP i s}

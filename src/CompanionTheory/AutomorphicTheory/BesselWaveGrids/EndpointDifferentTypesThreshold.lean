@@ -767,9 +767,7 @@ theorem nfTieGen_of (hK : GCore) : NFTieGen := by
   set Λ : ℝ := ∑ q, ∑ s, ‖lam q s‖ ^ 2 with hΛ
   have hΛ0 : 0 ≤ Λ := Finset.sum_nonneg fun _ _ => Finset.sum_nonneg fun _ _ => sq_nonneg _
   set Cs : ℝ := ∑ s, Ct s with hCs
-  have hCs0 : 0 ≤ Cs := Finset.sum_nonneg fun s _ => hCt s
   set Cw : ℝ := ∑ ρ' : M.Ty P, |(Top.cW P p.l0 w a ρ').re| with hCw
-  have hCw0 : 0 ≤ Cw := Finset.sum_nonneg fun _ _ => abs_nonneg _
   refine ⟨Fintype.card ι, fun t => b (σ t).1 (σ t).2, fun t => u (σ t).1 (σ t).2, Cw * (Λ * Cs),
     fun t => hb _ _, fun t => hu _ _, ?_⟩
   intro F A hF hcc hA hOr hJ qq ρ c q hq hl hG

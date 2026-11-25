@@ -152,7 +152,6 @@ theorem exists_highest_vector {K V T : Type*} [Field K] [CharZero K] [AddCommGro
   have hadd : ht (κ + δ) = ht κ + ht δ := by
     simp only [ht, Pi.add_apply, mul_add, Finset.sum_add_distrib]
   have h2 := hmin _ hmem
-  have h3 : (k : ℕ) < l := hkl
   simp only [id] at h2
   omega
 

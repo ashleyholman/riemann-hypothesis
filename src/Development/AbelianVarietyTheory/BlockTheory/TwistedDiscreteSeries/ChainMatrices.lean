@@ -178,8 +178,6 @@ theorem isAuxiliaryHyperbolicPart_initialChainSpace : IsAuxiliaryHeckeCharacter 
     obtain ⟨a, ha⟩ := D.R.m_even
     unfold nAux Ranks.rS
     omega
-  have sym : ∀ x y, (D.sp.Y 0).hT x y = 0 → (D.sp.Y 0).hT y x = 0 := fun x y h => by
-    rw [← (D.sp.Y 0).herm.eq x y, h, map_zero]
   unfold IsAuxiliaryHeckeCharacter HSpace.hD
   rw [hρ]
   refine ⟨fun i hi l hl => ?_, fun i hi x => ?_, fun _ => ⟨D.sp.zm_norm, D.sp.zm_orth, fun i hi => ?_⟩⟩

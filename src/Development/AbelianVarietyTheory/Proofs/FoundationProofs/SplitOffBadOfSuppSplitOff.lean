@@ -246,7 +246,6 @@ theorem moved_of_hom {F E : Type} [Field F] [NumberField F] [Field E] [NumberFie
     (hP : ∀ x : 𝓞 E, x ∈ P.asIdeal ↔ Valued.v (φ x) < 1) : GlobalTheory.UnRep.Moved c P.asIdeal := by
   by_contra hn
   let σ : 𝓞 E ≃+* 𝓞 E := RingOfIntegers.mapRingEquiv c.toRingEquiv
-  have hσ : ∀ x : 𝓞 E, ((σ x : 𝓞 E) : E) = c x := fun _ => rfl
   have one : ∀ b : 𝓞 E, b ∉ P.asIdeal → Valued.v (φ b) = 1 := fun b hb =>
     le_antisymm (hint b) (not_lt.1 fun h => hb ((hP b).2 h))
   have key : ∀ b : 𝓞 E, b ∉ P.asIdeal → σ b ∉ P.asIdeal := fun b hb h => hn ⟨σ b, h, b, (hcc _).symm, hb⟩

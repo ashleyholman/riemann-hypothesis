@@ -615,7 +615,6 @@ theorem upper_half_growth : ∀ (n a : ℕ) (F : (Fin n → ℂ) → ℂ), Diffe
     simpa [logDom] using hs
   have hs₀' : ∀ k : Fin n, if (k : ℕ) < a then (s₀ k).re < 0 else ‖s₀ k‖ < 1 := by
     intro k; simp only [hs₀]; split_ifs <;> norm_num
-  have hs₀mem : s₀ ∈ logDom n a := by simpa [logDom] using hs₀'
   have hPmem : ∀ j, P j ∈ logDom n a := by
     intro j
     simp only [logDom, Set.mem_setOf_eq]

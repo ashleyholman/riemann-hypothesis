@@ -78,7 +78,6 @@ theorem poly {eps y : ℝ} (he : 0 < eps) (hy : 4 + 18 / eps ≤ y) :
   have e2 : 5 * (3 * y / eps) = y * (15 / eps) := by ring
   have h4 : y * (15 / eps) ≤ y * (18 / eps) :=
     mul_le_mul_of_nonneg_left (div_le_div_of_nonneg_right (by norm_num) he.le) (by linarith)
-  have h5 : 0 ≤ y * (18 / eps) := by positivity
   rw [e1, e2]
   constructor <;> nlinarith
 
@@ -130,7 +129,6 @@ theorem top_real {x b a c k aT bT bp b1 u1 uk s : ℝ} (hx1 : 1 ≤ x) (hb1 : 1 
     (hb1t : b1 - bT > (k - 1) / 2 + 3) (hb1e : b1 = bT + ((⌊bp / x⌋ : ℤ) : ℝ)) :
     s ≤ u1 ∧ u1 ≤ b ^ 2 ∧ 3 ≤ b1 + uk ∧ b1 / 2 ≤ -uk := by
   have hb0 : 0 ≤ b := by linarith
-  have hx0 : 0 ≤ x := by linarith
   have ha0 : 0 ≤ a := by rw [ha]; positivity
   have hab : b ≤ a := by rw [ha]; exact le_mul_of_one_le_left hb0 hx1
   have hdiv : a / c ≤ a := div_le_self ha0 hc

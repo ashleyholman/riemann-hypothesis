@@ -504,9 +504,6 @@ private lemma norm_conj_diag_apply_le (V Y : Matrix ι ι ℂ) (hV : Vᴴ * V = 
         have h1 := norm_apply_le_one_of_conjTranspose_mul_eq_one V hV k j
         have h2 := norm_apply_le_one_of_conjTranspose_mul_eq_one V hV l j
         have h3 := hY k l
-        have h4 := norm_nonneg (Y k l)
-        have h5 := norm_nonneg (V k j)
-        have h6 := norm_nonneg (V l j)
         calc ‖V k j‖ * ‖Y k l‖ * ‖V l j‖ ≤ 1 * ‖Y k l‖ * 1 := by gcongr
           _ ≤ δ := by linarith
     _ = (Fintype.card ι : ℝ) * Fintype.card ι * δ := by
@@ -635,7 +632,6 @@ theorem _root_.GlobalTheory.ClassFin.LogSqVar.first_variation (ι : Type) [Finty
     linarith
   obtain ⟨C, hC0, hg⟩ := _root_.GlobalTheory.ClassFin.log_sq_le_tangent_add_sq (m / 2) (by positivity)
   set n : ℝ := (Fintype.card ι : ℝ) with hndef
-  have hn : 0 ≤ n * n := mul_self_nonneg n
   refine ⟨C, (m / 2) / (n * n + 1), by positivity, ?_⟩
   rintro Y H' hY ⟨V, e, hV, hH', hB⟩
   obtain ⟨y, hy⟩ : ∃ y : ι → ℝ, y = fun j => Real.exp (e j) := ⟨_, rfl⟩
@@ -1134,7 +1130,6 @@ theorem _root_.GlobalTheory.ClassFin.exists_conj_harm_of_span : ∀ (ι : Type) 
         exact h1
       have hsum := Finset.sum_le_sum fun s (_ : s ∈ Finset.univ) => hbound s
       rw [Finset.sum_add_distrib, Finset.sum_add_distrib, ← Finset.mul_sum, ← Finset.mul_sum, ← Finset.mul_sum] at hsum
-      have hm' : ∑ s, Complex.re (Matrix.trace (H s * H s)) ≤ ∑ s, Complex.re (Matrix.trace (H'' s * H'' s)) := hm
       linarith
     have hL := eq_zero_of_nonneg_linear_add_quadratic hε0 hlin
     have hℓs : ∀ s, Matrix.trace (H s * ((h s)ᴴ * h s)⁻¹ *
@@ -1512,7 +1507,6 @@ theorem ss_transfer : ∀ (ι : Type) [Fintype ι] [DecidableEq ι] (S Γ : Set 
         invFun := fun v => P⁻¹ *ᵥ v
         left_inv := fun v => by simp [Matrix.mulVec_mulVec, h2]
         right_inv := fun v => by simp [Matrix.mulVec_mulVec, h1] }
-    have he : ∀ v, e v = P *ᵥ v := fun v => rfl
     have key : ∀ (x : Matrix ι ι ℂ) (v : ι → ℂ), (P * x * P⁻¹) *ᵥ (P *ᵥ v) = P *ᵥ (x *ᵥ v) := by
       intro x v
       rw [Matrix.mulVec_mulVec, Matrix.mulVec_mulVec, Matrix.mul_assoc, h2, Matrix.mul_one]

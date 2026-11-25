@@ -418,7 +418,6 @@ lemma conj_facts {k : UJ ε} (hk : umat k ∈ Kset ε) {X : Matrix (Fin n) (Fin 
     have h1 : umat k⁻¹ * umat k = 1 := by
       change (((k⁻¹ : UJ ε) : (Matrix (Fin n) (Fin n) ℂ)ˣ) : Matrix (Fin n) (Fin n) ℂ) * _ = 1
       rw [← Units.val_mul, ← Subgroup.coe_mul, inv_mul_cancel]; rfl
-    have h2 : star (umat k) * umat k = 1 := Matrix.mem_unitaryGroup_iff'.1 hku
     calc umat k⁻¹ = umat k⁻¹ * (umat k * star (umat k)) := by
             rw [Matrix.mem_unitaryGroup_iff.1 hku, mul_one]
       _ = star (umat k) := by rw [← mul_assoc, h1, one_mul]
@@ -426,7 +425,6 @@ lemma conj_facts {k : UJ ε} (hk : umat k ∈ Kset ε) {X : Matrix (Fin n) (Fin 
     have := congrArg star hkJ
     simp only [star_mul, Matrix.star_eq_conjTranspose, Jm_conjTranspose] at this
     simpa [Matrix.star_eq_conjTranspose] using this
-  have hJ : (Jm ε)ᴴ = Jm ε := Jm_conjTranspose ε
   set K := umat k
   rw [hinvk]
   refine ⟨?_, ?_, ?_⟩

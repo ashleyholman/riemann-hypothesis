@@ -313,7 +313,6 @@ theorem main : ∀ (l : ℕ) [Fact l.Prime] (Ω : Type) [Field Ω] [Algebra ℚ 
           exact add_comm _ _
         · simp
         · simp }
-  have hM : ∀ s : P, M s = aff W z s := fun _ => rfl
   have hcont : ∀ i j, Continuous fun s => aff W z s i j := by
     have hWc : Continuous fun s => mat W s := Units.continuous_val.comp hW
     rintro (i | i) (j | j)

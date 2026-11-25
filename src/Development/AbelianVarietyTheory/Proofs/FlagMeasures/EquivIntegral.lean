@@ -376,7 +376,6 @@ theorem QQ_le (Z : GramM D) {b C Y : ℝ} (hH : 1 ≤ b ^ (C * (D.R.m : ℝ) ^ 2
     QQ D Z ≤ (Y * b ^ (C * (D.R.m : ℝ) ^ 2)) ^ ((D.R.rS + 1) * D.R.f) * sizeZ D b C Z := by
   have hrd : 1 ≤ D.host.rdE := GlobalTheory.RealPlaces.one_le_rdE D
   have hY1 : 1 ≤ Y := le_trans (one_le_pow₀ hrd) hY
-  have hH0 : 0 < b ^ (C * (D.R.m : ℝ) ^ 2) := by linarith
   have hc : 1 ≤ Y * b ^ (C * (D.R.m : ℝ) ^ 2) := one_le_mul_of_one_le_of_one_le hY1 hH
   have key : ∀ l ∈ Finset.Icc 1 (D.R.rS + 1), ∀ τ, max 1 ‖embS D τ (leadMinorE Z l)‖ ≤
       (Y * b ^ (C * (D.R.m : ℝ) ^ 2)) * max 1 (absDl D Z l τ / b ^ (C * (D.R.m : ℝ) ^ 2)) := by
@@ -506,7 +505,6 @@ theorem G_inv_le (Z : GramM D) (h : ∀ a b, IsIntegral ℤ (Z a b)) (hr : 1 ≤
         le_mul_of_one_le_left (by positivity) hx1
       have hTP := mul_le_mul_of_nonneg_left (hy2.trans hyP) (by positivity : (0:ℝ) ≤ (T : ℝ) * T')
       have hTP' := mul_le_mul_of_nonneg_left hP1 (by positivity : (0:ℝ) ≤ (T : ℝ) * T')
-      have hn0' : 0 ≤ (T : ℝ) * T' * ‖embS D τ (leadMinorE Z D.R.rS)‖ ^ 2 := by positivity
       refine max_le (by nlinarith) (abs_le.mpr ⟨by linarith [sq_nonneg ‖embS D τ (leadMinorE Z (D.R.rS + 1))‖], by nlinarith⟩)
     calc PP D (leadMinorE Z (D.R.rS + 1) * star (leadMinorE Z (D.R.rS + 1)) - ((T : D.host.E) * (T' : D.host.E)) * (leadMinorE Z D.R.rS * star (leadMinorE Z D.R.rS))) = ∏ τ, max 1 ‖embS D τ (leadMinorE Z (D.R.rS + 1) * star (leadMinorE Z (D.R.rS + 1)) - ((T : D.host.E) * (T' : D.host.E)) * (leadMinorE Z D.R.rS * star (leadMinorE Z D.R.rS)))‖ := rfl
       _ ≤ ∏ τ, ((2 * T * T') * ((max 1 ‖embS D τ (leadMinorE Z (D.R.rS + 1))‖) ^ 2 * (max 1 ‖embS D τ (leadMinorE Z D.R.rS)‖) ^ 2)) :=
@@ -769,7 +767,6 @@ theorem height_bounds : ∀ Cg cb Cu cT CT C0 A : ℝ, ∃ C : ℝ, 1 ≤ C ∧ 
       have h1 : (D.R.f : ℝ) ≤ (D.R.k : ℝ) * large₂.sc.b := hfk'.trans (le_mul_of_one_le_right (by linarith) hb1)
       have h2 : (D.R.k : ℝ) * large₂.sc.b ≤ ((D.R.k : ℝ) * large₂.sc.b) ^ 8 :=
         le_self_pow₀ (one_le_mul_of_one_le_of_one_le hk1 hb1) (by norm_num)
-      have h3 : ((D.R.k : ℝ) * large₂.sc.b) ^ 8 ≤ large₂.sc.b ^ Cg := hkb.trans hg1
       have h4 : large₂.sc.b ^ Cg ≤ large₂.sc.b ^ N := by
         rw [← Real.rpow_natCast]
         exact Real.rpow_le_rpow_of_exponent_le hb1 hCg

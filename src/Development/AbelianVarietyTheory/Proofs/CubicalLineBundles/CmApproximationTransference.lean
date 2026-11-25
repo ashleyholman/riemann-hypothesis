@@ -382,8 +382,6 @@ theorem cmApproximation_transference : ReciprocityTheory.ChartRestriction.G.FD.C
     push_cast
     ring
   have htt : (t : ℝ) ≤ (t : ℝ) ^ 2 := by exact_mod_cast Nat.le_self_pow two_ne_zero t
-  have ht0 : (0 : ℝ) ≤ t := Nat.cast_nonneg t
-  have hq : 0 < d / la := by positivity
   have hbound : ((2 * t : ℕ) : ℝ) ^ 2 / (2 * la / d) = 2 * (t : ℝ) ^ 2 * (d / la) := by
     push_cast
     field_simp
@@ -398,7 +396,6 @@ theorem cmApproximation_transference : ReciprocityTheory.ChartRestriction.G.FD.C
     push_cast
     have h1 := mul_le_mul_of_nonneg_right htt
       (by positivity : (0 : ℝ) ≤ (t : ℝ) ^ 4 * (d / la) ^ 2)
-    have h2 : (0 : ℝ) ≤ (t : ℝ) ^ 6 * (d / la) ^ 2 := by positivity
     nlinarith
   · obtain ⟨y, hy, hyli, hyn⟩ := exists_short_family B _ hinner' _ hlam hmin'
     choose l hl hly using fun i => hBmem _ (hy i)

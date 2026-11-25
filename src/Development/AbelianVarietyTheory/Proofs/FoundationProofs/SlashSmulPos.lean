@@ -189,7 +189,6 @@ theorem det_ulFam (l : ℕ) (j : Fin l) : (ulFam l j).det = l := by simp [ulFam,
 
 theorem ul_slash_dg (N : ℕ) (k : ℤ) (l : ℕ) (hl : 0 < l) (f : CuspForm (CongruenceSubgroup.Gamma1 N) k) :
     UlF k l (⇑f ∣[k] toGL (dg l 1)) = ((l : ℂ) ^ (k - 1)) • ⇑f := by
-  have hl0 : (0 : ℤ) < l := by exact_mod_cast hl
   have hl' : (l : ℂ) ≠ 0 := by exact_mod_cast hl.ne'
   unfold UlF hkF
   have key : ∀ j : Fin l, (⇑f ∣[k] toGL (dg l 1)) ∣[k] toGL (ulFam l j) = ((l : ℂ) ^ (k - 2)) • ⇑f := by
@@ -712,7 +711,6 @@ lemma not_dvd (hN : 0 < N) (hl : l.Prime) : ¬ ((N : ℤ) * l ∣ N) := by
   intro hd
   have h1 := Int.le_of_dvd (by exact_mod_cast hN) hd
   have h2 : (2 : ℤ) ≤ l := by exact_mod_cast hl.two_le
-  have h3 : (0 : ℤ) < N := by exact_mod_cast hN
   nlinarith
 
 lemma rep_inj (hN : 0 < N) (hl : l.Prime) (o₁ o₂ : Option (Fin l))

@@ -598,7 +598,6 @@ theorem gauss_sign {R : Type} [CommRing R] (σ : R →+* R) (hσ : ∀ a, σ (σ
   intro M _ _ _ φ β hn h
   have h' := h
   obtain ⟨h0, h1, h2, h3, h4, h5⟩ := h'
-  have hc := beta_comm h0 h1
   have hz := beta_zero h0 h1 h2
   rcases eq_bot_or_exists_atom_le (⊤ : Submodule R M) with htop | ⟨X, hX, -⟩
   · haveI : Subsingleton M := ⟨fun a b => by
@@ -1181,7 +1180,6 @@ theorem relIndex_image_one_sub_complexLinearEquiv {W : Type} [NormedAddCommGroup
       (((A.map (LinearMap.id - (u.symm : W →ₗ[ℂ] W)).toAddMonoidHom).relIndex A : ℕ) : ℝ) =
         (A₁.relIndex A : ℝ) * ‖LinearMap.det (LinearMap.id - (u.symm : W →ₗ[ℂ] W))‖ ^ 2 := by
   set g : W →ₗ[ℂ] W := LinearMap.id - (u.symm : W →ₗ[ℂ] W) with hg
-  have hgy : ∀ y, g y = y - u.symm y := fun y => rfl
   let f : W ≃ₗ[ℝ] W := (LinearMap.equivOfDetNeZero g hdet).restrictScalars ℝ
   have hfg : (f : W →ₗ[ℝ] W) = g.restrictScalars ℝ := by
     ext1 y; simp [f]

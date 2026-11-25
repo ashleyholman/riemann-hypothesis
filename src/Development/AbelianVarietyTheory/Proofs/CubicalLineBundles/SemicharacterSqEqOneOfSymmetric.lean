@@ -201,8 +201,6 @@ lemma neg_eq (hv : ValueRules) (hL : L.IsLB) (hs : Out.Sym A L)
   rw [hTp, h.2.2.2 l _ z (hch _), h.2.2.2 (-l) _ (-z) (hch _), ← e]
   simp only [hermForm, Matrix.zero_mulVec, dotProduct_zero, mul_zero, add_zero, Complex.exp_zero,
     Submodule.coe_neg, star_neg, Matrix.mulVec_neg, dotProduct_neg, neg_dotProduct, neg_neg]
-  have n4 := Complex.exp_ne_zero (Real.pi * (z ⬝ᵥ Hm.mulVec (star (l : Fin g → ℂ))) +
-        Real.pi / 2 * ((l : Fin g → ℂ) ⬝ᵥ Hm.mulVec (star (l : Fin g → ℂ))))
   field_simp
 
 end SymmetricSemicharacter

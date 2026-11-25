@@ -63,7 +63,6 @@ theorem norm_unit (c : Coef l) (u : c.Oˣ) : ‖((u : c.O) : PadicAlgCl l)‖ = 
   have h2 := norm_le_one_of_mem c (u : c.O).2
   have h3 := norm_le_one_of_mem c ((u⁻¹ : c.Oˣ) : c.O).2
   have h4 := norm_nonneg ((u : c.O) : PadicAlgCl l)
-  have h5 := norm_nonneg (((u⁻¹ : c.Oˣ) : c.O) : PadicAlgCl l)
   refine le_antisymm h2 ?_
   nlinarith
 

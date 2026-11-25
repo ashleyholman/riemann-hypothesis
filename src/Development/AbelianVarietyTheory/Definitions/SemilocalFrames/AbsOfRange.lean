@@ -49,7 +49,6 @@ theorem sizes_of (D : D7) (large₂ : SizeData₂ D) (C' Cl Cg cb Cu cT CT C0 : 
     exact le_trans (by nlinarith) (le_self_pow₀ hkb (by norm_num))
   · have h1 : 0 < D.host.ka := div_pos Real.pi_pos (by linarith)
     have h2 : 0 < D.host.rdE := by linarith
-    have h3 : 0 < gg D := by linarith
     have h4 : 0 < VV D τ := mul_pos (D.dsig_pos τ) (Finset.prod_pos fun i _ => by positivity)
     have h5 := vand_pos (hu w τ)
     unfold Tcrit; positivity

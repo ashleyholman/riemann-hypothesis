@@ -793,7 +793,6 @@ theorem localIntegralSingleBlock : LocalIntegralSingleBlock := by
   have hS : MeasurableSet (suppSet t 𝒪[F] (ϖ : F) P) :=
     measurableSet_suppSet hO ϖ.2 hϖ0 hloc hKP hP
   have hN : normSq = ((ν (suppSet t 𝒪[F] (ϖ : F) P)).toReal : ℂ) := weilPairing_self_eq_measure_support hS ρ hρ1 ν
-  have hqR : (q : ℝ) ≠ 0 := Nat.cast_ne_zero.2 hq0
   have hvol : (ν (suppSet t 𝒪[F] (ϖ : F) P)).toReal =
       (Nat.card (residueImage P) : ℝ) * ((q : ℝ) ^ (r ^ 2))⁻¹ * ((q : ℝ) ^ (r * t))⁻¹ := by
     have h := measure_suppSet hO ϖ.2 hϖ0 hloc hKP hP ν

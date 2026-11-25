@@ -30,7 +30,6 @@ theorem m_pow_five_mul_f_mul_L_le (s : Scale) (R : Ranks) (h : RankVal s R) :
   have hf : (R.f : ℝ) ≤ 4 * s.x ^ (2 + 8 * s.eps + s.eps / 100) := by
     simp only [Ranks.f]; push_cast; linarith
   have hL : s.L = s.x ^ s.eps := rfl
-  have hL0 : 0 ≤ s.x ^ s.eps := by positivity
   calc (R.m : ℝ) ^ 5 * R.f * s.L
       ≤ (32 * s.x ^ (5 / 2 - 5 * s.eps / 16)) * (4 * s.x ^ (2 + 8 * s.eps + s.eps / 100)) * s.x ^ s.eps := by
         rw [hL]; gcongr
@@ -57,7 +56,6 @@ theorem exists_injective_words : ∀ eps CG CF : ℝ, 0 < eps → eps < 1 / 52 �
   have hxX : s.x ≤ X := by
     calc s.x = s.x ^ (1 : ℝ) := (Real.rpow_one _).symm
       _ ≤ X := Real.rpow_le_rpow_of_exponent_le hx1.le (by linarith)
-  have hX1 : 1 ≤ X := by linarith
   have hkX : K * X ≤ R.k := by
     refine le_trans ?_ hk
     have : s.x ^ (9 / 2 + 10 * eps) = s.x ^ eps * X := by

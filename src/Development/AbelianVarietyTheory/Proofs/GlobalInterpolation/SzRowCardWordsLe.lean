@@ -19,7 +19,6 @@ theorem words_real_bound {x e G F m n : ℝ} {k : ℕ} (hx : 1 < x) (he : 0 < e)
   have hxy : x ≤ y := by
     calc x = x ^ (1 : ℝ) := (Real.rpow_one x).symm
       _ ≤ y := Real.rpow_le_rpow_of_exponent_le hx.le (by linarith)
-  have hy1 : 1 ≤ y := by linarith
   have hm' : m ≤ 2 * x ^ (1 / 2 : ℝ) := by
     refine hm.trans ?_
     rw [← Real.sqrt_eq_rpow]

@@ -136,7 +136,6 @@ theorem exists_unit_neg : ∃ u : (ZMod H.condN)ˣ, (u : ZMod H.condN).val ≡ 1
   have hsq : Nat.Coprime H.QS H.q := Nat.Coprime.coprime_dvd_right (dvd_mul_right _ _) H.QS_coprime
   have hcop : Nat.Coprime (H.QS * H.d) H.q := Nat.Coprime.mul_left hsq hdq
   obtain ⟨x, hx1, hx2⟩ := Nat.chineseRemainder hcop 1 (H.q - 1)
-  have hq2 : 2 ≤ H.q := hq.two_le
   have hxm : Nat.Coprime x (H.QS * H.d) := by
     unfold Nat.Coprime; rw [Nat.ModEq.gcd_eq hx1]; simp
   have hxq : Nat.Coprime x H.q := by

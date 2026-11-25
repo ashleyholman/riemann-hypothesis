@@ -36,7 +36,6 @@ theorem blockC'_between (hm : G.NearMid) (hs : 1 ≤ G.s) (hg : G.s < G.ga) {i :
 theorem a_add_le {i j : ℕ} (h : i < j) : G.a j + G.ga ≤ G.a i := by
   have e := G.a_sub_a i j
   have h1 : (i : ℚ) + 1 ≤ j := by exact_mod_cast h
-  have h2 : (0 : ℚ) ≤ G.ga := by positivity
   nlinarith
 
 theorem cloudHalf_lt {x : ℚ} (hx : x ∈ G.cloudHalf) : x < G.a G.m := by
@@ -46,7 +45,6 @@ theorem cloudHalf_lt {x : ℚ} (hx : x ∈ G.cloudHalf) : x < G.a G.m := by
     · exact le_rfl
     · exact (G.v_anti 2 i le_rfl h h2).le
   have h4 : (G.v i : ℚ) ≤ G.v 2 := by exact_mod_cast h3
-  have h5 : (0 : ℚ) ≤ G.ga := by positivity
   rw [G.a_m, GridData.vHalf]; linarith
 
 theorem card_weightX_zero (hm : G.NearMid) (hs : 1 ≤ G.s) (hg : G.s < G.ga) : (G.weightX 0).card = G.nTop := by

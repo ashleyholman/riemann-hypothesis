@@ -150,7 +150,6 @@ theorem net_size_cubic : ∀ (f r L M w k0 dE s NA NC g : ℝ), 1 ≤ f → 1 �
   have hL0 : 0 < L := by linarith
   have hfL : L ≤ f * L := le_mul_of_one_le_left hL0.le hf
   set B := max 1 ((2 * f * r) ^ 4 * dE ^ 2 / (4 * ε)) with hBdef
-  have hB1 : 1 ≤ B := le_max_left _ _
   have h4 : 0 ≤ Real.log 4 := Real.log_nonneg (by norm_num)
   have hB : Real.log B ≤ 65 * (f * L) := by
     rcases le_total 1 ((2 * f * r) ^ 4 * dE ^ 2 / (4 * ε)) with h | h
@@ -289,7 +288,6 @@ theorem exists_net_all_components_max : ∀ (E : Type) [Field E] [NumberField E]
   ·
     have h2 : ∀ k, 16 * ((N k).card : ℝ) ≤ Real.exp (1000 * ((fdeg E : ℝ) * r * L) ^ 3) := by
       intro k
-      have hc : (0 : ℝ) < (N k).card := by exact_mod_cast Finset.card_pos.2 (hNne k)
       exact (Real.log_le_iff_le_exp (by positivity)).1 (hNsz k)
     have h1 : (NN.card : ℝ) ≤ ∑ k : Comp, ((N k).card : ℝ) := by
       have : NN.card ≤ ∑ k : Comp, (N k).card := by

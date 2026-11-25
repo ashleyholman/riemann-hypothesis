@@ -139,7 +139,6 @@ theorem fibre_volume : ∀ (k r j : ℕ) (hj : j ≤ r) (z z' : (Fin (2 * r + k 
   have hmap : (lebN k r).map T = lebN k r := map_twoEquiv u₂ u₀ (hH.2.2.2 _ hn₂) (hU.1 _ hn₀)
   have hae : ∀ᵐ n ∂(lebN k r), Matrix.of n ∈ Nset k r := hH.2.2.1
   have hTof : ∀ n, (Matrix.of (T n) : Mat k r) = n₂ * Matrix.of n * n₀ := fun n => rfl
-  have hγ : n₁ * g₀ * n₂ ∈ GG k r := _root_.GlobalTheory.Amp.NfComp.G_mul (_root_.GlobalTheory.Amp.NfComp.G_mul hn₁.1 hg₀.1) hn₂.1
   have hY : ∀ n : Mt k r, Matrix.of n ∈ Nset k r →
       Yj k r hj z z' (n₁ * g₀ * n₂) (Matrix.of n * g₁) = Yj k r hj z z' g₀ (Matrix.of (T n) * A) := by
     intro n hn
@@ -512,7 +511,6 @@ theorem dyad_piece_real (r k e n : ℕ) (H De N sg u v w : ℝ) (hr : 1 ≤ r) (
     (hNR : 1 ≤ N * (u * (2 * H)) ^ (2 * r)) (hsu : sg ≤ u ^ r) :
     (u * (2 * H)) ^ e * w ^ (k + 1) * (u ^ (e + 4 * r + 1 + n))⁻¹ ≤
       (2 * H) ^ (e + 4 * r) * De ^ 2 * N ^ (k + 1) * sg ^ (-((n : ℝ) / r)) * (u⁻¹ * v) := by
-  have hr' : (0:ℝ) < r := by exact_mod_cast hr
   have h1 : (u ^ n)⁻¹ ≤ sg ^ (-((n : ℝ) / r)) := by
     rw [Real.rpow_neg (by linarith)]
     apply inv_anti₀ (by positivity)
@@ -555,7 +553,6 @@ theorem dyadic_summation : ∀ (X : Type) [MeasurableSpace X] (ν : Measure X) (
     * sg ^ (-((n : ℝ) / r))) with hC
   have hC0 : 0 ≤ C := by positivity
   let M : ℕ → ℕ → ℝ := fun i i' => (2 ^ (i + i' + 1) * H₁) ^ r * De
-  have hM0 : ∀ i i', 0 < M i i' := fun i i' => by positivity
   let P : ℕ × ℕ × ℕ × ℕ → Set X := fun p => {x |
     (0 ≤ A x ∧ 0 ≤ B x ∧ 1 ≤ S x ∧ 1 ≤ S' x ∧ 0 < Y x ∧ 0 < Y' x ∧ Y x * Y' x * D ≤ 2 ^ j ∧ D ≤ (S x * S' x) ^ r ∧ Y x ≤ max (S x) (S' x) ^ r * De ∧ Y' x ≤ max (S x) (S' x) ^ r * De ∧ sg ≤ max 1 ((S x * S' x) ^ r / (2 * H₁) ^ (2 * r))) ∧
     (S x ≤ 2 ^ (p.1 + 1) * H₁ ∧ (p.1 = 0 ∨ 2 ^ p.1 * H₁ < S x)) ∧
@@ -586,7 +583,6 @@ theorem dyadic_summation : ∀ (X : Type) [MeasurableSpace X] (ν : Measure X) (
     · rw [he]; simp
     obtain ⟨⟨-, -, s1, s2, y1, y2, g1, g2, -, -, g3⟩, ⟨b1, -⟩, ⟨b2, -⟩, ⟨c1, -⟩, ⟨c2, -⟩⟩ := hx
     simp only at b1 b2 c1 c2 ⊢
-    have hm := hM0 i i'
     set y : ℝ := M i i' / 2 ^ (a + 1) with hy
     set y' : ℝ := M i i' / 2 ^ (b + 1) with hy'
     have hy0 : 0 < y := by positivity
@@ -630,7 +626,6 @@ theorem dyadic_summation : ∀ (X : Type) [MeasurableSpace X] (ν : Measure X) (
       calc S x * S' x ≤ (2 ^ (i + 1) * H₁) * (2 ^ (i' + 1) * H₁) := by
             apply mul_le_mul b1 b2 (by linarith) (by positivity)
         _ = _ := by ring
-    have hSS0 : 0 ≤ S x * S' x := mul_nonneg (by linarith) (by linarith)
     have hSSr : (S x * S' x) ^ r ≤ (2 ^ (i + i')) ^ r * (2 * H₁) ^ (2 * r) := by
       rw [pow_mul, ← mul_pow]; gcongr
     have key := dyad_piece_real r k e n H₁ De (2 ^ j / D) sg (2 ^ (i + i')) ((2 ^ (a + b))⁻¹)
@@ -1014,7 +1009,6 @@ theorem bound_of_split {k r j : ℕ} (hj : j ≤ r) {z z' : Fin (2 * r + k + 1) 
   obtain ⟨u₂, hu₂, hv₂⟩ := s₂ y₂ hy₂
   have le : ∀ a : Fin r, Low r (bvec (eI k r a)) := fun a => low_of_mem (Submodule.subset_span ⟨a, rfl⟩)
   have lu₁ : Low r u₁ := fun i hi => hu₁ i (hj.trans hi)
-  have lu₂ : Low r u₂ := fun i hi => hu₂ i (hj.trans hi)
   obtain ⟨α, hα⟩ : ∃ α : Fin j → ℂ, u₁ = ∑ a, α a • bvec (eI k r (Fin.castLE hj a)) := ⟨_, low_eq hj hu₁⟩
   obtain ⟨β, hβ⟩ : ∃ β : Fin j → ℂ, u₂ = ∑ a, β a • bvec (eI k r (Fin.castLE hj a)) := ⟨_, low_eq hj hu₂⟩
   have r₁ : ∀ v, Low r v → herm (Hpk k r) (γ *ᵥ y₁) v = herm (Hpk k r) (γ *ᵥ u₁) v := fun v hv => by
@@ -1353,8 +1347,6 @@ theorem arith (k r j q : ℕ) {H₁ De D sg : ℝ} (hj : 1 ≤ j) (hH : 1 ≤ H�
   rw [show 8 * Real.pi * Real.exp 1 / (m : ℝ) = 8 * (Real.pi * Real.exp 1 / m) by ring, mul_pow (8 : ℝ), div_pow _ D,
     pow_add De]
   generalize Real.pi * Real.exp 1 / (m : ℝ) = P at hP ⊢
-  have hH0 : 0 ≤ H₁ := zero_le_one.trans hH
-  have hDe0 : 0 ≤ De := zero_le_one.trans hDe
   have hc : 0 ≤ 16 * (4 * r + 4 : ℝ) * (4 * r : ℝ) ^ (4 * r ^ 2) * (2 * H₁) ^ (16 * r ^ 3 + 4 * r) *
       (De ^ (8 * r ^ 2) * De ^ 2) * P ^ (j * m) * (D ^ m)⁻¹ * t := by positivity
   have := mul_le_mul_of_nonneg_left h8 hc

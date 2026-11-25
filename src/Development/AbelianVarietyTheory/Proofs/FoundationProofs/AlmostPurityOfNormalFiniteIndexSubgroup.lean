@@ -678,7 +678,6 @@ theorem kummer_moves : ∀ (L : Type) [Field L] (v : Valuation L ℝ≥0) (p : �
   have ht0 : 0 < t := lt_of_le_of_lt (zero_le') hrt
   set s : ℝ≥0 := t⁻¹ with hs_def
   have hs1 : 1 < s := by rw [hs_def]; exact one_lt_inv₀ ht0 |>.mpr ht1
-  have hs0 : 0 < s := lt_trans zero_lt_one hs1
   have hrs : r * s < 1 := by
     rw [hs_def, ← div_eq_mul_inv]; exact (div_lt_one ht0).mpr hrt
   obtain ⟨y, hyF, hy⟩ := _root_.GlobalTheory.AlmostEt.kummer_approx_critical L v p hp F hF hp1 α hαp hp0 s hs1

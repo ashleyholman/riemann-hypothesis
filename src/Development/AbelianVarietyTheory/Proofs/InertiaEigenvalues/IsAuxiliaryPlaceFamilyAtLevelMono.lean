@@ -538,13 +538,6 @@ theorem card_double_min (S : Set ℕ) (a : ℕ → ℕ) (q : ℕ → ℝ) (w : �
     · exact ⟨0, 0, fun h => absurd h hk⟩
   choose I J hIJ using hch
 
-  have hA : ∀ k, 1 ≤ k → ∀ i m, M k i → m ∈ S → m ≤ i → a i ≤ a m := by
-    intro k hk i m hi hm hmi
-    have h1 := hi.2 m hm
-    have h2 : (m : ℝ) * q k ≤ i * q k :=
-      mul_le_mul_of_nonneg_right (by exact_mod_cast hmi) (hq k hk).le
-    have : (a i : ℝ) ≤ a m := by linarith
-    exact_mod_cast this
   have hA' : ∀ k, 1 ≤ k → ∀ i m, M k i → m ∈ S → m < i → a i < a m := by
     intro k hk i m hi hm hmi
     have h1 := hi.2 m hm

@@ -46,7 +46,6 @@ theorem _root_.GlobalTheory.HostModel.exists_embedding_rt_eq (H : _root_.Recipro
       · exact absurd h1 hne
       · exact h1
     rw [him] at h
-    have hd : (0 : ℝ) ≤ H.d := Nat.cast_nonneg _
     have hpos : 0 < w.re * w.re := mul_self_pos.mpr hne
     linarith
   have hconj : (starRingEnd ℂ) w = -w := by
@@ -128,7 +127,6 @@ private theorem isUnit_one_sub_of_isPrimitiveRoot_twentyOne {R : Type*} [CommRin
     have h3 : 3 ∣ p := Nat.prime_three.dvd_of_dvd_pow (hk ▸ (by norm_num : 3 ∣ 21))
     have h7 : 7 ∣ p := (by norm_num : Nat.Prime 7).dvd_of_dvd_pow (hk ▸ (by norm_num : 7 ∣ 21))
     have e3 := (Nat.prime_dvd_prime_iff_eq Nat.prime_three hp).mp h3
-    have e7 := (Nat.prime_dvd_prime_iff_eq (by norm_num : Nat.Prime 7) hp).mp h7
     omega
   have h1 := congrArg (Polynomial.eval 1) hroot
   rw [Polynomial.eval_mul, Polynomial.eval_one_cyclotomic_not_prime_pow hnpp] at h1

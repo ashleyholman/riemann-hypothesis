@@ -68,9 +68,6 @@ theorem blkU_mul_blkU {j k : ℕ} (hjk : j < k) (x : UnipotentBlockColumnIndex a
     obtain ⟨h1, h2, h3⟩ := blk_mul_support x y i l hne
     refine ⟨?_, ?_, ?_⟩ <;> omega
   · refine posM_mul_posM_eq_zero (fun s t e => ?_) _ _
-    have h1 := s.2.2.1
-    have h2 := t.2.1
-    have h3 := congrArg Fin.val e
     omega
 
 end Mat

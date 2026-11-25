@@ -84,7 +84,6 @@ theorem exists_sb_ext_eq : ∀ (D : D7) (k : Type) [Field k] [ValuativeRel k] [T
   have hkk : ((k₀ : k)) ≠ 0 := by
     have h := (map_ne_zero (p.π.comp (algebraMap D.host.F (AE D)))).2 hkF
     simpa using h
-  have hupA : ∀ a : Matrix Y Y' k, a ∈ A ↔ p.up FS FT a ∈ Λ := fun a => Iff.rfl
   have hnsmul : ∀ (x : Matrix Y Y' k), k₀ • x = (k₀ : k) • x := fun x => by
     rw [← Nat.cast_smul_eq_nsmul k]
   have hup_nsmul : ∀ (x : Matrix Y Y' k), p.up FS FT (k₀ • x) = k₀ • p.up FS FT x := fun x =>
@@ -480,7 +479,6 @@ theorem rowExt : ∀ (D : D7) (k : Type) [Field k] [ValuativeRel k] [Topological
   congr 1
   set P := GlobalTheory.LocMod.Place.ofSplitPt p with hP
   set f := GlobalTheory.LocMod.Witness.prH P with hf
-  have hfa : ∀ a, f a = p.pr (incA D a) := fun _ => rfl
   set h : D.host.E := star ζ ⬝ᵥ Matrix.mulVec L.gram ζ with hh
   have h0 : f h ≠ 0 := (map_ne_zero f).2 hζ.2
   set u : Fin L.rank → k := fun j => f ((Matrix.vecMul (star ζ) L.gram) j) with hu

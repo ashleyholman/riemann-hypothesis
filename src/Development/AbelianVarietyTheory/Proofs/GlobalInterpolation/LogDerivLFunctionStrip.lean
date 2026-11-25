@@ -124,7 +124,6 @@ theorem logDeriv_LFunction_strip : ∃ C : ℝ, 0 < C ∧ ∀ (q : ℕ) [NeZero 
     constructor <;> linarith
   have h4 := h3 s hsc hs0
   have hlog : Real.log (256 * B * X ^ 4 / ‖LFunction χ c‖) ≤ Real.log (512 * B) + 4 * Real.log X := by
-    have hX0 : 0 < X := by linarith
     have : 256 * B * X ^ 4 / ‖LFunction χ c‖ ≤ 512 * B * X ^ 4 := by
       rw [div_le_iff₀ hpos]
       have : 0 < B * X ^ 4 := by positivity

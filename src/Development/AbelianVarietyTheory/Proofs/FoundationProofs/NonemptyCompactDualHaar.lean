@@ -260,9 +260,6 @@ theorem _root_.GlobalTheory.exists_pos_finite_density_of_almost_translation_inva
     have hw0 : 0 < w := hw ▸ div_pos hv0 (by linarith)
     have hvw : (1 + η) * w = v := by rw [hw]; field_simp
     have hηw : 0 < η * w := mul_pos hη0 hw0
-    have hwv : w < v := by
-      rw [← hvw]
-      linarith
     have hwδ : w < δ := by linarith [mul_pos hη0 hv0]
     have hD := hDown ((1 + η) * (δ / 2)) w v fun x hx => by
       have := (hδ' x (ball_subset_ball (by linarith) hx) w ⟨hw0, hwδ⟩).2
@@ -276,7 +273,6 @@ theorem _root_.GlobalTheory.exists_pos_finite_density_of_almost_translation_inva
     have hP : 0 < (δ / 2) ^ d := pow_pos hρ0 d
     have hUd : 0 < u ^ d := pow_pos hu0 d
     have hWd : 0 < w ^ d := pow_pos hw0 d
-    have hMu := hMpos u hu0
     have hMv := hMpos v hv0
     have h1 : (1 - η) ^ d * (δ / 2) ^ d * M u ≤ (1 + η) ^ d * u ^ d * M (δ / 2) :=
       le_of_mul_le_mul_right (by linarith [hU2]) hc₁
@@ -291,8 +287,6 @@ theorem _root_.GlobalTheory.exists_pos_finite_density_of_almost_translation_inva
         ((1 + η) ^ d) ^ 2 * u ^ d * M v * (δ / 2) ^ d := by
       linarith
     have h6 := le_of_mul_le_mul_right h5 hP
-    have hne1 : u ^ d * L 1 ≠ 0 := (mul_pos hUd hc₁).ne'
-    have hne2 : (1 + η) ^ d * w ^ d * L 1 ≠ 0 := (mul_pos (mul_pos he hWd) hc₁).ne'
     rw [hg, hg, hLr u hu0, hLr v hv0, hvd]
     calc M u / (u ^ d * L 1)
         ≤ ((1 + η) ^ d) ^ 3 / (1 - η) ^ d * (M v / ((1 + η) ^ d * w ^ d * L 1)) := by
@@ -316,7 +310,6 @@ theorem _root_.GlobalTheory.exists_pos_finite_density_of_almost_translation_inva
   have hcau : Cauchy (map g (𝓝[>] (0 : ℝ))) := by
     rw [Metric.cauchy_iff]
     refine ⟨inferInstance, fun ε hε => ?_⟩
-    have hB : 0 < 2 * g (t₁ / 2) := by linarith
     obtain ⟨t, ht, hgt⟩ := hkey (ε / (2 * (2 * g (t₁ / 2)))) (div_pos hε (by linarith))
     refine ⟨g '' Ioo 0 (min t t₁), image_mem_map (Ioo_mem_nhdsGT (lt_min ht ht₁)), ?_⟩
     rintro _ ⟨u, hu, rfl⟩ _ ⟨v, hv, rfl⟩
@@ -554,7 +547,6 @@ theorem exists_density_of_chart (V M G : Type) [NormedAddCommGroup V] [NormedSpa
     obtain ⟨hr0, hr⟩ := hr
     rw [lt_min_iff, lt_div_iff₀ hκ0] at hr
     obtain ⟨H1, H2⟩ := H x (mem_ball_zero_iff.2 hx.1) r ⟨hr0, hr.1⟩
-    have hx0 := norm_nonneg x
     have hb : ‖x‖ + κ * r ≤ δ₀ := by
       rcases le_total ‖x‖ r with h | h <;> nlinarith [hx.2, hr.2]
     have himg : ∀ S : Set G, μ ((fun g => e x * g) '' S) = μ S := fun S => by

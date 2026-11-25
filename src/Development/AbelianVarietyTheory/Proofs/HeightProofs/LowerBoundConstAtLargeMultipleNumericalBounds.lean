@@ -66,18 +66,15 @@ theorem lamConst_lamR_rows : ∀ (D : D7) (B : WeightFamilies.Prov D) (P : Modul
       GlobalTheory.RunWeights.size_le_mul _ _ n hn1 (fun _ _ => le_rfl) (fun _ _ => le_rfl) le_rfl
     have hs0 : 1 ≤ (wsmul n wL).size := by
       have := DF_add_one_le_size (wsmul n wL)
-      have h0 : (0 : ℝ) ≤ DF (wsmul n wL) := Nat.cast_nonneg _
       linarith
     have hP0 : 0 ≤ WeightFamilies.PP0v D large₂ CL 2 := by
       unfold WeightFamilies.PP0v
       rw [Real.rpow_two]
       positivity
-    have hN' : (0 : ℝ) < N := by exact_mod_cast hN
     have hdel' : (0 : ℝ) < del := by exact_mod_cast hdel
     have hceil : (1 : ℝ) + (⌈PO D large₂⌉₊ : ℝ) ≤ 2 + PO D large₂ := by
       have := Nat.ceil_lt_add_one (a := PO D large₂) (by linarith)
       linarith
-    have hd0 : (0 : ℝ) ≤ WeightFamilies.dimY D j := Nat.cast_nonneg _
     have hnle : (n : ℝ) ≤ 8 * ((WeightFamilies.dimY D j : ℝ) + 2) ^ 3 * (2 + PO D large₂) * (N : ℝ) ^ 2 * del := by
       rw [hndef]
       push_cast
@@ -91,7 +88,6 @@ theorem lamConst_lamR_rows : ∀ (D : D7) (B : WeightFamilies.Prov D) (P : Modul
     push_cast at hlogn
     have hlogs := Real.log_le_log (by linarith) hs1
     rw [Real.log_mul (by linarith) (by linarith)] at hlogs
-    have hl0 : 0 ≤ Real.log (wsmul n wL).size := Real.log_nonneg hs0
     have hmain : WeightFamilies.PP0v D large₂ CL 2 * (1 + Real.log (wsmul n wL).size) ≤ lamR large₂ CL wL := by
       refine le_trans ?_ (le_max_right _ _)
       exact mul_le_mul_of_nonneg_left (by linarith) hP0

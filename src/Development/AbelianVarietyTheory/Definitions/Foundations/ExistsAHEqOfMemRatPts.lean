@@ -361,7 +361,6 @@ instance isLattice_sumLat (L : Submodule (𝓞 E) (Fin m → E)) (L' : Submodule
     Submodule.IsFullLattice E (sumLat finSumFinEquiv L L') := by
   let φ : ((Fin m → E) × (Fin n → E)) ≃ₗ[E] (Fin (m + n) → E) :=
     (LinearEquiv.sumArrowLequivProdArrow _ _ E E).symm.trans (LinearEquiv.funCongrLeft E E finSumFinEquiv.symm)
-  have hφ : ∀ x, φ x = pairVec finSumFinEquiv x.1 x.2 := fun x => rfl
   have e : sumLat finSumFinEquiv L L' = (L.prod L').map (φ.toLinearMap.restrictScalars (𝓞 E)) := by
     ext w
     refine ⟨fun hw => ⟨(_, _), hw, pairVec_eta _ w⟩, ?_⟩

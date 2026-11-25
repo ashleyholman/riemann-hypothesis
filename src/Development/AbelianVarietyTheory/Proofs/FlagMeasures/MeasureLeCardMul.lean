@@ -190,7 +190,6 @@ theorem measure_Kset_le : ∀ (I : AutInst) (μf : Measure I.Gf) [μf.IsHaarMeas
     { toFun := fun x i => Formalism.UG.inclE (F := I.F) (Af I.F) ((x : Fin I.n → I.E) i)
       map_add' := fun x y => by ext i; simp
       map_smul' := fun c x => rfl }
-  have hL : I.Lf = Submodule.span (IntAf I.F I.E) (Set.range ι) := rfl
   have hO : ∀ o : 𝓞 I.E, algebraMap _ (I.E ⊗[I.F] Af I.F) o ∈ IntAf I.F I.E := fun o =>
     Formalism.UG.P.levelaf_tmul_mem o (one_mem _)
   have hS : ∀ s ∈ IntAf I.F I.E, ∃ o : 𝓞 I.E, ∃ w ∈ IntAf I.F I.E,

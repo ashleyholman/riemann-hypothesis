@@ -775,7 +775,6 @@ theorem main : ∀ (D : D7) (M : MtFam D) (T : NormalizedLocalCompatibility D M)
   have hinj := IsFractionRing.injective (T.B.Oc j w) (FractionRing (T.B.Oc j w))
   choose tp htp hpart hoff using exists_proj T hstd h1 h2 hw hl
   have hc := fun I => NCov.isCompl_part_off hinj hS hsplit hint I
-  have eL : latC T.B j w = latLoc T.B j w := rfl
 
   have hlp : ∀ I x, x ∈ NCov.latPart (heckeAlg T.B j w) (latC T.B j w) I → x ∈ latLoc T.B j w := by
     intro I x hx

@@ -41,7 +41,6 @@ theorem mem_int_of_pow {E : Type} [Field E] [NumberField E] (Q : IsDedekindDomai
   have h5' : 0 < Multiplicative.toAdd b := by
     have := Multiplicative.toAdd_lt.2 hb1
     simpa using this
-  have h5 : 1 ≤ Multiplicative.toAdd b := by omega
   push_cast at h4
   have h6 : (0:ℤ) ≤ |Multiplicative.toAdd a| := abs_nonneg _
   have h7 : -Multiplicative.toAdd a ≤ |Multiplicative.toAdd a| := neg_le_abs _

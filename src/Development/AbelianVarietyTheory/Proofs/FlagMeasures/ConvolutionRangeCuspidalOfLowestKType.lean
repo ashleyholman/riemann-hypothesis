@@ -43,7 +43,6 @@ theorem weight_condition (B : RowsAut) (h s : ℝ) (hn : 1 ≤ B.I.n) (hb : HBig
   right
   have h1 : (2 : ℝ) * rkR (B.I.ε v) ≤ B.I.n := by exact_mod_cast _root_.GlobalTheory.KernelExpansion.two_mul_rank_le _
   have h2 : 0 < Real.sqrt (rkR (B.I.ε v)) := Real.sqrt_pos.2 (by exact_mod_cast h0)
-  have h3 : (1 : ℝ) ≤ B.I.n := by exact_mod_cast hn
   have h4 := hb v
   have h5 : s + 4 * B.I.n * rkR (B.I.ε v) ≤ 4 * (B.I.n : ℝ) ^ 2 := by nlinarith
   have h6 := mul_le_mul_of_nonneg_left h5 h2.le

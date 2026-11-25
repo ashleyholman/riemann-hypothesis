@@ -29,8 +29,6 @@ theorem chainPar_of_nodeGap : ∀ D : D7, GlobalTheory.IndefiniteRowSideFullHeck
     unfold expT GlobalTheory.IndefiniteRowSideFullHecke.ThetaSourceAction.alT
     rcases Nat.even_or_odd (k : ℕ) with hk | hk
     · have ho : Odd ((k : ℕ) + 1) := hk.add_one
-      have hne : ¬ Odd (k : ℕ) := Nat.not_odd_iff_even.mpr hk
-      have hne2 : ¬ Even ((k : ℕ) + 1) := Nat.not_even_iff_odd.mpr ho
       simp [ho, hk]
     · have ho : Even ((k : ℕ) + 1) := hk.add_one
       have hne : ¬ Even (k : ℕ) := Nat.not_even_iff_odd.mpr hk
@@ -42,8 +40,6 @@ theorem chainPar_of_nodeGap : ∀ D : D7, GlobalTheory.IndefiniteRowSideFullHeck
     unfold expS GlobalTheory.IndefiniteRowSideFullHecke.ThetaSourceAction.alS
     rcases Nat.even_or_odd (k : ℕ) with hk | hk
     · have ho : Odd ((k : ℕ) + 1) := hk.add_one
-      have hne : ¬ Odd (k : ℕ) := Nat.not_odd_iff_even.mpr hk
-      have hne2 : ¬ Even ((k : ℕ) + 1) := Nat.not_even_iff_odd.mpr ho
       simp [ho, hk]
     · have ho : Even ((k : ℕ) + 1) := hk.add_one
       have hne : ¬ Even (k : ℕ) := Nat.not_even_iff_odd.mpr hk

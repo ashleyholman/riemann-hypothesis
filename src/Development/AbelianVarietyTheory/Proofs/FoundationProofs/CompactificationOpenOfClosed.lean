@@ -33,7 +33,6 @@ theorem isOpen_compactification : ∀ (E : Type) [Field E] [NumberField E] [IsCM
   intro E _ _ _ H Dw l Xo c Y U _
   have i₀ : IsIso (spMap (RingHom.id c.F)) := by
     rw [show spMap (RingHom.id c.F) = 𝟙 _ from Spec.map_id _]; infer_instance
-  have i₁ : IsIso (pullback.fst Y.s (spMap (RingHom.id c.F))) := inferInstance
   have hn : Geo.Tor.IsNormalScheme (FramedFlatCoordinates.genFibre Y) := fun x => by
     let e := (asIso ((pullback.fst Y.s (spMap (RingHom.id c.F))).stalkMap x)).commRingCatIsoToRingEquiv
     obtain ⟨h₁, h₂⟩ := Y.normal (pullback.fst Y.s (spMap (RingHom.id c.F)) x)

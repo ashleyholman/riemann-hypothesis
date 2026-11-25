@@ -55,7 +55,6 @@ theorem eventually_lt_two_pow (A B : ℕ) : ∃ n₀ : ℕ, ∀ n, n₀ ≤ n �
   refine ⟨4 * (A + B + 1), fun n hn => ?_⟩
   set m := 2 * (A + B + 1) with hm
   obtain ⟨k, rfl⟩ := Nat.exists_eq_add_of_le (show m ≤ n by omega)
-  have hk : m ≤ k := by omega
   have h1 : m < 2 ^ m := Nat.lt_two_pow_self
   have h2 : k < 2 ^ k := Nat.lt_two_pow_self
   have h3 : (m + 1) * (k + 1) ≤ 2 ^ m * 2 ^ k := Nat.mul_le_mul h1 h2

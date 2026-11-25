@@ -51,7 +51,6 @@ theorem upper (h : IsFrame ε ε₀ B B₀) (hW : SpansFlag B W) {M : Matrix (Fi
   rw [hyu, proj h]
   apply hu
   intro hlt
-  have hik' := Fin.lt_def.1 hik
   simp only [Fin.lt_def, Fin.val_castSucc, Fin.val_succ] at hlt
   omega
 

@@ -184,9 +184,6 @@ theorem main : ∀ Cg cb Cu cT CT C0 A : ℝ, ∃ C₀ : ℝ, ∀ C ≥ C₀, �
     have e : b ^ (|Cg| / 8 + 3 / 2) = b ^ (1 : ℝ) * b ^ (|Cg| / 8) * b ^ ((1 : ℝ) / 2) := by
       rw [← Real.rpow_add hb0, ← Real.rpow_add hb0]; ring_nf
     rw [e, Real.rpow_one]
-    have h0 : 0 ≤ D.host.rdE ^ ((1 : ℝ) / 2) := Real.rpow_nonneg (by linarith) _
-    have h0' : 0 ≤ (D.R.k : ℝ) := Nat.cast_nonneg _
-    have h0'' : 0 ≤ b ^ (|Cg| / 8) := Real.rpow_nonneg hb0.le _
     calc 2 * (D.R.k : ℝ) * D.host.rdE ^ ((1 : ℝ) / 2) ≤ b * b ^ (|Cg| / 8) * D.host.rdE ^ ((1 : ℝ) / 2) := by
           gcongr
       _ ≤ b * b ^ (|Cg| / 8) * b ^ ((1 : ℝ) / 2) := by gcongr
@@ -195,7 +192,6 @@ theorem main : ∀ Cg cb Cu cT CT C0 A : ℝ, ∃ C₀ : ℝ, ∀ C ≥ C₀, �
     rw [← mul_pow, Real.rpow_mul hb0.le, Real.rpow_natCast]
     apply pow_le_pow_left₀ (by norm_num)
     have : (2 : ℝ) ^ (5 : ℝ) ≤ b ^ (5 : ℝ) := Real.rpow_le_rpow (by norm_num) hb2 (by norm_num)
-    have h32 : (2 : ℝ) ^ (5 : ℝ) = 32 := by norm_num
     linarith
 
   set e1 : ℝ := |Cg| / 8 + 3 / 2 with he1
@@ -208,8 +204,6 @@ theorem main : ∀ Cg cb Cu cT CT C0 A : ℝ, ∃ C₀ : ℝ, ∀ C ≥ C₀, �
     have e : b ^ ((e1 + D.R.m + 5) * D.R.f) = b ^ (e1 * D.R.f) * b ^ ((D.R.m : ℝ) * D.R.f) * b ^ ((5 : ℝ) * D.R.f) := by
       rw [← Real.rpow_add hb0, ← Real.rpow_add hb0]; ring_nf
     rw [e, mul_assoc _ ((2 : ℝ) ^ D.R.f)]
-    have hc0 : (0 : ℝ) ≤ classNumber D.host.E := Nat.cast_nonneg _
-    have hq0 : (0 : ℝ) ≤ (2 : ℝ) ^ D.R.f * 9 ^ D.R.f := by positivity
     gcongr
 
   have hm1 : (4 : ℝ) ≤ D.R.m := by exact_mod_cast hm4

@@ -108,14 +108,12 @@ theorem logDeriv_local : ∃ C : ℝ, 0 < C ∧ ∀ (𝓕 : LFam) (χ : AddChar 
     have hp : 0 < ‖𝓕.F χ (c + ρ * 0)‖ := norm_pos_iff.2 hf0
     have h8 : 300 * 𝓕.B * (|t| + 3) ^ 2 / ‖𝓕.F χ (c + ρ * 0)‖ ≤ X ^ 7 := by
       rw [div_le_iff₀ hp]
-      have hX0 : 0 ≤ X := by linarith
       have h5 : (8 : ℝ) ^ 5 ≤ X ^ 5 := by gcongr
       have h6 : 4 * (𝓕.B * (|t| + 2) ^ 2) ≤ X ^ 2 := by
         rw [hX, mul_pow, pow_two 𝓕.B, mul_assoc]
         gcongr
       have h7 : (|t| + 3) ^ 2 ≤ (9 / 4) * (|t| + 2) ^ 2 := by nlinarith
       have h9 : 𝓕.B * (|t| + 3) ^ 2 ≤ 𝓕.B * ((9 / 4) * (|t| + 2) ^ 2) := by gcongr
-      have h10 : 0 ≤ X ^ 2 := by positivity
       calc 300 * 𝓕.B * (|t| + 3) ^ 2 ≤ 8 ^ 5 * X ^ 2 * (1 / 100) := by nlinarith
         _ ≤ X ^ 5 * X ^ 2 * ‖𝓕.F χ (c + ρ * 0)‖ := by gcongr
         _ = _ := by ring

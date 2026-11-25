@@ -1120,7 +1120,6 @@ theorem isScal_of_normalises (K : Type) [Field K] (O : ValuationSubring K) (k : 
 
   have hEst : ∀ i j : Fin n, i < j → ¬(ρ ≤ i.val ∧ i.val < ρ + κ ∧ j.val = ρ + κ) →
       ∃ y : Matrix (Fin n) (Fin n) O, Mo * y = (1 + Matrix.single i j 1) * Mo := fun i j hij hal => by
-    have hij' : i.val < j.val := hij
     have hne : j ≠ i := ne_of_gt hij
     have hEE : Matrix.single i j (1 : O) * Matrix.single i j 1 = 0 := Matrix.single_mul_single_of_ne 1 i j i hne 1
     let x : GL (Fin n) O := ⟨1 + Matrix.single i j 1, 1 - Matrix.single i j 1,

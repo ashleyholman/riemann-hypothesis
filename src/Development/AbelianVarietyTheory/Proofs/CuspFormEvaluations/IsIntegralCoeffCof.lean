@@ -743,8 +743,6 @@ theorem exists_ioLFRec : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] 
   obtain ⟨hs1, hs2, hs3⟩ := GlobalTheory.StdNab.nabAtr_stdLat E c.F Ix n (fun t => embF c (pl t)) lam
   have hD := detFac_ne_zero Dw pl c.F a s lam
   let S := harmSub Dw.mult n c.F ComplexEmbedding.conjugate (InPsi H) (fun τ i => a (τ, i))
-  have hS : ∀ P, P ∈ S ↔ P ∈ HHa Dw.mult n c.F ComplexEmbedding.conjugate (InPsi H) (fun τ i => a (τ, i)) :=
-    fun _ => Iff.rfl
   set e : c.F := ((ε : ℤ) : c.F) with he'
   have hee : e * e = 1 := by
     rw [he', ← Int.cast_mul, Int.units_coe_mul_self, Int.cast_one]

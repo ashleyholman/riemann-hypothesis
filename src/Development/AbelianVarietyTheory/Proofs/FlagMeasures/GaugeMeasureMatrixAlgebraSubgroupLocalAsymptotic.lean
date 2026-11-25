@@ -541,8 +541,6 @@ theorem lower (A : Submodule ℝ (Matrix (Fin n) (Fin n) ℂ)) (E : Fin d → Ma
       rw [ha, hb]; noncomm_ring
     rw [this, e1, hvdef, hD, two_smul]; abel
   set R := a * D * b + a * D + D * b with hR
-  have ha0 := norm_nonneg a
-  have hb0 := norm_nonneg b
   have hD0 := norm_nonneg D
   have n1 : ‖a * D‖ ≤ δ * ‖D‖ :=
     (Matrix.frobenius_norm_mul a D).trans (mul_le_mul_of_nonneg_right hg'.le hD0)
@@ -721,9 +719,7 @@ theorem norm_mul_bounds {θ : ℝ} (hθ : 1 < θ) (g Z : Matrix (Fin n) (Fin n) 
     exact (norm_mul_le _ _).trans (mul_le_mul_of_nonneg_right hg.le (norm_nonneg _))
   have h2 := abs_le.1 ((abs_norm_sub_norm_le (g * Z) Z).trans h1)
   have h3 : θ⁻¹ * θ = 1 := inv_mul_cancel₀ (by linarith)
-  have h4 : 0 < θ⁻¹ := inv_pos.2 (by linarith)
   have h5 := norm_nonneg Z
-  have h6 : 2 - θ⁻¹ ≤ θ := by nlinarith [sq_nonneg (θ - 1)]
   constructor
   · nlinarith
   · have : θ⁻¹ * ‖Z‖ ≤ ‖g * Z‖ := by linarith

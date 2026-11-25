@@ -697,7 +697,6 @@ theorem wBp_of {t : ∀ n : ℕ, (Fin n → Bool) → ℝ} {Ct : ℝ} (hCt : 0 �
   have hCn : Cg * m ^ 4 ≤ b := (mul_le_mul_of_nonneg_left hn7 (by linarith)).trans (hbv.trans hbvb)
   have hCn' : 10 ^ 6 * n ^ 7 ≤ bv := (mul_le_mul_of_nonneg_right hCg6 (by linarith)).trans hbv
   have hcm : (10 ^ 6 + 100 * |Ca|) * m ^ 4 ≤ Cg * m ^ 4 := mul_le_mul_of_nonneg_right (by linarith) (by linarith)
-  have hCam : 0 ≤ |Ca| * m ^ 4 := mul_nonneg a4 (by linarith)
   have hL : HypLam P.k P.r lam ((|Ca| + 5) * m ^ 4) (Cg * m ^ 4) b :=
     { hc := hlam
       lam_le := hlamb

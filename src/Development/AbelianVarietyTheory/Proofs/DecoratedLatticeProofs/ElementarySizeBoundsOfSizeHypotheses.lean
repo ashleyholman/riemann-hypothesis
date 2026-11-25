@@ -32,7 +32,6 @@ theorem elementary_size_bounds_of_size_hypotheses : ∀ M : ℝ, ∃ thr : ℝ, 
   have hm2 : 2 ≤ D.R.m := D.R.two_le_m
   have hmk : D.R.m + 3 ≤ D.R.k := D.R.m_add_three_le_k
   have hmkR : (D.R.m : ℝ) + 3 ≤ D.R.k := by exact_mod_cast hmk
-  have hm : (2 : ℝ) ≤ D.R.m := by exact_mod_cast hm2
   have hk1 : (1 : ℝ) ≤ D.R.k := by linarith
   have hf16 : 16 ≤ D.R.f := le_trans (by
     calc 16 = 2 ^ 4 := by norm_num
@@ -78,8 +77,6 @@ theorem elementary_size_bounds_of_size_hypotheses : ∀ M : ℝ, ∃ thr : ℝ, 
   have hMk : M * (D.R.m : ℝ) ^ 5 * D.R.f * large₂.sc.L ≤ D.R.k := by
     have a : M * ((D.R.m : ℝ) ^ 5 * D.R.f * large₂.sc.L) ≤ C' * ((D.R.m : ℝ) ^ 5 * D.R.f * large₂.sc.L) :=
       mul_le_mul_of_nonneg_right hC'M hX0
-    have e1 : M * (D.R.m : ℝ) ^ 5 * D.R.f * large₂.sc.L = M * ((D.R.m : ℝ) ^ 5 * D.R.f * large₂.sc.L) := by ring
-    have e2 : C' * (D.R.m : ℝ) ^ 5 * D.R.f * large₂.sc.L = C' * ((D.R.m : ℝ) ^ 5 * D.R.f * large₂.sc.L) := by ring
     linarith
   exact ⟨hCl1000, by linarith, by linarith, by linarith, hrdb, hkM, hr, hmL, hMk⟩
 

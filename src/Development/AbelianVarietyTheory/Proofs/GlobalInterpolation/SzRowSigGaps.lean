@@ -22,8 +22,6 @@ theorem rankVal_crude (s : Scale) (R : Ranks) (hx : 2 ≤ s.x) (h : RankVal s R)
   · have h1 : s.x ^ ((9 : ℝ) / 4) ≤ s.x ^ ((3 : ℕ) : ℝ) :=
       Real.rpow_le_rpow_of_exponent_le hx1 (by push_cast; norm_num)
     rw [Real.rpow_natCast] at h1
-    have h2 : 0 < s.x ^ 3 := by positivity
-    have h3 : s.x ^ 4 = s.x * s.x ^ 3 := by ring
     nlinarith
   · have h1 : s.delta1 ≤ 1 := Real.rpow_le_one_of_one_le_of_nonpos hx1 (by linarith)
     have h2 : Real.sqrt (s.x * s.delta1) ≤ s.x := by
@@ -34,15 +32,12 @@ theorem rankVal_crude (s : Scale) (R : Ranks) (hx : 2 ≤ s.x) (h : RankVal s R)
   · have h1 : s.x ^ (9 / 2 + 10 * s.eps) ≤ s.x ^ ((5 : ℕ) : ℝ) :=
       Real.rpow_le_rpow_of_exponent_le hx1 (by push_cast; linarith)
     rw [Real.rpow_natCast] at h1
-    have h2 : 0 < s.x ^ 5 := by positivity
-    have h3 : s.x ^ 6 = s.x * s.x ^ 5 := by ring
     nlinarith
 
 theorem gap_crude (x C k m t : ℝ) (hx : 2 ≤ x) (hC : C ≤ x) (hk0 : 0 ≤ k) (hm0 : 0 ≤ m) (ht0 : 0 ≤ t)
     (hm : m ≤ x ^ 2) (hk : k ≤ x ^ 6) (ht : t ≤ x ^ 401) :
     C * k * m ^ 4 + (k + m * (t + 1)) * m ^ 10 < x ^ 430 := by
   have hx1 : 1 ≤ x := by linarith
-  have hx0 : 0 < x := by linarith
   have a1 : C * k * m ^ 4 ≤ x * x ^ 6 * (x ^ 2) ^ 4 := by
     have : C * k * m ^ 4 ≤ x * k * m ^ 4 := by gcongr
     refine this.trans ?_

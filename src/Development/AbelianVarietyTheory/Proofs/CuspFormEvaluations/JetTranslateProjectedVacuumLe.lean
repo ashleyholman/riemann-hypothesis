@@ -101,7 +101,6 @@ theorem l2_one_eq_integral_fundamentalDomain_div_volume {E : Type} [Field E] [Nu
     ring
 
   let ψR : (Fin g → ℂ) ≃L[ℝ] I2.Vsp T.dim := (ψ.restrictScalars ℝ).toContinuousLinearEquiv
-  have hψR : ∀ z, ψR z = ψ z := fun z => rfl
   let eR : (Fin g → ℂ) ≃L[ℝ] (Fin 1 → I2.Vsp T.dim) :=
     ψR.trans (ContinuousLinearEquiv.funUnique (Fin 1) ℝ (I2.Vsp T.dim)).symm
   have heR : ∀ z, eR z = fun _ => ψ z := fun z => rfl
@@ -402,7 +401,6 @@ theorem exists_min_period (T : PT E) (Λ' : Submodule (𝓞 E) (Fin n → E)) (h
   have hr : 0 < rdE E := Real.rpow_pos_of_pos
     (abs_pos.mpr (by exact_mod_cast NumberField.discr_ne_zero E)) _
   have hρ : 0 < 2 * (fdeg E : ℝ) ^ ((3 : ℝ) / 2) * n ^ 2 * rdE E := by positivity
-  have hpi : 0 < Real.sqrt Real.pi := Real.sqrt_pos.mpr Real.pi_pos
   set ρ := 2 * (fdeg E : ℝ) ^ ((3 : ℝ) / 2) * n ^ 2 * rdE E with hρdef
   refine ⟨lam / ρ, by positivity, fun γ hγ h0 => ?_, ?_⟩
   · rw [div_le_iff₀' hρ]

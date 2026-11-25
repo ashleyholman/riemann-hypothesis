@@ -34,8 +34,6 @@ theorem _root_.GlobalTheory.not_summable_two_add_two_re_pow_div (c : ℂ) (hc : 
     ¬ Summable fun k : ℕ => (2 + 2 * (c ^ (k + 1)).re) / ((k : ℝ) + 1) := by
   intro h
   set f := fun k : ℕ => (2 + 2 * (c ^ (k + 1)).re) / ((k : ℝ) + 1) with hf
-  have hnn : ∀ k, 0 ≤ f k := fun k =>
-    div_nonneg (by linarith [neg_one_le_re_pow_of_norm_le_one hc (k + 1)]) (by positivity)
   have hkey : ∀ k : ℕ, 3 / 2 * (1 / ((k : ℝ) + 1)) ≤ f k + f (2 * k + 1) := by
     intro k
     have hk : (0 : ℝ) < (k : ℝ) + 1 := by positivity

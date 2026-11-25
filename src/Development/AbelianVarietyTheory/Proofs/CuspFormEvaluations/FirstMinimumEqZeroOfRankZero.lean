@@ -109,7 +109,6 @@ theorem exists_expo_ne_one {ι : Type*} [Countable ι] (ν : ι → Ψ → ℝ) 
       push_cast
       ring
     exact_mod_cast h2
-  have hpi := Real.pi_pos
   show (k : ℝ) / (2 * φ i v0) = u
   rw [div_eq_iff (mul_ne_zero two_ne_zero hφ)]
   apply mul_right_cancel₀ (show (2 * Real.pi) ≠ 0 by positivity)
@@ -350,7 +349,6 @@ theorem bounded_of_moderate_nonneg (X : Data E r) (la : Wt X.Ψ r) (P : Frame X.
   obtain ⟨Cη, hCη⟩ := hdec (1 / 2) (by norm_num) (by norm_num)
   set N : ℕ := X.m * X.chiOrd la with hNdef
   have hN : 0 < N := Nat.mul_pos X.m_pos (X.χ_fin la).choose_spec.1
-  have hNr : (0 : ℝ) < N := by exact_mod_cast hN
   have hp0 : (fun τ : X.Ψ => ((N : ℕ) : ℝ) * (τ.1 (1 : E)).re) ∈ X.periods la :=
     AddSubgroup.subset_closure ⟨1, by simp [cc], isIntegral_one, rfl⟩
   set c' : ℝ := 1 / (2 * N) with hc'
@@ -384,9 +382,6 @@ theorem bounded_of_moderate_nonneg (X : Data E r) (la : Wt X.Ψ r) (P : Frame X.
     rw [hc', div_le_iff₀ (by positivity)]
     linarith
   obtain ⟨K, hK⟩ := FrequencySumBounds.freq_sum_bound X la (2 * Real.pi) (by positivity)
-  have hK0 : 0 ≤ K := by
-    have := hK ∅ (by simp)
-    simpa using this
   obtain ⟨δ0, hδ0, hiso⟩ := IsotropicThreshold.iso_threshold X
   obtain ⟨M, hM⟩ := rpow_mul_exp_neg_le (A / 2) (Real.pi * c') (by positivity) (by positivity)
   set ε : ℝ := min (δ0 / 2) (1 / 2) with hε

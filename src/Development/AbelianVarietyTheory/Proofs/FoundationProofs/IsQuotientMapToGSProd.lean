@@ -94,7 +94,6 @@ theorem norm_unit_eq_one (u : (c.O)ˣ) : ‖((u : c.O) : Qbar l)‖ = 1 := by
   have h2 := norm_le_one_of_mem (c := c) (u : c.O).2
   have h3 := norm_le_one_of_mem (c := c) ((u⁻¹ : (c.O)ˣ) : c.O).2
   have h4 := norm_nonneg ((u : c.O) : Qbar l)
-  have h5 := norm_nonneg (((u⁻¹ : (c.O)ˣ) : c.O) : Qbar l)
   nlinarith
 
 theorem norm_natCast_l : ‖((l : ℕ) : Qbar l)‖ = (l : ℝ)⁻¹ := by
@@ -115,12 +114,6 @@ theorem exists_eq_pow_mul_of_norm_le {n : ℕ} {x : Qbar l} (hx : x ∈ c.O)
     rw [e]; simp [norm_unit_eq_one]
 
   obtain ⟨k, u, hk⟩ := IsDiscreteValuationRing.eq_unit_mul_pow_irreducible hl0 hϖ
-  have hk0 : k ≠ 0 := by
-    rintro rfl
-    have hn := key _ _ _ hk
-    rw [hlO, norm_natCast_l, pow_zero] at hn
-    have : (l : ℝ)⁻¹ < 1 := inv_lt_one_of_one_lt₀ hl1
-    linarith
   have hϖ1 : ‖(ϖ : Qbar l)‖ < 1 := by
     have hn := key _ _ _ hk
     rw [hlO, norm_natCast_l] at hn

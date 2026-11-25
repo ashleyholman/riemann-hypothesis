@@ -171,7 +171,6 @@ theorem GlobalTheory.RatEqui.pull_right_eq_det_smul : ∀ (D : D7) (cc : Ideal (
     (LinearMap.ext fun x => by simp [mulV_mulV, h1, mulV_one])
     (LinearMap.ext fun x => by simp [mulV_mulV, h2, mulV_one])
   have hu : ∀ x, u x = mulV D γ 1 x := fun x => rfl
-  have hu' : ∀ x, u.symm x = mulV D (adj D γ) 1 x := fun x => rfl
   have hsub : LinearMap.id - (u.symm : VC D N N' →ₗ[ℂ] VC D N N') = mulV D (1 - adj D γ) 1 :=
     LinearMap.ext fun x => by
       rw [mulV_sub_left, mulV_one]; rfl

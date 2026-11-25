@@ -153,9 +153,7 @@ theorem det_sub_mem_hat {n : ℕ} {La : Type} [AddCommGroup La] [Module (𝓞 E)
       rw [map_smul, Matrix.mulVecLin_apply, hP₀, inv_smul_smul₀ ht0]
     exact LinearMap.range_eq_top.1 this
   let inc : E →+* RA F E := (Algebra.TensorProduct.includeRight (R := F)).toRingHom
-  have hinc : ∀ x, inc x = 1 ⊗ₜ x := fun _ => rfl
   let f : 𝓞 E →+* RA F E := inc.comp (algebraMap _ _)
-  have hfv : ∀ x : Fin n → E, fv F x = fun i => inc (x i) := fun _ => rfl
   have hf : ∀ x, f x ∈ intRing F := fun x => one_tmul_mem_adelicCompletionOfElementSet F ⟨x, rfl⟩
   have hPl : ∀ l, P₀.map inc *ᵥ (fun j => f (co l j)) = f t • fv F (ι l) := fun l => by
     funext i

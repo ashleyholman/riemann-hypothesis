@@ -47,7 +47,6 @@ def ringPair (d : ℕ) (hd : 0 < d) : PeriodPair where
   indep := by
     rw [LinearIndependent.pair_iff]
     intro a b h
-    have h2 : (0 : ℝ) < Real.sqrt d := Real.sqrt_pos.2 (by exact_mod_cast hd)
     have hi := congrArg Complex.im h
     have hr := congrArg Complex.re h
     simp at hi hr

@@ -635,8 +635,6 @@ theorem constC : ConstC := by
     set V := X.volK2
     set cv := (covN C Y u).toReal
     have hdd0 : 0 < dd := by rw [hdd]; exact Finset.prod_pos fun τ _ => hdpos τ
-    have hmN0 : 0 ≤ mN := ENNReal.toReal_nonneg
-    have hmH0 : 0 ≤ mH := ENNReal.toReal_nonneg
     have hV0 : 0 ≤ V := ENNReal.toReal_nonneg
     have hc0 : 0 ≤ V * mN * mH / dd := by positivity
     rw [Real.sqrt_mul_self hc0]
@@ -783,11 +781,7 @@ theorem factC_of (hP : PullC) (hTn : TensC) (hC : ConstC) : FactC := by
   set m := (μR K).toReal with hmd
   set cv := (covN C Y u).toReal with hcv
   have ha : 0 ≤ a := Real.sqrt_nonneg _
-  have hm : 0 ≤ m := ENNReal.toReal_nonneg
-  have hcv0 : 0 ≤ cv := ENNReal.toReal_nonneg
-  have hPv0 : 0 ≤ Pv := Finset.prod_nonneg fun v _ => Real.sqrt_nonneg _
   have hNP : N ≤ Pv := hT
-  have hSJ : 0 ≤ Pc⁻¹ * Pv := mul_nonneg (inv_nonneg.2 hPc.le) hPv0
   calc a * (s * (m * N)) * cv = (a * m * cv * s) * N := by ring
     _ ≤ (a * m * cv * s) * (Pc * (Pc⁻¹ * Pv)) := by
         rw [mul_inv_cancel_left₀ hPc.ne']

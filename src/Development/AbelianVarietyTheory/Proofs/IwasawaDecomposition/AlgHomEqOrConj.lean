@@ -40,7 +40,6 @@ theorem _root_.GlobalTheory.SplitPlaceExt.eq_of_w_eq : ∀ (L : Type) [Field L] 
     have : Valued.v (i' e) < 1 := by rw [hi, hce]; exact he2
     exact absurd he1 ((key e).1 this).ne
   by_contra hne
-  have hii' : i' ≠ i := fun hh => hne (by rw [hh])
   have hinj : Function.Injective ![i, c, i'] := by
     intro a b hab
     fin_cases a <;> fin_cases b <;> simp_all [eq_comm]

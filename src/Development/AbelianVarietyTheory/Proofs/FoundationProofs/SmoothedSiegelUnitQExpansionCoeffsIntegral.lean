@@ -602,9 +602,6 @@ theorem _root_.GlobalTheory.SiegQ.good_unitPart {c M a : ℕ} (hc : 0 < c) (hM :
     (h1 : v ∈ R) (h2 : v⁻¹ ∈ R) (h3 : a = 0 → (1 - v) ^ (c ^ 2) * (1 - v ^ c)⁻¹ ∈ R)
     (h4 : 0 < a → M ∣ c * a → v ^ c ≠ 1 ∧ (1 - v ^ c)⁻¹ ∈ R) :
     _root_.GlobalTheory.SiegQ.Good R (_root_.GlobalTheory.SiegQ.unitPart c M a v) := by
-  have hv0 : v ≠ 0 := by
-    rintro rfl
-    simp at hv
   have hn1 : ‖v‖ ≤ 1 := hv.le
   have hn2 : ‖v⁻¹‖ ≤ 1 := by rw [norm_inv, hv, inv_one]
   have hn3 : ‖v ^ c‖ ≤ 1 := by rw [norm_pow, hv, one_pow]

@@ -23,7 +23,6 @@ theorem room_neg_log_epStar (f d L M k0 S : ℝ) (hf : 1 ≤ f) (hd : 1 ≤ d) (
     (h : Real.log (M * k0) ≤ 19 * L + 3 + Real.log d) :
     0 < epStar M f S k0 ∧ epStar M f S k0 ≤ 1 ∧
       -Real.log (epStar M f S k0) ≤ 19 * L + 6 + Real.log d + f + Real.log S := by
-  have hl2 : 0 < Real.log 2 := Real.log_pos (by norm_num)
   have hl2' : Real.log 2 ≤ 1 := by
     have := Real.log_le_sub_one_of_pos (show (0:ℝ) < 2 by norm_num); linarith
   have hfS : 1 ≤ f * S := one_le_mul_of_one_le_of_one_le hf hS
@@ -111,7 +110,6 @@ theorem room_of_constants : ∃ C0 : ℝ, 0 < C0 ∧ ∀ (f r p0 : ℕ) (d L Om 
   intro s t hs ht hst C A hC hA
   have hOm := abs_nonneg Om
   set Z : ℝ := (f : ℝ) * r + L + Real.log d + |Om| with hZ
-  have hZn : (f : ℝ) * r ≤ Z := by linarith
   have hZ1 : 1 ≤ Z := by linarith
   have hXZ : Real.log X ≤ 600 * Z + Real.log S := by rw [hX]; linarith
   have hXZ' : Real.log X ≤ 600 * (Z * (1 + Real.log S)) := by

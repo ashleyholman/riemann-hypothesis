@@ -111,7 +111,6 @@ theorem cup_cob : ∀ (l : ℕ) [Fact l.Prime] (Ω : Type) [Field Ω] [Algebra �
     (H : Subgroup (G ℚ Ω)) (a b : G ℚ Ω → Fin 2 → Qbar l), Continuous W → (∀ s i j, mat W s i j ∈ c.O) → dt W ^ 2 = 1 →
     Coc1 c n W H a → Coc1 c n (dual1 W) H b → (Cob1 c n W H a ∨ Cob1 c n (dual1 W) H b) → Cob2 c n H (cup W a b) := by
   intro l _ Ω _ _ _ c n W H a b hW hint hdet ha hb hcob
-  have hWn : ∀ s i j, ‖mat W s i j‖ ≤ 1 := fun s i j => norm_le_one_of_mem c (hint s i j)
   have hDm : ∀ s i j, mat (dual1 W) s i j ∈ c.O := dual_representation_integral c W hdet hint
   have hDn : ∀ s i j, ‖mat (dual1 W) s i j‖ ≤ 1 := fun s i j => norm_le_one_of_mem c (hDm s i j)
   have han : ∀ s i, ‖a s i‖ ≤ 1 := fun s i => norm_le_one_of_mem c (ha.2.1 s i)

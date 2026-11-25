@@ -199,7 +199,6 @@ theorem conjMap_isAutFunSm : GlobalTheory.Published.DiscreteSeriesClassification
       rw [e2, e1]) _ ⟨v, rfl⟩
     choose b hb0 hb using hgr hn'
     have hp := (GlobalTheory.TauLipschitz.tauLip X.B.I hn').1
-    have hB : 0 ≤ ∑ w, b w := Finset.sum_nonneg fun w _ => hb0 w
     refine ⟨|C| * ((GlobalTheory.Count.tau1 X.B.I (iotaX X h (x * t⁻¹)))⁻¹ * ∑ w, b w) ^ m, fun a ha => ?_⟩
     have hN : 0 ≤ normInf θ (D.sp.Y 0) a := by unfold normInf; positivity
     have e : iotaX X h (x * a * t⁻¹) = iotaX X h (x * t⁻¹) * iotaX X h a := by

@@ -104,7 +104,6 @@ theorem burn_span : ∀ {X ι : Type} [AddCommGroup X] [Module ℂ X] (M : Submo
     subst hx
     simp
   let r : ι → Module.End ℂ M := fun i => (ρ i).restrict (hst i)
-  have hr : ∀ i (x : M), (r i x : X) = ρ i x := fun _ _ => rfl
   let p : Submodule ℂ (Module.End ℂ M) := Submodule.span ℂ (Set.range r)
   have h1 : (1 : Module.End ℂ M) ∈ p := by
     obtain ⟨i, hi⟩ := hid

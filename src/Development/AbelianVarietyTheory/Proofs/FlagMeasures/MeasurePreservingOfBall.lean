@@ -196,14 +196,12 @@ theorem det_mul_mul {r s : ℕ} (A : Matrix (Fin r) (Fin r) ℂ) (B : Matrix (Fi
 end Jac
 
 theorem haar_two (ι κ : Type) [Fintype ι] [Fintype κ] : (volume : Measure (ι → κ → ℂ)).IsAddHaarMeasure := by
-  have h : ∀ _ : ι, (volume : Measure (κ → ℂ)).IsAddHaarMeasure := fun _ => inferInstance
   exact Measure.pi.isAddHaarMeasure _
 
 attribute [local instance] haar_two
 
 theorem haar_three (ι κ κ' : Type) [Fintype ι] [Fintype κ] [Fintype κ'] :
     (volume : Measure (ι → κ → κ' → ℂ)).IsAddHaarMeasure := by
-  have h : ∀ _ : ι, (volume : Measure (κ → κ' → ℂ)).IsAddHaarMeasure := fun _ => haar_two κ κ'
   exact Measure.pi.isAddHaarMeasure _
 
 attribute [local instance] haar_three

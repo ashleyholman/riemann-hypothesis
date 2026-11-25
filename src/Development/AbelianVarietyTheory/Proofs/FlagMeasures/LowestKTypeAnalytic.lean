@@ -223,7 +223,6 @@ theorem pow_growth (hD : IsDer ε σ V E) {μ : Fin n → ℝ} {u : V} (hu : KHi
   have hpf := Formalism.REAL.pfilFacts V n ε E u hGl
   have hug := GlobalTheory.FilGrowth.uGrowth V n ε E μ c u hGl hU hu hc hf
   set S : ℝ := ∑ a, ∑ b, ‖X a b‖ with hS
-  have hS0 : 0 ≤ S := Finset.sum_nonneg fun a _ => Finset.sum_nonneg fun b _ => norm_nonneg _
   set s0 : ℝ := Real.sqrt (ckv ε μ) with hs0
   set q : ℝ := Real.sqrt (2 * (n : ℝ)) with hq
   set r0 : ℝ := Real.sqrt |c| with hr0

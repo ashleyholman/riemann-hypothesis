@@ -223,7 +223,6 @@ theorem exists_rep {N l q : ℕ} (hq : q.Prime) (hqN : ¬ q ∣ N * l) {w : SL(2
       rw [Matrix.SpecialLinearGroup.coe_mul, a2]
       rw [g00] at h00
       have h1 := hw.2
-      have h0 := (zmod_of_mul hw.1).1
       rw [Matrix.SpecialLinearGroup.coe_inv, Matrix.adjugate_fin_two]
       simp only [Matrix.of_apply, Matrix.cons_val', Matrix.cons_val_zero, Matrix.cons_val_fin_one]
       push_cast at h00 h1 ⊢

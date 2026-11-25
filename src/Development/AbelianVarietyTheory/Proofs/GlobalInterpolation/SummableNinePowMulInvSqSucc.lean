@@ -286,7 +286,6 @@ theorem norm_LFunction_le_poly_left_of_neg_two_lt {σ : ℝ} (hσ : -2 < σ) :
   have hsum : Summable (fun n : ℕ => ((n : ℝ) + 1) ^ (-σ - 3)) := by
     rw [show -σ - 3 = -(σ + 3) by ring]
     exact summable_nine_pow_mul_inv_sq_succ (σ + 3) (by linarith)
-  have hZ0 : 0 ≤ Z := tsum_nonneg fun n => by positivity
   refine ⟨15 + 64 * Z, by positivity, fun q _ χ hχ s hs => ?_⟩
   obtain ⟨b, μ₁, μ₂, μ₃, hb, m₁, m₂, m₃, he⟩ := LLeft.LFunction_eq_of_neg_two_lt q χ hχ
   have hq : (1 : ℝ) ≤ q := by exact_mod_cast Nat.pos_of_ne_zero (NeZero.ne q)
@@ -306,7 +305,6 @@ theorem norm_LFunction_le_poly_left_of_neg_two_lt {σ : ℝ} (hσ : -2 < σ) :
       _ ≤ 8 * B := by gcongr; exact pow_le_pow_right₀ hs1 (by norm_num)
   have t0 : ‖diffPow 0 s 1‖ ≤ B := by simpa [diffPow] using b0
   have t1 : ‖diffPow 1 s 1‖ ≤ 5 * B := by
-    have h1 : ‖diffPow 0 s 1‖ ≤ 1 := by simp [diffPow]
     have h2 : ‖diffPow 0 s (1 + 1)‖ ≤ 4 := by
       rw [diffPow, Complex.norm_cpow_eq_rpow_re_of_pos (by norm_num)]
       calc ((1 : ℝ) + 1) ^ (-s).re ≤ (1 + 1) ^ (2 : ℝ) :=

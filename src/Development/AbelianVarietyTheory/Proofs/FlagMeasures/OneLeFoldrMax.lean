@@ -72,10 +72,8 @@ theorem ratio_le (r k N e : ℕ) (b v g θ θ' ka X Cg : ℝ) (hb : 2 ≤ b) (hv
     (2 * v) ^ (-((r : ℝ) * k)) * θ * 2 ^ (r * (k + 1) + r * (r - 1)) / (θ' * (2 * ka / g / (2 * Real.pi)) ^ N) ≤
       b ^ (2 * X + (2 + 2 * Cg) * (r : ℝ) ^ 2) * v⁻¹ ^ e := by
   have hb0 : 0 < b := by linarith
-  have hv0 : 0 < v := by linarith
   have hg0 : 0 < g := by linarith
   have hθ'0 : 0 < θ' := lt_of_lt_of_le (Real.rpow_pos_of_pos hb0 _) hθ'
-  have hpi := Real.pi_pos
   have e1 : r * (k + 1) + r * (r - 1) = r * k + r ^ 2 := by
     cases r with
     | zero => simp
@@ -115,7 +113,6 @@ theorem absBd_le (r k : ℕ) (b v Q A De Dd C M m : ℝ) (hr : 1 ≤ r) (hm : m 
   have hb0 : 0 < b := by linarith
   have hr' : (1 : ℝ) ≤ r := by exact_mod_cast hr
   have hm0 : 0 ≤ m := by linarith
-  have hpi := Real.pi_pos
   have h1 : (4 * r : ℝ) ≤ b ^ m := by
     have a1 : Real.exp m ≤ b ^ m := by
       rw [← Real.exp_one_rpow]; exact Real.rpow_le_rpow (Real.exp_pos 1).le hb hm0
@@ -143,7 +140,6 @@ theorem absBd_le (r k : ℕ) (b v Q A De Dd C M m : ℝ) (hr : 1 ≤ r) (hm : m 
     have c : A + 44 + 24 * M ≤ C * C := by nlinarith
     have := mul_le_mul_of_nonneg_right c t
     nlinarith
-  have hC0 : 0 ≤ C := by linarith
   calc Q * absBd k r (b ^ (M * m)) De Dd
       ≤ (b ^ (A * (m * (r : ℝ) ^ 3)) * v⁻¹ ^ (r * (k - 2 - r))) *
         (b ^ (44 * (m * (r : ℝ) ^ 3)) * b ^ (24 * M * (m * (r : ℝ) ^ 3)) * De ^ (C * (r : ℝ) ^ 3) *
@@ -172,10 +168,8 @@ theorem abs_range : ∀ Cg cb Cu cT CT C0 C1 CMo : ℝ, ∃ C₀ : ℝ, ∀ C �
   have hb2 : 2 ≤ large₂.sc.b := by linarith
   have hb0 : 0 < large₂.sc.b := by linarith
   have hv0 : 0 < D.host.v := by linarith
-  have hg0 : 0 < gg D := by linarith
   have hθ0 : 0 < θ := lt_of_lt_of_le (Real.rpow_pos_of_pos hb0 _) hθ.1
   have hθ'0 : 0 < θ' := lt_of_lt_of_le (Real.rpow_pos_of_pos hb0 _) hθ'.1
-  have hpi := Real.pi_pos
   have hka0 : 0 < D.host.ka := by rw [hka]; positivity
   have hr : 1 ≤ D.R.rS := by omega
   have hk' : 2 * D.R.rS + 6 ≤ D.R.k := by
@@ -223,7 +217,6 @@ theorem abs_range : ∀ Cg cb Cu cT CT C0 C1 CMo : ℝ, ∃ C₀ : ℝ, ∀ C �
   refine mul_le_mul_of_nonneg_right (Real.rpow_le_rpow_of_exponent_le (by linarith) ?_) (by positivity)
   have r3 : (D.R.rS : ℝ) ≤ (D.R.rS : ℝ) ^ 3 := le_self_pow₀ hr' (by norm_num)
   have r23 : (D.R.rS : ℝ) ^ 2 ≤ (D.R.rS : ℝ) ^ 3 := pow_le_pow_right₀ hr' (by norm_num)
-  have m0 : (1 : ℝ) ≤ D.R.m := by linarith
   have b1 : (D.R.m : ℝ) ^ 2 ≤ 4 * (D.R.m * (D.R.rS : ℝ) ^ 3) := by
     have : (D.R.m : ℝ) ≤ 4 * (D.R.rS : ℝ) ^ 3 := by linarith
     nlinarith

@@ -148,8 +148,6 @@ theorem rank_consts (eps c g : ℝ) (h0 : 0 < eps) (h1 : eps < 1 / 52) :
   obtain ⟨-, -, ⟨hk, -⟩, -⟩ := hR
   have hx1' := s.one_lt_alt
   have hxp : 0 < s.x := by linarith
-  have e0 := s.eps_pos
-  have e1 := s.eps_lt
   have root : ∀ y : ℝ, 0 ≤ y → y ^ 4 ≤ s.x → y ≤ s.x ^ ((1 : ℝ) / 4) := fun y hy h => by
     have := Real.rpow_le_rpow (by positivity) h (show (0 : ℝ) ≤ 1 / 4 by norm_num)
     rwa [← Real.rpow_natCast, ← Real.rpow_mul hy, show ((4 : ℕ) : ℝ) * (1 / 4) = 1 by norm_num,

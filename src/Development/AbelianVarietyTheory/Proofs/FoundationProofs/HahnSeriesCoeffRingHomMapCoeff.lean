@@ -184,8 +184,6 @@ theorem ent_ofSL (γ : SL(2, ℤ)) (i j : Fin 2) : ent (ofSL γ) i j = ((γ : Ma
 
 theorem toGQ_mul (γ : SL(2, ℤ)) (m : Matrix (Fin 2) (Fin 2) ℤ) (h : 0 < m.det) :
     toGQ ((γ : Matrix (Fin 2) (Fin 2) ℤ) * m) = ofSL γ * toGQ m := by
-  have hd : 0 < ((γ : Matrix (Fin 2) (Fin 2) ℤ) * m).det := by
-    rw [Matrix.det_mul, γ.det_coe, one_mul]; exact h
   apply Subtype.ext; apply Units.ext
   ext i j
   simp [toGQ, h, ofSL, Matrix.mul_apply]

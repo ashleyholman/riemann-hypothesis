@@ -771,7 +771,6 @@ theorem l_dvd_of_galois_sections : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l) (
     have h2 := (hπ _).2 h1
     rw [map_sub, map_pow, map_sub, map_pow, sub_eq_zero] at h2
     exact h2
-  have hl1 : π ((l : ℕ) : En.Q.A) = 0 := (hπ _).2 dvd_rfl
   have hφ : ∀ y, π (En.Q.D.φ y) = π y ^ l := fun y => by
     have e : π (En.Q.D.φ y - y ^ l) = 0 := (hπ _).2 ⟨En.Q.D.δ y, by rw [En.Q.D.φ_eq y]; ring⟩
     rwa [map_sub, map_pow, sub_eq_zero] at e

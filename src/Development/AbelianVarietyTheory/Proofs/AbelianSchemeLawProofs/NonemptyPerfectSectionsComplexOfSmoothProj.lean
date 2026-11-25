@@ -475,9 +475,6 @@ private theorem exists_generalized_inverse_mod_ideal {R S B P : Type} [CommRing 
     funext j
     simp [hu]
   choose w hw using hcol
-  have hs' : ∀ x, F (s x) = x := fun x => by
-    have := congr_arg (fun φ => φ x) hs
-    simpa using this
   have hcolε : ∀ j, ε (fun l => Φ l j) = 0 := by
     intro j
     refine (hkerε _).2 ⟨Pi.single j 1, 0, ?_⟩

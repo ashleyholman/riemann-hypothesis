@@ -1159,8 +1159,6 @@ theorem mem_levelVL_of_first_components : ∀ (F E : Type) [Field F] [NumberFiel
   set Kv := v.adicCompletion F with hKv
   set φ1 : E ⊗[F] Kv →+* Kv := (RingHom.fst _ _).comp sp.toRingHom with hφ1
   set φ2 : E ⊗[F] Kv →+* Kv := (RingHom.snd _ _).comp sp.toRingHom with hφ2
-  have e1 : ∀ a, φ1 a = (sp a).1 := fun _ => rfl
-  have e2 : ∀ a, φ2 a = (sp a).2 := fun _ => rfl
   set K1 : Matrix (Fin n) (Fin n) Kv := (κ : Matrix (Fin n) (Fin n) (E ⊗[F] Kv)).map φ1 with hK1
   set K2 : Matrix (Fin n) (Fin n) Kv := (κ : Matrix (Fin n) (Fin n) (E ⊗[F] Kv)).map φ2 with hK2
   set J2 : Matrix (Fin n) (Fin n) Kv := (J.map (inclE (F := F) Kv)).map φ2 with hJ2

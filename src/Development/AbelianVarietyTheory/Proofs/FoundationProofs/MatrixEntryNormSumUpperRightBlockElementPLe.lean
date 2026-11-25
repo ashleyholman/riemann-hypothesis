@@ -76,7 +76,6 @@ theorem cosh_const_numerical_bound (p q : ℕ) :
   generalize 2 * (p + q) * min p q = m at hmin
   generalize p * q = n at hmin
   have ha0 : 0 < a := by linarith
-  have hpi := Real.pi_pos
   have hmax : max 1 (3 / 2 * a ^ 2) = 3 / 2 * a ^ 2 := max_eq_right (by nlinarith)
   have h1 : 18 / 5 * (3 / 2 * a ^ 2) / a = 27 / 5 * a := by field_simp; ring
   have h2 : 2 * Real.pi / (2 / ((a + 1) / 2)) ^ 2 = Real.pi * ((a + 1) ^ 2 / 8) := by
@@ -91,7 +90,6 @@ theorem cosh_const_numerical_bound (p q : ℕ) :
     nlinarith [mul_nonneg (sq_nonneg (a - 1)) ha0.le]
   have h6 : (27 / 5 * a) ^ 2 * 16 * ((a + 1) ^ 2 / 8) ≤ (a + 2) ^ 6 := by
     have h7 : (8 * a * (a + 1)) ^ 2 ≤ ((a + 2) ^ 3) ^ 2 := by gcongr
-    have h8 : 0 ≤ (a * (a + 1)) ^ 2 := by positivity
     nlinarith
   calc (27 / 5 * a) ^ (d + 2 * n) * (9 / 2) ^ d / Real.pi ^ n *
         (2 ^ m * (Real.pi * ((a + 1) ^ 2 / 8)) ^ n)
@@ -139,7 +137,6 @@ theorem continuous_herm_entry {X n : Type} [TopologicalSpace X] {f : X → n →
     funext x
     rw [herm_apply, Complex.mk_eq_add_mul_I]
   rw [e]
-  have h1 := hf i j
   have h2 := hf j i
   fun_prop
 
@@ -793,8 +790,6 @@ theorem const_le (m mK : Measure (UpqT p q)) (hm : Formalism.IndefR.Lev.IsMinf m
     have := Real.pi_pos
     positivity
   have hN : a ^ 2 = ((p ^ 2 + q ^ 2 : ℕ) : ℝ) + 2 * ((p * q : ℕ) : ℝ) := by rw [ha]; push_cast; ring
-  have hd0 : (0 : ℝ) ≤ ((p ^ 2 + q ^ 2 : ℕ) : ℝ) := Nat.cast_nonneg _
-  have he0 : (0 : ℝ) ≤ ((p * q : ℕ) : ℝ) := Nat.cast_nonneg _
   have main : ENNReal.ofReal (c / Q) ≤ Formalism.L2.Theta.minfDensity (p + q) := by
     refine ge_of_tendsto ht ?_
     filter_upwards [Ioo_mem_nhdsGT (lt_min hρ (show (0 : ℝ) < 1 / 20 by norm_num))] with r hr

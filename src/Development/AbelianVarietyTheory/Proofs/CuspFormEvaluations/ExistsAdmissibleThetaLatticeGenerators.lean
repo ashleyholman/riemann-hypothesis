@@ -310,7 +310,6 @@ theorem log_two_mul_count_le_mul_size : ∀ (D : D7) (B : WeightFamilies.Prov D)
   have hN' : N ≤ (D.host.g 0 * D.host.g 1) ^ m * ((2 * Module.finrank ℚ B.KO) * (1 + WeightAlgebra.DF w) ^ m) := by
     calc N ≤ _ := hN
       _ = _ := by ring
-  have hL0 : (0 : ℝ) ≤ large₂.sc.L := by linarith
   have hPO : 0 ≤ PO D large₂ := by unfold PO; positivity
   have hd : Real.log ((2 * Module.finrank ℚ B.KO : ℕ) : ℝ) ≤ PO D large₂ + 1 := by
     rcases Nat.eq_zero_or_pos (Module.finrank ℚ B.KO) with h0 | hpos
@@ -636,7 +635,6 @@ theorem exists_genOK : ∀ (D : D7) (T : Top D) (h : LawsP T) (hinj : Function.I
   have hn0 : 0 < wL.n := by omega
   have hsize : (1 : ℝ) ≤ wL.size := by
     have h1 := GlobalTheory.RunIn.frn_le_size_sub_one wL
-    have h2 : (0 : ℝ) ≤ ((D.R.f * D.R.r * wL.n : ℕ) : ℝ) := Nat.cast_nonneg _
     linarith
   have hM : (recPJ h j hj).WWc (scalOfP (recB h.toLawsCore) hinj EX p ka wL wF Tn).sW wL ≤
       (recB h.toLawsCore).Mlat j wL := by

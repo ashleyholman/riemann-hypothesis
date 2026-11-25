@@ -90,7 +90,6 @@ theorem charSeries_exists_ne_zero : ∀ (A I : Type) [AddCommGroup A] (e : I →
   obtain ⟨s, hs1, hs2⟩ := (((tendsto_order.1
     (tendsto_tsum_compl_atTop_zero (fun i => ‖c i‖))).2 _ hpos).and
     (Filter.eventually_ge_atTop {i₀})).exists
-  have htail : ∑' x : {x // x ∉ s}, ‖c x‖ < ‖c i₀‖ := hs1
   have hi0 : i₀ ∈ s := hs2 (Finset.mem_singleton_self i₀)
   obtain ⟨c', hc'0, hc's, hc'le, hc'F⟩ :=
     charSeries_kill_finset e c i₀ hmul hle h0 hneg hs hcon s

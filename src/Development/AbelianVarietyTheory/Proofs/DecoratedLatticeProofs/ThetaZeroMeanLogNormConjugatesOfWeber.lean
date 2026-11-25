@@ -375,7 +375,6 @@ theorem main : ∀ (D : D7) (c : Ideal (𝓞 D.host.K)), c ≠ ⊥ → ∀ x : �
     have hd : 0 < Real.sqrt D.host.d := Real.sqrt_pos.2 (by exact_mod_cast D.host.hyp.2.1.pos)
     have hn : (0 : ℝ) < n := by
       by_contra hn
-      have hn' : (n : ℝ) ≤ 0 := le_of_not_gt hn
       nlinarith
     have hn1 : (1 : ℝ) ≤ n := by
       have : (0 : ℤ) < n := by exact_mod_cast hn
@@ -525,7 +524,6 @@ theorem log_area {Λ : AddSubgroup ℂ} {ω₁ τ : ℂ} (hP : PeriodLatticeAgre
   have h := hP.2.2.1 ω₁ ⟨τ, hτ⟩ hω
   simp only [PeriodLatticeAgreement.period, hd, norm_one, Real.one_rpow, one_mul] at h
   change area (PeriodLatticeAgreement.latt ω₁ τ) / Real.pi = 4 * Real.pi * τ.im * ‖ModularForm.eta τ‖ ^ 4 at h
-  have hpi := Real.pi_pos
   have h2 : area (PeriodLatticeAgreement.latt ω₁ τ) = 4 * Real.pi ^ 2 * τ.im * ‖ModularForm.eta τ‖ ^ 4 := by
     field_simp at h; linarith
   rw [h2, Real.log_mul (by positivity) (by positivity), Real.log_mul (by positivity) hτ.ne',
@@ -819,7 +817,6 @@ theorem oddTheta_eq (τ : ℍ) (w : ℂ) : oddTheta τ w =
 theorem norm_sq_oddTheta (τ : ℍ) (A B : Fin 2) (M K : ℤ) (u : ℂ)
     (hu : u + ((τ : ℂ) + 1) / 2 = (((A : ℕ) : ℂ) * τ + ((B : ℕ) : ℂ)) / 2 + (M * τ + K)) :
     ‖oddTheta τ u‖ ^ 2 * Real.exp (-2 * π * u.im ^ 2 / τ.im) = ‖thetaChar A B 0 τ‖ ^ 2 := by
-  have hy := τ.im_ne_zero
   have him : u.im = ((A : ℕ) : ℝ) * τ.im / 2 + M * τ.im - τ.im / 2 := by
     have := congrArg Complex.im hu
     simp at this
@@ -871,7 +868,6 @@ theorem canTheta_eq : ∃ c : ℂ, c ≠ 0 ∧ ∀ z, canTheta a τ z = c * sgSt
   have k := odd_theta_norm_canonical ha h
   rw [show canTheta a τ = fun z => (0 : ℂ) * sgStar Λ z from funext fun z => by rw [hu z, h0],
     odd_theta_norm_smul] at k
-  have hy := τ.im_pos
   have : 0 < (Real.sqrt (2 * τ.im))⁻¹ := by positivity
   rw [← k] at this
   simp at this
@@ -897,8 +893,6 @@ theorem meanSquare_normalizedThetaTwoTorsion {t : ℂ} (ht : t ∉ Λ) :
       (‖oddTheta τ (t / a)‖ ^ 2 * Real.exp (-2 * π * (t / a).im ^ 2 / τ.im)) := by
   obtain ⟨⟨-, -, -, hU⟩, hz, -⟩ := GlobalTheory.OddTheta.sgStar_laws Λ (lat_gen ha h)
   obtain ⟨c, hc, hC⟩ := canTheta_eq ha h
-  have hy := τ.im_pos
-  have hn := norm_pos_iff.2 ha
   have k := odd_theta_norm_canonical ha h
   rw [show canTheta a τ = fun z => c * sgStar Λ z from funext hC, odd_theta_norm_smul] at k
   have th : GlobalTheory.Glob.IntegralWittCoefficients.th0 Λ t = fun z => (U1 Λ t (sgStar Λ) 0)⁻¹ * U1 Λ t (sgStar Λ) z :=

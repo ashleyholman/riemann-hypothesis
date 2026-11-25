@@ -206,7 +206,6 @@ theorem values_eq_coef : ∀ {D : D7} (θ : D.what₂.Tau → (Ainf D.host.F ⊗
   intro D θ V τ hθ hHC hCW H _ _ σ lam ε P T _ hDS hP h hT v x
   haveI : CompleteSpace H := hDS.1
   have hstd := std_of_isDS hHC hDS
-  have hσ := hstd.1
   obtain ⟨N, hN⟩ := GlobalTheory.TypeSum.GKCoef.exists_growth_exponent θ V τ hθ hHC H σ lam ε P T hDS hP h hT x
   let F : GlobalTheory.IndefiniteRowSideFullHecke.FinitePartTypes.kFin ε σ → Mx V.rank → ℂ := fun w y => T w (x * atTau θ V τ (P⁻¹ * y * P))
   let f : GlobalTheory.IndefiniteRowSideFullHecke.FinitePartTypes.kFin ε σ →ₗ[ℂ] Bd (Unit × UJset ε) :=
@@ -429,8 +428,6 @@ theorem caspow_expand : ∀ (n : ℕ) (ε : Fin n → Bool) (H : Type) [NormedAd
     · have hM : ∀ i, ((M i).map fun u => ‖u.1‖).sum = (L.map fun u => ‖u.1‖).sum := fun i => sum_norm_neg L (fun l => X i :: X i :: l)
       rw [List.map_append, List.sum_append, List.map_flatMap, sum_flatMap']
       simp only [hM, List.map_const', List.sum_replicate, List.length_finRange, nsmul_eq_mul]
-      have h0 : 0 ≤ (L.map fun u => ‖u.1‖).sum := List.sum_nonneg fun x hx => by
-        obtain ⟨u, -, rfl⟩ := List.mem_map.1 hx; exact norm_nonneg _
       rw [pow_succ]
       nlinarith [pow_nonneg (by positivity : (0:ℝ) ≤ 1 + d) r]
     · intro v hv
@@ -614,7 +611,6 @@ theorem coefBound_two_finSum : ∀ (n : ℕ) (ε : Fin n → Bool) (H : Type) [N
       have q1 := one_add_hs_mul_le (g * y) g'⁻¹
       have q2 := one_add_hs_mul_le g y
       rw [hs_inv hg'] at q1
-      have hy0 := hs_nonneg y
       have hgg := hs_nonneg g
       have hgg' := hs_nonneg g'
       have q : 1 + hs (g * y * g'⁻¹) ≤ (1 + hs g) * (1 + hs y) * (1 + hs g') :=
@@ -866,7 +862,6 @@ theorem exists_rewrite : GlobalTheory.Published.HarishChandraModules → GlobalT
     simp only [e2, mul_assoc, ← Finset.mul_sum] at h2
     rw [norm_mul, norm_pow, Complex.norm_real, Real.norm_of_nonneg (by linarith [hμ i])] at h2
     rw [le_div_iff₀ (hμ0 i t)]
-    have hc := mul_comm (‖∑ j, ⟪e i, x j⟫_ℂ * ℓ j w‖) (μ i ^ t)
     linarith
   have hterm : ∀ (i : Fin q) (t : ℕ), 0 ≤ C * ((1 + (d : ℝ)) ^ t * B (2 * t)) * sobNorm σ S (e i) / μ i ^ t :=
     fun i t => div_nonneg (mul_nonneg (mul_nonneg hC (mul_nonneg (pow_nonneg hd0 _) (hB0 _)))
@@ -1161,7 +1156,6 @@ theorem kAvg_approx_coef : ∀ (n : ℕ) (ε : Fin n → Bool) (H : Type) [Norme
   refine ⟨m, a, haK, fun C hC δ hδ => ?_⟩
   have : IsFiniteMeasure (muK ε) := ⟨isCompact_univ.measure_lt_top⟩
   set I := ∫ k, ‖e k‖ ∂(muK ε) with hIdef
-  have hI : 0 ≤ I := integral_nonneg fun _ => norm_nonneg _
   have hC' : IsCompact ((fun p : Mx n × KG ε => p.1 * toMK p.2) '' (C ×ˢ Set.univ)) :=
     (hC.prod isCompact_univ).image (continuous_fst.mul ((continuous_toMK ε).comp continuous_snd))
   obtain ⟨m', ℓ, v, hℓ, hv, happ'⟩ := happ _ hC' (δ / (1 + I)) (by positivity)

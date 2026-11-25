@@ -146,7 +146,6 @@ theorem rankin_mean_square : ∀ (k L : ℕ) (χ : ℤ → ℂ) (h : ℕ → ℂ
   obtain ⟨C, hC⟩ := hc.2
   have C0 : 0 ≤ C := le_trans (by positivity) (hC UpperHalfPlane.I)
   set D := C * (4 * π) ^ k with hDdef
-  have D0 : 0 ≤ D := by positivity
   have K := key2 k L χ h hc C hC
   have K1 : ∀ t : ℝ, 0 < t → ∀ n : ℕ, ‖h n‖ ^ 2 * Real.exp (-(n : ℝ) * t) ≤ D / t ^ k := by
     intro t ht n

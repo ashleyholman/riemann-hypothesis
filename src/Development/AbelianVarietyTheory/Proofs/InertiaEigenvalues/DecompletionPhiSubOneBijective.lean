@@ -669,9 +669,6 @@ private theorem nearPi_sum_lemma_5 {l : ℕ} [Fact l.Prime] {P : LocPrime l} (AI
     unfold inclR
     rw [Algebra.TensorProduct.map_tmul]
     rfl
-  have hl : ((l : ℕ) : RW LL) = (1 : ↥(OL LL)) ⊗ₜ[ℤ_[l]] ((l : ℕ) : WCb l) := by
-    rw [← map_natCast (Algebra.TensorProduct.includeRight (R := ℤ_[l]) (A := ↥(OL LL)) (B := WCb l)) l]
-    rfl
   have hsm : ∀ (o : ↥(OL LL)) (w : WCb l),
       ((l : ℕ) : RW LL) * (o ⊗ₜ[ℤ_[l]] w) = o ⊗ₜ[ℤ_[l]] (((l : ℕ) : WCb l) * w) := by
     intro o w

@@ -458,7 +458,6 @@ theorem val_inf (D : D7) [Fintype D.what₂.Tau] (c : IdC D) (χ : HChar D.host.
   exact (congrArg (fun y => ((c y : Circle) : ℂ)) (hU x hx)).trans (key _)
 
 theorem sign_zpow_even {w : ℂ} (hw : starRingEnd ℂ w = w) (h0 : w ≠ 0) (m : ℤ) : (w / (‖w‖ : ℂ)) ^ (-2 * m) = 1 := by
-  have h1 : (‖w‖ : ℂ) ≠ 0 := by exact_mod_cast norm_ne_zero_iff.2 h0
   have h2 : (w / (‖w‖ : ℂ)) ^ (2 : ℤ) = 1 := by
     rw [zpow_ofNat, div_pow, ← Complex.mul_conj', hw, sq]
     exact div_self (mul_ne_zero h0 h0)

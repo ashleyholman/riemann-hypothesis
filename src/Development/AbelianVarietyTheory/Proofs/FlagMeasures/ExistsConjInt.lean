@@ -849,7 +849,6 @@ theorem cont_prim_scale : ∀ {F : Type} [Field F] [ValuativeRel F] [Topological
   have hAA : A * A⁻¹ = 1 := Matrix.mul_nonsing_inv _ hA
   have hAA' : A⁻¹ * A = 1 := Matrix.nonsing_inv_mul _ hA
   have hcA : cT L A * cT L A⁻¹ = 1 := by rw [← cT_mul, hAA', cT_one]
-  have hcA' : cT L A⁻¹ * cT L A = 1 := by rw [← cT_mul, hAA, cT_one]
   have hΓ := _root_.GlobalTheory.HL.PrimVol.gram_herm L hH.1 x
   set O := horb L ϖ (gramT L Hm x) i with hOdef
   have hOco : IsCO (hermLat L m) O :=
@@ -860,10 +859,6 @@ theorem cont_prim_scale : ∀ {F : Type} [Field F] [ValuativeRel F] [Topological
     intro X
     calc _ = (cT L A * cT L A⁻¹) * X * (A⁻¹ * A) := by simp only [Matrix.mul_assoc]
       _ = X := by rw [hcA, hAA', Matrix.one_mul, Matrix.mul_one]
-  have hforth : ∀ X : Matrix (Fin m) (Fin m) E, cT L A⁻¹ * (cT L A * X * A) * A⁻¹ = X := by
-    intro X
-    calc _ = (cT L A⁻¹ * cT L A) * X * (A * A⁻¹) := by simp only [Matrix.mul_assoc]
-      _ = X := by rw [hcA', hAA, Matrix.one_mul, Matrix.mul_one]
   have hOB : (fun X => cT L A * X * A) '' B = O := by
     rw [hBdef, Set.image_image]
     simp only [hback, Set.image_id']

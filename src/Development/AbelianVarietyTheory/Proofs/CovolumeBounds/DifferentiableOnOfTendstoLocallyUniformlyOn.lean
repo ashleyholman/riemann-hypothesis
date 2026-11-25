@@ -121,7 +121,6 @@ theorem differentiableOn_fderiv_apply [CompleteSpace V] {f : E → V} {U : Set E
   obtain ⟨R, hR, M, hRU, hM⟩ := exists_ball_bound hU hf hc
   set r := R / 4 with hr
   have hr0 : 0 < r := by positivity
-  have hM0 : 0 ≤ M := (norm_nonneg _).trans (hM c (mem_ball_self hR))
   have hsub : ∀ x ∈ ball c (2 * r), ball x (2 * r) ⊆ ball c R := fun x hx =>
     ball_subset_ball' (by linarith [mem_ball.mp hx])
   have hsmall : ∀ᶠ t in 𝓝[≠] (0 : ℂ), ‖t • v‖ < 2 * r := by

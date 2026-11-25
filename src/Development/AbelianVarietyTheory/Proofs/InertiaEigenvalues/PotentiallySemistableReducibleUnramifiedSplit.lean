@@ -142,8 +142,6 @@ theorem GlobalTheory.PMon.extCoc_dies_in_BdR : ∀ (l : ℕ) [Fact l.Prime] (P :
   let S : Matrix b b P.R.BdR := ((R⁻¹ : GL b P.R.BdR) : Matrix b b P.R.BdR)
   have hSR : S * R = 1 := by simp only [S]; rw [← Units.val_mul, inv_mul_cancel, Units.val_one]
   have hRS : (R : Matrix b b P.R.BdR) * S = 1 := by simp only [S]; rw [← Units.val_mul, mul_inv_cancel, Units.val_one]
-  have hgSR : ∀ g, S.map (σ g) * (R : Matrix b b P.R.BdR).map (σ g) = 1 := fun g => by
-    rw [← Matrix.map_mul, hSR, Matrix.map_one _ (map_zero _) (map_one _)]
   have hgRS : ∀ g, (R : Matrix b b P.R.BdR).map (σ g) * S.map (σ g) = 1 := fun g => by
     rw [← Matrix.map_mul, hRS, Matrix.map_one _ (map_zero _) (map_one _)]
   have hgS : ∀ g, S.map (σ g) = S * D g := fun g => by

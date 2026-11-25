@@ -39,10 +39,6 @@ theorem comp_frac (a b c d a' b' c' d' : ℝ) (hdet : a * d - b * c = 1)
       ((a : ℂ) * (((a' : ℂ) * τ + b') / ((c' : ℂ) * τ + d')) + b) /
         ((c : ℂ) * (((a' : ℂ) * τ + b') / ((c' : ℂ) * τ + d')) + d) := by
   have h' := den_ne a' b' c' d' hdet' τ h
-  have hX : 0 < (((a' : ℂ) * τ + b') / ((c' : ℂ) * τ + d')).im := by
-    rw [im_frac a' b' c' d' hdet' τ h]
-    have : 0 < ‖(c' : ℂ) * τ + d'‖ := norm_pos_iff.mpr h'
-    positivity
   have e1 : (c : ℂ) * (((a' : ℂ) * τ + b') / ((c' : ℂ) * τ + d')) + d =
       (((c * a' + d * c' : ℝ) : ℂ) * τ + ((c * b' + d * d' : ℝ) : ℂ)) / ((c' : ℂ) * τ + d') := by
     rw [eq_div_iff h', add_mul, mul_assoc, div_mul_cancel₀ _ h']
@@ -86,7 +82,6 @@ theorem main : ∀ (F : Type) [Field F] [NumberField F], ∀ (ρ : InfinitePlace
   · intro a
     funext w
     have ha : (ρ w (a : F) : ℝ) ≠ 0 := by simp
-    have hinv : ρ w ((a⁻¹ : Fˣ) : F) = (ρ w (a : F))⁻¹ := by simp
     have hc : ((ρ w (a : F) : ℝ) : ℂ) ≠ 0 := by exact_mod_cast ha
     simp [mob, mMat]
     field_simp

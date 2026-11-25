@@ -50,10 +50,6 @@ theorem prod_diagonal_block_dets_eq_lower_block_det {κ : Type} [CommRing κ] {r
       split_ifs with h
       · omega
       · have ha : a.val - r < j * t := by have := a.2; omega
-        have ht : 0 < t := by
-          rcases Nat.eq_zero_or_pos t with h0 | h0
-          · simp [h0] at ha
-          · exact h0
         have : (a.val - r) / t < j := Nat.div_lt_of_lt_mul (by rw [mul_comm]; exact ha)
         omega) hg
   have h2 := hdet (blk2 r) 2 (fun a => by unfold blk2; split_ifs <;> omega) hg2

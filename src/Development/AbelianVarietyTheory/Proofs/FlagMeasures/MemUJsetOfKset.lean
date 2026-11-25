@@ -77,7 +77,6 @@ theorem norm_le_one {E : H →L[ℂ] H} {S : Submodule ℂ H} (hE : IsOrthProjOn
     rw [← inner_self_eq_norm_sq (𝕜 := ℂ), hsym, hEE]
     exact re_inner_le_norm x (E x)
   have h0 : 0 ≤ ‖x‖ := norm_nonneg x
-  have h1 : 0 ≤ ‖E x‖ := norm_nonneg (E x)
   nlinarith
 
 theorem exists_proj (S : Submodule ℂ H) [FiniteDimensional ℂ S] :
@@ -160,7 +159,6 @@ theorem lowK_projection : ∀ (n : ℕ) (ε : Fin n → Bool) (lam : Fin n → �
   refine ⟨?_, lowKSub_stable ε lam σ, fun _ => exists_proj _, ?_⟩
   ·
     obtain ⟨v, hvS, hv0, hwt⟩ := hS.2.2.2.1
-    have hn : (‖v‖ : ℂ) ≠ 0 := by exact_mod_cast norm_ne_zero_iff.2 hv0
     refine ⟨((‖v‖ : ℂ)⁻¹) • v, ?_, ?_, ?_⟩
     · rw [norm_smul, norm_inv, Complex.norm_real, norm_norm]
       exact inv_mul_cancel₀ (norm_ne_zero_iff.2 hv0)

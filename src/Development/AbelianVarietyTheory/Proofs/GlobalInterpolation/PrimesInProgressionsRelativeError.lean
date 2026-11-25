@@ -212,7 +212,6 @@ theorem main_bounds {θ : ℤ} {β δ u : ℝ} (hθ : θ = 0 ∨ θ = 1 ∨ θ =
         linarith
       have h1' := mul_le_mul_of_nonneg_left h8 hp.le
       have h2' := mul_le_mul_of_nonneg_right h6 (show 0 ≤ β * β by positivity)
-      have he1 : u ^ β * ((1 + 4 * (1 - β)) * (β * β)) = u ^ β * (1 + 4 * (1 - β)) * (β * β) := by ring
       linarith
     push_cast
     have hδu : δ * u ≤ (1 - β) * u := mul_le_mul_of_nonneg_right hδβ hu0.le
@@ -316,8 +315,6 @@ theorem step (P : ℕ → Prop) {θ : ℤ} {β δ φ B ρ s : ℝ} (hθ : θ = 0
     have a3 := mul_le_mul_of_nonneg_left a2 (show 0 ≤ s ^ 14 by positivity)
     have a4 := mul_le_mul_of_nonneg_left (show 128 ≤ δ * s by linarith) (show 0 ≤ s ^ 15 by positivity)
     push_cast
-    have he1 : 8 * s ^ 14 * (16 * Real.log s) = 128 * (s ^ 14 * Real.log s) := by ring
-    have he2 : s ^ 14 * s = s ^ 15 := by ring
     linarith
   have e4 : s ^ 8 ≤ s ^ 10 := pow_le_pow_right₀ hs1 (by norm_num)
   have e5 : s ^ 10 ≤ s ^ 14 := pow_le_pow_right₀ hs1 (by norm_num)
@@ -332,8 +329,6 @@ theorem step (P : ℕ → Prop) {θ : ℤ} {β δ φ B ρ s : ℝ} (hθ : θ = 0
     rw [one_div, ← div_eq_inv_mul, le_div_iff₀ hs0]
     have := mul_le_mul_of_nonneg_left (show B + 3 ≤ s by linarith) (show 0 ≤ s ^ 9 by positivity)
     have : 0 < s ^ 10 := by positivity
-    have he1 : (B * s ^ 8 + 3 * s ^ 8) * s = s ^ 9 * (B + 3) := by ring
-    have he2 : s ^ 9 * s = s ^ 10 := by ring
     linarith
   have e11 := abs_le.1 (hc.trans e7)
   rw [abs_le, show 4 / s = 4 * (1 / s) by ring]

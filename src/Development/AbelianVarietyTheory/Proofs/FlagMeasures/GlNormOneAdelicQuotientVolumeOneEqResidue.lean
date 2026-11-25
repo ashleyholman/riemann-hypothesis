@@ -557,7 +557,6 @@ theorem glVol_one : ∀ (E : Type) [Field E] [NumberField E], IsTotallyComplex E
       rw [Formalism.HermitianLatticesTheory.vInv, div_pow, ← Real.rpow_natCast, ← Real.rpow_mul hd.le, Real.sqrt_eq_rpow]
       congr 2
       field_simp
-    have hs := Real.sqrt_pos.2 hd
     have key : (Units.torsionOrder E : ℝ) * (dedekindZeta_residue E * Formalism.HermitianLatticesTheory.vInv E ^ Formalism.HermitianLatticesTheory.fDeg E) =
         classNumber E * (Real.pi ^ InfinitePlace.nrComplexPlaces E * Units.regulator E) := by
       rw [hv, dedekindZeta_residue_def, hr, hf, mul_pow]

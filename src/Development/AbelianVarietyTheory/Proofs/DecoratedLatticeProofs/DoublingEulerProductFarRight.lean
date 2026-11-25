@@ -456,7 +456,6 @@ theorem eulerRight : GlobalTheory.Published.CuspRapidDecay → ∀ D : D7, SphFa
     ParamBoundOn D (fun _ => True) → EulerRight D := by
   intro hP D hS hZ hB ψ θ A B χA χB sA sB t cA a om ν 𝓕 hp LA LB Sf Φ₁ Φ₂ hΦ₁ hΦ₂ hU m hm u₁ hu₁ u₂ hu₂ par hpar hsph
     s hs hint
-  have ha : (0 : ℝ) ≤ A.rank := Nat.cast_nonneg _
   have hb := bounded_of_isParamFun hP hB hp.setting.2.2.2.1 hU.sdA m hm hu₁ hpar
   have hL := _root_.GlobalTheory.LSD_hasProd_LvTw D Sf par χB _ _ hb (s + 1 / 2) (by
     have : (s + 1 / 2 : ℂ).re = s.re + 1 / 2 := by simp

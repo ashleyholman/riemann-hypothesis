@@ -1233,7 +1233,6 @@ theorem heights_definite :
     have h1 := one_le_del hne _ _ ha4
     rw [hdel] at h1
     have h2 : 0 < G.N := by omega
-    have h3 : 0 < G.del := h1
     exact Nat.succ_le_of_lt (by positivity)
   have hLAM : (dat hG δ fn yP (WeightFamilies.dimY D j) N (wtA wL, wL.n) (wtA wF, wF.n) (wtA w2, w2.n) (fun k => (G.w (e k)).1) jc G.del (fun k => (G.th' k).1) et.1 t2.1 (nuOf T.Q.c fun la => nus la / (ramOverZ la : ℝ)) ws (WeightAlgebra.DF wL : ℝ) PN' PP0' Gc PI4' Pet' tableLineDegreeFive tableLineDegreeTwo Prw POb).HtLAM := by
     refine htLAM_of h.toLawsCore j hG δ fn yP (WeightFamilies.dimY D j) N 0 1 1 0 (wtA wL, wL.n) (wtA wF, wF.n) (wtA wL, wL.n) (wtA wL, wL.n) (wtA wL, wL.n) (0, 0) (wtA w2, w2.n) (fun k => (G.w (e k)).1) jc G.del (fun k => (G.th' k).1) 0 Fin.elim0 (wtA wF, wF.n) 0 Fin.elim0 ∅ et.1 1 t2.1 (nuOf T.Q.c fun la => nus la / (ramOverZ la : ℝ)) (fun _ _ _ => 0) ws (WeightAlgebra.DF wL : ℝ) PN' 1 1 PP0' 1 Gc PI4' Pet' tableLineDegreeFive tableLineDegreeTwo Prw POb 0 0 large₂ CL AL (wsmul (8 * ((WeightFamilies.dimY D j + 2) * G.N) ^ 2 * (WeightFamilies.dimY D j + 1) * G.del * (1 + ⌈POb⌉₊)) wL) hgt ?_ hlam ?_

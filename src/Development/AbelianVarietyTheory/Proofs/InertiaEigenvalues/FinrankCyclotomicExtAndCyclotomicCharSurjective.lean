@@ -35,8 +35,6 @@ theorem aeval_ne_zero_of_norm_eq (K : FinExt l) (N : ℕ) (π : Om l)
   have hl1 : (1 : ℝ) < l := by exact_mod_cast (Fact.out : l.Prime).one_lt
   have hl0 : (0 : ℝ) < l := by linarith
   have hN : (0 : ℝ) < N := by exact_mod_cast (Nat.zero_le _).trans_lt hd
-  have hπ0 : π ≠ 0 := by
-    rw [← norm_pos_iff, hπ]; positivity
   have key : ∀ i ∈ p.support, ∃ n : ℤ,
       ‖p.coeff i • π ^ i‖ = (l : ℝ) ^ ((n : ℝ) - (i : ℝ) / N) := by
     intro i hi

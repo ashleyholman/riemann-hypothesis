@@ -30,7 +30,6 @@ theorem natW_alcove_bound (p : ℕ) (N : ℕ) (lam : DomWeight N)
   · have hlt : (⟨0, h⟩ : Fin N) < ⟨N - 1, by omega⟩ := Fin.mk_lt_mk.mpr (by omega)
     have := hl _ _ hlt
     simp only at this
-    have hc : ((N - 1 : ℕ) : ℤ) = (N : ℤ) - 1 := by omega
     push_cast at this
     omega
 

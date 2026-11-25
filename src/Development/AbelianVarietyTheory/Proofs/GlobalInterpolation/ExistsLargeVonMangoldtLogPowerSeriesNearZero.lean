@@ -93,7 +93,6 @@ theorem power_sum_mult {C : ℝ} (hC : 1 ≤ C)
     simp [g, hj, Finset.sum_attach Z (fun w => (m w : ℂ) * f w ^ j)]
   rw [es, Equiv.symm_apply_apply] at h3
   refine le_trans ?_ h3
-  have hKp : (0 : ℝ) < K := by exact_mod_cast hK1
   have e1 : (K : ℝ) / (C * (K + K)) = 1 / (2 * C) := by field_simp; ring
   rw [e1, div_eq_mul_one_div, mul_pow, mul_comm]
   refine mul_le_mul_of_nonneg_right ?_ (by positivity)
@@ -138,8 +137,6 @@ theorem power_sum_large {C : ℝ} (hC : 1 ≤ C)
       rw [hD]
       have := mul_le_mul_of_nonneg_right (show (2 : ℝ) ≤ 8 * C by linarith) hr.le
       linarith)⟩
-  have hK1 : 1 ≤ K :=
-    hm.trans ((Finset.single_le_sum (fun _ _ => Nat.zero_le _) hρ').trans hcount)
   obtain ⟨j, h1, h2, h3⟩ := power_sum_mult hC hT _ m (fun w => 1 / (s - w)) K hcount ρ hρ' hm
   refine ⟨j, h1, h2, ?_⟩
   have h0 : 0 < ‖s - ρ‖ := norm_pos_iff.2 (hs ρ hρ)
@@ -306,7 +303,6 @@ theorem exists_large_derSeries : ∃ A C r₀ : ℝ, 1 ≤ A ∧ 0 < C ∧ 0 < r
       rw [Finset.mul_sum]
       refine (Finset.sum_le_sum fun w hw => inv_sq_le_re _ (hre w hw)).trans (h2.trans ?_)
       have hC1L : C₁ ≤ C₁ * L := le_mul_of_one_le_right hC₁.le hL1
-      have hring : (2 * C₁ + 2) * L = L + C₁ * L + (1 + C₁) * L := by ring
       linarith
     rw [le_div_iff₀ (by positivity)]
     calc (∑ w ∈ Z, (ord χ w : ℝ) / ‖s - w‖ ^ 2) * r ^ 2

@@ -97,7 +97,6 @@ theorem thetaIntegral_param : GlobalTheory.Published.CuspRapidDecay → ∀ D : 
     }
   have hU : ∀ a a', ∀ u ∈ U, om (embV S v a, embV T v a') u ∈ U := fun a a' u hu => hW.om_pres _ u hu
   let ρ0 : Representation ℂ (Gv S v) (GA D S → ℂ) := (rightReg ℂ (GA D S) ℂ).comp (embV S v)
-  have hρ0 : ∀ a (z : GA D S → ℂ) g, ρ0 a z g = z (g * embV S v a) := fun _ _ _ => rfl
   let cy : GA D S → ℂ := fun g => conj (y g)
   let X : Submodule ℂ (GA D S → ℂ) := Submodule.span ℂ (Set.range fun a : Gv S v => ρ0 a cy)
   have hX : ∀ a, ∀ z ∈ X, ρ0 a z ∈ X := by

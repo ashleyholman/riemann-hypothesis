@@ -80,7 +80,6 @@ open Complex DirichletCharacter ArithmeticFunction MeasureTheory in
 theorem _root_.GlobalTheory.ZeroDetect.rpow_bound {Q y σ : ℝ} (hQ : 1024 ≤ Q) (hy : Q ^ 6 ≤ 2 * y)
     (hσ : 11 / 12 ≤ σ) :
     y ^ (-σ) ≤ (16 * Q ^ 5)⁻¹ := by
-  have hQ0 : 0 < Q := by linarith
   have hQ6 : (2:ℝ) ^ 60 ≤ Q ^ 6 := by
     calc (2:ℝ) ^ 60 = 1024 ^ 6 := by norm_num
       _ ≤ Q ^ 6 := pow_le_pow_left₀ (by norm_num) hQ 6
@@ -121,7 +120,6 @@ theorem _root_.GlobalTheory.ZeroDetect.zero_detect : ∃ Q₀ : ℕ, ∀ Q : ℕ
   have hσ : (11 / 12 : ℝ) ≤ ρ.re := by norm_num at hre; linarith
   have hσ0 : 0 < ρ.re := by linarith
   have hQR : (1024 : ℝ) ≤ Q := by exact_mod_cast hQ
-  have hQ0 : (0 : ℝ) < Q := by linarith
   have hqR : (q : ℝ) ≤ Q := by exact_mod_cast hqQ
   have hD : Q ^ 3 ≤ Q ^ 6 := Nat.pow_le_pow_right (by omega) (by norm_num)
   have hQ3 : 2 ≤ Q ^ 3 := le_trans (by omega) (Nat.le_self_pow (by norm_num) Q)
@@ -167,7 +165,6 @@ theorem _root_.GlobalTheory.ZeroDetect.zero_detect : ∃ Q₀ : ℕ, ∀ Q : ℕ
     rw [div_le_iff₀ hσ0]
     nlinarith
   set C : ℝ := 2 * (q : ℝ) * (1 + ‖ρ‖ / ρ.re) with hCdef
-  have hC0 : 0 ≤ C := by positivity
   have hCle : C ≤ 8 * (Q : ℝ) ^ 2 := by
     have h4 : 1 + ‖ρ‖ / ρ.re ≤ 4 * Q := by linarith
     calc C ≤ 2 * (Q : ℝ) * (4 * Q) := by

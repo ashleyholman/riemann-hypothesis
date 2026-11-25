@@ -277,7 +277,6 @@ theorem garding_smooth : ∀ (n : ℕ) (ε : Fin n → Bool) (H : Type) [NormedA
   let gu : (Matrix (Fin n) (Fin n) ℂ)ˣ := ⟨g, Jm ε * gᴴ * Jm ε, mul_eq_one_comm.1 hinv, hinv⟩
   let g' : UJ ε := ⟨gu, hgG⟩
   have hg'm : umat g' = g := rfl
-  have hg'inv : umat g'⁻¹ = Jm ε * gᴴ * Jm ε := rfl
   have hφcomp : ∀ y : UJ ε, β (umat y) = φ (umat y) := fun y => (hφβ _ y.2).symm
   have hint : Integrable (fun y : UJ ε => β (umat y) • σ (umat y) u) (muG ε) := by
     refine Continuous.integrable_of_hasCompactSupport ?_ (hβc.smul_right (f' := fun y => σ (umat y) u))
@@ -485,7 +484,6 @@ theorem rhoN_norm_le_and_casimir_arith :
   refine ⟨fun n ε => ?_, fun L a n hL ha hn => ?_⟩
   · have hn : (0 : ℝ) ≤ n := Nat.cast_nonneg n
     have hs := rpow_three_halves_sq_eq_cube hn
-    have hp : 0 ≤ (n : ℝ) ^ ((3 : ℝ) / 2) := Real.rpow_nonneg hn _
     have h1 : nsq (rhoN ε) ≤ (n : ℝ) * ((n : ℝ) / 2) ^ 2 := by
       have : ∑ a : Fin n, (rhoN ε a) ^ 2 ≤ ∑ _a : Fin n, ((n : ℝ) / 2) ^ 2 := by
         refine Finset.sum_le_sum fun a _ => ?_
@@ -538,7 +536,6 @@ theorem nsq_rho_le {n : ℕ} (ε : Fin n → Bool) : nsq (rhoC ε + rhoN ε) ≤
     refine Finset.sum_congr rfl fun a _ => ?_
     simp only [Pi.add_apply, half_sum_roots_standard n ε a]
   rw [h, sum_range_sub_sq]
-  have hn : (0 : ℝ) ≤ n := Nat.cast_nonneg n
   nlinarith
 
 theorem casK_form_le (V : Type) [NormedAddCommGroup V] [InnerProductSpace ℂ V] (n : ℕ) (ε : Fin n → Bool)
@@ -761,7 +758,6 @@ theorem stepConst_nonneg (n : ℕ) (b : ℝ) (P : ℕ) : 0 ≤ stepConst n b P :
     mul_nonneg (Real.rpow_nonneg (Nat.cast_nonneg n) _) (sq_nonneg b)
   have h2 : 0 ≤ 3 / 2 * (n : ℝ) ^ (3 / 2 : ℝ) :=
     mul_nonneg (by norm_num) (Real.rpow_nonneg (Nat.cast_nonneg n) _)
-  have h3 : 0 ≤ 3 * (P : ℝ) := mul_nonneg (by norm_num) (Nat.cast_nonneg P)
   simp only [stepConst]
   linarith
 

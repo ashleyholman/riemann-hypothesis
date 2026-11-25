@@ -60,7 +60,6 @@ theorem norm_lt_one_iff (v : HeightOneSpectrum (𝓞 E)) (a b : E →+* C)
       rw [hd c hc] at h1
       have h2 := norm_int_le_one c n
       have h3 := norm_nonneg (c x)
-      have h4 := norm_nonneg (c (n : E))
       nlinarith
     exact iff_of_false (key a ha) (key b hb)
 
@@ -104,7 +103,6 @@ theorem not_isUnit_iff (K : Loc.FinExt l) (x : Loc.OL K) :
     have h1 := congrArg (fun z : Loc.OL K => ‖((z : K.1) : PadicAlgCl l)‖) hy
     simp only [MulMemClass.coe_mul, norm_mul, OneMemClass.coe_one, norm_one] at h1
     have h3 := norm_nonneg ((x : K.1) : PadicAlgCl l)
-    have h4 := norm_nonneg ((y : K.1) : PadicAlgCl l)
     nlinarith
 
 variable {E : Type} [Field E] [NumberField E]

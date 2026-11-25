@@ -74,7 +74,6 @@ theorem flagConst_pos (r : ℕ) : 0 < flagConst r :=
 def grassConst (p q : ℕ) : ℝ := (∏ i ∈ Finset.range p, ((q + i).factorial : ℝ) / i.factorial) / Real.pi ^ (p * q)
 
 theorem flagConst_add (p q : ℕ) : flagConst (p + q) = grassConst p q * flagConst p * flagConst q := by
-  have hπ := Real.pi_pos.ne'
   induction p with
   | zero => simp [flagConst, grassConst]
   | succ p ih =>

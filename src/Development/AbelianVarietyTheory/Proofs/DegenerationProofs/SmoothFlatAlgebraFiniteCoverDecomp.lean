@@ -406,7 +406,6 @@ theorem factA {R k C : Type} {n : ℕ} [CommRing R] [CommRing k] [CommRing C] [A
     RingHom.liftOfSurjective_comp_apply _ _ _ _
   letI : Algebra k A := κ.toAlgebra
   let ρ0 : A →ₐ[R] C := Ideal.Quotient.liftₐ T σ (fun a ha => (hI a).1 (hT ha))
-  have hρ0 : ∀ p, ρ0 (m p) = σ p := fun p => rfl
   let ρ : A →ₐ[k] C :=
     { ρ0.toRingHom with
       commutes' := fun c => by

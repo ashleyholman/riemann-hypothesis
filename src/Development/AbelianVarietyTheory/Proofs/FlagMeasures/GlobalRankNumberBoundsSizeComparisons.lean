@@ -67,7 +67,6 @@ theorem scale_facts {eps x : ℝ} (heps : 0 < eps) (hx : 1 ≤ x) :
 theorem exp_bound {eps A x K : ℝ} (heps : 0 < eps) (hA : 0 < A) (hx : 1 ≤ x)
     (ht2 : 2 ≤ x ^ (eps / 4)) (htK : K ≤ x ^ (eps / 4)) (hK : |Real.log A| + 40 / eps ≤ K) :
     A * x ^ 10 * Real.exp (x ^ (eps / 2)) ≤ Real.exp (x ^ eps / 2) := by
-  have hx0 : 0 < x := by linarith
   obtain ⟨hlog, h2, h4⟩ := scale_facts heps hx
   set t := x ^ (eps / 4) with ht
   have hp := poly_ineq (a := |Real.log A| + 40 / eps) ht2 htK hK
@@ -76,7 +75,6 @@ theorem exp_bound {eps A x K : ℝ} (heps : 0 < eps) (hA : 0 < A) (hx : 1 ≤ x)
   have h5 : 10 * Real.log x ≤ 40 / eps * t := by
     calc 10 * Real.log x ≤ 10 * (4 * t / eps) := by linarith
       _ = 40 / eps * t := by ring
-  have key : Real.log A + 10 * Real.log x + t ^ 2 ≤ t ^ 4 / 2 := by linarith
   have e10 : Real.exp (10 * Real.log x) = x ^ 10 := by
     rw [show (10 : ℝ) * Real.log x = Real.log (x ^ 10) by rw [Real.log_pow]; norm_num]
     exact Real.exp_log (by positivity)

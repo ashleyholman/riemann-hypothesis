@@ -58,7 +58,6 @@ theorem eis_U_pair (j l : ℕ) (c t : ℂ) (a b : ℤ → ℂ) (hl : l.Prime)
 theorem eis_V_pair (j l : ℕ) (c t : ℂ) (a b : ℤ → ℂ) (hl : l.Prime)
     (ha : ∀ x, a (l * x) = t * a x) (n : ℕ) (hn : n ≠ 0) :
     eis j c (fun x => if (l : ℤ) ∣ x then a x else 0) b n = t * (l : ℂ) ^ (j - 1) * Vo l (eis j c a b) n := by
-  have hl0 : l ≠ 0 := hl.ne_zero
   by_cases hd : l ∣ n
   · obtain ⟨m, rfl⟩ := hd
     have hm : m ≠ 0 := by rintro rfl; simp at hn

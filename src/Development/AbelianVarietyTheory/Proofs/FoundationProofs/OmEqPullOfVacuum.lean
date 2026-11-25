@@ -124,7 +124,6 @@ theorem exists_nsmul_mem {cc : Ideal (𝓞 D.host.K)} (hc : cc ≠ ⊥) (δ : �
     rw [zsmul_eq_mul] at h1
     exact (isIntegral_algebraMap (R := ℤ) (x := y)).mul h1
   set m : ℕ := y.natAbs * y.natAbs with hm
-  have hm0 : 0 < m := by positivity
   have hn0 : 0 < Ideal.absNorm cc := Nat.pos_of_ne_zero (by rwa [Ne, Ideal.absNorm_eq_zero_iff])
   refine ⟨Ideal.absNorm cc * m, by positivity, AddSubgroup.subset_closure
     ⟨δ * D.host.φ₀ ((((Ideal.absNorm cc : 𝓞 D.host.K) : D.host.K) : D.host.E)),

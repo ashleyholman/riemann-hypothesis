@@ -90,7 +90,6 @@ theorem im_slz_arg (δ : M2) (hc : δ 1 0 = 0) (τ : ℍ) :
 theorem max_inv_mul_le (r y : ℝ) (hr : 0 < r) (hy : 0 < y) :
     max (r * y) (r * y)⁻¹ ≤ max r r⁻¹ * max y y⁻¹ := by
   have h1 := one_le_max_inv r hr
-  have h2 := one_le_max_inv y hy
   rw [mul_inv]
   apply max_le
   · exact mul_le_mul (le_max_left _ _) (le_max_left _ _) hy.le (by linarith)
@@ -112,7 +111,6 @@ theorem mod_slz (F : ℍ → ℂ) (k : ℕ) (δ : M2) (hdet : 0 < δ.det) (hc : 
   set r : ℝ := (δ 0 0 : ℝ) / (δ 1 1 : ℝ) with hr
   set K : ℝ := ‖((δ.det : ℤ) : ℂ) ^ (k - 1) * ((((δ 1 1 : ℤ) : ℂ)) ^ k)⁻¹‖ with hK
   set R : ℝ := max r r⁻¹ with hR
-  have hR1 : 1 ≤ R := one_le_max_inv r hrpos
   refine mod_of_bound _ (K * (C * R ^ A)) A fun τ => ?_
   have him := im_slz_arg δ hc τ
   rw [← hr] at him

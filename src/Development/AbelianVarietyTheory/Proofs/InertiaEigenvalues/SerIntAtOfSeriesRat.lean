@@ -614,7 +614,6 @@ theorem heisO_add_half_lat : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (θ :
   intro D ψ θ V W χV χW om ΛV ΛW sW f₀ hP H l₂ e he x c hx hc hch
   obtain ⟨hp, -, -, -, -, -, -, -, hψ, hvac⟩ := hP
   obtain ⟨P, hIS, hPiff⟩ := he
-  have hee := GlobalTheory.PlaceDatum.idemSum_mul_self hIS
   have hec : e * cA D e = 0 := hIS.2
   have hMb : ∀ PP ∈ P, ((l₂.M : ℕ) : 𝓞 D.host.E) ∈ PP.asIdeal := fun PP hPP =>
     (hPiff PP).1 hPP (GlobalTheory.AdTh.MovedDatum.natCast_mem_Mb l₂)

@@ -64,7 +64,6 @@ theorem dense_finite_vectors (K : Type) [Group K] [TopologicalSpace K] [IsTopolo
           ext w
           show π (k * l) w = π k (π l w)
           rw [map_mul, ContinuousLinearMap.mul_apply] }
-    have hρ : ∀ k (w : Nᗮ), ((ρ k w : Nᗮ) : H) = π k w := fun k w => rfl
     obtain ⟨S, hS0, hSf, hSs⟩ := exists_finiteDimensional_invariant K Nᗮ ρ
       (fun k w => hiso k w) (fun w => (hcont w).subtype_mk _)
     apply hS0

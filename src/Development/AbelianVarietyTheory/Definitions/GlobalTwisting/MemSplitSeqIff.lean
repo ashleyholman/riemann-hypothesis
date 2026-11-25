@@ -82,7 +82,6 @@ def stdList (p : ℕ) : List ((Fin n → R) × (Fin n → R)) :=
 def stdSeq (p : ℕ) (h : p ≤ n) : SplitSet R n p :=
   ⟨stdList R n p, (mem_splitSeq_iff R n _).2 fun i j hi hj => by
       have hi' : i < p := by simpa [stdList] using hi
-      have hj' : j < p := by simpa [stdList] using hj
       simp only [stdList, List.getElem_ofFn, dotProduct]
       rw [Finset.sum_eq_single (⟨n - p + i, by omega⟩ : Fin n)]
       · simp

@@ -181,7 +181,6 @@ theorem one_place (hc : c.Is) (hv : v.Is) (G : GLoc v) (j : ℕ) (h : j + 2 * 0 
       biComb c.ψ _ _ _ (G.cg j) (G.cg (j + 1)) (c.lst j h (v.τ j h) s₁ X₁ X₂) := by
   obtain rfl : j = G.s := by have := G.hs; omega
   obtain rfl : e = G.egT := eq_of_heq he
-  have hs := G.hs
   have hsc : G.sc G.s ≠ 0 := fun h0 => by simpa [h0] using G.sc_unit G.s
   have hreg : (G.S.T (Fin D.R.t)).Regular := Chain.ofType_regular _ _ _ _ _
   obtain ⟨T₁, hT₁, hX₁⟩ := (_root_.GlobalTheory.LocMod.indicator_vac D G.k G.q G.unit _ _ _ _ (G.FY G.s (0 + 1) (by omega)) (G.FY (G.s + 1) 0 rfl) c.ψ G.S.ψ

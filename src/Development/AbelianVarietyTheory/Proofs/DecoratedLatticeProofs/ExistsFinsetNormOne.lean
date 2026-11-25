@@ -230,7 +230,6 @@ theorem strong_approx (v₀ : HeightOneSpectrum (𝓞 F)) (t : InfiniteAdeleRing
       ∀ v : HeightOneSpectrum (𝓞 F), v ≠ v₀ →
         ‖algebraMap F (v.adicCompletion F) c - s v‖ ≤ ‖(M : v.adicCompletion F)‖ := by
   have hMF : (M : F) ≠ 0 := Nat.cast_ne_zero.2 hM
-  have hMR : (0 : ℝ) < M := Nat.cast_pos.2 (Nat.pos_of_ne_zero hM)
   obtain ⟨u, hu⟩ := ReciprocityTheory.ChartRestriction.G.Lib.AdeleIntA.exists_approx_adele
     (algebraMap F (FiniteAdeleRing (𝓞 F) F) (M : F)⁻¹ * s)
   obtain ⟨C, hC, hCt⟩ := exists_int_near F

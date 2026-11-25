@@ -43,7 +43,6 @@ theorem qd_lt_lStar_at {D : D7} (L : SizeData₂ D) (P : ParameterChoice' D L)
     congr 1; push_cast; ring
   have he2 : (2 : ℝ) < Real.exp 1 := by
     have := Real.add_one_lt_exp (x := (1 : ℝ)) one_ne_zero; linarith
-  have hy2 : 2 < y := lt_of_lt_of_le he2 hy
 
   have hkey : L.sc.L / 72 < L.sc.L - y := by
     rw [hL]
@@ -58,7 +57,6 @@ theorem qd_lt_lStar_at {D : D7} (L : SizeData₂ D) (P : ParameterChoice' D L)
     have : 0 ≤ Real.exp L.sc.L / Real.exp y := by positivity
     nlinarith
 
-  have hn1 : (1 : ℝ) ≤ D.R.n := Formalism.MainNotions.TwistedPlaces.n_ge_one D
   have ht1 : (1 : ℝ) ≤ D.R.t := Formalism.MainNotions.TwistedPlaces.t_ge_one D
   have hc := P.condE_le
   have hc0 : (0 : ℝ) ≤ (LevelStarExponents.condE D : ℝ) := by positivity
@@ -497,7 +495,6 @@ theorem baseSize_bounds {D : D7} (L : SizeData₂ D) (P : ParameterChoice' D L) 
   have hls : Formalism.MainNotions.TwistedPlaces.lStar L = LevelStarExponents.lStar L := rfl
   have hl0 : 0 < LevelStarExponents.lStar L := hls ▸ Formalism.MainNotions.TwistedPlaces.lStar_pos L
   have hgt : L.sc.b' < LevelStarExponents.lStar L := hls ▸ Formalism.MainNotions.TwistedPlaces.lStar_gt L P
-  have hleb : LevelStarExponents.lStar L ≤ L.sc.b := hls ▸ Formalism.MainNotions.TwistedPlaces.lStar_le_b L
   have hw := Formalism.MainNotions.TwistedPlaces.w''_le_b' L
   have hb'0 := Formalism.MainNotions.TwistedPlaces.b'_pos L
   have hx := L.sc.one_lt_alt
@@ -533,7 +530,6 @@ theorem baseSize_bounds {D : D7} (L : SizeData₂ D) (P : ParameterChoice' D L) 
     have h1 := P.h0_ge.1
     have h2 : LevelStarExponents.h0 L ≤ L.etaSz := div_le_self hη.le hm
     have h3' := P.mteta
-    have ht : (0 : ℝ) ≤ D.R.t := by positivity
     have h4 : L.etaSz ≤ (D.R.m : ℝ) * ((D.R.t : ℝ) + 1) * L.etaSz := by
       have : (1 : ℝ) ≤ (D.R.m : ℝ) * ((D.R.t : ℝ) + 1) := by nlinarith
       nlinarith
@@ -699,10 +695,8 @@ theorem lStar_numerics_at_record : ∀ {eps : ℝ} (Fm : FamP eps) (x : ℝ), Fm
   have hDen2 : 2 * ((Fm.D x a).R.m : ℝ) ≤ Formalism.MainNotions.TwistedPlaces.Den L := by
     unfold Formalism.MainNotions.TwistedPlaces.Den
     have hn2 : (1 : ℝ) ≤ ((Fm.D x a).R.n : ℝ) ^ 2 := by nlinarith
-    have hLg0 : (0 : ℝ) ≤ Formalism.MainNotions.TwistedPlaces.large₂ L := by linarith
     have h0 : (0 : ℝ) ≤ ((Fm.D x a).R.n : ℝ) * ((Fm.D x a).R.t : ℝ) ^ 2 *
         (((Fm.D x a).R.N (Fm.D x a).R.m : ℝ) + (Fm.D x a).R.t) * Formalism.MainNotions.TwistedPlaces.large₂ L ^ 2 := by positivity
-    have hA : (2 : ℝ) ≤ L.Sc + (Fm.D x a).R.t + Formalism.MainNotions.TwistedPlaces.large₂ L := by linarith
     have hB : (1 : ℝ) ≤ ((Fm.D x a).R.k : ℝ) * ((Fm.D x a).R.n : ℝ) ^ 2 := by nlinarith
     have : 2 * ((Fm.D x a).R.k : ℝ) * ((Fm.D x a).R.n : ℝ) ^ 2 ≤
         ((Fm.D x a).R.k : ℝ) * ((Fm.D x a).R.n : ℝ) ^ 2 * (L.Sc + (Fm.D x a).R.t + Formalism.MainNotions.TwistedPlaces.large₂ L) := by

@@ -431,7 +431,6 @@ theorem depthSet_bddAbove_of_unique_centre : ∀ (O : Type) [CommRing O] (bar : 
   have key : ∀ i, a i ≠ 0 → toReal (δ i) ∈ rcone γ := fun i hai => by
     obtain ⟨k, c, hk, hkc⟩ := inCone_of_strict hγ.strict hγ.linear (fun i => pull_mem ρ' (hδ₂.mem i))
       (fun i y => hδ₂.nonneg i (ρ' y)) ha hb ((linearOn_iff ψ δ).1 hlinδ a ha) (hsumB.symm.trans hBb) i hai
-    have hk' : (0 : ℝ) < k := by exact_mod_cast hk
     refine ⟨fun j => (c j : ℝ) / k, fun j => by positivity, LinearMap.ext₂ fun x y => ?_⟩
     have h := LinearMap.congr_fun₂ hkc x y
     simp only [LinearMap.smul_apply, LinearMap.sum_apply, nsmul_eq_mul] at h

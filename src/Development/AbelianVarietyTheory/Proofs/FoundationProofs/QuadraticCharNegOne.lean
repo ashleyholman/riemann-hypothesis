@@ -174,8 +174,6 @@ theorem no_rat {q d : ℕ} [Fact d.Prime] (h : HostHyp q d) {m : ℕ} (hm : Even
       linear_combination (-(q * d * A.den ^ 2 * W.den ^ 2 : ℚ)) * hW)
   have h1 := hq.pos
   have h2 := hd.pos
-  have h3 := A.den_pos
-  have h4 := W.den_pos
   have : (0 : ℤ) < 2 * q * d * d ^ k * A.den * W.den := by positivity
   omega
 

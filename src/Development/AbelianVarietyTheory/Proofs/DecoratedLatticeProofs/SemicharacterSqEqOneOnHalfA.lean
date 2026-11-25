@@ -99,7 +99,6 @@ theorem symplO_split {S T : HSp D} {e : AE D} (h1 : e * e = e) (h2 : e * cA D e 
     symplO S T u v = symplO S T (e • u) (cA D e • v) + symplO S T (cA D e • u) (e • v) +
       symplO S T ((1 - e - cA D e) • u) ((1 - e - cA D e) • v) := by
   have h1' : cA D e * cA D e = cA D e := by rw [← map_mul, h1]
-  have h2' : cA D e * e = 0 := by rw [mul_comm, h2]
   have hc : cA D (1 - e - cA D e) = 1 - e - cA D e := by
     rw [map_sub, map_sub, map_one, Formalism.L2.Theta.cA_cA]; ring
   have ho : (1 - e - cA D e) * (1 - e - cA D e) = 1 - e - cA D e := by
@@ -240,11 +239,6 @@ theorem char_symplO_halfA : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (θ : 
     ext i j
     rw [Matrix.map_apply, Matrix.smul_apply, Matrix.map_apply, Matrix.smul_apply, smul_eq_mul, smul_eq_mul,
       map_mul (incA D), mul_left_comm (cA D e), ← mul_assoc, ← map_mul, mul_inv_cancel₀ hcE, map_one, one_mul]
-  have hoe : (1 - e - cA D e) * e = 0 := by
-    rw [sub_mul, sub_mul, one_mul, h1, mul_comm (cA D e), h2, sub_self, sub_zero]
-  have ho : (1 - e - cA D e) * (1 - e - cA D e) = 1 - e - cA D e := by
-    have h1' : cA D e * cA D e = cA D e := by rw [← map_mul, h1]
-    linear_combination h1 + h1' + 2 * h2
   have compO : ∀ z ∈ halfAO SS (perO (D.host.AA0 : Submodule (𝓞 D.host.E) D.host.E) N N') c,
       (1 - e - cA D e) • finTens 1 (LinearMap.toMatrix' z) ∈
         (latO S T (N : Set (Fin S.rank → D.host.E)) (N' : Set (Fin T.rank → D.host.E)) fun _ => True) := by

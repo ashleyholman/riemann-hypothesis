@@ -175,7 +175,6 @@ theorem exists_lattice : ∀ {G : Type} [Group G] [TopologicalSpace G] [CompactS
   have hinj : Function.Injective (algebraMap O LL) := IsFractionRing.injective O LL
 
   let e := Module.finBasis LL A.V
-  let n := Module.finrank LL A.V
   let T₀ : Submodule O A.V := Submodule.span O (Set.range e)
   have hT₀fg : T₀.FG := Submodule.fg_span (Set.finite_range e)
   have hT₀span : Submodule.span LL (T₀ : Set A.V) = ⊤ := by

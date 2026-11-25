@@ -29,7 +29,6 @@ theorem eventually_extends {V C : Type} [CommRing V] [IsLocalRing V] [CommRing C
   obtain ⟨U, hU, hy, -⟩ := exists_isAffineOpen_le y (le_preimage_top _)
   have hy' : ⊤ ≤ (spMap σ ≫ y) ⁻¹ᵁ U := le_preimage_comp _ y hy (le_preimage_top _)
   let c : V →+* Γ(X, U) := (q.appLE ⊤ U le_top).hom.comp (Scheme.ΓSpecIso (CommRingCat.of V)).inv.hom
-  have hc : ∀ a, c a = constFn q U a := fun _ => rfl
   have hft : c.FiniteType := (q.finiteType_appLE (isAffineOpen_top _) hU le_top).comp
     (RingHom.FiniteType.of_surjective _
       (ConcreteCategory.bijective_of_isIso (Scheme.ΓSpecIso (CommRingCat.of V)).inv).2)

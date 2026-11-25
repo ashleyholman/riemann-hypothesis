@@ -572,7 +572,6 @@ theorem exists_sg_mul_sq (h : IsLat Λ) {β : ℂ} (hβ : ∀ ω ∈ Λ, β * ω
       with hD_def
     have hD : Differentiable ℂ D := by
       rw [hD_def]
-      have h1 : Differentiable ℂ fun z => u (z - w) := hU.comp (by fun_prop)
       have h2 : Differentiable ℂ fun z => GlobalTheory.EvenTheta.Fibres.trFac Λ (β * (z - w)) (β * w) :=
         hT'.comp (by fun_prop)
       fun_prop
@@ -583,13 +582,11 @@ theorem exists_sg_mul_sq (h : IsLat Λ) {β : ℂ} (hβ : ∀ ω ∈ Λ, β * ω
       with hN_def
     have hN : Differentiable ℂ N := by
       rw [hN_def]
-      have h1 : Differentiable ℂ fun z => u (β * (z - w)) := hU.comp (by fun_prop)
       have h2 : Differentiable ℂ fun z => GlobalTheory.EvenTheta.Fibres.trFac Λ (z - w) w :=
         hT.comp (by fun_prop)
       fun_prop
     refine ⟨fun z => N z / D z, (hN.analyticAt w).div (hD.analyticAt w) hD0, ?_⟩
     filter_upwards [hD.continuous.continuousAt.eventually_ne hD0] with z hz
-    have hz1 : u (z - w) ≠ 0 := fun h0 => hz (by simp [hD_def, h0])
     have e1 := GlobalTheory.EvenTheta.Fibres.sg_sq h hw (z - w)
     have e2 := GlobalTheory.EvenTheta.Fibres.sg_sq h (hβ w hw) (β * (z - w))
     rw [sub_add_cancel] at e1
@@ -645,8 +642,6 @@ theorem sg_mul_sq : ∀ (Λ : AddSubgroup ℂ), IsLat Λ → ∀ (β : ℂ) (k :
     rintro rfl
     norm_num at hN
     exact Nat.cast_add_one_ne_zero k hN.symm
-  have hσ := h.differentiable
-  have hσc := hσ.continuous
   have hne : ∀ z ∉ Λ, sgStar Λ z ≠ 0 := fun z hz => (h.sg_eq_zero z).not.2 hz
   obtain ⟨G, hG, eG⟩ := exists_sg_mul_sq h hβ
   have hGc := hG.continuous
@@ -1009,8 +1004,6 @@ theorem add_eq_subst (h : g.Ok) (A B : MvPowerSeries σ ℂ_[p]) (hA : MvPowerSe
   have hsl : ∀ i : Fin 2, MvPowerSeries.subst ![A, B] (g.lg (Xv i) : MvPowerSeries (Fin 2) ℂ_[p]) =
       g.lg (![A, B] i) := by
     intro i
-    have hX : PowerSeries.HasSubst (Xv i : MvPowerSeries (Fin 2) ℂ_[p]) :=
-      PowerSeries.HasSubst.of_constantCoeff_zero (MvPowerSeries.constantCoeff_X _)
     rw [G1.lg, G1.lg, PowerSeries.subst, PowerSeries.subst,
       MvPowerSeries.subst_comp_subst_apply
       (MvPowerSeries.hasSubst_of_constantCoeff_zero (fun _ => MvPowerSeries.constantCoeff_X i)) hab]

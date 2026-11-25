@@ -176,7 +176,6 @@ theorem valTw_two_mem (hL : IsTotallyComplex L) {I : Type} [Fintype I] (φ : I �
   rw [← Finset.prod_inv_distrib, ← Finset.prod_mul_distrib]
   refine prod_mem fun i _ => ?_
   obtain ⟨m, hm⟩ := hev i
-  have hz : φ i k ≠ 0 := (map_ne_zero _).2 hk0
   have hz' : ((‖φ i k‖ : ℝ) : ℂ) ≠ 0 := by simpa using hk0
   have hsq : ((‖φ i k‖ : ℝ) : ℂ) * ((‖φ i k‖ : ℝ) : ℂ) ∈ M := by
     rw [← sq, ← Complex.mul_conj']

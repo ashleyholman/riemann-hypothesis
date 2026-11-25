@@ -200,8 +200,6 @@ theorem Hq_herm (k r : ℕ) : (Hq k r)ᴴ = Hq k r := by
     fun _ _ => rfl
   have hout : ∀ i : Fin (2 * r + k + 1), outer k r i ↔ ((i : ℕ) ≤ r ∨ r + k ≤ (i : ℕ)) := fun _ => Iff.rfl
   ext i j
-  have hi := i.isLt
-  have hj := j.isLt
   simp only [Matrix.conjTranspose_apply, hHq, hout, Fin.ext_iff]
   split_ifs <;> (try simp) <;> omega
 
@@ -248,8 +246,6 @@ theorem dg_mul (k r : ℕ) (u : ℝ) (hu : u ≠ 0) : dg (tor k r u⁻¹) * dg (
 
 theorem tor_pair (k r : ℕ) (hk : 1 ≤ k) (u : ℝ) (hu : u ≠ 0) (i j : Fin (2 * r + k + 1))
     (hij : i.val + j.val = 2 * r + k) : tor k r u i * tor k r u j = 1 := by
-  have hil := i.isLt
-  have hjl := j.isLt
   unfold GlobalTheory.CompanionTheory.BesselCartan.tor
   split_ifs <;> first | (exfalso; omega) | simp [hu]
 
@@ -263,7 +259,6 @@ theorem dg_mem (k r : ℕ) (hk : 1 ≤ k) (u : ℝ) (hu : u ≠ 0) : dg (tor k r
   have hHq : ∀ i j : Fin (2 * r + k + 1), Hq k r i j =
       if outer k r i then (if (i : ℕ) + (j : ℕ) = 2 * r + k then 1 else 0) else if i = j then 1 else 0 :=
     fun _ _ => rfl
-  have hout : ∀ i : Fin (2 * r + k + 1), outer k r i ↔ ((i : ℕ) ≤ r ∨ r + k ≤ (i : ℕ)) := fun _ => Iff.rfl
   have hdg : ∀ {m : ℕ} (d : Fin m → ℝ), dg d = Matrix.diagonal (fun i => ((d i : ℝ) : ℂ)) := fun _ => rfl
   have hUH : ∀ {m : ℕ} (H g : Matrix (Fin m) (Fin m) ℂ), g ∈ UH H ↔ gᴴ * H * g = H := fun _ _ => Iff.rfl
   rw [hUH]
@@ -302,7 +297,6 @@ theorem bvec_dot {m : ℕ} (i j : Fin m) : star (bvec i) ⬝ᵥ bvec j = if i = 
 
 theorem cartanQ : CartanQ := by
   intro k r hk μ hμ
-  have hbv : ∀ {m : ℕ} (i : Fin m), bvec i = Pi.single i (1 : ℂ) := fun _ => rfl
   have hUH : ∀ {m : ℕ} (H g : Matrix (Fin m) (Fin m) ℂ), g ∈ UH H ↔ gᴴ * H * g = H := fun _ _ => Iff.rfl
   obtain ⟨hμU, hμfix⟩ := hμ
   have hH : (Hq k r)ᴴ = Hq k r := Hq_herm k r

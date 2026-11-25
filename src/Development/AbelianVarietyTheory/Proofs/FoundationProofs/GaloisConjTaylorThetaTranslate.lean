@@ -228,7 +228,6 @@ private lemma deriv_eventuallyEq_logDeriv_pow_succ {f : ℂ → ℂ} (hf : Analy
   · filter_upwards [hne'] with z hz
     rw [div_mul_cancel₀ _ (mul_ne_zero hk (pow_ne_zero _ hz))]
   · filter_upwards [hne', hf.eventually_analyticAt] with z hz hza
-    have hz' : f z ^ j ≠ 0 := pow_ne_zero j hz
     rw [deriv_fun_pow hza.differentiableAt, Nat.add_sub_cancel]
     field_simp
     ring

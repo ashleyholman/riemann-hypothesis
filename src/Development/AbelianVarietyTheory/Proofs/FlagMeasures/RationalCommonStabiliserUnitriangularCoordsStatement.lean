@@ -214,7 +214,6 @@ theorem stab_blockDiag : ∀ {K : Type} [Field K] (sig : K →+* K), (∀ x, sig
     exact absurd (((h b b.2).2.2.2.2 a a.2).1 (not_lt.1 h')) (not_le.2 hab)
   have hrev : ∀ a b, β a = β b → a < b → σ' b < σ' a := fun a b hab hl => by
     have h1 := ((h a a.2).2.2.2.2 b b.2).2.1 hab
-    have h2 : (a : ℕ) < b := hl
     show σ b < σ a
     omega
   have hZ' : ∀ a b, Z a b = if b = σ' a then c a else 0 := by

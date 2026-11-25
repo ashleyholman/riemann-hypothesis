@@ -545,7 +545,6 @@ theorem main : ∀ (D : D7) (P : Pend D), TieInePoly D → InertEq D → ∀ (i 
   obtain ⟨ζ, hζ⟩ := P.zetaPrimitiveRoot i
 
   let ιg : ↥(GK (D.nbr i w hw).Kw) →* GE D.nd := (decS D.nd w).comp (D.nbr i w hw).e.symm.toMonoidHom
-  have hιg : ∀ s, ιg s = (((D.nbr i w hw).e.symm s : Gw D.nd w) : GE D.nd) := fun s => rfl
   have hIne : ∀ s ∈ IK (D.nbr i w hw).Kw, ιg s ∈ Ine (F := D.host.E) (D.nd.plOm.1 w) := by
     intro s hs
     rw [← hIE i w hw] at hs

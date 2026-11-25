@@ -253,7 +253,6 @@ theorem exists_moved : ∀ (B : Base) (f : Fr B.toPre) (T : TwDat B) (w : ColW B
   have he := (@_root_.GlobalTheory.Mem.R3.Rw.rr_eta_tr B w.C Z₀ o.Z _ _ _ _ _ _ _ _ _ z₀.alg _ z₀.R z₀.F).1
   letI : Algebra z₀.core.Q.c.F (Late.D o.Z).what₂.LL := alg (a := Z₀) o.Z z₀.alg
   have hA : (t.tA : type_of% q.t.tA) = q.t.tA := eq_of_heq (a1)
-  have hs := fixTup_same (a := Z₀) o.Z (iK := z₀.alg) hy
   refine ⟨{ z := cpDat (a := Z₀) o.Z s z₀
             intersectionNumber_baseChange := cp_holds (a := Z₀) o.Z s z₀ h1
             exAt := cp_exAt (a := Z₀) o.Z s z₀ h2

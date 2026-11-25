@@ -502,9 +502,6 @@ theorem _root_.GlobalTheory.PDiv.epsRedPow_pow {v : epsR O ⟶ A} (hv : IsTangen
       spOver (epsTo O (ModPow p O n)) ≫ GrpTangent.epsScale 0 := by
     rw [epsScale_eq, epsScale_eq, spOver_comp, spOver_comp]
     refine congrArg spOver (AlgHom.ext fun z => ?_)
-    have h0 : (p : ModPow p O n) ^ n = 0 := by
-      rw [← map_natCast (Ideal.Quotient.mk _), ← map_pow, Ideal.Quotient.eq_zero_iff_mem]
-      exact Ideal.mem_span_singleton_self _
     ext <;> simp
   rw [← MonObj.comp_pow, GrpTangent.pow_eq_epsScale_comp hv, ← Category.assoc, h, Category.assoc,
     GrpTangent.epsScale_zero_comp hv, MonObj.comp_one]

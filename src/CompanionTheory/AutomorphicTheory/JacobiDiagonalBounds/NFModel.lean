@@ -769,7 +769,6 @@ theorem model_hyp (hHB : JDHatBdd) (hTT : 0 ≤ P.TT) (hM : MA.IsModelLevel P (M
   obtain ⟨d1, d2⟩ := model_star_D hM
   have s2' : star L.ζbi = L.ζi := by rw [← s2, star_star]
   have d1' : star L.Drb = L.Dr := by rw [← d1, star_star]
-  have d2' : star L.Drbi = L.Dri := by rw [← d2, star_star]
   have sD : star L.D = L.Db := by
     rw [LevelData.D, star_mul, hS.1, d1, LevelData.Db, (cl_comm L (cζb L) (cDrb L)).eq]
   have sDi : star L.Di = L.Dbi := by

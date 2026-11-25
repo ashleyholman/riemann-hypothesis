@@ -138,8 +138,6 @@ theorem exists_frobenius_semisimplification : ∀ (E Ω : Type) [Field E] [Numbe
   have huN : Commute (u : End ℂ V) N := by
     have h1 := hc (frob (h := h))
     have h2 := semisimplePart_mul_eq hfs hss (hsub ▸ hnil) h1
-    have hq : ((normV w : ℕ) : ℂ) ^ deg (frob (h := h)) ≠ 0 :=
-      zpow_ne_zero _ (Nat.cast_ne_zero.mpr (one_lt_normV w).ne_bot)
     have h3 : (S : End ℂ V) * ((u : End ℂ V) * N) = S * (N * u) := by
       rw [← mul_assoc, hSu', h1, ← mul_assoc, h2, smul_mul_assoc, mul_assoc, hSu']
     exact (Units.mul_right_inj S).mp h3

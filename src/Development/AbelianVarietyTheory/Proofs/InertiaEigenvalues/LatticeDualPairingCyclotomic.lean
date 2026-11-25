@@ -121,13 +121,6 @@ theorem limit_cocycle : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l) (LL : Type) 
     rw [map_natCast, map_zero, ← map_natCast (algebraMap ℚ_[l] LL),
       map_eq_zero_iff _ (algebraMap ℚ_[l] LL).injective, Nat.cast_eq_zero] at h2
     exact hlpr.ne_zero h2
-  have hlnu : ¬ IsUnit ((l : ℕ) : O) := by
-    intro hu
-    obtain ⟨a, ha⟩ := hu.exists_right_inv
-    have hU : ({1}ᶜ : Set LL) ∈ 𝓝 (0 : LL) := isOpen_compl_singleton.mem_nhds (by simp)
-    obtain ⟨m, hm⟩ := (eventually_smul_mem c hc hcO hU).exists
-    apply hm (algebraMap O LL (a ^ m)) ⟨_, rfl⟩
-    simp only [c, smul_eq_mul, ← map_mul, ← mul_pow, ha, one_pow, map_one, Set.mem_singleton_iff]
   obtain ⟨v, u, hlu⟩ := IsDiscreteValuationRing.eq_unit_mul_pow_irreducible hl0 hϖ
 
   let Q : ℕ → Submodule O A.V := fun n => ϖ ^ n • LA.T

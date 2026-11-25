@@ -215,7 +215,6 @@ theorem exists_isFam_of_pureType : ThetaUnifAV → Out.Laws → ∀ (E : Type) [
   have hρ : (2 * ω - 1) ^ 2 = -(H.d : ℂ) := hτ ▸ two_mul_sub_one_sq_of_ringHom τ
   have hsq : ∀ τ : 𝓞 E →+* ℂ, τ H.rt ^ 2 = -(H.d : ℂ) := fun τ => by
     rw [← map_pow, H.rt_sq, map_neg, map_natCast]
-  have hd : (H.d : ℂ) ≠ 0 := Nat.cast_ne_zero.2 H.d_prime.pos.ne'
   obtain ⟨p, q, hpq, hdet', hpure⟩ : ∃ p q : ℕ, p + q = r ∧
       (∀ τ : 𝓞 E →+* ℂ, (τ H.rt = H.rt0 → LieMult T.t.act (𝟙 (Sp ℂ)) τ p) ∧
         (τ H.rt ≠ H.rt0 → LieMult T.t.act (𝟙 (Sp ℂ)) τ q)) ∧

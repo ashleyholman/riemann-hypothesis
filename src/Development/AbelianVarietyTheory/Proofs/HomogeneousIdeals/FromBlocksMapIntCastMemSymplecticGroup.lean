@@ -809,7 +809,6 @@ theorem IsSiegel.riemannTheta_symplectic {τ : Matrix ι ι ℂ} (hτ : IsSiegel
     have := hN.isUnit_det
     rw [det_neg] at this
     exact isUnit_of_mul_isUnit_right this
-  have hNs : N.IsSymm := by simpa using hN.isSymm.neg
   have hσ : IsSiegel N⁻¹ := by
     have e : (-N)⁻¹ = -N⁻¹ := inv_eq_right_inv (by rw [neg_mul_neg, mul_nonsing_inv _ hNu])
     simpa [e] using hN.neg_inv

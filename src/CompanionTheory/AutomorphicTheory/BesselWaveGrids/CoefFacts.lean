@@ -127,8 +127,6 @@ theorem cube_le_gap (k r : ℕ) : ((2 * r + k + 1 : ℕ) : ℝ) ^ 3 ≤ gapY k r
 end GapBounds
 
 theorem sq_le_thrX (k r : ℕ) : ((r : ℝ) + 1) ^ 2 * (2 * (r : ℝ) + k + 1) ^ 2 ≤ thrX k r := by
-  have hr : (0 : ℝ) ≤ r := Nat.cast_nonneg _
-  have hk : (0 : ℝ) ≤ k := Nat.cast_nonneg _
   have h1 : ((r : ℝ) + 1) ^ 2 ≤ ((r : ℝ) + 1) ^ 4 := pow_le_pow_right₀ (by linarith) (by norm_num)
   have h2 : (2 * (r : ℝ) + k + 1) ^ 2 ≤ (2 * (r : ℝ) + k + 1) ^ 3 := pow_le_pow_right₀ (by linarith) (by norm_num)
   have h3 : (0 : ℝ) ≤ ((3 * (r + 1) : ℕ) : ℝ) * (2 * (r : ℝ) + k + 1) ^ 2 := by positivity
@@ -143,8 +141,6 @@ theorem thr_main {c C A : ℝ} (k r : ℕ) (hc : c ≤ C) (h : C * thrX k r ≤ 
 
 theorem thr_conv {c C A : ℝ} (k r : ℕ) (hc : c ≤ C) (hC : 0 ≤ C) (h : C * thrX k r ≤ A) :
     c * ((r : ℝ) + 1) ^ 2 * ((r : ℝ) * ((2 * r + k + 1 : ℕ) : ℝ) + 1) ≤ A := by
-  have hr : (0 : ℝ) ≤ r := Nat.cast_nonneg _
-  have hk : (0 : ℝ) ≤ k := Nat.cast_nonneg _
   have h1 : (r : ℝ) * ((2 * r + k + 1 : ℕ) : ℝ) + 1 ≤ (2 * (r : ℝ) + k + 1) ^ 2 := by push_cast; nlinarith
   have h2 : ((r : ℝ) + 1) ^ 2 * ((r : ℝ) * ((2 * r + k + 1 : ℕ) : ℝ) + 1) ≤ thrX k r :=
     (mul_le_mul_of_nonneg_left h1 (by positivity)).trans (sq_le_thrX k r)
@@ -167,7 +163,6 @@ theorem thr_AB {C A : ℝ} (k r : ℕ) (hC : 46 ≤ C) (h : C * thrX k r ≤ A) 
 theorem thr_JF {C A : ℝ} (k r m : ℕ) (hm : m ≤ CompanionTheory.JfS.NN k r) (hC : 46 ≤ C) (h : C * thrX k r ≤ A) :
     JF.TransportedAlt k r A m := by
   have hr : (0 : ℝ) ≤ r := Nat.cast_nonneg _
-  have hk : (0 : ℝ) ≤ k := Nat.cast_nonneg _
   have h1 := sq_le_thrX k r
   have h2 := mul_le_mul_of_nonneg_right hC (thrX_nonneg k r)
   have hmR : (m : ℝ) ≤ 2 * (2 * (r : ℝ) + k + 1) * (2 * r * (2 * (r : ℝ) + k + 1) + 1) := by
@@ -179,7 +174,6 @@ theorem thr_JF {C A : ℝ} (k r m : ℕ) (hm : m ≤ CompanionTheory.JfS.NN k r)
   rw [lt_div_iff₀ (by positivity)]
   push_cast
   set n : ℝ := 2 * (r : ℝ) + k + 1 with hn
-  have hn1 : 1 ≤ n := by linarith
   have h4 : 6 * (r : ℝ) * m ≤ 6 * r * (2 * n * (2 * r * n + 1)) := mul_le_mul_of_nonneg_left hmR (by positivity)
   have h5 : (r : ℝ) * n ≤ r * n ^ 2 := mul_le_mul_of_nonneg_left (by nlinarith) hr
   have h6 : 0 < n ^ 2 := by positivity

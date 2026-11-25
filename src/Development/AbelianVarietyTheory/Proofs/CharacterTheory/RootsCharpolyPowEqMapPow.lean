@@ -74,9 +74,6 @@ theorem roots_charpoly_pow (k : Type) [Field k] [IsAlgClosed k] (n r : ℕ)
     (M : Matrix (Fin n) (Fin n) k) :
     (Matrix.charpoly (M ^ r)).roots = (Matrix.charpoly M).roots.map (· ^ r) := by
   have hinf : Infinite k := IsAlgClosed.instInfinite
-  have hcard : Multiset.card (Matrix.charpoly (M ^ r)).roots = (Matrix.charpoly (M ^ r)).natDegree := by
-    exact IsAlgClosed.card_roots_eq_natDegree
-  have hfac := prod_multiset_X_sub_C_of_monic_of_roots_card_eq (Matrix.charpoly_monic (M ^ r)) hcard
   suffices h : Matrix.charpoly (M ^ r) = (((Matrix.charpoly M).roots.map (· ^ r)).map fun a => X - C a).prod by
     rw [h, roots_multiset_prod_X_sub_C]
   apply Polynomial.funext

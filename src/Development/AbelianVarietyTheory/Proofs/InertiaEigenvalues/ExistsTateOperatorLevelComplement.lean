@@ -311,7 +311,6 @@ theorem est_pow (hact : IsActC act) (hχ : IsCyc χ) (K : FinExt l) {j : ℕ} (h
   have hwX : act g d - d ∈ Xj K j := sub_mem (T1.2.2.2.2.1 g hg0 d hdX) hdX
   obtain ⟨m, hm⟩ : act g d - d ∈ algC K := sub_mem (act_algC hact K hg0 hdA) hdA
   obtain ⟨a, ha, hwa⟩ := mem_inC.1 hm
-  have hlO : ((l : Om l)) ^ n ≠ 0 := pow_ne_zero _ (Nat.cast_ne_zero.2 hp.ne_zero)
   have hlC : ((l : PadicComplex l)) ^ n ≠ 0 := pow_ne_zero _ (Nat.cast_ne_zero.2 hp.ne_zero)
   have hnl : ‖(l : PadicComplex l) ^ n‖ = (l : ℝ)⁻¹ ^ n := by rw [norm_pow, norm_l]
   have hcoe : algebraMap (Om l) (PadicComplex l) (a / (l : Om l) ^ n) =

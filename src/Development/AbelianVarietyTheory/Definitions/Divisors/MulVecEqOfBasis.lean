@@ -24,7 +24,6 @@ theorem isIntExp_mono {T : Type} {Lc : LevCh D T} {sc : GlobalTheory.ChiGrid.Con
   have hm : ∀ (f N : ℕ) (B : ℕ) (Q : ℕ), GlobalTheory.NormSum.intBound C f N B (Real.log sc.b) Q ≤
       GlobalTheory.NormSum.intBound C' f N B (Real.log sc.b) Q := fun f N B Q => by
     have a : 0 ≤ Real.log ((f : ℝ) * (2 * (N : ℝ))) := by exact_mod_cast Real.log_natCast_nonneg (f * (2 * N))
-    have b := Real.log_natCast_nonneg Q
     unfold GlobalTheory.NormSum.intBound
     gcongr
   refine ⟨S, del, ⟨h1.1, h1.2.1, h1.2.2.1, h1.2.2.2.trans (hm ..)⟩, h2, ?_, h4⟩

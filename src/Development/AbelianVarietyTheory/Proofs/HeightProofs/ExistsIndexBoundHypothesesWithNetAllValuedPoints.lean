@@ -243,7 +243,6 @@ theorem log_size_le (large₂ : SizeData₂ D) {j : ℕ} (w : WeightFamilies.Wt 
   have hkf : (D.R.k : ℝ) * D.R.f ≤ zBase large₂ := by
     have h1 := fr_le_Z large₂
     have h2 := k_le_r D
-    have h3 := two_le_f D
     nlinarith
   have h0 : (0 : ℝ) ≤ (D.R.k : ℝ) * D.R.f := by positivity
   have h2 : CK * D.R.k * D.R.f ≤ zBase large₂ * zBase large₂ := by
@@ -348,9 +347,7 @@ theorem thetaGeneratorArchLowerConst_le (large₂ : SizeData₂ D) {j : ℕ} (w 
     push_cast
     have h1 := fr_le_Z large₂
     have h2 := m_le_r D
-    have h3 := two_le_f D
     nlinarith
-  have hd0 : (0 : ℝ) ≤ (I2.dstar (E := D.host.E) D.R.m : ℝ) := Nat.cast_nonneg _
   have h1 : Real.log (2 * (I2.dstar (E := D.host.E) D.R.m : ℝ)) ≤ 4 * zBase large₂ :=
     (Real.log_le_self (by positivity)).trans (by linarith)
   have h2 : (I2.dstar (E := D.host.E) D.R.m : ℝ) / 2 * Real.log (2 * (I2.dstar (E := D.host.E) D.R.m : ℝ)) ≤
@@ -462,9 +459,7 @@ theorem polyDom_of_pageOK : ∀ (CL : ℝ) (Cq : ℝ → ℝ → ℝ), 0 < CL �
   have step : ∀ n : ℕ, 10 ^ 9 * zBase large₂ ^ n ≤ zBase large₂ ^ (n + 1) := fun n => by
     rw [pow_succ' (zBase large₂) n]
     exact mul_le_mul_of_nonneg_right hbig (by positivity)
-  have z0 : 1 ≤ zBase large₂ ^ 2 := one_le_pow₀ hZ
   have z1 : zBase large₂ ≤ zBase large₂ ^ 2 := by simpa using Zpow_le large₂ (a := 1) (n := 2) (by norm_num)
-  have z2 := Zpow_le large₂ (a := 2) (n := 4) (by norm_num)
   have z3 := Zpow_le large₂ (a := 3) (n := 4) (by norm_num)
   have z4 := Zpow_le large₂ (a := 4) (n := 5) (by norm_num)
   have z5 := Zpow_le large₂ (a := 5) (n := 7) (by norm_num)
@@ -913,7 +908,6 @@ namespace GlobalTheory.ArcCM.Room
 theorem room_four : ∃ C₀ : ℝ → ℝ → ℝ → ℝ, (∀ a b c, 0 ≤ C₀ a b c) ∧ ∀ (D : D7) (large₂ : SizeData₂ D) (j : ℕ) (ka : WeightFamilies.Wt D j) (CA CR Ck Tt cc : ℝ), WeightAlgebra.ParA large₂ CA → Real.log (Ideal.absNorm D.host.ccK) ≤ large₂.sc.L → InR D j → j < D.R.m → 3 ≤ D.R.r → 0 ≤ CR → ka.size ≤ Ck * (D.R.k : ℝ) * (D.R.f : ℝ) * large₂.sc.b → 0 < Tt → 0 < cc → Tt * cc ≤ 1 → 1 ≤ zBase large₂ ∧ RoomAt large₂ j ka CR Tt cc (C₀ CA CR Ck) 4 := by
   set C : ℝ := 200 with hCdef
   set A : ℝ := 4 with hAdef
-  have hC : 0 ≤ C := by norm_num [hCdef]
   have hA : 1 ≤ A := by norm_num [hAdef]
   have H := GlobalTheory.SplitConst.constants_bounded_four
   rw [← hCdef, ← hAdef] at H

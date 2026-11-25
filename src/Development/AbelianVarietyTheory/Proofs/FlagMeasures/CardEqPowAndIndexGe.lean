@@ -20,7 +20,6 @@ theorem exists_card_eq_pow (R : Type) [CommRing R] [IsLocalRing R] (n : ℕ) :
     intro D _ _ _ hn
     rcases subsingleton_or_nontrivial D with h | h
     · exact ⟨0, by simp⟩
-    have hfin : Finite (Submodule R D) := Finite.of_injective _ SetLike.coe_injective
     obtain ⟨M, hM, -⟩ := (eq_top_or_exists_le_coatom (⊥ : Submodule R D)).resolve_left bot_ne_top
     have hs : IsSimpleModule R (D ⧸ M) := isSimpleModule_iff_isCoatom.2 hM
     obtain ⟨I, hI, ⟨e⟩⟩ := isSimpleModule_iff_quot_maximal.1 hs

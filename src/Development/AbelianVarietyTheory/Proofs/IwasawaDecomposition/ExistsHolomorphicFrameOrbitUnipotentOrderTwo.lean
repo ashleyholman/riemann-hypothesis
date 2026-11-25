@@ -72,7 +72,6 @@ theorem LinGrowth.sq_eq_zero {N : ℕ} {n : Matrix (Fin N) (Fin N) ℂ} (h : Lin
     set c := ‖L (n ^ 2 *ᵥ v)‖
     have hc : 0 < c := norm_pos_iff.2 hL
     have ha : 0 ≤ a := norm_nonneg _
-    have hb : 0 ≤ b := norm_nonneg _
     have hle : ∀ k : ℕ, 1 ≤ k → (k : ℝ) * (k - 1) / 2 * c ≤ C * (1 + k) + a + k * b := by
       intro k hk1
       have h1 := hC k
@@ -208,7 +207,6 @@ theorem linGrowth (h : IsOrbit X T M γ x) (τ : X.Ψ) : LinGrowth ((γ : Matrix
   rw [h1, add_sub_cancel_left, Complex.norm_natCast, Complex.add_im, Complex.natCast_im, hwi] at h2
   have h3 := ReciprocityTheory.ChartRestriction.G.FD.MajorantConjugateTransfer.cs X hx τ (((γ : Matrix (Fin N) (Fin N) E).map τ.1) ^ k *ᵥ v) u
   have hk : (0 : ℝ) ≤ k := k.cast_nonneg
-  have hM : (0 : ℝ) ≤ M := M.cast_nonneg
   have h4 : (2 + ((k * M : ℕ) : ℝ) ^ 2 / ((T + 1 + 0 - T) * (T + 1 - T))) ≤ (2 + M ^ 2) * (1 + k) ^ 2 := by
     rw [show (T + 1 + 0 - T) * (T + 1 - T) = 1 by ring]
     push_cast

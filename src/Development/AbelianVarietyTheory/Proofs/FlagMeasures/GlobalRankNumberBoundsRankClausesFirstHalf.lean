@@ -117,7 +117,6 @@ theorem rankNums_first_half : ∀ eps CD : ℝ, 0 < eps → eps < 1 / 52 → 3 �
       rw [Real.le_sqrt (by linarith)]
       have hmq : t ^ (4 : ℕ) ≤ m := hqt ▸ h.m_lo
       have ht2 : 40000 ≤ t ^ 2 := by nlinarith
-      have ht4 : t ^ (4 : ℕ) = t ^ 2 * t ^ 2 := by ring
       have : (80 * t) ^ 2 = 6400 * t ^ 2 := by ring
       nlinarith
       all_goals linarith

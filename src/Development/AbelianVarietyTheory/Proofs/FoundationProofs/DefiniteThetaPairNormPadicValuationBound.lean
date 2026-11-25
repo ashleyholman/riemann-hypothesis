@@ -105,7 +105,6 @@ theorem norm_mem_and_le : ∀ (D : D7), Inp D → ∀ (S : Finset ℕ) (dl : ℕ
   set v : ℝ := (padicValNat p M : ℝ) with hv
   set w : ℝ := (padicValNat p Q : ℝ) with hw
   have hw0 : 0 ≤ w := Nat.cast_nonneg _
-  have hv0 : 0 ≤ v := Nat.cast_nonneg _
   have hc0 : 0 ≤ c := by
     have := hL.2.1 p
     have h2 : (0 : ℝ) ≤ (if p = D.host.d then 1 / 4 else 0) := by split_ifs <;> norm_num

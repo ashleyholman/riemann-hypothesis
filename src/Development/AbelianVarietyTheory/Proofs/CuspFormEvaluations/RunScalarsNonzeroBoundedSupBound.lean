@@ -81,7 +81,6 @@ theorem log_sup_short_generator_le : Formalism.MainNotions.ModuliIntegralCharts.
   rw [hNs, hlie]
   set S := supN (T.U j σ').X (laU (T.U j σ') (wtA w) w.n) (rdU (T.U j σ') g) with hSdef
   have hS0 : 0 ≤ S := by rw [hSdef]; unfold supN; exact ENNReal.toReal_nonneg
-  have hL0 : (0:ℝ) ≤ large₂.sc.L := by linarith
   have ha0 : (0:ℝ) ≤ absA w := by rw [habs]; positivity
   rcases hS0.eq_or_lt with hS00 | hSpos
   · rw [← hS00, mul_zero, Real.log_zero]
@@ -174,7 +173,6 @@ theorem sh_mem_span_small : Formalism.MainNotions.ModuliIntegralCharts.H1.ChartI
   rw [hlin]
   refine Submodule.sum_mem _ fun i _ => Submodule.smul_mem _ _ (Submodule.subset_span
     ⟨⟨hgs1 i, Λ, N, x0, (Q i).1, hU, hT1, hT2, hLev, hAdm, hQ i, hgs2 i⟩, fun σ => ?_⟩)
-  have hL0 : 0 ≤ large₂.sc.L := by linarith
   have hA0 : 0 ≤ absA w := by rw [← e]; positivity
   have hb : Real.log (l1At σ (Q i).1) ≤ 140 * D.R.r * large₂.sc.L * absA w := by
     refine ((hS1 _ (Q i).2).2 σ).trans ?_

@@ -427,7 +427,6 @@ variable {k r : ℕ}
 theorem pairMeas_smul (L : LocBessel k r) (κ s : ℝ≥0∞) (h : L.μN = s • (withN L κ).μN) :
     pairMeas L = (s * s) • pairMeas (withN L κ) := by
   have i1 : SFinite (withN L κ).μN := Formalism.MainNotions.FrameBoundFromBesselTorus.sFinite_haarLie _ _
-  have i2 : SigmaFinite L.μW := L.hμW.1.1
   have i3 : SigmaFinite L.μW' := L.hμW'.1.1
   unfold pairMeas
   rw [h]

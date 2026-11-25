@@ -173,8 +173,6 @@ theorem _root_.GlobalTheory.exists_induced_int_prime_to : ∀ (G : Type) [Group 
   set ζ : ℂˣ := Units.mk0 _ (hζ.ne_zero ho) with hζdef
   have hζu : IsPrimitiveRoot ζ o := IsPrimitiveRoot.coe_units_iff.mp hζ
   set cE : E := ⟨c, hcE⟩ with hcEdef
-  have hord : orderOf cE = orderOf ζ := by
-    rw [← Subgroup.orderOf_coe cE, ← hζu.eq_orderOf]
   have hφmem : ∀ e : E, e ^ M ∈ Subgroup.zpowers cE := by
     rintro ⟨_, i, y, hy, rfl⟩
     refine Subgroup.mem_zpowers_iff.mpr ⟨i, Subtype.ext ?_⟩

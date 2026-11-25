@@ -225,7 +225,6 @@ theorem val_theta : LL → TwistBCSpanStatement → TWM.VRatioGtStatement → TW
           ∀ e (c : F), IsTorsFrame A rig m x' e → (∀ z J, Good A.L z J → sA th (ptSecT A.A x').left z J = @id ((TFK (R := V) F).left.presheaf.stalk z) (cst (R := V) F z c) * (val (powFrame A.A A.L x' e ((1 : ℕ) : ℤ)) (𝟙 _) z J).val) → v c = 0 := by
   intro hL h₁ h₂ h₃ h₄ V _ _ _ _ hc ϖ hϖ D Q hQ F _ _ _ v hv A G _ _ hG U w₀ rig hN th ϑ hE hP m hm hu p x hx
   have hA : AdmBase V (IsLocalRing.maximalIdeal V) := ⟨inferInstance, inferInstance, inferInstance, hc⟩
-  have hB := D.tau_bimult
   have m2 : m ^ 2 ≠ 0 := (pow_pos hm.pos 2).ne'
   obtain ⟨ua₁, ua₂⟩ := ThetaConstVal.main hL h₁ h₂ h₃ h₄ V hc ϖ hϖ D Q hQ F v hv A G hG U w₀ rig hN th ϑ hE hP m hm hu
   have up := GlobalTheory.T.uniformisation_torsion_maps_compatible_in_level hL V _ hA D A G hG U F m m (m ^ 2) hm.pos hm.pos (sq m)

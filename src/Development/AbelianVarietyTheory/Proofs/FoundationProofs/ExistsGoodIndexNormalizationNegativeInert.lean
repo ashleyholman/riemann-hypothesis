@@ -83,8 +83,6 @@ theorem exists_card_eq_pow {E : Type} [Field E] [NumberField E] [IsGalois ℚ E]
   obtain ⟨p, hp, hPp⟩ :=
     (Ideal.isPrime_int_iff.mp (Ideal.IsPrime.under ℤ P)).resolve_left (Ideal.under_ne_bot ℤ hP0)
   have hlo : P.LiesOver (Ideal.span {(p : ℤ)}) := ⟨hPp.symm⟩
-  have hmax : (Ideal.span {(p : ℤ)}).IsMaximal :=
-    PrincipalIdealRing.isMaximal_of_irreducible (Nat.prime_iff_prime_int.1 hp).irreducible
   have h1 := Ideal.inertiaDegIn_eq_inertiaDeg (Ideal.span {(p : ℤ)}) P (E ≃ₐ[ℚ] E)
   refine ⟨p, hp, ?_, ?_, ?_⟩
   · have : (p : ℤ) ∈ P.under ℤ := hPp ▸ Ideal.mem_span_singleton_self _

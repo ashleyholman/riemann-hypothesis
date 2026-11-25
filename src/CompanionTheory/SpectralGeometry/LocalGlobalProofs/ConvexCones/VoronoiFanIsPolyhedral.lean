@@ -715,7 +715,6 @@ theorem seg_mem_cone (v : ι → V) (B B₀ : V)
   refine ⟨a, fun i => ?_, hB⟩
   by_cases hi : i ∈ S₀
   · by_contra hneg
-    have hai : a i < 0 := not_le.mp hneg
     obtain ⟨N, hN⟩ := exists_nat_gt (|b i| / (-a i))
     obtain ⟨k, hk, hNk⟩ := hI.exists_gt N
     have hc := hcoord k hk i hi

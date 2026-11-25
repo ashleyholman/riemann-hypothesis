@@ -610,7 +610,6 @@ theorem exists_row (σ : ℕ) (J : JacLev D (σ + 1)) (B : BesLev D σ) (s : k) 
     (l : Fin c) (s' : n') (hl : σ < l.val) (b : k) : ∃ ξ : Mx D σ J.W₀.rank, (∀ i j, cA D p.e * ξ i j = ξ i j) ∧
       ∀ t, p.π (hO J.W B.V (p.up FW FV t) (J.d.ext0 B.V (B.d.incX J.W₀ ξ))) = b * t (Sum.inr l) (Sum.inl s') := by
   have hc := hB.1
-  have hl' := l.isLt
   have hi : 2 * σ - l.val < σ := by omega
   have hxi : p.xi ≠ 0 := pr_ne p (GlobalTheory.DualPairCompare.embedding_xi_zero_ne_zero D)
   have hz : p.hz B ≠ 0 := pr_ne p B.line.2
@@ -1184,7 +1183,6 @@ theorem GlobalTheory.LocMod.flatFB_trans_free : ∀ (D : D7), GlobalTheory.FinPl
       refine TransLaw.uInv_colMx p _ FV r i _ fun m hm => hb3 r m ?_
       rintro l rfl
       have h1 : l.val < j.val := hfree
-      have h2 : m.val < i.val := hm
       omega
     rw [hup, hL.dual _ (hTm.theta Φ) _ (TransLaw.mxAt_colMx p _ _ _ _) hU, TransLaw.xLast_eq_rat,
       TransLaw.psi_symplO_colMx p _ FV r i _ hχ]

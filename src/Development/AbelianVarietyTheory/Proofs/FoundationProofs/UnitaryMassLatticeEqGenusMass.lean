@@ -150,7 +150,6 @@ theorem exists_den {n : ℕ} (Λ : Submodule (𝓞 E) (Fin n → E))
   obtain ⟨m, hm, hsingle⟩ := csGlob_single Λ hspan
   obtain ⟨m', hm', hint⟩ := adelstabL_den x
   refine ⟨m * m', mul_ne_zero hm hm', ?_⟩
-  have hmk : ∀ (a : E) (h : IsIntegral ℤ a), algebraMap (𝓞 E) E ⟨a, h⟩ = a := fun _ _ => rfl
   have key : ((m * m' : ℤ) : 𝓞 E) • x =
       ∑ k : Fin n, (⟨(m' : E) * x k, hint k⟩ : 𝓞 E) • (Pi.single k (m : E) : Fin n → E) := by
     funext i

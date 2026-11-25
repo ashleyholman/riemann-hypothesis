@@ -682,7 +682,6 @@ theorem gaugeVol_transport : ∀ (I I' : AutInst) (e : I'.E ≃+* I.E) (A : Matr
     (fun v => (Tv v).toHomeomorph.toMeasurableEquiv) (fun v => hm v _ _ (hc v) (hc' _))
   obtain ⟨-, hlc, hsc, hcK, hoK, -⟩ := GlobalTheory.CongTop.adelic_topology I
   let Ψ : I'.Gf ≃ᵐ I.Gf := Tf.toHomeomorph.toMeasurableEquiv
-  have hΨ : ∀ g, Ψ g = Tf g := fun _ => rfl
   haveI : (μf'.map Ψ).IsHaarMeasure := Tf.isHaarMeasure_map μf'
   have ha := Measure.isMulLeftInvariant_eq_smul (μf'.map Ψ) μf
   have ha0 := Measure.haarScalarFactor_pos_of_isHaarMeasure (μf'.map Ψ) μf
@@ -693,7 +692,6 @@ theorem gaugeVol_transport : ∀ (I I' : AutInst) (e : I'.E ≃+* I.E) (A : Matr
       ← Measure.map_apply (measurable_mul_const xf) hoK.measurableSet,
       (GlobalTheory.AdelicUnimod.adelic_unimodular I μf).2.2.2.1 xf]
   let T : I'.GA ≃ᵐ I.GA := Φ.prodCongr Ψ
-  have hT : ∀ x, T x = (Φ x.1, Tf x.2) := fun _ => rfl
   have hmul : ∀ x y, T (x * y) = T x * T y := by
     intro x y
     refine Prod.ext (funext fun v => ?_) (map_mul Tf _ _)

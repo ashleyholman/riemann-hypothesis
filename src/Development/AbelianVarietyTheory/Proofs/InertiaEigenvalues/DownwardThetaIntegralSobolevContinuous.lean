@@ -123,7 +123,6 @@ theorem downInt_sobolev_cont : ∀ (D : D7) (G : Type) [Group G] [Fintype G] (Pl
       (.of_forall (hbound φ hφ))
   obtain ⟨M, hMdef⟩ : ∃ M : ℝ, M = ∫ h in R.fdV i t, ‖l (R.extV i t y h)‖ ∂(R.νV i t) := ⟨_, rfl⟩
   have hM0 : 0 ≤ M := hMdef ▸ integral_nonneg fun _ => norm_nonneg _
-  have hpos : 0 < B * M + 1 := by positivity
   refine ⟨d, ENNReal.ofReal (ε / (B * M + 1)), ENNReal.ofReal_pos.2 (by positivity), fun P hP => ?_⟩
   have hs := ENNReal.toReal_lt_of_lt_ofReal hP
   have hs0 : 0 ≤ (sobO R.ψ R.θ μ 𝓕 d (f - R.ptP i t P)).toReal := ENNReal.toReal_nonneg

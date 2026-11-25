@@ -159,13 +159,6 @@ theorem _root_.GlobalTheory.DeRhamCompare.finite_DdR [FiniteDimensional LL V] (h
   unfold _root_.Formalism.MainNotions.N.IsDR at h
   by_cases hV : Module.finrank LL V = 0
   · have hsV : Subsingleton V := Module.finrank_zero_iff.mp hV
-    have hzero : ∀ z : V ⊗[Qp] BdR, z = 0 := fun z => by
-      induction z using TensorProduct.induction_on with
-      | zero => rfl
-      | tmul v r => rw [Subsingleton.elim v 0, TensorProduct.zero_tmul]
-      | add a b ha hb => rw [ha, hb, add_zero]
-    have hsub : Subsingleton (_root_.Formalism.WeaklyAdmissibleFiltrations.DdR PD ρ) :=
-      ⟨fun x y => Subtype.ext (by rw [hzero x, hzero y])⟩
     infer_instance
   · apply Module.finite_of_finrank_pos
     rw [h]

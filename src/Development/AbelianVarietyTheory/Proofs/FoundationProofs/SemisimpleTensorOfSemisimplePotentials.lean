@@ -151,7 +151,6 @@ theorem key (a b c d x y : ℝ) (h1 : a - d = 2 * c * x) (h2 : c * (x ^ 2 - y ^ 
 theorem no_small (N : ℕ) (hN : 4 ≤ N) (t k : ℤ) (hk : t - 2 = (N : ℤ) * k) (ht : t ^ 2 < 4) : False := by
   have h1 : -1 ≤ t := by nlinarith
   have h2 : t ≤ 1 := by nlinarith
-  have hN' : (4 : ℤ) ≤ N := by exact_mod_cast hN
   rcases lt_trichotomy k 0 with hk0 | hk0 | hk0
   · nlinarith
   · subst hk0; omega
@@ -183,7 +182,6 @@ theorem gam_free : ∀ (N l : ℕ), 4 ≤ N → ∀ γ ∈ Gam N l, ∀ z ∈ Hs
   simp at hre him
   obtain ⟨k, hk⟩ := (ZMod.intCast_eq_intCast_iff_dvd_sub 1 (A 0 0) N).1 (by simpa using ha1.symm)
   obtain ⟨m, hm⟩ := (ZMod.intCast_eq_intCast_iff_dvd_sub 1 (A 1 1) N).1 (by simpa using hd1.symm)
-  have hN' : (4 : ℤ) ≤ N := by exact_mod_cast hN
   simp only [← hA] at hre him
   generalize e00 : A 0 0 = a at *
   generalize e01 : A 0 1 = b at *
@@ -219,7 +217,6 @@ theorem gam_free : ∀ (N l : ℕ), 4 ≤ N → ∀ γ ∈ Gam N l, ∀ z ∈ Hs
       · subst hk0; omega
       · nlinarith
   · exfalso
-    have hcR : (c : ℝ) ≠ 0 := by exact_mod_cast hc
     have hpos : 0 < 4 * (c : ℝ) ^ 2 * z.im ^ 2 := by positivity
     have ht : (a + d) ^ 2 < 4 := by
       have : ((a : ℝ) + d) ^ 2 < 4 := by linarith

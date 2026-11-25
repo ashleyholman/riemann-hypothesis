@@ -424,13 +424,9 @@ theorem class_flip {n : ℕ} {α : Gn g n → ℂ} (hα : IsClass α) (M : Mt g 
 theorem inPar_flip {a b : ℕ} (M : Mt g (a + b)) : InPar b (flip M) ↔ InPar a M := by
   constructor
   · intro h i j hj hi
-    have hi' := i.isLt
-    have hj' := j.isLt
     have := h j.rev i.rev (by simp only [Fin.val_rev]; omega) (by simp only [Fin.val_rev]; omega)
     rwa [flip_apply, Fin.rev_rev, Fin.rev_rev] at this
   · intro h i j hj hi
-    have hi' := i.isLt
-    have hj' := j.isLt
     rw [flip_apply]
     exact h j.rev i.rev (by simp only [Fin.val_rev]; omega) (by simp only [Fin.val_rev]; omega)
 

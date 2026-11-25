@@ -294,7 +294,6 @@ theorem gap_of_nodes (D : D7) (τ : D.what₂.Tau) (h : ℝ) (hanti : StrictAnti
       h ≤ lamD D τ a - lamD D τ b := by
     intro a b hab hne
     have hab' : a.val < b.val := hab
-    have hb' := b.isLt
     by_cases ha : D.R.k - 1 ≤ a.val
     · have h1 := step a.val (by omega) ha
       have h2 := hanti.antitone (show (⟨a.val + 1, by omega⟩ : Fin _) ≤ b from hab')
@@ -342,7 +341,6 @@ theorem decay_low (hD : Formalism.FourierDecayAlt.ThreeDimData.DecLow) {k r : �
     rw [this]; gcongr
   obtain ⟨C, hC⟩ := hD k r hk ε lam (n ^ 19) H σ hl hσ hg hh P hP u v hu hv
   have hs : Real.sqrt (2 * ((r : ℝ) + 1)) ≤ n := Real.sqrt_le_iff.2 ⟨by linarith, by nlinarith⟩
-  have hs0 : 0 < Real.sqrt (2 * ((r : ℝ) + 1)) := by positivity
   have he : 2 * n ^ 5 ≤ n ^ 19 / (8 * Real.sqrt (2 * ((r : ℝ) + 1))) := by
     rw [le_div_iff₀ (by positivity)]
     calc 2 * n ^ 5 * (8 * Real.sqrt (2 * ((r : ℝ) + 1))) ≤ 2 * n ^ 5 * (8 * n) := by gcongr

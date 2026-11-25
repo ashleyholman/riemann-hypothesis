@@ -102,7 +102,6 @@ theorem _root_.GlobalTheory.HubLoc.torsionExponent_le_twentyFive_mul :
   push_cast at hK ⊢
   set K : ℝ := (Nat.log l (2 * (⌊2 * Real.exp L⌋₊ + 1)) : ℝ)
   have hN' : (1 : ℝ) ≤ N := by exact_mod_cast hN
-  have hK0 : 0 ≤ K := Nat.cast_nonneg _
   have hNL : (1 : ℝ) ≤ N * L := one_le_mul_of_one_le_of_one_le hN' hL
   have hL1 : L ≤ N * L := by nlinarith
   have hN1 : (N : ℝ) ≤ N * L := by nlinarith

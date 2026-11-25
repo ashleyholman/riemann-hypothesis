@@ -139,7 +139,6 @@ theorem main : Formalism.ZeroFreeDirichlet.ZFRDirichlet → ∃ c : ℝ, 0 < c �
       have ha : 0 < Real.log (|ρ.im| + 2) := Real.log_pos (by linarith)
       have hab : Real.log (|ρ.im| + 2) ≤ 2 * Real.log (|ρ.im| + 3) := by
         have e := Real.log_le_log (by linarith) (by linarith : |ρ.im| + 2 ≤ |ρ.im| + 3)
-        have e2 : 0 ≤ Real.log (|ρ.im| + 3) := Real.log_nonneg (by linarith)
         linarith
       have hdiv := div_le_div_of_nonneg_left hc.le ha hab
       rw [div_div] at hlt

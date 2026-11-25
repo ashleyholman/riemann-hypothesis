@@ -160,7 +160,6 @@ theorem sum_cot_eq_qexp : ∀ (L : ℕ) (φ : ZMod L → ℂ) (z : ℂ), 0 < L �
       -2 * π * Complex.I / L *
         ∑' m : ℕ, hat φ (m + 1 : ℕ) * cexp (2 * π * Complex.I * (m + 1 : ℕ) * z / L) := by
   intro L φ z hL hz h0
-  have hLc : (L : ℂ) ≠ 0 := by exact_mod_cast hL.ne'
   have hLr : (0 : ℝ) < L := by exact_mod_cast hL
   have hsum0 : ∑ r ∈ Finset.range L, φ r = 0 := by
     simpa [hat] using h0
@@ -507,8 +506,6 @@ theorem block (L : ℕ) (f : ℤ → ℂ) (N : ℕ) :
     simp only [Finset.mem_product, Finset.mem_range, Finset.mem_Icc] at hp
     simp only [Finset.mem_Ico]
     obtain ⟨h1, h2, h3⟩ := hp
-    have h1' : (p.1 : ℤ) < L := by exact_mod_cast h1
-    have h0 : (0:ℤ) ≤ p.1 := by positivity
     constructor <;> nlinarith
   · intro d hd
     simp only
@@ -561,14 +558,11 @@ theorem lipschitz_one : ∀ (L : ℕ) (φ : ZMod L → ℂ) (z : ℂ), 0 < L →
   have hmonoG : Monotone (fun N : ℕ => Finset.Ico (-(N * L : ℤ)) ((N + 1) * L)) := by
     intro a b hab
     have : (a:ℤ) ≤ b := by exact_mod_cast hab
-    have hL0 : (0:ℤ) ≤ L := by positivity
     exact Finset.Ico_subset_Ico (by nlinarith) (by nlinarith)
   have hcovG : ∀ d : ℤ, ∃ N : ℕ, d ∈ Finset.Ico (-(N * L : ℤ)) ((N + 1) * L) := by
     intro d
     refine ⟨d.natAbs, ?_⟩
-    have h1 : (1:ℤ) ≤ L := by exact_mod_cast hL
     have h3 : (d.natAbs : ℤ) = |d| := Int.natCast_natAbs d
-    have h4 : (0:ℤ) ≤ |d| := abs_nonneg d
     simp only [Finset.mem_Ico]
     rw [h3]
     constructor

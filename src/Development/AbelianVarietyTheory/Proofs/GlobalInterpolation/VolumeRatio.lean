@@ -658,8 +658,6 @@ theorem nIdx_eq_zpow : ∀ (F : Type) [Field F] [NumberField F] (ψ : AddChar (A
     rintro rfl
     rw [map_zero] at ha
     exact WithZero.exp_ne_zero ha.symm
-  have hu : ∀ hx : WithZero.exp (-c) ≠ 0, Multiplicative.toAdd (WithZero.unzero hx) = -c :=
-    fun _ => rfl
 
   have hd : GlobalTheory.IndefiniteRowSideFullHecke.LocalAdditiveCharacterDual.psiDual F ψ v = GlobalTheory.LocalDensityProduct.colonV v a := by
     ext t

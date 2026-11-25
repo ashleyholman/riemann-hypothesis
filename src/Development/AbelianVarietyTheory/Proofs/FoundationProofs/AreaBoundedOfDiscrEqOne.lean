@@ -34,8 +34,6 @@ theorem discr_eq (L : PeriodPair) (Λ : AddSubgroup ℂ) (h : ∀ z, z ∈ Λ �
 theorem area_eq {Λ : AddSubgroup ℂ} {a : ℂ} {τ : ℍ} (ha : a ≠ 0)
     (h : ∀ x, x ∈ Λ ↔ ∃ m n : ℤ, a * (m * (τ : ℂ) + n) = x) :
     area Λ = ‖a‖ ^ 2 * τ.im := by
-  have hy := τ.im_pos
-  have hn := norm_pos_iff.2 ha
   have hA : 0 < ‖a‖ ^ 2 * τ.im := by positivity
   have key : ∀ m n m' n' : ℤ,
       ((starRingEnd ℂ) (a * (m * (τ : ℂ) + n)) * (a * (m' * (τ : ℂ) + n'))).im

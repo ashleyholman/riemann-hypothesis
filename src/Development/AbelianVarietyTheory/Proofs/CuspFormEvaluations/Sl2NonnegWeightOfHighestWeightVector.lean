@@ -96,7 +96,6 @@ theorem sl2_nonneg_weight_of_highest_weight_vector {K V : Type*} [Field K] [Char
       push_cast
       ring
   by_contra hl0
-  have hl : l < 0 := not_le.mp hl0
   have hne : ∀ k : ℕ, (F ^ k) v ≠ 0 := by
     intro k
     induction k with

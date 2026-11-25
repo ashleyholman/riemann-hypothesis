@@ -289,7 +289,6 @@ theorem num (χ : Fin n → ℂ) (B : ℝ) : ∃ C δ : ℝ, 0 < δ ∧ ∀ N₀
     set k : ℝ := (I'.card : ℝ)
     have hinner : X - X' + ε * (A - A') ≤ -(κ / 2) := by
       have h1 : ε * (A - A') ≤ ε * (n : ℝ) ^ 2 := mul_le_mul_of_nonneg_left (by linarith) hε.le
-      have h2 : 0 ≤ ε * (n : ℝ) ^ 2 := by positivity
       nlinarith
     have hmul : N * (X - X' + ε * (A - A')) ≤ N * (-(κ / 2)) :=
       mul_le_mul_of_nonneg_left hinner (by linarith)

@@ -597,7 +597,6 @@ theorem real_bound (a : ℝ) (ha : 1 ≤ a) (n k f : ℕ) (hn : 1 ≤ n) (hf : 0
     (1 + 2 * Real.sqrt (a * (n : ℝ) ^ ((1 : ℝ) / (2 * f)))) ^ (2 * k * f) ≤
       (9 * a) ^ (k * f) * (n : ℝ) ^ ((k : ℝ) / 2) := by
   have hn' : (1 : ℝ) ≤ n := by exact_mod_cast hn
-  have hf' : (0 : ℝ) < f := by exact_mod_cast hf
   have h1 : 1 ≤ (n : ℝ) ^ ((1 : ℝ) / (2 * f)) := Real.one_le_rpow hn' (by positivity)
   have e : (n : ℝ) ^ ((k : ℝ) / 2) = ((n : ℝ) ^ ((1 : ℝ) / (2 * f))) ^ (k * f) := by
     rw [← Real.rpow_natCast, ← Real.rpow_mul (by positivity)]
@@ -678,7 +677,6 @@ theorem num_mid (a b mk M de N C f : ℝ) (j s : ℕ) (ha : 0 ≤ a) (hb : 0 ≤
   set X := (de * N) ^ (9 * (s : ℝ) + 8 + 4 * Real.logb 2 (2 * f))
   set Y := (de * N) ^ (C * s + C * Real.log f)
   have hX : 0 ≤ X := Real.rpow_nonneg hx0.le _
-  have hY : 0 ≤ Y := Real.rpow_nonneg hx0.le _
   have h4 : X * N ≤ Y := le_trans (mul_le_mul_of_nonneg_left (by nlinarith) hX) h3
   have h5 : de ^ j ≤ de ^ (j + s) := pow_le_pow_right₀ hde (by omega)
   have e3 : N ^ (j + s) = N ^ (j + s - 1) * N := by rw [← pow_succ]; congr 1; omega
@@ -695,8 +693,6 @@ theorem num_top (c₀ C L rd HH de N E : ℝ) (k m f : ℕ) (hc : 0 < c₀) (hC 
     (9 * rd) ^ (k * f) * de ^ k ≤ (de / N) ^ k * (de * N) ^ E * ((C * k) ^ (k * f) * (HH * N) ^ (C * k)) := by
   have hk' : (1 : ℝ) ≤ k := by exact_mod_cast hk
   have hm' : (1 : ℝ) ≤ m := by exact_mod_cast hm
-  have hf' : (0 : ℝ) ≤ f := Nat.cast_nonneg f
-  have hN0 : 0 < N := by linarith
   have h1 : rd ^ f ≤ HH := by
     refine le_trans ?_ hH
     rw [← Real.exp_mul, ← Real.exp_log (show 0 < rd by linarith), ← Real.exp_nat_mul]

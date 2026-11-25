@@ -155,7 +155,6 @@ theorem repExS (D : D7) : GL3Theta.repExS D := by
   obtain ⟨γ, hγ, k, hk, h1, h2⟩ := exists_triv hur hn _ (hU L)
   obtain ⟨δ, hδ, l, hl, h3, h4⟩ := exists_triv hur hn _ (hU L₀)
   have hδ1 : star δ * δ = 1 := Matrix.mem_unitaryGroup_iff'.1 (hun δ hδ)
-  have hγ1 : star γ * γ = 1 := Matrix.mem_unitaryGroup_iff'.1 (hun γ hγ)
   have hinv : ∀ v, star δ *ᵥ (δ *ᵥ v) = v := fun v => by
     rw [Matrix.mulVec_mulVec, hδ1, Matrix.one_mulVec]
   refine ⟨⟨star δ * γ, mul_mem (Unitary.star_mem (hun δ hδ)) (hun γ hγ)⟩, k * l,
@@ -851,7 +850,6 @@ theorem moves_smulLat {D : D7} {n : ℕ} {γA g : GA D n} {γ : Matrix (Fin n) (
     letI := D.host.cmStar
     Moves D ((γA * g : GA D n) : GL (Fin n) (AE D)) (SDLat.smulLat γ L) := by
   obtain ⟨Lt, h1, -, -, h4, -⟩ := exists_lattice_of_adelic_point D n
-  have hu := mul_eq_one_comm.1 ((mem_ratG_intG D n).2.2.2.1 γA γ h)
   have hu' := (mem_ratG_intG D n).2.2.2.1 γA γ h
   rw [GlobalTheory.InertSign.moves_unique hL (h1 g).1]
   intro x

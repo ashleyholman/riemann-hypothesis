@@ -228,7 +228,6 @@ theorem finite_units_quot_sq_normed (F : Type) [NontriviallyNormedField F] [Comp
         ← _root_.zpow_mul, ← _root_.zpow_mul]
       rw [mul_comm (n + 1)]
     have hv : (b ^ (n + 1)) ^ 2 • (u : R) ∈ C := by
-      have hpos : 0 < ((‖b‖ ^ 2)⁻¹) ^ n := zpow_pos (by positivity) n
       refine ⟨?_, ?_⟩
       · rw [hnv, zpow_add₀ (by positivity), zpow_one, le_div_iff₀ (by positivity)]
         calc ‖b‖ ^ 2 * (((‖b‖ ^ 2)⁻¹) ^ n * (‖b‖ ^ 2)⁻¹) = ((‖b‖ ^ 2)⁻¹) ^ n := by field_simp

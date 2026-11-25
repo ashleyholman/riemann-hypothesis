@@ -84,10 +84,6 @@ theorem ext_of_pure {X I Z₀ : Type} {Z : I → Type} [mX : MeasurableSpace X] 
   have hp : Measurable p := measurable_fst.comp he.measurable
   have hq : ∀ v, Measurable (q v) := fun v =>
     (measurable_pi_apply v).comp (measurable_snd.comp he.measurable)
-  have hS : ∀ K : ∀ v, Set (Z v), (∀ v, IsCompact (K v) ∧ IsOpen (K v)) →
-      MeasurableSet {x | ∀ v, q v x ∈ K v} := fun K hK => by
-    rw [Set.ofPred_forall]
-    exact MeasurableSet.iInter fun v => hq v (hK v).2.measurableSet
   have key : ∀ K : ∀ v, Set (Z v), (∀ v, IsCompact (K v) ∧ IsOpen (K v)) →
       (∀ᶠ v in Filter.cofinite, K v = L v) → ∀ A : Set Z₀, MeasurableSet A →
       ν (p ⁻¹' A ∩ {x | ∀ v, q v x ∈ K v}) = ν' (p ⁻¹' A ∩ {x | ∀ v, q v x ∈ K v}) ∧

@@ -128,7 +128,6 @@ theorem spanTo_map (g : Fin (r + 1) → S.V) (t : E)
       have h3 := Submodule.add_mem _ (h2 hd) h1
       rwa [sub_add_cancel] at h3
     · have hir : (i : ℕ) < r := by
-        have h0 := i.isLt
         have h4 : (i : ℕ) ≠ r := fun e => hl (Fin.ext (by simpa using e))
         omega
       have hmem : g i ∈ S.spanTo g ((i : ℕ) + 1) :=

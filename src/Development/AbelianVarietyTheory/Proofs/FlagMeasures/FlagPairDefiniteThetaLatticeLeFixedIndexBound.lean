@@ -171,11 +171,6 @@ theorem main : ∀ (K V : Type) [Field K] [NumberField K] [StarRing K] [AddCommG
     rw [h0] at hnB
     simp only [Nat.cast_zero, zero_mul] at hnB
     linarith
-  have hB0 : cardB N.F N.F' Λ ≠ 0 := by
-    intro h0
-    rw [h0] at hnB
-    simp only [Nat.cast_zero, mul_zero] at hnB
-    linarith
   have hThLa : latTh N.F N.F' Λ ≤ latLa N.F N.F' Λ (g : 𝓞 K) := by
     intro x hx
     refine ⟨⟨⟨(h1L hx.1).2, by rw [hww]; exact hx.2⟩, ⟨(h1L hx.1).1, hx.2⟩⟩, ?_⟩

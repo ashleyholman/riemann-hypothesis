@@ -129,7 +129,6 @@ theorem fn_hahnSeries_inv_converges : ∀ (Ω : Type) [Field Ω] (ε : Ω →+* 
     have h1 : |Real.log ρ'| < 2 * Real.pi * z.im / N := by
       rw [lt_div_iff₀ hNr]; linarith
     have h2 := neg_abs_le (Real.log ρ')
-    have h3 : -(2 * Real.pi * z.im / N) = -(2 * Real.pi * z.im / N) := rfl
     linarith
   obtain ⟨hS0, hinv⟩ := hmain x hx
   have htsum : (∑' n, A n * x ^ n) = φ z * Complex.exp (-(2 * Real.pi * Complex.I * n₀ * z / N)) :=
@@ -209,7 +208,6 @@ theorem fn_hasSum_ne_zero : ∀ (Ω : Type) [Field Ω] (ε : Ω →+* ℂ) (C : 
   intro Ω _ ε C φ h hD h0 hS
   obtain ⟨N, n₀, a, hN, ha0, ha, hz⟩ := _root_.GlobalTheory.fnShape Ω h hD h0
   have hNr : (0 : ℝ) < N := by exact_mod_cast hN
-  have hpi : 0 < Real.pi := Real.pi_pos
   set b : ℕ → ℂ := fun k => ε (a k) with hb
   have hb0 : b 0 ≠ 0 := by
     simp only [hb]; exact (map_ne_zero ε).mpr ha0

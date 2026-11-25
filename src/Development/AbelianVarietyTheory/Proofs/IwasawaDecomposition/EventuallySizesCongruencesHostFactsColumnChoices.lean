@@ -237,7 +237,6 @@ theorem rank_ge_hundred : EvLgG fun K B f _ => KPx B f → ∀ (T : TwDat B) (w 
   have hR : GlobalTheory.EX.RankVal K.s B.toPre.R := hRK ▸ K.ok.rank
   obtain ⟨-, -, ⟨hk, -⟩, -⟩ := hR
   have hx1 := K.s.one_lt_alt
-  have he := K.s.eps_pos
   have hk1 : K.s.x ≤ (B.toPre.R.k : ℝ) := by
     calc K.s.x = K.s.x ^ (1 : ℝ) := (Real.rpow_one _).symm
       _ ≤ K.s.x ^ (9 / 2 + 10 * K.s.eps) := Real.rpow_le_rpow_of_exponent_le hx1.le (by linarith)

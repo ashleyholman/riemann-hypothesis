@@ -220,8 +220,6 @@ theorem term_le (K : FinExt l) (ζ : Om l) (hζ : IsPrimitiveRoot ζ l)
   rw [Finset.mem_range] at hb hc
   have hb2 : (b : ℤ) < (l : ℤ) - 1 := by omega
   have hc2 : (c : ℤ) < (l : ℤ) - 1 := by omega
-  have hb3 : (0 : ℤ) ≤ b := by omega
-  have hc3 : (0 : ℤ) ≤ c := by omega
   have hm' : (0 : ℤ) ≤ (l : ℤ) - 1 := by omega
   apply hbc
   rcases lt_trichotomy nb nc with h | h | h

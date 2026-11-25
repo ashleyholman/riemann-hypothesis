@@ -40,7 +40,6 @@ theorem inv_mulVec_eq_zero {p : ℕ} (hp : p ≤ r) (M : Matrix (Fin r) (Fin r) 
     have hne : k ≠ Fin.castLE hp a := by
       intro h
       have h2 := congrArg Fin.val h
-      have h3 := a.isLt
       simp at h2
       omega
     show (M⁻¹.mulVec (FD.col M (Fin.castLE hp a))) k = 0

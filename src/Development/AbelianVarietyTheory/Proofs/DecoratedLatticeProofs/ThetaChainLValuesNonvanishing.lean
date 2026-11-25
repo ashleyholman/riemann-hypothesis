@@ -81,7 +81,6 @@ theorem chainLW_holds : ∀ D : D7, ChainLW D := by
     have hre : ∀ l : ℕ, l < D.R.t → 1 < (x + 1 / 2 + ((D.R.t : ℂ) - 1) / 2 - l).re := by
       intro l hl
       have : (l : ℝ) + 1 ≤ D.R.t := by exact_mod_cast hl
-      have hr0 : (0 : ℝ) ≤ D.R.r := Nat.cast_nonneg _
       simp
       linarith
     show _ = GlobalTheory.LFun.eulerProd T (GlobalTheory.LFun.twist (chainPar c B k)

@@ -246,7 +246,6 @@ theorem gram_det_index_sublattice (U V ι κ : Type) [AddCommGroup U] [NormedAdd
   let e : ι ≃ κ := Fintype.equivOfCardEq hc
   choose A hA using fun i => (Submodule.mem_span_range_iff_exists_fun ℤ).1 (hv (e i))
   let Am : Matrix ι ι ℤ := Matrix.of A
-  have hAm : ∀ i j, Am i j = A i j := fun _ _ => rfl
   let Ar : Matrix ι ι ℝ := Am.map (Int.castRingHom ℝ)
   have hAr : ∀ i j, Ar i j = (A i j : ℝ) := fun _ _ => rfl
   have hphi : ∀ i, φ (v (e i)) = ∑ j, (A i j : ℝ) • φ (u j) := by
@@ -540,7 +539,6 @@ theorem red_inf (E : Type) [Field E] [NumberField E] (R : Type) [NormedCommRing 
       ext i; simp [Pi.single_apply, apply_ite τ]
     simp only [Function.comp, this, single_vecMul]; rfl
   set c₀ : ℝ := (Fintype.card (Fin (finrank ℚ E * n)) : ℝ) ^ ((Fintype.card (Fin (finrank ℚ E * n)) : ℝ) / 2) with hc₀
-  have hc₀' : 0 ≤ c₀ := by positivity
   set c₁ : ℝ := ((2 ^ finrank ℚ E) ^ n * c₀) ^ 2 + 1 with hc₁
   have hc₁' : 0 < c₁ := by positivity
   obtain ⟨C, hC1, hC2⟩ := _root_.GlobalTheory.matrix_inv_entries_bounded R n G hGc hG1 ‖ε.symm.toContinuousLinearMap‖ c₁⁻¹ (inv_pos.2 hc₁')

@@ -1335,7 +1335,6 @@ theorem sen_gen [IsDomain O] (p : Pres W F ι τ γ) (hp : ((PD.p : ℕ) : k) = 
   let inc : ↥(W.NΔ T) →+ ↥(DΔ W T) :=
     { toFun := fun y => ⟨y.1, y.2.2⟩, map_zero' := rfl, map_add' := fun _ _ => rfl }
   let J : ↥(W.NΔ T) →+ Vc k A.m := (p.j T A q i).comp inc
-  have hJ : ∀ y, J y = p.j T A q i ⟨y.1, y.2.2⟩ := fun _ => rfl
   have hJN : ∀ y, J y ∈ N := fun y => (hN _).2 ⟨_, y.2.1, rfl⟩
   have hsur : ∀ y ∈ N, ∃ x, J x = y := fun y hy => by
     obtain ⟨x, h1, h2⟩ := (hN y).1 hy

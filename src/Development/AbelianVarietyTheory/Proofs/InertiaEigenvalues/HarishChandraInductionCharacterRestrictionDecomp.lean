@@ -285,7 +285,6 @@ def blocks {g : ℕ} [Fact g.Prime] (a b n : ℕ) (P : Subgroup (Gn g n))
     intro p q
     have hp := (hP p).1 p.2
     have hq := (hP q).1 q.2
-    have hpq := (hP (p * q)).1 (p * q).2
     have hm := hmul _ _ hp hq
     have e1 : (((p * q : P) : Gn g n) : Mt g n) = ((p : Gn g n) : Mt g n) * ((q : Gn g n) : Mt g n) := rfl
     refine Prod.ext (Units.ext ?_) (Units.ext ?_)

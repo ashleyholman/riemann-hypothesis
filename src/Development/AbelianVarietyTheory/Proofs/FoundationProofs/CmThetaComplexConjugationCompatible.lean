@@ -510,7 +510,6 @@ theorem qH_int_of_fixK {cc : Ideal (𝓞 D.host.K)} {δ : ℂ} (hc : Crv D cc δ
   · have hd : 0 < Real.sqrt D.host.d := Real.sqrt_pos.2 (by exact_mod_cast D.host.hyp.2.1.pos)
     have hn : (0 : ℝ) < Ideal.absNorm cc' := by
       exact_mod_cast Nat.pos_of_ne_zero fun h => hc'.1.1 (Ideal.absNorm_eq_zero_iff.1 h)
-    have hδ' : 0 < ‖δ'‖ := norm_pos_iff.2 hδ
     change 0 < area (lamOf D cc' δ')
     rw [har]
     positivity

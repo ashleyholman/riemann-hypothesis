@@ -146,7 +146,6 @@ theorem projector_line : ∀ (k r : ℕ) {H : Type} [NormedAddCommGroup H] [Inne
   intro k r H _ _ _ Wp _ _ _ _ σ w a μG d z c π μS hStd hSide ν hq l hl
   have hG : IsHaarOn (GG k r) μG := hStd.2.2.2.2.1
   have hU : IsURepOn (GG k r) σ := hStd.2.1
-  have hd : 0 < d := hStd.2.2.2.2.2.1.1
   have hS : IsHaarOn (Sset k r z) μS := hSide.2.2.2.1
   have hae := ae_mem_GG hG hS hq
   have hstab := (_root_.GlobalTheory.SgInfDD.DD_stable_dense k r σ w hU).1
@@ -647,7 +646,6 @@ theorem lintegral_hsNormSq_ampJ_le : ∀ (k r : ℕ) {H : Type} [NormedAddCommGr
   set w : H := ((‖v₀‖ : ℝ) : ℂ)⁻¹ • v₀ with hw
   have hG : IsHaarOn (GG k r) μG := hS.1.2.2.2.2.1
   have hd : 0 < d := hS.1.2.2.2.2.2.1.1
-  have hd' : (d : ℂ) ≠ 0 := by exact_mod_cast hd.ne'
   have h5 := _root_.GlobalTheory.SgInf.EllBound.lintegral_hsNormSq_ell_le k r σ w a μG d z c π μS z' c' π' μS' hS.1 hz.1 hz'.1 ν hν l l' hl hl'
   have hJ := _root_.GlobalTheory.SgInf.AmpJ.oo_eq_ampJ k r (Wp := Wp) (Wq := Wq) μG (fun x => l (σ x w)) (fun x => l' (σ x w)) hG
   have hD : (0 : ℝ) ≤ (Module.finrank ℂ Wp : ℝ) * Module.finrank ℂ Wq := by positivity

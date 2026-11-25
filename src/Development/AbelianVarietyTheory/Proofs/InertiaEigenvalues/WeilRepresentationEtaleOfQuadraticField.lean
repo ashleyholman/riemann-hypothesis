@@ -1602,8 +1602,6 @@ theorem weilAt_prod : ∀ (F E : Type) [NontriviallyNormedField F] [Nontrivially
   have hf : IsTest (φ ∘ eH.symm) := isTest_comp_homeomorph eH.symm hφ
   obtain ⟨hf1, hf2⟩ := hfib _ hf
   have hy : ∀ y, eH.symm (eL y) = y := fun y => eL.symm_apply_apply y
-  have hx₁ : ((x₁ : A₁.Kˣ) : A₁.K) = (eK x).1 := rfl
-  have hx₂ : ((x₂ : A₂.Kˣ) : A₂.K) = (eK x).2 := rfl
   refine ⟨fun z y => ?_, fun s y => ?_, fun y => ?_⟩
   · show tensorRep W₁ W₂ (ρ (nS z)) (φ ∘ eH.symm) (eL y) = _
     have hρ : ρ (nS z) = (nS (eK z).1, nS (eK z).2) := Prod.ext (map_nS f₁ z) (map_nS f₂ z)

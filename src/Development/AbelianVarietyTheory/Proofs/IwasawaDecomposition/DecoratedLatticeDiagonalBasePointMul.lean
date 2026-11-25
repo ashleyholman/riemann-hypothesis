@@ -64,14 +64,12 @@ theorem decoSet_ext {d d' : DecoSet (E := E) (n := n) (ST := ST) (SG := SG)} (hN
     · obtain ⟨s, hs, h⟩ := (mem_locP _ _ _).1 hx
       have := hf P _ h
       rw [d.2.f_smul P s x (hat _ ▸ hx), d'.2.f_smul P s x hx] at this
-      have hp := P.1.isPrime
       exact mul_left_cancel₀ (h0 _ s hs) this
     · rw [d.2.f_off P x (hat _ ▸ hx), d'.2.f_off P x hx]
   · by_cases hx : x ∈ d'.1.at P.1
     · obtain ⟨s, hs, h⟩ := (mem_locP _ _ _).1 hx
       have := hbe P _ h
       rw [d.2.be_smul P s x (hat _ ▸ hx), d'.2.be_smul P s x hx] at this
-      have hp := P.1.isPrime
       funext i
       exact mul_left_cancel₀ (h0 _ s hs) (congrFun this i)
     · rw [d.2.be_off P x (hat _ ▸ hx), d'.2.be_off P x hx]

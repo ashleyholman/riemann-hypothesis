@@ -331,7 +331,6 @@ theorem norm_det_coord {x : Frame X.Ψ r} (hx : X.IsOrtho x) (τ : X.Ψ) (v : Fi
     ‖((mat x τ)⁻¹ * basisMat τ.1 v).det‖ = Real.sqrt ‖τ.1 (GlobalTheory.BoundedBasis.gramOf X.Gm v).det‖ := by
   have h1 := norm_det_sq_of_ortho X hx τ
   have hd := det_ne_zero_of_ortho X hx τ
-  have hdn : 0 < ‖(mat x τ).det‖ := norm_pos_iff.mpr hd
   rw [Matrix.det_mul, Matrix.det_nonsing_inv, Ring.inverse_eq_inv, norm_mul, norm_inv,
     norm_emb_det_gramMat]
   have hG : ‖τ.1 X.Gm.det‖ = (‖(mat x τ).det‖⁻¹) ^ 2 := by
@@ -608,8 +607,6 @@ theorem dom_nonempty (X : Data E r) : X.dom.Nonempty := by
 
 theorem epStar_pos {M f w k : ℝ} (hM : 0 < M) (hf : 0 ≤ f) (hw : 0 < w) (hk : 0 < k) :
     0 < epStar M f w k := by
-  have h2 : 0 < Real.log 2 := Real.log_pos one_lt_two
-  have h3 := Real.pi_pos
   unfold epStar
   positivity
 

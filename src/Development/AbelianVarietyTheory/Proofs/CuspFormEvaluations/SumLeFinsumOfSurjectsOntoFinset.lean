@@ -804,7 +804,6 @@ theorem isTorusAt_of_isTorusOf : ∀ (E : Type) [Field E] [NumberField E] [IsCMF
   unfold GlobalTheory.EtaAn.IsTorusOf at ht
   obtain ⟨hTr, -, hHf, hL, hact, -⟩ := ht
   have hsig := W.F.sig (W.ik k)
-  have hle := (U.X k).p0_le
   have hcc : ∀ ρ : E →+* ℂ, NumberField.ComplexEmbedding.conjugate (conjEmb ρ) = ρ := by
     intro ρ
     ext y

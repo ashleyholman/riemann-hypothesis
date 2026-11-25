@@ -150,9 +150,6 @@ theorem isGaugeSub_map_mul_right (n : ℕ) (ε : Fin n → Bool) (M : Subgroup (
     intro h
     rw [h, ENNReal.top_div_of_ne_top ENNReal.ofReal_ne_top] at h2
     exact lt_irrefl _ h2
-  have hu : Continuous fun g : Formalism.REAL.UJ ε => uMat g := by
-    unfold uMat
-    fun_prop
   have hc : Continuous fun g : Formalism.REAL.UJ ε => √(Formalism.REAL.hs (uMat g - 1)) := by
     unfold Formalism.REAL.hs
     fun_prop

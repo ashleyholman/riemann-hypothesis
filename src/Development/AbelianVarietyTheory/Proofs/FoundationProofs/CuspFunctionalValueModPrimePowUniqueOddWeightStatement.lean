@@ -41,10 +41,6 @@ theorem isThB_coeff_cong : ∀ (Ω : Type) [Field Ω] [Algebra ℚ Ω] [IsAlgClo
     intro δ hδ hδ'
     obtain ⟨g, hg, hfg⟩ := hfδ δ hδ hδ'
     obtain ⟨g', hg', hfg'⟩ := hf'δ δ hδ hδ'
-    have hgne : g ≠ 0 := by
-      rintro rfl
-      rw [zero_pow hL.ne'] at hfg
-      exact mul_ne_zero hfne ((map_ne_zero _).2 hfne) hfg
     refine ⟨g' * g⁻¹, ?_, ?_⟩
     · intro γ hγ
       rw [map_mul, map_inv₀, hg γ hγ, hg' γ hγ]

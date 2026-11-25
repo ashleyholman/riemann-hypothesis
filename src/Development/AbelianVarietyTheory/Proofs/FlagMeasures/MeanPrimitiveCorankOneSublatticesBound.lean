@@ -142,7 +142,6 @@ theorem one_le_ratio_mul (f k : ℕ) (v L : ℝ) (hv : 0 < v) (hk : 1 ≤ k) (hL
     1 ≤ (((k - 1).factorial : ℝ) * (v / Real.pi) ^ k) ^ f / Real.sqrt ((2 * v) ^ f) * L *
       ((Real.exp 1 * Real.pi / (k * v)) ^ (k * f) * (2 * (k : ℝ) * (2 * v) ^ ((1 : ℝ) / 2)) ^ f) := by
   have hkpos : (0 : ℝ) < k := by exact_mod_cast (show 0 < k by omega)
-  have hpi := Real.pi_pos
   have hs0 : 0 < Real.sqrt (2 * v) := Real.sqrt_pos.mpr (by linarith)
   have hrp : (2 * v) ^ ((1 : ℝ) / 2) = Real.sqrt (2 * v) := by rw [Real.sqrt_eq_rpow]
   rw [hrp, sqrt_pow_eq_pow_sqrt (2 * v) (by linarith) f, pow_mul]
@@ -157,9 +156,7 @@ theorem one_le_ratio_mul (f k : ℕ) (v L : ℝ) (hv : 0 < v) (hk : 1 ≤ k) (hL
   have hbase : (((k - 1).factorial : ℝ) * (v / Real.pi) ^ k) * (Real.exp 1 * Real.pi / (k * v)) ^ k *
       (2 * (k : ℝ) * Real.sqrt (2 * v)) / Real.sqrt (2 * v) =
       (((k - 1).factorial : ℝ) * k * (Real.exp 1) ^ k / (k : ℝ) ^ k) * 2 := by
-    have hv0 : v ≠ 0 := hv.ne'
     have hk0 : (k : ℝ) ≠ 0 := hkpos.ne'
-    have hp0 : Real.pi ≠ 0 := hpi.ne'
     have hs : Real.sqrt (2 * v) ≠ 0 := hs0.ne'
     rw [div_pow, div_pow, mul_pow, mul_pow]
     field_simp
@@ -225,7 +222,6 @@ theorem mass_pred_le : ∀ D : D7, UnitaryVolumeMass.stMassRatio D → Cnt.massS
   have hRpos : 0 < R := by
     have h2 : (0 : ℝ) < (2 ^ D.R.f)⁻¹ := by positivity
     have hLpos : 0 < lValEta D.host.E D.R.k := lt_of_lt_of_le h2 hL
-    have hpi := Real.pi_pos
     rw [hR]
     positivity
   have hbne : b ≠ 0 := by
@@ -1166,7 +1162,6 @@ theorem main : MaxMass → ∀ (K V : Type) [Field K] [NumberField K] [StarRing 
     (fun L hL U hU => hcov U hU.1 ⟨latIn U L, isIntLat_latIn h (h𝒢 L hL).1 U, hU.2⟩)
   refine h1.trans ?_
   have d0 : (0 : ℝ) < de := by exact_mod_cast hde
-  have t0 : (0 : ℝ) < t := by exact_mod_cast ht
   set C : ℝ := mass h₂ I₂ * ((de : ℝ) * t) ^ (2 + l) * ((t : ℝ) ^ 2 * (de : ℝ) ^ 2) with hC
   have h2 : ∀ U ∈ S, orbMass (MulAction.stabilizer (isom h) U) {L | L ∈ 𝒢 ∧ U ∈ primSp h L j (de ^ 2)} ≤
       orbMass (isom (hRes h U)) (latsDisc (R := 𝓞 K) (hRes h U) (de ^ 2)) * ENNReal.ofReal C := by
@@ -1245,7 +1240,6 @@ theorem num (a b Mk X Y c₁ c₂ de NT HH l m : ℝ) (j : ℕ) (ha : 0 ≤ a) (
           gcongr
       _ = HH ^ (10 + 3 * l) := e4
       _ ≤ _ := e5
-  have hR0 : 0 ≤ de ^ (4 + l) * NT ^ 2 * (de * NT) ^ (2 + l) := by positivity
   calc a * b * de ^ j * (de ^ (4 + l) * NT ^ 2 * (de * NT) ^ (2 + l))
       ≤ (Mk * (X * Y)) * (c₁ * c₂) * de ^ j * HH ^ (11 + 3 * l) := by gcongr
     _ = ((de / NT) ^ j * X * (Y * c₁ * c₂ * HH ^ (11 + 3 * l))) * (Mk * NT ^ j) := by

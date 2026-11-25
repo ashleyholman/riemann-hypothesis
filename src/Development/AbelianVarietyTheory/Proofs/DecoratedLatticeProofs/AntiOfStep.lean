@@ -49,7 +49,6 @@ theorem gap_lt {D : D7} {L C' Cl Cg cb Cu cT CT : ℝ} (H : GlobalTheory.Core.De
     (τ : D.what₂.Tau) (a b : Fin D.R.r) (hab : a < b) (hne : epsS D.R a ≠ epsS D.R b) :
     Cl * (D.R.r : ℝ) ^ 19 * (D.R.f : ℝ) ^ 5 * L ≤ lamS D.R (D.hc τ) a - lamS D.R (D.hc τ) b := by
   have hkb := node_of_sign D.R a b hab hne
-  have hbr : b.1 < D.R.r := b.2
   have hm2 := D.R.two_le_m
   have hk := D.R.m_add_three_le_k
   have hr : D.R.r = D.R.k + D.R.m - 1 := rfl
@@ -64,8 +63,6 @@ theorem gap_lt {D : D7} {L C' Cl Cg cb Cu cT CT : ℝ} (H : GlobalTheory.Core.De
   set j := b.1 - D.R.k with hj
   have hj1 : j + 1 < D.R.m := by omega
   have e1 : b = ⟨D.R.k - 1 + (j + 1), by omega⟩ := by ext; simp only []; omega
-  have hc : (⟨D.R.k - 1 + j, by omega⟩ : Fin D.R.r) ≤ b := by
-    rw [Fin.le_def]; simp only []; omega
   have hac : a ≤ (⟨D.R.k - 1 + j, by omega⟩ : Fin D.R.r) := by
     rw [Fin.le_def]; simp only []; have : a.1 < b.1 := hab; omega
   have h1 := anti_of_step _ hstep _ _ hac

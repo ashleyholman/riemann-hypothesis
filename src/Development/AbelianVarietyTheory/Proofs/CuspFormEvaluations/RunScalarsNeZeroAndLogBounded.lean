@@ -40,7 +40,6 @@ theorem n_le_size (w : WeightFamilies.Wt D j) : (w.n : ℝ) ≤ w.size := by
   have h := size_ge w
   have h1 : (1 : ℝ) ≤ (D.R.f : ℝ) * D.R.r := one_le_mul_of_one_le_of_one_le (one_le_f D) (one_le_r D)
   have h2 : (0 : ℝ) ≤ w.n := by positivity
-  have h3 : (0 : ℝ) ≤ WeightAlgebra.DF w := by positivity
   nlinarith [mul_le_mul_of_nonneg_right h1 h2]
 
 theorem size_comb (T : ℕ) (wL wF : WeightFamilies.Wt D j) :
@@ -55,7 +54,6 @@ theorem log_zOwn_le (p : ℕ) (hp : 0 < p) (w : WeightFamilies.Wt D j) :
     Real.log (zOwnP D p w : ℝ) ≤ 2 * Real.log p * w.size := by
   have hl : 0 ≤ Real.log p := Real.log_natCast_nonneg p
   have h := size_ge w
-  have h3 : (0 : ℝ) ≤ WeightAlgebra.DF w := by positivity
   unfold zOwnP
   push_cast
   rw [Real.log_pow]

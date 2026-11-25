@@ -35,7 +35,6 @@ theorem rpow_fubini_ineq {x y t a : ℝ} (hx : 1 ≤ x) (hy : 1 ≤ y) (ht : 0 <
   have h3 : (t / x) ^ (-(a / 2)) = t ^ (-(a / 2)) / x ^ (-(a / 2)) := Real.div_rpow ht.le hx0.le _
   have h4 : x ^ (-a) = x ^ (-(a / 2)) * x ^ (-(a / 2)) := by
     rw [← Real.rpow_add hx0]; ring_nf
-  have hxp : 0 < x ^ (-(a / 2)) := Real.rpow_pos_of_pos hx0 _
   calc x ^ (-a) * y ^ (-a) ≤ x ^ (-a) * ((t / x) ^ (-(a / 2))) :=
         mul_le_mul_of_nonneg_left (h1.trans h2) (Real.rpow_nonneg hx0.le _)
     _ = x ^ (-(a / 2)) * t ^ (-(a / 2)) := by

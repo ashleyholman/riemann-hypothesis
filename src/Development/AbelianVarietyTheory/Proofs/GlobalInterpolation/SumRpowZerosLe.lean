@@ -516,7 +516,6 @@ theorem abel_primesIoc_weight (a : ℕ → ℂ) (J J' : ℝ → ℝ) (x y r : �
   rw [hL, norm_neg, intervalIntegral.integral_congr hA, ← intervalIntegral.integral_const_mul]
   refine (intervalIntegral.norm_integral_le_integral_norm hxy).trans ?_
   refine intervalIntegral.integral_mono_on hxy hf hg (fun t ht => ?_)
-  have ht0 : 0 < t := lt_of_lt_of_le zero_lt_one (hx.trans ht.1)
   rw [norm_mul, Complex.norm_real, Real.norm_eq_abs]
   calc |J' t| * ‖S t‖ ≤ r / t * ‖S t‖ := mul_le_mul_of_nonneg_right (hb t ht) (norm_nonneg _)
     _ = r * (‖S t‖ / t) := by ring
@@ -861,9 +860,6 @@ theorem large_mean_of_large_derivative : ∀ A : ℝ, 1 ≤ A → ∃ a b C r₀
   intro A hA
   obtain ⟨C, hC, hCs⟩ := GlobalTheory.Lin.exists_tsum_vonMangoldt_div_rpow_le_div
   set B : ℝ := ∑' n : ℕ, (if n.Prime then 0 else Λ n) / (n : ℝ) ^ (3 / 4 : ℝ) with hB
-  have hB0 : 0 ≤ B := tsum_nonneg fun n => by
-    have : 0 ≤ Λ n := vonMangoldt_nonneg
-    positivity
   have hA0 : 0 < A := by linarith
   set η : ℝ := 1 / (16 * C * A) with hη
   have hη0 : 0 < η := by positivity
@@ -1028,7 +1024,6 @@ theorem sum_vonMangoldt_div_nat_bounds (N : ℕ) (hN : 1 ≤ N) :
 theorem mertens_first_vonMangoldt :
     ∃ CM : ℝ, 0 ≤ CM ∧ ∀ y : ℝ, 1 ≤ y →
       |∑ n ∈ Icc 1 ⌊y⌋₊, Λ n / (n : ℝ) - Real.log y| ≤ CM := by
-  have h4 : 0 ≤ Real.log 4 := Real.log_nonneg (by norm_num)
   refine ⟨Real.log 4 + 4, by positivity, fun y hy => ?_⟩
   have hN : 1 ≤ ⌊y⌋₊ := Nat.le_floor (by exact_mod_cast hy)
   have hN' : (1 : ℝ) ≤ ⌊y⌋₊ := by exact_mod_cast hN
@@ -1518,7 +1513,6 @@ theorem total_count_log : ∃ C : ℝ, 0 < C ∧ ∀ (q : ℕ) [NeZero q] (χ : 
   refine ⟨hfin, ?_⟩
   have hq : (1 : ℝ) ≤ q := by exact_mod_cast NeZero.one_le
   have a3 := Int.ceil_lt_add_one T
-  have a4 := Int.le_ceil T
   rw [← Finset.sum_fiberwise_of_maps_to (t := Finset.Icc (-⌈T⌉) ⌈T⌉) (g := fun ρ : ℂ => ⌊ρ.im⌋)
     (fun ρ hρ => (mem_disc_of_nonneg χ hσ (hfin.mem_toFinset.1 hρ)).1)]
   have key : ∀ n ∈ Finset.Icc (-⌈T⌉) ⌈T⌉,
@@ -1617,7 +1611,6 @@ theorem sum_rpow_zeros_le : ∃ A C η₀ : ℝ, 0 < A ∧ 0 < C ∧ 0 < η₀ �
     simpa using Real.exp_lt_exp.2 (show (-1 / 2 : ℝ) < 0 by norm_num)
   have hsum := summable_geometric_of_lt_one (Real.exp_pos (-1 / 2)).le hr
   set K := ∑' j : ℕ, Real.exp (-1 / 2) ^ j with hK
-  have hK0 : 0 ≤ K := tsum_nonneg fun _ => by positivity
   refine ⟨2 * A₁ + 4 / e, C₁ * Real.exp (1 / 2) * K + C₂, e / 2, by positivity, by positivity,
     by positivity, fun q _ T u η hT hu hη => ?_⟩
   have hq : (1 : ℝ) ≤ q := by exact_mod_cast NeZero.one_le

@@ -294,7 +294,6 @@ theorem comb_core {O A : Type} [CommRing O] [IsDomain O] [IsDiscreteValuationRin
       rw [AlgHom.toRingHom_eq_coe, RingHom.coe_coe, AlgHom.commutes]] at hϖv
     exact chval_fin_mul _ _ (chval_fin_mul _ _ (chval_fin_zpow _ _ hϖv Aexp) (chval_fin_pow _ _ hT B))
       (chval_fin_inv _ _ (chval_fin_pow _ _ hW N))
-  have hyeK : algebraMap A (FractionRing A) ye ≠ 0 := fun h => hye (IsFractionRing.injective A _ (by rw [h, map_zero]))
   obtain ⟨a, s, hs, hgs⟩ := transfer'' (O := O) g (x * ye) (mul_ne_zero hx hye)
     (fun V _ _ _ _ _ φ' hφ' => by
       rw [map_mul] at hφ'
@@ -342,7 +341,6 @@ theorem comb_core {O A : Type} [CommRing O] [IsDomain O] [IsDiscreteValuationRin
         unfold vr
         have hv : ((vV (K' := FractionRing V) V (algebraMap V (FractionRing V) (algebraMap O V ϖ)) : ℤ) : ℝ) * eO = e' := by
           exact_mod_cast hϖ'
-        have he'r : (0 : ℝ) < e' := by exact_mod_cast he'
         field_simp
         linarith
       refine ⟨e', _, he', hgval V φ' e' w' t' hϖ0 hWc hTc, ?_⟩
@@ -429,7 +427,6 @@ theorem limit_lam (w t nu c' : ℝ) (eO : ℕ) (heO : 0 < eO) (ht : 0 ≤ t) (hc
   by_contra hlt
   push Not at hlt
   have hδ0 : 0 < w - nu - c' * t := by linarith
-  have heOr : (0 : ℝ) < eO := by exact_mod_cast heO
   obtain ⟨N, hN⟩ := exists_nat_gt ((1 / eO + t) / (w - nu - c' * t))
   have hNr : (0 : ℝ) < N := lt_of_le_of_lt (div_nonneg (by positivity) hδ0.le) hN
   have hN0 : 0 < N := by exact_mod_cast hNr
@@ -441,7 +438,6 @@ theorem limit_lam (w t nu c' : ℝ) (eO : ℕ) (heO : 0 < eO) (ht : 0 ≤ t) (hc
           mul_le_mul_of_nonneg_right hc1 (by positivity)
       _ = N * nu + 1 / eO := by field_simp
   have h3 : (⌈(N : ℝ) * c'⌉₊ : ℝ) * t ≤ (N * c' + 1) * t := mul_le_mul_of_nonneg_right hc2 ht
-  have key : (N : ℝ) * (w - nu - c' * t) ≤ 1 / eO + t := by nlinarith
   have := (div_lt_iff₀ hδ0).1 hN
   linarith
 

@@ -348,7 +348,6 @@ theorem ncard_places_over_eq_of_prime_degree :
         Set.ncard {u : HeightOneSpectrum (𝓞 E) | u.under (𝓞 F) = v} = p := by
   intro p F E _ _ _ _ _ _ hp hdeg v w w' hne hw hw'
   have : IsGaloisGroup (E ≃ₐ[F] E) (𝓞 F) (𝓞 E) := IsGaloisGroup.of_isFractionRing _ _ _ F E
-  have hv := v.isMaximal
   have himg : (fun u : HeightOneSpectrum (𝓞 E) => u.asIdeal) ''
       {u : HeightOneSpectrum (𝓞 E) | u.under (𝓞 F) = v} = v.asIdeal.primesOver (𝓞 E) := by
     ext P

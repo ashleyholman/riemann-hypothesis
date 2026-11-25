@@ -114,7 +114,6 @@ theorem weights_below : ∀ (D : D7) (B : WeightFamilies.Prov D) (P : ModuliInte
     have e := hFP τ i
     have h0' : (0 : ℤ) ≤ (WeightFamilies.dimY D j : ℤ) * wL.aP τ i := by positivity
     have h1' : (0 : ℤ) ≤ (WeightFamilies.dimY D j : ℤ) * nW := by positivity
-    have h40' : (40 : ℤ) ≤ nW := by exact_mod_cast h40n
     have : (1 : ℤ) ≤ (wF.aP τ i : ℤ) := by
       push_cast at h2
       nlinarith

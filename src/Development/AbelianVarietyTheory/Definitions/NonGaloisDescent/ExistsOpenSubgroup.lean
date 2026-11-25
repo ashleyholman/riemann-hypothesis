@@ -39,10 +39,6 @@ theorem eq_one_of_cong (h : IsPlaceOver A w) (hw : normV w = g) {l : ℕ} (hc : 
     {u : Ω} (hu : u ^ l = 1) (h1 : A.valuation (u - 1) < 1) : u = 1 := by
   have hg : g.Prime := Fact.out
   by_contra hne
-  have hl0 : l ≠ 0 := by
-    rintro rfl
-    rw [Nat.Coprime, Nat.gcd_zero_left] at hc
-    exact hg.ne_one hc
   have hv : A.valuation u ≤ 1 := by
     have := A.valuation.map_add (u - 1) 1
     rw [sub_add_cancel, map_one] at this

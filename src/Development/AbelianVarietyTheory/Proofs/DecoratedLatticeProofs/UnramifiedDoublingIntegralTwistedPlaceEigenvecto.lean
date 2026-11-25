@@ -420,7 +420,6 @@ theorem measureReal_doubleCoset_eq_relIndex_mul :
   have hmeas : ∀ q, MeasurableSet (f q) := fun q =>
     (hJo.smul ((q.out : J) * g : G)).measurableSet
   have hval : ∀ q, μ (f q) = μ (J : Set G) := fun q => measure_smul μ _ _
-  have hfin : μ (J : Set G) ≠ ⊤ := (hJc.measure_lt_top).ne
   rw [hcover, measureReal_def, measure_iUnion hdisj hmeas, tsum_fintype]
   simp only [hval, Finset.sum_const, Finset.card_univ, nsmul_eq_mul]
   rw [ENNReal.toReal_mul, ENNReal.toReal_natCast, measureReal_def, Subgroup.relIndex,

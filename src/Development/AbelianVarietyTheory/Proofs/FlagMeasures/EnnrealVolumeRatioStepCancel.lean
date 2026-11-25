@@ -1523,7 +1523,6 @@ theorem rankFac_mul_meanConst (E : Type) [Field E] [NumberField E] [StarRing E] 
     congr 1
     push_cast
     ring
-  have hp : 0 < v ^ (M * f) := by positivity
   calc (2 * v) ^ ((f : ℝ) * ((M : ℝ) - 1 / 2)) * L * ((2 * v) ^ ((f : ℝ) / 2) * (v ^ (M * f))⁻¹ / L)
       = ((2 * v) ^ ((f : ℝ) * ((M : ℝ) - 1 / 2)) * (2 * v) ^ ((f : ℝ) / 2)) * (v ^ (M * f))⁻¹ := by
         field_simp

@@ -26,7 +26,6 @@ theorem initial_product_moment_le :
   rcases Nat.eq_zero_or_pos l with rfl | hl0
   · simp [hmass]
   obtain ⟨s, rfl⟩ : ∃ s, l = s + 1 := ⟨l - 1, by omega⟩
-  have hs : s ≤ r := by omega
   have hq' : ∀ q, q ≤ (s + 1) ^ 2 → q ≤ (r + 1) ^ 2 :=
     fun q hq => hq.trans (Nat.pow_le_pow_left (by omega) 2)
   have h1 : ∀ q ≤ (s + 1) ^ 2,

@@ -33,7 +33,6 @@ theorem quot_pow_torsionFree_sep {A O : Type*} [CommRing A] [IsDomain A] [CommRi
       ∀ a : A, (∀ k : ℕ, ∃ b : A, ξ ^ n ∣ a - p ^ k * b) → ξ ^ n ∣ a := by
   have h0 : ∀ (m : ℕ) (x : A), ξ ^ (m + 1) ∣ x → θ x = 0 := fun m x hx =>
     (hker x).2 ((dvd_pow_self ξ m.succ_ne_zero).trans hx)
-  have hθξ : θ ξ = 0 := (hker ξ).2 dvd_rfl
   induction n with
   | zero => simp
   | succ n ih =>

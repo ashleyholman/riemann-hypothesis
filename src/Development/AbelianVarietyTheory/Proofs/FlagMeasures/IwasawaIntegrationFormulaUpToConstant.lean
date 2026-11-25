@@ -301,8 +301,6 @@ theorem gauge_ne_zero_finite {n : ℕ} {ε : Fin n → Bool} (M : Subgroup (Form
   have hpos : ∀ᶠ r in nhdsWithin (0 : ℝ) (Set.Ioi 0), 0 < r := self_mem_nhdsWithin
   obtain ⟨r, hr, hr0, hrt⟩ := (hpos.and ((hlim.eventually_ne hL0).and (hlim.eventually_ne hLt))).exists
   set B : Set (Formalism.REAL.UJ ε) := {g | Real.sqrt (Formalism.REAL.hs (uMat g - 1)) ≤ r} with hB
-  have hden0 : ENNReal.ofReal (r ^ d) ≠ 0 := by
-    rw [Ne, ENNReal.ofReal_eq_zero, not_le]; exact pow_pos hr d
   have hB0 : μ B ≠ 0 := by
     intro h; apply hr0; rw [h, ENNReal.zero_div]
   have hBt : μ B ≠ ⊤ := by

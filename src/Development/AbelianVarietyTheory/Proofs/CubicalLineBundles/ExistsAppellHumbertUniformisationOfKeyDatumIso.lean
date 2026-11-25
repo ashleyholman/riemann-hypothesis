@@ -135,7 +135,6 @@ theorem uniformisation_transport : ∀ (x x' : KeyIn ℂ), KeyPB x' x (RingHom.i
   intro x x' H hg g u Hm χ θ Fd ⟨h₁, h₂, h₃, h₄⟩
   have H' : KeyPB x x' (RingHom.id ℂ) :=
     KeyCancel.keyPB_cancel ℂ ℂ ℂ x x' x (RingHom.id ℂ) (RingHom.id ℂ) H (keyPB_id ℂ x)
-  have hH : Hm.map (RingHom.id ℂ) = Hm := rfl
   obtain ⟨u', hΛ, hA, hR, hF, hD⟩ := exists_push_key H' u
   obtain ⟨χ', hχ⟩ := hA Hm χ h₁
   exact ⟨u', χ', θ, Fd, hχ, hR h₂, hF θ h₃, hΛ ▸ h₄, rfl, fun cf w w' W hw hw' hW => hD hg cf w w' W hw hw' hW⟩

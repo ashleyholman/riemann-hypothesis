@@ -68,7 +68,6 @@ theorem laurentSeries_eq_sum_single_mul_pow :
     have : (f.order.natAbs : ℤ) = |f.order| := Int.natCast_natAbs _
     rw [hN, this]
     have h2 : -f.order ≤ |f.order| := neg_le_abs _
-    have h3 : 0 ≤ |f.order| := abs_nonneg _
     nlinarith
   obtain ⟨G, hG⟩ := powerSeries_eq_sum_X_pow_mul_pow p (PowerSeries.X ^ m * f.powerSeriesPart)
   refine ⟨fun j => HahnSeries.single (-(N : ℤ)) (1 : ZMod p) * HahnSeries.ofPowerSeries ℤ _ (G j), ?_⟩

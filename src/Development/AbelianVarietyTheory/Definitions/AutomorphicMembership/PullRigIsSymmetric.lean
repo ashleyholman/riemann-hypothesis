@@ -280,7 +280,6 @@ lemma maps_iff_fixesRig (L : LB G.left) (r : LB.Gen (L.pull (eSec G)))
     LB.Gen.Maps (LB.linCombIso (symEquiv L _ sy) (K := PUnit.{1}) (fun _ => eSec G) (fun _ => 1))
         r (rigPullOf (ι[G]).left (𝟙 _) GlobalTheory.IndefiniteRowSideFullHecke.PowerGroupDatum.eSec_inv L r) ↔
       FixesRig L (ι[G]).left (eSec G) sy r := by
-  have he : eSec G ≫ (ι[G]).left = eSec G := GlobalTheory.IndefiniteRowSideFullHecke.PowerGroupDatum.eSec_inv.trans (Category.id_comp _)
 
   have main : ∀ (a b : L.ι) (W : (𝟙_ (Over S)).left.Opens)
       (hW : W ≤ wchart (L.pull (ι[G]).left) (fun _ : PUnit.{1} => eSec G) (fun _ _ => a) ⊓

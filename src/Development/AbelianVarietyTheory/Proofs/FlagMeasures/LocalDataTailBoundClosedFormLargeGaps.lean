@@ -289,7 +289,6 @@ theorem size_bound_inv {b v g x Cg Cu CT : ℝ} {r : ℕ} (hb : Real.exp 1 < b) 
   have hr : (0 : ℝ) ≤ r := Nat.cast_nonneg r
   have hB : (2 : ℝ) ≤ max 2 Cu := le_max_left _ _
   have hp := Real.pi_gt_three
-  have hg2 : 1 ≤ b ^ (2 * Cg) := hg.trans hgb
   have hM : max (Real.pi / v / g) (Real.pi / v / g)⁻¹ ≤ b ^ (2 * Cg + 2) := by
     rw [Real.rpow_add hb0, Real.rpow_two]
     refine max_le ?_ ?_

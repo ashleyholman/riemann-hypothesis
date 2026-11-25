@@ -920,7 +920,6 @@ end General
 
 theorem corHf_exists_mul_eq_pow (l : ℕ) [Fact l.Prime] (O : Type) [CommRing O] [Algebra ℤ_[l] O]
     (n k : ℕ) (hn : n ≠ 0) (hk : padicValNat l n ≤ k) : ∃ u : O, u * (n : O) = ((l ^ k : ℕ) : O) := by
-  have hn' : (n : ℤ_[l]) ≠ 0 := Nat.cast_ne_zero.mpr hn
   have : (n : ℤ_[l]) ∣ (l : ℤ_[l]) ^ k := by
     obtain ⟨m, hm⟩ : l ^ padicValNat l n ∣ n := (_root_.Dvd.intro_left _ (_root_.Nat.divMaxPow_mul_pow_padicValNat _ _))
     have hlm : ¬ l ∣ m := by

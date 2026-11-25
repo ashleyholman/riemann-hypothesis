@@ -27,9 +27,6 @@ theorem abs_rhoC_le (ε : Fin n → Bool) (a : Fin n) : |rhoC ε a| ≤ n := by
     have := card_filter_le (univ : Finset (Fin n)) (fun b => b < a ∧ ε b = ε a)
     rw [card_univ, Fintype.card_fin] at this
     exact_mod_cast this
-  have h3 : (0 : ℝ) ≤ ((univ.filter fun b => a < b ∧ ε b = ε a).card : ℝ) := Nat.cast_nonneg _
-  have h4 : (0 : ℝ) ≤ ((univ.filter fun b => b < a ∧ ε b = ε a).card : ℝ) := Nat.cast_nonneg _
-  have h5 : (0 : ℝ) ≤ (n : ℝ) := Nat.cast_nonneg _
   rw [abs_le]
   constructor <;> linarith
 
@@ -221,7 +218,6 @@ theorem farReg_of_lkt_unitIneq_farNum : LKTExists → Renumber → UnitIneq → 
   · intro a b hab
     have h1 := hstep a b hab
     have h2 : ((b : ℕ) : ℝ) < n := by exact_mod_cast b.isLt
-    have h3 : (0 : ℝ) ≤ ((a : ℕ) : ℝ) := Nat.cast_nonneg _
     simp only [Formalism.QuantumDeterminants.rhoStd, Pi.sub_apply]
     linarith
   · intro a

@@ -154,9 +154,6 @@ theorem eq_zero_of_exp_decay_of_fourier_eq_zero_on_halfLine :
     constructor <;> linarith
   have hint : Integrable (fun s : ℝ => A * Real.exp (-(e / 2 * |s|))) :=
     (_root_.GlobalTheory.IntegrableExpNegAbs.integrable_exp_neg_mul_abs (half_pos he)).const_mul A
-  have hA : 0 ≤ A := by
-    have := (norm_nonneg _).trans (hb 0)
-    simpa using this
   have hbound : ∀ s : ℝ, ∀ y ∈ U,
       ‖Complex.exp (-(Complex.I * y * s)) * φ s‖ ≤ A * Real.exp (-(e / 2 * |s|)) := by
     intro s y hy

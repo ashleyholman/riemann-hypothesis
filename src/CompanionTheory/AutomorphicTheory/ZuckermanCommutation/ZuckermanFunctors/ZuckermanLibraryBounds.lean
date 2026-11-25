@@ -116,8 +116,6 @@ theorem zuckerman_library_bounds : Lib thr := by
     rw [hab] at ha
     have hba : P⁻¹ * P' * (P'⁻¹ * P) = 1 := by
       rw [Matrix.mul_assoc, Matrix.mul_nonsing_inv_cancel_left _ _ hPu', Matrix.nonsing_inv_mul _ hPu]
-    have hab' : P'⁻¹ * P * (P⁻¹ * P') = 1 := by
-      rw [Matrix.mul_assoc, Matrix.mul_nonsing_inv_cancel_left _ _ hPu, Matrix.nonsing_inv_mul _ hPu']
     have hm : ∀ a ∈ GG k r, ∀ b ∈ GG k r, ∀ x, R'.σ (a * b) x = R'.σ a (R'.σ b x) := fun a ha b hb x => by
       rw [hU'.1.2 a ha b hb]; rfl
     let f : R'.H ≃ₗᵢ[ℂ] R'.H := LinearIsometryEquiv.ofSurjective
@@ -136,7 +134,6 @@ theorem zuckerman_library_bounds : Lib thr := by
     obtain ⟨P, hP, -⟩ := hR.2
     have h2n : 2 * ((2 * r + k + 1 : ℕ) : ℝ) < h := lt_of_le_of_lt (le_max_left _ _) ht
     have h1 : thrStar ε < h := lt_of_le_of_lt (le_max_right _ _) ht
-    have h2 : (0 : ℝ) ≤ ((2 * r + k + 1 : ℕ) : ℝ) * (S7.q0 ε : ℝ) := by positivity
     have h3 := Real.sqrt_nonneg (2 * (S7.q0 ε : ℝ))
     obtain ⟨H, _, _, σ, hσ⟩ := G2.discrete_series_exists_large_gap _ ε μ' hμ' h hg (Or.inr (max_lt h2n
       (by have := (le_max_right _ _).trans_lt h1; linarith)))

@@ -699,7 +699,6 @@ theorem main : ∀ (I : AutInst) (x : I.GA) (R : Submodule (𝓞 I.E) (Fin I.n �
       exact_mod_cast this
     rw [r1] at hn
     have hrd : 0 ≤ I.rd := Real.rpow_nonneg (abs_nonneg _) _
-    have hj : (0 : ℝ) ≤ rkK R := Nat.cast_nonneg _
     have r3 : (rkK R : ℝ) ^ 2 ≤ (I.n : ℝ) ^ 2 / 4 := by nlinarith
     have r4 : ((I.n : ℝ) ^ 2 * I.f) * I.rd * rho / (16 * Real.sqrt I.f) =
         (I.n : ℝ) ^ 2 / 4 * (rho / 4) * (Real.sqrt I.f * I.rd) := by

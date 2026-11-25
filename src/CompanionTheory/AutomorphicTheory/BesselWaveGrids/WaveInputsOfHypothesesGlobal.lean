@@ -27,7 +27,6 @@ theorem isDG_of_num {k r : ℕ} {lam : Fin (2 * r + k + 1) → ℝ} {u : ℕ →
     rw [← Int.cast_abs, ← Int.natCast_natAbs]
     exact_mod_cast h3
   have hg := hgap a c hac
-  have hq : (0 : ℝ) ≤ q0 := Nat.cast_nonneg _
   have e1 := le_abs_self ((lam a + (ν a : ℝ)) - (lam c + (ν c : ℝ)))
   have e2 := neg_abs_le ((lam a + (ν a : ℝ)) - (lam c + (ν c : ℝ)))
   have e3 := le_abs_self ((ν a : ℤ) : ℝ)

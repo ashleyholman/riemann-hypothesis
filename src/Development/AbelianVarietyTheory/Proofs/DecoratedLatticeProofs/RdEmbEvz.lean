@@ -103,7 +103,6 @@ theorem ratPt {D : D7} (θ : InfFam D) (hθ : IsInfFam θ) (V : HSp D) {n : ℕ}
   have hmem : Formalism.UG.bc (incA D) γ₀ ∈ HR (AF D.host.F) D.sp.cm.sig V.gram := by
     have := bc_mem_UJ' (incA D) (D.sp.cm.sig : D.host.E →+* D.host.E) (sigR (AF D.host.F) D.sp.cm.sig) (fun x => ?_) 1 hγ
     · rw [hG']
-      have e1 : (1 : Matrix (Fin V.rank) (Fin V.rank) D.host.E).map (incA D) = 1 := Matrix.map_one _ (map_zero _) (map_one _)
       show Formalism.UG.bc (incA D) γ₀ ∈ Formalism.UG.UJ _ ((1 : Matrix (Fin V.rank) (Fin V.rank) D.host.E).map _)
       exact this
     · show sigR (AF D.host.F) D.sp.cm.sig (1 ⊗ₜ x) = _

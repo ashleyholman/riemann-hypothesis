@@ -29,7 +29,6 @@ theorem log_rootDiscr_le_of_natCast_mem_differentIdeal : ∀ (K L : Type) [Field
     rw [h1]; exact Nat.mul_le_mul_right _ h4
   have hL : (0 : ℝ) < |((discr L : ℤ) : ℝ)| := abs_pos.2 (by exact_mod_cast discr_ne_zero L)
   have hK : (0 : ℝ) < |((discr K : ℤ) : ℝ)| := abs_pos.2 (by exact_mod_cast discr_ne_zero K)
-  have hN' : (0 : ℝ) < N := by exact_mod_cast hN
   have h6 : |((discr L : ℤ) : ℝ)| ≤ (N : ℝ) ^ Module.finrank ℚ L * |((discr K : ℤ) : ℝ)| ^ Module.finrank K L := by
     have : (((discr L).natAbs : ℕ) : ℝ) ≤ ((N ^ Module.finrank ℚ L * (discr K).natAbs ^ Module.finrank K L : ℕ) : ℝ) := by
       exact_mod_cast h5

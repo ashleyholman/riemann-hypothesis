@@ -255,8 +255,6 @@ theorem altSumN (L : ℕ) (hL : 0 < L) (s : Finset (Finset (Fin L))) (hs : ∀ S
       rw [← e2] at e1
       subst e1
       omega
-    have hg : ∀ S : Finset (Fin L), (if a ∈ S then S.erase a else insert a S).map Fin.valEmbedding =
-        (if a ∈ S then S.erase a else insert a S).map Fin.valEmbedding := fun _ => rfl
     have hc : ∀ S : Finset (Fin L), Cond L ((if a ∈ S then S.erase a else insert a S).map Fin.valEmbedding) b l ↔
         Cond L (S.map Fin.valEmbedding) b l := by
       intro S

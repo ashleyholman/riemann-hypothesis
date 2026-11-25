@@ -129,7 +129,6 @@ theorem _root_.GlobalTheory.padicAlgCl_embedding_bounded_continuous (l : ℕ) [F
     have ha := h1 u
     have hb := h1 ↑u⁻¹
     have ha0 := norm_nonneg (ι u)
-    have hb0 := norm_nonneg (ι ↑u⁻¹)
     nlinarith
   obtain ⟨ϖ, hϖ⟩ := IsDiscreteValuationRing.exists_irreducible O
   have hmax := (IsDiscreteValuationRing.irreducible_iff_uniformizer ϖ).mp hϖ

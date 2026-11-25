@@ -113,7 +113,6 @@ theorem depletedCuspEigenform_primePow_mul_shift (h : Prim k N χ g) {p : ℕ} (
     have hl : g (p ^ (a + 1 + 1)) * g (p ^ (a + 1 + 1 + d)) =
         g p * (g (p ^ (a + 1)) * g (p ^ (a + 1 + (d + 1)))) - F * (g (p ^ a) * g (p ^ (a + (d + 2)))) := by
       have e1 : a + 1 + 1 + d = a + 1 + (d + 1) := by omega
-      have e2 : a + 1 + 1 + d = a + (d + 2) := by omega
       rw [pow_rec h hp hpN a]
       rw [show a + 1 + 1 + d = a + 1 + (d + 1) by omega]
       rw [show a + 1 + (d + 1) = a + (d + 2) by omega]

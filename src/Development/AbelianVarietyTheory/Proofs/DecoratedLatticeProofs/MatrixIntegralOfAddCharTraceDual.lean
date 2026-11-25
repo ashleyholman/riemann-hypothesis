@@ -142,7 +142,6 @@ theorem _root_.GlobalTheory.CharDualMat.mem_integer_of_dual (ψ : AddChar k Circ
   obtain ⟨n, hn⟩ := MulArchimedean.arch (valuation k t * γ⁻¹) hva
   have hlt : valuation k t * γ⁻¹ < valuation k a ^ (n + 1) :=
     lt_of_le_of_lt hn (pow_lt_pow_right₀ hva n.lt_succ_self)
-  have hapos : valuation k a ^ (n + 1) ≠ 0 := pow_ne_zero _ (by simpa using ha0)
   have hlt' : valuation k t < γ * valuation k a ^ (n + 1) := by
     calc valuation k t = valuation k t * γ⁻¹ * γ := (inv_mul_cancel_right₀ hγ _).symm
       _ < valuation k a ^ (n + 1) * γ := mul_lt_mul_of_pos_right hlt (zero_lt_iff.2 hγ)

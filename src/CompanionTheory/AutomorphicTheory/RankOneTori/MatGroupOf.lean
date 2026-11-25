@@ -352,8 +352,6 @@ theorem cell_big (hk : 1 ≤ k) (L : LocBessel k r) (h0 : L.κN ≠ 0) (h1 : L.�
   have hAS : 0 ≤ ThreeDimData.AS k r := by
     have hd : 0 ≤ ThreeDimData.dN k r := by
       unfold ThreeDimData.dN
-      have h0 : (0 : ℝ) ≤ r := Nat.cast_nonneg r
-      have h1 : (0 : ℝ) ≤ k := Nat.cast_nonneg k
       nlinarith
     exact mul_nonneg (Nat.cast_nonneg _) hd
   have hAG : 0 ≤ ThreeDimData.AG k r := by unfold ThreeDimData.AG; positivity
@@ -390,7 +388,6 @@ theorem cell_big (hk : 1 ≤ k) (L : LocBessel k r) (h0 : L.κN ≠ 0) (h1 : L.�
 theorem root_haar (hk : 1 ≤ k) (L : LocBessel k r) (hc : L.c ≠ 0) {γ : Point ℂ (r + 1)} {g : Matrix (Fin (2 * r + k + 1)) (Fin (2 * r + k + 1)) ℂ}
     {μR : Measure (Mt k r)} (hrep : IsPtRep L γ g) (hroot : IsRootMeas L γ g μR) : IsHaarOn (RStab k r g) μR := by
   obtain ⟨k0, rfl⟩ : ∃ k0, k = k0 + 1 := ⟨k - 1, by omega⟩
-  have hn : 0 < ‖L.c‖ := norm_pos_iff.2 hc
   set t : ℝ≥0∞ := ENNReal.ofReal ((2 / ‖L.c‖) ^ (rootPat γ).card) with ht
   have ht0 : t ≠ 0 := (ENNReal.ofReal_pos.2 (by positivity)).ne'
   have ht1 : t ≠ ⊤ := ENNReal.ofReal_ne_top

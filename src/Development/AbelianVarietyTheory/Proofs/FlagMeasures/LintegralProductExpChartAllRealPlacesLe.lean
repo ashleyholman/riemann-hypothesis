@@ -189,10 +189,8 @@ theorem lintegral_chart_all_le : ∀ (I : AutInst) (c : InfinitePlace I.F → �
       have hsq : (I.n : ℝ) ^ 2 * s ≤ (I.n : ℝ) ^ 3 * s := by
         have : (I.n : ℝ) ^ 2 ≤ (I.n : ℝ) ^ 3 := by nlinarith
         nlinarith
-      have hsq5 : (I.n : ℝ) ^ 5 * s = (I.n : ℝ) ^ 3 * ((I.n : ℝ) ^ 2 * s) := by ring
       have h3 : 3 * (I.n : ℝ) ^ 2 * s ≤ 1 := by nlinarith
       have h2 : 2 * (I.n : ℝ) ^ 2 * s ≤ 1 := by nlinarith
-      have hp : 0 ≤ (I.n : ℝ) ^ 2 * s := by positivity
       have e3 := exp_sub_one_le (by positivity) h3
       have e2 := exp_sub_one_le (by positivity) h2
       refine ⟨?_, ?_, ?_⟩

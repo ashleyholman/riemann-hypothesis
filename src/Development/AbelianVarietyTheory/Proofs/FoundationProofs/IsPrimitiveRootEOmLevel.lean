@@ -36,7 +36,6 @@ theorem isPrimitiveRoot_zt (ε : Ω →+* ℂ) {l : ℕ} (hl : l ≠ 0) (m : ℕ
 
 theorem zt_add_pow (ε : Ω →+* ℂ) {l : ℕ} (hl : l ≠ 0) (m k : ℕ) :
     zt ε l (m + k) ^ l ^ k = zt ε l m := by
-  have hl' : (l : ℚ) ≠ 0 := by exact_mod_cast hl
   rw [zt, zt, eOm_pow]
   congr 1; push_cast; field_simp; ring
 

@@ -162,7 +162,6 @@ theorem reps_of_chart (hy : Function.Bijective (fun c => (Quotient.mk'' (y c) : 
       have : (e g).1 = κ.1 := Units.ext ((he g).trans hκ.symm)
       rw [this]; exact κ.2
     · intro hx; exact ⟨g.2, ⟨(e g).1, hx⟩, he g⟩
-  have hΦe : ∀ g : GfC V, finHomN V hn g.1 = (e g).1 := fun g => Units.ext (he g).symm
   refine ⟨fun g hg => ((hU g).1 hg).1, ?_, ?_, fun c => (hh c).1, ?_, ?_⟩
   · have hset : (U : Set (GA D V)) = (fun x => (e.symm x).1) '' {x | x.1 ∈ S.U} := by
       ext g

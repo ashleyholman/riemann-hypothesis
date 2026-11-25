@@ -656,9 +656,6 @@ theorem exists_continuous_ne_zero_one :
     intro β hβ0 hβ1
     rw [hφβ β hβ0]
     have h1 := GlobalTheory.NormCharL.norm_cast_eq_one K m β hβ1
-    have hN0 : Algebra.norm ℤ β ≠ 0 := by
-      rw [Ne, Algebra.norm_eq_zero_iff]
-      exact hβ0
     simp only [X, Ideal.absNorm_span_singleton]
     split_ifs with hpos
     · have : (((Algebra.norm ℤ β).natAbs : ℕ) : ZMod m) = 1 := by

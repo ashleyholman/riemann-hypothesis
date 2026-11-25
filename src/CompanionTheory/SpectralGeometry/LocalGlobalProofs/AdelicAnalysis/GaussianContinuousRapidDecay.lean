@@ -46,7 +46,6 @@ theorem posdef_quadratic_lower_bound_l1 {n : Type} [Fintype n] [DecidableEq n] {
     ∃ c : ℝ, 0 < c ∧ ∀ x : n → ℝ, c * (∑ p, |x p|) ^ 2 ≤ x ⬝ᵥ (P *ᵥ x) := by
   obtain ⟨c, hc, h⟩ := exists_lower_sup hP
   set N : ℝ := (Fintype.card n : ℝ)
-  have hN : 0 ≤ N := Nat.cast_nonneg _
   refine ⟨c / (N ^ 2 + 1), by positivity, fun x => (?_ : _ ≤ _).trans (h x)⟩
   have h1 : ∑ p, |x p| ≤ N * ‖x‖ := by
     calc ∑ p, |x p| ≤ ∑ _p : n, ‖x‖ := Finset.sum_le_sum fun p _ => norm_le_pi_norm x p
@@ -69,7 +68,6 @@ theorem exists_lower_family {ι n : Type} [Fintype ι] [Fintype n] [DecidableEq 
     · obtain ⟨i, hi⟩ := Finite.exists_min c
       exact ⟨c i, hc i, hi⟩
   set W : ℝ := (Fintype.card ι : ℝ)
-  have hW : 0 ≤ W := Nat.cast_nonneg _
   refine ⟨c0 / (W + 1), by positivity, fun y => ?_⟩
   have h1 : (∑ i, ∑ p, |y i p|) ^ 2 ≤ W * ∑ i, (∑ p, |y i p|) ^ 2 := by
     simpa [W] using sq_sum_le_card_mul_sum_sq (s := Finset.univ) (f := fun i => ∑ p, |y i p|)

@@ -357,8 +357,6 @@ theorem mem_smoothLocus {V : Type} [CommRing V] [IsLocalRing V] [IsNoetherianRin
     have := h e
     have h3 : Smooth (pullback.snd (Spec.map φ) (thick V I e)) := by
       rw [← hjf, ← pullbackRightPullbackFstIso_inv_snd_snd f (thick V I e) hW'.fromSpec]
-      have hA : IsOpenImmersion (pullback.snd hW'.fromSpec (pullback.fst f (thick V I e))) :=
-        inferInstance
       exact MorphismProperty.comp_mem @Smooth _ _ inferInstance
         (MorphismProperty.comp_mem @Smooth _ _ inferInstance this)
     have h4 : Smooth ((pullbackSpecIso V Γ(X, W) (V ⧸ I ^ (e + 1))).inv ≫ pullback.snd _ _) := by

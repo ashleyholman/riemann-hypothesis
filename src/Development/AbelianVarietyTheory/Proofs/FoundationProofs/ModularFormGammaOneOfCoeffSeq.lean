@@ -295,7 +295,6 @@ theorem normSq_denom_bounds (L : ℕ) (γ : SL(2, ℤ)) :
     simp [c, d]
     ring
   rw [hns]
-  have hy0 : 0 ≤ τ.im := τ.im_pos.le
   have hy2 : 1 ≤ τ.im ^ 2 := by nlinarith
   constructor
   · by_cases hc : γ 1 0 = 0
@@ -322,7 +321,6 @@ theorem normSq_denom_bounds (L : ℕ) (γ : SL(2, ℤ)) :
         _ ≤ |c| * L + |d| := by gcongr
     have hM2 : (c * τ.re + d) ^ 2 ≤ (|c| * L + |d|) ^ 2 := by
       rw [← sq_abs]; exact pow_le_pow_left₀ (abs_nonneg _) hM 2
-    have hM0 : 0 ≤ (|c| * L + |d|) ^ 2 := by positivity
     nlinarith
 
 theorem growth {f : ℍ → ℂ} (hf : Mod f) (k L : ℕ) (γ : SL(2, ℤ)) :
@@ -334,7 +332,6 @@ theorem growth {f : ℍ → ℂ} (hf : Mod f) (k L : ℕ) (γ : SL(2, ℤ)) :
   set D := Complex.normSq (denom γ τ) with hD
   set y := τ.im with hy
   have hy0 : 0 < y := τ.im_pos
-  have hD0 : 0 < D := by linarith
   have him : (γ • τ).im = y / D := ModularGroup.im_smul_eq_div_normSq γ τ
   have hw1 : (γ • τ).im ^ A ≤ y ^ A := by
     rw [him]

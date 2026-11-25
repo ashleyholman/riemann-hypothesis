@@ -115,7 +115,6 @@ theorem hermForm_principal_dim_one :
     rw [hxb] at h
     exact Int.isUnit_iff.1 (isUnit_of_dvd_one (dvd_neg.1 h))
   have hHre : H.re * |D| = 1 := by
-    have hpos' : 0 < H.re := hpos
     rcases hunit with h | h
     · have h1 : H.re * D = 1 := by rw [← hk, h]; norm_num
       have hD0 : 0 < D := by nlinarith

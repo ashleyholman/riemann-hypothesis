@@ -622,7 +622,6 @@ open Formalism.MainNotions.G IsDedekindDomain
 
 theorem X'_le_X'' (s : Scale) (R : Ranks) : s.X' ≤ s.X'' R.n := by
   have hx := s.one_lt_alt
-  have hx0 : 0 < s.x := by linarith
   have hn : (1 : ℝ) ≤ R.n := by
     have : 1 ≤ R.n := by
       unfold Ranks.n
@@ -907,7 +906,6 @@ theorem exists_levCh : ∀ (P : PreCh) (du : P.Word → ℕ) (Ds Ga : ℝ), (∀
   have hd16 : P.H.d % 16 = 7 := P.H.hyp.2.2.2.1
   have hn : 0 < P.H.QS := P.H.QS_pos
   have hm : 1 < P.H.QS * P.H.q * P.H.d := by
-    have hq : 0 < P.H.q := by omega
     have hd : 0 < P.H.d := by omega
     have h1 : P.H.q ≤ P.H.QS * P.H.q := Nat.le_mul_of_pos_left _ hn
     have h2 : P.H.QS * P.H.q ≤ P.H.QS * P.H.q * P.H.d := Nat.le_mul_of_pos_right _ hd
@@ -1265,7 +1263,6 @@ theorem windowsAt_of (eps : ℝ) (he : 0 < eps) (he' : eps < 1 / 52) (C : FC) (h
         field_simp
       rw [e]
       exact div_le_self (by linarith) (one_le_mul_of_one_le_of_one_le hn0 hX1)
-    have ht0 : (0 : ℝ) ≤ D.R.t := Nat.cast_nonneg _
     have hS : L.Sc ≤ s.b := ((le_mul_of_one_le_left L.Sc_pos.le hk0).trans P.kS_le).trans hw''
     have hE : L.etaSz ≤ s.b :=
       ((le_mul_of_one_le_left L.etaSz_pos.le (one_le_mul_of_one_le_of_one_le hm0 (by linarith))).trans P.mteta).trans hw''

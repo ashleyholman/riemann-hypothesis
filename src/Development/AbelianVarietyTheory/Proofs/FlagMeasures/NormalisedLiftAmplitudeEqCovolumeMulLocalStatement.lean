@@ -649,11 +649,6 @@ theorem pin_pi (u u' : D.what₂.Word) (w : Point D.host.E (D.R.rS + 1)) (γ : X
       Finset.prod_const, Finset.card_univ]
   have hd0 : ∀ v, K / cv v ≠ 0 := fun v => ENNReal.div_ne_zero.mpr ⟨hK0, hctop v⟩
   have hdt : ∀ v, K / cv v ≠ ⊤ := fun v => ENNReal.div_ne_top hKt (hc0 v)
-  have hpv0 : Measure.pi (fun _ : FreeE w => (volume : Measure ℂ)) ≠ 0 := by
-    intro h0
-    have h1 := congrArg (fun m : Measure (FreeE w → ℂ) => m Set.univ) h0
-    simp only [Measure.pi_univ, Measure.coe_zero, Pi.zero_apply] at h1
-    exact (Finset.prod_ne_zero_iff.mpr (fun _ _ => by simp)) h1
   let m : ∀ v, Measure (Formalism.REAL.UJ (X.B.I.ε v)) := fun v => (K / cv v) • μv v
   have hmH : ∀ v, IsHaarLoc (Formalism.L2.SG.NGPin.StV X u u' γ v) (m v) := fun v =>
     haar_smul (hμv v) (hd0 v) (hdt v)
@@ -1465,7 +1460,6 @@ theorem unimodular_of_unipotent : ∀ {n : ℕ} (ε : Fin n → Bool) (m : ℕ) 
         rw [hK]
         have hB' : B ≤ B + 1 := by linarith
         have hn' : (n : ℝ) ≤ (n : ℝ) + 1 := by linarith
-        have h0ρ : 0 ≤ ρ' := by linarith
         calc (n : ℝ) * (ρ' * (B * ((j : ℝ) + 1) ^ (m + 1))) = (n : ℝ) * ρ' * B * ((j : ℝ) + 1) ^ (m + 1) := by ring
           _ ≤ ((n : ℝ) + 1) * ρ' * (B + 1) * ((j : ℝ) + 1) ^ (m + 1) := by gcongr
       have hR1 : 1 ≤ K * ((j : ℝ) + 1) ^ (m + 1) := by nlinarith

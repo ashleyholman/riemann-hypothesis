@@ -223,7 +223,6 @@ theorem isAbelianGalois_host : IsAbelianGalois ℚ D.host.E := by
 theorem not_cube_dvd (w : HeightOneSpectrum (𝓞 D.host.E)) (hw : ((D.host.d : ℕ) : 𝓞 D.host.E) ∈ w.asIdeal) :
     ¬ w.asIdeal ^ 3 ∣ Ideal.span {((D.host.d : ℕ) : 𝓞 D.host.E)} := by
   have hE := D.host.hostE_isGalois
-  have hmul := D.host.galE_mul
   have hbij := D.host.galE_bijective
   have hp := D.host.hyp.2.1
   have : IsGaloisGroup Gal(D.host.E/ℚ) ℤ (𝓞 D.host.E) := IsGaloisGroup.of_isFractionRing _ _ _ ℚ D.host.E

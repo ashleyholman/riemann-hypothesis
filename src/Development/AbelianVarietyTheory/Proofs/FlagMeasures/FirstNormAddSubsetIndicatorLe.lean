@@ -261,7 +261,6 @@ theorem scale_le {b v g Cg : ℝ} (hb : Real.exp 1 < b) (hv : 1 ≤ v) (hvb : 2 
   have h1 := Real.pi_gt_three
   have h2 := Real.pi_lt_four
   have h3 : 2 < b := lt_trans (by linarith [Real.exp_one_gt_d9]) hb
-  have h4 : 1 ≤ b ^ (2 * Cg) := hg.trans hgb
   rw [Complex.norm_real, Real.norm_of_nonneg (by positivity), Real.rpow_add (by linarith), Real.rpow_two]
   refine max_le ?_ ?_
   · have : 2 * (Real.pi / v) / g / 2 = Real.pi / (v * g) := by field_simp

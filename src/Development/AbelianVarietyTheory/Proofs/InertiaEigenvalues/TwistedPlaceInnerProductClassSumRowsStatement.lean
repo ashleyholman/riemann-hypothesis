@@ -567,8 +567,6 @@ theorem classSum_of_frame {I : Type} [Fintype I] (y : I → G) (hy : Bridge.IsRe
       show e (X.real x (g * κ)) = e (((χ ⟨φ κ, κ.2⟩ : ℂˣ) : ℂ) • X.real x g)
       rw [map_smul, hread, hread, map_mul]
       simpa using this)⟩
-  have p₁ : (0 : ℝ) < K.relIndex X.J := Nat.cast_pos.2 (Nat.pos_of_ne_zero hK₁)
-  have p₂ : (0 : ℝ) < K.relIndex J₂ := Nat.cast_pos.2 (Nat.pos_of_ne_zero hK₂)
   refine ⟨β, T, c * (c' * K.relIndex X.J / K.relIndex J₂), hβ', hT, by positivity, fun x x' => ?_⟩
   have r₁ := form_inv β hX (hA x) (hA x')
   have r₂ := form_inv (pullForm X e) (bounded_of_le hJ) (hB x) (hB x')

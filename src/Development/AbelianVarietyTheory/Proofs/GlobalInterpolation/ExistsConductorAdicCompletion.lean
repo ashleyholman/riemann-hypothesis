@@ -11,8 +11,6 @@ namespace GlobalTheory.ConductorAdicCompletion
 
 theorem eq_one_of_pow_near_one (z : ℂ) (h : ∀ k : ℕ, ‖z ^ k - 1‖ ≤ 1 / 2) : z = 1 := by
   by_contra hz
-  have hz1 : z - 1 ≠ 0 := sub_ne_zero.mpr hz
-  have hpos : 0 < ‖z - 1‖ := norm_pos_iff.mpr hz1
 
   have hre : ∀ k : ℕ, 1 / 2 ≤ (z ^ k).re := by
     intro k

@@ -563,7 +563,6 @@ theorem auxiliaryWeights_last_entry_pos {D : D7} {B : WeightFamilies.Prov D} {P 
     have e := h2P τ i
     have f := hFP τ i
     obtain ⟨k1, k2⟩ := key τ i hi
-    have e' : (w2.aP τ i : ℤ) + wF.aP τ i = ((WeightFamilies.dimY D j : ℤ) + 4) * wL.aP τ i := by exact_mod_cast e
     have : (1 : ℤ) ≤ w2.aP τ i := by nlinarith
     exact_mod_cast this
   · intro w1 hw1 τ i hi

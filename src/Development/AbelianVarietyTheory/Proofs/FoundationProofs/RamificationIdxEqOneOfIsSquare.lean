@@ -256,7 +256,6 @@ theorem valued_complMap (h : w.under (𝓞 F) = v) {a : Fv F v} (ha : a ≠ 0) :
   obtain ⟨k, hk⟩ := v.valuation_surjective F (Valued.v a)
   have h0 : Valued.v a ≠ 0 := (Valuation.ne_zero_iff _).2 ha
   have hk' := (valued_alg v k).trans hk
-  have hk0 : algebraMap F (Fv F v) k ≠ 0 := (Valuation.ne_zero_iff _).1 (hk' ▸ h0)
   have h1 : Valued.v (complMap h (a / algebraMap F _ k)) ≤ 1 :=
     complMap_mem h ((HeightOneSpectrum.mem_adicCompletionIntegers _ _ _).2 (by rw [map_div₀, hk', div_self h0]))
   have h2 : Valued.v (complMap h (algebraMap F _ k / a)) ≤ 1 :=

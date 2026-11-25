@@ -1552,7 +1552,6 @@ theorem trace_bound : ∀ (n : ℕ) (ε : Fin n → Bool) (H : Type) [NormedAddC
       push_cast
       exact Finset.sum_congr rfl fun j _ => inner_self_eq_norm_sq_to_K (x j)
     rw [eQ, Complex.norm_real, Real.norm_eq_abs, sq_abs] at hH
-    have hQ0 : 0 ≤ ∑ j, ‖x j‖ ^ 2 := Finset.sum_nonneg fun _ _ => by positivity
     have hQ : ∑ j, ‖x j‖ ^ 2 ≤ C0 * C' := by
       by_contra! hne
       have hK0 : 0 ≤ C0 * C' := mul_nonneg hC0 hC'0

@@ -1708,7 +1708,6 @@ theorem numeric (r k : ℕ) (i b c n Db Del NT x : ℝ) (hi : 0 < i) (hb : 0 ≤
   have hM4 : 1 ≤ M := hDel.trans hM3
   have hn' : n ≤ M ^ 2 := hn.trans (by gcongr)
   have hx' : x ≤ M ^ 2 := hx.trans (by gcongr)
-  have hic : 0 ≤ i ^ c := by positivity
   calc _ = (i * b) ^ k * i ^ c * ((n ^ (12 * r + 50)) ^ (2 * (2 * r + 1) ^ 2) * x ^ (2 * r + 1) *
       Del ^ r * n ^ (2 * (3 * (12 * r + 50) + 11) * (2 * r + 1) ^ 2)) := by
         rw [Real.rpow_add hi, Real.rpow_natCast, mul_pow]; ring

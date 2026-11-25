@@ -1152,7 +1152,6 @@ theorem GlobalTheory.SplitStab.stab_of_split_components : ∀ (F E : Type) [Fiel
     rw [Matrix.map_mul, Matrix.transpose_map, Matrix.map_map, Matrix.map_one _ (map_zero φ) (map_one φ)] at this
     rw [← hh]
     simpa [Matrix.transpose_map] using this
-  have hh'h : h' * h = 1 := mul_eq_one_comm.mp hhh'
   have hσM : M.val.map (φ.comp σ') = h'ᵀ := by
     have : (M.val.map (φ.comp σ'))ᵀ = h' := by
       calc (M.val.map (φ.comp σ'))ᵀ = (M.val.map (φ.comp σ'))ᵀ * (h * h') := by rw [hhh', Matrix.mul_one]

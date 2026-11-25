@@ -79,7 +79,6 @@ theorem v_part (k r f j : ℕ) (v : ℝ) (hr : 1 ≤ r) (hv : 1 ≤ v) :
     v ^ (k * (r - j) * f) *
         ((2 * v) ^ (-((r : ℝ) * k)) * 1 * 2 ^ (r * (k + 1) + r * (r - 1))) ^ f
       ≤ 2 ^ (r ^ 2 * f) := by
-  have hv0 : v ≠ 0 := by positivity
   have h2v : 0 ≤ 2 * v := by positivity
   have hexp : r * (k + 1) + r * (r - 1) = r * k + r ^ 2 := by
     obtain ⟨s, rfl⟩ : ∃ s, r = s + 1 := ⟨r - 1, by omega⟩
@@ -393,7 +392,6 @@ theorem gap_hypothesis_of_kernel_bound_large_constant {D : D7} {large₂ : SizeD
   obtain ⟨-, -, hmf, hfk, -, -, -, -, -, -, -, -, -, -, -, -, -, -, -, -, hgap, -, -, hClm, -⟩ := hS
   have hL : 1 < large₂.sc.L := Formalism.MainNotions.S.one_lt_scL large₂
   have hm2 : 2 ≤ D.R.m := D.R.two_le_m
-  have hm : (2 : ℝ) ≤ D.R.m := by exact_mod_cast hm2
   have hf16 : 16 ≤ D.R.f := le_trans (by
     calc 16 = 2 ^ 4 := by norm_num
       _ ≤ D.R.m ^ 4 := Nat.pow_le_pow_left hm2 4) hmf
@@ -417,7 +415,6 @@ theorem gap_hypothesis_of_kernel_bound_large_constant {D : D7} {large₂ : SizeD
       Cl * (D.R.r : ℝ) ^ 19 * (D.R.f : ℝ) ^ 5 * large₂.sc.L by ring]
   have hR : ((16 * (D.R.r : ℚ) ^ 19 : ℚ) : ℝ) ≤ (((D.hc τ).b ⟨j.1 + 1, hj⟩ - (D.hc τ).b j : ℚ) : ℝ) := by
     push_cast
-    have e : ((D.hc τ).b ⟨j.1, j.2⟩ : ℝ) = ((D.hc τ).b j : ℝ) := rfl
     linarith
   exact_mod_cast hR
 
@@ -1392,7 +1389,6 @@ theorem chain {a V L w vol Pr om vk sd A0f PB G : ℝ} (ha : 0 ≤ a) (hV : 1 �
   have s5 : w * (vol * Pr) * L ≤ w * (om * (vk * L) * (sd * (A0f * PB))) * L := by
     apply mul_le_mul_of_nonneg_right _ hL
     exact mul_le_mul_of_nonneg_left (s3.trans s4) hw
-  have s6 : w * (om * (vk * L) * (sd * (A0f * PB))) * L = w * sd * om * (vk * L * L * A0f * PB) := by ring
   have s7 : w * sd * om * (vk * L * L * A0f * PB) ≤ w * sd * om * G :=
     mul_le_mul_of_nonneg_left hG (by positivity)
   linarith [show w * sd * om * G = w * sd * G * om by ring]

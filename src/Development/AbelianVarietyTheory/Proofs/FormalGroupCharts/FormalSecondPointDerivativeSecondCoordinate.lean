@@ -430,8 +430,6 @@ open QuadDeriv
 theorem quadDeriv_of_biadditive : G2.QuadraticFormDerivatives := by
   intro R _ d O _ _ k _ _ _ B g hg w0
   obtain ⟨h0, h1, hl, hr, -⟩ := hg
-  have eF : B.FK k = mapP (algebraMap R k) B.G.F := rfl
-  have ew : B.actK k w0 = mapP (algebraMap R k) (B.A.act w0) := rfl
   have hF : GP (B.FK k) := constantCoeff_mapP_eq_zero _ _ B.G.const
   have hw : GP (B.actK k w0) := constantCoeff_mapP_eq_zero _ _ (B.A.const w0)
   have hU : evP (n := 1) ![pt k d 0, 0] (B.FK k) = pt k d 0 := by

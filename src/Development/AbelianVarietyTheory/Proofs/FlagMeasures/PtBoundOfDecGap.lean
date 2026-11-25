@@ -65,7 +65,6 @@ theorem ptBound_of_decGap : GlobalTheory.DSId.DecGap → GlobalTheory.Deep.PtBou
     intro y c hc
     have h1 : ∏ v, ‖⟪B.w v, B.σ v (uMat (y.1 v)) (B.w v)⟫_ℂ‖ ≤ ∏ v, c v :=
       Finset.prod_le_prod₀ (fun v _ => norm_nonneg _) fun v _ => hc v
-    have h0 : 0 ≤ ∏ v, c v := (Finset.prod_nonneg fun v _ => norm_nonneg _).trans h1
     unfold phe ph
     rw [norm_mul, norm_mul, norm_star, norm_prod, Complex.norm_real, Real.norm_of_nonneg hd, mul_right_comm]
     exact mul_le_mul (mul_le_mul_of_nonneg_left (hle _) hd) h1

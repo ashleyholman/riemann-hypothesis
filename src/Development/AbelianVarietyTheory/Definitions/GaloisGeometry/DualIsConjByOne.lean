@@ -17,7 +17,6 @@ variable {E : Type} [Field E] [NumberField E] [_root_.NumberField.IsTotallyCompl
 omit [NumberField E] [_root_.NumberField.IsTotallyComplex E] in
 def barK (k : Kinf E a) : Kinf E a :=
   ⟨(star k.1)ᵀ, Matrix.mem_unitaryGroup_iff.2 (by
-    have h : star k.1 * k.1 = 1 := Matrix.mem_unitaryGroup_iff'.1 k.2
     have e : star ((star k.1)ᵀ) = k.1ᵀ := by
       ext i j : 1
       simp [Matrix.star_apply]

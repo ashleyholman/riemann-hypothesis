@@ -37,8 +37,6 @@ theorem integrable_ph (B : RowsAut) (d : InfinitePlace B.I.F → ℝ) (h : ℝ) 
     · exact Or.inl hq
     · right
       have hqR : (0 : ℝ) < (rkR (B.I.ε v) : ℝ) := by exact_mod_cast hq
-      have hnR : (1 : ℝ) ≤ (B.I.n : ℝ) := by exact_mod_cast hn
-      have hsq : (0 : ℝ) < Real.sqrt (rkR (B.I.ε v) : ℝ) := Real.sqrt_pos.mpr hqR
       have hpow : ((rkR (B.I.ε v) : ℕ) : ℝ) ^ ((3 : ℝ) / 2) =
           (rkR (B.I.ε v) : ℝ) * Real.sqrt (rkR (B.I.ε v) : ℝ) := by
         rw [show (3 : ℝ) / 2 = 1 + 1 / 2 by norm_num, Real.rpow_add hqR, Real.rpow_one,

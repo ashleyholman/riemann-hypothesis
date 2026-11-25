@@ -498,7 +498,6 @@ theorem hermStar_hermStar {H : Matrix (Fin n) (Fin n) F} (hH : (H.map (IsCMField
   have hu : IsUnit (H.map (IsCMField.complexConj F : F →+* F)).det := by
     rw [← RingHom.mapMatrix_apply, ← RingHom.map_det]
     exact (map_ne_zero _).2 hdet |>.isUnit
-  have huH : IsUnit H.det := (Ne.isUnit hdet)
   rw [hermStar_apply, hermStar_apply, Matrix.map_mul, Matrix.map_mul, map_nonsingInv _ hu, map_conj_conj,
     Matrix.transpose_map, map_conj_conj, Matrix.transpose_mul, Matrix.transpose_mul, Matrix.transpose_transpose,
     Matrix.transpose_nonsing_inv, ← hT]

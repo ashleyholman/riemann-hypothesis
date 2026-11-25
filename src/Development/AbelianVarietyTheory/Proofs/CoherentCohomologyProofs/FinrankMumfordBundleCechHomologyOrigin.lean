@@ -488,7 +488,6 @@ theorem finrank_cechLB_homology :
     ∀ (K : Type) [Field K] [IsAlgClosed K] (P : PolAV (Spec (CommRingCat.of K))) (R : Type) [CommRing R] (t : Spec (CommRingCat.of R) ⟶ P.A.left) (Y : Scheme.{0}) (π : Y ⟶ (P.A ⊗ P.A).left) (f : Y ⟶ Spec (CommRingCat.of R)), IsPullback π f (fst P.A P.A).left t → IsOpenImmersion t → (∃ p q, t p = η[P.A].left q) → ∀ D : Fin (P.g + 1) → Y.Opens, (∀ i, IsAffineOpen (D i)) → ⨆ i, D i = ⊤ → ∀ n, Module.Finite K ((cechLB (f ≫ t ≫ P.A.hom) ((translDiff P.A P.L (𝟙 P.A)).pull π) D).homology n) ∧ Module.finrank K ((cechLB (f ≫ t ≫ P.A.hom) ((translDiff P.A P.L (𝟙 P.A)).pull π) D).homology n) = if n = P.g then 1 else 0 := by
   intro K _ _ P R _ t Y π f H ht ⟨p, q, hpq⟩ D hD hc n
   have hsm : Smooth P.A.hom := P.isAb.smooth
-  have hpr : IsProper P.A.hom := P.isAb.proper
   let φ : CommRingCat.of K ⟶ CommRingCat.of R := Spec.preimage (t ≫ P.A.hom)
   let _ : Algebra K R := φ.hom.toAlgebra
   have hφ : t ≫ P.A.hom = Spec.map (CommRingCat.ofHom (algebraMap K R)) :=

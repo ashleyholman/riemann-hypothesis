@@ -417,7 +417,6 @@ theorem par_iff_mat (hc : IsCompl P q ι ϖ) (hu : GlobalTheory.IndefiniteRowSid
     Par P q (κ + j) n c γ ↔ IntM ((reGL (stdOrd (Fin κ) (Fin τ) j c h)).symm (phi ι e γ)).val ∧
       MaxM ((reGL (stdOrd (Fin κ) (Fin τ) j c h)).symm (phi ι e γ)).val.toBlocks₂₁ := by
   set o := stdOrd (Fin κ) (Fin τ) j c h
-  have hv : ∀ x y, ((reGL o).symm (phi ι e γ)).val x y = ι (γ (Pi.single (e (o y)) 1) (e (o x))) := fun _ _ => rfl
   refine and_congr ⟨fun H x y => (hc.int _).2 (H _ _), fun H l l' => ?_⟩ ⟨fun H x y => ?_, fun H l l' h1 h2 => ?_⟩
   · obtain ⟨x, rfl⟩ := (o.trans e).surjective l
     obtain ⟨y, rfl⟩ := (o.trans e).surjective l'

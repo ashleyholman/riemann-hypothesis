@@ -183,7 +183,6 @@ theorem flatFB_source {σ : ℕ} {J : JacLev D (σ + 1)} {B : BesLev D σ} (s : 
     rw [e, t1, t2, t3]
     exact mixT_zero_heis B.d s.vT (MV _) _ _ _
   have : BorelSpace (UX D (σ + 1)) := ⟨rfl⟩
-  obtain ⟨i1, i2, i3⟩ := GlobalTheory.UnitU.topology D (σ + 1)
   have := (GlobalTheory.UnitU.isUnitU_exists_unique_rightInvariant D (σ + 1)).2.2 _ s.vU.unit
   have hmul : ∀ v : UX D (σ + 1), psiUni ψ (v * u').1 = psiUni ψ v.1 * psiUni ψ u := fun v => by
     rw [← ThLaws.psiFlag_levi ψ J.d, ← ThLaws.psiFlag_levi ψ J.d, ← ThLaws.psiFlag_levi ψ J.d, Subgroup.coe_mul, map_mul,

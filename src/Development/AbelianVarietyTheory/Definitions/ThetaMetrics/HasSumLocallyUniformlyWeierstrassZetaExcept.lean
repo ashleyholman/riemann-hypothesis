@@ -1005,7 +1005,6 @@ theorem weierstrassP_sub_weierstrassP {u v : ℂ} (hu : u ∉ L.lattice) (hv : v
       linear_combination (sigmaSign L w ^ 2 * weierstrassSigma L (z + v) *
         weierstrassSigma L (z - v) * weierstrassSigma L z ^ 2) * e)
     (by
-      have h1 := L.analyticAt_weierstrassPExcept 0
       have h2 := (differentiable_sigmaProd L).analyticAt 0
       refine .add (.div (by fun_prop) (by fun_prop) (by simp)) (by fun_prop))
     (fun z => by

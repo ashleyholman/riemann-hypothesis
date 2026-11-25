@@ -27,7 +27,6 @@ theorem charpoly_overExt_separable : ∀ (K K' : UQ) (d : ℕ) (φ : K.E →+* K
     have h3 := congrArg (fun f : Module.End K.E B.A => f 1) (h2.symm.trans h1)
     simpa using h3
   set B' := overExt φ B ψ hψ hσ with hB'
-  have hg : B'.g = B.g := rfl
   have hmap : ∀ x : K'.E, algebraMap K'.E B'.A x = ψ x := fun x => rfl
   have hint : IsIntegral K'.E B'.g := Algebra.IsIntegral.isIntegral _
 

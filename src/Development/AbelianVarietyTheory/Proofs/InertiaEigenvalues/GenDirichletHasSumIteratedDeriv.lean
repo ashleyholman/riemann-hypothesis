@@ -106,7 +106,6 @@ theorem genDirichlet_hasSum_iteratedDeriv {ι : Type} (b μ : ι → ℝ) (F : �
     have hev : (fun w : ℂ => ∑' j, (b j : ℂ) * (-(μ j : ℂ)) ^ n * Complex.exp (-(μ j : ℂ) * w))
         =ᶠ[nhds s] iteratedDeriv n F := by
       filter_upwards [hU.mem_nhds hσs] with w hw
-      have hw' : σ < w.re := hw
       exact (ih w (by linarith)).tsum_eq
     rw [hev.deriv_eq, ← iteratedDeriv_succ] at key
     refine (congrArg (fun f => HasSum f _) (funext fun j => ?_)).mp key

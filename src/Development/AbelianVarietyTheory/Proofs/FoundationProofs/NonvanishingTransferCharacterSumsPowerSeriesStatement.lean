@@ -1055,7 +1055,6 @@ theorem norm_eq_one_of_pow {x : Qbar l} (hx : x ^ (l - 1) = 1) : ‖x‖ = 1 := 
 theorem eq_of_pow_eq_one {x y : Qbar l} (hx : x ^ (l - 1) = 1) (hy : y ^ (l - 1) = 1) (h : ‖x - y‖ < 1) : x = y := by
   have h2 := (Fact.out : l.Prime).two_le
   by_contra hne
-  have hx1 := norm_eq_one_of_pow hx
   have hy1 := norm_eq_one_of_pow hy
   have hy0 : y ≠ 0 := by rintro rfl; simp at hy1
   set z := x / y with hz

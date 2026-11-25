@@ -155,7 +155,6 @@ theorem main : ∀ r R : ℝ, 0 < r → r < R → R < 1 → ∃ C : ℝ, 0 < C �
   have hc2 : 0 < -Real.log (1 - R) := neg_pos.2 (Real.log_neg (by linarith) (by linarith))
   set c1 := -Real.log R with hc1d
   set c2 := -Real.log (1 - R) with hc2d
-  have hRr : 0 < R - r := by linarith
   have hA : 0 < 8 * R / (R - r) ^ 2 := by positivity
   set A := 8 * R / (R - r) ^ 2 with hAd
   refine ⟨c1⁻¹ + A * (1 + c1⁻¹ * c2), by positivity, ?_⟩
@@ -207,7 +206,6 @@ theorem main : ∀ r R : ℝ, 0 < r → r < R → R < 1 → ∃ C : ℝ, 0 < C �
   have hg01 : ‖f 0‖ ≤ ‖g 0‖ := hg00.trans (mul_le_of_le_one_left (norm_nonneg _) hRN)
   have hgB : ∀ z : ℂ, ‖z‖ ≤ 1 → ‖g z‖ ≤ M / (1 - R) ^ N := fun z hz => by
     refine norm_le_of_sphere hg (fun u hu => ?_) hz
-    have h1R : 0 < 1 - R := by linarith
     rw [le_div_iff₀ (by positivity), mul_comm]
     refine le_trans ?_ (hM u (by simpa using hu.le))
     rw [hnorm u, hN, ← Finset.prod_pow_eq_pow_sum]
@@ -222,7 +220,6 @@ theorem main : ∀ r R : ℝ, 0 < r → r < R → R < 1 → ∃ C : ℝ, 0 < C �
   have hK : 0 < 1 + L + N * c2 := by positivity
   have hgb : ∀ z ∈ Metric.ball (0 : ℂ) R, ‖g z‖ ≤ ‖g 0‖ * Real.exp (1 + L + N * c2) := by
     intro z hz
-    have h1R : 0 < 1 - R := by linarith
     refine (hgB z (by simpa using hsub hz)).trans ?_
     have e : M / (1 - R) ^ N = ‖f 0‖ * Real.exp (L + N * c2) := by
       rw [Real.exp_add, hLd, Real.exp_log (by positivity), hc2d, mul_neg, Real.exp_neg,

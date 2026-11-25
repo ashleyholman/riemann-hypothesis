@@ -102,8 +102,6 @@ theorem vr_of_over {V : Type} [CommRing V] [IsDomain V] [IsDiscreteValuationRing
     vr e y = 1 / eO := by
   unfold vr
   have hv : ((vV (K' := FractionRing V) V (algebraMap V (FractionRing V) y) : ℤ) : ℝ) * eO = e := by exact_mod_cast hy
-  have heOr : (0 : ℝ) < eO := by exact_mod_cast heO
-  have her : (0 : ℝ) < e := by exact_mod_cast he
   field_simp
   linarith
 

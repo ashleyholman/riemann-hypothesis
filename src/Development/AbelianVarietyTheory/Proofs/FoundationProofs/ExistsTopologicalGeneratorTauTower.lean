@@ -602,7 +602,6 @@ theorem q_not_pow : ∀ (p : ℕ) [Fact p.Prime] (Ω : Type) [Field Ω] [Algebra
     ((Basic.isUnit_qO p).map (algebraMap (O0 p) Ω)).ne_zero
   have hb0 : b ≠ 0 := by
     rintro rfl; rw [zero_pow hp.ne_zero] at hbp; exact hq0 hbp.symm
-  have hpΩ : (p : Ω) ≠ 0 := by exact_mod_cast hp.ne_zero
 
   have hEb : (p : Ω) * E b = b := by
     have h1 := congrArg E hbp

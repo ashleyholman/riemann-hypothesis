@@ -1070,7 +1070,6 @@ theorem real_bound {e F G w s K C : ℝ} {a b : ℂ} {n : ℕ} (hn : 1 ≤ n) (h
   have h5 : G * w ^ (-(n : ℝ)) ≤ C := by
     rw [Real.rpow_neg hw.le, Real.rpow_natCast, mul_inv_le_iff₀ (pow_pos hw n)]
     exact hC
-  have hKp := Real.rpow_pos_of_pos hK0 ((n : ℝ) - 1 / 2)
   calc e * ‖a - b‖ ^ 2 * w ^ (-(1 / 2 : ℝ)) * s ^ (-((n : ℝ) - 1 / 2))
       ≤ (2 * F + 2 * G) * w ^ (-(1 / 2 : ℝ)) * (K ^ ((n : ℝ) - 1 / 2) * w ^ (-((n : ℝ) - 1 / 2))) := by
         have : 0 ≤ 2 * F + 2 * G := le_trans (by positivity) h3

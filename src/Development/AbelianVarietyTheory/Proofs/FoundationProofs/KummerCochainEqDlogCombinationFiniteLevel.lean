@@ -704,7 +704,6 @@ theorem sum_swap_eq (h : DualData B C u v tr) (D : Ω → Ω) {x : Ω} (hx : x �
 
 theorem S_congr (h : DualData B C u v tr) (hd : IsDer B d) {x y : Ω} (hx : x ∈ C) (hy : y ∈ C) :
     IsInt (p := p) (p * ∑ k, u k * phi (D0 u v tr d) (v k * x) y - p * x * psi u v (D0 u v tr d) y) := by
-  have hBC := h.1
   have hCi := h.2.1
   have hu := h.2.2.1
   have hv := h.2.2.2.1

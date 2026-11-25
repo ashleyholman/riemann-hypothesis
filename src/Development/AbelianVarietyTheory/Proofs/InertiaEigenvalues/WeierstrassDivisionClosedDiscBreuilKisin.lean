@@ -44,7 +44,6 @@ theorem Div.zero {t : ℝ} : Div l ρ E e t 0 :=
 theorem lpow_mem (hl : 0 < l) {A : Type} [CommRing A] (u : A) (σ : ℝ≥0) (a c : ℕ) :
     algebraMap A (PreDisc l u σ) ((l : A) ^ a) * IsLocalization.Away.invSelf (l : A) ^ c ∈
       ball l u σ ((l : ℝ) ^ c / (l : ℝ) ^ a) := by
-  have hl0 : (0 : ℝ) < l := Nat.cast_pos.2 hl
   exact Submodule.subset_span ⟨a, 0, c, by field_simp; simp, by simp⟩
 
 theorem Div.lmul (hl : 0 < l) {t : ℝ} {y} (h : Div l ρ E e t y) (a c : ℕ) :
@@ -72,7 +71,6 @@ theorem div_monomial (hl : 0 < l) (he : 0 < e) (hρ0 : 0 < ρ) (hρ1 : ρ ≤ 1)
     (z : R⟦X⟧) (hE : E = X ^ e + (l : R⟦X⟧) * z)
     (hdiv : ∀ a : R⟦X⟧, ∃ (q : R⟦X⟧) (c : Fin e → R), a = E * q + ∑ i, C (c i) * X ^ (i : ℕ)) (b : ℕ) :
     ∀ a : R⟦X⟧, Div l ρ E e ((ρ : ℝ) ^ b / (ρ : ℝ) ^ e) (algebraMap R⟦X⟧ _ (X ^ b * a)) := by
-  have hl0 : (0 : ℝ) < l := Nat.cast_pos.2 hl
   have h0 : (0 : ℝ) < ρ := hρ0
   have h1 : (ρ : ℝ) ≤ 1 := hρ1
   induction b using Nat.strong_induction_on with
@@ -106,8 +104,6 @@ theorem div_monomial (hl : 0 < l) (he : 0 < e) (hρ0 : 0 < ρ) (hρ1 : ρ ≤ 1)
 theorem div_ball (hl : 0 < l) (hρ0 : 0 < ρ)
     (hm : ∀ (b : ℕ) (a : R⟦X⟧), Div l ρ E e ((ρ : ℝ) ^ b / (ρ : ℝ) ^ e) (algebraMap R⟦X⟧ _ (X ^ b * a)))
     {r : ℝ} {y} (hy : y ∈ ball l (X : R⟦X⟧) ρ r) : ∀ a : R⟦X⟧, Div l ρ E e (r / (ρ : ℝ) ^ e) (a • y) := by
-  have hl0 : (0 : ℝ) < l := Nat.cast_pos.2 hl
-  have h0 : (0 : ℝ) < ρ := hρ0
   induction hy using Submodule.span_induction with
   | mem x hx =>
     obtain ⟨a, b, c, h1, rfl⟩ := hx
@@ -135,7 +131,6 @@ theorem div_disc [hl : Fact l.Prime] (hρ0 : 0 < ρ)
     (hm : ∀ (b : ℕ) (a : R⟦X⟧), Div l ρ E e ((ρ : ℝ) ^ b / (ρ : ℝ) ^ e) (algebraMap R⟦X⟧ _ (X ^ b * a)))
     (y : Disc l (X : R⟦X⟧) ρ) : ∃ (q : Disc l (X : R⟦X⟧) ρ) (c : Fin e → Disc l (0 : R) 1),
       y = toDisc l X ρ E * q + ∑ i, cMap l R ρ (c i) * toDisc l X ρ (X ^ (i : ℕ)) := by
-  have h0 : (0 : ℝ) < ρ := hρ0
   set ι : Disc l (0 : R) 1 →+* Disc l (X : R⟦X⟧) ρ := cMap l R ρ with hι
   have hιm : IsDiscMap (l := _) (u := _) (ρ := _) C ι := isDiscMap_cMap
   have hιp : ∀ x, ι (ofPre l (0 : R) 1 x) = ofPre l X ρ (preMap l (0 : R) 1 (X : R⟦X⟧) ρ C x) := by
@@ -251,7 +246,6 @@ theorem weierstrass_div : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l) (bk : BK K
       ((l : ℕ) : bk.DS ρ) ^ k * y = toDisc l (X : bk.S) ρ bk.E * q + toDisc l (X : bk.S) ρ (r : bk.S) := by
   intro l hl K bk ρ hρ hρ1 y
   have hl0 : (0 : ℝ) < l := Nat.cast_pos.2 hl.out.pos
-  have hl1 : (1 : ℝ) < l := Nat.one_lt_cast.2 hl.out.one_lt
   have he := bk.deg_pos
   have hρ0 : 0 < ρ := lt_of_lt_of_le (NNReal.rpow_pos (Nat.cast_pos.2 hl.out.pos)) hρ
   have hρe : 1 ≤ (ρ : ℝ) ^ bk.Ep.natDegree * l := by

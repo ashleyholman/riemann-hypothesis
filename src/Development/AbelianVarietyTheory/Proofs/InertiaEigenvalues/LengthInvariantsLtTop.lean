@@ -76,7 +76,6 @@ theorem exists_killer {ι : Type} [Fintype ι] {r : ℕ} (A : ι → Matrix (Fin
         c • x ∈ stdG O (FractionRing O) r := by
   classical
   set K := FractionRing O
-  have hinj := IsFractionRing.injective O K
   let B : Matrix (ι × Fin r) (Fin r) K := fun p j => algebraMap O K (A p.1 p.2 j)
   have hB : ∀ x p, (B.mulVec x) p = (((A p.1).map (algebraMap O K)).mulVec x) p.2 := fun _ _ => rfl
   have hker : LinearMap.ker (Matrix.toLin' B) = ⊥ := by

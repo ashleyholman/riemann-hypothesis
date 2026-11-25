@@ -36,7 +36,6 @@ theorem zc_mul (f c : F⟦X⟧) (n : ℤ) (N : ℕ) (h : n < N) :
     refine Finset.sum_eq_zero fun j _ => ?_
     rw [zc_neg _ (by omega), mul_zero]
   · lift n to ℕ using hn
-    have hN : n < N := by exact_mod_cast h
     rw [zc_nat, PowerSeries.coeff_mul,
       Finset.Nat.sum_antidiagonal_eq_sum_range_succ (fun i j => coeff i f * coeff j c),
       ← Finset.sum_range_add_sum_Ico _ (show n + 1 ≤ N by omega)]

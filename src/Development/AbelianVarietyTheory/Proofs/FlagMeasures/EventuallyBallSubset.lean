@@ -571,7 +571,6 @@ theorem exists_inj_near_one {E : Fin (n ^ 2) → Matrix (Fin n) (Fin n) ℂ} (hG
     rw [← mul_assoc, hJJ, one_mul]
   refine ⟨1 / (2 * (‖J‖ * ‖J‖ + 1)), by positivity, fun g h hg hh hg1 hh1 hc => ?_⟩
   set ρ := 1 / (2 * (‖J‖ * ‖J‖ + 1)) with hρ
-  have hρ0 : 0 < ρ := by positivity
   have hρ1 : ρ * (‖J‖ * ‖J‖ + 1) = 1 / 2 := by rw [hρ]; field_simp
   set D := g - h with hD
   have hD0 : ∀ i, ip D (E i) = 0 := fun i => by

@@ -217,7 +217,6 @@ theorem main : ∀ (K V : Type) [Field K] [NumberField K] [_root_.NumberField.Is
   have hker : LinearMap.ker f = rs (𝓞 K) U := by
     ext v
     simp [f]
-  have hker' : f.toAddMonoidHom.ker = (LinearMap.ker f).toAddSubgroup := rfl
   set m := M.toAddSubgroup.relIndex (L₀ ⊓ LinearMap.ker f).toAddSubgroup with hm
   have hidx : ∀ La ∈ S, x = m * (La.map f).toAddSubgroup.relIndex (L₀.map f).toAddSubgroup := by
     intro La hLa
@@ -500,7 +499,6 @@ theorem prod_bound (B c : ℝ) (x x' D s e C : ℕ) (hB : 0 ≤ B) (hx : 1 ≤ x
         (ENNReal.ofReal ((x' : ℝ) ^ (2 * (s : ℝ) + c)) * ((x' : ℝ≥0∞) * D) ^ e * (C : ℝ≥0∞) ^ C)) ≤
     ENNReal.ofReal (B * ((x : ℝ) * x') ^ (2 * (s : ℝ) + 2 * c + 1) * ((x : ℝ) * x' * (D : ℝ) ^ 2) ^ e *
       (C : ℝ) ^ C) := by
-  have hx1 : (1 : ℝ) ≤ x := by exact_mod_cast hx
   have hx2 : (1 : ℝ) ≤ x' := by exact_mod_cast hx'
   have e1 : ∀ a : ℕ, ((a : ℝ≥0∞) * D) ^ e = ENNReal.ofReal (((a : ℝ) * D) ^ e) := fun a => by
     rw [ENNReal.ofReal_pow (by positivity), ENNReal.ofReal_mul (by positivity), ENNReal.ofReal_natCast,
@@ -606,7 +604,6 @@ theorem main : MinkowskiBound → ∀ (K V : Type) [Field K] [NumberField K] [St
           _ = _ := by ring
       have a' : (1 : ℝ) ≤ (GlobalTheory.Mass.idxN N (GlobalTheory.Mass.latIn U (fixLat p.1.2)) : ℝ) ^ 2 :=
         one_le_pow₀ (by exact_mod_cast a)
-      have h3 : (0 : ℝ) ≤ n := by positivity
       nlinarith
     rw [hempty]
     simp
@@ -645,7 +642,6 @@ theorem transference_dual {M : ℕ} (hM : 1 ≤ M)
     · rintro t ⟨-, v, hvM, hvli, hvt⟩
       exact (hmin _ (hvM 0) (hvli.ne_zero 0)).trans (hvt 0)
   have h0 : 0 ≤ PI.succMin (PI.dualZ (span ℤ (Set.range D))) M := Real.sInf_nonneg (fun t ht => ht.1)
-  have M0 : (0 : ℝ) < M := by exact_mod_cast hM
   have hlt : PI.succMin (PI.dualZ (span ℤ (Set.range D))) M < 5 / 4 * (M / lam) := by
     have : PI.succMin (PI.dualZ (span ℤ (Set.range D))) M ≤ M / lam := by
       rw [le_div_iff₀ hlam]
@@ -734,7 +730,6 @@ theorem exists_bounded_basis {n : ℕ} (hn : 1 ≤ n) (Λ : Submodule (𝓞 E) (
       ∀ (σ : E →+* ℂ) (i k : Fin n), ‖σ (herm 1 (v i) (v k))‖ ≤ 2 * (fdeg E : ℝ) * n ^ 2 * rdE E ^ 2 := by
   obtain ⟨b, hb⟩ := exists_basis Λ hfg (DualFamily.span_eq_top Λ hfg hdual)
   have hf0 : 0 < fdeg E := ClassCount.fdeg_pos
-  have hf : (0 : ℝ) < fdeg E := by exact_mod_cast hf0
   have hr : 0 < rdE E := rdE_pos
   have hl : 0 < 2 * (fdeg E : ℝ) / rdE E ^ 2 := by positivity
   obtain ⟨v, hv, hli, hle⟩ := transference_rat (Nat.mul_pos (by omega) hn) b (traceHerm n) (traceHerm_isSymm n)
@@ -856,11 +851,8 @@ theorem mass_small [StarRing E] (hK : Formalism.HermitianLatticesTheory.IsCMUnra
   have hx : 4 ≤ f * w := by nlinarith
   rw [← mul_pow]
   have n2 : (n : ℝ) ≤ 2 := by exact_mod_cast h2
-  have n0 : (0 : ℝ) ≤ n := by positivity
   have nn : (n : ℝ) ^ 2 ≤ 4 := by nlinarith
   have b : 2 * (f : ℝ) * n ^ 2 * w ≤ 8 * (f * w) := by nlinarith
-  have b0 : 0 ≤ 2 * (f : ℝ) * n ^ 2 * w := by have : 0 ≤ w := by linarith
-                                              positivity
   calc _ ≤ ((20 * (f : ℝ) * w) * (20 * f * w)) ^ (2 * f * n ^ 2) := by
         refine pow_le_pow_left₀ (by positivity) (mul_le_mul (by linarith) (by nlinarith) (by positivity)
           (by linarith)) _
@@ -1362,7 +1354,6 @@ theorem arith (k f : ℕ) (c e : ℝ) (hc : 0 ≤ c) (x x' D q A : ℝ) (hx : 1 
   subst hm
   have x0 : 0 < x := by linarith
   have x0' : 0 < x' := by linarith
-  have D0 : 0 < D := by linarith
   have h1 : 1 ≤ (x * x') ^ ((k : ℝ) / 2) * (q ^ (k * f) * D) ^ k := by
     have hs : ((x * x') ^ ((k : ℝ) / 2)) ^ 2 = (x * x') ^ k := by
       rw [← Real.rpow_natCast, ← Real.rpow_mul (by positivity), ← Real.rpow_natCast]
@@ -1436,7 +1427,6 @@ theorem main : MinkowskiBound → ∀ (K V : Type) [Field K] [NumberField K] [St
   rw [← ENNReal.ofReal_natCast, ← ENNReal.ofReal_pow (by positivity), ← ENNReal.ofReal_mul (by positivity),
     ← ENNReal.ofReal_mul (by positivity)]
   refine ENNReal.ofReal_le_ofReal ?_
-  have hg0 : (0 : ℝ) < g := by exact_mod_cast (by omega : 0 < g)
   exact arith _ _ _ _ hcf _ _ _ _ _ (by exact_mod_cast hx) (by exact_mod_cast hx') (by exact_mod_cast hD1)
     (by positivity) (by positivity) h43 _ (by push_cast; ring)
 
@@ -1662,9 +1652,6 @@ theorem mid_bound (m A c D X Y : ℝ) (g n s k f j x x' : ℕ) (hm : 0 ≤ m) (h
         Y ^ (3 * (2 * j + 1)) * ((4 * s * f : ℕ) : ℝ) ^ (4 * s * f)) ≤
     m * X ^ ((k : ℝ) / 2) * Y ^ (6 * (j : ℝ) + 9 + 4 * c) * A *
       ((32 / (g : ℝ)) ^ (k * f) * ((4 * k * f : ℕ) : ℝ) ^ (4 * f) * Y ^ 7) ^ s := by
-  have n0 : (0 : ℝ) < n := by exact_mod_cast hn
-  have g0 : (0 : ℝ) < g := by exact_mod_cast (by omega : 0 < g)
-  have D0 : 0 < D := by linarith
   have X0 : 0 < X := by linarith
   have hXY : X ≤ Y := by rw [hY]; exact le_mul_of_one_le_right X0.le (one_le_pow₀ hD)
   have Y0 : 0 < Y := by linarith
@@ -1712,7 +1699,6 @@ theorem top_bound (c D X Y : ℝ) (g k f j x x' : ℕ) (hc : 0 ≤ c) (hD : 1 �
     ((2 / (g : ℝ)) ^ (2 * 0 * f) * D * x * x' / D) ^ ((k : ℝ) / 2) * X ^ (2 * ((0 : ℕ) : ℝ) + 2 * c + 1) *
         Y ^ (3 * (2 * j + 1)) * ((4 * 0 * f : ℕ) : ℝ) ^ (4 * 0 * f) ≤
       X ^ ((k : ℝ) / 2) * Y ^ (6 * (j : ℝ) + 10 + 4 * c) := by
-  have D0 : 0 < D := by linarith
   have X0 : 0 < X := by linarith
   have hXY : X ≤ Y := by rw [hY]; exact le_mul_of_one_le_right X0.le (one_le_pow₀ hD)
   have Y0 : 0 < Y := by linarith
@@ -1755,9 +1741,7 @@ theorem main : MinkowskiBound → GlobalTheory.Mass.MaxMass → Formalism.Hermit
   have Y0 : 0 < Y := by linarith
   set c := cf K with hcdef
   set Z := ((x : ℝ) * x') ^ ((k : ℝ) / 2) with hZ
-  have Z0 : 0 ≤ Z := by positivity
   set Pk := ((2 / (g : ℝ)) ^ (k * f) * ((4 * k * f : ℕ) : ℝ) ^ (4 * f) * D * x * x') ^ k with hPk
-  have Pk0 : 0 ≤ Pk := by positivity
   let I : Finset (ℕ × ℕ) := Finset.Ico 1 k ×ˢ Finset.Icc 1 (D * x * x')
   let B : ℕ × ℕ → ℝ := fun i => ((2 / (g : ℝ)) ^ (2 * i.1 * f) * D * x * x' / i.2) ^ ((k : ℝ) / 2) *
     ((x : ℝ) * x') ^ (2 * (i.1 : ℝ) + 2 * c + 1) * Y ^ (3 * (2 * j + 1)) * ((4 * i.1 * f : ℕ) : ℝ) ^ (4 * i.1 * f)
@@ -1837,7 +1821,6 @@ theorem main : MinkowskiBound → GlobalTheory.Mass.MaxMass → Formalism.Hermit
     rw [← Real.rpow_one_add' Y0.le (by positivity)]
     congr 1
     ring
-  have S0 : 0 ≤ ∑ s ∈ Finset.Ico 1 k, C s := Finset.sum_nonneg fun s _ => C0 s
   have b := mul_le_mul_of_nonneg_right hY1
     (show 0 ≤ m * Z * Y ^ (6 * (j : ℝ) + 9 + 4 * c) * A * ∑ s ∈ Finset.Ico 1 k, C s by positivity)
   rw [e1, e2]

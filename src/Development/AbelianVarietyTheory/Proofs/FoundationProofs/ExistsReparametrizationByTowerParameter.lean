@@ -102,7 +102,6 @@ theorem dL_sum (b : ℕ → Lau p) (j : ℕ) (hj : j < p ^ n) :
   ext i
   rw [dL_coeff, HahnSeries.coeff_sum]
   simp only [coeff_mul_qj]
-  have hN := pn_pos p n
   rw [Finset.sum_eq_single j]
   · rw [show (p : ℤ) ^ n * i + (j : ℤ) - (j : ℤ) = (p : ℤ) ^ n * i by ring, vL_coeff]
   · intro k hk hne

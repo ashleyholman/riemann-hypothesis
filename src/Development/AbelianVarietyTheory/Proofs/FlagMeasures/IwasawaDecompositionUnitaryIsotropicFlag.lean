@@ -438,7 +438,6 @@ theorem exists_levi (J T p q α β : A) (hJ : star J = J) (hJJ : J * J = 1) (hT 
       T * ((p - m) * (J * star m * J) * (1 - J * T * J)) = (p - m) * (J * star m * J) * (1 - J * T * J) := by
   obtain ⟨R, hR⟩ : ∃ R, R = 1 - T - J * T * J := ⟨_, rfl⟩
   have JJ : ∀ x, J * (J * x) = x := fun x => by rw [← mul_assoc, hJJ, one_mul]
-  have TT : ∀ x, T * (T * x) = T * x := fun x => by rw [← mul_assoc, hTT]
   have hiso' : T * (J * T) = 0 := by rw [← mul_assoc, hiso]
   have TJT : ∀ x, T * (J * (T * x)) = 0 := fun x => by rw [← mul_assoc, ← mul_assoc, hiso, zero_mul]
   have sR : star R = R := by simp [hR, hJ, hT, mul_assoc]
@@ -452,7 +451,6 @@ theorem exists_levi (J T p q α β : A) (hJ : star J = J) (hJJ : J * J = 1) (hT 
     conv_lhs => rw [show R * R = R * (1 - T - J * T * J) by rw [← hR]]
     rw [mul_sub, mul_sub, RT, ← mul_assoc, RJT]; simp
   have s1 : star α * T = star α := by rw [← hT, ← star_mul, h1]
-  have s2 : T * star α = star α := by rw [← hT, ← star_mul, h2]
   have s3 : star β * T = star β := by rw [← hT, ← star_mul, h3]
   have s4 : T * star β = star β := by rw [← hT, ← star_mul, h4]
   have s5 : star α * star β = T := by rw [← star_mul, hβα, hT]
@@ -734,7 +732,6 @@ theorem eq_one_of_mul_mem_compact (hW : IsIsoFlag ε j W) (u : Formalism.REAL.UJ
         (fun y hy => by simpa [Matrix.sub_mulVec] using hu.1 i y hy)
       rw [ih, zero_mul, sub_mul, ← hc, one_mul] at this
       rw [mul_sub, mul_one, ← this]
-  have hiso := proj_iso hW (hP0 _) (hP1 _)
   have h1 : uMat u = 1 := by
     refine eq_one_of_fix (Formalism.REAL.Jm ε) (P (Fin.last a)) _ (hP0 _) ?_ ?_ ?_
     · obtain ⟨g, hg, hg'⟩ := exists_uMat _ (uMat_form u)

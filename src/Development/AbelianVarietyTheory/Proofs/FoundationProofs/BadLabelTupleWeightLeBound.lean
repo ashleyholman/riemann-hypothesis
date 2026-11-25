@@ -1754,7 +1754,6 @@ theorem badWeight_le : ∀ (g : ℕ) [Fact g.Prime] (N : ℕ), ∀ (m q d : ℕ)
   · have hg1 : (1 : ℝ) ≤ g := by exact_mod_cast (Fact.out : g.Prime).one_le
     have hg0 : (0 : ℝ) < g := by linarith
     have hinv : 1 / (g : ℝ) ≤ 1 := by rw [div_le_one hg0]; exact hg1
-    have hinv0 : 0 ≤ 1 / (g : ℝ) := by positivity
     have hA : (1 - 1 / (g : ℝ)) ^ Fintype.card ι * ∑ F ∈ goodSet g N ch, ∏ v, ((torusCard g (F v) : ℝ))⁻¹ ≤
         ∑ F ∈ goodSet g N ch, ∏ v, w v (F v) := by
       rw [Finset.mul_sum]

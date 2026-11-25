@@ -58,7 +58,6 @@ theorem om_annih_move {D : D7} {ψ : AddChar (AF D.host.F) ℂ} {θ : InfFam D} 
     (τ : D.what₂.Tau) (z : Matrix (Fin T.rank) (Fin S.rank) ℂ) {f : WO S T → ℂ} (hf : IsThetaFunO ψ S T f) :
     om (k, 1) (annih (heisO ψ S T) θ τ (cplxO (sS τ) (sT τ)) z f) =
       annih (heisO ψ S T) θ τ (cplxO (sS τ) (sT τ)) (z * compAt θ τ (Formalism.L2.Theta.mt S k⁻¹)) (om (k, 1) f) := by
-  have hψ := hW.std
   have hm1 : Formalism.L2.Theta.mt T (1 : GA D T) = 1 := by
     unfold Formalism.L2.Theta.mt
     rw [map_one, Units.val_one]

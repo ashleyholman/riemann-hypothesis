@@ -96,7 +96,6 @@ theorem exists_diagonal_ringHom_of_letterwise_reductions :
     rw [map_mul, hs, hs, map_mul] at h
     have ha := hk0 i a
     have hb := hk0 i b
-    have hi := hidR i
     rw [h]
     linear_combination (-(k b)) * ha - (r (s i a)) * hb
   · apply hext

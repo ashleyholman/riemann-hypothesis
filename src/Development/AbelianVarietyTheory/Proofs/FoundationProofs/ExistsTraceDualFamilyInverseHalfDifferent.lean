@@ -86,7 +86,6 @@ theorem exists_family (c : E ≃ₐ[ℚ] E) (φ₀ : E →+* ℂ)
       change _ ↔ (n • (t / algebraMap (𝓞 E) E x)) * algebraMap (𝓞 E) E x ∈ _
       rw [zsmul_eq_mul, mul_assoc, div_mul_cancel₀ _ hx']
       rfl
-    have hnK : (n : K) ≠ 0 := by exact_mod_cast hn0
     have : t = (n : K)⁻¹ • ((n : E) * t) := by
       have hnE : (n : E) ≠ 0 := by exact_mod_cast hn0
       rw [Algebra.smul_def, map_inv₀, map_intCast, inv_mul_cancel_left₀ hnE]

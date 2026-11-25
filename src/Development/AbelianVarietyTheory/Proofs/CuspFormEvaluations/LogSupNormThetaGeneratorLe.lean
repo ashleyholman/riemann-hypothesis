@@ -56,7 +56,6 @@ theorem log_sup_theta_generator_le : Formalism.MainNotions.ModuliIntegralCharts.
   obtain ⟨hfd, hrdl, hrd1, hf1, hr1, hxi, hDF, habs, hcU, hlie, -, -, -, hl1⟩ :=
     _root_.GlobalTheory.SupDict.record_dictionary D T hT j hj w
   obtain ⟨-, hLrd, -, -, hLf, -, -, hLa, hLn⟩ := id hPR
-  have hL0 : (0 : ℝ) < large₂.sc.L := by linarith
   have ha0 : (0 : ℝ) ≤ absA w := by rw [habs]; exact Nat.cast_nonneg _
   have hσg : GoodEmb T.Q.c (goodOf T.Q.c σ) := goodEmb_goodOf T.Q.c σ
   have hNs : T.Ns j w σ f = lieFac (T.Q.Dw j) (xiR D) (wtA w) *

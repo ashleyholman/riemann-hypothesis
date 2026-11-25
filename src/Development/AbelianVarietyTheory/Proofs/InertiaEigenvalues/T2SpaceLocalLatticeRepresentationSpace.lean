@@ -112,9 +112,6 @@ theorem exists_pair (a : G → M →ₗ[O] M) (hmul : ∀ g h x, a (g * h) x = a
     rw [map_add (f := _), map_add (f := _), map_sub, hjφ, ← hb₁]; abel
   have hker : ∀ g, r g = 1 → c g + (a g (b₁ + j m) - (b₁ + j m)) = 0 := by
     intro g hg
-    have h1 := hjγ g m
-    have h2 := hjγ 1 m
-    have h3 : a g (j m) = a 1 (j m) := by rw [← h1, ← h2, hg, map_one]
     by_cases hne : Δ.Nonempty
     · obtain ⟨δ, hδ⟩ := hne
       exact hz g (by rw [hg, ← mul_inv_cancel δ]; exact hΔm _ hδ _ (hΔi _ hδ))

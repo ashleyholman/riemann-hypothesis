@@ -101,7 +101,6 @@ theorem mean_comp_eq {g : ℕ} (Λ Λ' : AddSubgroup (Fin g → ℂ)) [Countable
   let L : (Fin g → ℂ) ≃ₗ[ℝ] (Fin g → ℂ) := (Matrix.toLinearEquiv' h inferInstance).restrictScalars ℝ
   have hL : ∀ z, L z = h *ᵥ z := fun z => rfl
   let e : (Fin g → ℂ) ≃ᵐ (Fin g → ℂ) := L.toContinuousLinearEquiv.toHomeomorph.toMeasurableEquiv
-  have he : ∀ z, e z = h *ᵥ z := fun z => rfl
   have hd : LinearMap.det (L : (Fin g → ℂ) →ₗ[ℝ] (Fin g → ℂ)) ≠ 0 := (LinearEquiv.isUnit_det' L).ne_zero
   have hmap : Measure.map e volume = ENNReal.ofReal |(LinearMap.det (L : (Fin g → ℂ) →ₗ[ℝ] (Fin g → ℂ)))⁻¹| • volume :=
     Measure.map_linearMap_addHaar_eq_smul_addHaar volume hd

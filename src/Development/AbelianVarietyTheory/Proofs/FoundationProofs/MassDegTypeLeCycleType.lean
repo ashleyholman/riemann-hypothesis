@@ -391,7 +391,6 @@ theorem mass_degType_le_cycleType : ∀ (g : ℕ) [Fact g.Prime], ∀ (N : ℕ) 
     have hprod : (0 : ℝ) < ∏ d ∈ μ.toFinset, ((d : ℝ) ^ μ.count d * ((μ.count d).factorial : ℝ)) := by
       refine Finset.prod_pos fun d hd => ?_
       have hd0 : (0 : ℝ) < d := by exact_mod_cast hpos d (Multiset.mem_toFinset.1 hd)
-      have hf0 : (0 : ℝ) < ((μ.count d).factorial : ℝ) := by exact_mod_cast Nat.factorial_pos _
       positivity
     have hP := hprod.ne'
     have hcard : ((Finset.univ.filter fun σ : Equiv.Perm (Fin N) =>

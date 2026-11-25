@@ -171,7 +171,6 @@ theorem exists_root_of_isAlgClosed [IsAlgClosed Ω] (ε : Ω →+* ℂ) {q : ℕ
 omit [Algebra ℚ Ω] in
 theorem coeff_hq {q : ℕ} (hq0 : 0 < q) (φ : HahnSeries ℚ Ω) (r : ℚ) :
     (hq ε q φ).coeff r = (q : Ω)⁻¹ * (∑ j ∈ Finset.range q, eOm ε (r * j)) * φ.coeff (q * r) := by
-  have h0 : (0 : ℚ) < q := by exact_mod_cast hq0
   rw [hq, HahnSeries.coeff_smul, HahnSeries.coeff_sum, smul_eq_mul, mul_assoc, Finset.sum_mul]
   congr 1
   refine Finset.sum_congr rfl fun j _ => ?_

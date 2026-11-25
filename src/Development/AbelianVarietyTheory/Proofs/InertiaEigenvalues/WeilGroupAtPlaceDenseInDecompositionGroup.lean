@@ -258,7 +258,6 @@ theorem lift_resAut_of_fixes (E Ω : Type) [Field E] [NumberField E] [Field Ω] 
       right_inv := fun b => Subtype.ext (mul_inv_apply (b : Ω))
       map_mul' := fun a b => Subtype.ext (by simp)
       map_add' := fun a b => Subtype.ext (by simp) }
-  have he : ∀ b : IntCl K Ω, ((e b : IntCl K Ω) : Ω) = σ₀ b := fun _ => rfl
   have hQe : Q = Q.map (e : IntCl K Ω →+* IntCl K Ω) := by
     rw [Ideal.map_comap_of_equiv]
     ext b

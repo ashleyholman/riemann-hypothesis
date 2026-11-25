@@ -171,8 +171,6 @@ theorem nFCoreNC_of_cut (hL : NFLeibV) (hT : NFTieHatC) (hH : NFHatProdKBS) (hN 
       intro i
       rw [Formalism.FourierDecayAlt.P.MAx3.F.actA_mul, hprod i f A₀ hf hcc0 hthrH hJ, nf_actA_fsum]
       simp only [← Formalism.FourierDecayAlt.P.MAx3.F.actA_mul]
-      have hj : ∀ k ρ', ‖MA.evQ P (trJKB p fr (B.JF p.T.base (B.opApply (Th i k) f)) ρ') q‖ ^ 2 ≥ 0 :=
-        fun _ _ => sq_nonneg _
       calc ∑ ρ', ‖MA.evQ P ((∑ k, MA.actA P (b i * b' i k) (trJKB p fr (B.JF p.T.base (B.opApply (Th i k) f)))) ρ') q‖ ^ 2
           ≤ ∑ ρ', (m' i : ℝ) * ∑ k, ‖MA.evQ P (MA.actA P (b i * b' i k)
               (trJKB p fr (B.JF p.T.base (B.opApply (Th i k) f))) ρ') q‖ ^ 2 := by

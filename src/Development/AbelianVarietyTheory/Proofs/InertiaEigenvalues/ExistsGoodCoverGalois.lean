@@ -619,8 +619,6 @@ theorem exists_goodCover_galois (D : D7) {G : Type} [Group G] [Fintype G] {Pl0 T
       obtain ⟨z, hz'⟩ := hsurj y
       exact ⟨z, hz'.trans hy⟩
   let C₀ : Cover T ((i : ℕ) + 1) T.σ₀ := ⟨c', hle, d, σ₂, U₂, dict₂, fun _ => 1⟩
-  have hdom : ∀ m, Even m → Dom (0 : (D.host.E →+* ℂ) × ℕ → ℕ) m := fun m hm =>
-    ⟨fun _ _ _ _ => le_rfl, hm⟩
   have hauxd : GlobalTheory.IndefiniteRowSideFullHecke.RationalRayLevels.IsAuxiliarySplitSquarefreeLevel D T.Q.l.M d.pd := hdpd ▸ haux
   by_cases hn : Even n
   · obtain ⟨cc₂, hcc⟩ := _root_.GlobalTheory.CoverRead.Cover.exists_pinned_dom D T hJ _ hj T.σ₀ hσ C₀ (hU _) n

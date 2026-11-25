@@ -312,7 +312,6 @@ theorem norm_coeff_le_one_of_mul {x g : K⟦X⟧} (hx : ∃ B : ℝ, ∀ n, ‖c
   have hbdd : BddAbove (Set.range fun n => ‖coeff n x‖) := ⟨B, by rintro _ ⟨n, rfl⟩; exact hB n⟩
   set S := ⨆ n, ‖coeff n x‖ with hSdef
   have hxS : ∀ n, ‖coeff n x‖ ≤ S := fun n => le_ciSup hbdd n
-  have hS0 : 0 ≤ S := (norm_nonneg _).trans (hxS 0)
   set d := Nat.find hg1 with hd
   have hgd : ‖coeff d g‖ = 1 := Nat.find_spec hg1
   have hlt : ∀ i < d, ‖coeff i g‖ < 1 := fun i hi =>

@@ -261,7 +261,6 @@ theorem coef_bound : HypsG → ∀ (k r : ℕ) (ε : Fin (2 * r + k + 1) → Boo
   refine Finset.sum_le_sum fun j _ => le_trans (mul_le_mul_of_nonneg_left ?_ pg'.le) (hc i j g hg)
   rw [map_smul, inner_smul_left, inner_smul_right, norm_mul, norm_mul, RCLike.norm_conj, Complex.norm_real,
     Complex.norm_real, Real.norm_eq_abs, Real.norm_eq_abs]
-  have n0 := norm_nonneg ⟪xs i, R.σ g (ys j)⟫_ℂ
   calc _ ≤ 1 * (1 * ‖⟪xs i, R.σ g (ys j)⟫_ℂ‖) := by
         gcongr
         · exact hco i

@@ -179,7 +179,6 @@ theorem exists_reading : ∀ (S : Scheme.{0}) (A : Over S) [GrpObj A] [IsCommMon
     have hA := prod_fr_ne Φ φ ε (fun k => hqp z' k) hz'
     have hper : ∀ k, Φ.fr (J z k) (p k z) = Φ.fac (a k) (p k z) * Φ.fr (J z k) (p k z + a k) := fun k =>
       Φ.fr_per (a k) (ha k).1 (J z k) (p k z) (top_le_chart Φ φ (fun k => hqp z k) (hJ z) k)
-    have hC := prod_fr_ne Φ φ ε (fun k => hqp z k) (hJ z)
     have hB : ∏ k, Φ.fac (a k) (p k z) ^ ε k ≠ 0 := by
       refine Finset.prod_ne_zero_iff.2 fun k _ => zpow_ne_zero _ ?_
       intro h0

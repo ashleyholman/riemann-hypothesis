@@ -181,7 +181,6 @@ theorem inv_le_log : ∃ K : ℝ, 0 < K ∧ ∀ (q : ℕ) [NeZero q] (χ : Diric
     have e : 9 * δ / ((9 * δ) ^ 2 + 0 ^ 2) = 1 / δ / 9 := by field_simp; ring
     rw [e] at h
     exact h
-  have hxpos : 0 < 1 / δ := by positivity
   by_cases h2 : χ ^ 2 = 1
   · have hγ : γ ≠ 0 := hcase.resolve_left (not_not.mpr h2)
     by_cases hsmall : 2 * γ ^ 2 ≤ 81 * δ ^ 2
@@ -228,8 +227,6 @@ theorem inv_le_log : ∃ K : ℝ, 0 < K ∧ ∀ (q : ℕ) [NeZero q] (χ : Diric
       rw [show χ * χ = 1 by rw [← sq]; exact h2] at H
       have hk : C1 * Real.log (q * (|(0 : ℝ)| + 2)) ≤ C1 * L := mul_le_mul_of_nonneg_left hL0 hC1.le
       simp only [abs_zero, zero_add] at hk
-      have hb : -(deriv (LFunction χ) ((1 + 8 * δ : ℝ) : ℂ) / LFunction χ ((1 + 8 * δ : ℝ) : ℂ)).re
-          ≤ C1 * L - 4 / 27 * (1 / δ) := by linarith
       linarith
     · push Not at hsmall
       have hC : -(deriv (LFunction (1 : DirichletCharacter ℂ q)) (((1 + 8 * δ : ℝ) : ℂ) + 2 * γ * I) /

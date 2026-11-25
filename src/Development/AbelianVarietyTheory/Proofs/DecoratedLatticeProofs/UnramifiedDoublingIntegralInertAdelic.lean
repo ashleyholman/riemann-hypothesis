@@ -384,7 +384,6 @@ theorem domain_of_bound {q : ℕ} (hq : 2 ≤ q) {n : ℕ} (α : Fin (n / 2) →
   have hQ : ((q ^ 2 : ℕ) : ℝ) ^ ((n : ℝ) / 2) = (q : ℝ) ^ (n : ℝ) := by
     rw [Nat.cast_pow, ← Real.rpow_natCast (q : ℝ) 2, ← Real.rpow_mul hq0.le]
     congr 1; push_cast; ring
-  have hn : (0 : ℝ) ≤ n := Nat.cast_nonneg n
   have key : (q : ℝ) ^ (-(2 * s.re + 1)) * (q : ℝ) ^ (n : ℝ) < 1 := by
     rw [← Real.rpow_add hq0]
     exact Real.rpow_lt_one_of_one_lt_of_neg hq1 (by linarith)

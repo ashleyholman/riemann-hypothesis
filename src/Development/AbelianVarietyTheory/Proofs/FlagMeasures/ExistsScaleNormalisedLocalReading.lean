@@ -138,7 +138,6 @@ theorem isEmpty_freeE_of_reg {D : D7} (X : HidaSetting D) (u u' : D.what₂.Word
   obtain ⟨⟨a, b⟩, hab, hbl⟩ := p
   have hab' : a.1 < b.1 := hab
   have hsum : (w.1.map Prod.snd).sum = D.R.rS + 1 := w.2.2
-  have hb := b.2
   obtain ⟨c, hcb, hz⟩ := ptEntry_row_zero w.1 a.1 b.1 hab' (by rw [hsum]; exact b.2) hbl
   obtain ⟨v⟩ : Nonempty (InfinitePlace X.B.I.F) := inferInstance
   have hle : c + 1 ≤ D.R.rS + 1 := by omega

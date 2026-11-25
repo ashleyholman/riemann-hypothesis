@@ -62,8 +62,6 @@ theorem exists_gap_of_mem_Icc_top :
   have hr1 : ((r : ℕ) : ℝ) + 1 ≤ n := by exact_mod_cast r.2
   have h2 : (((r : ℕ) : ℝ) + 1) * (L / (n + 1)) ≤ n * (L / (n + 1)) :=
     mul_le_mul_of_nonneg_right hr1 hδpos.le
-  have h3 : (n : ℝ) * (L / (n + 1)) < (n + 1) * (L / (n + 1)) :=
-    mul_lt_mul_of_pos_right (by linarith) hδpos
   have h4 : ((n : ℝ) + 1) * (L / (n + 1)) = L := by
     field_simp
   linarith
@@ -274,7 +272,6 @@ theorem core {J G H : Matrix (Fin n) (Fin n) ℂ} (hJ : J * J = 1) (hHG : H * G 
     rw [hPm, hPz, hH, nsq_cj h1, nsq_cj h1, nsq_cj h1, Finset.mul_sum, Finset.mul_sum,
       ← Finset.sum_add_distrib]
     refine Finset.sum_le_sum fun i _ => ?_
-    have hc : 0 ≤ ‖(Uᴴ *ᵥ y) i‖ ^ 2 := by positivity
     rw [Real.sq_sqrt (hpos i).le]
     have hfa : a i = f (lam i) := by rw [ha]
     rcases ha3 i with h | h | h
@@ -979,8 +976,6 @@ theorem contraction (hA : IsGrad ε A) (x : S7.UJ ε) {Y : Matrix (Fin n) (Fin n
   have ha : 0 ≤ a := _root_.Formalism.REAL.frobenius_nonneg_matrix _
   have hb : 0 ≤ b := _root_.Formalism.REAL.frobenius_nonneg_matrix _
   have hy : 0 ≤ hs Y := _root_.Formalism.REAL.frobenius_nonneg_matrix _
-  have ha1 : a ≤ 1 := by nlinarith
-  have k1 : a * a ≤ a * (1 + b) := by nlinarith
   have k2 : 4 * (a * a) + 6 * (a * b) ≤ 6 * (a * (1 + b)) := by nlinarith
   have k3 := mul_le_mul_of_nonneg_right k2 hy
   linarith
@@ -1092,7 +1087,6 @@ theorem gap (g : S7.UJ ε) (hn : (n : ℝ) < hs (S7.toM g)) :
     ⟨i₀, fun hi => by
       have h1 := hzero i₀ hi
       have h2 : ((r : ℝ) + 1) ≤ n := by exact_mod_cast hr
-      have h3 : L < ((r : ℝ) + 1) * w := h1
       nlinarith⟩
   refine ⟨A', α, β, hA', hβ1, hβα, ?_, hy⟩
   rw [hα, hβ, Real.log_exp, Real.log_exp]
@@ -1156,7 +1150,6 @@ theorem cover (n : ℕ) (ε : Fin n → Bool) :
   have s1 : (Real.log h - Real.log n) / ((n : ℝ) + 1) ≤ large₂ - Real.log (a * (1 + b)) := by linarith
   have s2 : Real.log h - Real.log n ≤ (large₂ - Real.log (a * (1 + b))) * ((n : ℝ) + 1) := (div_le_iff₀ hN).1 s1
   rw [hE] at hlogh
-  have s3 : Real.log h ≤ -2 * ((n : ℝ) + 1) * Real.log (a * (1 + b)) := by linarith
   show 1 / (4 * ((n : ℝ) + 1)) * Real.log h ≤ -(1 / 2) * Real.log (a * (1 + b))
   rw [div_mul_eq_mul_div, one_mul, div_le_iff₀ (by positivity)]
   linarith

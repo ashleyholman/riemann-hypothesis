@@ -57,7 +57,6 @@ theorem rowDiv_raise_eq_zero (k : Type) [Field k] (N : ℕ) (ν : Fin N → ℕ)
         omega
       simp [this]
     rw [ha, hb]; ring
-  have hj' : (1 : ℤ) ≤ j := by exact_mod_cast hj
   have : ((∑ i : Fin N with i.val < a.val + 1, rowDeg m i : ℕ) : ℤ) ≤
       ((∑ i : Fin N with i.val < a.val + 1, ν i : ℕ) : ℤ) := by exact_mod_cast dom
   omega

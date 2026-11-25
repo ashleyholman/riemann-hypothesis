@@ -66,7 +66,6 @@ theorem isModel_extend {ψ : AddChar (AF D.host.F) ℂ} {e : AE D} (hq : p.e * e
     (hTm : IsPlaceModel ψ (symplO S T) (heisO ψ S T) e Λ 1 f₀ Tm)
     (hth : ∀ Φ, IsSBHalf e Λ Φ → IsThetaFunO ψ S T (Tm Φ)) (Ω : WO S T → ℂ)
     (hsb : ∀ Φ, IsSBHalf e Λ (extend p FS FT e Ω Φ)) : p.IsModel ψ FS FT (Tm ∘ₗ extend p FS FT e Ω) := by
-  have hee := p.split.1
   refine ⟨fun Φ => hth _ (hsb Φ), fun x Φ Φ' h => ?_, fun y hy Φ Φ' h => ?_⟩
   · have hx : IsHalf e (p.up FS FT x) := fun i j => by
       have := congrFun (congrFun (smul_up p FS FT x) i) j

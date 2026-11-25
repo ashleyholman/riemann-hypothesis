@@ -420,7 +420,6 @@ theorem HasModel.exists_rep {Λ : Fin N → ℝ} (h : HasModel Λ) :
   obtain ⟨ι, _, _, ρ, wt, v, h1, h2, h3, h4, h5, h6, h7, h8⟩ := h
   let T : Matrix (Fin N) (Fin N) ℂ → (EuclideanSpace ℂ ι →L[ℂ] EuclideanSpace ℂ ι) :=
     fun g => Matrix.toEuclideanCLM (𝕜 := ℂ) (ρ g)
-  have hT : ∀ g x, (T g x).ofLp = ρ g *ᵥ x.ofLp := fun g x => rfl
   have hmul : ∀ a b, T (a * b) = (T a).comp (T b) := fun a b => by
     simp only [T, h2, map_mul]; rfl
   have hone : T 1 = 1 := by simp only [T, h1, map_one]

@@ -58,7 +58,6 @@ theorem pos_iff_not_isUnit (c : NChoice D) (w : D.what₂.places.Pl) (x : D.what
     norm_cast at *
     omega
   rw [e1, c.embW_w, not_iff_not]
-  have hz : c.embW w x ≠ 0 := by simpa using h0
   constructor
   · rintro ⟨u, hu⟩
     refine IsUnit.of_mul_eq_one u (IsFractionRing.injective (c.Oe w) (FractionRing (c.Oe w)) ?_)

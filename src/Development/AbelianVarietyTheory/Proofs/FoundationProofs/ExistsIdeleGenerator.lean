@@ -106,7 +106,6 @@ theorem exists_local_generator {E : Type} [Field E] [NumberField E] (B : Ideal (
       ∀ b ∈ B, β ∣ (n : 𝓞 E) * b := by
   set m := 2 * Ideal.absNorm B with hm
   have hN : 0 < Ideal.absNorm B := Nat.pos_of_ne_zero (by simpa [Ideal.absNorm_eq_zero_iff] using hB)
-  have hm2 : 2 ≤ m := by omega
   have hmB : (m : 𝓞 E) ∈ B := by
     rw [hm, Nat.cast_mul]; exact Ideal.mul_mem_left _ _ (Ideal.absNorm_mem B)
   have hm0 : (m : 𝓞 E) ≠ 0 := Nat.cast_ne_zero.2 (by omega)

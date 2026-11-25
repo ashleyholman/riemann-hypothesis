@@ -87,7 +87,6 @@ theorem duWin_three_of_count : ∀ D : D7, (∀ u, (D.duS u : ℝ) = ((D.mem u).
     rw [zpow_neg, one_div]; norm_cast
   rw [hG2]
   set c := (D.mem u).A.Dstar / (D.mem u).A.duStar / (D.mem u).A.GamP ^ 2 with hcdef
-  have hc0 : 0 < c := by positivity
   have e : 1 / (D.mem u).A.GamP ^ 2 * (D.mem u).A.Dstar = ((D.mem u).A.duStar : ℝ) * c := by
     rw [hcdef]; field_simp
   rw [e]

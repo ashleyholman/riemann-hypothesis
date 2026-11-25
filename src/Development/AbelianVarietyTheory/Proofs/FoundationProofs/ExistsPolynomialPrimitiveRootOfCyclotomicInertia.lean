@@ -137,8 +137,6 @@ theorem exists_integral_poly_of_primitiveRoot_totally_ramified :
     rw [hkj, ← zpow_natCast γ i, ← zpow_natCast γ j, ← zpow_add₀ hγ0, ← zpow_add₀ hγ0] at h
     have hx := zpow_right_injective₀ hγpos hγ1.ne h
     rw [Finset.mem_range] at hi hj
-    have hi' : (i : ℤ) < e := by exact_mod_cast hi
-    have hj' : (j : ℤ) < e := by exact_mod_cast hj
     have hd : (e : ℤ) * (ki - kj) = (j : ℤ) - i := by linarith
     apply hij
     rcases lt_trichotomy (ki - kj) 0 with h' | h' | h'
@@ -159,7 +157,6 @@ theorem exists_integral_poly_of_primitiveRoot_totally_ramified :
     rw [← A.valuation_le_one_iff]
     obtain ⟨k, hk⟩ := hcv i hci
     rw [Finset.mem_range] at hi
-    have hi' : (i : ℤ) < e := by exact_mod_cast hi
     have hk0 : 0 ≤ k := by
       by_contra! hneg
       have h1 : v (c i * w ^ i) = γ ^ ((e : ℤ) * k + i) := by

@@ -422,7 +422,6 @@ theorem exists_coset (M q : ℕ) (hM : 0 < M) (hq : q.Prime) (hqM : Nat.Coprime 
           · field_simp
           · field_simp; linear_combination hdz
     refine ⟨t.val, ZMod.val_lt t, ?_⟩
-    have ht : ((t.val : ℤ) : ZMod q) = t := by simp
     obtain ⟨t1, e1⟩ : (q : ℤ) ∣ m 0 1 - m 0 0 * ((t.val : ℤ) * M) := by
       rw [hz]; push_cast; rw [ZMod.natCast_zmod_val, ← hb, ← ha, ht1]; ring
     obtain ⟨t2, e2⟩ : (q : ℤ) ∣ m 1 1 - m 1 0 * ((t.val : ℤ) * M) := by
@@ -521,8 +520,6 @@ theorem GlobalTheory.hecke_product_invariant : ∀ {Ω : Type} [Field Ω] [Algeb
     rw [hij] at h1
     apply reps_distinct M q hq hqM σ i j (g i * (g j)⁻¹)
     have hγi : (γ : Matrix (Fin 2) (Fin 2) ℤ) * ((γ⁻¹ : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) = 1 := by
-      rw [← Matrix.SpecialLinearGroup.coe_mul, mul_inv_cancel, Matrix.SpecialLinearGroup.coe_one]
-    have hgj : ((g j : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) * (((g j)⁻¹ : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) = 1 := by
       rw [← Matrix.SpecialLinearGroup.coe_mul, mul_inv_cancel, Matrix.SpecialLinearGroup.coe_one]
     have hgj' : (((g j)⁻¹ : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) * ((g j : SL(2, ℤ)) : Matrix (Fin 2) (Fin 2) ℤ) = 1 := by
       rw [← Matrix.SpecialLinearGroup.coe_mul, inv_mul_cancel, Matrix.SpecialLinearGroup.coe_one]

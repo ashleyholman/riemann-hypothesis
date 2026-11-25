@@ -405,7 +405,6 @@ lemma integral_entry_eq_zero (hC : 1 ≤ C₁) (hCm : 0 ≤ Cm) (hT : 0 ≤ T)
     ∀ i j, a i ≤ ε * a j → M' j i = 0 := by
   intro i j hij
   apply int_eq_zero
-  have hC0 : 0 ≤ C₁ := by linarith
   have hM' : M'.map (Int.cast : ℤ → ℝ) = m * (n * M'.map (Int.cast : ℤ → ℝ)) := by
     rw [← Matrix.mul_assoc, hmn, Matrix.one_mul]
   have hE : ∀ p, j ≤ p → |(n * M'.map (Int.cast : ℤ → ℝ)) p i| ≤ N * (T * C₁ ^ 3 * ε) := by
@@ -457,7 +456,6 @@ lemma conj_entry_eq_zero (hC : 1 ≤ C₁) (ha : ∀ i, 0 < a i) (hle : ∀ i j,
     (ε : ℝ) (hA : ∀ i j, a i ≤ ε * a j → M' j i = 0) (δ : ℝ) (hδ0 : 0 ≤ δ) (hδ : δ * C₁ ^ 2 = ε) :
     ∀ i j, a i ≤ δ * a j → Z i j = 0 := by
   intro i j hij
-  have hC0 : 0 ≤ C₁ := by linarith
   have h := congrArg (· * m) h2
   simp only [Matrix.mul_assoc] at h
   rw [hnm, Matrix.mul_one] at h
@@ -493,7 +491,6 @@ lemma entry_bound_of_vanishing (hC : 1 ≤ C₁) (hCm : 0 ≤ Cm) (hT : 0 ≤ T)
     (δ : ℝ) (hδ : 0 < δ) (hB : ∀ i j, a i ≤ δ * a j → Z i j = 0) :
     ∀ i j, |(M i j : ℝ)| ≤ N * (Cm * (N * (T * C₁ / δ))) := by
   intro i j
-  have hC0 : 0 ≤ C₁ := by linarith
   have hM : M.map (Int.cast : ℤ → ℝ) = m * (n * M.map (Int.cast : ℤ → ℝ)) := by
     rw [← Matrix.mul_assoc, hmn, Matrix.one_mul]
   have hE : ∀ p, |(n * M.map (Int.cast : ℤ → ℝ)) p j| ≤ N * (T * C₁ / δ) := by
@@ -574,7 +571,6 @@ theorem integral_conj_bounded : ∀ (N : ℕ) (C R : ℝ), ∃ C' : ℝ, ∀ (k 
   refine ⟨N * (Cm * (N * (T * C₁ / δ))), ?_⟩
   intro k a n hs X M M' hX hM hM'
   have hC : 1 ≤ C₁ := hC₁d ▸ le_max_right _ _
-  have hC₁pos : 0 < C₁ := by linarith
   have hCm : 0 ≤ Cm := hCmd ▸ le_max_right _ _
   have hR : 0 ≤ max R 0 := le_max_right _ _
   have hT : 0 ≤ T := by rw [hTd]; positivity
@@ -1405,7 +1401,6 @@ theorem GlobalTheory.CuspGeo.redBasis_holds : ∀ I : AutInst, RedBasis I := by
       have hiv : IntVec I (∑ j, z j • e j) := (he.2 _).2 ⟨z, rfl⟩
       have h1 : t ≤ ‖vec I y (∑ j, z j • e j)‖ := hns _ hiv hu
       have h2 := norm_le_sqrt I hρ (vec I y (∑ j, z j • e j))
-      have hsq : 0 < Real.sqrt N := Real.sqrt_pos.2 hNr
       calc c' * t ≤ lam / Real.sqrt N * t := mul_le_mul_of_nonneg_right hc'2 ht0.le
         _ ≤ lam / Real.sqrt N * (Real.sqrt N * ‖ρ (vec I y (∑ j, z j • e j))‖) :=
             mul_le_mul_of_nonneg_left (h1.trans h2) (by positivity)
@@ -1723,7 +1718,6 @@ theorem bases_finite_classes : ∀ (I : AutInst) (N : ℕ) (R : ℝ), ∃ S : Se
   have hQ : {q : ℚ | |(q:ℝ)| ≤ R ∧ ∃ m : ℤ, (c:ℚ) * q = m}.Finite := by
     refine ((Set.finite_Icc (-⌈R * c⌉) ⌈R * c⌉).image fun m : ℤ => (m : ℚ) / c).subset ?_
     rintro q ⟨hq, m, hm⟩
-    have hcpos : (0:ℝ) < c := by exact_mod_cast hc0
     have hmq : (m:ℝ) = c * q := by exact_mod_cast hm.symm
     have h := abs_le.mp hq
     have hR := Int.le_ceil (R * c)

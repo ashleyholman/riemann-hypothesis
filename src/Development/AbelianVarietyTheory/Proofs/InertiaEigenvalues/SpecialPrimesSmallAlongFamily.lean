@@ -84,8 +84,6 @@ theorem qd_le_lStar {D : D7} (L : SizeData₂ D) (P : ParameterChoice' D L) :
   rw [← Real.sqrt_eq_rpow] at hc
   have hq1 : (1 : ℝ) ≤ D.host.q := by
     have := D.host.qd_big.1; exact_mod_cast (by omega : 1 ≤ D.host.q)
-  have hd1 : (1 : ℝ) ≤ D.host.d := by
-    have := D.host.qd_big.2; exact_mod_cast (by omega : 1 ≤ D.host.d)
   have hpos' : 0 < LevelStarExponents.condE D :=
     Nat.mul_pos (Nat.mul_pos D.host.QS_pos D.host.hyp.1.pos) D.host.hyp.2.1.pos
   have hqE : (D.host.q : ℝ) ≤ LevelStarExponents.condE D := by
@@ -139,7 +137,6 @@ theorem at_one {D : D7} (L : SizeData₂ D) (P : ParameterChoice' D L) (hS : Siz
     hT.trans (Real.rpow_le_rpow_of_exponent_le hx1 (by have := le_abs_self L.Ct; linarith))
   have hf := f_le_k D
   have hr := r_le_two_k D
-  have hk0 : (0 : ℝ) ≤ D.R.k := by positivity
   have hr0 : (0 : ℝ) ≤ D.R.r := by positivity
   have hf1 : (1 : ℝ) ≤ D.R.f := by rw [f_eq]; linarith [n_ge_one D]
   have hm1 := m_ge_one D

@@ -211,7 +211,6 @@ theorem eq_of_infOf_eq {m : ℕ} {a b : Fin m → ℤ} (ha : Antitone a) (hb : A
   have h2 := Multiset.map_injective (fun x y hxy => by exact_mod_cast add_right_cancel hxy) h
   have sa : ∀ c : Fin m → ℤ, Antitone c → StrictAnti fun i : Fin m => c i - (i : ℕ) := fun c hc i j hij => by
     have := hc hij.le
-    have h3 : (i : ℕ) < j := hij
     beta_reduce
     omega
   have hr : Set.range (fun i : Fin m => a i - (i : ℕ)) = Set.range fun i : Fin m => b i - (i : ℕ) := by

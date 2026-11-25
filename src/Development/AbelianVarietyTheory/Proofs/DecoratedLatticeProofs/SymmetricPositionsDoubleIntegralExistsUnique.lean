@@ -112,7 +112,6 @@ theorem exists_fj_of_exUp {ρ : ℕ} (h1 : 1 ≤ ρ) (h2 : ρ < c) {ψ : AddChar
   have fj_apply : ∀ φ v Φ₀, fj φ v Φ₀ = f φ v Φ₀ := fun _ _ _ => rfl
   refine ⟨fj, ⟨hB, fun φ v Φ₀ => ⟨hI φ v Φ₀, fj_apply φ v Φ₀⟩⟩, fun φ v Φ₀ => ?_⟩
   obtain ⟨s1, -, s3⟩ := (hS (b φ) v).1 (hb φ)
-  have hh := (_root_.GlobalTheory.SplitWeil.FourierSurj.hat_surjective k n ψ hψ hψ1 ν hν).1 Φ₀
   rw [fj_apply]
   simp only [f, hBb, s3, GlobalTheory.IndefiniteRowSideFullHecke.FourierJacobiAverage.hat, ← integral_const_mul, ← integral_mul_const]
   rw [integral_integral_swap]

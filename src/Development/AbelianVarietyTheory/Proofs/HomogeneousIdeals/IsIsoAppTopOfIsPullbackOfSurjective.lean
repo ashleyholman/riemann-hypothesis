@@ -82,7 +82,6 @@ theorem mem_map_ker_of_isPushout {R A K P : CommRingCat.{u}} {φ : R ⟶ A} {ψ 
     {inl : A ⟶ P} {inr : K ⟶ P} (H : IsPushout φ ψ inl inr) (hφ : φ.hom.Flat) (x : A)
     (hx : inl x = 0) : x ∈ (RingHom.ker ψ.hom).map φ.hom := by
   algebraize [φ.hom, ψ.hom]
-  let e := (CommRingCat.isPushout_tensorProduct R A K).isoIsPushout _ _ H
   refine mem_map_of_tmul_eq_zero x (1 : K) _ (fun r hr ↦ ?_) ?_
   · rwa [← Algebra.algebraMap_eq_smul_one] at hr
   · have := congr($((CommRingCat.isPushout_tensorProduct R A K).inl_isoIsPushout_inv _ _ H).hom x)

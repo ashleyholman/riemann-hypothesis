@@ -206,7 +206,6 @@ theorem sizes (f N a d s Q ch cT ca cd : ℕ) (B L r ν A : ℝ) (hf : 1 ≤ f) 
   have hfl : (f : ℝ) * (2 * n) ≤ Real.exp l := hl1 ▸ le_mul_of_one_le_right (by linarith) hB
   have had' : (a : ℝ) * d ≤ 4 * n ^ 2 := by linarith [mul_le_mul ha' hd' hd0 (by linarith)]
   have hG : ((f * a * d : ℕ) : ℝ) ≤ 4 * f * n ^ 2 := by push_cast; linarith [mul_le_mul_of_nonneg_left had' (Nat.cast_nonneg f)]
-  have hG0 : (0 : ℝ) ≤ ((f * a * d : ℕ) : ℝ) := Nat.cast_nonneg _
   have e1 := hcd.trans (cls_le_exp f d n r l L hf hd' (by linarith) hl0 (by linarith) hfl hr1)
   have e2 := hca.trans (cls_le_exp f a n r l L hf ha' (by linarith) hl0 (by linarith) hfl hr1)
   have e3 : (ch : ℝ) ≤ Real.exp (24 * f * n ^ 2 * (12 + 4 * l + 2 * L) + 8 * n ^ 2 * q) := by
@@ -351,7 +350,6 @@ theorem norm_meanInf_posLog_le : ∃ C : ℝ, 0 < C ∧ ∀ (D : D7), Inp D → 
   have hm0 : 0 ≤ Real.log (B * (2 * (N : ℝ))) := Real.log_nonneg (one_le_mul_of_one_le_of_one_le hB (by linarith))
   have hfn : 1 ≤ (fF D : ℝ) * (2 * (N : ℝ)) := one_le_mul_of_one_le_of_one_le hf' (by linarith)
   have hl0 : 0 ≤ Real.log ((fF D : ℝ) * (2 * (N : ℝ)) * B) := Real.log_nonneg (one_le_mul_of_one_le_of_one_le hfn hB)
-  have hq0 : 0 ≤ Real.log Q := Real.log_natCast_nonneg Q
   set E₀ : ℝ := 1100 * fF D * (2 * (N : ℝ)) * B * (L + Real.log (B * (2 * (N : ℝ)))) +
       1100 * fF D * (N : ℝ) ^ 2 * (L + Real.log ((fF D : ℝ) * (2 * (N : ℝ)) * B)) +
       1100 * (N : ℝ) ^ 2 * Real.log Q with hE₀

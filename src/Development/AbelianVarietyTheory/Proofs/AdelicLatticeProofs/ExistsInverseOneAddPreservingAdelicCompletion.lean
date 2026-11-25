@@ -139,7 +139,6 @@ theorem _root_.GlobalTheory.UnRep.exists_inverse_one_add_preserving_hat : ∀ (F
     simp [Algebra.smul_def] <;> rfl
   let ΛA : Submodule A (Fin n → _root_.GlobalTheory.AdLat.RA F E) :=
     { Λ with smul_mem' := fun c z hz ↦ hsmulA c hz }
-  have hmemA : ∀ z, z ∈ ΛA ↔ z ∈ Λ := fun z ↦ Iff.rfl
 
   obtain ⟨T, hT⟩ := hLfg.restrictScalars (R := ℤ)
   set g : (Fin n → E) → (Fin n → _root_.GlobalTheory.AdLat.RA F E) :=

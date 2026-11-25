@@ -114,7 +114,6 @@ theorem rStab_bigCell (hc : ∀ a, c a ≠ 0) (hg : bigCell k r c μ ∈ UH (Hpk
   rw [Fin.lt_def] at hji
   by_cases hj : j.val ≤ r + k
   · exact ha.2.2 i j (by omega) hj (by omega)
-  have hjl := j.isLt
   have hm : 2 * r + k - j.val < r := by omega
   let m : Fin (2 * r + k + 1) := ⟨2 * r + k - j.val, by omega⟩
   have h1 := mul_bigCell_low c μ a i m hm

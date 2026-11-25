@@ -130,7 +130,6 @@ theorem key_mono {a : ℕ} {σ : Equiv.Perm (Fin n)} {S : Fin n → Prop} (hS : 
     (hσ : ∀ i j : Fin n, i < j → ((j : ℕ) < a ∨ a ≤ (i : ℕ)) → σ i < σ j) : Monotone (key S ∘ σ) := by
   refine StrictMono.monotone fun i j hij => ?_
   have h1 := hσ i j hij
-  have h2 : (i : ℕ) < j := hij
   have := (σ i).2
   simp only [Function.comp, key, hS, Equiv.symm_apply_apply, Fin.lt_def] at h1 ⊢
   split_ifs <;> omega
@@ -160,7 +159,6 @@ theorem exists_shuffle {a : ℕ} (ha : a ≤ n) (s : Equiv.Perm (Fin n)) : ∃ �
   refine ⟨σ, fun i j hij hb => ?_, hiff⟩
   have h1 : (key S ∘ σ) i < (key S ∘ σ) j :=
     (hm.strictMono_of_injective ((key_injective S).comp σ.injective)) hij
-  have h2 : (i : ℕ) < j := hij
   simp only [Function.comp, key, hiff] at h1
   rw [Fin.lt_def]
   split_ifs at h1 <;> omega
@@ -637,7 +635,6 @@ theorem shuffle_noDescent_iff_open :
     have hup : ∀ i j : Fin n, (i : ℕ) < a → a ≤ (j : ℕ) → σ j < σ i := by
       intro i j hi hj
       by_contra hc
-      have hc' : (σ i : ℕ) ≤ σ j := not_lt.mp hc
       have := shuffle_first_block_upper a n σ h i hi (σ j - σ i) j (by omega)
       omega
     let ρ : Fin n → Fin n := fun k =>
@@ -645,7 +642,6 @@ theorem shuffle_noDescent_iff_open :
     have hρ : ∀ k, (ρ k : ℕ) = if (k : ℕ) < b then a + k else k - b := fun _ => rfl
     have hs : StrictMono (fun k => σ (ρ k)) := by
       intro k l hkl
-      have hkl' : (k : ℕ) < l := hkl
       have hk := hρ k
       have hl := hρ l
       have hl2 := l.isLt
@@ -757,7 +753,6 @@ theorem isUniUp_iff_of_col {M M' : Mt g n} {p q : Fin n} (hpq : p < q) (t : ZMod
 theorem supFrom_of_col {M M' : Mt g n} {p q : Fin n} (hpq : (q : ℕ) = p + 1) (t : ZMod g)
     (h : ∀ r c, M' r c = M r c + if c = q then t * M r p else 0) (hM : IsUniUp M) :
     supFrom 0 M' = supFrom 0 M + t := by
-  have hq := q.2
   have : ∀ k ∈ Finset.Ico 0 (n - 1),
       entN M' k (k + 1) = entN M k (k + 1) + if k = (p : ℕ) then t else 0 := by
     intro k hk
@@ -935,8 +930,6 @@ theorem wh_hcT : ∀ (g : ℕ) [Fact g.Prime] (ψ : AddChar (ZMod g) ℂ), ψ �
     have m3 := ParBasic.blocks_mul _ _ hkx hi'
     have hkxk := (hP (k * x * k⁻¹)).1 (P.mul_mem (P.mul_mem hk hx) (P.inv_mem hk))
     obtain ⟨uc, vc⟩ := ParBasic.isUnit_blocks _ hkxk
-    have e1 : ((k * x * k⁻¹ : Gn g (a + b)) : Mt g (a + b)) = (k : Mt g (a + b)) * (x : Mt g (a + b)) * ((k⁻¹ : Gn g (a + b)) : Mt g (a + b)) := by
-      simp only [Units.val_mul]
     have e0 : (k : Mt g (a + b)) * ((k⁻¹ : Gn g (a + b)) : Mt g (a + b)) = 1 := by
       rw [← Units.val_mul, mul_inv_cancel, Units.val_one]
     have iA : (((toG (tl a (k : Mt g (a + b))))⁻¹ : Gn g a) : Mt g a) = tl a ((k⁻¹ : Gn g (a + b)) : Mt g (a + b)) := by

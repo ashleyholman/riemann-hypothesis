@@ -16,7 +16,6 @@ theorem eta_rows_of_pow_bounds {M k m r N L S η d W : ℝ} (hM : 8 ≤ M) (hk :
     (he0 : 0 ≤ η) (he : η ≤ M ^ 3) (hd0 : 0 ≤ d) (hd : 1 ≤ d * M) (hW : M ^ 10 ≤ W) :
     m * (S + η) ≤ W * L ∧ N * η ≤ d * m * W ∧ η ^ 2 * r * L ≤ d * m * W ^ 2 ∧ k * S ≤ W := by
   have hM1 : 1 ≤ M := by linarith
-  have hM0 : 0 ≤ M := by linarith
   have hW1 : 1 ≤ W := le_trans (one_le_pow₀ hM1) hW
   have h9 : M ^ 9 ≤ d * m * W := by
     calc M ^ 9 = 1 * M ^ 9 := by ring
@@ -27,7 +26,6 @@ theorem eta_rows_of_pow_bounds {M k m r N L S η d W : ℝ} (hM : 8 ≤ M) (hk :
     calc 2 * M ^ 4 ≤ M * M ^ 4 := by gcongr; linarith
       _ = M ^ 5 := by ring
       _ ≤ M ^ 10 := pow_le_pow_right₀ hM1 (by norm_num)
-  have h4 : 0 ≤ M ^ 4 := by positivity
   refine ⟨?_, ?_, ?_, ?_⟩
   · calc m * (S + η) ≤ M * (M ^ 3 + M ^ 3) := by gcongr
       _ = 2 * M ^ 4 := by ring

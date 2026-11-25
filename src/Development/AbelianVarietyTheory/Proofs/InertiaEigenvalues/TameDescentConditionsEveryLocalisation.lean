@@ -94,7 +94,6 @@ theorem firstLocalChar_wild_eq_one_away_from_l (D : D7) (i : D.nd.Loc) (v : Heig
     · exact hmem
     · intro h
       apply hvl
-      have hp : (D.nd.l i).Prime := Fact.out
       exact v.isPrime.mem_of_pow_mem n (by simpa using h)
 
   have hc : D.ntw.chi1 (D.ntw.twOf i) (D.nd.j i) (D.ntw.twSide i) σ = 1 := by

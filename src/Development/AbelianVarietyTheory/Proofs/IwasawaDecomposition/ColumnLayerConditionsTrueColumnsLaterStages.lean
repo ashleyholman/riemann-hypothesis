@@ -98,7 +98,6 @@ theorem trace_rat {R : Ranks} (H : Host R) (x : H.E) (hx : x ∈ H.K) :
 theorem no_ramified_norm {T d : ℕ} (hT : T.Prime) (hd : d.Prime) (h2 : T ≠ 2) (hTd : T ≠ d)
     (a : ℤ) (s : ℚ) (h : ((T : ℚ) * a) ^ 2 - 4 * T = -d * s ^ 2) : False := by
   have hTZ : Prime (T : ℤ) := Nat.prime_iff_prime_int.1 hT
-  have hq : (s.den : ℚ) ≠ 0 := by exact_mod_cast s.den_ne_zero
   have hs : s * s.den = s.num := Rat.mul_den_eq_num s
   have hZ : (T : ℤ) * ((T * a ^ 2 - 4) * (s.den : ℤ) ^ 2) = -d * s.num ^ 2 := by
     have : (T : ℚ) * ((T * a ^ 2 - 4) * (s.den : ℚ) ^ 2) = -d * (s.num : ℚ) ^ 2 := by

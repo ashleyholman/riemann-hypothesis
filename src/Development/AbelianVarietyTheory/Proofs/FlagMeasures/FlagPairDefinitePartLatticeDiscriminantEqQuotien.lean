@@ -137,7 +137,6 @@ theorem perp_prim (H : HermSpace K V) [_root_.NumberField.IsTotallyComplex K] {M
     exact Submodule.neg_mem _ (UnimodQuot.star_mem_one ((hp t).1 ht))
   rw [k1] at hd
   obtain ⟨m, hm, w, hw, e⟩ := Submodule.mem_sup.1 hd.2
-  have hw' : w ∈ W := hw
   have hwD : w ∈ dual H (M ⊓ rs (𝓞 K) W) := by
     rw [k3]
     exact ⟨hw, Submodule.mem_sup.2 ⟨-m, M.neg_mem hm, _, hzU, by rw [← e]; abel⟩⟩

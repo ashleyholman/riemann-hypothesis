@@ -254,8 +254,6 @@ theorem volume_unitary : ∀ (N : ℕ) (c : ℝ), IsGauge (allPos N) c →
       ENNReal.toReal_ofReal (Real.exp_pos _).le, ENNReal.toReal_ofReal (inv_pos.2 hp).le,
       ENNReal.toReal_ofReal (by positivity)] at k2
     rw [volU_succ]
-    have he := Real.exp_pos (-1)
-    have hf : (0 : ℝ) < n.factorial := by positivity
     field_simp at k2 ⊢
     linarith
 

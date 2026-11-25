@@ -396,7 +396,6 @@ private theorem norm_integral_logDeriv_LFunction_mul_cpow_div_neg_half_le :
     have him : s.im = t := by simp [s]
     rw [norm_neg_mul_ofReal_cpow_div_eq _ _ (by linarith : (0 : ℝ) < u), hre]
     have hp : u ^ (-(1 / 2) : ℝ) ≤ 1 := Real.rpow_le_one_of_one_le_of_nonpos hu (by norm_num)
-    have hp0 : 0 ≤ u ^ (-(1 / 2) : ℝ) := Real.rpow_nonneg (by linarith) _
     have hA : ‖deriv (LFunction χ) s / LFunction χ s‖ ≤ C₀ * Real.log (N * (T' + 2)) := by
       refine (H N χ hχ t).trans (mul_le_mul_of_nonneg_left (Real.log_le_log (by positivity)
         (mul_le_mul_of_nonneg_left (by linarith) (by linarith))) hC₀.le)
@@ -476,7 +475,6 @@ theorem _root_.GlobalTheory.PerronShift.perron_shift : ∃ C : ℝ, 0 < C ∧ �
   obtain ⟨c, hc⟩ : ∃ c : ℝ, c = 1 + 1 / Real.log u := ⟨_, rfl⟩
   rw [← hc] at hcu ⊢
   have hc1 : 1 < c := by linarith
-  have hc3 : c ≤ 5 / 2 := by linarith
   have hid := _root_.GlobalTheory.ExplicitRect.residue_identity N χ hχ u c T' m h hu1 hc1
     (by linarith) hh hev (fun s h1 h2 h3 => (hZ s h1 (by linarith) h3).1)
     (fun s hs => LFunction_ne_zero_of_re_eq_neg_half χ hs)
@@ -527,7 +525,6 @@ theorem _root_.GlobalTheory.PerronShift.perron_shift : ∃ C : ℝ, 0 < C ∧ �
       have := le_mul_of_one_le_left (by linarith : (0 : ℝ) ≤ T) hN
       linarith)
   have hW0 : 0 ≤ Real.log (2 * T' + 1) := Real.log_nonneg (by linarith)
-  have hW10 : 0 ≤ Real.log (N * (T' + 2)) := Real.log_nonneg (one_le_mul_of_one_le_of_one_le hN (by linarith))
   have hX : Real.log (N * u * T) ^ 2 ≤ u * Real.log (N * u * T) ^ 2 / T := by
     rw [le_div_iff₀ (by linarith)]
     have := mul_le_mul_of_nonneg_left hTu (sq_nonneg (Real.log (N * u * T)))

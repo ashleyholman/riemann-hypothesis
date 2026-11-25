@@ -1106,7 +1106,6 @@ open Formalism.L2.Th1.F Formalism.L2.Th1.F.Taylor Formalism.L2.Th1.C Formalism.L
 def shiftFn (L : PeriodPair) (c z : ℂ) : ℂ := 1 + z * z * (L.weierstrassPExcept 0 z + -c)
 
 theorem analyticAt_shiftFn (L : PeriodPair) (c : ℂ) : AnalyticAt ℂ (shiftFn L c) 0 := by
-  have h := L.analyticAt_weierstrassPExcept 0
   unfold shiftFn
   fun_prop
 

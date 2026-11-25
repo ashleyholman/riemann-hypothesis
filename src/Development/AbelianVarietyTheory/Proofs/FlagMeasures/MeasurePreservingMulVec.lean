@@ -192,7 +192,6 @@ theorem norm_det_inv_eq_one {k : ℕ} {m : Matrix (Fin (k + 1)) (Fin (k + 1)) �
 
 theorem inv_factorial_le (s : ℕ) (hs : 1 ≤ s) : 1 / (s.factorial : ℝ) ≤ (Real.exp 1 / s) ^ s := by
   have h := Real.pow_div_factorial_le_exp (s : ℝ) (Nat.cast_nonneg s) s
-  have hs' : (0 : ℝ) < s := by exact_mod_cast hs
   rw [div_pow, ← Real.exp_nat_mul, mul_one, le_div_iff₀ (by positivity)]
   calc _ = (s : ℝ) ^ s / s.factorial := by ring
     _ ≤ _ := h
@@ -221,7 +220,6 @@ theorem vol_gram : ∀ (k j : ℕ), 1 ≤ j → j + 2 ≤ k → ∀ m ∈ UH (Hb
       Finset.single_le_sum (f := fun b => eucl (m⁻¹ *ᵥ B b)) (fun _ _ => Real.sqrt_nonneg _) (Finset.mem_univ b)
     linarith
   · refine le_trans (key M (2 * y) (by positivity) (by positivity)) (ENNReal.ofReal_le_ofReal ?_)
-    have hpi := Real.pi_pos
     have h1 : (1 / (s.factorial : ℝ)) ^ j ≤ ((Real.exp 1 / s) ^ s) ^ j :=
       pow_le_pow_left₀ (by positivity) (inv_factorial_le s hs1) j
     have hX : 0 ≤ (Real.pi * M ^ 2) ^ (2 * j) * M ^ (2 * j ^ 2) * Real.pi ^ (j ^ 2) *

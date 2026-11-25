@@ -143,7 +143,6 @@ theorem mem_range_of_notMem {S U H HU X : Scheme.{0}} [IsIntegral S] [IsLocallyN
   let eK : Spec (CommRingCat.of K) ⟶ pullback pV (etaK V K) :=
     pullback.lift (etaK V K ≫ eV) (𝟙 _) (by simp [heV])
   have heK : eK ≫ k = etaK V K ≫ eV := pullback.lift_fst _ _ _
-  have heK' : eK ≫ pK = 𝟙 _ := pullback.lift_snd _ _ _
   let q : pullback pV (etaK V K) ⟶ HU := hP.lift (k ≫ g) (pK ≫ w)
     (by rw [hP'.w, Category.assoc, hw])
   have hq : q ≫ jH = k ≫ g := hP.lift_fst _ _ _

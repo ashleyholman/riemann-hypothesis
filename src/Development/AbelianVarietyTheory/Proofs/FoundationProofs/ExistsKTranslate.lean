@@ -214,9 +214,6 @@ theorem hcParam_isParam_blattner : ∀ (p q n : ℕ) (hn : p + q < n) (ap : Fin 
     linarith
   have h3 : ∀ (i : Fin p) (j : Fin q), hcParam n ap am (Sum.inr j) < hcParam n ap am (Sum.inl i) := by
     intro i j
-    have a : (0 : ℚ) ≤ ap i := Nat.cast_nonneg _
-    have b : (0 : ℚ) ≤ am j.rev := Nat.cast_nonneg _
-    have c : (0 : ℚ) ≤ j.1 := Nat.cast_nonneg _
     have d : (i.1 : ℚ) + 1 ≤ p := by exact_mod_cast i.2
     simp only [hcParam]
     linarith

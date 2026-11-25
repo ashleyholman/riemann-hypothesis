@@ -268,7 +268,6 @@ theorem coeff_lt_one : ∀ (p : ℕ) [Fact p.Prime] (Ω : Type) [Field Ω] [Alge
   have hρ : ∀ x : A, ρ x = 0 ↔ v (x : Ω) < 1 := fun x => by
     rw [IsLocalRing.residue_eq_zero_iff, Valuation.mem_maximalIdeal_iff]
   let g : Lau p →+* A := (ψ.comp (algebraMap (Lau p) (O0 p))).codRestrict A (fun x => hint _)
-  have hg : ∀ x, (g x : Ω) = ψ (algebraMap (Lau p) (O0 p) x) := fun _ => rfl
   have hp0 : (p : k) = 0 := by
     rw [← map_natCast ρ, hρ]; simpa using hvp
   haveI : CharP k p := (CharP.charP_iff_prime_eq_zero hp.out).2 hp0

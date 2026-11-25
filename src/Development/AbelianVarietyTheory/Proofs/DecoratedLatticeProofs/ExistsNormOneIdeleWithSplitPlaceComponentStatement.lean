@@ -69,7 +69,6 @@ theorem exists_normOneAt_pr (D : D7) (k : Type) [Field k] [ValuativeRel k] [Topo
   have hcf : ∀ x : k, (p.e + cA D p.e) * cA D (p.sec x) = cA D (p.sec x) :=
     fun x => (idem_iff p _).1 (csec_mem_idAt (p := p) x)
   have hee : p.e * cA D p.e = 0 := p.split.2.1
-  have hce : cA D p.e * p.e = 0 := cAe_mul_e p
   have hecs : ∀ x : k, p.e * cA D (p.sec x) = 0 := by
     intro x
     rw [← e_mul_sec p x, map_mul, ← mul_assoc, hee, zero_mul]

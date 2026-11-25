@@ -23,15 +23,11 @@ theorem logrd_le {D : D7} (L : SizeData₂ D) (SzN : SizeN L) (SzQ : SizeQD L) (
     rw [← xpow_nat L 50]; congr 1; unfold szTh; push_cast; ring
   rw [e21] at q2 d2
   rw [e50]
-  have hth := th_pos L
   have k1 : 5 * (XX L / szTh L) ≤ XX L ^ 2 := by
     have : 5 * (XX L / szTh L) = 5 / szTh L * XX L := by ring
     rw [this, sq]; exact mul_le_mul_of_nonneg_right h3 (by linarith)
-  have k0 : 0 ≤ XX L / szTh L := by positivity
   have k2 : XX L ^ 2 ≤ XX L ^ 21 := pow_le_pow_right₀ (by linarith) (by norm_num)
-  have k3 : 1 ≤ XX L ^ 21 := one_le_pow₀ (by linarith)
   have k4 : 4 ≤ XX L ^ 29 := le_trans (by norm_num) (pow_le_pow_left₀ (by norm_num) h2 29)
-  have k5 : XX L ^ 50 = XX L ^ 21 * XX L ^ 29 := by ring
   nlinarith
 
 theorem globalRows_of_sizeData {D : D7} (L : SizeData₂ D) (P : ParameterChoice' D L) (Sz : SizesAt L) (h2 : 2 ≤ XX L)

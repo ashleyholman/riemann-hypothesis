@@ -301,7 +301,6 @@ open GlobalTheory.CechPic GlobalTheory.HermTensorKernel GlobalTheory.Serre
 
 theorem kTriv_of_perfect : ∀ (S : Scheme.{0}) (O : Type) [CommRing O] (G A : Over S) [GrpObj G] [IsCommMonObj G] [GrpObj A] [IsCommMonObj A] (a : OAct O G) (b : OAct O A) (M : Type) [AddCommGroup M] [Module O M] (t : Serre.IsTensor A b G a M) (L : LB G.left) (N : LB A.left) (h : M →ₗ[O] M →+ O) (n : ℕ) (x y : Fin n → M), (∀ m, m = ∑ i, h m (y i) • x i) → L.IsLB → N.IsLB → (∃ t : LB.Gen (Theta G L), t.IsGen) → (∃ t : LB.Gen (Theta A N), t.IsGen) → (∀ m m', LamEq N (t.tmul m) (t.tmul m') L (a.act (h m m')) (𝟙 G)) → Out.KTriv G L → Out.KTriv A N := by
   intro S O _ G A _ _ _ _ a b M _ _ t L N h n x₀ y₀ hdual hL hN hΘL hΘ hiso hK R _ s x hx
-  have am := a.hom
   let l : M → (M →ₗ[O] O) := fun n =>
     { toFun := fun m => h m n
       map_add' := fun m m' => by rw [map_add (f := _), AddMonoidHom.add_apply]
@@ -576,7 +575,6 @@ theorem relAmple_of_kForm_pos : Out.Laws → ∀ (E : Type) [Field E] [NumberFie
     (t.isLinearHom_mapLeft _ _).comp (isLinearHom_pr q C.act i)
   have pm : ∀ i, IsMonHom (p i) := fun i => (pl i).1
   have hp : ∀ m i, t.tmul m ≫ p i = C.act.act (l m i) := fun m i => by simp [p, ψ]
-  have am := C.act.hom
   have adj : ∀ {T : Over (Sp R)} (x y : T ⟶ C.P.A) (c : OK H),
       lam (cls C.P.L hL) (x ≫ C.act.act c) y = lam (cls C.P.L hL) x (y ≫ C.act.act (br c)) := by
     intro T x y c

@@ -27,7 +27,6 @@ private theorem hostBounds_rd (R : Ranks) (H : Host R) :
     have := Real.mul_self_sqrt (show (0 : ℝ) ≤ (H.q : ℝ) * H.d by positivity)
     nlinarith
   obtain ⟨hrd1, hrd2, -⟩ := factRd R H
-  have he0 : (0 : ℝ) ≤ R.e := Nat.cast_nonneg _
   have hB : (2 : ℝ) ^ (-(R.e : ℝ)) ≤ 1 :=
     Real.rpow_le_one_of_one_le_of_nonpos (by norm_num) (by linarith)
   have hlo : (1 : ℝ) ≤ (2 : ℝ) ^ ((R.e : ℝ) + 1 - (2 : ℝ) ^ (-(R.e : ℝ))) :=

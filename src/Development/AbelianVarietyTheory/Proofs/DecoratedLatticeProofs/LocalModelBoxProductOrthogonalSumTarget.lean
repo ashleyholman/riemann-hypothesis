@@ -126,7 +126,6 @@ theorem isLocallyConstant_of_near {G : Type} [TopologicalSpace G] [AddCommGroup 
   rw [IsLocallyConstant.iff_eventually_eq]
   intro x
   have hcont : Continuous fun y : G => y - x + t₀ := (continuous_id.sub continuous_const).add continuous_const
-  have hx : (fun y : G => y - x + t₀) x = t₀ := by simp
   have hU' : (fun y : G => y - x + t₀) ⁻¹' U ∈ nhds x := hcont.continuousAt.preimage_mem_nhds (by simp only [sub_self, zero_add]; exact hU)
   filter_upwards [hU'] with y hy
   have e1 : χ (y + t₀) = χ (x + (y - x + t₀)) := by rw [show x + (y - x + t₀) = y + t₀ by abel]

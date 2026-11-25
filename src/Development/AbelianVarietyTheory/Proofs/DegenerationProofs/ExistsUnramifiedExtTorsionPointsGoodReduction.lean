@@ -61,7 +61,6 @@ theorem exists_local_of_etale {T W Ω F : Type} [CommRing T] [IsDomain T] [IsDis
   have hunr : Algebra.FormallyUnramified T B := Algebra.FormallyUnramified.comp T W B
   obtain ⟨_, _⟩ := exists_isDiscreteValuationRing_of_unramified T B
   have halg := isAlgebraic_of_flat_of_formallyUnramified T B
-  have hff := Module.FaithfullyFlat.of_flat_of_isLocalHom (A := T) (B := B)
   let := j.toAlgebra
   have : Module.IsTorsionFree T F := Module.isTorsionFree_iff_algebraMap_injective.2 hj
   let j' : B →ₐ[T] F := (by

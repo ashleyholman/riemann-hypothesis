@@ -124,7 +124,6 @@ theorem real_ineq (d R : ℕ) :
     (((1 + (R : ℝ)) ^ (2 * d + 2))⁻¹) * ((((2 * (R + 1) + 1) ^ 2) ^ d : ℕ) : ℝ) ≤ 9 ^ d * ((((R : ℝ) + 1) ^ 2)⁻¹) := by
   set s : ℝ := (R : ℝ) + 1 with hs
   have hs1 : 1 ≤ s := by rw [hs]; have : (0 : ℝ) ≤ R := Nat.cast_nonneg R; linarith
-  have hs0 : 0 < s := by linarith
   have e1 : (1 + (R : ℝ)) = s := by rw [hs]; ring
   rw [e1]
   push_cast

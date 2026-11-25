@@ -574,7 +574,6 @@ theorem exists_witt_matrix
       obtain ⟨z, hz⟩ := h1 g hg i j
       change (c.comp (zlW p R)) ((M g - 1) i j) = 0
       rw [hz, map_mul, pow_one, map_natCast, CharP.cast_eq_zero, zero_mul])
-  have hct : ∀ y : R, c (WittVector.teichmuller p y) = y := fun y => rfl
   obtain ⟨W, hW, hWg⟩ := _root_.GlobalTheory.InvariantLift.exists_invariant_lift G (WittVector p R) p WittVector.isAdicCompleteIdealSpanP
     (fun g => WittVector.map (ρ g).toRingHom) (wittMap_mul ρ) (fun g => map_natCast _ _) r
     ((zlW p R).mapMatrix.toMonoidHom.comp M) (fun g h i j => map_zlW p _ _)

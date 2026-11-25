@@ -195,7 +195,6 @@ theorem core (l q N : ℕ) (hl : ∀ x : R, (l : R) * x = 0 → x = 0) (hc : IsA
     ∃ (k : ℕ) (Q Q' : Matrix (Fin d) (Fin d) R), Q * Q' = (l : R) ^ (2 * k) • 1 ∧
       (∃ Y, Q - (l : R) ^ k • 1 = u • Y) ∧ (∃ Y, Q' - (l : R) ^ k • 1 = u • Y) ∧ Q * β = α * Q.map φ := by
   set D : R := (l : R) ^ (2 * N) with hDdef
-  have hα' : α' * α = D • 1 := comm_of_mul hl _ hα
   have hβ' : β' * β = D • 1 := comm_of_mul hl _ hβ
   have hφl : ∀ m : ℕ, φ ((l : R) ^ m) = (l : R) ^ m := fun m => by simp
   have hφD : φ D = D := hφl _
@@ -260,7 +259,6 @@ theorem core (l q N : ℕ) (hl : ∀ x : R, (l : R) * x = 0 → x = 0) (hc : IsA
     rw [e, h j, sub_self, add_zero, hZ1, hZ2, map_smul', hφl, pow_succ]
     simp only [Matrix.smul_mul, Matrix.mul_smul, smul_sub, smul_smul]
   have hQ := hlim α β Sf S (hSf α β' β Sf hβ' hS) hSl
-  have hQ' := hlim β α Sf' S' (hSf β α' α Sf' hα' hS') hSl'
   have hSS : ∀ j, Sf j * Sf' j = (D ^ (2 * n₀)) • 1 := by
     intro j
     apply smul_canc hl (2 * N * (2 * j))

@@ -452,7 +452,6 @@ theorem dual_cinvOK_small : ∀ (F E : Type) [NontriviallyNormedField F] [Nontri
     have := ht (x₀ / t) hn
     rwa [div_mul_cancel₀ x₀ ht0] at this
   set Rr := ‖x₀‖ / ε with hRr
-  have hRr0 : 0 ≤ Rr := div_nonneg (norm_nonneg _) hε.le
 
   let g : (Fin (Module.finrank F A.K) → F) → A.K := fun t => ∑ i, t i • d i
   have hg : Continuous g := continuous_finsetSum _ fun i _ => (continuous_apply i).smul continuous_const

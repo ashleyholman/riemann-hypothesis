@@ -106,7 +106,6 @@ theorem exists_extension (hJ : Jᴴ = J) (hu : IsUnit J.det) {A : Type} [Ring A]
     intro M _ _ m
     rw [smul_smul, Complex.I_mul_I, neg_one_smul]
   have hbr : ∀ X Y : lieU J, ρ ⁅X, Y⁆ = ρ X * ρ Y - ρ Y * ρ X := fun X Y => hlie X Y _ rfl
-  have hbc : ∀ X Y : lieU J, (⁅X, Y⁆ : lieU J).1 = X.1 * Y.1 - Y.1 * X.1 := fun X Y => rfl
   refine ⟨{ toFun := r, map_add' := ?_, map_smul' := ?_ }, fun Z => rfl, ?_, ?_⟩
   · intro Z W
     obtain ⟨X, Y, rfl⟩ := exists_mk hJ hu Z

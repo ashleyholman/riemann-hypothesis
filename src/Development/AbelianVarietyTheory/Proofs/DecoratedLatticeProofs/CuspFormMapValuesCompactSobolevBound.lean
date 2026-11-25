@@ -221,7 +221,6 @@ theorem unif_model [CompleteSpace H] {σ : Mx n → (H →L[ℂ] H)} (hσ : IsUR
     obtain ⟨Y, -, rfl⟩ := List.mem_map.1 hX
     exact Y.2
   · let v : Fam ε σ := ⟨fun l => Dw σ (l.map Subtype.val) w, smooth_fam hσ hw⟩
-    have hv : ∀ l, v.1 l = Dw σ (l.map Subtype.val) w := fun _ => rfl
     have h1 : ‖ℓ i w‖ ≤ (⨆ i, p i : Seminorm ℂ (Fam ε σ)) v := by
       rw [Seminorm.coe_iSup_eq hpb, iSup_apply]
       exact le_ciSup (hpv v) i

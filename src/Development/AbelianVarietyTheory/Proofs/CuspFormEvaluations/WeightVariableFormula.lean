@@ -52,7 +52,6 @@ theorem exists_order [Finite σ] (w : σ → ℕ) :
   letI : AddCommMonoid (WSyn w) := inferInstanceAs (AddCommMonoid (σ →₀ ℕ))
   letI lo : LinearOrder (WSyn w) := LinearOrder.lift' key hinj
   have hle : ∀ a b : WSyn w, a ≤ b ↔ key a ≤ key b := fun _ _ => Iff.rfl
-  have hlt : ∀ a b : WSyn w, a < b ↔ key a < key b := fun _ _ => Iff.rfl
   refine ⟨{ syn := WSyn w
             isOrderedAddMonoid_syn := ⟨fun a b h c => ?_, fun a b h c => ?_⟩
             toSyn := AddEquiv.refl _

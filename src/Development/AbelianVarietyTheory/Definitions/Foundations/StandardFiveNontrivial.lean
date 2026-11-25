@@ -129,7 +129,6 @@ theorem mem_mul (L : Lev g N) {u w : GG g N} (hu : L.Mem u) (hw : L.Mem w) : L.M
   · rw [hu.2 a c h, zero_mul]
   · rcases lt_trichotomy c b with h' | h' | h'
     · have hca : (a : ℕ) ≤ c := h
-      have hcb : (c : ℕ) < b := h'
       rw [hw' hs c b (by omega) (by omega) h3, mul_zero]
     · subst h'
       rw [hu' hs a c h1 h2 h3, zero_mul]
@@ -150,7 +149,6 @@ theorem entry_mul (L : Lev g N) {u w : GG g N} (hu : L.Mem u) (hw : L.Mem w) {a 
     · rw [u2 a c h1, zero_mul]
     · rcases lt_or_gt_of_ne hcb with h2 | h2
       · have h1' : (a : ℕ) < c := h1
-        have h2' : (c : ℕ) < b := h2
         unfold Lev.Edge at h
         split_ifs at h with hs
         · rw [w3 hs c b (by omega) (by omega) (by omega), mul_zero]

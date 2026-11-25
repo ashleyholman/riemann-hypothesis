@@ -864,7 +864,6 @@ theorem suppliedData_existsW : HypsG → ∀ (P : M.Par) (Wp Wq : Type) [NormedA
   obtain ⟨R, hfam, hR⟩ := family_through_discreteSeries hH P.k P.r lam P.u b bv ga h q0 R0 ν₀ hN hR0
   subst hR
   obtain ⟨l, l', dg, hl, hl'⟩ := _root_.Gp91.GlobalTheory.exists_sideFam_both_sides hH P Wp Wq p lam b bv ga h q0 R hN hfam
-  have hK : PI.KFinSmooth := hH.1.2.2.1
   obtain ⟨s₀, hs₀⟩ := hf (l ν₀) (l' ν₀)
   obtain ⟨⟨-, -, -, -, hgap⟩, hnum⟩ := _root_.GlobalTheory.NumFam.num_fam P.k P.r lam P.u b bv ga h q0 hN
   have hg : Formalism.QuantumDeterminants.GapAtLeast (PI.BesselPeriodGGP.eps48 P.k P.r) (fun a => lam a + (ν₀ a : ℝ)) (h / 2) :=
@@ -905,7 +904,6 @@ theorem coef_norm_finite_and_zeroW : HypsG → ∀ (P : M.Par) (Wp Wq : Type) [N
   have hs0 : s = 0 := by
     by_contra hne
     rw [hj, ENNReal.ofReal_eq_zero] at hz
-    have hpos : 0 < ‖s‖ := norm_pos_iff.mpr hne
     have : 0 < c * ‖s‖ ^ 2 / dg ν₀ := by positivity
     linarith
   obtain ⟨γ, hγ, -, hV⟩ := _root_.GlobalTheory.exists_regular_rep_vec_bigPt_eq_bessel P Wp Wq p x hx hG
@@ -1390,7 +1388,6 @@ theorem momL_le (H : HypsG) (C : ℝ) (hC : 0 ≤ C) (P : M.Par) (Wp Wq : Type) 
   set S := powersetCard (j + 1) (univ : Finset (Fin (2 * P.r + P.k + 1))) with hSd
   set Hh : ℝ := Real.sqrt (Hsq P.r P.T b * Hsq P.r P.T' b) ^ (P.r + 1) with hHh
   set X : ℝ := b ^ (P.r + 1) with hX
-  have hX1 : 1 ≤ X := one_le_pow₀ (by linarith)
   have hH0 : 0 ≤ Hh := by positivity
   have hnj : ((2 * P.r + P.k + 1 : ℝ)) ^ (j + 1) ≤ X :=
     (pow_le_pow_left₀ (by positivity) hn' _).trans (pow_le_pow_right₀ (by linarith) (by omega))

@@ -1128,7 +1128,6 @@ theorem exists_cell_quot_orad_of_inRCone : ∀ (O : Type) [CommRing O] [IsDedeki
     have key := hfp ((-(f y y + 1) * f x y) • x + y)
     rw [expand, hx, hsym] at key
     have h1 : 0 < f x y * f x y := mul_self_pos.2 hne
-    have h2 : 1 ≤ f x y * f x y := by simpa using Int.add_one_le_iff.2 h1
     have h0 := hfp y
     nlinarith [mul_nonneg (by linarith : (0:ℤ) ≤ f y y + 1) (by linarith : (0:ℤ) ≤ f x y * f x y - 1)]
   obtain ⟨c, hc0, hcsum⟩ := hcone

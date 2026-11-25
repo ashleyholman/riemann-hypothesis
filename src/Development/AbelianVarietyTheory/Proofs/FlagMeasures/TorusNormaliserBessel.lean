@@ -62,7 +62,6 @@ theorem sig_sm (hR : IsURepOn (GG k r) R.σ) {c : MM k r} (hc : c ∈ GG k r) {v
   intro g₀ hg₀
   obtain ⟨U, F, hU, hgU, hF, hag⟩ := hv (g₀ * c) (mul_mem' (g := g₀) hg₀ hc)
   let L := LinearMap.toContinuousLinearMap (LinearMap.mulRight ℝ c)
-  have hL : ∀ x, L x = x * c := fun x => rfl
   refine ⟨L ⁻¹' U, fun x => F (L x), hU.preimage L.continuous, hgU,
     hF.comp L.contDiff.contDiffOn (fun x hx => hx), fun x hx hxH => ?_⟩
   have e := hag (x * c) hx (mul_mem' (g := x) hxH hc)

@@ -509,7 +509,6 @@ theorem term_le_bound : ∀ (F : Type) [NormedField F] (p : ℕ) [Fact p.Prime] 
         push_cast [Fin.val_last, Fin.val_zero]; ring
       rw [e1, aW_at, aW_at, neg_add, zpow_add₀ hpne, zpow_neg_one]
       have h1 := hratio 0 (Fin.last k)
-      have hz := zpow_pos hp0 (-m)
       calc ‖lam 0‖ * ((p : ℝ) ^ (-m) * (p : ℝ)⁻¹) = (‖lam 0‖ / p) * (p : ℝ) ^ (-m) := by ring
         _ ≤ ‖lam (Fin.last k)‖ * (p : ℝ) ^ (-m) := by
           gcongr
@@ -519,7 +518,6 @@ theorem term_le_bound : ∀ (F : Type) [NormedField F] (p : ℕ) [Fact p.Prime] 
         push_cast [Fin.coe_castSucc, Fin.val_succ]; ring
       rw [e1, aW_at, aW_at]
       have h1 : ‖lam i.succ‖ ≤ ‖lam (Fin.castSucc i)‖ := hanti (Fin.castSucc_lt_succ (i := i)).le
-      have hz := zpow_pos hp0 (-m)
       gcongr
   have hA : Antitone (aW p k lam) := antitone_int_of_succ_le hstep
   have hA0 : aW p k lam 0 < (p : ℝ) * aW p k lam (((k + 1 : ℕ) : ℤ) - 1) := by
@@ -588,7 +586,6 @@ theorem term_le_bound : ∀ (F : Type) [NormedField F] (p : ℕ) [Fact p.Prime] 
   rw [hT, hRt]
   obtain ⟨W1, W2, W3, W4⟩ := hJ
   have hj1 : ((j : ℕ) : ℤ) < (k : ℤ) + 1 := by exact_mod_cast j.isLt
-  have hj0 : (0 : ℤ) ≤ ((j : ℕ) : ℤ) := by positivity
   refine ⟨W1, fun hn => W2 (by nlinarith), fun hn => ?_⟩
   rcases lt_abs.1 hn with hn | hn
   · exact W3 (by push_cast; nlinarith)

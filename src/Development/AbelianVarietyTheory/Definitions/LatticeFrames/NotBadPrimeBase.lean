@@ -227,7 +227,6 @@ theorem GeoMeas.cIOf_ne_zero (h : GeoMeas R g) (t : T) (j : ℕ) (hj : j < D.R.m
     · have := g.volT.haar
       refine NeZero.ne g.volT.μ ?_
       rw [h.volT t, show D.R.m - 1 = j by omega, h0, mul_zero, ENNReal.ofReal_zero, zero_smul]
-  have hf : ∀ PP : R.Pg, Finite (kP PP.1) := fun PP => Ideal.finiteQuotientOfFreeOfNeBot _ PP.1.ne_bot
   have hc : Nat.card P.H ≠ 0 := Nat.card_pos.ne'
   exact mul_ne_zero (mul_ne_zero (Nat.cast_ne_zero.2 hc) (Complex.ofReal_ne_zero.2 (h.κ _).ne')) (Complex.ofReal_ne_zero.2 hv)
 

@@ -331,8 +331,6 @@ theorem _root_.GlobalTheory.LocalDifferentProduct.prod_normDifferentV : ∀ (F E
       have h' : ((discr E).natAbs : ℝ) = ((discr F).natAbs : ℝ) ^ 2 := by exact_mod_cast hnat
       rw [Nat.cast_natAbs, Nat.cast_natAbs, Int.cast_abs, Int.cast_abs] at h'
       exact h'
-    have hN : (0 : ℝ) < Fintype.card (InfinitePlace E) := by
-      exact_mod_cast Fintype.card_pos
     unfold _root_.GlobalTheory.IndefiniteRowSideFullHecke.LocalDualIndex.absDiscr _root_.Formalism.HermitianLatticesTheory.vInv _root_.Formalism.HermitianLatticesTheory.fDeg
     rw [hE, mul_div_cancel₀ _ (two_ne_zero' ℝ), ← Real.rpow_natCast _ (Fintype.card (InfinitePlace E)),
       ← Real.rpow_natCast |(discr F : ℝ)| 2, ← Real.rpow_mul (abs_nonneg _),

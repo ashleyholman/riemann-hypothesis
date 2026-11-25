@@ -123,7 +123,6 @@ theorem Eop_comm_aux (τ τ' : E →+* ℂ) (i j k l : Fin a) :
   have h3 := lieS_comm i j k l (atEmb τ .I) (atEmb τ' 1)
   have h4 := lieS_comm i j k l (atEmb τ .I) (atEmb τ' .I)
   simp only [Eop, smul_mul_assoc, mul_smul_comm, sub_mul, mul_sub, smul_sub, smul_smul]
-  have hI : Complex.I * Complex.I = -1 := Complex.I_mul_I
   split_ifs at h1 h2 h3 h4 ⊢ <;>
     linear_combination (norm := skip) (exp := 1) (1 / 4 : ℂ) • h1 - (Complex.I / 4 : ℂ) • h2 - (Complex.I / 4 : ℂ) • h3 - (1 / 4 : ℂ) • h4 <;>
     match_scalars <;> ring_nf <;> simp

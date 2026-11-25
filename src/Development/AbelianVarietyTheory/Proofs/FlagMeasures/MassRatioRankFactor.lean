@@ -37,7 +37,6 @@ theorem mass_ratio_mul_unitary_volume :
   set f := Formalism.HermitianLatticesTheory.fDeg E
   have h2 : 0 < 2 * v := by positivity
   have hfac : (m.factorial : ℝ) ≠ 0 := by exact_mod_cast m.factorial_ne_zero
-  have hpi := Real.pi_pos.ne'
   have key : ((m.factorial : ℝ) * (v / Real.pi) ^ (m + 1)) *
       (2 * Real.pi ^ (m + 1) / (m.factorial : ℝ) * 2 ^ m) = (2 * v) ^ (m + 1) := by
     rw [div_pow, mul_pow]

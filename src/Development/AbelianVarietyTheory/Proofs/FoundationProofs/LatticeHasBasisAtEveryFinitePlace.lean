@@ -46,7 +46,6 @@ lemma mem_localization_iff_mem_span (w : HeightOneSpectrum (𝓞 K)) {d : ℕ} (
   · intro h
     obtain ⟨s, hs, hsx⟩ := (mem_localization_iff w M x).mp h
     have hs0 := algebraMap_ne_zero w hs
-    have h1 : (1 : 𝓞 K) ∉ w.asIdeal := (Ideal.ne_top_iff_one _).mp w.isPrime.ne_top
     have hu : (algebraMap (𝓞 K) K s)⁻¹ ∈ locRing w := (mem_locRing w _).mpr ⟨1, s, hs, by simp⟩
     have hx : x = (⟨_, hu⟩ : locRing w) • (s • x) := by
       rw [Subalgebra.smul_def, ← algebraMap_smul K s x, smul_smul]

@@ -594,7 +594,6 @@ theorem exists_coordLat (K : Type) [Field K] [NumberField K] (hK : IsTotallyComp
     e₀.toContinuousLinearEquiv.toLinearMap) _ hmp (fun _ => Iff.rfl) (HasCov.pi hcov)
   let f : (ι → Fin m → ℂ) →ₗ[ℝ] (ι → Fin m → ℂ) :=
     LinearMap.pi fun v => ((Matrix.toLin' (A v)⁻¹).restrictScalars ℝ).comp (LinearMap.proj v)
-  have hf : ∀ z v, f z v = (A v)⁻¹ *ᵥ z v := fun _ _ => rfl
   have hdet : LinearMap.det f = (∏ v, ‖(A v).det‖ ^ 2)⁻¹ := by
     rw [LinearMap.det_pi, ← Finset.prod_inv_distrib]
     refine Finset.prod_congr rfl fun v _ => ?_
@@ -714,7 +713,6 @@ theorem unimod_fund : ∀ (K W : Type) [Field K] [NumberField K] [StarRing K] [A
   have hvpos : 0 < Formalism.HermitianLatticesTheory.vInv K := by
     have : (discr K : ℝ) ≠ 0 := by exact_mod_cast discr_ne_zero K
     rw [Formalism.HermitianLatticesTheory.vInv]; positivity
-  have hVpos : 0 < V := by positivity
   let σ' : ι → (K →+* ℂ) := fun v => ComplexEmbedding.conjugate (σ v)
   have hσ'a : ∀ v t, σ' v t = σ v (star t) := fun v t => by
     rw [ComplexEmbedding.conjugate_coe_eq, hσ.1]

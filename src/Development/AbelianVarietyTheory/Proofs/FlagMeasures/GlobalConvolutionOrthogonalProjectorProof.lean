@@ -711,7 +711,6 @@ theorem globalProj_holds : GlobalProj := by
   let πh : B.I.Ginf →* (B.I.L2 B.μf B.fund →L[ℂ] B.I.L2 B.μf B.fund) :=
     { toFun := fun g => B.R (g, 1), map_one' := h1
       map_mul' := fun a b => by rw [← hmul, Prod.mk_mul_mk, mul_one] }
-  have hDne : ((∏ v, d v : ℝ) : ℂ) ≠ 0 := Complex.ofReal_ne_zero.2 hF.1.ne'
   have hsq : ∀ x y : B.Hs, Integrable (fun g => ‖⟪y, σh g x⟫_ℂ‖ ^ 2) (muInf B.I) ∧
       ∫ g, ‖⟪y, σh g x⟫_ℂ‖ ^ 2 ∂(muInf B.I) = ‖x‖ ^ 2 * ‖y‖ ^ 2 / (∏ v, d v) := by
     intro x y

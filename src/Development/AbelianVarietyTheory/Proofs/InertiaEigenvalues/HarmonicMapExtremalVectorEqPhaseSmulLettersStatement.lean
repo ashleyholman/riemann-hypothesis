@@ -378,21 +378,6 @@ theorem io_eq_phase_smul_letters : ∀ (D : D7) (G : Type) [Group G] [Fintype G]
     rw [h, map_zero, norm_zero] at n1'
     exact zero_ne_one n1'
   have hwz : A₀ ((R.cV i).ρ g⁻¹ (χ • w₀)) = (PT ∘ₗ B₀) (c0' hw) := by rw [hw₁, LinearMap.comp_apply, hB₀, hpG]
-  have hAeq : ∀ γ : GQ (Vc D i), ∃ s : (WO (Vc D i) (Wc D i) → ℂ) →ₗ[ℂ] (WO (Vc D i) (Wc D i) → ℂ),
-      ∀ w, A₀ ((R.cV i).ρ γ w) = s (A₀ w) := fun γ => by
-    obtain ⟨γE, a, k, h1, h2, h3, h4, h5, h6⟩ := rat_parts hθ hPr.std γ
-    have h7 : (R.cV i).ρ γ = (R.cV i).ρ a := by rw [h4, map_mul, hcV.1 k h3, mul_one]
-    exact ⟨R.ωP i A.μ0 (a, 1), fun w => by rw [h7, hA₀ a h2]⟩
-  have hAi : Function.Injective A₀ := by
-    rw [← LinearMap.ker_eq_bot]
-    refine (r2 _ fun γ => ?_).resolve_right fun h => hne ?_
-    · rintro _ ⟨x, hx, rfl⟩
-      obtain ⟨s, hs⟩ := hAeq γ
-      have hx' : A₀ x = 0 := hx
-      show A₀ ((R.cV i).ρ γ x) = 0
-      rw [hs, hx', map_zero]
-    · rw [← LinearMap.comp_apply, ← hwz]
-      exact (h ▸ Submodule.mem_top : (R.cV i).ρ g⁻¹ (χ • w₀) ∈ LinearMap.ker A₀)
   obtain ⟨a, ha, ha'⟩ := proportional ((R.cV i).ρ.comp (GQ (Vc D i)).subtype) _ r1 (fun γ hγ => hγ) r2 A₀ (PT ∘ₗ B₀)
     (fun γ => by
       obtain ⟨γE, a, k, h1, h2, h3, h4, h5, h6⟩ := rat_parts hθ hPr.std γ
@@ -413,7 +398,6 @@ theorem io_eq_phase_smul_letters : ∀ (D : D7) (G : Type) [Group G] [Fintype G]
     ((R.cV i).ρ g⁻¹ (χ • w₀)) (c0' hw) hwz hne
   have h9 : ∀ x, GlobalTheory.AdTh.PhaseMap.sub (fun τ => ((Wc D i).sig (tauE D τ)).1) (R.BV i) (R.ioP i (PiTensorProduct.tprod ℂ u) x) =
       a • B₀ x := fun x => hinj (by rw [← hsub _ f1 _ hBV, map_smul]; exact ha x)
-  have hB₀i : Function.Injective B₀ := fun x y hxy => hAi (by rw [ha, ha, LinearMap.comp_apply, LinearMap.comp_apply, hxy])
   refine ⟨a, ?_, io, fun v => irng ▸ LinearMap.mem_range_self io v, fun f hf v => ?_⟩
   · rw [← n1', ← ha', norm_smul, hn₁, mul_one]
   · rw [hsub f hf _ hBV, h9, map_smul, ← hB₀ v]

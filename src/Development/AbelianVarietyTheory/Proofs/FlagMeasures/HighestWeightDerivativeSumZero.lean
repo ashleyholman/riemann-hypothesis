@@ -28,7 +28,6 @@ theorem rhoN_add_rhoC {n : ℕ} (ε : Fin n → Bool) (a : Fin n) :
       = a := by
     rw [← Finset.filter_filter, ← Finset.filter_filter, Finset.card_filter_add_card_filter_not,
       Finset.filter_gt_eq_Iio, Fin.card_Iio]
-  have ha := a.2
   have h3 : (univ.filter fun b => a < b ∧ ε b = ε a).card + (univ.filter fun b => a < b ∧ ε b ≠ ε a).card
       + a + 1 = n := by omega
   have h3' := congrArg (Nat.cast : ℕ → ℝ) h3

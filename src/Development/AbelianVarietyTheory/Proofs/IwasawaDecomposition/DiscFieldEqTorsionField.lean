@@ -127,8 +127,6 @@ theorem sqrt_mem (hΔ : W.Δ ≠ 0) (ha₁ : W.a₁ ∈ M) (ha₃ : W.a₃ ∈ M
     rwa [sub_add_cancel] at this
   obtain ⟨h0, k1, k2⟩ := key t ht
   obtain ⟨-, k3, k4⟩ := key (-t) (by rw [neg_sq, ht])
-  have hs0 : s ≠ 0 := left_ne_zero_of_mul h0
-  have ht0 : t ≠ 0 := right_ne_zero_of_mul h0
   have : s = (s * t * (s + t) - s * -t * (s + -t)) / ((e₁ + s * t) - (e₁ + s * -t)) := by
     rw [eq_div_iff (by
       rw [show (e₁ + s * t) - (e₁ + s * -t) = 2 * (s * t) by ring]

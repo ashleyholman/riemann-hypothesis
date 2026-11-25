@@ -219,7 +219,6 @@ theorem ultra3 {K : Type*} [NormedField K] [IsUltrametricDist K] (a b c e : K) (
 theorem mulVec_small {K : Type*} [NormedField K] [IsUltrametricDist K]
     (A : Matrix (Fin 2) (Fin 2) K) (w : Fin 2 → K) (ε : ℝ) (hA : ∀ i j, ‖A i j‖ ≤ 1)
     (hw : ∀ j, ‖w j‖ ≤ ε) (i : Fin 2) : ‖(A *ᵥ w) i‖ ≤ ε := by
-  have hε : 0 ≤ ε := (norm_nonneg _).trans (hw 0)
   have key : ∀ j, ‖A i j * w j‖ ≤ ε := fun j => by
     rw [norm_mul]
     calc ‖A i j‖ * ‖w j‖ ≤ 1 * ε := mul_le_mul (hA i j) (hw j) (norm_nonneg _) zero_le_one

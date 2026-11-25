@@ -738,8 +738,6 @@ theorem exists_rat_eq (h : Presents D L r) {f : X.functionField} (hf : f ∈ D.s
   refine ⟨⟨a, fun i j => ?_⟩, ?_⟩
   · apply fn_ext
     intro hU
-    have hi : genericPoint X ∈ L.U i := hU.1
-    have hj : genericPoint X ∈ L.U j := hU.2
     rw [map_mul, _root_.GlobalTheory.Cartier.fnOf_map_homOfLE, _root_.GlobalTheory.Cartier.fnOf_map_homOfLE, ha i, ha j, h.isRatSec i j hU]
     ring
   · show fnOf _ _ (a _) / r _ = f
@@ -825,7 +823,6 @@ theorem lbIso (h : Presents D L r) (h' : Presents D M r') : LBIso L M := by
   have n1 : fnOf _ h2 ((L.g p.2 q.2 : Γ(X, L.U p.2 ⊓ L.U q.2))) ≠ 0 :=
     ((L.g p.2 q.2).isUnit.map (fnOf _ h2)).ne_zero
   have n2 := (r q.2).ne_zero
-  have n3 := (r p.2).ne_zero
   have k1 := fnOf_res_units (U := M.U p.1 ⊓ L.U p.2) (V := M.U p.1 ⊓ L.U p.2 ⊓ (M.U q.1 ⊓ L.U q.2))
     inf_le_left hU (s p)
   have k2 := fnOf_res_mul_inv_mul (V := M.U p.1 ⊓ L.U p.2 ⊓ (M.U q.1 ⊓ L.U q.2))

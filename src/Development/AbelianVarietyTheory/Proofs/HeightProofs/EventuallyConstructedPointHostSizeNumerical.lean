@@ -49,8 +49,6 @@ theorem x_le_zBase_of_pow_le_n {D : D7} (L : SizeData₂ D) (hn : L.sc.x ^ (2 + 
     have h1 := D.R.two_le_m
     have h2 := D.R.m_add_three_le_k
     exact_mod_cast (by unfold Ranks.r; omega : 1 ≤ D.R.r)
-  have hxf : L.sc.x ≤ (D.R.f : ℝ) := h1.trans (hn.trans hf)
-  have hf0 : (0 : ℝ) ≤ D.R.f := by positivity
   unfold zBase
   calc L.sc.x ≤ (D.R.f : ℝ) * 1 * 1 := by linarith
     _ ≤ _ := by gcongr

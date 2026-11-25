@@ -131,7 +131,6 @@ lemma hasUnitLeadingExpansion_sub {n a d : ℕ} {b : ℤ} (hn : a * d = n) (hn0 
     HasUnitLeadingExpansion n fun τ ↦ modularJ τ - modularJ (w τ) := by
   have ha : a ≠ 0 := by rintro rfl; simp [← hn] at hn0
   have hd : d ≠ 0 := by rintro rfl; simp [← hn] at hn0
-  have ha' : (a : ℂ) ≠ 0 := by exact_mod_cast ha
   have hd' : (d : ℂ) ≠ 0 := by exact_mod_cast hd
   set ζ : ℂ := cexp (2 * π * Complex.I * b / d) with hζ
   have hζd : ζ ^ d = 1 := by
@@ -269,7 +268,6 @@ theorem isIntegral_modularJ_of_quadratic {τ : ℍ} {a b c : ℤ} (ha : a ≠ 0)
     have h4 : (4 * a * c - b ^ 2 : ℝ) = (2 * a * τ.im) ^ 2 := by
       rw [h3] at h1 ⊢
       linear_combination 4 * a * h1
-    have h5 : (a : ℝ) ≠ 0 := by exact_mod_cast ha
     have : (0 : ℝ) < 4 * a * c - b ^ 2 := by rw [h4]; positivity
     exact_mod_cast this
   set D := 4 * a * c - b ^ 2 with hD'

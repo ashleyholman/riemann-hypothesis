@@ -384,7 +384,6 @@ theorem size (lam : TaylorLogMetric.Qbar →+* ℂ_[p]) (κ ζ : ℂ) (F n j k u
   set P := (p : ℝ) ^ F
   have ha : 0 ≤ a := norm_nonneg _
   have hJ : 0 ≤ J := norm_nonneg _
-  have hkk : 0 ≤ kk := norm_nonneg _
   have e5 : a * J * kk ≤ 1 := by rw [← e1, mul_assoc]; exact mul_le_mul_of_nonneg_left e3 ha
   have e6 : a * J ≤ P := by nlinarith [mul_nonneg ha hJ]
   refine (pow_le_pow_iff_left₀ (by positivity) hp.le two_ne_zero).1 ?_

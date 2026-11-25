@@ -113,8 +113,6 @@ theorem normOp_eq_smap_add (σ : R ≃+* R) (hfl : FrobLift R p σ)
   haveI : Module.Free (PowerSeries R) (PowerSeries R) := Module.Free.of_basis b
   have hrank : Module.finrank (PowerSeries R) (PowerSeries R) = p := by
     rw [Module.finrank_eq_card_basis b, Fintype.card_fin]
-  have hred0 : red p (p : PowerSeries R) = 0 := by
-    rw [map_natCast]; exact CharP.cast_eq_zero _ p
 
   have hcong : ∀ x g : PowerSeries R,
       red p (Algebra.norm (PowerSeries R) (x + (p : PowerSeries R) * g)) = red p (Algebra.norm (PowerSeries R) x) := by

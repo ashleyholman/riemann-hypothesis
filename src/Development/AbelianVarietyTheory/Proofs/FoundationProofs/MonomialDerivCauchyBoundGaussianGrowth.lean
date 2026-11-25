@@ -24,7 +24,6 @@ theorem factor_le (A B : ℝ) (hA : 0 < A) (n : ℕ) (hn : (n : ℝ) ≤ 2 * B) 
   rcases Nat.eq_zero_or_pos n with h | h
   · subst h; simp
   have hn0 : (0 : ℝ) < n := by exact_mod_cast h
-  have hpi := Real.pi_pos
   rw [div_le_iff₀ (by positivity), ← mul_pow]
   have h1 : 2 * Real.exp 1 * Real.pi * B / A * (A * n / Real.pi) = (2 * B) * n * Real.exp 1 := by
     field_simp
@@ -39,7 +38,6 @@ theorem pderivIter_sq_le {ι : Type*} [DecidableEq ι] [Fintype ι] (F : (ι →
     (hb : ∀ z, ‖F z‖ ^ 2 ≤ S * Real.exp (Real.pi * (∑ k, ‖z k‖ ^ 2) / A))
     (α : ι →₀ ℕ) (hα : ∀ k, (α k : ℝ) ≤ 2 * B) :
     ‖pderivIter α F 0‖ ^ 2 ≤ S * (2 * Real.exp 1 * Real.pi * B / A) ^ (∑ k, α k) := by
-  have hpi := Real.pi_pos
   have hsq : ∀ k, Real.sqrt (A * α k / Real.pi) ^ 2 = A * α k / Real.pi := fun k =>
     Real.sq_sqrt (by positivity)
   have h := norm_pderivIter_le_of_differentiable (F := F) (a := 0)

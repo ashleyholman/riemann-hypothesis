@@ -380,7 +380,6 @@ theorem log_le_of_count (h f n N g₀ g₁ T : ℕ) (rd L : ℝ) (hf : 1 ≤ f) 
       ((g₀ : ℝ) * g₁ * T) ^ (f * (n * n))) :
     Real.log h ≤ 55 * (f : ℝ) * (N : ℝ) ^ 2 * Real.log ((g₀ : ℝ) * g₁ * T) := by
   have hf' : (1 : ℝ) ≤ f := by exact_mod_cast hf
-  have hn' : (1 : ℝ) ≤ n := by exact_mod_cast hn
   have hnN' : (n : ℝ) ≤ N := by exact_mod_cast hnN
   have hT' : (1 : ℝ) ≤ T := by exact_mod_cast hT
   have hg₁' : (1 : ℝ) ≤ g₁ := by exact_mod_cast hg₁

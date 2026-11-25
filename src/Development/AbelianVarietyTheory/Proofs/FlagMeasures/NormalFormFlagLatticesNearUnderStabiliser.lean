@@ -366,7 +366,6 @@ theorem exists_frame (F : FlagD H r) {j : ℕ} (hj : j ≤ r) (L : Submodule (�
       (∀ a, ∀ t ∈ ipow 𝔡 (k (Fin.castLE hj a)), t • vec (ej F hj) u a ∈ L) ∧
       ∀ y ∈ L, y ∈ F.Xa j → ∃ c : Fin j → K, (∀ a, c a ∈ ipow 𝔡 (k (Fin.castLE hj a))) ∧
         y = ∑ a, c a • vec (ej F hj) u a := by
-  have hs : ∀ (x : 𝓞 K) (y : V), x • y = (x : K) • y := fun x y => (algebraMap_smul K x y).symm
   have hl : ∀ (a : Fin j) (t : K), t ∈ ipow 𝔡 (k (Fin.castLE hj a)) ↔
       ∃ y ∈ L, y - t • ej F hj a ∈ F.Xa a := by
     intro a t
@@ -651,7 +650,6 @@ theorem exists_mono : ∃ (σ : Fin N.j → Fin N.j) (β : Fin N.j → ℕ) (c :
     fun a => Fin.ext (h a a.2).2.1, fun a b hab => ((h a a.2).2.2.2 b b.2).2.1 hab, fun a b hab hl => ?_,
     fun a b hab => ((h a a.2).2.2.2 b b.2).1.1 hab, fun a => ?_, fun a b => ?_⟩
   · have h1 := ((h a a.2).2.2.2 b b.2).2.2.1 hab
-    have h2 : (a : ℕ) < b := hl
     show σ b < σ a
     omega
   · rcases Int.units_eq_one_or (N.sgn (σ' a)) with h | h <;> simp [h]

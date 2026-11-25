@@ -30,7 +30,6 @@ theorem half_gen {Λ : AddSubgroup ℂ} (hlat : IsLat Λ) : ∃ v : ℂ, v ∉ �
       simp only [Complex.real_smul]
       push_cast
       linear_combination e)
-    have h1 : (m : ℝ) = 1 / 2 := by linarith [key.1]
     have h2 : (2 * m : ℝ) = 1 := by linarith
     have h3 : (2 * m : ℤ) = 1 := by exact_mod_cast h2
     omega

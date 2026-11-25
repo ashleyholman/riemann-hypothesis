@@ -1309,10 +1309,6 @@ theorem _root_.GlobalTheory.CycFr.exists_frame [IsDiscreteValuationRing O]
         Units.mul_inv x
     rw [hsplit]
     refine (hx ▸ x.isUnit).mul (Ideal.mem_jacobson_bot.mp ?_ (-1))
-    have he : 0 < e := by
-      rcases Nat.eq_zero_or_pos e with h | h
-      · exact absurd (Fin.elim0 (h ▸ τ)) id
-      · exact h
     apply (Ideal.isRadical_jacobson (⊥ : Ideal (_root_.GlobalTheory.NB.LT.EE O l))) ⟨e, ?_⟩
     apply IsAdicComplete.le_jacobson_bot (Ideal.span {(l : _root_.GlobalTheory.NB.LT.EE O l)})
     obtain ⟨c, hc⟩ := hϖ τ

@@ -40,7 +40,6 @@ theorem differentiableOn_geomProd {g : ℂ → ℂ} (hg : Differentiable ℂ g) 
     have hr1 : r < 1 := norm_ee_lt_one ⟨z₀, hK hz₀⟩
     have hr0 : 0 ≤ r := norm_nonneg _
     have hr : ∀ z ∈ K, ‖ee z‖ ≤ r := fun z hz => hmax hz
-    have hC0 : 0 ≤ C := (norm_nonneg _).trans (hC z₀ hz₀)
     refine Summable.hasProdUniformlyOn_nat_one_add hKc (u := fun n => C * r * r ^ n)
       ((summable_geometric_of_lt_one hr0 hr1).mul_left (C * r)) (.of_forall fun n z hz => ?_)
       (fun n => (by fun_prop : Continuous fun z => -(ee z ^ (n + 1) * g z)).continuousOn)

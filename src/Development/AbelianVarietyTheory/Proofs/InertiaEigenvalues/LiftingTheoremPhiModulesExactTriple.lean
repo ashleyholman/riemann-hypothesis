@@ -778,10 +778,6 @@ theorem isPrecomplete_Y' : IsPrecomplete (Ideal.span {(l : O)}) D.Y' := ⟨fun f
     exact sub_eq_zero.1 (funext fun τ => funext fun i => ext fun k =>
       eq_zero_of_norm_le_pow_of_lt_one hr0 hr1 fun n => hsm n τ i k)
   have hWlow : ∀ τ i, (X : K⟦X⟧) ^ e ∣ W τ i := fun τ i => X_pow_dvd_iff.2 fun k hk => by
-    have h0 : coeff k (s 0 τ i) = 0 := by
-      have hdv : (X : K⟦X⟧) ^ e ∣ s 0 τ i :=
-        Dvd.dvd.mul_left (X_pow_dvd_iff.2 fun k hk => (hfY 0).2.2 τ i k hk) _
-      exact X_pow_dvd_iff.1 hdv k hk
     refine eq_zero_of_norm_le_pow_of_lt_one hr0 hr1 fun n => ?_
     have h1 : coeff k (s n τ i) = 0 := by
       have hdv : (X : K⟦X⟧) ^ e ∣ s n τ i :=

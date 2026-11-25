@@ -901,10 +901,6 @@ theorem ila_le (G : GlobalFamilyData X ka wL wF) (la : HeightOneSpectrum (𝓞 B
     fun F c => (hrho c _).trans (hΘ c _)
   let s : ∀ c, Kp X la G.N ⊗[KTf B.KO d.D d.N] OmS (Ω c) d.D d.N := fun c =>
     1 ⊗ₜ algebraMap (Ω c) (OmS (Ω c) d.D d.N) (ε c)⁻¹
-  have hsu : ∀ c, IsUnit (s c) := fun c =>
-    (IsUnit.mk0 _ ((map_ne_zero (algebraMap (Ω c) (OmS (Ω c) d.D d.N))).2 (inv_ne_zero (hε c)))).map
-      (Algebra.TensorProduct.includeRight : OmS (Ω c) d.D d.N →ₐ[KTf B.KO d.D d.N]
-        Kp X la G.N ⊗[KTf B.KO d.D d.N] OmS (Ω c) d.D d.N)
   let Ψ' : ∀ c, SectionSheafQuotient X la G.w wF →ₗ[Kp X la G.N] Kp X la G.N ⊗[KTf B.KO d.D d.N] OmS (Ω c) d.D d.N := fun c =>
     LinearMap.mulRight (Kp X la G.N) (s c) ∘ₗ Ψ c
   have hΨ' : ∀ c a, Ψ' c a = Ψ c a * s c := fun _ _ => rfl

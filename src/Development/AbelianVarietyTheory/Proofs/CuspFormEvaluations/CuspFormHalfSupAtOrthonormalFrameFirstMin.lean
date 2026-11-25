@@ -121,7 +121,6 @@ theorem firstMin_at_halfMax : ∀ (D : D7) (T : Top D) (_h : LawsP T), GamAt T.t
     unfold ReciprocityTheory.ChartRestriction.G.FD.epStar
     apply lt_min one_pos
     apply div_pos Real.pi_pos
-    have hlog2 : 0 < Real.log 2 := Real.log_pos one_lt_two
     positivity
 
   have hc : ∀ τ : ((T.U j σ).X k).Ψ, ((T.U j σ).X k).c τ = (e k).k0 := by

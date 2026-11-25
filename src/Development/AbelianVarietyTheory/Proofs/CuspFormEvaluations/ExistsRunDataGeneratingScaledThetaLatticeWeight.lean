@@ -83,7 +83,6 @@ theorem exists_tiedW_rec : Formalism.MainNotions.ModuliIntegralCharts.H1.ChartIn
   have hGc := mul_le_mul_of_nonneg_right (hG4 D.host.pde (by simp)) hs
   have hd : 0 ≤ Real.log |((NumberField.discr (recB h.toLawsCore).KO : ℤ) : ℝ)| := by
     rw [Real.log_abs]; exact Real.log_intCast_nonneg _
-  have hK : 0 ≤ Real.log (Module.finrank ℚ (recB h.toLawsCore).KO : ℝ) := Real.log_natCast_nonneg _
   refine (GlobalTheory.ScaledGenerators.scaled_family D _ _ j (recPJ h j hj) ka wL wF (scalOfP (recB h.toLawsCore) hinj EX p ka wL wF Tn) N w0
     ((lamStar D + 2 * Real.log D.host.pde) * wL.size) _ Gc Prw (by positivity) (by positivity) (fun σ => ?_)
     hspan hsup (hnum.trans hGc)).2 hI hcount

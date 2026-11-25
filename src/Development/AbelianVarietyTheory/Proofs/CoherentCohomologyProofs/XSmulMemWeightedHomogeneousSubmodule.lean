@@ -333,7 +333,6 @@ theorem finite_piece [Finite ι] [Module.Finite (MvPolynomial ι R) M] (n : ℤ)
     · refine Or.inr ?_
       have h1 : n + b < (s.degree : ℤ) := by
         have := Int.self_le_toNat (n + b)
-        have h2 : ((n + b).toNat : ℤ) < s.degree := by exact_mod_cast not_le.1 hs
         linarith
       have h4 : (s.degree : ℤ) - n ≤ |n - (s.degree : ℤ)| := by
         rw [abs_sub_comm]

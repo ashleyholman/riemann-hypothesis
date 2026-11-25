@@ -168,7 +168,6 @@ theorem res_locU_eq_one {A : Type} [CommGroup A] {PP : Pl D.host.E} {χ : (AE D)
   have hxa := GlobalTheory.IdemRes.toEAf_mem_of_finPart hfa
   obtain ⟨hE, hres⟩ := GlobalTheory.IdemRes.resS_idem_eq_one D (idemAt PP) PP hI
   obtain ⟨w, rfl⟩ := GlobalTheory.SplitDualLat.finPart_surjective (D := D) y
-  have hX := GlobalTheory.IdemRes.toEAf_mem_of_finPart hx
   have hW := GlobalTheory.IdemRes.toEAf_mem_of_finPart hy
   have key0 : Formalism.IndefR.Datum.toEAf D ((x : AE D) - 1 - N • w) = 0 := by
     change Algebra.TensorProduct.comm D.host.F (Af D.host.F) D.host.E (finPart D _) = 0

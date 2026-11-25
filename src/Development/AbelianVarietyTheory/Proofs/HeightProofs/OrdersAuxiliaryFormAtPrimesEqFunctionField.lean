@@ -600,7 +600,6 @@ theorem surjective_of_detect [∀ ζ : Pts O A, IsDVRAt ζ] (h : IsUnif (A := A)
       | coe q =>
         rw [← WithTop.coe_add, ← WithTop.coe_nsmul, WithTop.coe_inj, nsmul_eq_mul] at h1
         have h5 : 0 < q := by exact_mod_cast h2
-        have h6 : (e : ℤ) ≤ n := by exact_mod_cast h3
         have h7 : 0 ≤ p := by nlinarith
         exact_mod_cast h7
   have hp : b ^ n = algebraMap O (As O A) ϖ * ⟨_, hx⟩ := by

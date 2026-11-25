@@ -230,8 +230,6 @@ theorem not_isRoot_cofactor : ∀ (K K' : UQ) (d : ℕ) (φ : K.E →+* K'.E), I
   let k := IsLocalRing.ResidueField K.O
   let k' := IsLocalRing.ResidueField K'.O
   let ψ : k →+* k' := IsLocalRing.ResidueField.map φO
-  have hψ : ∀ a : K.O, ψ (IsLocalRing.residue K.O a) = IsLocalRing.residue K'.O (φO a) :=
-    fun a => IsLocalRing.ResidueField.map_residue φO a
   letI : Algebra k k' := ψ.toAlgebra
   letI : Fintype k := Fintype.ofFinite k
   letI : Fintype k' := Fintype.ofFinite k'

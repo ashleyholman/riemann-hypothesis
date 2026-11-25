@@ -14,7 +14,6 @@ theorem fdegOf_eq {n : ℕ} {ε : Fin n → Bool} {H : Type} [NormedAddCommGroup
     {σ : Matrix (Fin n) (Fin n) ℂ → (H →L[ℂ] H)} {d : ℝ} (h : IsFdeg (Formalism.REAL.muG ε) σ d) {w : H} (hw : w ≠ 0) :
     fdegOf (Formalism.REAL.muG ε) σ w = d := by
   obtain ⟨hd, h⟩ := h
-  have hwpos : (0 : ℝ) < ‖w‖ := norm_pos_iff.mpr hw
   have hsq : ∀ z : ℂ, z * star z = ((‖z‖ ^ 2 : ℝ) : ℂ) := by
     intro z
     rw [RCLike.star_def, Complex.mul_conj, Complex.normSq_eq_norm_sq]
@@ -29,7 +28,6 @@ theorem fdegOf_eq {n : ℕ} {ε : Fin n → Bool} {H : Type} [NormedAddCommGroup
   have h3 : ∫ g, ‖coefOn σ w w g‖ ^ 2 ∂(Formalism.REAL.muG ε) = ‖w‖ ^ 4 / d := by exact_mod_cast h2
   unfold fdegOf
   rw [h3]
-  have h4 : ‖w‖ ^ 4 ≠ 0 := by positivity
   field_simp
 
 theorem isFdeg_fdegOf_of_isDS {n : ℕ} {ε : Fin n → Bool} {lam : Fin n → ℝ} {H : Type} [NormedAddCommGroup H]

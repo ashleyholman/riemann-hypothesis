@@ -595,8 +595,6 @@ theorem exists_coords (h : IsCMExt F E σ) (w : E) (t n : 𝓞 F) (ht : w + σ w
   have hσ := GlobalTheory.SelfDualLatticeCompare.conj_conj h
   let W : 𝓞 E := ⟨w, isIntegral_of_trace_norm w t n ht hn⟩
   let s : 𝓞 E →+* 𝓞 E := RingOfIntegers.mapRingHom (σ : E →+* E)
-  have hs : ∀ y : 𝓞 E, ((s y : 𝓞 E) : E) = σ y := fun _ => rfl
-  have hW : ((W : 𝓞 E) : E) = w := rfl
   obtain ⟨a, ha⟩ := GlobalTheory.UnramifiedDiscriminant.exists_int_of_conj_eq h
     ((s x * W - x * s W) * (W - s W)) (by
       change σ ((σ (x : E) * w - (x : E) * σ w) * (w - σ w)) = (σ (x : E) * w - (x : E) * σ w) * (w - σ w)

@@ -161,8 +161,6 @@ theorem summable_pow_exp_abs {a : ℝ} (ha : 0 < a) (k : ℕ) (s : ℝ) :
     _ = _ := by rw [Real.exp_add, mul_assoc]
 
 theorem summable_fTerm (j : ℕ) (x : Fin 2 → ℚ) (τ : ℍ) : Summable (fTerm j x τ) := by
-  have hy : 0 < τ.im := τ.im_pos
-  have hπ := Real.pi_pos
   have hN : (0 : ℝ) < (x 0).den := by exact_mod_cast (x 0).den_pos
   have s1 := summable_pow_exp_abs (a := Real.pi * τ.im / 2) (by positivity) (j - 1) (x 0 : ℝ)
   have s2 := summable_exp_abs (a := Real.pi * τ.im / (x 0).den) (by positivity)
@@ -198,7 +196,6 @@ theorem summable_fTerm (j : ℕ) (x : Fin 2 → ℚ) (τ : ℍ) : Summable (fTer
     gcongr
     set u := |(x 0 : ℝ) + n|
     set v := |(d : ℝ)|
-    have hu : 0 ≤ u := abs_nonneg _
     have a1 : u ≤ u * v := by nlinarith
     have a2 : v / (x 0).den ≤ u * v := by
       rw [div_le_iff₀ hN]; nlinarith

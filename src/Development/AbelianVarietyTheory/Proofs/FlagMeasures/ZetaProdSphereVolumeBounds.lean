@@ -26,7 +26,6 @@ theorem zeta_le (l K : ℕ) (hK : 0 < K) :
     | zero => simp
     | succ n ih =>
       rw [← add_assoc, Finset.sum_range_succ]
-      have hn : (0 : ℝ) ≤ n := Nat.cast_nonneg n
       have h1 : 1 / (((K + n : ℕ) : ℝ) + 1) ^ (l + 2) ≤
           1 / ((K : ℝ) + 1) ^ l * (1 / ((K : ℝ) + n) - 1 / ((K : ℝ) + (n + 1 : ℕ))) := by
         push_cast
@@ -175,7 +174,6 @@ theorem sphere_le (l : ℕ) (hl : 1 ≤ l) :
     | succ n ih =>
       refine le_trans ?_ ih
       have hf : (0 : ℝ) < ((n + 3).factorial : ℝ) := by positivity
-      have hn : (0 : ℝ) ≤ n := Nat.cast_nonneg n
       rw [show n + 1 + 3 = (n + 3) + 1 by ring, Nat.factorial_succ,
         show n + 1 + 4 = (n + 4) + 1 by ring, pow_succ]
       push_cast

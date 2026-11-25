@@ -96,7 +96,6 @@ theorem kerProj_isUnit_reg (T : E →L[ℂ] F) {t : ℝ} (ht : 0 < t) :
     have h := kerProj_re_inner_reg T t w
     rw [← hB, hw] at h
     simp only [inner_zero_right, Complex.zero_re] at h
-    have h1 : t * ‖w‖ ^ 2 ≤ 0 := by nlinarith [sq_nonneg ‖T w‖]
     have h2 : ‖w‖ ^ 2 ≤ 0 := by
       by_contra! hc
       nlinarith [mul_pos ht hc]

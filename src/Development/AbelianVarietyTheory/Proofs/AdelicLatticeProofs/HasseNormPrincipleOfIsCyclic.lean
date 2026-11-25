@@ -387,7 +387,6 @@ theorem tnorm_of_tnorm_pow : ∀ (F M E K : Type) [Field F] [CharZero F] [Field 
       Nat.mul_div_cancel_left _ (Nat.pos_of_ne_zero hd0)]
   set S := Algebra.TensorProduct.map (AlgHom.id K K) (σ : E →ₐ[F] E) with hS
   let T : K ⊗[F] E →* K ⊗[F] E := S
-  have hT : (T : K ⊗[F] E → K ⊗[F] E) = S := rfl
   have hSd : (Algebra.TensorProduct.map (AlgHom.id K K) ((σ ^ d : E ≃ₐ[F] E) : E →ₐ[F] E) :
       K ⊗[F] E → K ⊗[F] E) = S^[d] := funext fun y => map_pow_iter σ d y
   have haK : algebraMap F K a ≠ 0 := (_root_.map_ne_zero _).2 ha

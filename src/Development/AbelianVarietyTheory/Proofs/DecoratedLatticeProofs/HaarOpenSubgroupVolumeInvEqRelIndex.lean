@@ -24,8 +24,6 @@ theorem measure_toReal_inv_eq_relIndex : ∀ {G : Type} [Group G] [TopologicalSp
   haveI : (H.subgroupOf L).FiniteIndex := Subgroup.finiteIndex_of_finite_quotient
   have key := GlobalTheory.BaseModule.relIndex_mul_measure' H L hHL hH.measurableSet μ
   rw [hμL] at key
-  have htop : μ (H : Set G) ≠ ⊤ :=
-    ne_top_of_le_ne_top (by rw [hμL]; exact ENNReal.one_ne_top) (measure_mono hHL)
   have hr : (H.relIndex L : ℝ) * (μ (H : Set G)).toReal = 1 := by
     have := congrArg ENNReal.toReal key
     simpa [ENNReal.toReal_mul] using this

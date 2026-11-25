@@ -108,7 +108,6 @@ open Metric Complex
 
 lemma mem_ball_big (u : ℂ) (R ε : ℝ) (hε : 0 < ε) (hu : 2 * ε ≤ u.im) (hR : u.re ^ 2 + u.im ^ 2 < R * u.im)
     (hRε : ε < R) : u ∈ ball ((R : ℂ) * I) (R - ε) := by
-  have hRe : 0 ≤ R - ε := by linarith
   rw [Metric.mem_ball, Complex.dist_eq]
   have hsq : ‖u - (R : ℂ) * I‖ ^ 2 = u.re ^ 2 + (u.im - R) ^ 2 := by
     rw [Complex.sq_norm, Complex.normSq_apply]

@@ -310,19 +310,9 @@ private theorem exists_coord_homeomorph_tensor (I : AutInst) (θ : InfinitePlace
       (I.φ v (b 0) * (starRingEnd ℂ) (I.φ v (b 1))).im := fun v w => rfl
   have ht1 : ∀ v w, t 1 v w = (w * (starRingEnd ℂ) (I.φ v (b 0))).im /
       (I.φ v (b 1) * (starRingEnd ℂ) (I.φ v (b 0))).im := fun v w => rfl
-  have hnz : ∀ v, -((I.φ v (b 0)).re * (I.φ v (b 1)).im) + (I.φ v (b 0)).im * (I.φ v (b 1)).re ≠ 0 ∧
-      -((I.φ v (b 1)).re * (I.φ v (b 0)).im) + (I.φ v (b 1)).im * (I.φ v (b 0)).re ≠ 0 := by
-    intro v
-    have h0 := hD v
-    have h1 := hD' v
-    simp only [Complex.mul_im, Complex.conj_re, Complex.conj_im] at h0 h1
-    constructor
-    · intro h; apply h0; linarith
-    · intro h; apply h1; linarith
   have ht : ∀ v (r : Fin 2 → ℝ) k,
       t k v (∑ j, ((r j : ℝ) : ℂ) * I.φ v (b j)) = r k := by
     intro v r k
-    obtain ⟨h0, h1⟩ := hnz v
     have hk : k = 0 ∨ k = 1 := by fin_cases k <;> simp
     rcases hk with rfl | rfl
     · rw [ht0, div_eq_iff (hD v), Fin.sum_univ_two]

@@ -748,10 +748,7 @@ theorem split_torus : ∀ (n : ℕ) (ε : Fin n → Bool) (W : Submodule ℂ (Fi
     rw [hconj s m hm]
     generalize umat m - 1 = X at h1 h2 h3
     have hPP' : ∀ Y, P * (P * Y) = P * Y := fun Y => by rw [← Matrix.mul_assoc, hPP]
-    have hQQ' : ∀ Y, Q * (Q * Y) = Q * Y := fun Y => by rw [← Matrix.mul_assoc, hQQ]
-    have hPQ' : ∀ Y, P * (Q * Y) = 0 := fun Y => by rw [← Matrix.mul_assoc, hPQ, Matrix.zero_mul]
     have hQP' : ∀ Y, Q * (P * Y) = 0 := fun Y => by rw [← Matrix.mul_assoc, hQP, Matrix.zero_mul]
-    have h1' : ∀ Y, X * (P * Y) = 0 := fun Y => by rw [← Matrix.mul_assoc, h1, Matrix.zero_mul]
     have h2' : ∀ Y, Q * (X * Y) = 0 := fun Y => by rw [← Matrix.mul_assoc, h2, Matrix.zero_mul]
     refine ⟨?_, ?_, ?_⟩ <;>
       simp only [add_mul, sub_mul, mul_add, mul_sub, smul_mul_assoc, mul_smul_comm, Matrix.mul_assoc, one_mul,

@@ -29,7 +29,6 @@ theorem algebraMap_intTrace_eq_sum (x : 𝓞 L) :
 theorem not_dvd_of_inertia (P : Ideal (𝓞 L)) [P.IsPrime] (hP : P ≠ ⊥)
     (h : ∀ σ : L ≃ₐ[K] L, (∀ x : 𝓞 L, σ • x - x ∈ P) → σ = 1) :
     ¬ P ∣ differentIdeal (𝓞 K) (𝓞 L) := by
-  have hp : P.under (𝓞 K) ≠ ⊥ := mt Ideal.eq_bot_of_comap_eq_bot hP
   have := Ideal.IsPrime.isMaximal inferInstance hP
   have : IsGaloisGroup (L ≃ₐ[K] L) (𝓞 K) (𝓞 L) :=
     IsGaloisGroup.of_isFractionRing (L ≃ₐ[K] L) (𝓞 K) (𝓞 L) K L

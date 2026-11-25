@@ -646,7 +646,6 @@ theorem le_totient_sq (n : ℕ) : n ≤ 2 * n.totient ^ 2 ∧ (Odd n → n ≤ n
     rw [Nat.totient_prime_pow_succ hp]
     have h2 := hp.two_le
     obtain ⟨q, rfl⟩ : ∃ q, p = q + 1 := ⟨p - 1, by omega⟩
-    have hq : 1 ≤ q := by omega
     have hP : 1 ≤ (q + 1) ^ k := Nat.one_le_pow _ _ (by omega)
     rw [pow_succ, Nat.add_sub_cancel]
     generalize (q + 1) ^ k = P at hP ⊢
@@ -1533,7 +1532,6 @@ open PerDat
 theorem sum_weights_per_datum : ∀ (K V W : Type) [Field K] [NumberField K] [StarRing K] [AddCommGroup V] [Module K V] [FiniteDimensional K V] [Module (𝓞 K) V] [IsScalarTower (𝓞 K) K V] [AddCommGroup W] [Module K W] [FiniteDimensional K W] [Module (𝓞 K) W] [IsScalarTower (𝓞 K) K W] (H : HermSpace K V) (HW : HermSpace K W) (e : W →ₗ[K] V), Formalism.HermitianLatticesTheory.IsCMUnram K → ∀ (r : ℕ), ∀ (F : FlagD H r) (𝔡 : Ideal (𝓞 K)) (g j T x : ℕ) (δ : ℕ → K) (Λ : Submodule (𝓞 K) V) (d : Submodule (𝓞 K) W × Submodule (𝓞 K) (W × W)) (Del Db : ℝ) (ι : Type) (s : Finset ι) (G : ι → FlagD H r), 1 ≤ g → 1 ≤ x → 1 ≤ Del → 1 ≤ Db → IsEmb F HW e → (∀ i ∈ s, ∃ N : NF H r, Adapt F (G i) 𝔡 N ∧ N.IsTerm g Λ ∧ N.j = j ∧ N.T = T ∧ N.Del = Del ∧ N.Db = Db ∧ N.gI g Λ = x) → (∀ i ∈ s, lab F (G i) j = δ ∧ datOf F (G i) e g Λ = d) → (∀ i ∈ s, ∀ i' ∈ s, FrEqv F Λ (G i) (G i') → i = i') → ∑ i ∈ s, omI F (G i) 𝔡 Λ ≤ datBd K (Module.finrank K W) r Del Db ((T : ℝ) ^ Formalism.HermitianLatticesTheory.fDeg K) x := by
   intro K V W _ _ _ _ _ _ _ _ _ _ _ _ _ H HW e hK r F 𝔡 g j T x δ Λ d Del Db ι s G hg hx hDel hDb he hN hd hinj
   have hDel0 : 0 < Del := by linarith
-  have hDb0 : 0 < Db := by linarith
   rcases s.eq_empty_or_nonempty with rfl | ⟨i₁, hi₁⟩
   · rw [Finset.sum_empty]; unfold datBd; positivity
   haveI : Nonempty (NF H r) := ⟨(hN i₁ hi₁).choose⟩

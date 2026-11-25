@@ -587,7 +587,6 @@ theorem map_Xflag_le {T T0 : D.host.E} (F : LFlag (D.sp.Y 0) D.R.rS T) (F0 : LFl
       exact Submodule.zero_mem _
     · have h1 : a.1 ≤ i.1 := by
         simpa [Fin.lt_def] using hab
-      have h2 := i.2
       exact Submodule.smul_mem _ _ (frame_mem_Xflag F0 j a (by omega) (by omega))
   exact key hx
 

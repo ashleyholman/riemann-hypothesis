@@ -323,7 +323,6 @@ theorem rate_low (p : KB.Pl P Wp Wq) {nn : ℝ → ℝ} (hnn : ∀ y, 0 < nn y) 
         rw [show (m + 1) * (m + 4) = (m + 2) * (m + 1) + 2 * (m + 1) by ring, Nat.add_mul_div_left _ _ two_pos]
         ring
       rw [hpi]
-      have hzn : ((‖z‖ : ℝ) : ℂ) ≠ 0 := by exact_mod_cast norm_ne_zero_iff.2 hz0
       have hm2 : (m : ℂ) + 2 ≠ 0 := by exact_mod_cast (by omega : m + 2 ≠ 0)
       push_cast
       field_simp
@@ -550,9 +549,6 @@ theorem top_core (p : KB.Pl P Wp Wq) (nn : ℝ → ℝ) (w : List C.Letter) {F' 
     unfold omTop lam
     rw [← hTTdef, ← hN, sqrt_nPt_pair_top P.k P.r TT H m j _ _ (by omega) hj, hqB, hKh]
     simp only [hρdef]
-    have hxn : ‖x‖ ≠ 0 := norm_ne_zero_iff.2 hx
-    have hyn : ‖y‖ ≠ 0 := norm_ne_zero_iff.2 hy0
-    have hpi := Real.pi_ne_zero
     simp only [norm_mul, norm_pow, norm_inv, inv_pow, mul_pow, ← pow_mul]
     field_simp
     ring
@@ -593,7 +589,6 @@ theorem top_core (p : KB.Pl P Wp Wq) (nn : ℝ → ℝ) (w : List C.Letter) {F' 
       sqrt_nPt_long P.k P.r _ H m (j + m + 1) z (by omega) (by
         rw [show D.ptSize H + (m + 2) = P.r + 1 by omega]; unfold C.Mlev; rw [hj]; push_cast; ring),
       show m + 2 - 1 = m + 1 from rfl, hzs, hKh]
-    have hzn : ((‖z‖ : ℝ) : ℂ) ≠ 0 := by exact_mod_cast norm_ne_zero_iff.2 hz0
     have hm2 : (m : ℂ) + 2 ≠ 0 := by exact_mod_cast (by omega : m + 2 ≠ 0)
     push_cast
     field_simp
@@ -939,7 +934,6 @@ theorem btOf_stronglyMeasurable {H : Type} [NormedAddCommGroup H] [InnerProductS
     refine Complex.continuous_ofReal.comp_continuousOn (ContinuousOn.mul ?_ continuousOn_const)
     refine ContinuousOn.inv₀ (Continuous.continuousOn (by fun_prop)) fun z hz => ?_
     have : (0 : ℝ) < ‖z‖ ^ (s - 1) := pow_pos (norm_pos_iff.mpr hz) _
-    have hs' : (0 : ℝ) < s := by exact_mod_cast Nat.pos_of_ne_zero hs0
     positivity
   have hbt : GermFibreKernels.btOf s d Vec h = ({0}ᶜ : Set ℂ).piecewise g (fun _ => 0) := by
     funext z

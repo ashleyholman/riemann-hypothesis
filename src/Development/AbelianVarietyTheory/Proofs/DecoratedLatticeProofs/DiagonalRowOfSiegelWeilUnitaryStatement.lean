@@ -1165,7 +1165,6 @@ theorem one_factor_sharp (k b g : ℝ) (f : ℕ) (hk : 1 ≤ k) (hb : 2 ≤ b) (
 theorem exp_pair_le_six_fifths : Real.exp (3 / 256) * Real.exp (3 / 256) ≤ 6 / 5 := by
   rw [← Real.exp_add]
   have h := exp_le_inv_one_sub_pg (3 / 256 + 3 / 256) (by norm_num)
-  have hp := Real.exp_pos (3 / 256 + 3 / 256 : ℝ)
   norm_num at h ⊢
   nlinarith
 

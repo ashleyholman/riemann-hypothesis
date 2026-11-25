@@ -29,8 +29,6 @@ theorem intCast_isUnit_almost_all : ∀ {F E : Type} [Field F] [NumberField F] [
     simpa using this
   have m1 := ((integers_local A).2.2.1 (D : F) p).2 h1
   have m2 := ((integers_local A).2.2.1 ((D : F)⁻¹) p).2 hs'
-  have hne : (A.loc p).ιF (D : F) ≠ 0 := by
-    rw [map_ne_zero]; exact hDF
   refine ⟨⟨⟨_, m1⟩, ⟨_, m2⟩, ?_, ?_⟩, ?_⟩
   · apply Subtype.ext
     change (A.loc p).ιF (D : F) * (A.loc p).ιF ((D : F)⁻¹) = 1

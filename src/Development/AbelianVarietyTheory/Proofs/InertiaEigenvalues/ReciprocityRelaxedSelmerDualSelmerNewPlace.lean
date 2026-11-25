@@ -145,8 +145,6 @@ theorem isProGen_of_char_eq_one (hQ : TameQuotient) {F Ω : Type} [Field F] [Num
     simpa using key
 
   set s : Ine (F := F) A → ℤ_[l] := fun σ => Multiplicative.toAdd (t σ) with hs
-  have hsmul : ∀ σ τ, s (σ * τ) = s σ + s τ := fun σ τ => by
-    simp only [hs, map_mul, toAdd_mul]
   have hscont : Continuous s := continuous_toAdd.comp ht
   set γ' : Ine (F := F) A := ⟨γ, hγ⟩ with hγ'
 
@@ -300,7 +298,6 @@ theorem tame_pairing_hom : TameLocal → ∀ (F Ω : Type) [Field F] [NumberFiel
 
   have hCZ : CharZero Ω := charZero_of_injective_algebraMap (algebraMap F Ω).injective
   have hAC : IsAlgClosed Ω := IsAlgClosure.isAlgClosed F
-  have hNZ : NeZero ((l ^ n : ℕ) : Ω) := ⟨by exact_mod_cast pow_ne_zero n hl.out.ne_zero⟩
   obtain ⟨ζ, hζ⟩ := HasEnoughRootsOfUnity.exists_primitiveRoot Ω (l ^ n)
   obtain ⟨u₀, hu₀⟩ := TameSymbol.of_equiv hS hA hv hq hζ (LinearEquiv.ofBijective e he)
   obtain ⟨x₀, hx₀⟩ := exists_isUnifRoot (F := F) (Ω := Ω) v (N := l ^ n) (pow_pos hl.out.pos n)

@@ -37,7 +37,6 @@ theorem span_translates_vacuum : ∀ {R X M : Type} [CommRing R] [AddCommGroup X
       zero_mem' := ⟨A.zero_mem, fun t _ => h.zero_left t⟩
       smul_mem' := fun r a ha => ⟨A.smul_mem r ha.1, fun t ht => by
         rw [h.adj]; exact ha.2 _ (T.smul_mem _ ht)⟩ }
-  have hSm : ∀ a, a ∈ S ↔ a ∈ A ∧ ∀ t ∈ T, γ a t = 1 := fun a => Iff.rfl
   have hSv : Fixes W S v := fun a ha => hv a ha.1 ha.2
   have hSt : ∀ t ∈ T, Fixes W S (W (-t) v) := by
     intro t ht a ha

@@ -1197,8 +1197,6 @@ theorem exists_strictDomain : ∀ (E : Type) [Field E] [NumberField E] (j : ℕ)
     { smul := fun γ g => ⟨(e γ * (show MatInf E j from g.1) : MatInf E j), hpos γ g.1 g.2⟩
       one_smul := fun g => Subtype.ext (hone g.1)
       mul_smul := fun γ γ' g => Subtype.ext (hmul γ γ' g.1) }
-  have hsm : ∀ (γ : S) (g : U), (γ • g).1 = (e γ * (show MatInf E j from g.1) : MatInf E j) :=
-    fun _ _ => rfl
   have hc : ∀ γ : S, Continuous fun g : U => γ • g := fun γ =>
     ((hcont γ).comp continuous_subtype_val).subtype_mk _
   haveI : MeasurableConstSMul S U := ⟨fun γ => (hc γ).measurable⟩

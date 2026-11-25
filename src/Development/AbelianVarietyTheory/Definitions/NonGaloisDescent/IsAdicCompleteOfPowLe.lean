@@ -630,7 +630,6 @@ theorem coeff_le_one {l : ℕ} [hl : Fact l.Prime]
   obtain ⟨n, h5, h6⟩ := key i hci
   rw [h6, zpow_le_one_iff_right_of_lt_one₀ ht0 ht1] at h4
   rw [h5, zpow_le_one_iff_right_of_lt_one₀ ht0 ht1]
-  have hie : (i : ℤ) < e := by exact_mod_cast hi
   have hn : 0 ≤ n := by
     by_contra hneg
     have : n ≤ -1 := by omega

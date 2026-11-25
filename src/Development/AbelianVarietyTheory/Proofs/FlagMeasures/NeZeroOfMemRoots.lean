@@ -60,7 +60,6 @@ theorem eq_of_roots_eq {f h : (ZMod g)[X]} (hf : f.Monic) (hh : h.Monic)
 theorem ne_zero_of_mem_roots {f : (ZMod g)[X]} (h0 : f.coeff 0 ≠ 0) {x : Formalism.CyclotomicNorms.Fbar g}
     (hx : x ∈ Formalism.CyclotomicNorms.rootsBar f) : x ≠ 0 := by
   rintro rfl
-  have hf : f.map (algebraMap (ZMod g) (Formalism.CyclotomicNorms.Fbar g)) ≠ 0 := (mem_roots'.1 hx).1
   have := (mem_roots'.1 hx).2
   rw [IsRoot, eval_map, eval₂_at_zero] at this
   exact h0 ((algebraMap (ZMod g) (Formalism.CyclotomicNorms.Fbar g)).injective (by simpa using this))

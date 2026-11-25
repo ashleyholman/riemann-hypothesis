@@ -596,7 +596,6 @@ theorem chain_le_iInf_sup_pow_smul_top :
   choose f hf using step
   let u : ∀ j : ℕ, N (n + j) := fun j =>
     Nat.rec (motive := fun j => N (n + j)) ⟨x, hx⟩ (fun j y => f (n + j) y) j
-  have hu0 : (u 0 : Fin a → Λ) = x := rfl
   have hus : ∀ j, (u j : Fin a → Λ) - u (j + 1) ∈
       I ^ (n + j + 1) • (⊤ : Submodule Λ (Fin a → Λ)) := fun j => hf (n + j) (u j)
   have htel : ∀ j j', j ≤ j' → ∀ i, (u j : Fin a → Λ) i - (u j' : Fin a → Λ) i ∈

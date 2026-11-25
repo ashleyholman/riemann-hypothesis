@@ -299,7 +299,6 @@ theorem pnorm_near_half_max {r : ℕ} (X : Data E r) (la : Wt X.Ψ r) (P : Frame
   · have : rmul x A = x := Subsingleton.elim _ _
     rw [this, hPx]
     exact ⟨hxd, by linarith⟩
-  have hr' : (0 : ℝ) < r := by exact_mod_cast hr
   obtain ⟨δ, hδ⟩ : ∃ δ : ℝ, δ = 1 / (100 * (r : ℝ) ^ 2 * (1 + L)) := ⟨_, rfl⟩
   have hδ0 : 0 < δ := by rw [hδ]; positivity
   have hδ1 : (r : ℝ) ^ 2 * δ * (1 + L) = 1 / 100 := by rw [hδ]; field_simp

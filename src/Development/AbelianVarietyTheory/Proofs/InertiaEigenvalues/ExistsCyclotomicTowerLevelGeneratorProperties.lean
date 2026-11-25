@@ -130,7 +130,6 @@ theorem gen_dense : ∀ (l : ℕ) [Fact l.Prime] (act : GQ l →* (PadicComplex 
   intro l _ act χ _ hχ K j hj
   have hl : l.Prime := Fact.out
   have hl1 : (1 : ℝ) < l := by exact_mod_cast hl.one_lt
-  have hl0 : (0 : ℝ) < l := by linarith
   obtain ⟨hn, hcont, hG⟩ := _root_.GlobalTheory.Cyc.cyc_basic l χ hχ
   refine ⟨?_, fun g hg => ?_⟩
   · have hp : ‖(l : ℚ_[l]) ^ j‖ = (l : ℝ) ^ (-(j : ℤ)) := by

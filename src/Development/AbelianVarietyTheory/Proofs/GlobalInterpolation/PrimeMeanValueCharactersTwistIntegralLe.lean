@@ -351,7 +351,6 @@ theorem brun_titchmarsh_const : ∃ C : ℝ, 0 < C ∧ ∀ (q a : ℕ) (x y : �
   rw [← hB] at hbig
   push_cast at hbig
   have hpi := Real.pi_lt_four
-  have hpi0 := Real.pi_pos
   have h1 : B * ((q.totient : ℝ) / q * Real.log Q) ≤ 20 * z := by
     have hpi2 : 2 * Real.pi * ((⌊z⌋₊ : ℝ) + 2) ≤ 2 * 4 * (2 * z) :=
       mul_le_mul (by linarith) (by linarith) (by positivity) (by norm_num)
@@ -514,11 +513,9 @@ theorem window (C : ℝ) (hC : 0 < C)
   have hsq : (n : ℝ) ≤ (2 * x / T / q) ^ 2 := by
     rw [div_div, div_pow, le_div_iff₀ (by positivity)]
     have h4 : (T * q) ^ 2 ≤ 3 * x / 4 := by
-      have heq : (2 * (q : ℝ) * T) ^ 2 = 4 * (T * q) ^ 2 := by ring
       linarith
     calc (n : ℝ) * (T * q) ^ 2 ≤ (3 * x) * (3 * x / 4) := by gcongr
       _ ≤ (2 * x) ^ 2 := by
-        have heq : (2 * x) ^ 2 - 3 * x * (3 * x / 4) = 7 / 4 * x ^ 2 := by ring
         linarith [sq_nonneg x]
   have hl : Real.log n / 2 ≤ Real.log (2 * x / T / q) := by
     have := Real.log_le_log (by linarith) hsq

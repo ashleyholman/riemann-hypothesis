@@ -207,7 +207,6 @@ theorem exists_short_basis {S : HermForm K r} {L : Submodule (𝓞 K) (Fin r →
   have hd0 : (discr K : ℝ) ≠ 0 := by exact_mod_cast discr_ne_zero K
   have hd : 0 < dE K := abs_pos.mpr hd0
   have hd2 : dE K ^ 2 = (discr K : ℝ) ^ 2 := sq_abs _
-  have hs := Real.sqrt_pos.mpr hε
   let φ := θ.toLinearEquiv.toLinearMap.toAddMonoidHom.comp (emb σ C)
   let ψ := θ.toLinearEquiv.toLinearMap.toAddMonoidHom.comp ((2 : ℕ) • emb σ D)
   have hφ : ∀ x, φ x = θ (emb σ C x) := fun _ => rfl

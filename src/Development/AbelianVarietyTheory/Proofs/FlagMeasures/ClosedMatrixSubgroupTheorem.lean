@@ -147,7 +147,6 @@ theorem unrealify_mem_lieOf {m : ℕ} {S : Set (Matrix (Fin m) (Fin m) ℂ)} (hS
     {x : EuclideanSpace ℝ (Fin m × Fin m × Bool)} (hx : x ∈ lieE S) : unrealify x ∈ lieOf S := by
   let _ := Matrix.linftyOpNormedRing (n := Fin m) (α := ℂ)
   let _ := Matrix.linftyOpNormedAlgebra (R := ℝ) (n := Fin m) (α := ℂ)
-  have hc : CompleteSpace (Matrix (Fin m) (Fin m) ℂ) := FiniteDimensional.complete ℝ _
   have hL : ∀ X, X ∈ lieOf S ↔ X ∈ lieSub S hS.1 hS.2.1 hS.2.2.1 := fun X => by
     simp only [lieOf, Set.mem_setOf_eq, Complex.coe_smul]; rfl
   rw [hL]
@@ -175,7 +174,6 @@ theorem eventually_exists_exp_matrix {m : ℕ} {S : Set (Matrix (Fin m) (Fin m) 
     rw [Matrix.exp_neg]; exact (hS.2.2.2 _ hZ).1
   let _ := Matrix.linftyOpNormedRing (n := Fin m) (α := ℂ)
   let _ := Matrix.linftyOpNormedAlgebra (R := ℝ) (n := Fin m) (α := ℂ)
-  have hc : CompleteSpace (Matrix (Fin m) (Fin m) ℂ) := FiniteDimensional.complete ℝ _
   have h := eventually_exists_exp hS.1 hS.2.1 hS.2.2.1 hi hU
   simp only [lieOf, Set.mem_setOf_eq, Complex.coe_smul]
   exact h

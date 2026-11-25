@@ -492,7 +492,6 @@ theorem bpNear_gapOK (k r : ℕ) (hk : 1 ≤ k) (c Cg : ℝ) (hC : 240 + 2 * |c|
       ThreeDimData.aOf r (Cg * ((2 * r + 2 : ℕ) : ℝ) ^ ((9 : ℝ) / 2) *
         (((3 * (r + 1) : ℕ) : ℝ) * ((2 * r + k + 1 : ℕ) : ℝ) ^ 2 + ((2 * r + k + 1 : ℕ) : ℝ) ^ 3) / 2) - 1 := by
   obtain ⟨h1, h2, h3, h4⟩ := bpNear_thresholds k r hk
-  have hr : (0 : ℝ) ≤ r := Nat.cast_nonneg r
   have hc : 0 ≤ |c| := abs_nonneg c
   have hm : ((2 * r + 2 : ℕ) : ℝ) = 2 * ((r : ℝ) + 1) := by push_cast; ring
   have hn0 : (0 : ℝ) ≤ ((2 * r + k + 1 : ℕ) : ℝ) := Nat.cast_nonneg _
@@ -502,7 +501,6 @@ theorem bpNear_gapOK (k r : ℕ) (hk : 1 ≤ k) (c Cg : ℝ) (hC : 240 + 2 * |c|
   set N : ℝ := ((3 * (r + 1) : ℕ) : ℝ)
   have hs1 : (1 : ℝ) ≤ 2 * ((r : ℝ) + 1) := by linarith
   have hpos : (0 : ℝ) < 2 * ((r : ℝ) + 1) := by linarith
-  have hsq : 0 < Real.sqrt (2 * ((r : ℝ) + 1)) := Real.sqrt_pos.2 hpos
   have hpow : (2 * ((r : ℝ) + 1)) ^ ((9 : ℝ) / 2) =
       (2 * ((r : ℝ) + 1)) ^ 4 * Real.sqrt (2 * ((r : ℝ) + 1)) := by
     rw [Real.sqrt_eq_rpow, show (9 : ℝ) / 2 = (4 : ℕ) + 1 / 2 by norm_num, Real.rpow_add hpos, Real.rpow_natCast]
@@ -880,7 +878,6 @@ theorem pointwiseBound_at_place_of_locBessel : ThmBpDS → ∀ Ch : ℝ, ∃ C�
   · show 3 * (D.R.rS + 1) ≤ 2 * (2 * (D.R.rS + 1))
     omega
   · show ((2 * (D.R.rS + 1) : ℕ) : ℝ) ≤ 2 * ((D.R.rS : ℝ) + 1) ^ 2
-    have hr : (0 : ℝ) ≤ D.R.rS := Nat.cast_nonneg _
     push_cast
     nlinarith
 
@@ -918,7 +915,6 @@ theorem bp_forms_of_gapIn_thmBpDS : GlobalTheory.GapIn.Hyp → ThmBpDS → ∀ C
         obtain ⟨P, Q, hQ, hP, he⟩ := hf
         exact ⟨1, hone, 1, hone, P, Q, fun w => (v2 _).1 (hQ w), fun x => (v2 _).1 (hP x), fun g => by
           simpa using he g⟩)
-    have hr : (0 : ℝ) ≤ D.R.rS := Nat.cast_nonneg _
     have hm : ((2 * D.R.rS + 2 : ℕ) : ℝ) = 2 * ((D.R.rS : ℝ) + 1) := by push_cast; ring
     have hb3 : 3 ≤ b := by
       have h1 := hall ⟨0, by omega⟩ ⟨1, by omega⟩ (by simp)

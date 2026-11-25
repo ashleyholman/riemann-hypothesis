@@ -60,7 +60,6 @@ theorem eq_evalAt_one_smul_extremal_of_rowWeight (K : Type) [Field K] [Infinite 
     have hab' : (a.val : ℤ) - b.val ≤ -1 := by
       have : a.val < b.val := hab
       omega
-    have hk' : (1 : ℤ) ≤ k := by exact_mod_cast hk
     nlinarith
   have h1 : evalAt 1 f = c := by
     rw [hc, map_smul, evalAt_one_extremal, smul_eq_mul, mul_one]

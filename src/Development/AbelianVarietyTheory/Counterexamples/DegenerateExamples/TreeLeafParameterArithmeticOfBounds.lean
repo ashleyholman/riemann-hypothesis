@@ -107,7 +107,6 @@ theorem tree_leaf_parameter_arithmetic_of_bounds (O : FunData K Df) (C b : ℝ) 
     linarith
   set u := Real.sqrt b with hu
   have hu2 : u * u = b := Real.mul_self_sqrt (by linarith)
-  have hu0 : 0 ≤ u := Real.sqrt_nonneg _
   have hu100 : 100 ≤ u := Real.le_sqrt_of_sq_le (by linarith)
   have hNu : N ≤ u := Real.le_sqrt_of_sq_le (by linarith [sq_nonneg N])
   have hsl : Real.sqrt (O.Lc : ℝ) ≤ u := Real.sqrt_le_sqrt h7
@@ -135,7 +134,6 @@ theorem tree_leaf_parameter_arithmetic_of_bounds (O : FunData K Df) (C b : ℝ) 
       rw [hnr] at this ⊢
       have e1 : 48 * (r + 1) ^ 2 * Real.sqrt m ≤ 48 * (r + 1) ^ 2 * (r + 1) :=
         mul_le_mul_of_nonneg_left hsm (by positivity)
-      have e2 : 48 * (r + 1) ^ 2 * (r + 1) = 48 * (r + 1) ^ 3 := by ring
       linarith
     unfold FunData.ga
     rw [Nat.cast_max, Nat.cast_max]

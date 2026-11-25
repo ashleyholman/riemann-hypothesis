@@ -1043,8 +1043,6 @@ theorem scale_int (L : LocE F E) {r : ℕ} (c a q : F) (hc : c ≠ 0) (ha : a �
     (hx : ∃ o ∈ L.O, x = algebraMap F E (q * a ^ r) * o)
     (hrel : x * algebraMap F E (c ^ (r - (i : ℕ))) = algebraMap F E (c ^ (r - (j : ℕ))) * y) : y ∈ L.O := by
   obtain ⟨o, ho, rfl⟩ := hx
-  have hij' : (i : ℕ) < j := hij
-  have hj : (j : ℕ) ≤ r := Nat.lt_succ_iff.1 j.2
   have hr : r - (i : ℕ) = (r - (j : ℕ)) + ((j : ℕ) - i) := by omega
   have hr2 : r = (r - ((j : ℕ) - i)) + ((j : ℕ) - i) := by omega
   have hu : IsUnit (algebraMap F E (c ^ (r - (j : ℕ)))) := (IsUnit.mk0 _ (pow_ne_zero _ hc)).map (algebraMap F E)

@@ -81,7 +81,6 @@ theorem exists_algEquiv_of_norm_eq (K : Type) [NontriviallyNormedField K] [Compl
   have htc : Continuous t :=
     (uniformContinuous_uniformly_extend hj.isUniformInducing hd hf.uniformContinuous).continuous
   have : IsScalarTower K Kb C := inferInstance
-  have hcoe : ∀ y : Kb, algebraMap Kb C y = (y : C) := fun y => rfl
   have hq : ∀ x : K, t (algebraMap K Kb x) = algebraMap K C x := by
     have hcC : Continuous (algebraMap K C) := by
       have e : (algebraMap K C : K → C) = fun x => ((algebraMap K Kb x : Kb) : C) :=

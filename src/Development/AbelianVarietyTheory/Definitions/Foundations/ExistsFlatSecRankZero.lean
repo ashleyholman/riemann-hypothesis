@@ -130,7 +130,6 @@ theorem finite_ord (σ : E →+* K) :
     simp [DefectSumCompare.ord_vw_eq_vla la (conjDifferent_ne_bot σ), h0]
 
 theorem sum_ord (σ : E →+* K) : ∑ᶠ la, (ord_vw la (conjDifferent σ) : ℝ) * lw K la = lrd E := by
-  have hf := fin_mul (finite_ord σ) fun la => Real.log (Ideal.absNorm la.asIdeal : ℝ)
   have h1 := QAt.BeSumPf.sum_vla_log_fin _ (conjDifferent_ne_bot σ) (finite_ord σ).toFinset fun v hv => by
     simpa [DefectSumCompare.ord_vw_eq_vla v (conjDifferent_ne_bot σ)] using hv
   letI := σ.toAlgebra

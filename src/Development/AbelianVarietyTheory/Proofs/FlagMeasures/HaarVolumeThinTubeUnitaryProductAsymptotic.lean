@@ -213,9 +213,6 @@ theorem exists_tang_equiv : ∀ (k : ℕ) (η : ℝ), 1 ≤ k → (η = 1 ∨ η
     refine (injective_iff_map_eq_zero (tangL hη)).2 fun v hv => ?_
     have h := norm_sq_tangL hη v
     rw [hv, norm_zero] at h
-    have a := sq_nonneg ‖v.1‖
-    have b := sq_nonneg ‖v.2.1‖
-    have c := sq_nonneg ‖v.2.2‖
     have h1 : ‖v.1‖ ^ 2 = 0 := by nlinarith
     have h2 : ‖v.2.1‖ ^ 2 = 0 := by nlinarith
     have h3 : ‖v.2.2‖ ^ 2 = 0 := by nlinarith
@@ -243,7 +240,6 @@ theorem exists_tang_equiv : ∀ (k : ℕ) (η : ℝ), 1 ≤ k → (η = 1 ∨ η
     rw [pow_mul, Real.sq_sqrt Real.pi_pos.le]
   rw [hf, hG, hπ]
   congr 1
-  have hfac : (0 : ℝ) < k.factorial := by exact_mod_cast k.factorial_pos
   rw [← ENNReal.ofReal_pow hρ.le, ← ENNReal.ofReal_mul (by positivity : (0 : ℝ) ≤ ρ ^ (2 * k)),
     ← ENNReal.ofReal_mul (by positivity : (0 : ℝ) ≤ 2 * ρ)]
   congr 1
@@ -841,7 +837,6 @@ theorem tendsto_div_pow_of_sandwich (k : ℕ) (C : ℝ≥0∞) (hC : C ≠ ⊤) 
         simpa using this.mono_left nhdsWithin_le_nhds
       simpa using ENNReal.Tendsto.const_mul h2 (Or.inr hC)
     obtain ⟨l, hl, hl1⟩ := ((h1.eventually (gt_mem_nhds hb)).and self_mem_nhdsWithin).exists
-    have hl1 : 1 < l := hl1
     have hl0 : 0 < l := by linarith
     have h3 : Tendsto (fun t : ℝ => l * t) (𝓝[>] 0) (𝓝[>] 0) := by
       refine tendsto_nhdsWithin_iff.2 ⟨?_, ?_⟩
@@ -869,10 +864,7 @@ theorem tendsto_div_pow_of_sandwich (k : ℕ) (C : ℝ≥0∞) (hC : C ≠ ⊤) 
 theorem thin_tube_limit_arith : ∀ (k : ℕ) (c c₀ : ℝ) (F F' M V : ℝ → ℝ≥0∞), 0 < c → 0 < c₀ → (∀ t s : ℝ, 0 < t → t < s → F t ≤ F' t ∧ F' t ≤ F s) → (∀ ρ : ℝ, 0 < ρ → 0 < V ρ ∧ V ρ < ⊤) → Tendsto (fun ρ : ℝ => M ρ / V ρ) (𝓝[>] 0) (𝓝 (ENNReal.ofReal c₀)) → Tendsto (fun ρ : ℝ => M ρ * (F (ρ ^ 2 / 2) * ENNReal.ofReal (ρ / Real.pi)) / (V ρ * ENNReal.ofReal (2 * ρ * (Real.pi ^ k * ρ ^ (2 * k) / (k.factorial : ℝ))))) (𝓝[>] 0) (𝓝 (ENNReal.ofReal c)) → Tendsto (fun t : ℝ => F' t / ENNReal.ofReal (t ^ k)) (𝓝[>] 0) (𝓝 (ENNReal.ofReal (c / c₀ * (2 * Real.pi) ^ (k + 1) / (k.factorial : ℝ)))) := by
   intro k c c₀ F F' M V hc hc₀ hFF hV hMV hQ
   refine tendsto_div_pow_of_sandwich k _ ENNReal.ofReal_ne_top F F' hFF ?_
-  have hpi := Real.pi_pos
-  have hk : (0 : ℝ) < k.factorial := by exact_mod_cast k.factorial_pos
   set K : ℝ := (2 * Real.pi) ^ (k + 1) / (k.factorial : ℝ) with hK
-  have hKpos : 0 < K := by positivity
   have hc0' : ENNReal.ofReal c₀ ≠ 0 := by simpa using hc₀
   have hc' : ENNReal.ofReal c ≠ 0 := by simpa using hc
   have h1 := ENNReal.Tendsto.mul_const (b := ENNReal.ofReal K)

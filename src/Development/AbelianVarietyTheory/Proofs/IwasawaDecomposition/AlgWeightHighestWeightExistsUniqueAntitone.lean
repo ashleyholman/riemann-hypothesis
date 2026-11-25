@@ -724,7 +724,6 @@ theorem GlobalTheory.lowerTriangular_GL_induction : ∀ {n : ℕ} (P : GL (Fin n
       rw [← hjdef] at this
       exact absurd hb (not_lt.mpr this)
     set c : ℂ := -L.val i j / L.val j j with hc
-    have hijne : i ≠ j := hij
     let U : GL (Fin n) ℂ := ⟨transvection i j c, transvection i j (-c),
       by rw [transvection_mul_transvection_same _ _ hij]; simp,
       by rw [transvection_mul_transvection_same _ _ hij]; simp⟩

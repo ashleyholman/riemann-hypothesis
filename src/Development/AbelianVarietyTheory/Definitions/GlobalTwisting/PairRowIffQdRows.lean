@@ -55,7 +55,6 @@ theorem n_le_of_o (h : RankVal s R) {C : ℝ} (hC : (R.o : ℝ) ≤ C) : (R.n : 
       omega
     · exact h0
   have h1 : (1 : ℝ) ≤ C := le_trans (by exact_mod_cast h0) hC
-  have h2 : 0 ≤ s.x ^ (2 + 8 * s.eps) := Real.rpow_nonneg (by linarith [s.one_lt_alt]) _
   nlinarith [h.n_up]
 
 theorem n_le' (h : RankVal s R) : (R.n : ℝ) ≤ 2 * s.x ^ ((9 : ℝ) / 4) := by

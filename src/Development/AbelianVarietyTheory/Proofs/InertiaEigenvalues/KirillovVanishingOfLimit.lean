@@ -834,7 +834,6 @@ namespace GlobalTheory.JR
 
 theorem wS_nS_wS_eq_unit {k : Type} [CommRing k] (z : kˣ) :
     wS k * nS (z : k) * wS k = nS ((-z⁻¹ : kˣ) : k) * mS (-z⁻¹) * (wS k * nS ((-z⁻¹ : kˣ) : k)) := by
-  have h1 : (z : k) * ((z⁻¹ : kˣ) : k) = 1 := z.mul_inv
   have cw : ((wS k : SpecialLinearGroup (Fin 2) k) : Matrix (Fin 2) (Fin 2) k) = !![0, 1; -1, 0] := rfl
   have cn : ∀ t : k, ((nS t : SpecialLinearGroup (Fin 2) k) : Matrix (Fin 2) (Fin 2) k) = !![1, t; 0, 1] :=
     fun _ => rfl

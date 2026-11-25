@@ -212,7 +212,6 @@ theorem vAdd_card_le (D : D7) (w : D.what₂.places.Pl) (n d : ℕ) (hn : n ≠ 
     (vAdd (D.plEq w) (n : D.what₂.LL) : ℝ) ≤
       (D.what₂.places.ramIdx w : ℝ) * (padicValNat (D.what₂.places.resChar w) d : ℝ) := by
   have h1 := vAdd_nat D w n hn
-  have h2 := vAdd_nat D w d hd0
   have h3 : padicValNat (D.what₂.places.resChar w) n ≤ padicValNat (D.what₂.places.resChar w) d := by
     have : Fact (D.what₂.places.resChar w).Prime := ⟨D.what₂.places.resChar_prime w⟩
     exact ((by simpa only [_root_.Nat.padicValNat_def] using @_root_.multiplicity_dvd_iff_le : ∀ {p : _root_.Nat} [hp : _root_.Fact (_root_.Nat.Prime p)] {a n : _root_.Nat} (ha : a ≠ 0), p ^ n ∣ a ↔ n ≤ _root_.padicValNat p a) hd0).mp (dvd_trans (_root_.Dvd.intro_left _ (_root_.Nat.divMaxPow_mul_pow_padicValNat _ _)) hd)

@@ -574,7 +574,6 @@ theorem algebraMap_continuous_isCompact_preimage {F E : Type} [NontriviallyNorme
   obtain ⟨_, _, _, _, -⟩ := EtMeas.top_facts F A.K
   obtain ⟨_, _, _, _, -⟩ := EtMeas.top_facts F A.L
   let ιF : A.K →ₗ[F] A.L := (IsScalarTower.toAlgHom F A.K A.L).toLinearMap
-  have hιF : ∀ s, ιF s = algebraMap A.K A.L s := fun s => rfl
   have hc : Continuous (algebraMap A.K A.L) := by
     have := IsModuleTopology.continuous_of_linearMap ιF
     exact this
@@ -944,7 +943,6 @@ theorem spectralNorm_closedBall_isOpen_isCompact_nhds_basis : ∀ (F : Type) [No
   subst hτ
   have hU : IsUltrametricDist L :=
     IsUltrametricDist.isUltrametricDist_of_isNonarchimedean_norm (isNonarchimedean_spectralNorm (K := F) (L := L))
-  have hPF : ProperSpace F := .of_nontriviallyNormedField_of_weaklyLocallyCompactSpace F
   have hPL : ProperSpace L := FiniteDimensional.proper F L
   have hd : ∀ y : L, dist y 0 = spectralNorm F L y := fun y => by
     rw [dist_zero_right]; rfl
@@ -1520,8 +1518,6 @@ theorem gauss_transform : ∀ (F E : Type) [NontriviallyNormedField F] [Nontrivi
     have h2 := _root_.GlobalTheory.JR.WeilQuad.GaussTrans.main F E A ψ x μ ω hH ϖ (ϖ⁻¹ * u) hs _ hGϖ
     rw [hps] at h2
     rw [_root_.GlobalTheory.JR.WeilQuad.NonNorm.stable_unique A ψ x μ _ hG h2, (hω u).2 hu]
-    have e1 := absK_units_ne A ϖ
-    have e2 := absK_units_ne A (ϖ⁻¹ * u)
     conv_rhs => rw [← hps, absK_units_mul]
     push_cast
     field_simp

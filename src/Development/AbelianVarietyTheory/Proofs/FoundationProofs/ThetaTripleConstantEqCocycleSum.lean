@@ -162,7 +162,6 @@ theorem mu_form : ∀ (D : D7) (T : Tor D) (N N' : ℕ) (A₁ A₂ A₃ : AddSub
   refine ⟨s23 * s12 / s13, by positivity, ?_⟩
   have q12 : (s12 : ℂ) ≠ 0 := by exact_mod_cast p12.ne'
   have q23 : (s23 : ℂ) ≠ 0 := by exact_mod_cast p23.ne'
-  have q13 : (s13 : ℂ) ≠ 0 := by exact_mod_cast p13.ne'
   have k2 := congrArg (fun t => (s23 : ℂ) * s12 * t) (add_neg_eq_zero.1 key)
   simp only [Finset.mul_sum] at k2
   have : μ * ((s23 * s12 / s13 : ℝ) : ℂ) = (s23 : ℂ) * s12 * (μ * (s13 : ℂ)⁻¹) := by

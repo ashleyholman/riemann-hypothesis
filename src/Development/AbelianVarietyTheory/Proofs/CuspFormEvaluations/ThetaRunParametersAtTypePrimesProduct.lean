@@ -25,8 +25,6 @@ theorem lower_real (R P d a r q : ℝ) (hR : 0 ≤ R) (hd : 1 ≤ d) (ha : 0 ≤
   have e1 : 90 * (a + d) ≤ P * d := by nlinarith [mul_le_mul_of_nonneg_right h1 (by linarith : 0 ≤ d), mul_le_mul_of_nonneg_left hd ha]
   have e2 : r ≤ P ^ 2 := by nlinarith
   refine le_trans ?_ hq
-  have hd0 : 0 ≤ d := by linarith
-  have hP0 : 0 ≤ P := by linarith
   calc R ^ 4 * (90 * (a + d)) * d * r ≤ R ^ 4 * (P * d) * d * P ^ 2 := by gcongr
     _ = R ^ 4 * P ^ 3 * d ^ 2 := by ring
 

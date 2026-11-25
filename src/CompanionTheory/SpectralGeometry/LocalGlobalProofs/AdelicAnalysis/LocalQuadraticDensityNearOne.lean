@@ -31,7 +31,6 @@ theorem real_bound (q N Nf : ℝ) (hq : 0 < q) (M : ℕ) (hM : 1 ≤ M)
   have hQpos : 0 < q ^ (2 * m + 1) := by positivity
   have habs : |N - q ^ (2 * m + 1)| ≤ q ^ (m + 1) + 1 := by
     obtain ⟨h3, h4⟩ := abs_le.1 h
-    have hp : 0 ≤ q ^ (m + 1) := by positivity
     exact abs_le.2 ⟨by linarith, by linarith⟩
   have e3 : N * (q⁻¹) ^ (2 * m + 1) - 1 = (N - q ^ (2 * m + 1)) / q ^ (2 * m + 1) := by
     rw [inv_pow]; field_simp

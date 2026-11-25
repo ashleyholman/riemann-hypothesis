@@ -669,7 +669,6 @@ theorem norm_orthoJet_le (hs : IsSympl X bas) {d : ℕ} (hP : P.IsHomogeneous d)
     rw [← Fintype.sum_prod_type', ← e.symm.sum_comp]
   have hla : 0 ≤ X.la1 x := Real.sqrt_nonneg _
   set K := √2 * (1 + 4 * √(2 * g) / (√π * X.la1 x)) ^ g with hK
-  have hK0 : 0 ≤ K := by positivity
   have h := Jet.norm_polyDeriv_le 1 le_rfl (F ∘ φ) (hF.comp φ.differentiable)
     ((K ^ n * ∏ k, √((frameTorus idx hs ho (a k) (b k)).l2 1
       (canSec X bas idx (a k) (b k) x))) ^ 2) (fun w => ?_) P d hP

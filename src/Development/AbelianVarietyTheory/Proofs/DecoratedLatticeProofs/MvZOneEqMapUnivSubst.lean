@@ -98,8 +98,6 @@ theorem equivariantHom_mem_of_stable : ∀ (G H J : Type) [Group G] [Group H] [D
     ((β j).comp (MonoidHom.snd G H)) with hR
   have heS : ∀ (x : G × H) (w : W), e.symm (ω x w) = R x (e.symm w) := fun x w =>
     LinearMap.congr_fun (e.symm.isIntertwining' x) w
-  have heF : ∀ (x : G × H) y, e (R x y) = ω x (e y) := fun x y =>
-    LinearMap.congr_fun (e.isIntertwining' x) y
   let con : ∀ j, Module.Dual ℂ (B j) → (DirectSum J fun j => A j ⊗[ℂ] B j) →ₗ[ℂ] A j := fun j l =>
     (TensorProduct.rid ℂ (A j)).toLinearMap ∘ₗ LinearMap.lTensor (A j) l ∘ₗ
       DirectSum.component ℂ J (fun j => A j ⊗[ℂ] B j) j

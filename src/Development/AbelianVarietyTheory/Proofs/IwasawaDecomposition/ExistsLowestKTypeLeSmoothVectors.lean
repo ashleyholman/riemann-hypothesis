@@ -65,7 +65,6 @@ theorem garding_smooth {n : ℕ} {ε : Fin n → Bool} {H : Type} [NormedAddComm
     have h : (x t)ᴴ * Formalism.REAL.Jm ε * x t = Formalism.REAL.Jm ε := hxG t
     calc y t * x t = Formalism.REAL.Jm ε * ((x t)ᴴ * Formalism.REAL.Jm ε * x t) := by simp only [y, Matrix.mul_assoc]
       _ = 1 := by rw [h, Formalism.REAL.Jm_mul_self]
-  have hxy : ∀ t, x t * y t = 1 := fun t => mul_eq_one_comm.1 (hyx t)
   have hz : ∀ t, ∃ z : UJ ε, umat z = x t := fun t => by
     have : x t ∈ Set.range (fun g : Formalism.REAL.UJ ε => umat g) := by
       rw [show Set.range (fun g : Formalism.REAL.UJ ε => umat g) = _ from hrange]; exact hxG t

@@ -33,7 +33,6 @@ private lemma le_two_pow_mul_of_consecutive_le {N : ℕ} (a : Fin N → ℝ) (ha
       calc a i ≤ 2 ^ d * a ⟨i + d, hm⟩ := h1
         _ ≤ 2 ^ d * (2 * a j) := by gcongr
         _ = 2 ^ (d + 1) * a j := by ring
-  have hlt : (i : ℕ) < j := hij
   have hd := key ((j : ℕ) - i) i j (by omega)
   calc a i ≤ 2 ^ ((j : ℕ) - i) * a j := hd
     _ ≤ 2 ^ N * a j :=

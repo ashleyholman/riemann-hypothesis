@@ -41,7 +41,6 @@ theorem sExp_nonneg {R : Ranks} (P : HCParam R) (h : (R.k : ℚ) / 2 ≤ eFirst 
     0 ≤ sExp R (P.e ⟨i, hi⟩) (i + 1) := by
   have h1 := e_ge P i hi
   have h2 : (0 : ℚ) ≤ (i : ℚ) * (R.t : ℚ) := by positivity
-  have h3 : (0 : ℚ) ≤ (i : ℚ) := by positivity
   simp only [sExp, Ranks.N, Nat.add_sub_cancel]
   push_cast
   nlinarith

@@ -70,7 +70,6 @@ theorem eigen_of_triangular (f : (J → V) → ℂ) (lt : J → J → Prop) (rk 
     (hsc : ∀ j (s : ℂ) u, f (Function.update u j (s • u j)) = s ^ d j * f u)
     (N : J → J → ℂ) (hN : ∀ i j, i ≠ j → ¬ lt i j → N i j = 0) (u : J → V) :
     f (fun j => ∑ i, N i j • u i) = (∏ j, N j j ^ d j) * f u := by
-  have hne : ∀ i j, lt i j → i ≠ j := fun i j h e => (hrk i j h).ne (congrArg rk e)
   have one (y : J → V) (j : J) (T : Finset J) (hT : j ∉ T) :
       f (Function.update y j (N j j • y j + ∑ i ∈ T, N i j • y i)) = N j j ^ d j * f y := by
     induction T using Finset.induction_on with

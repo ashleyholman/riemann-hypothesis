@@ -32,8 +32,6 @@ theorem isRepresentable_of_charts (F : Scheme.{0}ᵒᵖ ⥤ Type)
     F.IsRepresentable := by
   let F' : Sheaf Scheme.zariskiTopology.{0} (Type) := ⟨F, (isSheaf_iff_isSheaf_of_type _ _).2 hF⟩
   let f : ∀ j, yoneda.obj (X j) ⟶ F'.1 := fun j => yonedaEquiv.symm (x j)
-  have hfa : ∀ j (Z : Scheme.{0}) (g : Z ⟶ X j), (f j).app (op Z) g = F.map g.op (x j) :=
-    fun j Z g => rfl
   have hι : ∀ j (Z : Scheme.{0}) (y : F.obj (op Z)),
       ∃ g : (W j Z y).toScheme ⟶ X j, F.map g.op (x j) = F.map (W j Z y).ι.op y :=
     fun j Z y => (hW j Z y _ _).1 (by simp)

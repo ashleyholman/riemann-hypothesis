@@ -1053,7 +1053,6 @@ theorem valV_le_one_of_ext {T T' : CDVR} (i : T.Fr →+* T'.Fr) {e' : ℕ} (he' 
   have h1 : valV T'.V (i z) ≠ 0 := valV_ne_zero ((map_ne_zero i).2 hz)
   have h2 : valV T.V z ≠ 0 := valV_ne_zero hz
   have h := hv z hz
-  have he : (0 : ℤ) < e' := by exact_mod_cast he'
   rw [← WithZero.log_le_log h1 one_ne_zero, ← WithZero.log_le_log h2 one_ne_zero, WithZero.log_one]
   unfold vV at h
   constructor <;> intro h' <;> nlinarith

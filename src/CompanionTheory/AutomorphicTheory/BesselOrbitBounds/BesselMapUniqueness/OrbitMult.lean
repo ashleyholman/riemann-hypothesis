@@ -46,8 +46,6 @@ theorem orbit_mult (hCL : CutLim) (hAd : DsAd) (hF : Factor) {k r : ℕ} {Wp : T
   have hAB : B.AB k r ≤ X.a := by
     refine (le_trans ?_ ha)
     have h1 : (1 : ℝ) ≤ r + 1 := by have := Nat.cast_nonneg (α := ℝ) r; linarith
-    have h2 : (0 : ℝ) ≤ k := Nat.cast_nonneg k
-    have h3 : (0 : ℝ) ≤ r := Nat.cast_nonneg r
     have hn : (1 : ℝ) ≤ nR k r := by
       delta nR
       exact_mod_cast (by omega : 1 ≤ 2 * r + k + 1)

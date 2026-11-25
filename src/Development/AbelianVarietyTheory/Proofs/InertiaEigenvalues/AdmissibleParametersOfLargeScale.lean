@@ -25,7 +25,6 @@ theorem admissible_params_of_roomy {D : D7} (L : SizeData₂ D) (P : ParameterCh
   obtain ⟨-, h1, h2, h3, h4, h5⟩ := h
   have he := L.etaSz_pos
   have hS := L.Sc_pos
-  have ht : (0 : ℝ) ≤ D.R.t := Nat.cast_nonneg _
   have hL : (0 : ℝ) ≤ (D.host.Lw : ℝ) := by positivity
   have hb : (0 : ℝ) ≤ L.sc.b' := by linarith
   have hm : (0 : ℝ) ≤ (D.host.Lw : ℝ) * L.sc.b' := mul_nonneg hL hb
@@ -58,7 +57,6 @@ theorem admissibleParameters_of_large_scale : ∀ eps A : ℝ, 0 < eps → ∃ x
   obtain ⟨⟨hw, hwb, hbb, hT, ht⟩, hS⟩ := hx0 D L P h1 h2 h3
   have he := L.etaSz_pos
   have hSc := L.Sc_pos
-  have htt : (0 : ℝ) ≤ D.R.t := Nat.cast_nonneg _
   refine ⟨⟨by linarith, by linarith, fun tt => by linarith [hT tt], ht⟩, hS⟩
 
 end GlobalTheory.HTW

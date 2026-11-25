@@ -59,7 +59,6 @@ theorem height_le_one_of_forall_mem {B : Type*} [CommRing B] [IsDomain B] [IsNoe
       exact absurd h3 (by decide)
   obtain ⟨P, hP, hmP⟩ := (Ideal.subset_union_prime_finite hfin (f := id) ⊥ ⊥
     (fun i hi _ _ => hi.1.1)).mp hsub
-  have hPp : P.IsPrime := hP.1.1
   exact (Ideal.height_mono hmP).trans
     (Ideal.height_le_one_of_isPrincipal_of_mem_minimalPrimes _ P hP)
 

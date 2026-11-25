@@ -76,8 +76,6 @@ theorem sch_hasDerivAt_line : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ), IsS
       funext p
       simp only [Pi.sub_apply, Pi.add_apply, Pi.smul_apply, smul_eq_mul]
       ring
-    have h1 := lin _ _ (hth t) hf (t⁻¹ : ℂ)
-    have h2 := lin _ _ hf hf (-(t⁻¹ : ℂ))
     have ha := GlobalTheory.OrientedHeis.theta_smul (t⁻¹ : ℂ) (hth t)
     have hb := GlobalTheory.OrientedHeis.theta_smul (-(t⁻¹ : ℂ)) hf
     have hc := GlobalTheory.OrientedHeis.theta_smul (-1 : ℂ) hf'

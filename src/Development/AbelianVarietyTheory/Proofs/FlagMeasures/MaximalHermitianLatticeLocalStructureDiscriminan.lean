@@ -219,8 +219,6 @@ theorem tors_line (hσ : ∀ r, algebraMap R K (σ r) = star (algebraMap R K r))
     {y z : V} (hy : y ∈ dual h M) (hPy : ∀ p ∈ P, p • y ∈ M) (hyM : y ∉ M)
     (hz : z ∈ dual h M) (hPz : ∀ p ∈ P, p • z ∈ M) : ∃ c : R, z - c • y ∈ M := by
   have hinj := IsFractionRing.injective R K
-  have hπ0 : π ≠ 0 := fun h => h2 (h ▸ Submodule.zero_mem _)
-  have hπK : algebraMap R K π ≠ 0 := (map_ne_zero_iff _ hinj).2 hπ0
   have hP1 : ∀ u ∈ dual h M, ∀ v : V, (∀ p ∈ P, p • v ∈ M) → ∀ p ∈ P,
       algebraMap R K p * h u v ∈ (1 : Submodule R K) := fun u hu v hv p hp => by
     rw [← locDual_h_smul_right]; exact dual_left hσ hs hu (hv p hp)
@@ -486,11 +484,9 @@ theorem local_vec (hσ : ∀ r, algebraMap R K (σ r) = star (algebraMap R K r))
   have hσσ : ∀ r, σ (σ r) = r := fun r => hinj (by rw [hσ, hσ, star_star])
   have hπ0 : π ≠ 0 := fun h => h2 (h ▸ Submodule.zero_mem _)
   have hπK : algebraMap R K π ≠ 0 := (map_ne_zero_iff _ hinj).2 hπ0
-  have hP0 : P ≠ ⊥ := fun e => hπ0 (by rwa [e] at h1)
   have hP1 : ∀ p ∈ P, algebraMap R K p * h y y ∈ (1 : Submodule R K) := fun p hp => by
     rw [← locDual_h_smul_right]; exact dual_left hσ hs hy (hPy p hp)
   have hyy : h y y ∉ (1 : Submodule R K) := fun e => hyM (mem_of_int hσ hs hM hy e)
-  have hyy0 : h y y ≠ 0 := fun e => hyy (e ▸ Submodule.zero_mem _)
   obtain ⟨a, ha⟩ := Submodule.mem_one.1 (hP1 _ ((hin π).2 h1))
   have hσπ2 : σ π ∉ P ^ 2 := by
     intro hm

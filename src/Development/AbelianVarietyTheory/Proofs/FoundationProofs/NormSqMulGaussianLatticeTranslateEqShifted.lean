@@ -738,8 +738,6 @@ theorem exists_kappa (D : D7) (N N' r : ℕ) (b₀ : Fin r → Matrix (Fin N') (
       subst this; simp at hs
     · rw [h] at hu; simp at hu
   obtain ⟨h, α, hh, hα, hv⟩ := _root_.GlobalTheory.exists_generator_pow_fractional_size D.host.K I hI0 hI
-  have hαE : (α : D.host.E) ≠ 0 := by simpa using hα
-  have hαE' : D.host.conj (α : D.host.E) ≠ 0 := by simpa using hα
   set β : Qbar := phiQ D ((α : D.host.E) / D.host.conj (α : D.host.E)) with hβ
   obtain ⟨κ, hκ⟩ := IsAlgClosed.exists_pow_nat_eq (β : ℂ) (n := 4 * h) (by omega)
   have hκQ : κ ∈ Qbar := mem_Qbar_of_pow (n := 4 * h) (by omega) (hκ ▸ β.2)

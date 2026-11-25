@@ -259,8 +259,6 @@ theorem _root_.GlobalTheory.MomOne.Basic.norm_nat_eq_one {m : ℕ} (h : Nat.Copr
   exact h
 
 theorem hasDerivAt_u (M : Mdl q) (hc : M.c ≠ 0) : HasDerivAt M.u M.c 0 := by
-  have ha := M.L.analyticAt_weierstrassPExcept 0
-  have hb := M.L.analyticAt_derivWeierstrassPExcept 0
   set β := M.ι.symm (M.W.b₂ / 12)
   set a1 := M.ι.symm M.W.a₁
   set a3 := M.ι.symm M.W.a₃
@@ -321,7 +319,6 @@ theorem _root_.GlobalTheory.MomOne.Basic.cmLatticeCommutatorPairing_pow_eq_one_o
     ι (_root_.GlobalTheory.MomOne.kap1 d 1 y) ^ (q ^ n) = 1 := by
   obtain ⟨v, ⟨u, w, rfl⟩, -, rfl⟩ := h
   have hq : 0 < q := (Fact.out : q.Prime).pos
-  have hs : Real.sqrt d ≠ 0 := by positivity
   have hd2 : Real.sqrt d ^ 2 = d := Real.sq_sqrt (by positivity)
   have him : ((q : ℂ) ^ n).im = 0 := by
     rw [← Complex.ofReal_natCast, ← Complex.ofReal_pow, Complex.ofReal_im]

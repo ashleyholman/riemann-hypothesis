@@ -516,7 +516,6 @@ theorem step5Loc_cmPt : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (
       MvPolynomial.map (iA.comp φ).toRingHom G := by
     rw [MvPolynomial.map_map, MvPolynomial.map_map]
     rfl
-  have hsn : (iA s : T'.Fr) ≠ 0 := (map_ne_zero iA).2 s.ne_zero
   have hu' : κ (fW (iK ca⁻¹)) * κ (algebraMap W KW (algebraMap T.V W ↑u⁻¹)) * iA s = 1 := by
     rw [← hfW]
     show i _ * i _ * i _ = 1

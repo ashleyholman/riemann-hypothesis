@@ -112,7 +112,6 @@ theorem eq_of_le_one_iff (v : HeightOneSpectrum (𝓞 L⁺)) (i i' : L →ₐ[L�
     have : b' = δ - (δ - b') := by ring
     rw [this, Valuation.map_sub_eq_of_lt_left _ hb]
   have hb0 : Valued.v b' ≠ 0 := hbv ▸ hδ0
-  have hbne : b' ≠ 0 := (Valuation.ne_zero_iff _).mp hb0
   set z : L := (x - algebraMap L⁺ L a) / algebraMap L⁺ L b
   have hiz : i z = (i x - a') / b' := by simp [z, a', b', map_div₀, map_sub, AlgHom.commutes]
   have hi'z : i' z = (i' x - a') / b' := by simp [z, a', b', map_div₀, map_sub, AlgHom.commutes]

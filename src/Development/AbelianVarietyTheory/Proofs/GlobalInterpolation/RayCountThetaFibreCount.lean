@@ -620,12 +620,6 @@ theorem gen_bij {M : ℕ} (hM : Ideal.span {(M : 𝓞 K)} ≠ ⊤) (D : RayData 
     rw [Subtype.ext (Units.ext h3)]
   have hsurj : Function.Surjective F := by
     rintro ⟨x, hxB, hx1⟩
-    have hx0 : x ≠ 0 := by
-      rintro rfl
-      apply hM
-      rw [Ideal.eq_top_iff_one]
-      have := (Ideal.neg_mem_iff _).2 hx1
-      simpa using this
     have hle : Ideal.span {x} ≤ B := (Ideal.span_singleton_le_iff_mem _).2 hxB
     obtain ⟨I, hI⟩ := Ideal.dvd_iff_le.2 hle
     have hxc : IsCoprime (Ideal.span {x}) (Ideal.span {(M : 𝓞 K)}) := by
@@ -1055,7 +1049,6 @@ theorem exp_neg_le {y : ℝ} (hy : 0 < y) : Real.exp (-y) ≤ 2 / y ^ 2 := by
 
 theorem exp_neg_mul_sq_le {c : ℝ} (hc : 0 < c) {n : ℤ} (hn : n ≠ 0) :
     Real.exp (-(c * (n : ℝ) ^ 2)) ≤ 2 / c ^ 2 * (1 / (n : ℝ) ^ 2) := by
-  have h0 : (n : ℝ) ≠ 0 := by exact_mod_cast hn
   have h1 : (1 : ℝ) ≤ (n : ℝ) ^ 2 := by
     have : (1 : ℤ) ≤ n ^ 2 := by
       have := sq_pos_of_ne_zero hn
@@ -1225,12 +1218,10 @@ theorem theta_qForm : ∀ α γ l θ₁ θ₂ t : ℝ, 0 < α → 0 < γ → 0 <
     ring
   have e2 : Real.pi / Real.sqrt (α * γ) / t =
       Real.sqrt (Real.pi / (α * t)) * Real.sqrt (Real.pi / (γ * t)) := by
-    have hp := Real.pi_pos
     rw [← Real.sqrt_mul (by positivity)]
     symm
     rw [Real.sqrt_eq_iff_mul_self_eq (by positivity) (by positivity)]
     have hs : Real.sqrt (α * γ) * Real.sqrt (α * γ) = α * γ := Real.mul_self_sqrt (by positivity)
-    have hs0 : 0 < Real.sqrt (α * γ) := Real.sqrt_pos.mpr (by positivity)
     rw [div_div, div_mul_div_comm, div_mul_div_comm]
     congr 1
     linear_combination -t ^ 2 * hs
@@ -1299,13 +1290,11 @@ theorem rayCountTheta : ∀ (K : Type) [Field K] [NumberField K] (d M : ℕ) (x 
   obtain ⟨α, γ, l, θ₁, θ₂, hα, hγ, hαγ, hQ, ha⟩ := _root_.GlobalTheory.Hk.RayForm.aRay_eq_ncard_qForm K d M x hd hd4 hd100 hx hK hM D g
   choose q hq1 hq using hQ
   have hd0 : (0 : ℝ) < d := by exact_mod_cast (by omega : 0 < d)
-  have hM0 : (0 : ℝ) < M := by exact_mod_cast (by omega : 0 < M)
   have hC : Real.pi / Real.sqrt (α * γ) = 2 * Real.pi / (Real.sqrt d * (M : ℝ) ^ 2) := by
     have hs : Real.sqrt (α * γ) = Real.sqrt d * (M : ℝ) ^ 2 / 2 := by
       rw [hαγ, show (d : ℝ) * (M : ℝ) ^ 4 / 4 = (Real.sqrt d * (M : ℝ) ^ 2 / 2) ^ 2 by
         rw [div_pow, mul_pow, Real.sq_sqrt hd0.le]; ring]
       exact Real.sqrt_sq (by positivity)
-    have hsd : 0 < Real.sqrt d := Real.sqrt_pos.mpr hd0
     rw [hs]
     field_simp
   refine ⟨fun y hy => ?_, fun t ht0 ht1 => ?_⟩
@@ -1329,9 +1318,7 @@ theorem rayCountTheta : ∀ (K : Type) [Field K] [NumberField K] (d M : ℕ) (x 
     have hsq : 1 ≤ Real.sqrt (α * γ) := by
       rw [show (1 : ℝ) = Real.sqrt 1 from Real.sqrt_one.symm]
       exact Real.sqrt_le_sqrt hP1
-    have hsq0 : 0 < Real.sqrt (α * γ) := by linarith
     have hCπ : Real.pi / Real.sqrt (α * γ) ≤ Real.pi := div_le_self Real.pi_pos.le hsq
-    have hC0 : 0 ≤ Real.pi / Real.sqrt (α * γ) := by positivity
     have hd1 : (1 : ℝ) ≤ d := by exact_mod_cast (by omega : 1 ≤ d)
     have hM1 : (1 : ℝ) ≤ M := by exact_mod_cast (by omega : 1 ≤ M)
     have key : 3 * Real.pi * (α * γ) ^ 2 ≤ (4 * (d : ℝ) * (M : ℝ) ^ 2) ^ 10 := by

@@ -161,7 +161,6 @@ theorem card_quadric_sub_sq_le : ∀ (k : Type) [Field k] [Fintype k] [Decidable
     simp [hq, hm]
   rw [e2] at e1
   set r : ℝ := Real.sqrt ((q : ℝ) ^ m) with hr
-  have hr0 : 0 ≤ r := Real.sqrt_nonneg _
   have hr2 : r ^ 2 = (q : ℝ) ^ m := Real.sq_sqrt (by positivity)
   have e3 : ∀ t ∈ Finset.univ.erase (0 : k), ‖∑ x : ι → k, ψ (t * (x ⬝ᵥ S.mulVec x - β))‖ ≤ r := by
     intro t ht

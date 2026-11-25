@@ -185,7 +185,6 @@ theorem goodOpen_of_equivar {G P : Over S} [GrpObj G] (i : splitTorus S X ⟶ G)
     GoodOpen i (a.left ''ᵁ ⊤) := by
   have hV : ∀ x, x ∈ a.left ''ᵁ ⊤ ↔ x ∈ Set.range a.left := fun x => by
     rw [Scheme.Hom.image_top_eq_opensRange]; rfl
-  have hm : Mono a := Over.mono_of_mono_left a
   refine ⟨(isAffineOpen_top _).image_of_isOpenImmersion _, fun z hz => ?_, ?_⟩
   · obtain ⟨y, hy⟩ := (hV _).1 hz
     obtain ⟨w, rfl, -⟩ := Scheme.exists_preimage_of_isPullback

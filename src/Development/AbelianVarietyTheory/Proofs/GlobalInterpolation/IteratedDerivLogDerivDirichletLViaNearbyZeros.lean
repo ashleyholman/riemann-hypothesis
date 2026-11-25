@@ -270,7 +270,6 @@ theorem main : ∃ C : ℝ, 0 < C ∧ ∀ (q : ℕ) [NeZero q] (χ : DirichletCh
   have e : (4 / 5 : ℝ) * (15 / 4) = 3 := by norm_num
   rw [e] at h1 h2 h3
   have hlog : Real.log (1024 * B * X ^ 5 / ‖F c‖) ≤ Real.log (2048 * B) + 5 * Real.log X := by
-    have hX0 : 0 < X := by linarith
     have : 1024 * B * X ^ 5 / ‖F c‖ ≤ 2048 * B * X ^ 5 := by
       rw [div_le_iff₀ hpos]
       have : 0 < B * X ^ 5 := by positivity

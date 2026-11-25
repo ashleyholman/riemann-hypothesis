@@ -46,7 +46,6 @@ theorem inR_iff (i : ℕ) {n : ℕ} (M : Mt g n) :
     refine ⟨fun a b hb ha => ?_, fun a b => ⟨fun hab => ?_, fun hab => ?_⟩⟩
     · exact (entN_fin M a b).symm.trans ((h a ha a.2).1 b (by omega))
     · have := a.2
-      have hab' : (b : ℕ) < a := hab
       exact (h (i + a) (by omega) (by omega)).1 (i + b) (by omega)
     · subst hab
       have := a.2

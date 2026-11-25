@@ -54,7 +54,6 @@ theorem gaps_exceed :
   have hL' : 1 ≤ x ^ (eps / 100) := Real.one_le_rpow hx1 (by positivity)
   have hm10 : m ^ 10 ≤ f ^ 3 := by
     have h1 : m ^ 10 ≤ m ^ 12 := pow_le_pow_right₀ hm1 (by norm_num)
-    have h2 : m ^ 12 = (m ^ 4) ^ 3 := by ring
     have h3 : (m ^ 4) ^ 3 ≤ f ^ 3 := by gcongr; exact h.mf
     linarith
   have hf3 : f ≤ f ^ 3 := by
@@ -79,7 +78,6 @@ theorem gaps_exceed :
     have : 0 < (k * f * x ^ eps) ^ (3 : ℕ) := by positivity
     linarith
   have hc1 : C * k * m ^ 4 + r * m ^ 10 < 4 * Del := by
-    have hkf3 : 0 < k * f ^ 3 := by positivity
     have hk2 : C + 2 < 4 * k ^ 2 := by nlinarith
     have e1 : (C + 2) * k * f ^ 3 < 4 * k ^ 2 * (k * f ^ 3) := by nlinarith
     have e2 : 4 * k ^ 2 * (k * f ^ 3) ≤ 4 * (k * f * x ^ eps) ^ (3 : ℕ) := by
@@ -123,8 +121,6 @@ theorem gaps_exceed :
     have e1 : C * k * m ^ 4 + r * m ^ 10 ≤ (C + 2) * r * f ^ 5 := by
       have : (C + 2) * k * f ^ 3 ≤ (C + 2) * r * f ^ 5 := by gcongr
       linarith
-    have hx18 : x ≤ x ^ 18 := by
-      have := pow_le_pow_right₀ hx1 (show 1 ≤ 18 by norm_num); simpa using this
     have hr18 : x ^ 18 ≤ r ^ 18 := by gcongr
     have e2 : (C + 2) * r * f ^ 5 < r ^ 18 * (r * f ^ 5) := by
       have hp : 0 < r * f ^ 5 := by positivity
@@ -135,7 +131,6 @@ theorem gaps_exceed :
       have := mul_lt_mul_of_pos_right hC18 hp
       calc (C + 2) * r * f ^ 5 = (C + 2) * (r * f ^ 5) := by ring
         _ < r ^ 18 * (r * f ^ 5) := this
-    have e3 : r ^ 18 * (r * f ^ 5) = r ^ 19 * f ^ 5 := by ring
     have e4 : r ^ 19 * f ^ 5 ≤ x ^ (eps / 100) * r ^ 19 * f ^ 5 * x ^ eps := by
       have hp : 0 ≤ r ^ 19 * f ^ 5 := by positivity
       have h1 : 1 ≤ x ^ (eps / 100) * x ^ eps := one_le_mul_of_one_le_of_one_le hL' hL
@@ -201,7 +196,6 @@ theorem rankNums_rootDisc :
     exact h1
   have hYX : x ^ eps = X * X := by
     rw [hXdef, ← Real.rpow_add hx0]; ring_nf
-  have hX3 : 3 ≤ X := le_trans hM3 hXM
   have hXC : C ≤ X := le_trans hMC hXM
   have hm1 : 1 ≤ m := le_trans (Real.one_le_rpow hx1 (by norm_num)) h.m_lo
   have hm4 : x ≤ m ^ 4 := by
@@ -210,16 +204,12 @@ theorem rankNums_rootDisc :
     calc x = (x ^ ((1 : ℝ) / 4)) ^ 4 := h1.symm
       _ ≤ m ^ 4 := pow_le_pow_left₀ (Real.rpow_nonneg hx0.le _) h.m_lo 4
   have hf : x ≤ f := le_trans hm4 h.mf
-  have hf1 : 1 ≤ f := le_trans hx1 hf
   have hm0 : 0 ≤ m := by linarith
   have hm2 : 1 ≤ m ^ 2 := one_le_pow₀ hm1
-  have hm3 : 1 ≤ m ^ 3 := one_le_pow₀ hm1
-  have hm4' : 1 ≤ m ^ 4 := one_le_pow₀ hm1
   have hk : X * (m ^ 5 * f * (X * X)) ≤ k := by
     have := h.k_lo; rw [hYX] at this; exact this
   have hlrd : lrd ≤ X := h.lrd_hi
   have hlog2 : 0 ≤ Real.log 2 := Real.log_nonneg (by norm_num)
-  have hlrd0 : 0 ≤ lrd := le_trans hlog2 h.lrd_lo
   have hX0 : 0 ≤ X := by linarith
   have hXX : X ≤ X * X := by nlinarith
 

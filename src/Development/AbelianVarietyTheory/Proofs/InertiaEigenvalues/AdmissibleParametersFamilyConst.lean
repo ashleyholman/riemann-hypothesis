@@ -63,7 +63,6 @@ theorem poly_sizes_ranks_weights : ∀ (eps : ℝ) (Fm : FamP eps), (∃ x0 : �
   rw [hLx, hLe] at hN2 hM2 hK2 hTT2
   rw [hLx, hCt] at htw
   have hd : x ^ (-(eps / 8)) ≤ 1 := Real.rpow_le_one_of_one_le_of_nonpos h1x (by linarith)
-  have hd0 : 0 < x ^ (-(eps / 8)) := Real.rpow_pos_of_pos h0x _
   have hs2 : (2 : ℝ) ≤ x ^ (1 / 2 : ℝ) := by
     rw [← Real.sqrt_eq_rpow]; exact Real.le_sqrt_of_sq_le (by linarith)
   have hfn : ((Fm.D x i).R.f : ℝ) = 2 * (Fm.D x i).R.n := by unfold Ranks.f; push_cast; ring
@@ -89,7 +88,6 @@ theorem poly_sizes_ranks_weights : ∀ (eps : ℝ) (Fm : FamP eps), (∃ x0 : �
     have : x ^ ((2 : ℕ) : ℝ) ≤ x ^ (6 : ℝ) := Real.rpow_le_rpow_of_exponent_le h1x (by norm_num)
     rw [Real.rpow_natCast] at this
     nlinarith
-  have hT0 : 0 < x ^ Ct := Real.rpow_pos_of_pos h0x _
   have hbig : 3 * x * (Fm.D x i).R.t ≤ x ^ (Ct + 6) := by
     rw [add_comm, Real.rpow_add h0x]
     exact mul_le_mul h6 htw.2 (by positivity) (by positivity)
@@ -100,7 +98,6 @@ theorem poly_sizes_ranks_weights : ∀ (eps : ℝ) (Fm : FamP eps), (∃ x0 : �
     have h1 : (Fm.D x i).R.N (Fm.D x i).R.m ≤ 3 * (Fm.D x i).R.m * (Fm.D x i).R.t := by
       unfold Ranks.N
       have a1 : (Fm.D x i).R.k ≤ (Fm.D x i).R.t := by omega
-      have a2 : 1 ≤ (Fm.D x i).R.t := by omega
       nlinarith
     have h2 : ((Fm.D x i).R.N (Fm.D x i).R.m : ℝ) ≤ 3 * (Fm.D x i).R.m * (Fm.D x i).R.t := by exact_mod_cast h1
     refine h2.trans (le_trans ?_ hbig)
@@ -243,7 +240,6 @@ theorem log_levelGroup_le_and_level_large : ∀ (eps : ℝ) (Fm : FamP eps), (�
     rw [div_le_iff₀ (lt_of_lt_of_le hkpos hmin)]
     have h1 : 8 * (D.R.f : ℝ) * D.R.r ≤ 8 * (D.R.k : ℝ) * (2 * D.R.k) := by gcongr
     have h2 : (5 : ℝ) ^ 6 ≤ (D.R.k : ℝ) ^ 6 := by gcongr
-    have h3 : (D.R.k : ℝ) ^ 8 = (D.R.k : ℝ) ^ 6 * (D.R.k : ℝ) ^ 2 := by ring
     have h4 : (5 : ℝ) ^ 6 * (D.R.k : ℝ) ^ 2 ≤ (D.R.k : ℝ) ^ 6 * (D.R.k : ℝ) ^ 2 := by gcongr
     nlinarith [sq_nonneg (D.R.k : ℝ)]
 

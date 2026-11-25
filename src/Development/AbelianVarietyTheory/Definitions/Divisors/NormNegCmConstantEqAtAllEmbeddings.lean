@@ -103,7 +103,6 @@ theorem cZeroN_isLeast (D : D7) (j : ℕ) :
 theorem cZeroN_le (D : D7) (j : ℕ) : cZeroN D j ≤ 22 * D.R.f ^ 2 * D.R.r ^ 4 := by
   have hn : 0 < D.R.ord := D.R.ord_pos
   have hk := D.R.f_le_k
-  have ht := D.R.rank_add_five_le
   have hf : 1 ≤ D.R.f := by unfold Ranks.f Ranks.n; omega
   have hr : 1 ≤ D.R.r := by unfold Ranks.r; omega
   have hpq : (D.R.sigW j).1 * (D.R.sigW j).2 ≤ D.R.r ^ 2 := by

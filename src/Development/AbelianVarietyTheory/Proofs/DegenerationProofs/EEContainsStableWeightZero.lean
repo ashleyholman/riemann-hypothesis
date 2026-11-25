@@ -132,7 +132,6 @@ open FreeNear TestBasis
 theorem quadratic_nonneg {X : Type} [AddCommGroup X] (q : QuadraticMap ℤ X ℝ)
     (hq : Filter.Tendsto q Filter.cofinite Filter.atTop) (a : X) : 0 ≤ q a := by
   obtain ⟨b, hb⟩ := hq.exists_forall_le
-  have h0 : q b ≤ 0 := by simpa using hb 0
   have h2 := hb ((2 : ℤ) • b)
   rw [QuadraticMap.map_smul] at h2
   simp only [zsmul_eq_mul] at h2

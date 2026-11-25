@@ -43,10 +43,8 @@ theorem fdegH_eq_of_schurH (k r : ℕ) {H : Type} [NormedAddCommGroup H] [InnerP
     push_cast
     rw [← pow_add]
     rfl
-  have hn : (0 : ℝ) < ‖w‖ := norm_pos_iff.mpr hw
   unfold fdegH
   rw [hreal]
-  have h4 : (‖w‖ ^ 4 : ℝ) ≠ 0 := by positivity
   field_simp
 
 end GlobalTheory.SgInf

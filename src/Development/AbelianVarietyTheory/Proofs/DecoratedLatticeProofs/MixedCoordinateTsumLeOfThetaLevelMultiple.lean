@@ -216,7 +216,6 @@ theorem inv_pow_le (k N : ℕ) (hN : 0 < N) {r : ℝ} (hr : 0 ≤ r) :
     ((1 + r) ^ k)⁻¹ ≤ (N : ℝ) ^ k * ((1 + N * r) ^ k)⁻¹ := by
   have hN1 : (1 : ℝ) ≤ N := by exact_mod_cast hN
   have h1 : 0 < (1 + r) ^ k := by positivity
-  have h2 : 0 < (1 + N * r) ^ k := by positivity
   rw [← div_eq_mul_inv, inv_le_comm₀ h1 (by positivity), inv_div, div_le_iff₀ (by positivity), ← mul_pow]
   exact pow_le_pow_left₀ (by positivity) (by nlinarith) k
 

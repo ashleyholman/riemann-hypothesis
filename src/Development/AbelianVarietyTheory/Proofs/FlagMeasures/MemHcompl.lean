@@ -143,7 +143,6 @@ theorem abs_main {h : V →ₗ⋆[K] V →ₗ[K] K} (hs : h.IsSymm) {Λ : AddSub
     have sM := ustar hθ θM
     have t0 := ne0 θM
     have s0 := ne0 sM
-    have hxx := hi _ hx _ hx
     have μA : star θ * θ⁻¹ ∈ A := A.mul_mem hsθ (hinv _ hθ θM)
     have hz := hΛ _ μA y hy
     have e1 : ∀ v, h ((star θ * θ⁻¹) • y) v = θ * (star θ)⁻¹ * h y v := fun v => by
@@ -207,7 +206,6 @@ theorem main : ∀ (K V : Type) [Field K] [NumberField K] [StarRing K] [AddCommG
         obtain ⟨s, hs, r, e⟩ := (mR a).1 ha
         obtain ⟨s', hs', r', e'⟩ := (mR b).1 hb
         exact (mR _).2 ⟨s * s', nm hs hs', r * r', by rw [map_mul, map_mul, e, e']; ring⟩ }
-  have mA : ∀ a, a ∈ A ↔ a ∈ locR (K := K) P := fun _ => Iff.rfl
   let M : AddSubgroup K :=
     { carrier := {a | ∃ s, s ∉ P ∧ ∃ r ∈ P, algebraMap (𝓞 K) K r = algebraMap (𝓞 K) K s * a}
       zero_mem' := ⟨1, one, 0, P.zero_mem, by simp⟩

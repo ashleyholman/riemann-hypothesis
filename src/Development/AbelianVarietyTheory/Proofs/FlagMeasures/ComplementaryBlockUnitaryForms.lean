@@ -396,9 +396,6 @@ theorem exists_isFrame : ∀ (n n₀ a : ℕ) (j : Fin a → ℕ) (ε : Fin n �
   have hCJP : Cᴴ * (Jm ε * P) = 0 := by
     have := congrArg conjTranspose hPJC
     simpa [conjTranspose_mul, hJh, Matrix.mul_assoc] using this
-  have hAJP : A₀ᴴ * (Jm ε * P) = 0 := by
-    have := congrArg conjTranspose hPJA
-    simpa [conjTranspose_mul, hJh, Matrix.mul_assoc] using this
   have hCJC : Cᴴ * (Jm ε * C) = Jm ε₀ := by
     rw [hJC0, Matrix.mul_sub, ← Matrix.mul_assoc Cᴴ (Jm ε * P), hCJP, Matrix.zero_mul, sub_zero, hC,
       conjTranspose_sub, Matrix.sub_mul, conjTranspose_mul, conjTranspose_mul, conjTranspose_conjTranspose,
@@ -1009,7 +1006,6 @@ theorem sandwich (j : ℕ) {a : ℝ} (ha : 0 < a) (ha1 : a < 1) :
         volume (Metric.ball (0 : EuclideanSpace ℝ (Fin (2 * j ^ 2))) 1) := by
   obtain ⟨δ, hδ, H⟩ := exists_subset (eventually_good j ha ha1)
   filter_upwards [Ioo_mem_nhdsGT (mul_pos ha hδ)] with r ⟨hr, hrδ⟩
-  have h2 : (0 : ℝ) < √2 := by positivity
   have h21 : (1 : ℝ) ≤ √2 := Real.one_le_sqrt.2 (by norm_num)
   have h22 : (√2 : ℝ) ^ 2 = 2 := Real.sq_sqrt (by norm_num)
   have hr1 : r < δ := by nlinarith
@@ -1074,7 +1070,6 @@ theorem isRadial_haarLoc (j : ℕ) : IsRadial (ENNReal.ofReal (2 ^ (j ^ 2)) • 
     (fun x => Formalism.REAL.hs (Matrix.of x - 1) + Formalism.REAL.hs ((Matrix.of x)⁻¹ - 1)) (2 * j ^ 2) := by
   unfold IsRadial
   set ω := volume (Metric.ball (0 : EuclideanSpace ℝ (Fin (2 * j ^ 2))) 1) with hω
-  have hωt : ω ≠ ⊤ := measure_ball_lt_top.ne
   have hc : Filter.Tendsto (fun a : ℝ => ENNReal.ofReal (a ^ (2 * j ^ 2 + 1)) * ω) (nhds 1) (nhds ω) := by
     have : Filter.Tendsto (fun a : ℝ => ENNReal.ofReal (a ^ (2 * j ^ 2 + 1))) (nhds 1) (nhds 1) := by
       simpa using ENNReal.tendsto_ofReal ((continuous_pow (2 * j ^ 2 + 1)).tendsto (1 : ℝ))

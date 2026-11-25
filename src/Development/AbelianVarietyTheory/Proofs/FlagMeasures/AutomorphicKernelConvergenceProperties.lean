@@ -38,7 +38,6 @@ theorem decE_dOp_le_exp_floor {n : ℕ} (ε : Fin n → Bool) (h : ℝ) (hn : 1 
   ·
     have hz : d = 0 := by
       have h1 : dHS (uMat g) ≤ 0 := by simpa [h0] using hge
-      have h2 : Real.sqrt 2 * d ≤ 0 := hle.trans h1
       have h3 : d ≤ 0 := by
         by_contra hc
         have : 0 < Real.sqrt 2 * d := mul_pos (by positivity) (lt_of_not_ge hc)
@@ -203,7 +202,6 @@ theorem continuous_kern_phe : ∀ (B : RowsAut) (d : InfinitePlace B.I.F → ℝ
       have hDz : D γ v ≤ dOp (uMat (a.1 v)) + dOp (uMat (w.1 v)) + dOp (uMat (b.1 v)) := by
         simp only [hD, hzv]
         linarith
-      have hwnn : 0 ≤ dOp (uMat (w.1 v)) := ((hC v).2.1 (w.1 v) (w.1 v) hn).1
       have hfz : ((⌊D γ v⌋₊ : ℕ) : ℝ) ≤ D γ v := Nat.floor_le (hDnn γ v)
       have hfw : dOp (uMat (w.1 v)) < (⌊dOp (uMat (w.1 v))⌋₊ : ℝ) + 1 := Nat.lt_floor_add_one _
       have hav := hax v

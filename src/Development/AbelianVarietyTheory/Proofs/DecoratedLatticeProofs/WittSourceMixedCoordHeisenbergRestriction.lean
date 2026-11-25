@@ -77,7 +77,6 @@ theorem mem_NI_hyp {S S₀ : HSp D} {ρ : ℕ} (d : HypDec S S₀ ρ) (g : GA D 
     (h2 : d.pY ⬝ mt S g = d.pY) (B : Mx D ρ S₀.rank) (h3 : mt S g ⬝ d.j0 = d.j0 + d.jX ⬝ B) : g ∈ NI S d.e := by
   apply Subgroup.subset_closure
   have hm1 : (mt S g - 1) ⬝ d.jX = 0 := by rw [Matrix.sub_mul, h1, Matrix.one_mul, sub_self]
-  have hm0 : (mt S g - 1) ⬝ d.j0 = d.jX ⬝ B := by rw [Matrix.sub_mul, h3, Matrix.one_mul, add_sub_cancel_left]
   refine ⟨hm1, ?_, ?_⟩
   · rw [cT_sig]
     change d.pY ⬝ (mt S g - 1) = 0

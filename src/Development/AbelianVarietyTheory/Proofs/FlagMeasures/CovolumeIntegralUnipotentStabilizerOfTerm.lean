@@ -1135,7 +1135,6 @@ theorem num (b rd ρ d P S NI : ℝ) (N f r c n : ℕ) (hb : 2 ≤ b) (hN : N = 
         (N.factorial : ℝ) ^ (2 * f)) ^ (N ^ 2) * rd ^ (2 * f * N ^ 3) ≤
       ((b ^ (n * (2 * N) ^ 2 * f)) ^ (n * (2 * N)) * S ^ 4) ^ (n * r ^ 2) := by
   have hb1 : 1 ≤ b := by linarith
-  have hS0 : 0 ≤ S := by linarith
   have h1 : (N : ℝ) ≤ b ^ N := by
     calc (N : ℝ) ≤ 2 ^ N := by exact_mod_cast N.lt_two_pow_self.le
       _ ≤ b ^ N := by gcongr
@@ -1158,7 +1157,6 @@ theorem num (b rd ρ d P S NI : ℝ) (N f r c n : ℕ) (hb : 2 ≤ b) (hN : N = 
       have a1 : N ≤ N ^ 3 := Nat.le_self_pow (by norm_num) _
       have a2 : N ^ 2 ≤ N ^ 3 := Nat.pow_le_pow_right hN1 (by norm_num)
       have a3 : 1 ≤ r ^ 2 := Nat.one_le_pow _ _ hr
-      have hn' : 20 ≤ n := by omega
       refine mul_le_mul (pow_le_pow_right₀ hb1 ?_) (pow_le_pow_right₀ hS ?_) (by positivity) (by positivity)
       · calc _ ≤ 4 * r ^ 2 * f * (3 * N ^ 3 + (14 + 16 * n) * N ^ 3 + 26 * N ^ 3 + (36 + 72 * n) * N ^ 3) +
               2 * (r ^ 2 * f) * N ^ 3 := by
@@ -1303,8 +1301,6 @@ theorem PiZ_le (D : D7) (b : ℝ) (n : ℕ) (hb : 1 ≤ b) (hrd : D.host.rdE ≤
     (pow_le_pow_left₀ (by linarith) hrd _).trans
       (pow_le_pow_right₀ hb (Nat.mul_le_mul_left _ (frameExp_le _ _ hl')))
   rw [e2, add_mul, pow_add]
-  have h4 : 0 < D.host.rdE ^ (2 * frameExp D.R.rS (l + 1)) := by positivity
-  have h5 : 0 < b ^ (4 * n * (D.R.rS + 1) ^ 2) := by positivity
   calc _ = D.host.rdE ^ (2 * frameExp D.R.rS (l + 1)) * b ^ (4 * n * (D.R.rS + 1) ^ 2) *
         (‖embS D v (leadMinorE Z (l + 1))‖ * (D.host.rdE ^ (2 * frameExp D.R.rS (l + 1)))⁻¹ /
           b ^ (4 * n * (D.R.rS + 1) ^ 2)) := by field_simp
@@ -1325,7 +1321,6 @@ theorem ideal_bound (D : D7) {T T' : ℕ} (F : LFlag (D.sp.Y 0) D.R.rS (T : D.ho
   have h2 : ∀ v, ‖embS D v (Dr F F')‖ ≤ Q v := fun v => by
     have := hq v (D.R.rS - 1) (by omega)
     rwa [Nat.sub_add_cancel hr] at this
-  have hY0 : 0 ≤ Y := le_trans (by positivity) hY
   have h3 : ∀ v, ‖embS D v (Gval F F')‖ ≤ Y * Q v ^ 2 := fun v => by
     have e : Gval F F' = Dr1 F F' * star (Dr1 F F') - (T : D.host.E) * T' * (Dr F F' * star (Dr F F')) := rfl
     rw [e, map_sub]
@@ -1333,7 +1328,6 @@ theorem ideal_bound (D : D7) {T T' : ℕ} (F : LFlag (D.sp.Y 0) D.R.rS (T : D.ho
     simp only [map_mul, hs, norm_mul, map_natCast, Complex.norm_natCast, RCLike.norm_conj]
     have a1 := h1 v
     have a2 := h2 v
-    have a0 : 0 ≤ Q v := (norm_nonneg _).trans a1
     calc _ ≤ Q v * Q v + (T : ℝ) * T' * (Q v * Q v) := by gcongr
       _ = (1 + (T : ℝ) * T') * Q v ^ 2 := by ring
       _ ≤ _ := by gcongr

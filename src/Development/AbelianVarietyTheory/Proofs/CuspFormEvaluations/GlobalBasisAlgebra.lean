@@ -35,7 +35,6 @@ theorem global_basis_algebra {E : Type} [Field E] [NumberField E] {K S M : Type}
   let b : Module.Basis J ℤ (𝓞 E) := (RingOfIntegers.basis E).reindex (Fintype.equivOfCardEq hcardI)
   let κ : K →+* S := algebraMap K S
   let χ' : J → (𝓞 E →+* K) := fun σ => (χ σ).comp (algebraMap (𝓞 E) E)
-  have hχ' : ∀ σ (y : 𝓞 E), χ' σ y = χ σ (y : E) := fun σ y => rfl
   let A : Matrix J J K := fun σ j => χ' σ (b j)
 
   have hA : IsUnit A.det := by

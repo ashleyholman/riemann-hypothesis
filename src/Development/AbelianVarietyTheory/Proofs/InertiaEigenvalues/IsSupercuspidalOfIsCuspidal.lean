@@ -158,7 +158,6 @@ theorem eventually_vanish {N : ℕ} {ϖ : kˣ} (hϖ : valuation k (ϖ : k) = uni
   refine hM0 ν fun i j hi hj => ?_
   have h1 : ν ⟨r - 1, by omega⟩ ≤ ν i := hν (Fin.mk_le_mk.2 (by omega))
   have h2 : ν j ≤ ν ⟨r, hrN⟩ := hν (Fin.mk_le_mk.2 (by omega))
-  have h3 : (M0 : ℤ) ≤ M := by exact_mod_cast hM
   omega
 
 theorem gap_sum {N : ℕ} (M : ℕ) (ν : Fin N → ℤ)

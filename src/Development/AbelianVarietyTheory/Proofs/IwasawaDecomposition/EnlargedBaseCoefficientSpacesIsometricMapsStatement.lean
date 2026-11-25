@@ -301,7 +301,6 @@ theorem coef_iso : ∀ (D : D7) (V : HSp D) (n : ℕ), V.rank = n → V.gram = 1
     funext τ
     simp [GlobalTheory.CoefSpace.gramOf]
   let S : c.W →ₗ[ℂ] GlobalTheory.CoefSpace.HV lam (fun _ => (1 : GL (Fin V.rank) ℂ)) := e0.symm.toLinearMap
-  have hS : ∀ w, S w = e0.symm w := fun _ => rfl
   let T : Module.End ℂ c.W := (LinearMap.adjoint S).comp S
   have hT : ∀ w w', inner ℂ w (T w') = pairK lam (fun _ => 1) (e0.symm w) (e0.symm w') := by
     intro w w'

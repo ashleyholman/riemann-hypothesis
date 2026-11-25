@@ -222,7 +222,6 @@ lemma bounded [IsDomain O] [IsDiscreteValuationRing O] [IsModuleTopology ℚ_[l]
         exact hj
       · show c ≤ ‖e _‖
         rw [hnorm]
-        have h1 : 1 < c ^ (j - 1) * N := not_le.1 hjm
         have h2 : c ^ j * N = c * (c ^ (j - 1) * N) := by
           rw [← mul_assoc, ← pow_succ', Nat.sub_add_cancel (Nat.pos_of_ne_zero hj0)]
         rw [h2]

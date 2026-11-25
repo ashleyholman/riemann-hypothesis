@@ -129,7 +129,6 @@ theorem zeros_band : ∃ C : ℝ, 0 < C ∧ ∀ (N : ℕ) [NeZero N] (χ : Diric
   intro N _ χ hχ u T T' hT hu hT1 hT2
   obtain ⟨hfinite, hbound⟩ := hsharp N χ hχ u T T' (by linarith) (by linarith) hT1 hT2
   refine ⟨hfinite, ?_⟩
-  have hT0 : 0 < T := by linarith
   have hN : (1 : ℝ) ≤ N := by exact_mod_cast Nat.one_le_iff_ne_zero.2 (NeZero.ne N)
   have huT : T + 2 ≤ u * T := by nlinarith
   have hx : (N : ℝ) * (T + 2) ≤ N * u * T := by

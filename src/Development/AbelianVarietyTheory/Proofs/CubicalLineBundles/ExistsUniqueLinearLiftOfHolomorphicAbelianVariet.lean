@@ -32,10 +32,6 @@ theorem tendsto_map_nhds_of_separating [CompleteSpace V] [ProperSpace W] {ex : W
   let T : Set V := {z | ∃ w ∈ closedBall (0 : W) (2 * r), ex w = G z}
   have hKS : closedBall (0 : W) (2 * r) ⊆ ex ⁻¹' S := fun w hw ↦
     (hRN (closedBall_subset_closedBall (by linarith) hw)).2
-  have hTS : T ⊆ G ⁻¹' S := by
-    rintro z ⟨w, hw, h⟩
-    rw [mem_preimage, ← h]
-    exact hKS hw
   have hcl : closure T ∩ G ⁻¹' S ⊆ T := by
     rintro z ⟨hz, hzS⟩
     obtain ⟨x, hx, hxz⟩ := mem_closure_iff_seq_limit.1 hz

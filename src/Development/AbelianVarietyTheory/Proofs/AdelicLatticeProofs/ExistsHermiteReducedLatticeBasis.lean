@@ -519,7 +519,6 @@ theorem le_of_swap {N : ℕ} (k : Matrix (Fin N) (Fin N) ℝ) (a : Fin N → ℝ
     by_contra hc
     have hc' := not_lt.mp hc
     nlinarith [mul_le_mul_of_nonneg_left hc' hP.le]
-  have hap := ha p
   have haq := ha q
   by_contra hc
   have hc' := not_le.mp hc

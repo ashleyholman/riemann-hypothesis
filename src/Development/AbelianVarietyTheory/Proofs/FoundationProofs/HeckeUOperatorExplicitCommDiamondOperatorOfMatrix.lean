@@ -42,7 +42,6 @@ theorem key {N l q : ℕ} {k : ℤ} (f : ModularForm (GlobalTheory.Hk.lev N l) k
   have hdetZ : ρ 0 0 * ρ 1 1 - ρ 0 1 * ρ 1 0 = 1 := by
     have := ρ.det_coe; rwa [Matrix.det_fin_two] at this
   have hqC : (q : ℂ) ≠ 0 := by exact_mod_cast hq.ne'
-  have hqR : (0 : ℝ) < q := by exact_mod_cast hq
   set γ : SL(2, ℤ) := ⟨gam (ρ 0 0) (ρ 0 1) (ρ 1 0) (ρ 1 1) j j' q Y,
     det_gam _ _ _ _ _ _ _ _ hdetZ hY⟩ with hγdef
   have hdiv : ((N * l : ℕ) : ℤ) ∣ ρ 1 0 := (ZMod.intCast_zmod_eq_zero_iff_dvd _ _).mp hcN
@@ -87,8 +86,6 @@ theorem key {N l q : ℕ} {k : ℤ} (f : ModularForm (GlobalTheory.Hk.lev N l) k
   have hYC : ((ρ 0 1 : ℤ) : ℂ) = ((ρ 0 0 : ℤ) : ℂ) * (j : ℂ) + (j : ℂ) * (j' : ℂ) * ((ρ 1 0 : ℤ) : ℂ)
       - (j' : ℂ) * ((ρ 1 1 : ℤ) : ℂ) - (q : ℂ) * (Y : ℂ) := by exact_mod_cast hY
   obtain ⟨hA, hB⟩ := alg _ _ _ _ (Y : ℂ) (τ : ℂ) (w : ℂ) (z : ℂ) (j : ℂ) (j' : ℂ) (q : ℂ) hqC hdetC hYC hwq hzq
-  have hγ10 : ((γ 1 0 : ℤ) : ℂ) * z + ((γ 1 1 : ℤ) : ℂ) ≠ 0 := by
-    have := denom_ne_zero γ z; rwa [ModularGroup.denom_apply] at this
   have hsm : ρ • w = γ • z := by
     apply UpperHalfPlane.ext
     rw [coe_specialLinearGroup_apply, coe_specialLinearGroup_apply]

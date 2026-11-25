@@ -214,7 +214,6 @@ theorem main : ∀ (K V : Type) [Field K] [NumberField K] [StarRing K] [AddCommG
   obtain ⟨hNF, hL, hC, -, hWn, hUp, -, -, -, -, -, hPi⟩ := _root_.GlobalTheory.DegCnt.NF.geometry K V H hK r N
   obtain ⟨-, -, -, -, -, hI, hI', hs, hs'⟩ := hNF
   have hU : IsUnimod H Λ := hT.1.1
-  have hΛ := (isLatMod_top_bot_iff Λ).1 hU.1
   have hzW : N.F.z ∈ N.Wn := by
     rw [hWn]; exact Submodule.mem_sup_right (Submodule.subset_span rfl)
   have hWU : N.Wn ≤ uPerp N.F N.F' := by rw [hUp]; exact le_sup_left

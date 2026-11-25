@@ -666,7 +666,6 @@ theorem GlobalTheory.LimVec.invertible_basis : ∀ (l : ℕ) [Fact l.Prime] (K :
   set π := Ideal.Quotient.mk (Ideal.span {((l : ℕ) : WCb l)}) with hπ
   have hdvd : ∀ x : WCb l, ((l : ℕ) : WCb l) ∣ x ↔ π x = 0 := fun x => by
     rw [hπ, Ideal.Quotient.eq_zero_iff_mem, Ideal.mem_span_singleton]
-  have πl : π ((l : ℕ) : WCb l) = 0 := (hdvd _).1 dvd_rfl
   have hdvd' : ∀ x y : WCb l, ((l : ℕ) : WCb l) ∣ x - y → π x = π y := fun x y h => by
     rw [← sub_eq_zero, ← map_sub]; exact (hdvd _).1 h
   obtain ⟨m, hm1, hm⟩ := h2 1

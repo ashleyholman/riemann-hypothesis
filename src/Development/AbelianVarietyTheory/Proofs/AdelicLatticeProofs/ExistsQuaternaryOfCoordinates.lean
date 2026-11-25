@@ -25,9 +25,6 @@ variable {k : Type*} [Field k]
 theorem exists_norm_of_quaternary [CharZero k] {α β γ s : k} (hα : α ≠ 0) (hβ : β ≠ 0) (hγ : γ ≠ 0)
     (hs : s ^ 2 = α * β * γ) {x y z t : k} (h0 : x ≠ 0 ∨ y ≠ 0 ∨ z ≠ 0 ∨ t ≠ 0)
     (h : x ^ 2 - α * y ^ 2 - β * z ^ 2 + γ * t ^ 2 = 0) : ∃ X Y : k, β = X ^ 2 - α * Y ^ 2 := by
-  have hs0 : s ≠ 0 := by
-    rintro rfl
-    exact mul_ne_zero (mul_ne_zero hα hβ) hγ (by simpa using hs.symm)
   obtain ⟨u, hu⟩ : ∃ u, u = t * s / (α * β) := ⟨_, rfl⟩
   have hu2 : α * β * u ^ 2 = γ * t ^ 2 := by
     rw [hu, div_pow, mul_pow, hs]; field_simp

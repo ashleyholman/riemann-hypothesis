@@ -134,7 +134,6 @@ theorem lseries_cusp_entire : ∀ (k L N : ℕ) (ε : DirichletCharacter ℂ N) 
   have hconn : IsPreconnected U := (convex_halfSpace_re_gt _).isPreconnected
   set z₀ : ℂ := (((k : ℝ) + 2 : ℝ) : ℂ) with hz₀
   have hz₀re : z₀.re = (k : ℝ) + 2 := by rw [hz₀, Complex.ofReal_re]
-  have hk' : (0 : ℝ) ≤ k := Nat.cast_nonneg k
   have hz₀U : z₀ ∈ U := by simp only [hU, Set.mem_setOf_eq, hz₀re]; linarith
   have hev : LSeries g =ᶠ[𝓝 z₀] ModularForm.L hk0 f := by
     have hopen : IsOpen {c : ℂ | (k : ℝ) / 2 + 1 < c.re} := isOpen_lt continuous_const Complex.continuous_re
@@ -204,7 +203,6 @@ theorem norm_sq_mul_im_pow_smul {k L N : ℕ} (ε : DirichletCharacter ℂ N) (h
   have hD : ((γ 1 0 : ℤ) : ℂ) * (τ : ℂ) + ((γ 1 1 : ℤ) : ℂ) ≠ 0 := by
     rw [← ModularGroup.denom_apply]
     exact UpperHalfPlane.denom_ne_zero _ _
-  have hpos : 0 < ‖((γ 1 0 : ℤ) : ℂ) * (τ : ℂ) + ((γ 1 1 : ℤ) : ℂ)‖ := norm_pos_iff.mpr hD
   rw [hf γ hγ τ, ModularGroup.im_smul_eq_div_normSq, ModularGroup.denom_apply, norm_mul, norm_mul,
     norm_ch_eq_one ε hNL γ hγ, one_mul, norm_pow, div_pow, Complex.normSq_eq_norm_sq]
   field_simp
@@ -419,7 +417,6 @@ theorem locineq : ∀ (x y : ℂ) (T : ℝ), 0 ≤ T → T < 1 → ‖x‖ ^ 2 *
   have hxy : ‖x‖ * ‖y‖ * T < 1 := by
     nlinarith [mul_nonneg (sq_nonneg (‖x‖ - ‖y‖)) hT0]
   let z : Fin 3 → ℂ := ![1, x, y]
-  have hnT : ‖(T : ℂ)‖ = T := by rw [Complex.norm_real, Real.norm_of_nonneg hT0]
   have h : ∀ i j, ‖z i * conj (z j) * T‖ < 1 := by
     intro i j
     fin_cases i <;> fin_cases j <;>
@@ -484,7 +481,6 @@ theorem bound (x y z : ℂ) (c : ℕ → ℂ) (h0 : c 0 = 1)
     set ρ := max ‖x * z‖ ‖y * z‖
     have hx : ‖x * z‖ ≤ ρ := le_max_left _ _
     have hy : ‖y * z‖ ≤ ρ := le_max_right _ _
-    have hρ : 0 ≤ ρ := le_trans (norm_nonneg _) hx
     calc ‖(y * z) * (c n * z ^ n) + (x * z) ^ (n + 1)‖
         ≤ ‖y * z‖ * ‖c n * z ^ n‖ + ‖x * z‖ ^ (n + 1) := by
           refine (norm_add_le _ _).trans ?_
@@ -858,7 +854,6 @@ theorem prod_Ico_inv_one_sub_inv_sq (M : ℕ) :
   | succ k ih =>
     rw [show k + 1 + 2 = (k + 2) + 1 by ring, Finset.prod_Ico_succ_top (by omega), ih]
     push_cast
-    have h1 : (0:ℝ) < (k:ℝ) + 1 := by positivity
     have h3 : (1 - 1 / ((k:ℝ) + 2) ^ 2) = ((k:ℝ)+1)*((k:ℝ)+3) / ((k:ℝ)+2)^2 := by
       field_simp; ring
     rw [h3]
@@ -901,7 +896,6 @@ theorem prod_primesBelow_zeta_two_add_le_two :
         apply Finset.prod_le_prod₀
         · intro p hp
           have := one_le_inv_one_sub_inv_sq (hmem p hp)
-          have h2 := factor_le s hs (hmem p hp)
 
           have hp' : (2:ℝ) ≤ p := by exact_mod_cast hmem p hp
           have hle : (p:ℝ) ^ (2:ℝ) ≤ (p:ℝ) ^ (2 * (1 + s)) :=
@@ -1021,8 +1015,6 @@ theorem global_positivity_ineq : ∀ (M : ℕ) (b ω : ℕ → ℂ) (s C : ℝ),
       rw [tsum_eq_single 0]
       · simp [hb1]
       · intro e he; simp [hz e he]
-  have hRp0 : ∀ p, 0 ≤ Rp p := fun p => tsum_nonneg (fun e => by positivity)
-  have hα0 : ∀ p : ℕ, p.Prime → 0 ≤ α p := fun p hp => le_trans zero_le_one (hα1 p hp)
   have hβ0 : ∀ p : ℕ, p.Prime → 0 ≤ β p := fun p hp => le_trans zero_le_one (hβ1 p hp)
 
   have hloc : ∀ p : ℕ, p.Prime → Real.exp (A p) ≤ α p * ‖Lp p‖ ^ 2 * Rp p * β p := by
@@ -1053,8 +1045,6 @@ theorem global_positivity_ineq : ∀ (M : ℕ) (b ω : ℕ → ℂ) (s C : ℝ),
           have a1 := _root_.GlobalTheory.prod_primesBelow_inv_one_sub_one_div_rpow_le s hs N
           have a2 := _root_.GlobalTheory.prod_primesBelow_zeta_two_add_le_two s hs.le N
           have a3 := prod_primesBelow_sq_le_tsum b s hb1 hmul hsum N
-          have p1 : 0 ≤ ∏ p ∈ N.primesBelow, α p := Finset.prod_nonneg (fun p hp => hα0 p (Nat.prime_of_mem_primesBelow hp))
-          have p2 : 0 ≤ ∏ p ∈ N.primesBelow, Rp p := Finset.prod_nonneg (fun p _ => hRp0 p)
           have p3 : 0 ≤ ∏ p ∈ N.primesBelow, β p := Finset.prod_nonneg (fun p hp => hβ0 p (Nat.prime_of_mem_primesBelow hp))
           gcongr
       _ = 2 * (1 + 1 / s) * ‖∏ p ∈ N.primesBelow, Lp p‖ ^ 2 * Ssum := by ring
@@ -1190,10 +1180,6 @@ theorem lseries_ne_zero_edge : ∀ (M : ℕ) (b ω : ℕ → ℂ) (C : ℝ) (Λ 
       rw [this, Complex.norm_real, Real.norm_eq_abs, abs_of_pos h2] at h1
       exact h1
 
-    have hC0 : 0 ≤ C := by
-      have := hsC 1 one_pos le_rfl
-      refine le_trans ?_ this
-      exact mul_nonneg zero_le_one (tsum_nonneg fun n => div_nonneg (sq_nonneg _) (Real.rpow_nonneg (Nat.cast_nonneg _) _))
     set B : ℝ := 4 * c ^ 2 * C with hB
     let T : ℕ → Finset ℕ := fun X => (Finset.range X).filter (fun p => p.Prime ∧ (p : ZMod M) = -1)
 
@@ -1201,7 +1187,6 @@ theorem lseries_ne_zero_edge : ∀ (M : ℕ) (b ω : ℕ → ℂ) (C : ℝ) (Λ 
         ∑ p ∈ T X, (1 : ℝ) / (p : ℝ) ^ (1 + s) ≤ B := by
       intro X s hs hs1 hΛ
       set S := ∑' n : ℕ, ‖b n‖ ^ 2 / (n : ℝ) ^ (1 + s) with hS
-      have hS0 : 0 ≤ S := tsum_nonneg fun n => div_nonneg (sq_nonneg _) (Real.rpow_nonneg (Nat.cast_nonneg _) _)
       have g := G s hs X
       rw [hL s hs] at g
       set F := (Finset.range X).filter (fun p => p.Prime ∧ ¬ p ∣ M)

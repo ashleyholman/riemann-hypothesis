@@ -68,9 +68,6 @@ def latticeJ (L : PeriodPair) : ℂ := 1728 * L.g₂ ^ 3 / (L.g₂ ^ 3 - 27 * L.
 
 theorem latticeJ_eq_of_isHomothetic {L L' : PeriodPair} {c : ℂ} (h : IsHomothetic c L L') :
     latticeJ L' = latticeJ L := by
-  have hc : c ≠ 0 := by
-    rintro rfl
-    exact L.ω₁_div_two_notMem_lattice ((h _).1 (by simp))
   have hd := g₂_cube_sub_g₃_sq_ne_zero L
   have hd' := g₂_cube_sub_g₃_sq_ne_zero L'
   unfold latticeJ

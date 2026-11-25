@@ -150,7 +150,6 @@ theorem isPullback_square (C : Core) (φ₂ : (C.A ⊗ C.A).left ⟶ (C.GG ⊗ C
   have w₁ : (fst C.GG C.GG).left ≫ C.GG.hom = (C.GG ⊗ C.GG).hom := Over.w _
   have w₂ : (snd C.GG C.GG).left ≫ C.GG.hom = (C.GG ⊗ C.GG).hom := Over.w _
   have v₁ : (fst C.A C.A).left ≫ C.A.hom = (C.A ⊗ C.A).hom := Over.w _
-  have v₂ : (snd C.A C.A).left ≫ C.A.hom = (C.A ⊗ C.A).hom := Over.w _
   have h₁ := h.1
   have h₂ := h.2
   refine ⟨⟨by rw [← w₁, reassoc_of% h₁, hA.w, reassoc_of% v₁]⟩, ⟨PullbackCone.IsLimit.mk _

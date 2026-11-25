@@ -58,7 +58,6 @@ theorem UpperTheory.sum_log_primeFactors_mul_two_add_logb_le :
       (∑ p ∈ Q.primeFactors, Real.log (p : ℝ)) * (2 + Real.logb 2 Q) ≤ 11 * y ^ 4 := by
   intro Q y hQ hy hlog
   have hQ1 : (1 : ℝ) ≤ Q := by exact_mod_cast Nat.one_le_iff_ne_zero.mpr hQ
-  have hl0 : 0 ≤ Real.log Q := Real.log_nonneg hQ1
   have hpos : ∀ p ∈ Q.primeFactors, (0 : ℝ) < p := fun p hp => by
     exact_mod_cast (Nat.prime_of_mem_primeFactors hp).pos
   have h1 : (∑ p ∈ Q.primeFactors, Real.log (p : ℝ)) ≤ y := by

@@ -225,7 +225,6 @@ theorem mem_block {c x : ℚ} {t : ℕ} : x ∈ TPar.block c t ↔ ∃ a : ℕ, 
 theorem abs_sub_le_of_mem_block {c x : ℚ} {t : ℕ} (h : x ∈ TPar.block c t) : |x - c| ≤ ((t : ℚ) - 1) / 2 := by
   obtain ⟨a, ha, rfl⟩ := mem_block.1 h
   have h1 : (a : ℚ) + 1 ≤ t := by exact_mod_cast ha
-  have h0 : (0 : ℚ) ≤ a := by positivity
   rw [abs_le]; constructor <;> linarith
 
 theorem neg_mem_block {c x : ℚ} {t : ℕ} : -x ∈ TPar.block (-c) t ↔ x ∈ TPar.block c t := by

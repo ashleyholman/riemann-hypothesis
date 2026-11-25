@@ -980,9 +980,6 @@ theorem exists_chart_ring {G Z H : Scheme.{0}} (f : G ⟶ Z) {R S K : Type} [Com
     infer_instance
   let iL : K →+* T := Algebra.TensorProduct.includeLeftRingHom
   let iR : S →+* T := (Algebra.TensorProduct.includeRight (R := R) (A := K) (B := S) : S →+* T)
-  have hj1 : j ≫ pullback.fst f ζ = spMap iR ≫ iW := by
-    simp only [j, Category.assoc, pullback.lift_fst]
-    rw [pullbackSymmetry_hom_comp_fst_assoc, pullbackSpecIso_inv_snd_assoc]
   have hj2 : j ≫ pullback.snd f ζ = spMap iL := by
     simp only [j, Category.assoc, pullback.lift_snd, Category.comp_id]
     rw [pullbackSymmetry_hom_comp_snd, pullbackSpecIso_inv_fst]

@@ -340,7 +340,6 @@ theorem kappa_model : ∀ (D : D7) (k : Type) [Field k] [ValuativeRel k] [Topolo
       map_add' := fun Φ Ψ => Subtype.ext (finv_add ψk hcont ν C Φ.2 Ψ.2)
       map_smul' := fun a Φ => Subtype.ext (finv_smul ψk ν C a Φ.1) }
   let TL : SB (Matrix Unit n k) →ₗ[ℂ] (WO S L'' → ℂ) := (LinearMap.funLeft ℂ ℂ κ) ∘ₗ TLS ∘ₗ H
-  have hTL : ∀ Φ w, TL Φ w = TLS (H Φ) (κ w) := fun _ _ => rfl
   obtain ⟨-, -, -, hpsi, -⟩ := GlobalTheory.LocSympl.halves_at_split D k p n Unit L S FL FS ψ ψk hk
   have hhalf : ∀ x, IsHalf (cA D p.e) (κ (p.up FS FL'' x)) := fun x =>
     (_root_.GlobalTheory.KappaHalf.ofAdj_rat_mul_half D L S L'' τ p.e _).2 (Witness.up_half p FS FL'' x)

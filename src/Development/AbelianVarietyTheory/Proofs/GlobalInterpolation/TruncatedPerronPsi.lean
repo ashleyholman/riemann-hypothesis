@@ -67,7 +67,6 @@ private lemma hasDerivAt_half_log_sub_I_mul_arctan_eq_inv {s : ℝ} (hs : s ≠ 
   have h2 : HasDerivAt (fun x : ℝ => Real.arctan (x / s)) (s / (x ^ 2 + s ^ 2)) x :=
     h2b.congr_deriv (by field_simp; ring)
   refine (h1.ofReal_comp.sub (h2.ofReal_comp.const_mul I)).congr_deriv ?_
-  have hz : (x : ℂ) + s * I ≠ 0 := ne_zero_of_im hs
   have hc : (x : ℂ) ^ 2 + (s : ℂ) ^ 2 ≠ 0 := by exact_mod_cast hpos.ne'
   symm
   apply inv_eq_of_mul_eq_one_right
@@ -306,7 +305,6 @@ lemma near (L : ℝ) {c T : ℝ} (hc : 0 < c) (hT : 0 < T) :
   have hpt : ∀ t : ℝ, cexp (L * ((c : ℂ) + t * I)) / ((c : ℂ) + t * I)
       = (Real.exp (L * c) : ℂ) * (g t + ((c : ℂ) + t * I)⁻¹) := by
     intro t
-    have hz : (c : ℂ) + t * I ≠ 0 := ne_zero_of_re hc0
     have he : cexp (L * ((c : ℂ) + t * I)) =
         (Real.exp (L * c) : ℂ) * cexp (I * ((L * t : ℝ) : ℂ)) := by
       rw [Complex.ofReal_exp, ← Complex.exp_add]
@@ -636,7 +634,6 @@ lemma far_term {u T C E : ℝ} {n : ℕ} (hu : 2 ≤ u) (hT : 0 < T) (hn : 0 < n
   set L := Real.log u with hLdef
   have hL0 : 0 < L := by linarith
   set a := 1 / (2 * L) with ha
-  have hlogn : 0 ≤ Real.log n := Real.log_nonneg (by exact_mod_cast hn)
   have habs : 1 / 2 ≤ |Real.log (u / n)| := by
     rcases hf with hf | hf
     · have h2 : 2 ≤ u / n := by rw [le_div_iff₀ hn0]; linarith
@@ -691,7 +688,6 @@ lemma near_term {u T C E : ℝ} {n : ℕ} (hu : 2 ≤ u) (hT : 0 < T) (hC : 0 �
   have hB0 : 0 ≤ B := div_nonneg (by linarith) hT.le
   have hn1 : (1 : ℝ) < n := by linarith
   have hn0 : (0 : ℝ) < n := by linarith
-  have hlogn0 : 0 ≤ Real.log n := Real.log_nonneg hn1.le
   have hlog2 : Real.log 2 ≤ L := Real.log_le_log (by norm_num) hu
   have hlogn : Real.log n ≤ 2 * L := by
     have h2 : Real.log n ≤ Real.log (2 * u) := Real.log_le_log hn0 hf2.le

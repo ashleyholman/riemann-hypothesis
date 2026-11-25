@@ -60,7 +60,6 @@ private theorem exists_pos_int_combination_eq_zero_near_of_linearIndependent {g 
     rw [hδ]; field_simp
   have hxlt : ‖x‖ < 1 := by
     have hb := hbound x
-    have hr : (0 : ℝ) ≤ r := Nat.cast_nonneg r
     have hxn := norm_nonneg x
     have hδ0 : 0 < δ := by positivity
     have : ‖x‖ < k * δ + k * δ * r * ‖x‖ := by

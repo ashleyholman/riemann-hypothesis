@@ -159,12 +159,10 @@ theorem locTop_invQ (hm : R.m = m2 + 2) (hc : cst.Ok) {P : rowSG Pr sel mu} (hP 
     (c : TopDepth R cst.M) {κ : GLint X.E (R.N R.m) P.1} (hκ : κ ∈ prinCong _ P.1 c.1)
     (y : HomE X.E (R.N (m2 + 1)) (R.N R.m)) {y' : Sp X.E (R.N (m2 + 1))} (hy' : ∀ i, IntAt P.1 ((qOf P.1 : X.E) ^ cst.M * y' i)) :
     locTop Ch sel mu cst m2 P (κ.1.toLinearMap ∘ₗ y) y' = locTop Ch sel mu cst m2 P y y' := by
-  have hq : ((qOf P.1 : ℕ) : X.E) ≠ 0 := qOf_ne_zero
   have hqI : IntAt P.1 (qOf P.1 : X.E) := intAt_nat _
   have hc2 := c.2
   have hmax : 2 * R.m + 2 * cst.M ≤ c.1 := le_trans (le_max_right _ _) hc2
   obtain ⟨e, he⟩ : ∃ e, c.1 = 2 * cst.M + e := ⟨c.1 - 2 * cst.M, by omega⟩
-  have he1 : 1 ≤ e := by omega
   have hκ' : κ ∈ prinCong _ P.1 (2 * cst.M + e) := he ▸ hκ
   have hκi : κ⁻¹ ∈ prinCong _ P.1 (2 * cst.M + e) := inv_mem hκ'
   by_cases hS : SuppQ P.1 cst.M y
@@ -213,7 +211,6 @@ theorem locTop_invQ (hm : R.m = m2 + 2) (hc : cst.Ok) {P : rowSG Pr sel mu} (hP 
         simp only [epsSg]; push_cast; exact intAt_neg intAt_one
       have hBI : IntAt P.1 (∑ j, ((qOf P.1 : X.E) ^ cst.M * y' j) * ((qOf P.1 : X.E) ^ e * z j (Br.iL (N_m_succ R)))) :=
         intAt_sum _ fun j _ => (hy' j).mul ((intAt_pow hqI _).mul (hz _ _))
-      have hD' := hD
       have hAD : IntAt P.1 ((qOf P.1 : X.E) ^ cst.D P * ((epsSg : X.E) * (atNL X.E (R.N R.m) (R.N R.m - 1) ∘ₗ y) y')) := by
         have e2 : (qOf P.1 : X.E) ^ cst.D P * ((epsSg : X.E) * (atNL X.E (R.N R.m) (R.N R.m - 1) ∘ₗ y) y') =
             (qOf P.1 : X.E) ^ (cst.D P - 2 * cst.M) * (epsSg : X.E) *

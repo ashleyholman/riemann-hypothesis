@@ -107,9 +107,7 @@ theorem exists_limit_of_chart (V M G : Type) [NormedAddCommGroup V] [NormedSpace
     rw [hi.nhds_eq_comap, mem_comap] at h6
     obtain ⟨t, ht, hts⟩ := h6
     obtain ⟨ρ, hρ, hρt⟩ := nhds_basis_closedBall.mem_iff.1 ht
-    have hk1 : κ⁻¹ * κ = 1 := inv_mul_cancel₀ hκ0.ne'
     have hk2 : 0 < κ⁻¹ := inv_pos.2 hκ0
-    have hk3 : κ⁻¹ < 1 := inv_lt_one_of_one_lt₀ hκ
     filter_upwards [Ioo_mem_nhdsGT (lt_min hδ hρ)] with r hr
     obtain ⟨hr0, hr⟩ := hr
     rw [lt_min_iff] at hr
@@ -120,7 +118,6 @@ theorem exists_limit_of_chart (V M G : Type) [NormedAddCommGroup V] [NormedSpace
       refine ⟨x, ?_, rfl⟩
       rw [mem_ball_zero_iff] at hx ⊢
       have h7 := (abs_le.1 (h3 x hx)).1
-      have h8 : (1 + κ⁻¹) / 2 * ‖x‖ ≤ r := by linarith
       by_contra h9
       push Not at h9
       have h10 : (1 + κ⁻¹) / 2 * (κ * r) ≤ (1 + κ⁻¹) / 2 * ‖x‖ := by gcongr
@@ -130,9 +127,6 @@ theorem exists_limit_of_chart (V M G : Type) [NormedAddCommGroup V] [NormedSpace
       rintro _ ⟨x, hx, rfl⟩
       rw [mem_ball_zero_iff] at hx
       have h7 := (abs_le.1 (h3 x (by nlinarith [hr.1]))).2
-      have h8 : ‖m (e x) - m 1‖ ≤ (3 - κ⁻¹) / 2 * ‖x‖ := by linarith
-      have h9 : (3 - κ⁻¹) / 2 * ‖x‖ ≤ (3 - κ⁻¹) / 2 * (κ⁻¹ * r) :=
-        mul_le_mul_of_nonneg_left hx.le (by linarith)
       have h10 : (3 - κ⁻¹) / 2 * κ⁻¹ ≤ 1 := by nlinarith
       change ‖m (e x) - m 1‖ ≤ r
       nlinarith

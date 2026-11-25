@@ -378,7 +378,6 @@ theorem exists_lift [FiniteDimensional K V] (H : HermSpace K V) {Λ : Submodule 
   have h2 : pr H e f (σ ⟨y, hy⟩) = y := congrArg Subtype.val (LinearMap.congr_fun hσ ⟨y, hy⟩)
   refine ⟨h1 ▸ (σ ⟨y, hy⟩).2.1, fun b => ?_⟩
   have h3 : pr H e f (Ψ y - y) = 0 := by rw [map_sub, h1, h2, pr_fix H hef (hLf y hy), sub_self]
-  have h4 := pr_adj H e f (e b) (Ψ y - y)
   have h5 := pr_adj H f e (Ψ y - y) (e b)
   rw [h3, pr_fix H (e := f) (f := e) ?_ (Submodule.subset_span ⟨b, rfl⟩)] at h5
   · simpa using h5.symm

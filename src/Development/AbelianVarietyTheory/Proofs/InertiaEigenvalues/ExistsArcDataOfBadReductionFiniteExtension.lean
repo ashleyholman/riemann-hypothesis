@@ -182,7 +182,6 @@ theorem exists_arcIn_of_unif {V : ValuationSubring c.F} (Y : Model Xo c V.subtyp
   let be : LinearMap.BilinForm ℤ P.D.toPre.X :=
     LinearMap.mk₂ ℤ (fun y x => Bh y x) (fun _ _ _ => by simp) (fun _ _ _ => by simp) (fun _ _ _ => by simp)
       (fun _ _ _ => by simp)
-  have hbe : ∀ y x, be y x = bOf P.D.toPre Q y x := fun _ _ => rfl
   have symm : ∀ y x, be y x = be x y := fun y x => DVR.QForm.bOf_comm P.D y x
   have bal : ∀ (a : 𝓞 E) y x, be (a • y) x = be y (star a • x) := fun a y x =>
     DVR.QForm.bOf_balance hϖ P.D hL.1 P.oD hQ a y x
@@ -285,7 +284,6 @@ theorem exists_arcIn_of_unif {V : ValuationSubring c.F} (Y : Model Xo c V.subtyp
     exact ⟨I', by rw [s₄, hI, hζ]; exact hBv _ zz hzz, fun v => lev l.A_pos dA _ v _ (jA v) (hpA v F),
       fun v hv => lev hM0 dM _ v _ (jM v hv) (hpM v F)⟩
   have hid : spMap (RingHom.id T.V) = 𝟙 _ := Spec.map_id _
-  have hLB := P.D.toPre.P.isLB
   have he : eSec P.D.toPre.P.A ≫ 𝟙 _ = spMap (RingHom.id T.V) ≫ eSec P.D.toPre.P.A := by
     rw [hid, Category.comp_id]; exact (Category.id_comp _).symm
   refine ⟨t, m, P, 𝟙 _, he, idW _, LinearEquiv.refl _ _, ?_, ?_, ?_, fun x => ?_, fun y => ?_,

@@ -966,7 +966,6 @@ theorem norm_kap_lt_rho1_of_mem_sq_sup_pow :
       _ = (l : ℝ) ^ (-(l : ℝ) / ((l : ℝ) - 1)) := by
           rw [mul_one, ← Real.rpow_natCast, ← Real.rpow_mul (by positivity)]
           congr 1
-          have hp : (0 : ℝ) < (l : ℝ) ^ (j - 1) := by positivity
           have hpow : ((l ^ j : ℕ) : ℝ) = (l : ℝ) * (l : ℝ) ^ (j - 1) := by
             rw [Nat.cast_pow, ← pow_succ']
             congr 1
@@ -1651,7 +1650,6 @@ theorem exists_decompletion : ∀ (D : Formalism.BasicNotions.D7) (HW : HWOf D.l
     rw [hx', ← h1]
     rfl
   let Ψ : ↥N →+ (Fin d → PadicComplex l) := Φ.comp z
-  have hΨ : ∀ y, Ψ y = Φ (z y) := fun y => rfl
   have hmain : ∀ (σ : ↥(GK K)), (σ : GQ l) ∈ Gj K m → ∀ y y' : ↥N,
       (y' : S.W.DD T) = S.W.γD T (S.W.resΓ σ) y →
       Ψ y' = (M σ).mulVec (fun i => AI.actC σ (Ψ y i)) := by

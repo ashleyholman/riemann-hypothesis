@@ -51,7 +51,6 @@ theorem le_of_homog {A : Type} [CommRing A] (N : A → ℝ) (h01 : ∀ x, 0 ≤ 
     have e : N a ^ d = N a ^ i * N a ^ (d - i) := by
       rw [← pow_add]; congr 1; omega
     have h1 : N b ^ (d - i) < N a ^ (d - i) := pow_lt_pow_left₀ hlt (h01 b).1 (by omega)
-    have h2 : 0 < N a ^ i := pow_pos ha i
     have h3 : 0 ≤ N b ^ (d - i) := pow_nonneg (h01 b).1 _
     calc N (c i) * N a ^ i * N b ^ (d - i) ≤ 1 * N a ^ i * N b ^ (d - i) := by
           gcongr; exact (h01 _).2
@@ -124,7 +123,6 @@ theorem exp_eq {u v c c' : ℝ} {k k' : ℤ} (hu : 0 < u) (huv : u < v) (hc : 0 
   obtain ⟨r, h1, h2⟩ := exists_between huv
   obtain ⟨s, h3, h4⟩ := exists_between h2
   have hr : 0 < r := hu.trans h1
-  have hs : 0 < s := hr.trans h3
   have e1 := h r h1 h2
   have e2 := h s (h1.trans h3) h4
   have hq : 1 < s / r := (one_lt_div hr).2 h3
@@ -134,8 +132,6 @@ theorem exp_eq {u v c c' : ℝ} {k k' : ℤ} (hu : 0 < u) (huv : u < v) (hc : 0 
     rw [e1, zero_mul] at this
     exact lt_irrefl _ this
   apply zpow_right_injective₀ (one_pos.trans hq) hq.ne'
-  have a1 : r ^ k ≠ 0 := (zpow_pos hr _).ne'
-  have a2 : r ^ k' ≠ 0 := (zpow_pos hr _).ne'
   show (s / r) ^ k = (s / r) ^ k'
   rw [div_zpow, div_zpow, ← mul_div_mul_left _ _ hc.ne', e1, e2, mul_div_mul_left _ _ hc']
 

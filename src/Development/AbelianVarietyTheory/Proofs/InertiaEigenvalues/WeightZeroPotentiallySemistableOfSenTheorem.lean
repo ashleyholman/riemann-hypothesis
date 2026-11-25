@@ -882,7 +882,6 @@ theorem matrix_inv_near_one : ∀ (E : Type) [NormedField E] [IsUltrametricDist 
       exact mul_le_mul (hmax (a, k)) (hX k b) (norm_nonneg _) (norm_nonneg _)
     rw [key, Matrix.neg_apply, norm_neg, Matrix.add_apply]
     exact (IsUltrametricDist.norm_add_le_max _ _).trans (max_le_max (hX a b) hprod)
-  have hs0 : 0 ≤ s := norm_nonneg _
   have hst : s ≤ t := by
     by_contra! hlt
     have h1 := hbound i0 j0
@@ -1082,7 +1081,6 @@ theorem congrFiltration : ∀ (l : ℕ) [Fact l.Prime] (n : Type) [Fintype n] [D
   · intro a b hab g hg
     rw [hmem] at hg ⊢
     intro i j
-    have hab' : (a : ℤ) ≤ b := by exact_mod_cast hab
     exact le_trans (hg i j) (zpow_le_zpow_right₀ hl1 (by omega))
   · intro k
     have hset : (((Γ k).comap ρ : Subgroup ↥(GK K)) : Set ↥(GK K)) =

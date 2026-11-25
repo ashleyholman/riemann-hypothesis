@@ -1013,7 +1013,6 @@ theorem norm_pow_sub_le : ∀ (l : ℕ) [Fact l.Prime] (γ : GQ l), γ ∈ (Maxi
   have hτ0 : 0 ≤ ‖((l : ℕ) : Om l)‖ := norm_nonneg _
   have hτ1 := norm_natCast_le_one l
   have hl0 : l ≠ 0 := hl.out.ne_zero
-  have hlR : (0 : ℝ) < l := by exact_mod_cast hl.out.pos
   have hτpos : 0 < ‖((l : ℕ) : Om l)‖ := by
     rw [norm_pos_iff]
     exact_mod_cast hl0

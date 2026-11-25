@@ -90,8 +90,6 @@ theorem norm_pow_field (l : ℕ) [Fact l.Prime] (a e : ℕ) [NeZero a] [NeZero e
     have h3 : (e : ℤ) * m1 - (i : ℕ) = (e : ℤ) * m2 - (j : ℕ) :=
       zpow_right_injective₀ hl0 hl1.ne' (show (l : ℝ) ^ _ = (l : ℝ) ^ _ by rw [← h1, ← h2, hij])
     have h4 : ((i : ℕ) : ℤ) - (j : ℕ) = 0 := by
-      have hi' := i.2
-      have hj' := j.2
       refine Int.eq_zero_of_abs_lt_dvd (m := (e : ℤ)) ⟨m1 - m2, by linear_combination -h3⟩ ?_
       rw [abs_lt]; constructor <;> omega
     exact Fin.ext (by omega)

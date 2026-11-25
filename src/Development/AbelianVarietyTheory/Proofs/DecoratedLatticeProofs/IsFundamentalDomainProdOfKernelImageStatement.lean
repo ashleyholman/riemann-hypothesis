@@ -34,13 +34,6 @@ theorem isFundamentalDomain_prod_of_ker_image : ∀ (N G : Type) [Group N] [Grou
   intro N G _ _ _ _ _ _ ν μ _ _ _ _ Γ _ 𝓐 𝓑 hA hB
   classical
 
-  have hKc : Countable (Γ.comap (MonoidHom.inl N G)) := by
-    refine Function.Injective.countable (f := fun k : Γ.comap (MonoidHom.inl N G) =>
-      (⟨MonoidHom.inl N G k, k.2⟩ : Γ)) ?_
-    intro a b hab
-    apply Subtype.ext
-    have := congrArg (fun x : Γ => (x : N × G).1) hab
-    simpa using this
   have hHc : Countable (Γ.map (MonoidHom.snd N G)) := by
     refine Function.Surjective.countable (f := fun γ : Γ =>
       (⟨(γ : N × G).2, Subgroup.mem_map_of_mem _ γ.2⟩ : Γ.map (MonoidHom.snd N G))) ?_

@@ -71,7 +71,6 @@ theorem absNorm_eq_of_split {E : Type} [Field E] [NumberField E] {p : ℕ} (hp :
     rw [← pow_succ', ← Multiset.card_cons P, ← hM', hc, ← hN, ← hprod, hM', Multiset.prod_cons, map_mul,
       map_multiset_prod]
   by_contra hlt
-  have hlt' := not_le.1 hlt
   have hpos : 0 < p ^ M'.card := pow_pos hp.pos _
   nlinarith
 
@@ -161,7 +160,6 @@ theorem superDiag_mul {r : ℕ} {k : Type} [Field k] {u u' : GL (Fin r) k} (hu :
     · rw [hu.1 (show id c < id i from hci), zero_mul]
     · have h1 : (c : ℕ) ≠ j := fun e => hc.1 (Fin.ext e)
       have h2 : (c : ℕ) ≠ i := fun e => hc.2 (Fin.ext e)
-      have h3 : ¬ (c : ℕ) < i := hci
       rw [hu'.1 (show id j < id c from (by show (j : ℕ) < c; omega)), mul_zero]
   · simp
 

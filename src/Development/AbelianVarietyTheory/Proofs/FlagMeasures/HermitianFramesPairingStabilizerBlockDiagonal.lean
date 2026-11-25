@@ -222,7 +222,6 @@ theorem stabiliser_blockDiag : ∀ {F : Type} [Field F] [ValuativeRel F] [Topolo
     (fun a b hab => ((h a a.2).2.2.2 b b.2).2.1 hab) (fun a b hab hl => ?_) (fun a b hab => ?_)
     (fun a b => ?_)
   · have h1 := ((h a a.2).2.2.2 b b.2).2.2.1 hab
-    have h2 : (a : ℕ) < b := hl
     show σ b < σ a
     omega
   · simp only [hab]

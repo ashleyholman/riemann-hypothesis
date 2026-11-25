@@ -627,7 +627,6 @@ theorem IsBig.of_pow {n : ℕ} (h : IsBig k (lbPow L n)) (hL : L.IsLB) (hn : 1 �
     (hfin : ∀ m : ℕ, Module.Finite k (coh (twist (structureModule X) (lbPow L m)) 0)) :
     IsBig k L := by
   obtain ⟨D, hD, c, hc, hm⟩ := h.3
-  have hn' : (0 : ℝ) < n := Nat.cast_pos.2 hn
   refine ⟨hL, hfin, D, hD, c / (n : ℝ) ^ D, by positivity, ?_⟩
   have ht : Tendsto (fun m : ℕ => n * m) atTop atTop :=
     tendsto_atTop_mono (fun m => Nat.le_mul_of_pos_left m hn) tendsto_id

@@ -38,7 +38,6 @@ theorem exists_form_limit_ideal (R : Type) [CommRing R] (I : Ideal R) (hI : IsAd
     Nat.rec (motive := fun n => {P : MvPolynomial σ R // P.IsHomogeneous t ∧ P ∈ K (e + n)})
       ⟨F, hF, hFe⟩
       (fun n z => ⟨z.1 - G (e + n) z.1 z.2.1 z.2.2, z.2.1.sub (hG1 _ _ _ _), hG3 _ _ _ _⟩) n
-  have hs0 : (s 0).1 = F := rfl
   have hsn : ∀ n, (s (n + 1)).1 = (s n).1 - G (e + n) (s n).1 (s n).2.1 (s n).2.2 :=
     fun n => rfl
   have hd : ∀ d m n, m ≤ n → AddMonoidAlgebra.coeff (s m).1 d - AddMonoidAlgebra.coeff (s n).1 d ∈ I ^ (e + m + 1) := by

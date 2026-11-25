@@ -218,7 +218,6 @@ theorem place_eq {n r k : ℕ} (hn : n = 2 * r + k + 1) (ε : Fin n → Bool) (e
   set P := Qm e f wf (z0v T z) with hP
   set P' := Qi ε e f wf (z0v T z) with hP'
   have p1 : P' * P = 1 := Qi_mul_Qm hF
-  have p2 : P * P' = 1 := Qm_mul_Qi hF
   have hdi : (P' * Q)⁻¹ = Q' * P := by
     apply Matrix.inv_eq_right_inv
     rw [Matrix.mul_assoc, ← Matrix.mul_assoc Q, h2, Matrix.one_mul, p1]

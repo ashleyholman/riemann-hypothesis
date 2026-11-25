@@ -57,7 +57,6 @@ private theorem mul_rpow_three_halves_le_pow_four (q n : ℕ) (h : 2 * q ≤ n) 
     positivity
   · have hn2 : (2 : ℝ) ≤ n := by exact_mod_cast (by omega : 2 ≤ n)
     have hq2 : 2 * (q : ℝ) ≤ n := by exact_mod_cast h
-    have hq0 : (0 : ℝ) ≤ q := Nat.cast_nonneg q
     have hsq : 4 * (q : ℝ) ^ 2 ≤ (n : ℝ) ^ 2 := by nlinarith
     calc 120 * (n : ℝ) * (q : ℝ) ^ ((3 : ℝ) / 2) ≤ 120 * (n : ℝ) * (q : ℝ) ^ 2 :=
           mul_le_mul_of_nonneg_left (natCast_rpow_three_halves_le_sq q) (by positivity)

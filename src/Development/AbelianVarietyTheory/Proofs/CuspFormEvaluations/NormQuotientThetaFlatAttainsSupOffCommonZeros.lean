@@ -307,7 +307,6 @@ theorem quot_far (hf : X.IsBddSec (Xa.Fp + Xa.T • Xa.L) f) {A : Set (Frame X.�
   have hp0 : 0 < p := by positivity
   set β : ℝ := 4 / (Xa.g0 : ℝ) - 2 * Xa.c * p with hβdef
   set K : ℝ := (max Cf 1) ^ 2 * B / d ^ p with hK
-  have hK0 : 0 < K := by positivity
   set M : ℝ := K / (ε * β) with hM
   have hM0 : 0 < M := by positivity
   refine ⟨min ε0 (Real.sqrt (ca / M)), lt_min hε0 (Real.sqrt_pos.mpr (by positivity)),

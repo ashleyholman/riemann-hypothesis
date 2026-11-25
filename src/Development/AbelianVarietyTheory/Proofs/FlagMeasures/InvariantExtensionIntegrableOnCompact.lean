@@ -85,7 +85,6 @@ theorem integrableOn_rep (hD : IsFundamentalDomain Γ D μ) (hDm : MeasurableSet
       ∫ y in C, ‖F (r y)‖ ∂μ ≤ M * ‖F‖ := by
   refine ⟨((S.card : ℝ≥0∞) ^ (1 / 2 : ℝ) * μ C ^ (1 / 2 : ℝ)).toReal, fun F => ?_⟩
   haveI : IsFiniteMeasure (μ.restrict C) := isFiniteMeasure_restrict.2 hCf
-  have hFm : Measurable (F : G → ℂ) := (Lp.stronglyMeasurable F).measurable
   have hgm : AEStronglyMeasurable (fun y => F (r y)) (μ.restrict C) :=
     (aestronglyMeasurable_comp_rep hD hDm hr (Lp.stronglyMeasurable F)).restrict
   have hcard : (S.card : ℝ≥0∞) ^ (1 / 2 : ℝ) ≠ ∞ :=

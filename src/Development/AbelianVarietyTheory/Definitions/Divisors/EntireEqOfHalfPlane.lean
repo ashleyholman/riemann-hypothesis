@@ -403,8 +403,6 @@ theorem cmValueConst_eq (E : Type) [Field E] [NumberField E] (d k : ℕ) (κ : I
 theorem cmValueConst_pos (E : Type) [Field E] [NumberField E] {d k : ℕ} (hd : 0 < d) (hk : 1 ≤ k) (κ : I → ℕ) : 0 < C0 E d k κ := by
   rw [cmValueConst_eq]
   have h1 : (0 : ℝ) < |(discr (maximalRealSubfield E) : ℝ)| := abs_pos.2 (by exact_mod_cast discr_ne_zero _)
-  have h2 : (0 : ℝ) < k := by exact_mod_cast hk
-  have h3 : (0 : ℝ) < d := by exact_mod_cast hd
   refine mul_pos (mul_pos (Real.rpow_pos_of_pos h1 _) (Finset.prod_pos fun i _ => Real.Gamma_pos_of_pos (by positivity))) ?_
   have := Real.pi_pos
   positivity

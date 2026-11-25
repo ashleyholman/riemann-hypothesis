@@ -896,7 +896,6 @@ theorem sum_fejer_weights (J : ℕ) :
     | succ n ih =>
       rw [Finset.sum_Icc_succ_top (by omega), ih]
       push_cast; ring
-  have hJ : (0 : ℝ) < J + 1 := by positivity
   rw [Finset.sum_sub_distrib, ← Finset.sum_div, h]
   simp
   field_simp
@@ -1093,7 +1092,6 @@ theorem powerSum_repulsion :
   have hP : (1 + x) ^ J ≤ Real.exp (x * J) := by
     rw [mul_comm, Real.exp_nat_mul]
     exact pow_le_pow_left₀ (by linarith) (by linarith [Real.add_one_le_exp x]) J
-  have hP0 : 0 < (1 + x) ^ J := by positivity
   have h1 : (J : ℝ) * 1 ≤ J * (32 * J * δ * (1 + x) ^ J) := by nlinarith
   have h2 : 1 ≤ 32 * J * δ * (1 + x) ^ J := le_of_mul_le_mul_left h1 hJ0
   have h3 : 32 * J * δ * (1 + x) ^ J ≤ 2080 * L * δ * Real.exp (x * J) := by
@@ -1607,8 +1605,6 @@ lemma mainLower (θ β V : ℝ) (hθ : θ ≤ 1) (h1 : 7 / 8 ≤ β) (h2 : β < 
       have : 0 ≤ (1 - x / 4) * (1 + x) := by apply mul_nonneg <;> linarith
       have h5 : (1 - x / 4) * (1 + x) * (1 - x / 8) ≤ (1 - x / 4) * (1 + x) * β := by
         gcongr; linarith
-      have h6 : (1 - x / 4) * (1 + x) * (1 - x / 8) =
-          1 + 11 / 32 * (x * (1 - x)) + 9 / 32 * x + 1 / 32 * (x * (x * x)) := by ring
       linarith [mul_nonneg hx0.le (sub_nonneg.2 h), mul_nonneg hx0.le (mul_nonneg hx0.le hx0.le)]
   rw [e1, mul_div_assoc (Real.exp V) (Real.exp (-x))]
   have : θ * (Real.exp V * (Real.exp (-x) / β)) ≤ 1 * (Real.exp V * (1 - min 1 x / 4)) := by

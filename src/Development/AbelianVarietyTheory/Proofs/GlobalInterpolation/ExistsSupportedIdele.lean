@@ -150,7 +150,6 @@ theorem exists_supported_idele (F E : Type) [Field F] [NumberField F] [Field E] 
     (Ideal.isCoprime_iff_sup_eq.2 hQ).pow_left b
   have hb0' : (b' : E) ≠ 0 := by simpa using hb0
   set e : RInt F E := ofInt E (afsplitI v 1) (eps_int v) with he
-  have hee : (e : AfE F E) = afsplitEps E v := rfl
   set ι := inclE (F := F) (E := E) (FiniteAdeleRing (𝓞 F) F) with hι
   have hid := afsplit_eps_idem (E := E) v
   have hinv : ι b' * ι (b' : E)⁻¹ = 1 := by rw [← map_mul, mul_inv_cancel₀ hb0', map_one]

@@ -378,11 +378,6 @@ theorem GlobalTheory.TameRecip.exists_ine_of_unit : GlobalTheory.Published.Globa
   have hval := _root_.GlobalTheory.TameRatio.ratio_cong E Ω v A hA u hu π t hπ0 ht τ τ' hτF hτ'F hτπ hτ'π
   have hc0 : (-1) ^ normV v * algebraMap E (v.adicCompletion E) (ϖ : E) ≠ 0 :=
     mul_ne_zero (pow_ne_zero _ (neg_ne_zero.mpr one_ne_zero)) ((map_ne_zero _).mpr hϖ0)
-  have huE : (u : E) ≠ 0 := by
-    intro h
-    apply hu
-    have : u = 0 := by exact_mod_cast h
-    rw [this]; exact Ideal.zero_mem _
   have hcast : ((u * ϖ : 𝓞 E) : E) = (u : E) * (ϖ : E) := by push_cast; ring
   have hs0 : ((-1) ^ normV v : v.adicCompletion E) ≠ 0 := pow_ne_zero _ (neg_ne_zero.mpr one_ne_zero)
   have hϖc : algebraMap E (v.adicCompletion E) (ϖ : E) ≠ 0 := (map_ne_zero _).mpr hϖ0

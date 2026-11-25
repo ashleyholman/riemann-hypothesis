@@ -195,10 +195,7 @@ theorem product_moment_first_gap : GlobalTheory.GapIn.Hyp → ∀ (k r : ℕ) (W
     hae.mono fun x hx => (GlobalTheory.TensLen.lengths k r z hz hT (Matrix.of x) hx).2.2.1 a
   have hnf := (GlobalTheory.NumFam.num_fam k r lam u b bv ga h q0 hN).1
   have hb1 : 1 ≤ b := by
-    have h1 := hnf.2.2.1
-    have h2 : (0 : ℝ) ≤ 2 * r + k := by positivity
     linarith
-  have hbv : 0 ≤ bv := by linarith [hnf.2.1]
   have hA0 : 0 ≤ ((2 * r + k + 1 : ℝ) ^ 2 * (Formalism.QuantumDeterminants.Tz k r z * b ^ 4) * (6 * bv) ^ (2 * (2 * r + 2))) :=
     mul_nonneg (mul_nonneg (sq_nonneg _) (mul_nonneg hT.le (by positivity))) (pow_nonneg (by linarith) _)
   have key := _root_.GlobalTheory.MomentHolder.initial_product_moment_le (Formalism.QuantumDeterminants.Mt k r) νq r l hl (fun a x => lenA k r z (Matrix.of x) a)
@@ -1040,7 +1037,6 @@ theorem minor_line : GlobalTheory.GapIn.Hyp → GlobalTheory.GapIn.AmpKF0 → Ce
   have hT : 0 < Tr D w := by unfold Tr; exact_mod_cast hTT.1.pos
   have hT' : 0 < Tr D w' := by unfold Tr; exact_mod_cast hTT.2.1.pos
   have hmR : (D.R.m : ℝ) = 2 * D.R.rS + 2 := by exact_mod_cast hm
-  have hr0 : (0 : ℝ) ≤ D.R.rS := Nat.cast_nonneg _
   have hlR : (l : ℝ) ≤ D.R.rS + 1 := by exact_mod_cast hl
   have hk1 : (1 : ℝ) ≤ D.R.k := by
     have := D.R.m_add_three_le_k
