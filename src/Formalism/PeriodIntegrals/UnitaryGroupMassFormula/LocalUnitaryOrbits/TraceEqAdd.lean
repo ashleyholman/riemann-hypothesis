@@ -53,10 +53,6 @@ theorem b_sc_mem {c : Fv F v} (hc : c ∈ v.adicCompletionIntegers F) : sc (E :=
   rw [b_sc_eq, Algebra.algebraMap_eq_smul_one]
   exact b_smul_mem v hc (b_one_mem v)
 
-theorem b_mul_mem {x y : Fv F v ⊗[F] E} (hx : x ∈ OEv (E := E) v) (hy : y ∈ OEv (E := E) v) :
-    x * y ∈ OEv (E := E) v := by
-  first | exact _root_.PI.OmLocU.oEv_mul | (apply _root_.PI.OmLocU.oEv_mul <;> assumption)
-
 theorem b_trace_mem {x : Fv F v ⊗[F] E} (hx : x ∈ OEv (E := E) v) :
     Algebra.trace (Fv F v) (Fv F v ⊗[F] E) x ∈ v.adicCompletionIntegers F := by
   apply _root_.Formalism.L2.SG.Pf.NcVal.TrW.trace_mem <;> assumption

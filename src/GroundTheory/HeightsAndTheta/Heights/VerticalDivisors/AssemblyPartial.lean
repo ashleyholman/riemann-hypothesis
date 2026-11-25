@@ -624,10 +624,6 @@ theorem map_linForm {R S : Type*} [CommRing R] [CommRing S] {n : ℕ} (f : R →
 
   simp [linForm, map_sum]
 
-theorem map_integralModel {n : ℕ} (I : Ideal (MvPolynomial (Fin n) K)) :
-    (integralModel I).map (MvPolynomial.map (algebraMap (𝓞 K) K)) = I := by
-  apply GroundTheory.Heights₂.Heights.Vertical.SecBFinite.map_integralModel
-
 theorem map_secIdeal {n : ℕ} (e : ℕ) (I : Ideal (MvPolynomial (Fin n) K)) (v : HeightOneSpectrum (𝓞 K)) :
     (secIdeal (modelR e I v) (parY e n v)).map (MvPolynomial.map (parToFrac e n v)) =
       secIdeal (idealF e I) (parYF K e n) := by
@@ -637,7 +633,7 @@ theorem map_secIdeal {n : ℕ} (e : ℕ) (I : Ideal (MvPolynomial (Fin n) K)) (v
         (MvPolynomial.map (kToFrac K e n)).comp (MvPolynomial.map (algebraMap (𝓞 K) K)) := by
       refine RingHom.ext fun p => ?_
       simp only [RingHom.comp_apply, MvPolynomial.map_map, parToFrac_comp_algebraMap]
-    rw [modelR, Ideal.map_map, hc, ← Ideal.map_map, map_integralModel, idealF]
+    rw [modelR, Ideal.map_map, hc, ← Ideal.map_map, GroundTheory.Heights₂.Heights.Vertical.SecBFinite.map_integralModel, idealF]
   have h2 : (Ideal.span (Set.range (secForm (parY e n v)))).map (MvPolynomial.map (parToFrac e n v)) =
       Ideal.span (Set.range (secForm (parYF K e n))) := by
     rw [Ideal.map_span, ← Set.range_comp]

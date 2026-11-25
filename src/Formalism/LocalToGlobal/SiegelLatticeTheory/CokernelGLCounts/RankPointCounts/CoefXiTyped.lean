@@ -189,14 +189,14 @@ theorem intUp_inv {ρ : Matrix (Fin n) (Fin n) E} (h : TieN.IntUp M ρ) : TieN.I
   have hU : IsUp ρ := ⟨h.1, fun a b hab => h.2.1 b a hab⟩
   have hi := isUp_inv hU
   refine ⟨hi.1, fun a b hab => hi.2 b a hab, fun a b => ?_⟩
-  rw [Matrix.inv_def, det_up' hU, Ring.inverse_one, one_smul]
+  rw [Matrix.inv_def, Formalism.L2.SG.Pf.AtPt.det_up hU, Ring.inverse_one, one_smul]
   exact adj_mem_R _ h.2.2 a b
 
 theorem intLow_inv {l : Matrix (Fin n) (Fin n) E} (h : TieN.IntLow M l) : TieN.IntLow M l⁻¹ := by
   have hL : IsLo l := ⟨h.1, h.2.1⟩
   have hi := isLo_inv hL
   refine ⟨hi.1, hi.2, fun a b => ?_⟩
-  rw [Matrix.inv_def, det_lo' hL, Ring.inverse_one, one_smul]
+  rw [Matrix.inv_def, Formalism.L2.SG.Pf.AtPt.det_lo hL, Ring.inverse_one, one_smul]
   exact adj_mem_R _ h.2.2 a b
 
 end InvR
@@ -330,7 +330,7 @@ theorem zzOrbT_of (hN : PairVal.NormRepExists D u u' F0 what₂) (hrows : IsRowR
       simp only [Loc.HermSp.ZZplusOf, hM]
     rw [e, e]
     refine ⟨1, V, 1, V⁻¹, intLow_one p, hρ, intLow_one p, intUp_inv hρ, by rw [Matrix.one_mul], ?_⟩
-    rw [Matrix.one_mul, Matrix.mul_assoc, Matrix.mul_nonsing_inv _ (by rw [det_up' hup]; exact isUnit_one),
+    rw [Matrix.one_mul, Matrix.mul_assoc, Matrix.mul_nonsing_inv _ (by rw [Formalism.L2.SG.Pf.AtPt.det_up hup]; exact isUnit_one),
       Matrix.mul_one]
   · simp only [hM] at hVp
     have key := zzplusOf_mul_up hM Zh V T T' hup
@@ -363,8 +363,8 @@ theorem zzOrbT_of (hN : PairVal.NormRepExists D u u' F0 what₂) (hrows : IsRowR
       · obtain ⟨x, hx, hxe⟩ := (hVp a b hab).1
         rw [Matrix.one_apply_ne hab, hxe]
         exact ⟨mul_mem g.q.2 hx, zero_mem _, x, hx, by ring⟩
-    have hLu : IsUnit (glue g.e 1 (V.map (p2 g.e)).transpose).det := by rw [det_lo' hLlo]; exact isUnit_one
-    have hUu : IsUnit (glue g.e (V.map (p1 g.e)) 1).det := by rw [det_up' hUup]; exact isUnit_one
+    have hLu : IsUnit (glue g.e 1 (V.map (p2 g.e)).transpose).det := by rw [Formalism.L2.SG.Pf.AtPt.det_lo hLlo]; exact isUnit_one
+    have hUu : IsUnit (glue g.e (V.map (p1 g.e)) 1).det := by rw [Formalism.L2.SG.Pf.AtPt.det_up hUup]; exact isUnit_one
     refine ⟨_, _, _, _, hLi, hUi, intLow_inv hLi, intUp_inv hUi, key, ?_⟩
     rw [key]
     simp only [← Matrix.mul_assoc, Matrix.nonsing_inv_mul _ hLu, Matrix.one_mul]

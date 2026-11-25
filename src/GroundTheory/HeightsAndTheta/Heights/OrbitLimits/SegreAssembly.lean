@@ -334,20 +334,16 @@ theorem exists_isChart_of_isProjVarF {V : Ideal (MRingOver F ι)} {n : ℕ} (hV 
     ∃ i, IsChart V i :=
   ⟨fun k => (hV.1.2.2 k).choose, fun k => (hV.1.2.2 k).choose_spec⟩
 
-theorem ratDiv_one_eq_mapRange (V : Ideal (MRingOver F ι)) (f : MRingOver F ι) :
-    ratDiv V f 1 = Finsupp.mapRange (fun n : ℕ => (n : ℤ)) Nat.cast_zero (divCycle V f) := by
-  simp [ratDiv, divCycle_one]
-
 theorem cycEval_ratDiv_one_nonneg (J : Ideal (MRingOver F ι) → ℤ) (V : Ideal (MRingOver F ι))
     (f : MRingOver F ι) (h : ∀ W ∈ divSupp V f, 0 ≤ J W) : 0 ≤ cycEval J (ratDiv V f 1) := by
-  rw [ratDiv_one_eq_mapRange, cycEval, Finsupp.sum_mapRange_index (by simp), Finsupp.sum]
+  rw [ReciprocityTheory.ChartRestriction.G.AI.I1.DivisorCycleSwap.ratDiv_one_eq, cycEval, Finsupp.sum_mapRange_index (by simp), Finsupp.sum]
   exact Finset.sum_nonneg fun W hW => mul_nonneg (Nat.cast_nonneg _)
     (h W (mem_divSupp_of_divCycle_ne_zero (Finsupp.mem_support_iff.mp hW)))
 
 theorem cycEval_ratDiv_one_pos (J : Ideal (MRingOver F ι) → ℤ) (V : Ideal (MRingOver F ι))
     (f : MRingOver F ι) (hne : divCycle V f ≠ 0) (h : ∀ W ∈ divSupp V f, 0 < J W) :
     0 < cycEval J (ratDiv V f 1) := by
-  rw [ratDiv_one_eq_mapRange, cycEval, Finsupp.sum_mapRange_index (by simp), Finsupp.sum]
+  rw [ReciprocityTheory.ChartRestriction.G.AI.I1.DivisorCycleSwap.ratDiv_one_eq, cycEval, Finsupp.sum_mapRange_index (by simp), Finsupp.sum]
   refine Finset.sum_pos (fun W hW => mul_pos ?_ ?_) (Finsupp.support_nonempty_iff.mpr hne)
   · exact_mod_cast Nat.pos_of_ne_zero (Finsupp.mem_support_iff.mp hW)
   · exact h W (mem_divSupp_of_divCycle_ne_zero (Finsupp.mem_support_iff.mp hW))

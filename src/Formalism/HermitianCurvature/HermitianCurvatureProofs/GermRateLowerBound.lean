@@ -165,7 +165,7 @@ theorem germPlace_of (hSI : SliceIntCut) (hYG : YGSlice) (hFM : FormModel) : Ger
 
   set σ := D.ptPerm h' with hσ
   set d := D.ptDiag h' with hd_def
-  have hd : ∀ q, d q ≠ 0 := fun q => Formalism.FourierDecayAlt.P.JCTx6.Link2.ptScal_ne h' hh'.1 q q.2
+  have hd : ∀ q, d q ≠ 0 := fun q => Formalism.FourierDecayAlt.P.Dx1.Rel.scal_ne h' hh'.1 q q.2
   set dh := (U.hMat σ d).det with hdh_def
   have hdh : dh ≠ 0 := Formalism.FourierDecayAlt.P.Ux10.det_hMat_ne σ d hd
   set wd := (G.wMat (m + 1)).det with hwd_def

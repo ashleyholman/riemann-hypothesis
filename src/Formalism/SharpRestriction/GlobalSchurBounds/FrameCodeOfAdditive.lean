@@ -27,12 +27,6 @@ section -- clump:auto
 
 noncomputable section
 
-namespace Formalism.MainNotions.ZetaZeroFreeRegion.Br
-
-open DirichletCharacter Filter
-
-end Formalism.MainNotions.ZetaZeroFreeRegion.Br
-
 end
 
 noncomputable section
@@ -97,14 +91,9 @@ theorem frob_spec (p : ℕ) (hp : p.Prime) :
   haveI := hL
   exact Formalism.MainNotions.GlobalTheoryTheory.ConductorLiftingHypotheses.frob_mem D p P
 
-theorem unram_iff (p : ℕ) :
-    Unram D p ↔ p.Prime ∧ ¬ p ∣ D.host.condN :=
-  ⟨fun h => ⟨h.1, Formalism.MainNotions.GlobalTheoryTheory.ConductorDivisibility.not_dvd_condN_of_unram' D p h⟩,
-    fun h => Formalism.MainNotions.GlobalTheoryTheory.ConductorDivisibility.jnt_unram D p h.1 h.2⟩
-
 theorem inertia_unram {p : ℕ} (h : Unram D p) : (AD D).inertia p = ⊥ := by
   have hu := (LHost.unramified_spec D.host.condN p (Formalism.MainNotions.GlobalTheoryTheory.ConductorLiftingHypotheses.hostN_ne D) h.1
-    ((unram_iff D p).mp h).2).1
+    ((Formalism.MainNotions.LnkBr.unram_iff D p).mp h).2).1
   show Subgroup.toAddSubgroup' ((LHost.localUnits D.host.condN p).map (UpperTheory.Comparison₂.recH D.host.toHostRaw)) = ⊥
   rw [hu, Subgroup.map_bot]
   rfl
@@ -174,7 +163,7 @@ theorem isInert_iff (p : ℕ) : characterSumData.IsInert (AD D) p ↔ InertK D p
 
 theorem inertK_unram {p : ℕ} (h : InertK D p) : Unram D p := by
   obtain ⟨hp, hN, -⟩ := (UpperTheory.GL.isInert_iff D.host.toHostAx p).1 ((isInert_iff D p).2 h)
-  exact (unram_iff D p).2 ⟨hp, hN⟩
+  exact (Formalism.MainNotions.LnkBr.unram_iff D p).2 ⟨hp, hN⟩
 
 theorem term_zero {a W : ℝ} {N M : ℕ} (hW : 0 < W) (hN : a / W ≤ N) (hM : N < M) :
     max (a / (M : ℝ) - W) 0 = 0 := by
@@ -298,14 +287,6 @@ end
 
 noncomputable section
 
-namespace Formalism.MainNotions.ZetaZeroFreeRegion.Br
-
-open Formalism.BasicNotions Formalism.MainNotions.GlobalTheoryTheory Formalism.MainNotions Formalism.LFunctionChainParameters Finset
-
-variable (D : D7) (s : Scale)
-
-end Formalism.MainNotions.ZetaZeroFreeRegion.Br
-
 end
 
 noncomputable section
@@ -339,12 +320,6 @@ end Formalism.MainNotions.ZetaZeroFreeRegion.Br
 end
 
 noncomputable section
-
-namespace Formalism.MainNotions.ZetaZeroFreeRegion
-
-open Formalism.BasicNotions Formalism.MainNotions.GlobalTheoryTheory Formalism.MainNotions Formalism.LFunctionChainParameters
-
-end Formalism.MainNotions.ZetaZeroFreeRegion
 
 end
 end -- clump:auto
@@ -630,7 +605,7 @@ theorem frob_fst {p : ℕ} (h : ZetaZeroFreeRegion.InertK D p) :
     (D.host.cls p = PrimeClass.signal → (frob D p).1 = (1, -1)) ∧
     (D.host.cls p = PrimeClass.inertClass → (frob D p).1 = c0) := by
   have hU := inertK_unram D h
-  obtain ⟨hp, h2⟩ := (unram_iff D p).1 hU
+  obtain ⟨hp, h2⟩ := (Formalism.MainNotions.LnkBr.unram_iff D p).1 hU
   obtain ⟨P, hP, hL, σ, hσ, hg⟩ := frob_mem D p hp
   haveI := Fact.mk hp
   have hc := factClassFrob D.R D.host p h2 P σ hσ

@@ -25,7 +25,7 @@ theorem exists_smul_mem {K V : Type} [Field K] [NumberField K] [AddCommGroup V] 
     [Module (RingOfIntegers K) V] [IsScalarTower (RingOfIntegers K) K V]
     {M : Submodule (RingOfIntegers K) V} {v : V} (hv : v ∈ Submodule.span K (M : Set V)) :
     ∃ d : RingOfIntegers K, d ≠ 0 ∧ d • v ∈ M := by
-  apply Formalism.L2.SG.Pf.LatEx.exists_smul_mem_of_mem_span <;> assumption
+  apply Bl.SecondBlockLemmaE.goal1 <;> assumption
 
 end GlobalTheory.ExistsSmulMemLattice
 end -- clump:auto

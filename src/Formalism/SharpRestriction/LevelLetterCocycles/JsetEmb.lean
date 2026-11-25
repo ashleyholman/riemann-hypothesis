@@ -10,22 +10,6 @@ import Mathlib.Tactic.Linter.HaveILetI
 
 noncomputable section
 
-namespace Formalism.MainNotions.N.JsetEmb
-
-open Formalism.WeaklyAdmissibleFiltrations Module
-
-section Iface
-
-variable {G : Type} [Group G] {Qp K₀ K : Type} [Field Qp] [Field K₀] [Field K]
-    [Algebra Qp K₀] [Algebra Qp K] [Algebra K₀ K] [IsScalarTower Qp K₀ K]
-    {B BdR : Type} [CommRing B] [CommRing BdR] [Algebra Qp B] [Algebra K₀ B] [IsScalarTower Qp K₀ B]
-    [Algebra Qp BdR] [Algebra K₀ BdR] [Algebra K BdR] [IsScalarTower Qp K BdR]
-    [IsScalarTower K₀ K BdR] [IsScalarTower Qp K₀ BdR]
-
-end Iface
-
-end Formalism.MainNotions.N.JsetEmb
-
 end
 
 noncomputable section
@@ -44,14 +28,6 @@ theorem nodal_dvd_of_roots {ι : Type*} [Fintype ι] {v : ι → LL} (hv : Funct
   rw [Lagrange.nodal_eq]
   refine Finset.prod_dvd_of_coprime ?_ fun i _ => dvd_iff_isRoot.2 (hP i)
   exact (pairwise_coprime_X_sub_C hv).set_pairwise _
-
-theorem aeval_mem_stable_submodule (T : Module.End LL M) (W : Submodule LL M) (hW : ∀ x ∈ W, T x ∈ W)
-    (p : LL[X]) : ∀ x ∈ W, aeval T p x ∈ W := by
-  first | (apply Bl.general_b_fact_upper_form.goal1 <;> assumption)
-
-theorem aeval_apply_eigenvector_alt (T : Module.End LL M) (a : LL) (y : M) (hy : T y = a • y) (p : LL[X]) :
-    aeval T p y = p.eval a • y := by
-  first | (apply Bl.general_b_fact_upper_variant.goal1 <;> assumption)
 
 theorem aeval_map_commute (m : K →+* Module.End LL M)
     (hm : ∀ q, m (algebraMap Qp K q) = algebraMap LL _ (algebraMap Qp LL q)) (α : K) (g : Qp[X]) :
@@ -85,7 +61,7 @@ theorem lagrange_eigen_decomposition {ι : Type*} [Fintype ι] [DecidableEq ι] 
           set_option synthInstance.maxHeartbeats 100000 in
             rw [map_sum, LinearMap.sum_apply]
       _ = x := by rw [hs, map_one, Module.End.one_apply]
-  · rw [aeval_apply_eigenvector_alt T (v j) u hu]
+  · rw [Bl.general_b_fact_upper_variant.goal1 T (v j) u hu]
     by_cases h : i = j
     · subst h; rw [Lagrange.eval_basis_self hinj (Finset.mem_univ _), one_smul, ite_eq_left rfl]
     · rw [Lagrange.eval_basis_of_ne h (Finset.mem_univ _), zero_smul, ite_eq_right h]
@@ -231,12 +207,12 @@ theorem le_iSup_embedding_eigenspaces [FiniteDimensional Qp K] [Algebra.IsSepara
   have hall : ∀ (τ : K →ₐ[Qp] LL) (u : M), m pb.gen u = τ pb.gen • u → ∀ c, m c u = τ c • u := by
     intro τ u hu c
     obtain ⟨g, -, rfl⟩ := pb.exists_eq_aeval c
-    rw [← aeval_map_commute m hm, aeval_apply_eigenvector_alt _ _ u hu, eval_map, ← aeval_def,
+    rw [← aeval_map_commute m hm, Bl.general_b_fact_upper_variant.goal1 _ _ u hu, eval_map, ← aeval_def,
       aeval_algHom_apply]
   intro x hx
   rw [← hsum x]
   refine Submodule.sum_mem _ fun τ _ => Submodule.mem_iSup_of_mem τ (Submodule.mem_inf.2 ⟨?_, ?_⟩)
-  · exact aeval_mem_stable_submodule _ W (fun y hy => hW pb.gen y hy) _ x hx
+  · exact Bl.general_b_fact_upper_form.goal1 _ W (fun y hy => hW pb.gen y hy) _ x hx
   · exact (hU τ _).2 (hall τ _ (heig τ x))
 
 end GenSup

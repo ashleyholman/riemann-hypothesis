@@ -32,19 +32,10 @@ lemma hdx (x : Bool × Mat k r) {f : Mat k r → E} (hf : Differentiable ℝ f) 
     exact (hf g).hasFDerivAt
   exact hd.comp_hasDerivAt 0 (crv_hasDerivAt x g)
 
-private theorem dx_eq_deriv_crv (x : Bool × Mat k r) (f : Mat k r → E) (g : Mat k r) :
-    Dx x f g = deriv (fun t : ℝ => f (crv x g t)) 0 := by
-  rcases x with ⟨b, X⟩
-  cases b <;> rfl
-
-private theorem dirL_eq_dirv (x : Bool × Mat k r) (g : Mat k r) : dirL x g = dirv x g := by
-  rcases x with ⟨b, X⟩
-  cases b <;> first | rfl
-
 lemma dx_fd (x : Bool × Mat k r) {f : Mat k r → E} (hf : Differentiable ℝ f) :
     Dx x f = fun g => fderiv ℝ f g (dirL x g) := by
   funext g
-  rw [dx_eq_deriv_crv, (hdx x hf g).deriv, dirL_eq_dirv]
+  rw [Formalism.FourierDecayAlt.P.BetaSesquilinearity.Dx_eq, (hdx x hf g).deriv, Formalism.FourierDecayAlt.P.BetaSesquilinearity.dirL_apply]
 
 lemma cdx (x : Bool × Mat k r) {f : Mat k r → E} (hf : ContDiff ℝ ∞ f) : ContDiff ℝ ∞ (Dx x f) := by
   rw [dx_fd x (dif hf)]

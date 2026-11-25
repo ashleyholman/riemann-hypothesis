@@ -122,13 +122,4 @@ theorem hodgeInnerProduct_of_fibreLatticeVector {E : Type} [Field E] [NumberFiel
     HodgeIP t.G t.PP.L z (v i) (v j) (Real.pi * R.ip (x i) (x j)) :=
   GlobalTheory.CompanionTheory.Ar.Cusp.MuPsh.hodgeInnerProduct_of_fibreLatticeVector h tan i j
 
-section Free
-
-variable {K : Type} [Fintype K] {J : K → Type} [∀ k, Fintype (J k)] {II : IntersectionSystem} {Ψ : Type} [Fintype Ψ]
-  {Ω : Type} [Field Ω] [Algebra ℚ Ω] {W : Ψ → Type} [∀ τ, AddCommGroup (W τ)] [∀ τ, Module Ω (W τ)]
-
-alias isOpen_offBd := _root_.GlobalTheory.CompanionTheory.Ar.Cusp.SncPiece.isOpen_offBd
-
-end Free
-
 end GlobalTheory.CompanionTheory.Ar.Cusp.CuspCorrespondence

@@ -310,16 +310,11 @@ theorem isCompact_unitaryGroup (N : ℕ) :
 instance compactSpace_unitaryGroup (N : ℕ) : CompactSpace (Matrix.unitaryGroup (Fin N) ℂ) :=
   isCompact_iff_compactSpace.mp (isCompact_unitaryGroup N)
 
-theorem isMulRightInvariant_of_compact {G : Type*} [Group G] [TopologicalSpace G]
-    [IsTopologicalGroup G] [CompactSpace G] [MeasurableSpace G] [BorelSpace G]
-    (μ : Measure G) [IsHaarMeasure μ] : IsMulRightInvariant μ := by
-  apply GlobalTheory.isMulRightInvariant_of_compactSpace
-
 theorem unitary_haar_measure : HaarU := by
   intro N
   haveI : CompactSpace (Matrix.unitaryGroup (Fin N) ℂ) := compactSpace_unitaryGroup N
   let μG : Measure (Matrix.unitaryGroup (Fin N) ℂ) := Measure.haarMeasure ⊤
-  haveI : μG.IsMulRightInvariant := isMulRightInvariant_of_compact μG
+  haveI : μG.IsMulRightInvariant := GlobalTheory.isMulRightInvariant_of_compactSpace μG
   have hm : Measurable (Subtype.val : Matrix.unitaryGroup (Fin N) ℂ → Matrix (Fin N) (Fin N) ℂ) :=
     measurable_subtype_coe
   refine ⟨Measure.map Subtype.val μG, ?_, ?_, ?_, ?_⟩

@@ -23,12 +23,6 @@ variable {P : M.Par} {Wp Wq Wq' : Type}
   [NormedAddCommGroup Wq'] [InnerProductSpace ℂ Wq'] [FiniteDimensional ℂ Wq']
   {u u' : ℕ → ℝ}
 
-theorem ttp_eq (p : KB.Pl P Wp Wq) (q : KB.Pl (shP P u u') Wp Wq') (hz : q.T.base.z = p.T.base.z)
-    (hz' : q.T.base.z' = p.T.base.z') : TTp q = TTp p := by
-  unfold Formalism.FourierDecayAlt.TBB.TTp
-  rw [hz, hz']
-  rfl
-
 theorem isBoundedBilinearMap_compSh :
     IsBoundedBilinearMap ℝ (fun q : (Wq →L[ℂ] Wp) × (Wq' →L[ℂ] Wq) => q.1.comp q.2) :=
   { add_left := fun x₁ x₂ y => ContinuousLinearMap.add_comp x₁ x₂ y

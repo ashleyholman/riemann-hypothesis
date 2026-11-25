@@ -143,13 +143,9 @@ theorem repPt_eq_cpt (Y : InfinitePlace L → Matrix (Fin n) (Fin n) ℂ) (hY : 
   · rfl
   · rw [Matrix.inv_eq_left_inv (hY _), Matrix.conjTranspose_apply]
 
-theorem denseRange_emb [IsCMField L] :
-    DenseRange (fun x : L => fun w : InfinitePlace L => w.embedding x) := by
-  apply GlobalTheory.CMTypeImPos.denseRange_embeddings
-
 theorem denseRange_matEmb [IsCMField L] :
     DenseRange (fun b : Matrix (Fin n) (Fin n) L => fun (i j : Fin n) (w : InfinitePlace L) => w.embedding (b i j)) := by
-  exact DenseRange.piMap fun _ => DenseRange.piMap fun _ => denseRange_emb
+  exact DenseRange.piMap fun _ => DenseRange.piMap fun _ => GlobalTheory.DenseEmbeddingProduct.denseRange_embedding_pi
 
 def skewOf (z : Fin n → Fin n → InfinitePlace L → ℂ) (w : InfinitePlace L) : Matrix (Fin n) (Fin n) ℂ :=
   Matrix.of (fun i j => z i j w) - (Matrix.of (fun i j => z i j w))ᴴ

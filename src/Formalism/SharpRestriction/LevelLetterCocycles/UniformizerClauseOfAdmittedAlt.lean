@@ -878,10 +878,6 @@ theorem invariantLetter_sub {c : ZMod n} {x y : W.DD T} (hx : Formalism.MainNoti
   rw [sub_eq_add_neg, ← neg_one_smul O y]
   exact dl_add W T hx (dl_smul W T (-1) hy)
 
-theorem invariant_letter_idempotent_smul {c : ZMod n} {z : W.DD T} (hz : ∀ δ ∈ W.DelF, W.γD T δ z = z) :
-    Formalism.MainNotions.CrystallineLiftingInputs.DL W T c ((letE c : LetA O n) • z) :=
-  ⟨by rw [smul_smul, _root_.Formalism.MainNotions.LiftingTheory.letter_idempotent_sq], fun δ hδ => by rw [_root_.Formalism.MainNotions.LiftingTheory.gammaD_semilinear, _root_.Formalism.MainNotions.LiftingTheory.gammaA_letter_idempotent, hz δ hδ]⟩
-
 theorem uniformizer_smul_inverse_smul (hU : IsUnit (algebraMap (LetA O n) W.EE W.π₀)) (x : W.DD T) :
     W.π₀ • (uniformizerInverse W • x) = x := by
   rw [← algebraMap_smul W.EE W.π₀, smul_smul, algebraMap_uniformizer_mul_inverse hU, one_smul]
@@ -1528,7 +1524,7 @@ theorem first_lift_of_hypotheses [NeZero n] (W : LocWach PD LL O v n) (hV : Form
         smA (letE c) ∘ₗ z
   have hcore := fun c (hc : c ∈ evens n d) (f : FF) =>
     lift_of_killing_polynomial W T₂ hR hDS hB hA hT₂ c a N s₁ (R c) (hwc c hc) (hkill c hc)
-      ((letE c : LetA O n) • z f) (μ c f) (ν c f) (invariant_letter_idempotent_smul W T₂ (hzΔ f)) (hX2 c f).1
+      ((letE c : LetA O n) • z f) (μ c f) (ν c f) (Formalism.MainNotions.RamifiedCoefficientChains.S9.ExtensionLemmaAlt.Step2L.invariantLetter_idempotent_of_fixed W T₂ (hzΔ f)) (hX2 c f).1
       (hX2 c f).2.1 (hX2 c f).2.2.1 (hX2 c f).2.2.2.2.2
   let uL : ZMod n → FF →ₗ[O] W.DD T₂ := fun c =>
     ((PD.p : ℕ) : O) ^ N • ms c - ((PD.p : ℕ) : O) ^ s₁ • μ c

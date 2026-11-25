@@ -109,8 +109,6 @@ theorem dualMap_comp {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (d : 
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E}
 
-alias exists_pull := _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.exists_sab
-
 variable {L : Type} [Field L] [NumberField L] {L' : Type} [Field L'] [NumberField L'] [Algebra L L']
 
 theorem algebraMap_square :
@@ -120,8 +118,8 @@ theorem algebraMap_square :
 
 theorem exists_ext (D : PPData H L) (L' : Type) [Field L'] [NumberField L'] [Algebra L L'] :
     Nonempty (Σ D' : PPData H L', D.Ext D') := by
-  obtain ⟨t', ⟨m₁⟩⟩ := exists_pull (spMap (algebraMap (𝓞 L) (𝓞 L'))) D.t
-  obtain ⟨tK', ⟨m₂⟩⟩ := exists_pull (spMap (algebraMap (𝓞 L') L')) t'
+  obtain ⟨t', ⟨m₁⟩⟩ := ReciprocityTheory.ChartRestriction.G.Geo.Tor.exists_sab (spMap (algebraMap (𝓞 L) (𝓞 L'))) D.t
+  obtain ⟨tK', ⟨m₂⟩⟩ := ReciprocityTheory.ChartRestriction.G.Geo.Tor.exists_sab (spMap (algebraMap (𝓞 L') L')) t'
   obtain ⟨n, -⟩ := sabComp pullCubComp E H _ _ _ D.t t' tK' _ _ m₁ m₂
   have hsq : spMap (algebraMap (𝓞 L') L') ≫ spMap (algebraMap (𝓞 L) (𝓞 L')) =
       spMap (algebraMap L L') ≫ spMap (algebraMap (𝓞 L) L) := by

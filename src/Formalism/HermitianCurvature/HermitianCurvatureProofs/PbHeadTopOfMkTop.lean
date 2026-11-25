@@ -237,7 +237,7 @@ private theorem det_lhOf_mul_hMat_ptPerm_ne_zero (h : C.LPt) (hh1 : ∀ b ∈ h,
     rw [Matrix.det_of_lowerTriangular _ hbt]
     simp [U.lowW]
   rw [hlow, one_mul]
-  exact mul_ne_zero hwdet (Finset.prod_ne_zero_iff.mpr fun i _ => PBJ.Asm.ptScal_ne h hh1 i i.isLt)
+  exact mul_ne_zero hwdet (Finset.prod_ne_zero_iff.mpr fun i _ => Formalism.FourierDecayAlt.P.Dx1.Rel.scal_ne h hh1 i i.isLt)
 
 theorem head_bound (h : C.LPt) (j : ℕ) (hh : D.IsLocPt h j) (K1 : Set (Fin j → Fin j → ℂ)) (hK1 : IsCompact K1) :
     ∃ R : ℝ, ∀ v : PBQ.XH h, R < ‖v‖ → ∀ u : Matrix (Fin j) (Fin j) ℂ, Formalism.DoubleCosetMeasures.IsUpUni u →
@@ -245,7 +245,7 @@ theorem head_bound (h : C.LPt) (j : ℕ) (hh : D.IsLocPt h j) (K1 : Set (Fin j �
   obtain ⟨hh1, hh2⟩ := hh
   subst hh2
   obtain ⟨B, hB⟩ := hK1.isBounded.exists_norm_le
-  have hd : ∀ i, D.ptDiag h i ≠ 0 := fun i => PBJ.Asm.ptScal_ne h hh1 i i.isLt
+  have hd : ∀ i, D.ptDiag h i ≠ 0 := fun i => Formalism.FourierDecayAlt.P.Dx1.Rel.scal_ne h hh1 i i.isLt
   obtain ⟨C, hC⟩ := exists_bound_unitriangular_of_ldu_bounded (D.ptDiag h) hd B
   refine ⟨max C 0, fun v hv u hu hmem => ?_⟩
   have hwP : ∀ (τ : Equiv.Perm (Fin (D.ptSize h))) (X : Matrix (Fin (D.ptSize h)) (Fin (D.ptSize h)) ℂ) a b,
@@ -717,10 +717,6 @@ theorem pullback_smooth_formula : PbSmooth := by
   exact hag _ hq.2 (xT_GV P.r hq.1 hqG.1)
 
 end Formalism.FourierDecayAlt.P.CutEX
-
-namespace Formalism.FourierDecayAlt.P
-
-end Formalism.FourierDecayAlt.P
 end -- clump:auto
 end -- clump:auto
 end -- clump:auto
@@ -1099,7 +1095,7 @@ theorem radial_of_function_holds : RadOfFun := by
     obtain ⟨hΩ, hG, hpos⟩ := hx
     have hD : (x.1, h * x.2 * h') ∈ DomR k ρ z z' :=
       ⟨hΩ, Formalism.FourierDecayAlt.P.Qx5.Glev_mul (Formalism.FourierDecayAlt.P.Qx5.Glev_mul (hUW hh) hG) (hUW hh'),
-        by rw [Formalism.FourierDecayAlt.P5.Rad.GGl_uw hh hh']; exact hpos⟩
+        by rw [Formalism.FourierDecayAlt.P.Qx8.GGl_equiv hh hh']; exact hpos⟩
     have hD0 : (x.1, x.2) ∈ DomR k ρ z z' := ⟨hΩ, hG, hpos⟩
     show (if (x.1, h * x.2 * h') ∈ DomR k ρ z z' then f (h * x.2 * h') else 0) =
       π h ∘SL (if (x.1, x.2) ∈ DomR k ρ z z' then f x.2 else 0) ∘SL π' h'
@@ -1114,13 +1110,9 @@ theorem determinant_vanishing_holds : ZxDet := by
   unfold PBQ.zxH
   rw [Matrix.det_reindex_self, Matrix.det_mul]
   exact mul_ne_zero (LeftFubiniLemmas.lh_unit _ v).ne_zero
-    (_root_.Formalism.FourierDecayAlt.P.Ux10.det_hMat_ne _ _ (fun a => Formalism.FourierDecayAlt.P.PBJ.Asm.ptScal_ne h hh.1 a a.isLt))
+    (_root_.Formalism.FourierDecayAlt.P.Ux10.det_hMat_ne _ _ (fun a => Formalism.FourierDecayAlt.P.Dx1.Rel.scal_ne h hh.1 a a.isLt))
 
 end Formalism.FourierDecayAlt.P.CutEX
-
-namespace Formalism.FourierDecayAlt.P
-
-end Formalism.FourierDecayAlt.P
 end -- clump:auto
 end -- clump:auto
 end -- clump:auto
@@ -1345,7 +1337,7 @@ theorem head_weight_at_of_exists : DiagonalScalarMatrices.HeadWeightAtOfEx := by
 
   have hbase := hLF.2.2
   obtain ⟨hν, hνz, hνν, -, -⟩ := id hbase
-  obtain ⟨Bs', hB'⟩ := Formalism.FourierDecayAlt.P.Topx1.vecw_frame_exists P.k (P.r - P.r) (by omega) (p.T.bs P.r).z' ν'r
+  obtain ⟨Bs', hB'⟩ := Formalism.FourierDecayAlt.P.Topx1.typ_frame_exists P.k (P.r - P.r) (by omega) (p.T.bs P.r).z' ν'r
     (p.T.bs P.r).z'_mem (p.T.bs P.r).T'_pos hν hνz hνν
   have hBγ := DiagonalScalarMatrices.frame_dframe (p.T.bs P.r) hr hγF hB'
 
@@ -1496,10 +1488,6 @@ theorem top_unipotent_integral_zero (Wp Wq : Type) [NormedAddCommGroup Wp] [Inne
   rfl
 
 end Formalism.FourierDecayAlt.P.CompactCoefficientAppend
-
-namespace Formalism.FourierDecayAlt.P
-
-end Formalism.FourierDecayAlt.P
 end -- clump:auto
 end -- clump:auto
 end -- clump:auto
@@ -1667,8 +1655,6 @@ theorem ptMatN_append_head (h : C.LPt) (ζ : ℂ) (R : ℕ) (hR : D.ptSize h = R
   ext a b
   simp only [D.ptMatN, _root_.Formalism.FourierDecayAlt.P.PBJ.Asm.ptEntry_append, hR, a.isLt, b.isLt, and_self, ite_true]
 
-alias isLocPt_app := _root_.Formalism.FourierDecayAlt.P.PBI.isLocPt_app
-
 theorem Tz_lift (R : ℕ) (v : Fin (2 * 0 + k + 1) → ℂ) : Tz k (R + 0) (liftVec k R 0 v) = Tz k 0 v := by
   unfold Tz; rw [herm_lift]
 
@@ -1706,7 +1692,7 @@ theorem vecV_append_singleton_eq_vecV_sliceAt (k R ρ : ℕ) (hρ : ρ = 0) (e :
   set dR := hh.2 ▸ D.ptDiag h with hdRdef
   set Z := U.hMat σR dR with hZdef
   have hZu : IsUnit Z.det := by rw [hZdef, hMat_monoP]; exact C2x2.isUnit_det_monomialMatrix _ _ hdR
-  have hq := isLocPt_app h R hh ζ hζ
+  have hq := Formalism.FourierDecayAlt.P.PBI.isLocPt_app h R hh ζ hζ
   have hG : D.ptG (Tz k R S.z * Tz k R S.z') R (h ++ [(1, ζ)]) =
       Complex.normSq (D.ptMatN h R).det * (Complex.normSq ζ - Tz k R S.z * Tz k R S.z') := by
     unfold D.ptG
@@ -1813,10 +1799,6 @@ theorem highestUnipotentIntegral : PBI.HighestUnipotentIntegral := by
   · exact top_unipotent_integral_positive Wp Wq P p F h ζ hh ν'r m₀r hF hζ hν hm (by omega)
 
 end Formalism.FourierDecayAlt.P.PBM
-
-namespace Formalism.FourierDecayAlt.P
-
-end Formalism.FourierDecayAlt.P
 end -- clump:auto
 end -- clump:auto
 end -- clump:auto

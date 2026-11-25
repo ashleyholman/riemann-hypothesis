@@ -128,7 +128,7 @@ theorem trunc_polesFin (T : LocLat G Qp LL O) (c : ZMod n) (η σ : ℕ) {w z : 
   set a : LetA O n := (∏ j ∈ Finset.range k, Formalism.MainNotions.LiftingTheory.pk W j) ^ K with ha
   set Pq : LetA O n := ∏ j ∈ Finset.range k, Formalism.MainNotions.LiftingTheory.pk W (j + 1) with hPq
   have hφa : W.φD T (a • w) = Pq ^ K • W.φD T w := by
-    have e := Formalism.MainNotions.UnusedSlot80.Relay2.φpow_smul W T 1 a w
+    have e := Formalism.MainNotions.UnusedSlot80.SatPW.φD_pow_smulA W T 1 a w
     rw [pow_one, pow_one] at e
     rw [e, ha, map_pow, map_prod]
     simp only [pk_succ, hPq]

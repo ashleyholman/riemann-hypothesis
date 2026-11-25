@@ -215,7 +215,7 @@ theorem rhX_lact {γ : GL (Fin r) E} (hγ : IsUStab X.Gm X.Λ γ) (x0 x : Frame 
 
 theorem leviRh_nonneg (h0 : IsOrth X x0) {z : V (nd X)} (hz : z ∈ OmF X x0) (ξ : Fin (nd X) → ℂ) :
     0 ≤ leviRh X x0 z ξ :=
-  OntoB.levi_rh_nonneg RhGradFStatement_holds h0 hz ξ
+  OntoB.levi_rh_nonneg ReciprocityTheory.ChartRestriction.G.AR.Up.RGF.rhGradF_holds h0 hz ξ
 
 end Potential
 

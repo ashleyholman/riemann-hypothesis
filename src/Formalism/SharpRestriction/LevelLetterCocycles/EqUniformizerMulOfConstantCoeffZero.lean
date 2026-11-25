@@ -240,7 +240,7 @@ theorem gamma_structure_of [NeZero n] [IsDomain O] (h9 : Formalism.MainNotions.D
   set hh : ℕ := b (i - 1) + S with hhh
   have hq : qp ∈ W.AΔ := qp_mem_AΔ' W hR
   have hπ : W.π₀ ∈ W.AΔ := Formalism.MainNotions.UnusedSlot80.UnivC.uniformizer_mem_delta_invariants W
-  have hp0 : ((PD.p : ℕ) : O) ≠ 0 := p_ne_zero_O W
+  have hp0 : ((PD.p : ℕ) : O) ≠ 0 := Formalism.MainNotions.LiftingTheory.tr_p_ne W
   have hqcan : ∀ u v : LetA O n, qp * u = qp * v → u = v := fun u v h => by
     apply W.EE_inj; apply hqU.mul_left_cancel; rw [← map_mul, ← map_mul, h]
   have hresq_sub : ∀ {g h : LetA O n}, g ∈ W.AΔ → h ∈ W.AΔ →

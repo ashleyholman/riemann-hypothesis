@@ -430,6 +430,4 @@ theorem meanExists : MeanExists := by
 
 end Lattice
 
-alias _root_.Formalism.FourierDecayAlt.P.invariantMeanExists := _root_.Formalism.FourierDecayAlt.P.BoxAverageLimits.meanExists
-
 end Formalism.FourierDecayAlt.P.BoxAverageLimits

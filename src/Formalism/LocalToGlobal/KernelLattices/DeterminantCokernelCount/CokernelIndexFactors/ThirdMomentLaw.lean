@@ -228,12 +228,6 @@ def RelIndexFormula : Prop :=
 
 end Index
 
-section IdxProof
-
-alias card_quot_range_toLin' := DVRLatticeIndex.card_quot_range_toLin_clean
-
-end IdxProof
-
 section IdxMain
 
 open scoped Matrix
@@ -414,7 +408,7 @@ theorem relIndexFormula : RelIndexFormula := by
     ring
   have hm0 := zpow_eq_unit ϖ hϖ _ _ hkey
   have he : (N' : ℤ) * a - (N : ℤ) * a' = m := by linarith
-  have hc := card_quot_range_toLin' ϖ hϖ Mat m v (by rw [hdv, mul_comm])
+  have hc := DVRLatticeIndex.card_quot_range_toLin_clean ϖ hϖ Mat m v (by rw [hdv, mul_comm])
   refine ⟨by rw [he]; omega, ?_⟩
   have htoNat : ((N' : ℤ) * a - (N : ℤ) * a').toNat = m := by rw [he]; simp
   rw [htoNat, ← hQ, ← hc, show movLat O K k k' =

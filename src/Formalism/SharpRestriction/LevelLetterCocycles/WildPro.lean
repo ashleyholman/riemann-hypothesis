@@ -130,11 +130,9 @@ theorem fix_of_coprime {p m : ℕ} (hpA : A.valuation ((p : ℕ) : Ω) < 1) (hm 
     rw [h5, ← hτT, ← h5, map_mul, map_natCast]
   exact mul_left_cancel₀ hm0 h6
 
-alias exists_pow_fix := _root_.Bl.general_b_fact_right_version.goal1
-
 theorem exists_ppow_fix {p : ℕ} (hp : p.Prime) (hpA : A.valuation ((p : ℕ) : Ω) < 1) {σ : Ω ≃ₐ[E] Ω} (hσ : IsWild A σ)
     (y : Ω) (hy : IsIntegral E y) : ∃ a : ℕ, ∀ k, a ≤ k → (σ ^ (p ^ k)) y = y := by
-  obtain ⟨n, hn, hfix⟩ := exists_pow_fix σ y hy
+  obtain ⟨n, hn, hfix⟩ := Bl.general_b_fact_right_version.goal1 σ y hy
   obtain ⟨a, m, hpm, rfl⟩ := Nat.exists_eq_pow_mul_and_not_dvd hn p hp.ne_one
   have hcop : Nat.Coprime m p := ((Nat.Prime.coprime_iff_not_dvd hp).2 hpm).symm
   have h1 : (σ ^ (p ^ a)) y = y := by

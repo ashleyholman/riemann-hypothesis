@@ -273,18 +273,6 @@ private theorem divCycle_eq_zero_of_not_mem' {P W : Ideal (MRing ι R)} {x : MRi
   by_contra h'
   exact h (form_mem_of_divCycle_ne_zero h')
 
-private theorem divCycle_nonneg' (P : Ideal (MRing ι R)) (x : MRing ι R) (W : Ideal (MRing ι R)) :
-    0 ≤ divCycle P x W := by
-  unfold divCycle
-  split_ifs <;> positivity
-
-private theorem facts_of_divCycle_ne_zero' {P W : Ideal (MRing ι R)} {x : MRing ι R}
-    (h : divCycle P x W ≠ 0) : W ∈ (P ⊔ Ideal.span {x}).minimalPrimes ∧ IsRelevant W := by
-  unfold divCycle at h
-  split_ifs at h with hc
-  · exact hc
-  · exact absurd rfl h
-
 end Helpers
 
 section Rel
@@ -323,7 +311,7 @@ theorem ExceptionalComparison.proof (h₁ : BlowUpDecomposition.Statement.{u}) (
   set G := G'.comap (liftForm (J := BlowUpIdx ι)) with hGdef
   have hPp : P.IsPrime := hP.multiProj.isPrime
   have hQp : Q.IsPrime := hQm.multiProj.isPrime
-  obtain ⟨hG'min, hG'rel⟩ := facts_of_divCycle_ne_zero' hY₀.ne'
+  obtain ⟨hG'min, hG'rel⟩ := GroundTheory.Heights₂.Heights.NumbersDVR.relevant_minimal_of_divCycle_ne_zero hY₀.ne'
   have hGp : G.IsPrime := hG.1.1
   have hPG : P ≤ G := le_sup_left.trans hG.1.2
   have hGrel : IsRelevant G := by
@@ -371,8 +359,8 @@ theorem ExceptionalComparison.proof (h₁ : BlowUpDecomposition.Statement.{u}) (
         G' ∈ (Q ⊔ Ideal.span {liftForm m}).minimalPrimes ∧ IsRelevant G' := by
       unfold ratDiv at h0
       by_cases h1 : divCycle Q (newVar (some none)) G' = 0
-      · right; exact facts_of_divCycle_ne_zero' (fun h2 => h0 (by rw [h1, h2, sub_zero]))
-      · left; exact facts_of_divCycle_ne_zero' h1
+      · right; exact GroundTheory.Heights₂.Heights.NumbersDVR.relevant_minimal_of_divCycle_ne_zero (fun h2 => h0 (by rw [h1, h2, sub_zero]))
+      · left; exact GroundTheory.Heights₂.Heights.NumbersDVR.relevant_minimal_of_divCycle_ne_zero h1
     have hW' : G'.IsPrime ∧ Q ≤ G' ∧ IsRelevant G' := by
       rcases hW with ⟨h1, h2⟩ | ⟨h1, h2⟩
       · exact ⟨h1.1.1, le_sup_left.trans h1.1.2, h2⟩
@@ -380,7 +368,7 @@ theorem ExceptionalComparison.proof (h₁ : BlowUpDecomposition.Statement.{u}) (
     obtain ⟨a, v, ha, hrel⟩ := hD₁.2 G' hW'.1 hW'.2.1 hW'.2.2
     have := ratDiv_eq_of_rel hQp hW'.2.1 hY₁Q (hlift hmP) ha hrel
     rw [this.2]
-    exact divCycle_nonneg' _ _ _
+    exact GroundTheory.Heights₂.Heights.NumbersDVR.divCycle_nonneg _ _ _
 
   obtain ⟨a, v, haG, hrelP⟩ := hD.2 G hGp hPG hGrel
   obtain ⟨hvP, hfgG⟩ := ratDiv_eq_of_rel hPp hPG hfP hgP haG hrelP

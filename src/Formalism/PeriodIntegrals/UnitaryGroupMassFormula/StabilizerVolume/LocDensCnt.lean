@@ -84,10 +84,6 @@ theorem ev_int (x : F) : ∀ᶠ v in cofinite,
   rw [IsDedekindDomain.HeightOneSpectrum.mem_adicCompletionIntegers (𝓞 F) F w, vcoe, not_le] at hw
   exact hw
 
-theorem ev_unit {x : F} (hx : x ≠ 0) : ∀ᶠ v in cofinite,
-    Valued.v (algebraMap F (Fv F v) x) = 1 := by
-  apply GlobalTheory.GaugeDensity.eventually_valued_eq_one <;> assumption
-
 end Res
 
 section Count
@@ -985,7 +981,7 @@ theorem cntAA_holds : CntAA := by
   obtain ⟨δ, D0, c, hδ0, hσδ, hδ, hD0, hc0, hc1⟩ := exists_basis_anti σ hCM
   let A : AntiB F E σ := ⟨δ, D0, c, hc0, hc1, hδ, hσδ, hD0⟩
   have hJdet : J.det ≠ 0 := hJ.2
-  filter_upwards [ev_int (F := F) D0, ev_unit hD0, ev_unit (two_ne_zero : (2 : F) ≠ 0),
+  filter_upwards [ev_int (F := F) D0, GlobalTheory.GaugeDensity.eventually_valued_eq_one hD0, GlobalTheory.GaugeDensity.eventually_valued_eq_one (two_ne_zero : (2 : F) ≠ 0),
     eventually_all.2 fun j => eventually_all.2 fun k => ev_int (F := F) (b.repr (c j) k),
     eventually_all.2 fun k => eventually_all.2 fun j => ev_int (F := F) (c.repr (b k) j),
     eventually_all.2 fun p => eventually_all.2 fun q => eventually_all.2 fun j =>

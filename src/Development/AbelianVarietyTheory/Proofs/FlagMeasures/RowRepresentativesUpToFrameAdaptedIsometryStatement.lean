@@ -51,7 +51,7 @@ theorem hT_f_chg (v : S.V) (b : Fin r) : S.hT (f b) (chg e f f' σ v) = S.hT (f'
 
 include hee hff hef in
 theorem pj_chg (v : S.V) : pj e f (chg e f f' σ v) = pj e f (σ (pj e f' v)) := by
-  rw [chg_apply, map_add (f := _), map_add (f := _), pj_of_memX hee hef _ (pX_mem v), pj_of_memY hff hef _ (pY_mem v),
+  rw [chg_apply, map_add (f := _), map_add (f := _), Formalism.L2.SG.Pf.pj_X hee hef _ (pX_mem v), pj_of_memY hff hef _ (pY_mem v),
     pj_pj hee hff hef]
   simp
 
@@ -79,13 +79,13 @@ theorem chg_chg (v : S.V) : chg e f' f σ.symm (chg e f f' σ v) = v := by
       have := hX' _ (pj_sub_mem (f := f) _ hp)
       rwa [map_sub, LinearEquiv.symm_apply_apply] at this
     have : σ.symm (pj e f (σ (pj e f' v))) = pj e f' v + (σ.symm (pj e f (σ (pj e f' v))) - pj e f' v) := by abel
-    rw [this, map_add (f := _), pj_pj hee hff' hef', pj_of_memX hee hef' _ hx, add_zero]
+    rw [this, map_add (f := _), pj_pj hee hff' hef', Formalism.L2.SG.Pf.pj_X hee hef' _ hx, add_zero]
   rw [chg_apply, h1, h2, h3, ← decomp (e := e) (f := f') v]
 
 include hee hef' in
 theorem chg_e (b : Fin r) : chg e f f' σ (e b) = e b := by
   have hb : e b ∈ Submodule.span E (Set.range e) := Submodule.subset_span ⟨b, rfl⟩
-  rw [chg_apply, pX_of_mem hef' _ hb, pY_of_memX hee _ hb, pj_of_memX hee hef' _ hb]
+  rw [chg_apply, pX_of_mem hef' _ hb, pY_of_memX hee _ hb, Formalism.L2.SG.Pf.pj_X hee hef' _ hb]
   simp
 
 include hff' hef' in
@@ -102,7 +102,7 @@ theorem chg_perp (l : S.V) (hl : ∀ a, S.hT (e a) l = 0 ∧ S.hT (f' a) l = 0) 
 include hee hef in
 theorem chg_apply_of_orthogonal (z : S.V) (hz : ∀ a, S.hT (e a) z = 0 ∧ S.hT (f' a) z = 0) (hzf : ∀ a, S.hT (f a) z = 0)
     (hσz : σ z - z ∈ Submodule.span E (Set.range e)) : chg e f f' σ z = z := by
-  rw [chg_perp z hz, show σ z = z + (σ z - z) by abel, map_add (f := _), pj_of_memX hee hef _ hσz, add_zero,
+  rw [chg_perp z hz, show σ z = z + (σ z - z) by abel, map_add (f := _), Formalism.L2.SG.Pf.pj_X hee hef _ hσz, add_zero,
     pj_perp z fun a => ⟨(hz a).1, hzf a⟩]
 
 include hee hff hef in

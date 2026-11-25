@@ -38,15 +38,13 @@ def SumBallStatement : Prop :=
       ∑' γ : X.Γ, (∫⁻ w in Bset X x ρ0,
         ‖P (lact γ.1 (cpt X x w))‖ₑ ^ 2 * W (lact γ.1 (cpt X x w))) ^ (1 / 2 : ℝ) ≤ C
 
-alias cont_cpt' := _root_.ReciprocityTheory.ChartRestriction.G.AR.Up.PairUnfoldPf.cpt_cont
-
 theorem isOpen_Bset (X : Data E r) (x : Frame X.Ψ r) (ρ : ℝ) : IsOpen (Bset X x ρ) := by
   have hdom : IsOpen X.dom := FourierCoefficientDomain.isOpen_dom X
   have hB : Bset X x ρ = {w : V (nd X) | ‖w‖ < ρ} ∩ cpt X x ⁻¹' X.dom := by
     ext w
     rfl
   rw [hB]
-  exact (isOpen_lt continuous_norm continuous_const).inter (hdom.preimage (cont_cpt' X x))
+  exact (isOpen_lt continuous_norm continuous_const).inter (hdom.preimage (ReciprocityTheory.ChartRestriction.G.AR.Up.PairUnfoldPf.cpt_cont X x))
 
 theorem pow_half_sq (t : ℝ≥0∞) : (t ^ (1 / 2 : ℝ)) ^ 2 = t := by
   rw [← ENNReal.rpow_natCast, ← ENNReal.rpow_mul]
@@ -109,7 +107,7 @@ theorem key_int (X : Data E r) (la : Wt X.Ψ r) (W : Frame X.Ψ r → ℝ≥0∞
   rw [← lintegral_const_mul' _ _ (ENNReal.pow_ne_top hS)]
   have hBm : MeasurableSet (Bset X x ρ) := (isOpen_Bset X x ρ).measurableSet
   have hgc : Continuous fun w => lact γ (cpt X x w) :=
-    (differentiable_lact_upper_bounds X γ).continuous.comp (cont_cpt' X x)
+    (differentiable_lact_upper_bounds X γ).continuous.comp (ReciprocityTheory.ChartRestriction.G.AR.Up.PairUnfoldPf.cpt_cont X x)
   have hmaps : ∀ w ∈ Bset X x ρ, lact γ (cpt X x w) ∈ X.dom := fun w hw =>
     _root_.ReciprocityTheory.ChartRestriction.G.AR.Up.PoinPf.lactDom X hγ (show ‖w‖ < ρ ∧ cpt X x w ∈ X.dom from hw).2
   have hPc : ContinuousOn (fun w => P (lact γ (cpt X x w))) (Bset X x ρ) :=
@@ -277,7 +275,7 @@ theorem loc_of (hA : SubMeanLocStatement (E := E)) (hS : SumBallStatement (E := 
     simp only [rmul, mat, Matrix.mul_apply, Matrix.of_apply]
     fun_prop
   obtain ⟨ε1, hε1, h1⟩ := Metric.continuousAt_iff.1 hcont.continuousAt ε hε
-  obtain ⟨ε2, hε2, h2⟩ := Metric.isOpen_iff.1 (isOpenDom X) x hx
+  obtain ⟨ε2, hε2, h2⟩ := Metric.isOpen_iff.1 (ReciprocityTheory.ChartRestriction.G.FD.FourierCoefficientDomain.isOpen_dom X) x hx
   set x1 := rmul x b0 with hx1def
   set I : X.Γ → ℝ≥0∞ := fun γ => ∫⁻ w in Bset X x1 ρ0,
     ‖P (lact γ.1 (cpt X x1 w))‖ₑ ^ 2 * W (lact γ.1 (cpt X x1 w)) with hIdef

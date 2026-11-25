@@ -206,8 +206,6 @@ variable {O K : Type} [CommRing O] [IsDomain O] [IsDiscreteValuationRing O] [Fie
 theorem smulO_eq {σ : Type} (a : O) (F : MvPolynomial σ K) : a • F = algebraMap O K a • F :=
   (algebraMap_smul K a F).symm
 
-alias exists_pow_mem := _root_.Bl.DualWeylPullback.goal1
-
 theorem iso_one (hCD : CartanDomain) (w : O) (hw : Irreducible w) (m : ℕ) (mu ze : Fin (m + 1) → ℤ) (hmu : Antitone mu)
     (hze : Antitone ze) (Λ : Submodule O (Fin (m + 1) → K)) (hΛ : IsLattice O Λ)
     (z : MvPolynomial (Fin (m + 1) × Fin (m + 1)) K) (hz : z ∈ H0 O m ze Λ)
@@ -233,7 +231,7 @@ theorem iso_one (hCD : CartanDomain) (w : O) (hw : Irreducible w) (m : ℕ) (mu 
         rw [this]; exact hF'
       · exact absurd h hprim
   obtain ⟨g, hg, rfl⟩ := hΛ
-  obtain ⟨n, hn⟩ := exists_pow_mem w hw m mu hmu g hg F hF
+  obtain ⟨n, hn⟩ := Bl.DualWeylPullback.goal1 w hw m mu hmu g hg F hF
   exact key n F hn hzF
 
 theorem retract_one (hCD : CartanDomain) (hCO : CartanOnto) (w : O) (hw : Irreducible w) (m : ℕ)

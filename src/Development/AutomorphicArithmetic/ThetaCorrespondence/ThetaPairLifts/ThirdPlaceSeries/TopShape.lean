@@ -602,7 +602,7 @@ theorem funSharp_fam_alt [∀ {eps : ℝ} (Fm : FamP eps) (x : ℝ) (i : Fm.Ix x
   have hS := Fm.sizes x hx i
   have hFD : FactDGam (Fm.D x i) (max Cd 0) := J.factDGam_mono (hFDG x hx4 i) (le_max_left _ _)
   have hDGp := _root_.Formalism.L2.DIV.Cons.gamma_size_of_sizeData_alt (selP Fm hc x hx h i).2 (_root_.Formalism.L2.Top4Wire2.finite_T_of_squareIntegrableColumns (selC Fm hc x hx h i))
-    hS.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.1 hS.2.2.2.2.2.1 (selDH Fm hc x hx h i).1.1 (selDH Fm hc x hx h i).1.2 (Fm.L x i).Nc (cloudConstant_nonneg (Fm.L x i))
+    hS.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.1 hS.2.2.2.2.2.1 (selDH Fm hc x hx h i).1.1 (selDH Fm hc x hx h i).1.2 (Fm.L x i).Nc (Formalism.MainNotions.Nc_nonneg (Fm.L x i))
     (max Cd 0) (le_max_right _ _) hFD
   have eCc : (Fm.L x i).Cc = Fm.Cc := Fm.Cc_eq x i
   have eCt : (Fm.L x i).Ct = Fm.Ct := Fm.Ct_eq x i
@@ -1259,7 +1259,7 @@ theorem wire4F_alt [∀ {eps : ℝ} (Fm : FamP eps) (x : ℝ) (i : Fm.Ix x), IsT
   have hS := Fm.sizes x hx i
   have hFD : FactDGam (Fm.D x i) (max Cd 0) := J.factDGam_mono (hFDG x hx4 i) (le_max_left _ _)
   have hDGp := _root_.Formalism.L2.DIV.Cons.gamma_size_of_sizeData_alt (selP Fm (d3_a hc) x hx h i).2 (_root_.Formalism.L2.Top4Wire2.finite_T_of_squareIntegrableColumns (selC Fm (d3_a hc) x hx h i))
-    hS.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.1 hS.2.2.2.2.2.1 (selDH Fm (d3_a hc) x hx h i).1.1 (selDH Fm (d3_a hc) x hx h i).1.2 (Fm.L x i).Nc (cloudConstant_nonneg (Fm.L x i))
+    hS.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.1 hS.2.2.2.2.2.1 (selDH Fm (d3_a hc) x hx h i).1.1 (selDH Fm (d3_a hc) x hx h i).1.2 (Fm.L x i).Nc (Formalism.MainNotions.Nc_nonneg (Fm.L x i))
     (max Cd 0) (le_max_right _ _) hFD
   have eCc : (Fm.L x i).Cc = Fm.Cc := Fm.Cc_eq x i
   have eCt : (Fm.L x i).Ct = Fm.Ct := Fm.Ct_eq x i

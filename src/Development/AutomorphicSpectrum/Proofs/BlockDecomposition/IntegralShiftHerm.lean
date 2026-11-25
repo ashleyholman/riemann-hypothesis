@@ -56,9 +56,6 @@ theorem integral_shift_herm (lam : Measure (hermA D n)) (hl : lam.IsAddHaarMeasu
 theorem halfTr_add (x y : AE D) : halfTr (x + y) = halfTr x + halfTr y := by
   simp [halfTr, mul_add]
 
-theorem halfTr_neg (x : AE D) : halfTr (-x) = -halfTr x := by
-  simp [halfTr]
-
 theorem inner_mul_right (V : HSp D) {r : ℕ} (x : Mx D V.rank r) (s : Mx D r r) :
     StdUnn.inner V (HMul.hMul x s : Mx D V.rank r) (HMul.hMul x s : Mx D V.rank r) =
       adj s * StdUnn.inner V x x * s := by

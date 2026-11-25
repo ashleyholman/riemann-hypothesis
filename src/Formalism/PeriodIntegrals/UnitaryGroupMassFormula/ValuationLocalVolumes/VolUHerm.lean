@@ -22,11 +22,8 @@ variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algeb
 theorem sigR_inclR (x : E) : sigR (Fv F v) σ (inclR (F := F) (Fv F v) x) = inclR (F := F) (Fv F v) (σ x) := by
   simp [sigR, inclR]
 
-theorem sigR_sc (c : Fv F v) : sigR (Fv F v) σ (sc (E := E) v c) = sc (E := E) v c := by
-  simp [sigR, sc, Algebra.TensorProduct.map_tmul]
-
 theorem sigR_smul (c : Fv F v) (x : Fv F v ⊗[F] E) : sigR (Fv F v) σ (c • x) = c • sigR (Fv F v) σ x := by
-  rw [← VolTU.sc_mul_eq_smul, ← VolTU.sc_mul_eq_smul, map_mul, sigR_sc]
+  rw [← VolTU.sc_mul_eq_smul, ← VolTU.sc_mul_eq_smul, map_mul, PI.OmLocU.sigR_sc]
 
 theorem sigR_mem {x : Fv F v ⊗[F] E} (hx : x ∈ OEv (E := E) v) : sigR (Fv F v) σ x ∈ OEv (E := E) v := by
   apply _root_.Formalism.L2.SG.Pf.NcVal.OmVSt.OmX.sigR_oev <;> assumption
@@ -159,7 +156,7 @@ theorem volTW_eq (hinv : ∀ y, σ (σ y) = y) (g r : ℕ) (c : Matrix (Fin (r +
       have := (h i i).2.2 rfl
       rwa [phiF_low σ v r Y (lt_irrefl _)] at this
     · have h1 := sigR_mem σ v ((h j i).2.1 hij)
-      rw [phiF_up σ v r Y hij, map_mul, sigR_sc, map_sub, map_add (f := _), sigR_sigR σ v hinv, ← hc.1 j i] at h1
+      rw [phiF_up σ v r Y hij, map_mul, PI.OmLocU.sigR_sc, map_sub, map_add (f := _), sigR_sigR σ v hinv, ← hc.1 j i] at h1
       rw [show Y (i, j) + sigR (Fv F v) σ (Y (j, i)) - c i j =
         sigR (Fv F v) σ (Y (j, i)) + Y (i, j) - c i j by ring]
       exact h1

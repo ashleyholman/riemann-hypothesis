@@ -855,8 +855,8 @@ theorem mem_localLattice_of_cong (Z : LocDat D) (p : PlF D) (g : Formalism.MainN
     refine (Submodule.span_le.2 ?_) ha
     rintro _ ⟨y, hy, rfl⟩
     exact IotaBP.typed_q_mem Z p g hs F F' hy
-  · exact IotaBP.localLattice_mono Z p (le_sup_right.trans le_sup_left) (hX F hb hbX)
-  · exact IotaBP.localLattice_mono Z p le_sup_right (hX F' hc hcX)
+  · exact Formalism.L2.SG.Pf.BBTie.latP_mono Z p (le_sup_right.trans le_sup_left) (hX F hb hbX)
+  · exact Formalism.L2.SG.Pf.BBTie.latP_mono Z p le_sup_right (hX F' hc hcX)
 
 theorem mem_NgX_of_local (Z : LocDat D) {Λ : Submodule (𝓞 D.host.E) (VS D).V}
     (hΛ : Submodule.IsFullLattice D.host.E Λ) {T T' : D.host.E} (F : LFlag (D.sp.Y 0) D.R.rS T)

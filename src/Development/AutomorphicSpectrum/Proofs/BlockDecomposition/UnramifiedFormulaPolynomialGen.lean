@@ -361,26 +361,6 @@ namespace GlobalTheory.CompanionTheory.SiegLoc.HermOrth
 
 variable {R : Type} [CommRing R]
 
-theorem red_add' (ϖ : R) (k : ℕ) {a b : ℕ} (x y : Matrix (Fin a) (Fin b) R) :
-    red ϖ k (x + y) = red ϖ k x + red ϖ k y := by
-  ext i j
-  simp [red]
-
-theorem red_neg' (ϖ : R) (k : ℕ) {a b : ℕ} (x : Matrix (Fin a) (Fin b) R) :
-    red ϖ k (-x) = -red ϖ k x := by
-  ext i j
-  simp [red]
-
-theorem cT_add' (σ : R →+* R) {a b : ℕ} (x y : Matrix (Fin a) (Fin b) R) :
-    cT σ (x + y) = cT σ x + cT σ y := by
-  ext i j
-  simp [cT]
-
-theorem cT_neg' (σ : R →+* R) {a b : ℕ} (x : Matrix (Fin a) (Fin b) R) :
-    cT σ (-x) = -cT σ x := by
-  ext i j
-  simp [cT]
-
 theorem cT_single' (σ : R →+* R) {n : ℕ} (i j : Fin n) (c : R) :
     cT σ (Matrix.single i j c) = Matrix.single j i (σ c) := by
   simp only [PositivityTheory.PfSWUS.Loc.cT, Matrix.map_single, Matrix.transpose_single]
@@ -425,9 +405,9 @@ theorem hermMod_add {σ : R →+* R} {ϖ : R} {n k : ℕ}
   obtain ⟨b', hb', rfl⟩ := hb
   have ha'' : PositivityTheory.PfSWUS.Loc.cT σ a' = a' := ha'
   have hb'' : PositivityTheory.PfSWUS.Loc.cT σ b' = b' := hb'
-  refine ⟨a' + b', ?_, GlobalTheory.CompanionTheory.SiegLoc.HermOrth.red_add' _ _ _ _⟩
+  refine ⟨a' + b', ?_, GlobalTheory.CompanionTheory.LocalDens.red_add _ _ _ _⟩
   show PositivityTheory.PfSWUS.Loc.cT σ (a' + b') = a' + b'
-  rw [GlobalTheory.CompanionTheory.SiegLoc.HermOrth.cT_add', ha'', hb'']
+  rw [GlobalTheory.CompanionTheory.LocalDens.cT_add, ha'', hb'']
 
 theorem hermMod_neg {σ : R →+* R} {ϖ : R} {n k : ℕ}
     (a : Matrix (Fin n) (Fin n) (R ⧸ lev ϖ k)) (ha : a ∈ hermMod σ ϖ n k) :
@@ -435,9 +415,9 @@ theorem hermMod_neg {σ : R →+* R} {ϖ : R} {n k : ℕ}
   unfold PositivityTheory.PfSWUS.Loc.hermMod at ha ⊢
   obtain ⟨a', ha', rfl⟩ := ha
   have ha'' : PositivityTheory.PfSWUS.Loc.cT σ a' = a' := ha'
-  refine ⟨-a', ?_, GlobalTheory.CompanionTheory.SiegLoc.HermOrth.red_neg' _ _ _⟩
+  refine ⟨-a', ?_, GlobalTheory.CompanionTheory.LocalDens.red_neg _ _ _⟩
   show PositivityTheory.PfSWUS.Loc.cT σ (-a') = -a'
-  rw [GlobalTheory.CompanionTheory.SiegLoc.HermOrth.cT_neg', ha'']
+  rw [GlobalTheory.CompanionTheory.LocalDens.cT_neg, ha'']
 
 theorem red_eq_zero_of_trivial {σ : R →+* R} {ϖ : R} {q : ℕ} {ε : ℤ}
     {ψ : ∀ k, AddChar (R ⧸ lev ϖ k) ℂ} (hR : IsUnrQuad R σ ϖ q ε) (hψ : IsLevelChars σ ϖ ψ)
@@ -456,7 +436,7 @@ theorem red_eq_zero_of_trivial {σ : R →+* R} {ϖ : R} {q : ℕ} {ε : ℤ}
     simpa [PositivityTheory.PfSWUS.Loc.cT] using hentry
   have hb : PositivityTheory.PfSWUS.Loc.cT σ (Matrix.single j i t + Matrix.single i j (σ t)) =
       Matrix.single j i t + Matrix.single i j (σ t) := by
-    rw [GlobalTheory.CompanionTheory.SiegLoc.HermOrth.cT_add', GlobalTheory.CompanionTheory.SiegLoc.HermOrth.cT_single', GlobalTheory.CompanionTheory.SiegLoc.HermOrth.cT_single',
+    rw [GlobalTheory.CompanionTheory.LocalDens.cT_add, GlobalTheory.CompanionTheory.SiegLoc.HermOrth.cT_single', GlobalTheory.CompanionTheory.SiegLoc.HermOrth.cT_single',
       hσσ, add_comm]
   have htr := h _ hb
   rw [Matrix.add_mul, Matrix.trace_add, GlobalTheory.CompanionTheory.SiegLoc.HermOrth.trace_single_mul',

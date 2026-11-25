@@ -30,12 +30,6 @@ import Mathlib.RingTheory.SimpleRing.Principal
 -- clump-header: {"m": "Formalism.GaussJetBounds.OneLetterGauss", "h": "module\n\npublic import Formalism.GaussJetBounds.StatementU\npublic import Formalism.GaussJetBounds.GaussJetProofs.OneGauss\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}
 section -- clump:auto
 @[expose] public section
-
-namespace Formalism.DworkPowerSeriesWeights
-
-alias oneLetterGauss := _root_.Formalism.DworkPowerSeriesWeights.one_letter_gauss_sum
-
-end Formalism.DworkPowerSeriesWeights
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Formalism.GaussJetBounds.OneLetterGauss =====
@@ -922,7 +916,7 @@ theorem thmOne_of (hB : TieB) (hB0 : KernelFromTwistOneLetter) (hF : TieFrameOne
   have h3l : 3 ≤ L.l := (by norm_num : 3 ≤ 5).trans L.J.five_le_l
   refine hF L.l L.N0 L.N1 L.nu hp L.Th ep0 _ hep0 fun I n => ?_
   rw [hTh]
-  refine (oneLetterGauss L.l L.N0 L.N1 (L.nu.rowLen 0) h3l K0 hK0 ζ hζ be hBH ep hep g hg0 hg U hU sgn hsg
+  refine (Formalism.DworkPowerSeriesWeights.one_letter_gauss_sum L.l L.N0 L.N1 (L.nu.rowLen 0) h3l K0 hK0 ζ hζ be hBH ep hep g hg0 hg U hU sgn hsg
     (fun c => L.nu.colLen c) hp I ⌊a⌋₊ hfl hsa n).trans ?_
   rw [norm_l_rpow]
   apply Real.rpow_le_rpow_of_exponent_le hl1.le

@@ -343,24 +343,10 @@ theorem sc_mul_ne_one {q : Fv F v} (hq : q ∈ v.adicCompletionIntegers F) (h1 :
 
 alias sc_one := _root_.PI.OmLocU.sc_one
 
-theorem int_of_sc {r : Fv F v} (h : sc (E := E) v r ∈ OEv (E := E) v) : r ∈ v.adicCompletionIntegers F := by
-  rw [HeightOneSpectrum.mem_adicCompletionIntegers]
-  by_contra hr
-  push Not at hr
-  have hr0 : r ≠ 0 := by
-    intro h0
-    rw [h0, map_zero] at hr
-    exact absurd hr (not_lt.2 zero_le')
-  have hv : Valued.v r⁻¹ < 1 := by
-    rw [map_inv₀]
-    exact inv_lt_one_of_one_lt₀ hr
-  apply sc_mul_ne_one v (hv.le : r⁻¹ ∈ v.adicCompletionIntegers F) hv h
-  rw [_root_.PI.OmLocU.sc_mul, inv_mul_cancel₀ hr0, sc_one]
-
 theorem fix_int_sc (hcm : IsCMExt F E σ) {s : Fv F v ⊗[F] E} (hs0 : s ∈ OEv (E := E) v)
     (hs : sigR (Fv F v) σ s = s) : ∃ r ∈ v.adicCompletionIntegers F, s = sc (E := E) v r := by
   obtain ⟨r, hr⟩ := PI.OmLocU.UnN.fix_sc σ v hcm s hs
-  exact ⟨r, int_of_sc v (hr ▸ hs0), hr⟩
+  exact ⟨r, PI.OmLocU.UnN.sc_mem_int v (hr ▸ hs0), hr⟩
 
 def redR : v.adicCompletionIntegers F →+* 𝓞 F ⧸ v.asIdeal where
   toFun x := red v (x : Fv F v)

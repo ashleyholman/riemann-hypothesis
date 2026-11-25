@@ -882,7 +882,7 @@ theorem lie_frame_values_basis : ∀ (X : Scheme.{0}) (Ω : Type) [Field Ω] (ξ
       have hva : MA.pt (BA k) = v := (hext (BA k)).unique (hξ.inj _) hv
       subst hva
       rw [hB]
-      exact LieVB.pt_left_inj Mz (hw.trans (hβ _).symm)
+      exact GlobalTheory.CompanionTheory.Ar.LieFin.pt_left_inj Mz (hw.trans (hβ _).symm)
     rw [hbB]
     exact ⟨B.linearIndependent, B.span_eq⟩
 

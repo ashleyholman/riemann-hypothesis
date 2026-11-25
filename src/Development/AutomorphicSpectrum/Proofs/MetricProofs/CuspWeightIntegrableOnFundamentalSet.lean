@@ -1282,11 +1282,6 @@ end Orbit
 section Ball
 
 
-open scoped ComplexOrder in
-theorem isPreconnected_ballDom {Ψ : Type} [Fintype Ψ] {j j' n : ℕ} (q : Ψ × Fin j × Fin j' ≃ Fin n) :
-    IsPreconnected (ballDom q) := by
-  apply SheetDecomposition.ballDom_preconnected
-
 alias measurable_ballDens := _root_.GlobalTheory.CompanionTheory.Ar.Cusp.DictMeas.measurable_ballDens
 
 end Ball
@@ -1354,7 +1349,7 @@ theorem null_fixed (Δ : GroupDict F) (μ : Measure (archUnitary Δ.h 𝐯)) [μ
     (differentiableOn_pi.1 hA i).sub (differentiable_apply i).differentiableOn
   have hfa := GlobalTheory.SCV.analyticOnNhd_of_differentiableOn (BallInverse.isOpen_ballDom F.q) hfd
   have hz := ReciprocityTheory.AnForm.volume_zero_set_of_analyticOnNhd (BallInverse.isOpen_ballDom F.q)
-    (isPreconnected_ballDom F.q) hfa ⟨Δ.π a₀, pi_mem_ball Δ a₀, sub_ne_zero.2 hi⟩
+    (SheetDecomposition.ballDom_preconnected F.q) hfa ⟨Δ.π a₀, pi_mem_ball Δ a₀, sub_ne_zero.2 hi⟩
   set Zr := {z | z ∈ ballDom F.q ∧ A z i - z i = 0} with hZr
   have hν : (μ.map Δ.π) Zr = 0 := by
     rw [hc, Measure.smul_apply, smul_eq_mul]
@@ -1650,8 +1645,6 @@ section Card
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E]
 
-alias finrank_eq_two_mul := _root_.GlobalTheory.CompanionTheory.Ar.Cusp.ShortVec.finrank_eq_two_mul
-
 theorem one_le_rd : 1 ≤ hostRd E := by
   unfold hostRd
   refine Real.one_le_rpow ?_ (by positivity)
@@ -1692,7 +1685,7 @@ theorem fund_set_mean_cuspW : ∀ (E : Type) [Field E] [NumberField E] [IsCMFiel
   classical
   intro E _ _ _ Ψ _ j j' n g Λ _ _ H F Γ FF hA hFS hj' hN
   obtain ⟨Δ⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Cusp.Dict.groupDict_nonempty E Ψ j j' n g Λ H F
-  have hcard := finrank_eq_two_mul F.cm
+  have hcard := GlobalTheory.CompanionTheory.Ar.Cusp.IsoCovol.finrank_eq_two_card F.cm
   have hrd : 1 ≤ hostRd E := one_le_rd
   have hf : 1 ≤ Fintype.card Ψ := by
     have : 0 < Module.finrank ℚ E := Module.finrank_pos

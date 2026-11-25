@@ -23,15 +23,9 @@ variable {K F : Type} [Field K] [NumberField K] [StarRing K] [Field F] [NumberFi
 local notation "ι" => algebraMap (𝓞 F) (𝓞 K)
 local notation "jK" => algebraMap (𝓞 K) K
 
-theorem jK_ι (t : 𝓞 F) : jK (ι t) = algebraMap F K (t : F) := rfl
-
 theorem jK_ι_ne_zero {t : 𝓞 F} (ht : t ≠ 0) : jK (ι t) ≠ 0 := by
-  rw [jK_ι]
+  rw [Formalism.HermitianLattices.Ext.L3.MeanB.algebraMap_comp]
   exact (map_ne_zero_iff _ (algebraMap F K).injective).2 (RingOfIntegers.coe_ne_zero_iff.2 ht)
-
-theorem ne_zero_of_notMem {𝔭 : Ideal (𝓞 F)} {t : 𝓞 F} (ht : t ∉ 𝔭) : t ≠ 0 := by
-  rintro rfl
-  exact ht 𝔭.zero_mem
 
 theorem exists_inv_mod {𝔭 : Ideal (𝓞 F)} (h𝔭 : 𝔭.IsMaximal) {t : 𝓞 F} (ht : t ∉ 𝔭) (e : ℕ) :
     ∃ u : 𝓞 F, 1 - t * u ∈ 𝔭 ^ e := by

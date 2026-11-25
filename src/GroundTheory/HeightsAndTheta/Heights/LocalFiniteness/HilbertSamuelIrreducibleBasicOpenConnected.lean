@@ -28,11 +28,6 @@ open MvPolynomial
 
 universe u
 
-theorem zero_le_divCycle {K : Type*} {ι : K → Type*} {R : Type*} [CommRing R] (P : Ideal (MRing ι R))
-    (f : MRing ι R) (W : Ideal (MRing ι R)) : 0 ≤ divCycle P f W := by
-  unfold divCycle
-  split_ifs <;> positivity
-
 theorem BlowUpExcessDecreases.proof (hpos : ExcessPositive.Statement.{u})
     (hres : ResidualComparison.Statement.{u}) (hexc : ExceptionalComparison.Statement.{u}) :
     BlowUpExcessDecreases.Statement.{u} := by
@@ -73,7 +68,7 @@ theorem BlowUpExcessDecreases.proof (hpos : ExcessPositive.Statement.{u})
   ·
     have h : commonExcess ϖ (blowUpOf P (blowUpGens s g f m e)) (newVar (some none)) (liftForm m)
         (liftForm s) ≤ N - 1 := by
-      refine ciSup_le fun G' => hterm _ _ (zero_le_divCycle _ _ _) fun hx hy => ?_
+      refine ciSup_le fun G' => hterm _ _ (GroundTheory.Heights₂.Heights.NumbersDVR.divCycle_nonneg _ _ _) fun hx hy => ?_
       obtain ⟨G, hG, h1, h2⟩ :=
         hres O ϖ hϖ K ι P d hP b f g hD c s hs hsP hsH e he m hm hmP hmH G'.1 G'.2 hx hy
       have h3 := hle G hG _ _ hx.le (add_nonneg hx.le hy.le) h1 h2
@@ -82,7 +77,7 @@ theorem BlowUpExcessDecreases.proof (hpos : ExcessPositive.Statement.{u})
   ·
     have h : commonExcess ϖ (blowUpOf P (blowUpGens s g f m e)) (liftForm (f * m))
         (liftForm g * newVar (some none)) (newVar none) ≤ N - 1 := by
-      refine ciSup_le fun G' => hterm _ _ (zero_le_divCycle _ _ _) fun hx hy => ?_
+      refine ciSup_le fun G' => hterm _ _ (GroundTheory.Heights₂.Heights.NumbersDVR.divCycle_nonneg _ _ _) fun hx hy => ?_
       obtain ⟨G, hG, h1, h2⟩ :=
         hexc O ϖ hϖ K ι P d hP b f g hD c s hs hsP hsH e he m hm hmP hmH G'.1 G'.2 hx hy
       have h3 := hle G hG _ _ (add_nonneg hx.le hy.le) hy.le h1 h2

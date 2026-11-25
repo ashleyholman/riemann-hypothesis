@@ -10,8 +10,6 @@ import Formalism.LocalToGlobal.TorsionIntegrality.EisensteinTranslationProducts.
 
 namespace Formalism.L2.Th1.F
 
-alias wpNumDen := _root_.Formalism.L2.Th1.F.weierstrass_numerator_denominator
-alias pOfLattice := _root_.Formalism.L2.Th1.F.weierstrass_p_of_lattice
 theorem curveBridge : CurveBridge := curve_weierstrass_series_eq
 theorem hasCMByIsogeny : HasCMByIsogeny := hasCMByIsogeny_of' isogenyFormulaInstance
 

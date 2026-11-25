@@ -205,8 +205,6 @@ theorem eF_levi (x0 : Frame X.Ψ r) (ho : IsOrth X x0) :
 theorem eF_smooth (x0 : Frame X.Ψ r) (ho : IsOrth X x0) : ContDiffOn ℝ ∞ (eF X x0) (OmF X x0) :=
   fun z hz => (ExF.eF_contDiffAt X x0 ho hz).contDiffWithinAt
 
-alias eF_compact := _root_.ReciprocityTheory.ChartRestriction.G.AR.Up.ExF.isCompact_subF
-
 def psie (x0 : Frame X.Ψ r) (Fp L : Wt X.Ψ r) (ψ : Frame X.Ψ r → ℝ) (bb : ℝ) (w : V (nd X)) : ℝ :=
   phla X Fp (cpt X x0 w) + ψ (cpt X x0 w) - (nd X : ℝ) * phla X L (cpt X x0 w) - bb * rhF X x0 w -
     Real.log (densF X x0 w)
@@ -379,7 +377,7 @@ theorem coord_step (hLU : LUStatement (E := E)) (hC : OmFConnStatement (E := E))
       exact mul_le_mul_of_nonneg_left (mul_le_mul_of_nonneg_left h1 (by positivity)) hq.le
     nlinarith
   obtain ⟨F, hFd, hI⟩ := HE.interp_euclid hO (eF X x0) (eF_smooth X x0 ho) (eF_levi X x0 ho)
-    (eF_compact X x0 ho) (fun y hy => eF_nonneg X x0 ho hy) (fun k z => Fl.s k (cpt X x0 z)) hsd k0
+    (ReciprocityTheory.ChartRestriction.G.AR.Up.ExF.isCompact_subF X x0 ho) (fun y hy => eF_nonneg X x0 ho hy) (fun k z => Fl.s k (cpt X x0 z)) hsd k0
     hgn (psie X x0 Xa.Fp Xa.L ψ bb)
     (fun z hz => (psie_cdAt X x0 ho Xa.Fp Xa.L ψ hψs bb hz).contDiffWithinAt) hψl
     (min (δ / 2) (ρ / 4)) hε hball hiso _ hc hpos

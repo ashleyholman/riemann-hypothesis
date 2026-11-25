@@ -43,7 +43,7 @@ end casts
 theorem glev_last_iff {k ρ : ℕ} (hρ : ρ = 0) (g : B.Mat k ρ) :
     g ∈ Q.Glev k ρ (Fin.last ρ) ↔ g ∈ B.GV k ρ := by
   subst hρ
-  exact Formalism.FourierDecayAlt.P.JCx2.sq_glev0 g
+  exact Formalism.FourierDecayAlt.P.CapelliUnderIntegral.glev0 g
 
 theorem gf_eq_ggl {k ρ : ℕ} (hρ : ρ = 0) (z z' : Fin (2 * ρ + k + 1) → ℂ) (g : B.Mat k ρ) :
     Gf k ρ z z' g = Q.GGl k ρ z z' g := by
@@ -128,7 +128,3 @@ theorem mkCpt : MkCpt := by
       Formalism.FourierDecayAlt.P.JCTx6.Link2.castV_self, Formalism.FourierDecayAlt.P.JCTx6.Link2.castV_self]
 
 end Formalism.FourierDecayAlt.P.CutEX.MkCptPf
-
-namespace Formalism.FourierDecayAlt.P
-
-end Formalism.FourierDecayAlt.P

@@ -36,13 +36,6 @@ section -- clump:auto
 @[expose] public section
 
 open CategoryTheory GroundTheory.ProfCoh ReciprocityTheory.Gal ValuativeRel
-
-namespace PositivityTheory.LocalTateOrthogonality.Gcoh
-open CompanionTheory.LocalTateOrthogonality.Gcoh (gc0 gc1 gc2 gcField gcMu gcRep)
-
-theorem top_tate : Formalism.GaloisCohomology.LocalTateDualityK := CompanionTheory.LocalTateOrthogonality.Gcoh.tate_of gcRep gc0 gc1 gc2 gcField gcMu
-
-end PositivityTheory.LocalTateOrthogonality.Gcoh
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.WeilBound.CoreStatements.EulerCharacteristicCounts.GcohTop =====
@@ -91,11 +84,6 @@ theorem cobO_of_cobL [ContinuousAdd LL] {L1 : Lattice (O := O) (charRep (cycLL P
 variable {A A' : GRep G Qp LL O} {LA : Lattice (O := O) A.ρ} {LA' : Lattice (O := O) A'.ρ}
   {m : A.V →ₗ[LL] A'.V →ₗ[LL] LL} {L1 : Lattice (O := O) (charRep (cycLL PD LL))}
 
-omit [TopologicalSpace G] [TopologicalSpace LL] in
-theorem mk_liftD {V : Type} [AddCommGroup V] [Module LL V] [Module O V] [IsScalarTower O LL V]
-    {ρ : Representation LL G V} (L : Lattice (O := O) ρ) (c : V ⧸ L.T) :
-    Submodule.Quotient.mk (liftD L c) = c := (Submodule.Quotient.mk_surjective L.T c).choose_spec
-
 def pairD (hL1 : L1.T = LinearMap.range (Algebra.linearMap O LL)) (hm : IsDualLat1 PD LA LA' m) :
     ↥LA.T →+ (A'.V ⧸ LA'.T) →ₗ[O] (LL ⧸ L1.T) :=
   AddMonoidHom.mk' (fun t => LA'.T.mapQ L1.T ((m t.1).restrictScalars O) fun y hy => by
@@ -111,7 +99,7 @@ theorem mk_cupLD (hL1 : L1.T = LinearMap.range (Algebra.linearMap O LL))
     (hm : IsDualLat1 PD LA LA' m) (d : G → A.V) (hd : ∀ g, d g ∈ LA.T) (c : G → A'.V ⧸ LA'.T)
     (p : G × G) : (Submodule.Quotient.mk (cupLD LA' m d c p) : LL ⧸ L1.T) =
       pairD hL1 hm ⟨d p.1, hd _⟩ (actD LA' p.1 (c p.2)) := by
-  conv_rhs => rw [← mk_liftD LA' (c p.2)]
+  conv_rhs => rw [← GlobalTheory.BKFinLevel.NatCup.mk_liftD_lat LA' (c p.2)]
   rfl
 
 theorem cobO_cup_iff (hL1 : L1.T = LinearMap.range (Algebra.linearMap O LL))
@@ -186,7 +174,7 @@ theorem bkBL (l : ℕ) [Fact l.Prime] (Lp : LocPrime l) (K : FinExt l) (hD : Dua
 
 theorem blochKatoLocal : GlobalTheory.Published.BlochKatoLocal := by
   intro l _ Lp AI T K
-  have hT := PositivityTheory.LocalTateOrthogonality.Gcoh.top_tate
+  have hT := CompanionTheory.LocalTateOrthogonality.Gcoh.top_tate
   have hE := CompanionTheory.LocalTateOrthogonality.Gcoh.top_euler
   have hD : DualD (Lp.PD K) := GlobalTheory.tate_double_annihilator hT l Lp K
   have hC : CobLO (Lp.PD K) := cobLO l Lp K (finZQ hT hE l Lp K) (topInj hT l Lp K)

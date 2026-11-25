@@ -591,7 +591,7 @@ theorem ampConst_of_rd_le_b (D : D7) (large₂ : SizeData₂ D) (C' Cl Cg cb Cu 
   obtain ⟨hS0, -, -⟩ := hH0
   obtain ⟨-, -, -, -, -, -, -, -, -, -, -, hg1, hg1b, hg2, hg2b, -, -, -, hv1, -⟩ := hS0
   have hk6 := rank_lower_bound D
-  have hm := rank_eq_two_mul_add_two D
+  have hm := Formalism.MainNotions.BridgeLemma.m_eq D
   have hn : D.R.r = D.R.k + 2 * D.R.rS + 1 := by unfold Formalism.BasicNotions.Ranks.r; omega
   have hk1 : 1 ≤ D.R.k := by omega
   have hb1 : 1 ≤ large₂.sc.b := one_le_scale_base_local large₂

@@ -1747,7 +1747,7 @@ theorem cm3 : CM3 := by
   intro d L hsq hd hCM l _ hl5 hld hinert ι g2 g3 hG
   have hG' := hG
   obtain ⟨hg2K, hg3K, hg2n, hg3n, hdisc, lam, hlam0, hg2, hg3⟩ := hG
-  haveI : CompleteSpace (MaximalUnramifiedExtension l) := Formalism.L2.Th1.D.kurComplete l
+  haveI : CompleteSpace (MaximalUnramifiedExtension l) := Formalism.L2.Th1.D.unramified_completion_complete l
   have hl2 : 2 < l := by omega
   obtain ⟨σ, hσ, -⟩ := Formalism.L2.Th1.D.kurFrob l hl2
   obtain ⟨hRes, hUnr⟩ := _root_.GlobalTheory.Honda.kur_resAlg_unr l hl2
@@ -1774,7 +1774,7 @@ theorem cm3 : CM3 := by
     simpa using this
   have hInt : IntLog f e := _root_.GlobalTheory.Honda.intLog_shortW (MaximalUnramifiedExtension l) a2 a3 h2 hg2n hg3n
 
-  obtain ⟨hωK, hσω⟩ := Formalism.L2.Th1.D.sqrtKur d hsq hd l hl5 hinert ι
+  obtain ⟨hωK, hσω⟩ := Formalism.L2.Th1.D.sqrt_in_unramified_completion d hsq hd l hl5 hinert ι
   set w : MaximalUnramifiedExtension l := ⟨ι (omegaK d), hωK⟩ with hw
   have hσw : σ w = 1 - w := hσω σ hσ w rfl
   have hσσ : σ (σ w) = w := by rw [hσw, map_sub, map_one, hσw]; ring

@@ -191,7 +191,7 @@ theorem relevance_U {Wp Wq : Type} [NormedAddCommGroup Wp] [InnerProductSpace �
     (γ0 : B.Mat k 0) (hγ0 : IsUnit γ0.det) (hrel : C6.IsRelevant S (U.mMap k r 0 Z γ0))
     (Q : Matrix (Fin r) (Fin r) ℂ) (hQ : Q ∈ C2.UTset r) (hQ' : Z⁻¹ * (Qᴴ)⁻¹ * Z ∈ C2.UTset r) :
     C2.psiC cStd (C2.simpleUp Q) = C2.psiC cStd (C2.simpleUp (Z⁻¹ * (Qᴴ)⁻¹ * Z)) := by
-  have uQ : IsUnit Q.det := by rw [StabilizerDisintegration.UC.det_UT hQ]; exact isUnit_one
+  have uQ : IsUnit Q.det := by rw [Formalism.FourierDecayAlt.P.C2x2.ut_det hQ]; exact isUnit_one
   have hN : ∀ A : Matrix (Fin r) (Fin r) ℂ, A ∈ C2.UTset r → U.muP k r 0 A ∈ Formalism.QuantumDeterminants.Nset k (r + 0) :=
     fun A hA => BigCellDiagonalMap.leviElement_nset A ⟨fun i j hij => hA.1 i j hij, hA.2⟩
   have hρ : U.muP k r 0 Q ∈ C6.Rset (U.mMap k r 0 Z γ0) := by

@@ -51,18 +51,14 @@ theorem free_zero (a : S) : FreeOf a (0 : SlopeTestRemainingChoices S A) := fun 
 
 theorem free_neg {a : S} {b : SlopeTestRemainingChoices S A} (h : FreeOf a b) : FreeOf a (-b) := fun i j => (h i j).neg_right
 
-theorem free_smul {a : S} {b : SlopeTestRemainingChoices S A} (c : K) (h : FreeOf a b) : FreeOf a (c • b) := fun i j => (h i j).smul_right c
-
 theorem freeOf_J_matrix (a : S) : FreeOf2 a JJ := by
   intro i j
   fin_cases i <;> fin_cases j <;> simp [Formalism.YangianSpanCharacter.T.J] <;>
     first | exact free_zero a | exact free_one a | exact free_neg (free_one a)
 
-theorem freeOf2_transpose {a : S} {M : M2 (SlopeTestRemainingChoices S A)} (hM : FreeOf2 a M) : FreeOf2 a Mᵀ := fun i j => hM j i
-
 theorem freeOf_matrix_neg {a : S} {M : M2 (SlopeTestRemainingChoices S A)} (hM : FreeOf2 a M) : FreeOf2 a (-M) := fun i j => free_neg (hM i j)
 
-theorem freeOf_matrix_smul {a : S} {M : M2 (SlopeTestRemainingChoices S A)} (c : K) (hM : FreeOf2 a M) : FreeOf2 a (c • M) := fun i j => free_smul c (hM i j)
+theorem freeOf_matrix_smul {a : S} {M : M2 (SlopeTestRemainingChoices S A)} (c : K) (hM : FreeOf2 a M) : FreeOf2 a (c • M) := fun i j => Formalism.FourierDecayAlt.P.Wd5.free_smul c (hM i j)
 
 theorem freeOf_diagScalar {a : S} {b : SlopeTestRemainingChoices S A} (h : FreeOf a b) : FreeOf2 a (d0 b) := by
   intro i j
@@ -162,12 +158,6 @@ theorem star_mul_ins {a : S} {RR : SlopeTestRemainingChoices S A} (hR : FreeOf a
     (h : (d0 RR * M)ᴴ = d0 RR * M) : star (RR * ins a M) = RR * ins a M := by
   rw [mul_ins hR, Wd1.ins_star a _ (Formalism.FourierDecayAlt.P.Wd11.freeOf2_mul (freeOf_diagScalar hR) hM), h]
 
-theorem herm_transpose {RR : SlopeTestRemainingChoices S A} {M : M2 (SlopeTestRemainingChoices S A)}
-    (h : (d0 RR * M)ᴴ = d0 RR * M) : (d0 RR * Mᵀ)ᴴ = d0 RR * Mᵀ := by
-  refine Matrix.ext fun i j => ?_
-  simpa [d0, Matrix.diagonal_mul, Matrix.conjTranspose_apply, Matrix.transpose_apply] using
-    congrFun (congrFun h j) i
-
 theorem ins_J_comm {a : S} {b : SlopeTestRemainingChoices S A} (hb : FreeOf a b) : b * ins a JJ = ins a JJ * b :=
   (Wd1.ins_comm a JJ b hb (comm_J b)).eq
 
@@ -192,7 +182,7 @@ theorem position_clauses (TT : K → M2 (SlopeTestRemainingChoices S A)) (q : K 
     rw [Matrix.mul_neg, Matrix.mul_smul, ← Matrix.mul_assoc, h2, smul_smul, inv_mul_cancel₀ hq,
       one_smul, J_transpose]
   · rw [PsiP, ← Wd1.ins_mul a _ _
-      (freeOf_matrix_neg (freeOf_matrix_smul _ (Formalism.FourierDecayAlt.P.Wd11.freeOf2_mul (freeOf_J_matrix a) (freeOf2_transpose (hF (Y + 1))))))]
+      (freeOf_matrix_neg (freeOf_matrix_smul _ (Formalism.FourierDecayAlt.P.Wd11.freeOf2_mul (freeOf_J_matrix a) (Formalism.FourierDecayAlt.P.Wd7.freeOf2_transpose (hF (Y + 1))))))]
     rw [Matrix.neg_mul, Matrix.smul_mul, Matrix.mul_assoc, ← Matrix.mul_assoc _ JJ, h1,
       Matrix.mul_smul, smul_smul, inv_mul_cancel₀ hq, one_smul, J_mul_J, neg_neg, Wd1.ins_one]
   · rw [PsiP, ← Wd1.ins_mul a _ _ (Formalism.FourierDecayAlt.P.Wd11.freeOf2_mul (freeOf_J_matrix a) (hF Y))]
@@ -206,7 +196,7 @@ theorem dualPlus_of (hE : ExchMinus) : DualPlus := by
     star_mul_ins hR (hF Y) (hM.herm Y hY hYr)
   have c4 : star (PsiP TT q a Y) * (RR * ins a (TT Y)) = ins a (Formalism.YangianSpanCharacter.T.J (SlopeTestRemainingChoices S A)) * RR := by
     rw [← hH, ← star_mul, mul_assoc, c1, star_mul, hM.form_herm,
-      Wd1.ins_star a _ (freeOf2_transpose (freeOf_J_matrix a)), J_transpose, Matrix.conjTranspose_neg,
+      Wd1.ins_star a _ (Formalism.FourierDecayAlt.P.Wd7.freeOf2_transpose (freeOf_J_matrix a)), J_transpose, Matrix.conjTranspose_neg,
       J_conjTranspose, neg_neg]
   refine ⟨c1, c2, c3, c4, ?_, ?_⟩
   · rw [c4, ← ins_J_comm hR, mul_assoc, PsiP, ← Wd1.ins_mul a _ _ (freeOf_J_matrix a), Matrix.mul_neg,
@@ -241,11 +231,11 @@ theorem dualMinus_of (hE : ExchPlus) : DualMinus := by
   obtain ⟨h1, -⟩ := hdet
   rw [alg_smul, sub_add_cancel] at h1
   have hH : star (RR * ins a (TT Yb)ᵀ) = RR * ins a (TT Yb)ᵀ :=
-    star_mul_ins hR (freeOf2_transpose (hF Yb)) (herm_transpose (hM.herm Yb hYb hYr))
+    star_mul_ins hR (Formalism.FourierDecayAlt.P.Wd7.freeOf2_transpose (hF Yb)) (Formalism.FourierDecayAlt.P.Wd4.herm_transpose (hM.herm Yb hYb hYr))
   have hP : PsiM TT q a Yb = (q (Yb - 1))⁻¹ • ins a (Formalism.YangianSpanCharacter.T.J (SlopeTestRemainingChoices S A) * TT (Yb - 1)) := by
     rw [PsiM, ins_smul]
   have c0 : ins a (TT Yb)ᵀ * PsiM TT q a Yb = ins a (Formalism.YangianSpanCharacter.T.J (SlopeTestRemainingChoices S A)) := by
-    rw [PsiM, ← Wd1.ins_mul a _ _ (freeOf2_transpose (hF Yb)), Matrix.mul_smul, ← Matrix.mul_assoc, h1,
+    rw [PsiM, ← Wd1.ins_mul a _ _ (Formalism.FourierDecayAlt.P.Wd7.freeOf2_transpose (hF Yb)), Matrix.mul_smul, ← Matrix.mul_assoc, h1,
       smul_smul, inv_mul_cancel₀ hq, one_smul]
   have c4 : star (PsiM TT q a Yb) * (RR * ins a (TT Yb)ᵀ) = ins a (Formalism.YangianSpanCharacter.T.J (SlopeTestRemainingChoices S A))ᵀ * RR := by
     rw [← hH, ← star_mul, mul_assoc, c0, star_mul, hM.form_herm,
@@ -405,22 +395,12 @@ theorem free_mul {a : S} {x y : SlopeTestRemainingChoices S A} (hx : FreeOf a x)
 theorem free_neg {a : S} {x : SlopeTestRemainingChoices S A} (hx : FreeOf a x) : FreeOf a (-x) :=
   fun i j => (hx i j).neg_right
 
-theorem free_add {a : S} {x y : SlopeTestRemainingChoices S A} (hx : FreeOf a x) (hy : FreeOf a y) : FreeOf a (x + y) :=
-  fun i j => (hx i j).add_right (hy i j)
-
 theorem free_smul {a : S} {x : SlopeTestRemainingChoices S A} (c : K) (hx : FreeOf a x) : FreeOf a (c • x) :=
   fun i j => (hx i j).smul_right c
 
 theorem freeOf_J_matrix (a : S) : FreeOf2 a (YangianSpanCharacter.T.J (SlopeTestRemainingChoices S A)) := by
   intros
   apply _root_.Formalism.FourierDecayAlt.P.Wd9.freeOf_J_matrix <;> assumption
-
-theorem freeOf2_mul {a : S} {M N : M2 (SlopeTestRemainingChoices S A)} (hM : FreeOf2 a M) (hN : FreeOf2 a N) :
-    FreeOf2 a (M * N) := by
-  intro i j
-  rw [Matrix.mul_apply]
-  exact Finset.sum_induction _ (FreeOf a) (fun _ _ => free_add) (free_zero a)
-    (fun k _ => free_mul (hM i k) (hN k j))
 
 theorem freeOf_matrix_transpose {a : S} {M : M2 (SlopeTestRemainingChoices S A)} (hM : FreeOf2 a M) : FreeOf2 a Mᵀ :=
   fun i j => hM j i
@@ -505,8 +485,8 @@ theorem Ps_free (hIF : InsFree) (hWF : WordFree) (QQ : K → M2 A) (q : K → K)
     refine free_mul ?_ (Ps_free hIF hWF QQ q w c L h.2)
     split
     · exact (hIF K A S l.intersection_update_fsHerm_neg_one _).1 c h.1
-        (freeOf_matrix_neg (freeOf_matrix_smul _ (freeOf2_mul (freeOf_J_matrix c) (freeOf_matrix_transpose (hT _)))))
-    · exact (hIF K A S l.intersection_update_fsHerm_neg_one _).1 c h.1 (freeOf_matrix_smul _ (freeOf2_mul (freeOf_J_matrix c) (hT _)))
+        (freeOf_matrix_neg (freeOf_matrix_smul _ (Formalism.FourierDecayAlt.P.Wd4.freeOf2_mul (freeOf_J_matrix c) (freeOf_matrix_transpose (hT _)))))
+    · exact (hIF K A S l.intersection_update_fsHerm_neg_one _).1 c h.1 (freeOf_matrix_smul _ (Formalism.FourierDecayAlt.P.Wd4.freeOf2_mul (freeOf_J_matrix c) (hT _)))
 
 end Dual
 
@@ -889,7 +869,7 @@ theorem cs_U (hβ : SesqCls U β) (M : SlopeTestRemainingChoices S (Q.Pr V)) (hM
   let W := Submodule.pi Set.univ (fun _ : Ix S => U)
   let x : W := ⟨X, fun z _ => hX z⟩
   let x' : W := ⟨X', fun z _ => hX' z⟩
-  have := Formalism.FourierDecayAlt.P.GramProductIdentities.cs_of_pos (frmU hβ M hM) (fun m => hP m.1 fun z => m.2 z (Set.mem_univ z)) x x'
+  have := Bl.HermitianSesquilinear.goal1 (frmU hβ M hM) (fun m => hP m.1 fun z => m.2 z (Set.mem_univ z)) x x'
   exact this
 
 end Pair

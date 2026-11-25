@@ -73,10 +73,6 @@ theorem sum_block (F : Fin (2 * r + k + 1) → ℂ) (hF : ∀ l, ¬ inB k r l �
   intro hin
   exact hl (Finset.mem_image.mpr ⟨_, Finset.mem_univ _, (eq_eB_of_inB hin).symm⟩)
 
-theorem blockW_mul (h₁ h₂ : Matrix (Fin k) (Fin k) ℂ) :
-    blockW k r (h₁ * h₂) = blockW k r h₁ * blockW k r h₂ := by
-  apply ReciprocityTheory.ChartRestriction.DS.Lap.Base.StandardBasisEmbedding.blockW_mul
-
 theorem hpk_in_col {i m : Fin (2 * r + k + 1)} (hm : inB k r m) : Hpk k r i m = if i = m then 1 else 0 := by
   unfold inB at hm
   simp only [Hpk, Fin.ext_iff]
@@ -167,7 +163,7 @@ theorem piAll : PiAll := by
     obtain ⟨hua, hea⟩ := ub_conj_mem_UJset_and_eq_blockW hT hg ha
     obtain ⟨hub, heb⟩ := ub_conj_mem_UJset_and_eq_blockW hT hg hb
     have hab : a * b = g * blockW k r (ub (g⁻¹ * a * g) * ub (g⁻¹ * b * g)) * g⁻¹ := by
-      rw [blockW_mul]
+      rw [ReciprocityTheory.ChartRestriction.DS.Lap.Base.StandardBasisEmbedding.blockW_mul]
       conv_lhs => rw [hea, heb]
       simp only [Matrix.mul_assoc]
       rw [← Matrix.mul_assoc g⁻¹ g, hg2, Matrix.one_mul]

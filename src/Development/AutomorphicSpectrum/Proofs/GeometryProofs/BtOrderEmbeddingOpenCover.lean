@@ -124,12 +124,6 @@ end alg
 
 section geom
 
-theorem isAffineOpen_of_fin {R : Type} [CommRing R] [IsDomain R] {T : Type} [CommGroup T] (Γ : QFGroup R T)
-    {U : Γ.G.left.Opens} (hF : Γ.IsFinOpenSub U) : IsAffineOpen U := by
-  have := hF.finite
-  have : IsAffineHom (U.ι ≫ Γ.G.hom) := inferInstance
-  exact isAffine_of_isAffineHom (U.ι ≫ Γ.G.hom)
-
 noncomputable def valRing {B : Type} [CommRing B] {X : Scheme.{0}} (x : Spec (CommRingCat.of B) ⟶ X) (U : X.Opens)
     (h : ⊤ ≤ x ⁻¹ᵁ U) : Γ(X, U) →+* B :=
   (Scheme.ΓSpecIso (CommRingCat.of B)).hom.hom.comp (x.appLE U ⊤ h).hom
@@ -193,7 +187,7 @@ namespace GlobalTheory.CompanionTheory.Ar.BT.EmbSub
 theorem openImmersion_translatesCover : ∀ (R : Type) [CommRing R] [IsDomain R] [IsIntegrallyClosed R] (T : Type) [CommGroup T] [Finite T] (Γ : QFGroup R T) (U : Γ.G.left.Opens), Γ.IsFinOpenSub U → ∀ (j : Γ.G.left ⟶ Spec (CommRingCat.of (Γ.btOrder ⊤))), Γ.IsEmb (Γ.btOrder ⊤) j → IsOpenImmersion (U.ι ≫ j) ∧ Γ.TranslatesCover (Γ.btOrder ⊤) j U := by
   intro R _ _ _ T _ _ Γ U hF j hj
   obtain ⟨H, A, hH, hA, hAs⟩ := _root_.GlobalTheory.CompanionTheory.Ar.BT.SubOrder.hopfOrder_of_finOpenSub R T Γ U hF
-  have hU := isAffineOpen_of_fin Γ hF
+  have hU := GlobalTheory.CompanionTheory.Ar.BT.SubOrder.isAffineOpen_of_fin Γ hF
   have hTr : ∀ f ∈ A, ∀ t, (fun h => f (t * h)) ∈ A := _root_.PositivityTheory.HtPt.Twhopf.translate_mem R H A hA
   have hB : ∀ f : T → R, f ∈ Γ.btOrder ⊤ ↔ ∀ t, (fun h : H => f (t * h)) ∈ A := by
     intro f

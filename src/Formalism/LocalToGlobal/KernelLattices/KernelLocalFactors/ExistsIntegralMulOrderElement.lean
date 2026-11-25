@@ -384,15 +384,4 @@ theorem sall_nat (hPr : Pr.Ok) (hsel : IsSel X sel) (u : Pr.Word) {P : HeightOne
 
 end Bad
 
-section Chain
-
-variable {D : D7} {X : Fields} {Pr : Primes X} (s : Seam D X) {cc : Ideal (𝓞 D.host.K)} {δ : ℂ} (B : Base D cc δ) (χ : TaylorLogMetric.IdE D → ℂ) (cD : D.what₂.Tau → ℂ)
-  (sel : HeightOneSpectrum (𝓞 X.F) → HeightOneSpectrum (𝓞 X.E)) {S : Set ℕ} (mu : Tup X.F X.E X.K S)
-
-theorem rank_even (R : Ranks) (j : ℕ) : Even (R.N j) := by
-  unfold Ranks.N
-  exact R.k_even.add ((R.t_odd.add_one).mul_left j)
-
-end Chain
-
 end Formalism.L2.Ker

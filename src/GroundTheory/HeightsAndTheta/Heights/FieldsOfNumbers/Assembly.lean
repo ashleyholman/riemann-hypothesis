@@ -980,9 +980,6 @@ namespace MultEqualsCoeff
 
 variable {K : Type*}
 
-theorem tendsto_sub (c : K → ℤ) : Tendsto (fun m : K → ℤ => m - c) atTop atTop :=
-  tendsto_atTop_atTop.2 fun a => ⟨a + c, fun _ hm => le_sub_iff_add_le.mpr hm⟩
-
 theorem foldr_diffStep_sum {J : Type*} (s : Finset J) (f : J → (K → ℤ) → ℤ) :
     ∀ L : List (K → ℤ), L.foldr diffStep (∑ j ∈ s, f j) = ∑ j ∈ s, L.foldr diffStep (f j)
   | [] => rfl
@@ -1014,7 +1011,7 @@ theorem foldr_diffStep_eventuallyEq {h g : (K → ℤ) → ℤ} (e : h =ᶠ[atTo
   | [] => e
   | b :: L => by
       have e' := foldr_diffStep_eventuallyEq e L
-      filter_upwards [e', (tendsto_sub b).eventually e'] with m h1 h2
+      filter_upwards [e', (GroundTheory.Heights₂.Heights.FieldNumbers.tendsto_sub_const_atTop b).eventually e'] with m h1 h2
       simp only [List.foldr_cons, diffStep]
       rw [h1, h2]
 
@@ -1106,7 +1103,7 @@ theorem MultEqualsCoeff.proof (h1 : PrimeFiltration.Statement.{u})
   have hpiece : ∀ j, ∀ᶠ m in atTop,
       mixedDiff bs (hilbFn (Q j)) (m - fun k => (c j k : ℤ)) = val (Q j) := by
     intro j
-    refine (tendsto_sub fun k => (c j k : ℤ)).eventually
+    refine (GroundTheory.Heights₂.Heights.FieldNumbers.tendsto_sub_const_atTop fun k => (c j k : ℤ)).eventually
       (p := fun x => mixedDiff bs (hilbFn (Q j)) x = val (Q j)) ?_
     obtain ⟨hpr, hhom, -⟩ := hQ j
     by_cases hr : IsRelevant (Q j)
@@ -1561,15 +1558,6 @@ section Main
 variable {K : Type} [Fintype K] [DecidableEq K] {ι : K → Type} [∀ k, Fintype (ι k)]
   {F : Type u} [Field F]
 
-omit [Fintype K] [∀ k, Fintype (ι k)] in
-theorem hilbFn_top (m : K → ℤ) : hilbFn (⊤ : Ideal (MRing ι F)) m = 0 := by
-  have : Subsingleton (MRing ι F ⧸ (⊤ : Ideal (MRing ι F))) :=
-    Ideal.Quotient.subsingleton_iff.mpr rfl
-  unfold hilbFn
-  split_ifs
-  · simp [Module.finrank_zero_of_subsingleton]
-  · rfl
-
 
 open Classical in
 theorem filtration (h1 : HilbExactDivide.Statement.{u}) (J : Ideal (MRing ι F))
@@ -1585,7 +1573,7 @@ theorem filtration (h1 : HilbExactDivide.Statement.{u}) (J : Ideal (MRing ι F))
   by_cases hJt : J = ⊤
   · subst hJt
     refine ⟨0, Fin.elim0, Fin.elim0, fun j => j.elim0, fun m => ?_, fun W hW => ?_⟩
-    · simp [hilbFn_top]
+    · simp [GroundTheory.Heights₂.Heights.FieldNumbers.CutRegular.hilbFn_top]
     · exact absurd (top_le_iff.mp hW.1.2) hW.1.1.ne_top
   obtain ⟨c, s, hs, hsJ, hQp, hQh⟩ := exists_colon_isPrime hJ hJt
   have hJQ : J ≤ J.colon (Ideal.span {s}) := fun x hx =>

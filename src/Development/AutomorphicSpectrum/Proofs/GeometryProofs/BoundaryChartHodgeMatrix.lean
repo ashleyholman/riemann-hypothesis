@@ -350,10 +350,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 noncomputable section
 namespace GlobalTheory.CompanionTheory.Ar.Flat.Marking
 
-theorem punct_top (n a : ℕ) (ρ : ℝ) (hρ : 0 < ρ) :
-    IsOpen (punct n a ρ) ∧ IsPreconnected (punct n a ρ) ∧ (punct n a ρ).Nonempty :=
-  _root_.GlobalTheory.CompanionTheory.Ar.Flat.PunctShape.punct_open_connected_nonempty n a ρ hρ
-
 theorem bijective_of_exp {M : Type} [Group M] {g g' : ℕ} (ex : (Fin g' → ℂ) → M) (r : (Fin g → ℂ) → M)
     (h : (Fin g → ℂ) →ₗ[ℂ] (Fin g' → ℂ)) (hex : ∀ z w, ex (z + w) = ex z * ex w) (hc : ∀ x, ex (h x) = r x)
     (ho : Function.Surjective r) (hr : ∃ δ : ℝ, 0 < δ ∧ ∀ x, ‖x‖ < δ → r x = 1 → x = 0)
@@ -570,7 +566,7 @@ theorem isRiem_of_period {Xo : Moduli D l} {σ : KA l →+* ℂ} {n a : ℕ} (C 
   have hx : ∀ c, h (x c) = fun b => C.ψ z (u c b) := fun c => h.apply_symm_apply _
   have hD : ∀ c, IsDerivAt0 (fun x => (r x).left) (x c) (v c).left := fun c => by
     rw [hd, hx, hv c]
-    exact isDerivAt0_frame e hz (u c)
+    exact GlobalTheory.CompanionTheory.Ar.Flat.FrameDeriv.isDerivAt0_pt e hz (u c)
   haveI := C.j_open
   haveI : IsOpenImmersion C.m₁.φ := MorphismProperty.of_isPullback C.m₁.cart.1.flip ‹IsOpenImmersion C.j›
   have hD' : ∀ c, ∃ v' : Sp (DualNumber ℂ) ⟶ C.tV.G.left, v' ≫ C.m₁.φ = (v c).left ∧ IsDerivAt0 Wz (x c) v' :=
@@ -705,7 +701,7 @@ namespace GlobalTheory.CompanionTheory.Ar.Flat
 open Marking in
 theorem exists_marking : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (l : Level H) (Xo : Moduli D l) (σ : KA l →+* ℂ) (n a : ℕ) (C : BdryChart Xo σ n a) (g : ℕ) (ty : Fin g → (E →+* ℂ)) (FU : FamilyUnif Xo σ ty) (ρ : ℝ) (e : FamExp C.t.G C.M (ball 0 ρ) C.ψ), 0 < ρ → ρ ≤ 1 → ∃ (i : Fin FU.n) (Hf : (Fin n → ℂ) → Matrix (Fin C.g) (Fin C.g) ℂ), Module.finrank ℤ (FU.Di i).La = 2 * C.g ∧ (∀ z ∈ punct n a ρ, (Hf z).IsHermitian ∧ (∀ x : Fin C.g → ℂ, x ≠ 0 → 0 < (hermForm (Hf z) x x).re) ∧ C.IsRiem z (Hf z) ∧ ∀ (N : ℕ) (ζ : ℂˣ), 0 < N → ∀ x ∈ e.per z, ∀ x' ∈ e.per z, GlobalTheory.UU.CubWeil C.t.cub N (e.ex z ((N : ℂ)⁻¹ • x)) (e.ex z ((N : ℂ)⁻¹ • x')) (unitOn ζ) → (ζ : ℂ) = Complex.exp (-(2 * Real.pi * Complex.I) * ((hermForm (Hf z) x x').im : ℂ) / N)) ∧ ∀ z₀ ∈ punct n a ρ, ∃ N : Set (Fin n → ℂ), IsOpen N ∧ z₀ ∈ N ∧ N ⊆ punct n a ρ ∧ ∃ P : (Fin n → ℂ) → ((FU.Di i).La →+ (Fin C.g → ℂ)), (∀ x, DifferentiableOn ℂ (fun z => P z x) N) ∧ ∀ z ∈ N, Function.Injective (P z) ∧ ((P z).range : Set (Fin C.g → ℂ)) = e.per z ∧ ∀ x y, (hermForm (Hf z) (P z x) (P z y)).im = (FU.Di i).EF x y := by
   intro E _ _ _ H D l Xo σ n a C g ty FU ρ e hρ0 hρ1
-  obtain ⟨ho, hc, hne⟩ := punct_top n a ρ hρ0
+  obtain ⟨ho, hc, hne⟩ := GlobalTheory.CompanionTheory.Ar.Flat.PunctShape.punct_open_connected_nonempty n a ρ hρ0
   have hsub1 : punct n a ρ ⊆ punct n a 1 := fun b hb => ⟨ball_subset_ball hρ1 hb.1, hb.2⟩
   have hs : ∀ b ∈ punct n a ρ, (C.pt b ≫ C.k) ≫ Xo.s = spMap σ := fun b hb => by
     rw [Category.assoc]

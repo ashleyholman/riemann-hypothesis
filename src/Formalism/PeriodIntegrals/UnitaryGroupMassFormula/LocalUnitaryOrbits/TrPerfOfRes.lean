@@ -61,7 +61,7 @@ theorem mem_of_theta (hcm : IsCMExt F E σ) {ϖ : Fv F v} (hϖ : IsUnif v ϖ) (�
       = (θ - sigR (Fv F v) σ θ) * (θ - sigR (Fv F v) σ θ) := by
     rw [map_mul, map_sub, sigR_sigR v σ hσσ θ]
     ring
-  obtain ⟨r, hr, hreq⟩ := NormOneUnitFixedPoints.fix_int_sc σ v hcm (b_mul_mem v hδ hδ) hfix
+  obtain ⟨r, hr, hreq⟩ := NormOneUnitFixedPoints.fix_int_sc σ v hcm (PI.OmLocU.oEv_mul v hδ hδ) hfix
   obtain ⟨hr0, hrinv⟩ := sc_of_isUnif_of_mem_integers v hϖ hr (hreq ▸ hnd)
   have ha := hz 1 (b_one_mem v)
   rw [one_mul] at ha
@@ -73,7 +73,7 @@ theorem mem_of_theta (hcm : IsCMExt F E σ) {ϖ : Fv F v} (hϖ : IsUnif v ϖ) (�
     ring
   have hy : (θ - sigR (Fv F v) σ θ) * z ∈ OEv (E := E) v := by
     rw [key, sub_eq_add_neg]
-    refine Orb.oev_add v ?_ (Orb.oev_neg v (b_mul_mem v hsθ ?_))
+    refine Orb.oev_add v ?_ (Orb.oev_neg v (PI.OmLocU.oEv_mul v hsθ ?_))
     · rw [← b_sc_eq]
       exact b_sc_mem v hb
     · rw [← b_sc_eq]
@@ -82,7 +82,7 @@ theorem mem_of_theta (hcm : IsCMExt F E σ) {ϖ : Fv F v} (hϖ : IsUnif v ϖ) (�
     rw [← mul_assoc (θ - sigR (Fv F v) σ θ), hreq, ← mul_assoc, _root_.PI.OmLocU.sc_mul,
       inv_mul_cancel₀ hr0, NormOneUnitFixedPoints.sc_one, one_mul]
   rw [hz']
-  exact b_mul_mem v (b_sc_mem v hrinv) (b_mul_mem v hδ hy)
+  exact PI.OmLocU.oEv_mul v (b_sc_mem v hrinv) (PI.OmLocU.oEv_mul v hδ hy)
 
 private theorem exists_isUnif' : ∃ ϖ : Fv F v, IsUnif v ϖ := by
   obtain ⟨π, hπ⟩ := v.valuation_exists_uniformizer F

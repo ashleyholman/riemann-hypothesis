@@ -117,20 +117,13 @@ theorem sec_lead {Xa : ArchInM X} (Fl : FlatM X Xa) {δ : ℕ} (t : Fin δ → F
 theorem pnorm_eq' (la : Wt X.Ψ r) (P : Frame X.Ψ r → ℂ) (x : Frame X.Ψ r) :
     X.pnorm la P x = ‖P x‖ * X.nfac la x := rfl
 
-theorem nfac_nonneg' (la : Wt X.Ψ r) (x : Frame X.Ψ r) : 0 ≤ X.nfac la x :=
-  Finset.prod_nonneg fun _ _ => Finset.prod_nonneg fun _ _ => Real.rpow_nonneg (norm_nonneg _) _
-
-theorem nfac_add {x : Frame X.Ψ r} (hx : x ∈ X.dom) (la la' : Wt X.Ψ r) :
-    X.nfac (la + la') x = X.nfac la x * X.nfac la' x := by
-  apply ReciprocityTheory.ChartRestriction.G.FD.BoundedSectionAlgebra.nfac_add <;> assumption
-
 theorem nfac_nsmul {x : Frame X.Ψ r} (hx : x ∈ X.dom) (la : Wt X.Ψ r) (n : ℕ) :
     X.nfac (n • la) x = X.nfac la x ^ n := by
   induction n with
   | zero =>
     unfold Data.nfac
     simp
-  | succ n ih => rw [succ_nsmul, nfac_add X hx, ih, pow_succ]
+  | succ n ih => rw [succ_nsmul, ReciprocityTheory.ChartRestriction.G.FD.BoundedSectionAlgebra.nfac_add X hx, ih, pow_succ]
 
 theorem lead_le {Xa : ArchInM X} (Fl : FlatM X Xa) {δ : ℕ} (t : Fin δ → Frame X.Ψ r → ℂ) (a0 : ℕ)
     (ha0 : a0 ≤ Xa.T) (cc : (Fin (nd X) → ℕ) → Fin δ → ℂ) {x : Frame X.Ψ r} (hx : x ∈ X.dom)
@@ -140,9 +133,9 @@ theorem lead_le {Xa : ArchInM X} (Fl : FlatM X Xa) {δ : ℕ} (t : Fin δ → Fr
       (∑ α ∈ ReciprocityTheory.ChartRestriction.G.AR.multiLt (nd X) a0, ∑ k, ‖cc α k‖) * Ct * A ^ Xa.T := by
   set nL := X.nfac Xa.L x with hnLdef
   set nF := X.nfac Xa.Fp x with hnFdef
-  have hnL : 0 ≤ nL := nfac_nonneg' X Xa.L x
-  have hnF : 0 ≤ nF := nfac_nonneg' X Xa.Fp x
-  rw [pnorm_eq', nfac_add X hx, nfac_nsmul X hx]
+  have hnL : 0 ≤ nL := ReciprocityTheory.ChartRestriction.G.FD.BoundedSectionAlgebra.nfac_nonneg X Xa.L x
+  have hnF : 0 ≤ nF := ReciprocityTheory.ChartRestriction.G.FD.BoundedSectionAlgebra.nfac_nonneg X Xa.Fp x
+  rw [pnorm_eq', ReciprocityTheory.ChartRestriction.G.FD.BoundedSectionAlgebra.nfac_add X hx, nfac_nsmul X hx]
   unfold leadM
   have hterm : ∀ α ∈ ReciprocityTheory.ChartRestriction.G.AR.multiLt (nd X) a0, ∀ k,
       ‖cc α k * monoM X Fl.s α x * Fl.w0 x ^ (Xa.T - ∑ q, α q) * t k x‖ * (nF * nL ^ Xa.T) ≤
@@ -195,7 +188,7 @@ theorem lead_le {Xa : ArchInM X} (Fl : FlatM X Xa) {δ : ℕ} (t : Fin δ → Fr
 theorem pnorm_sub_le' (la : Wt X.Ψ r) (f g : Frame X.Ψ r → ℂ) (x : Frame X.Ψ r) :
     X.pnorm la (fun y => f y - g y) x ≤ X.pnorm la f x + X.pnorm la g x := by
   rw [pnorm_eq', pnorm_eq', pnorm_eq', ← add_mul]
-  exact mul_le_mul_of_nonneg_right (norm_sub_le _ _) (nfac_nonneg' X la x)
+  exact mul_le_mul_of_nonneg_right (norm_sub_le _ _) (ReciprocityTheory.ChartRestriction.G.FD.BoundedSectionAlgebra.nfac_nonneg X la x)
 
 theorem sq_add_le (a b : ℝ) : (a + b) ^ 2 ≤ 2 * a ^ 2 + 2 * b ^ 2 := by nlinarith [sq_nonneg (a - b)]
 
@@ -299,9 +292,9 @@ theorem divStart_of {E : Type} [Field E] [NumberField E] [IsCMField E]
     set pf := X.pnorm (Xa.Fp + Xa.T • Xa.L) f x
     set pl := X.pnorm (Xa.Fp + Xa.T • Xa.L) (leadM X Fl.s Fl.w0 t Xa.T (Xa.T - nd X) cc) x
     set pd := X.pnorm (Xa.Fp + Xa.T • Xa.L) (fun x => f x - leadM X Fl.s Fl.w0 t Xa.T (Xa.T - nd X) cc x) x
-    have hpd0 : 0 ≤ pd := mul_nonneg (norm_nonneg _) (nfac_nonneg' X _ _)
-    have hpf0 : 0 ≤ pf := mul_nonneg (norm_nonneg _) (nfac_nonneg' X _ _)
-    have hpl0 : 0 ≤ pl := mul_nonneg (norm_nonneg _) (nfac_nonneg' X _ _)
+    have hpd0 : 0 ≤ pd := mul_nonneg (norm_nonneg _) (ReciprocityTheory.ChartRestriction.G.FD.BoundedSectionAlgebra.nfac_nonneg X _ _)
+    have hpf0 : 0 ≤ pf := mul_nonneg (norm_nonneg _) (ReciprocityTheory.ChartRestriction.G.FD.BoundedSectionAlgebra.nfac_nonneg X _ _)
+    have hpl0 : 0 ≤ pl := mul_nonneg (norm_nonneg _) (ReciprocityTheory.ChartRestriction.G.FD.BoundedSectionAlgebra.nfac_nonneg X _ _)
     clear_value pd pf pl
     have hreal : pd ^ 2 * e ≤ 2 * (pf ^ 2 * e) + B := by
       have := key_real hpd0 hpl0 he hK hW hAdef hpf hl hWe

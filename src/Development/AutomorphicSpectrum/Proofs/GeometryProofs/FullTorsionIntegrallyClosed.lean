@@ -324,7 +324,7 @@ theorem fullTorsion_frac {X : Scheme.{0}} {Ω : Type} [Field Ω] {ξ : Sp Ω ⟶
     ext r
     exact hκ r
   rw [← Category.assoc, e]
-  exact HTTie.hk_stalk ξ q
+  exact GlobalTheory.CompanionTheory.Ar.LieTangent.spec_genMap ξ q
 
 theorem htOm_eq_htLat : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (l : Level H) (B : Type) [CommRing B] (b : Base l B) (X : Scheme.{0}) (Ω : Type) [Field Ω] [CharZero Ω] (ξ : Sp Ω ⟶ X) (s : Sp Ω ⟶ Sp B) (o : Obj D l b s) (t : SAB H X) (_ : SABMap o.t t ξ) (V : Type) [AddCommGroup V] [Module Ω V] (M : LieModel t.G ξ V) (n : ℕ) (q : Cpt ξ), IsCptGen ξ → 0 < n → FullTorsion t.G ξ n → IsIntegrallyClosed (X.presheaf.stalk q.1) → IsNoetherianRing (X.presheaf.stalk q.1) → M.IsHTFormAt n q 0 ∧ (0 < D.p + D.q → ∃ ζ : Ω, IsPrimitiveRoot ζ n) ∧ M.htOm t.PP.L n q = M.htLat n q := by
   intro E _ _ _ H D l B _ b X Ω _ _ ξ s o t m V _ _ M n q hξ hn hfull hic hno
@@ -346,7 +346,7 @@ theorem htOm_eq_htLat : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (
   obtain ⟨e, hw⟩ := hw
   haveI := t.semi.separated
   refine ⟨?_, hroot, (LieModel.htLat_eq_htOm hξ M t.PP.L hn.ne' hfull hw q ⟨hd, T, _, Γ', i, htor⟩).symm⟩
-  have := HTTie.core_smul (hξ.inj q) (HTTie.hk_stalk ξ q) M Γ' i htor (w := 0)
+  have := HTTie.core_smul (hξ.inj q) (GlobalTheory.CompanionTheory.Ar.LieTangent.spec_genMap ξ q) M Γ' i htor (w := 0)
     (fun e' v _ _ => ⟨0, by simp⟩)
   rwa [smul_zero] at this
 

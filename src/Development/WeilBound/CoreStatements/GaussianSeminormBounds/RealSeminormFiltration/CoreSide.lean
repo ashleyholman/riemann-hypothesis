@@ -648,7 +648,7 @@ theorem supp_col_pos (hg : IsHW (fockAct2 p q r s) ν g) {N : ℕ} (d : Ix r s) 
         exact (supp_lp (hκd j) a).symm
       rw [hl] at h
       exact h)
-  have hw := PI.FJMP.monomialRightWeight_eq_weight_sub PI.FJM.rightDiagonalActionFormula hg'.2 e he d
+  have hw := PI.FJMP.monomialRightWeight_eq_weight_sub PI.WFJM.rightDiagonalActionFormula hg'.2 e he d
   have hs : PI.FJMP.sw e (fun a => ((a, d) : Ln p q r s)) (fun a => linePos ((a, d) : Ln p q r s))
       = PI.FJM.wt2 e d := rfl
   rw [hs] at hsw
@@ -670,7 +670,7 @@ theorem supp_col_neg (hg : IsHW (fockAct2 p q r s) ν g) {N : ℕ} (d : Ix r s) 
     (fun j c c' h => PI.FJMP.ne_of_posC (hκd j) (congrArg Prod.snd h).symm)
     (fun a b h => congrArg Prod.fst h) g hg'.1
     (fun j => supp_gR hg (hκd j))
-  have hw := PI.FJMP.monomialRightWeight_eq_weight_sub PI.FJM.rightDiagonalActionFormula hg'.2 e he d
+  have hw := PI.FJMP.monomialRightWeight_eq_weight_sub PI.WFJM.rightDiagonalActionFormula hg'.2 e he d
   have hs : PI.FJMP.sw e (fun a => ((a, d) : Ln p q r s)) (fun a => linePos ((a, d) : Ln p q r s))
       = PI.FJM.wt2 e d := rfl
   rw [hs] at hsw

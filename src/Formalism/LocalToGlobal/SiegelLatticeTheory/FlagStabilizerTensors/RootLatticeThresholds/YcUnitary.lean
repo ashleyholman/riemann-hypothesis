@@ -336,8 +336,6 @@ variable (hFF : ∀ a b, hJ ε (F a) (F b) = lastDiag (-(T : ℂ)) a b)
   (hgap : 1 - (T : ℂ) * T' * ((Zm ε F G)⁻¹ (Fin.last r) (Fin.last r) *
     starRingEnd ℂ ((Zm ε F G)⁻¹ (Fin.last r) (Fin.last r))) ≠ 0)
 
-alias Jm_herm := _root_.Formalism.REAL.Jm_conjTranspose
-
 include hFF hGG hπ hZ in
 theorem gram_eq : (Wfg F G)ᴴ * Formalism.REAL.Jm ε * Wfg F G =
     Matrix.fromBlocks (lastDiag (-(T : ℂ))) (Zm ε F G) (Zm ε F G)ᴴ (lastDiag (-(T' : ℂ))) := by
@@ -370,7 +368,7 @@ theorem Yc_unitary {C : Matrix (Fin (r + 1)) (Fin (r + 1)) ℂ} (hC : IsUB blk C
     rw [ite_eq_right]
     tauto
   unfold Yc
-  refine Ymat_unitary _ (Jm_herm ε) _ _ (gram_unit ε F G T T' π hFF hGG hπ hZ hgap) ?_
+  refine Ymat_unitary _ (Formalism.REAL.Jm_conjTranspose ε) _ _ (gram_unit ε F G T T' π hFF hGG hπ hZ hgap) ?_
   rw [gram_eq ε F G T T' π hFF hGG hπ hZ]
   have h1 : (1 : Matrix (Fin (r + 1) ⊕ Fin (r + 1)) (Fin (r + 1) ⊕ Fin (r + 1)) ℂ) + Mm ε F G C =
       fromBlocks (Am ε F G C) 0 0 C := by

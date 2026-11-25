@@ -119,9 +119,6 @@ theorem pY_mem (v : S.V) : pY e f v ∈ Submodule.span E (Set.range f) := by
   rw [pY_apply]
   exact Submodule.sum_mem _ fun a _ => Submodule.smul_mem _ _ (Submodule.subset_span ⟨a, rfl⟩)
 
-include hee hef in
-alias pj_of_memX := _root_.Formalism.L2.SG.Pf.pj_X
-
 include hff hef in
 theorem pj_of_memY (y : S.V) (hy : y ∈ Submodule.span E (Set.range f)) : pj e f y = 0 := by
   rw [pj_eq, pY_of_mem hef y hy, pX_of_memY hff y hy]; abel
@@ -188,7 +185,7 @@ theorem lmap_coordY (v : S.V) (b : Fin r) : S.hT (e b) (lmap e f δ v) = S.hT (e
 
 include hee hff hef hX in
 theorem pj_lmap (v : S.V) : pj e f (lmap e f δ v) = pj e f v := by
-  rw [lmap_apply, map_add (f := _), map_add (f := _), pj_pj hee hff hef, pj_of_memX hee hef _ (hX _ (pX_mem v)),
+  rw [lmap_apply, map_add (f := _), map_add (f := _), pj_pj hee hff hef, Formalism.L2.SG.Pf.pj_X hee hef _ (hX _ (pX_mem v)),
     pj_pY hff hef]
   abel
 
@@ -208,7 +205,7 @@ theorem lmap_isom (v w : S.V) : S.hT (lmap e f δ v) (lmap e f δ w) = S.hT v w 
     have h0 : S.hT (pY e f (δ (pY e f v))) (δ (pX e f w)) = S.hT (δ (pY e f v)) (δ (pX e f w)) := by
       conv_rhs => rw [decomp (e := e) (f := f) (δ (pY e f v))]
       rw [map_add (f := _), map_add (f := _), LinearMap.add_apply, LinearMap.add_apply, hT_pX_left,
-        hT_pj_left hee hff hef, pj_of_memX hee hef _ (hx w)]
+        hT_pj_left hee hff hef, Formalism.L2.SG.Pf.pj_X hee hef _ (hx w)]
       simp [perpX_of_X hee _ (hx w)]
     rw [h0, isom_apply hδ, hT_pY_left]
     simp only [hT_f_pX hef]
@@ -232,7 +229,7 @@ theorem lequiv_isom : lequiv hee hff hef hδ hX ∈ Formalism.HermitianLatticesT
 
 theorem lequiv_e (b : Fin r) : lequiv hee hff hef hδ hX (e b) = δ (e b) := by
   have hb : e b ∈ Submodule.span E (Set.range e) := Submodule.subset_span ⟨b, rfl⟩
-  rw [lequiv_apply, lmap_apply, pj_of_memX hee hef _ hb, pX_of_mem hef _ hb, pY_of_memX hee _ hb]
+  rw [lequiv_apply, lmap_apply, Formalism.L2.SG.Pf.pj_X hee hef _ hb, pX_of_mem hef _ hb, pY_of_memX hee _ hb]
   simp
 
 theorem lmap_perp (v : S.V) (hv : ∀ a, S.hT (e a) v = 0 ∧ S.hT (f a) v = 0) : lmap e f δ v = v := by
@@ -297,7 +294,7 @@ theorem lmap_mem (v : S.V) (hv : v ∈ Λ) : lmap e f δ v ∈ Λ := by
   have hxE := latSpan_le_span aa e x hx
   have hyE := latSpan_le_span _ f y hy
   have ex : lmap e f δ x = δ x := by
-    rw [lmap_apply, pj_of_memX hee hef _ hxE, pX_of_mem hef _ hxE, pY_of_memX hee _ hxE]; simp
+    rw [lmap_apply, Formalism.L2.SG.Pf.pj_X hee hef _ hxE, pX_of_mem hef _ hxE, pY_of_memX hee _ hxE]; simp
   have el : lmap e f δ l = l := lmap_perp l (hLp l hl)
   have ey : lmap e f δ y = pY e f (δ y) := by
     rw [lmap_apply, pj_of_memY hff hef _ hyE, pX_of_memY hff _ hyE, pY_of_mem hef _ hyE]; simp

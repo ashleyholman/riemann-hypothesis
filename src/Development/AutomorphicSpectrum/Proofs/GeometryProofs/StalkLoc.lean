@@ -52,7 +52,7 @@ theorem stalk_loc {X : Scheme.{0}} {Ω : Type} [Field Ω] {ξ : Spec (CommRingCa
   have hc : ψ.comp (x.stalkMap p).hom = genMap ξ ⟨x p, hq⟩ := by
     have e1 : Spec.map (CommRingCat.ofHom (ψ.comp (x.stalkMap p).hom)) ≫ X.fromSpecStalk (x p) =
         Spec.map (CommRingCat.ofHom (genMap ξ ⟨x p, hq⟩)) ≫ X.fromSpecStalk (x p) := by
-      refine Eq.trans ?_ (hk_stalk ξ ⟨x p, hq⟩).symm
+      refine Eq.trans ?_ (GlobalTheory.CompanionTheory.Ar.LieTangent.spec_genMap ξ ⟨x p, hq⟩).symm
       rw [spec_comp, Category.assoc]
       erw [h1]
       rw [h2, ← Category.assoc, ← spec_comp, show ψ.comp (algebraMap R _) = k₀ from RingHom.ext hψ, hx]
@@ -132,8 +132,8 @@ theorem lift_sec {X : Scheme.{0}} (G : Over X) [GrpObj G] [IsSeparated G.hom] {R
   have e1 : y ≫ i = y' ≫ c ≫ pullback.fst _ _ := by
     simp only [y', c, pullback.lift_fst, pullback.lift_fst_assoc]
   have e2 : y = y' ≫ pullback.fst _ _ := (pullback.lift_fst _ _ _).symm
-  refine (valAt_congr e1 W hyW (e1 ▸ hyW) f).trans ((valAt_comp _ _ _ _ _).trans ?_)
-  refine Eq.trans ?_ ((valAt_congr e2 ⊤ le_top le_top s).trans (valAt_comp _ _ _ _ _)).symm
+  refine (PositivityTheory.HtPt.Htat.Pull.valAt_congr e1 W hyW (e1 ▸ hyW) f).trans ((PositivityTheory.HtPt.Htat.Pull.valAt_comp _ _ _ _ _).trans ?_)
+  refine Eq.trans ?_ ((PositivityTheory.HtPt.Htat.Pull.valAt_congr e2 ⊤ le_top le_top s).trans (PositivityTheory.HtPt.Htat.Pull.valAt_comp _ _ _ _ _)).symm
   refine (congrArg (valAt y' _ _) hf).trans ?_
   exact valAt_res y' _ ⊤ le_top _ le_top _
 

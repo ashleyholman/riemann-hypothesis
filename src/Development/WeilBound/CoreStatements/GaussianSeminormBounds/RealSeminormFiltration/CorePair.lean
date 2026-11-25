@@ -60,8 +60,8 @@ theorem exists_blk {p q r s : ℕ} (a b c d : List ℤ) (hd : PI.FJM.ShapeData p
 
 theorem fockAct1_Eab_inr_inl_eq_zero_of_mem_Jset {p q r : ℕ} {x : Pol p q r 0} (hx : x ∈ Jset p q r 0) (i : Fin p) (j : Fin q) :
     fockAct1 p q r 0 (Eab (.inr j) (.inl i)) x = 0 := by
-  have h := ((PI.FJM.jointHarmonicsIffLaplacians p q r 0 x).1 hx).2.1 i j
-  rw [PI.FJM.leftOffDiagonalActionFormula p q r 0 _ _ (by simp)]
+  have h := ((PI.WFJM.jointHarmonicsIffLaplacians p q r 0 x).1 hx).2.1 i j
+  rw [PI.WFJM.leftOffDiagonalActionFormula p q r 0 _ _ (by simp)]
   simp only [PI.FJM.rai1, PI.FJM.lapB, PI.FJM.dd, LinearMap.sum_apply, Fintype.sum_sum_type,
     Finset.univ_eq_empty, Finset.sum_empty, add_zero, Module.End.mul_apply, raiB, lowB, linePos] at h ⊢
   simp only [Bool.false_eq_true, ite_false, ite_true, LinearMap.neg_apply, Finset.sum_neg_distrib, neg_eq_zero]
@@ -70,8 +70,8 @@ theorem fockAct1_Eab_inr_inl_eq_zero_of_mem_Jset {p q r : ℕ} {x : Pol p q r 0}
 
 theorem cross_y {p q s : ℕ} {y : Pol p q 0 s} (hy : y ∈ Jset p q 0 s) (i : Fin p) (j : Fin q) :
     fockAct1 p q 0 s (Eab (.inl i) (.inr j)) y = 0 := by
-  have h := ((PI.FJM.jointHarmonicsIffLaplacians p q 0 s y).1 hy).1 i j
-  rw [PI.FJM.leftOffDiagonalActionFormula p q 0 s _ _ (by simp)]
+  have h := ((PI.WFJM.jointHarmonicsIffLaplacians p q 0 s y).1 hy).1 i j
+  rw [PI.WFJM.leftOffDiagonalActionFormula p q 0 s _ _ (by simp)]
   simp only [PI.FJM.rai1, PI.FJM.lapA, PI.FJM.dd, LinearMap.sum_apply, Fintype.sum_sum_type,
     Finset.univ_eq_empty, Finset.sum_empty, zero_add, Module.End.mul_apply, raiB, lowB, linePos] at h ⊢
   simp only [Bool.false_eq_true, ite_false, ite_true, LinearMap.neg_apply, Finset.sum_neg_distrib, neg_eq_zero]

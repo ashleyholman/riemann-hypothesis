@@ -151,9 +151,9 @@ theorem hb_odd (dK : ℕ) (L : PeriodPair) (hmod : dK % 4 = 3) (hCM : Formalism.
     have h' := hprodC
     rw [h, zero_mul] at h'
     exact_mod_cast h'.symm
-  have hst : Formalism.L2.Th1.F.MulStable L b := (Formalism.L2.Th1.F.hasCMByStable dK L hCM m n).1
+  have hst : Formalism.L2.Th1.F.MulStable L b := (Formalism.L2.Th1.F.has_cm_stable dK L hCM m n).1
   have hstb : Formalism.L2.Th1.F.MulStable L bb := by
-    have h := (Formalism.L2.Th1.F.hasCMByStable dK L hCM (m + n) (-n)).1
+    have h := (Formalism.L2.Th1.F.has_cm_stable dK L hCM (m + n) (-n)).1
     have e : (((m + n : ℤ) : ℂ) + ((-n : ℤ) : ℂ) * Formalism.L2.Th1.CM.omegaK dK) = bb := by
       rw [hbb]; push_cast; ring
     rwa [e] at h

@@ -463,11 +463,9 @@ theorem IntNumAddFirst.full : IntNumAddFirst.Statement.{u} :=
   IntNumAddFirst.proof FieldNumbers.IntNumAdd.full FieldNumbers.IntNumZeroSlot.full
     FieldNumbers.HilbDegreeBound.full
 
-alias EffectiveCase.of_steps := _root_.GroundTheory.Heights₂.Heights.NumbersDVR.EffectiveCase.proof
-
 theorem CutByEffectiveDivisor.of_steps (h₀ : NoCommonComponentCase.Statement.{u})
     (h₁ : CommonFactorInduction.Statement.{u}) : CutByEffectiveDivisor.Statement.{u} :=
-  CutByEffectiveDivisor.proof (EffectiveCase.of_steps h₀ h₁) UniformiserCase.full
+  CutByEffectiveDivisor.proof (GroundTheory.Heights₂.Heights.NumbersDVR.EffectiveCase.proof h₀ h₁) UniformiserCase.full
     ShiftByUniformiser.full EffectiveShift.full
 
 end GroundTheory.Heights₂.Heights.NumbersDVR

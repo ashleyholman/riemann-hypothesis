@@ -25,8 +25,6 @@ open GlobalTheory.CompanionTheory.IwaAd (levi_mem_P adj_mul_adj_inv adj_inv_mul_
 
 variable {D : D7} {n ρ p : ℕ} {hn : ρ + p = n}
 
-alias adj_zero' := _root_.GlobalTheory.MixModel.adj_zero
-
 theorem blkA_blk4 {R : Type} {k : ℕ} (a b c d : Matrix (Fin k) (Fin k) R) : blkA (blk4 a b c d) = a := by
   simp only [blkA, blk4, Matrix.submatrix_submatrix, Equiv.symm_comp_self, Matrix.submatrix_id_id,
     Matrix.toBlocks_fromBlocks₁₁]
@@ -42,7 +40,7 @@ theorem emb_comm (M : Maps D hn) (ζ : hermA D ρ) (g₀ : G D p) (a : GL (Fin p
   have hE := M.emb_mat g₀ _ _ _ _ hg
   apply GlobalTheory.CompanionTheory.FourierN.mat_injective
   simp only [mat_mul']
-  rw [hE, M.w_mat, M.nzx_mat, adj_zero']
+  rw [hE, M.w_mat, M.nzx_mat, GlobalTheory.MixModel.adj_zero]
   simp only [submatrix_fromBlocks_mul]
   simp only [blockMatrix_zero' hn, blockMatrix_add', blockMatrix_multiply, Matrix.mul_zero, Matrix.zero_mul, Matrix.one_mul, Matrix.mul_one, add_zero,
     zero_add, Matrix.mul_neg, Matrix.neg_mul, neg_zero]

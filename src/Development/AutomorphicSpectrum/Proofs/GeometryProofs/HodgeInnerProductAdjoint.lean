@@ -50,8 +50,6 @@ alias eq_zero_of_isDiff_one := HodgeUnique.eq_zero_of_isDiff_one
 
 alias exists_affine := HodgeUnique.exists_affine
 
-alias eq_of_isDiff := HodgeUnique.eq_of_isDiff
-
 alias exists_linear_compare := HodgeUnique.exists_linear_compare
 
 end Unif

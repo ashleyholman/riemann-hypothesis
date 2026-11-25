@@ -660,10 +660,6 @@ variable {D : Formalism.BasicNotions.D7} {T T' : D.host.E} (F : FlagG (VS D) D.R
 theorem GZ_eq : GZ F.fvec F'.fvec = Zhat F F' := by
   ext a b; rfl
 
-theorem GDl_eq (l : ℕ) : GDl F.fvec F'.fvec l = Dl F F' l := by
-  unfold GDl Dl leadMinorE
-  rw [GZ_eq]
-
 theorem om_X' {y : (VS D).V} (hy : y ∈ F'.X) : (VS D).hT (Gom F.fvec F'.fvec) y = 0 := by
   obtain ⟨c, rfl⟩ := (Submodule.mem_span_range_iff_exists_fun D.host.E).1 hy
 
@@ -744,7 +740,7 @@ theorem spanOm_holds (D : Formalism.BasicNotions.D7) : SpanOm D := by
   set Dr := GDl F.fvec F'.fvec D.R.rS with hDr
   have hD : Dd ≠ 0 := by rw [hDd, GDl_top', SpanOmPf.GZ_eq]; exact hdet
   have hG' : Dd * star Dd - T * T' * (Dr * star Dr) ≠ 0 := by
-    rw [hDd, hDr, SpanOmPf.GDl_eq, SpanOmPf.GDl_eq]; exact hG
+    rw [hDd, hDr, Formalism.L2.SG.Pf.FrameGlobalPatching.FStar.OmD.gdl_eq, Formalism.L2.SG.Pf.FrameGlobalPatching.FStar.OmD.gdl_eq]; exact hG
   set W0 := orth (VS D) (F.Xplus ⊔ F'.Xplus) with hW0
   set U := F'.X ⊔ W0 ⊔ Submodule.span D.host.E {F'.z, ω} with hU
   have key : ∀ u ∈ orth (VS D) U, u ∈ F'.X := by
@@ -1436,7 +1432,7 @@ theorem gY_int (p : PlF D) (w : Point D.host.E (D.R.rS + 1)) {U₁ X' : PairVal.
     exact (D.s.atP p).O.mul_mem ((D.s.atP p).O.mul_mem (hν' _) (hX _ _)) (hν _)
   have hci : ∀ i j, (((cOf (fσ w) (fun a => pv w.1 a) X')⁻¹).map (D.s.atP p).ιE) i j ∈ (D.s.atP p).O := by
     intro i j
-    rw [ZsVolGrp.inv_eq_adj (det_up' hc)]
+    rw [ZsVolGrp.inv_eq_adj (Formalism.L2.SG.Pf.AtPt.det_up hc)]
     have e := RingHom.map_adjugate (D.s.atP p).ιE (cOf (fσ w) (fun a => pv w.1 a) X')
     rw [RingHom.mapMatrix_apply, RingHom.mapMatrix_apply] at e
     rw [e]

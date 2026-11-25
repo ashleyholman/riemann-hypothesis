@@ -102,7 +102,7 @@ theorem restGeo : RestGeo := by
     have hJ1 : (1 : ℤ) ≤ (Fr.J : ℤ) := by omega
     have a4 := G2.zmono hV (-1) ((j : ℤ) - 2 + Fr.J) (by omega)
     have hy' : posTL Fr x' = y + n' :=
-      residue_position_injective_window n' _ _ _ hwin ⟨by omega, by omega⟩ (by rw [DdG.posOf_add_n]; exact hpos)
+      residue_position_injective_window n' _ _ _ hwin ⟨by omega, by omega⟩ (by rw [Formalism.MainNotions.G.WittFrameLocaliserOrders.bf_posOf_add]; exact hpos)
     have a5 : Fr.fr ((j : ℤ) + Fr.J) (r - 1) = Fr.fr (j : ℤ) (r - 1) + n' := hper _ _
     have a6 := G2.zmono hV (segZ x'.1) ((j : ℤ) + Fr.J) (by omega)
     omega

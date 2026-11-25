@@ -183,7 +183,7 @@ theorem resQ_of (hT : ThetaBas σ J ψ v) : ResQ σ J ψ v := by
   · intro x y hxy
     have hy : (y : Fv F v ⊗[F] E) = sc (E := E) v ((c0 x + c1 x * T0 : v.adicCompletionIntegers F) : Fv F v) +
         sc (E := E) v ((-c1 x : v.adicCompletionIntegers F) : Fv F v) * iθ := by
-      rw [hxy, hc x, map_add (f := _), map_mul, sigR_sc, sigR_sc, hsiθ]
+      rw [hxy, hc x, map_add (f := _), map_mul, PI.OmLocU.sigR_sc, PI.OmLocU.sigR_sc, hsiθ]
       simp only [AddMemClass.coe_add, MulMemClass.coe_mul, NegMemClass.coe_neg, sc_eq', map_add (f := _), map_mul, map_neg, T0]
       ring
     show ρf y = sigQ σ v (ρf x)

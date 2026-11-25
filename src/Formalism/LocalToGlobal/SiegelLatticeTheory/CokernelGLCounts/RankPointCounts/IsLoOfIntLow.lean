@@ -140,9 +140,9 @@ theorem glob_stab (w : Point D.host.E (D.R.rS + 1)) {Z₁ L₁ U₁ X' : PairVal
   have hν : ∀ a : Fin (D.R.rS + 1), IsUnit (pv w.1 a) := fun a => IsUnit.mk0 _ (pv_ne' w a)
   have hup := cOf_up (fσ_fσ w) (fun a => pv w.1 a) X' hX'.1 hpat hν
   have hc : IsUp (cOf (fσ w) (fun a => pv w.1 a) X') := ⟨hup.1, fun a b hab => hup.2 b a hab⟩
-  have hdc : IsUnit (cOf (fσ w) (fun a => pv w.1 a) X').det := by rw [det_up' hc]; exact isUnit_one
-  have hdL : IsUnit L₁.det := by rw [det_lo' hL₁]; exact isUnit_one
-  have hdU : IsUnit U₁.det := by rw [det_up' hU₁]; exact isUnit_one
+  have hdc : IsUnit (cOf (fσ w) (fun a => pv w.1 a) X').det := by rw [Formalism.L2.SG.Pf.AtPt.det_up hc]; exact isUnit_one
+  have hdL : IsUnit L₁.det := by rw [Formalism.L2.SG.Pf.AtPt.det_lo hL₁]; exact isUnit_one
+  have hdU : IsUnit U₁.det := by rw [Formalism.L2.SG.Pf.AtPt.det_up hU₁]; exact isUnit_one
   refine ⟨isLo_mul (isLo_mul hL₁ hX') (isLo_inv hL₁), isUp_mul (isUp_mul (isUp_inv hU₁) (isUp_inv hc)) hU₁, ?_⟩
   have hfix := fix_cOf (fσ_fσ w) (fun a => pv w.1 a) hν X'
   rw [hZ, ptMat_mono']

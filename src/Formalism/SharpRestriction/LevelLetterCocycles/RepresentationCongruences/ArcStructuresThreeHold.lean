@@ -761,7 +761,7 @@ theorem inPi0Lattice_add (T : LocLat G Qp LL O) (c : ZMod n) {x y : W.DD T}
 theorem inPi0Lattice_smul_invariant (T : LocLat G Qp LL O) (c : ZMod n) {a : LetA O n} (ha : a ∈ W.AΔ)
     {x : W.DD T} (hx : InPi0Lattice W T c x) : InPi0Lattice W T c (a • x) := by
   obtain ⟨x', hx', rfl⟩ := hx
-  exact ⟨a • x', Relay2.InNΔi_smul W T c ha hx', smul_comm _ _ _⟩
+  exact ⟨a • x', Formalism.MainNotions.LiftingTheory.frame_smul_mem W T c ha hx', smul_comm _ _ _⟩
 
 theorem inPi0Lattice_smul_scalar (T : LocLat G Qp LL O) (c : ZMod n) (o : O)
     {x : W.DD T} (hx : InPi0Lattice W T c x) : InPi0Lattice W T c (o • x) := by
@@ -799,7 +799,7 @@ theorem inPi0Lattice_series_trunc (T : LocLat G Qp LL O) (c : ZMod n) (hπ : W.�
   | succ M hM ih =>
     obtain ⟨x', hx', hxe⟩ := ih
     refine ⟨x' + W.π₀ ^ (M - 1) • Formalism.MainNotions.LiftingTheory.vecB W T b (y M),
-      Relay2.InNΔi_add W T c hx' (Relay2.InNΔi_smul W T c (W.AΔ.pow_mem hπ _)
+      Relay2.InNΔi_add W T c hx' (Formalism.MainNotions.LiftingTheory.frame_smul_mem W T c (W.AΔ.pow_mem hπ _)
         (frameVector_mem_lattice W T c b hb (y M))), ?_⟩
     rw [Finset.sum_range_succ, smul_add, smul_smul, ← pow_succ', Nat.sub_add_cancel hM, ← hxe]
     abel
@@ -839,13 +839,13 @@ theorem frobenius_pow_mem_pullback (T : LocLat G Qp LL O) (c : ZMod n) (j k : �
     (fun x y hx hy => by rw [map_add (f := _)]; exact (Pp W T c (k + j)).add_mem hx hy)
     (fun x hx => by rw [map_neg]; exact (Pp W T c (k + j)).neg_mem hx) ?_
   intro a ha x hx
-  rw [Relay2.φpow_smul, ← Module.End.mul_apply, ← pow_add]
+  rw [Formalism.MainNotions.UnusedSlot80.SatPW.φD_pow_smulA, ← Module.End.mul_apply, ← pow_add]
   exact Relay2.Pp_gen W T c (k + j) (PhiPowers.φA_pow_mem_AΔ W ha k) hx
 
 theorem inFP_frobenius_pow (T : LocLat G Qp LL O) (c : ZMod n) (j k : ℕ) (f : LetA O n) {z : W.DD T}
     (hz : InFP W T c j f z) : InFP W T c (k + j) ((W.φA ^ k) f) (((W.φD T) ^ k) z) := by
   obtain ⟨y, hy, rfl⟩ := hz
-  exact ⟨_, frobenius_pow_mem_pullback W T c j k y hy, Relay2.φpow_smul W T k f y⟩
+  exact ⟨_, frobenius_pow_mem_pullback W T c j k y hy, Formalism.MainNotions.UnusedSlot80.SatPW.φD_pow_smulA W T k f y⟩
 
 theorem inFP_of_mul_unit (T : LocLat G Qp LL O) (c : ZMod n) (e : ℕ) (f u : LetA O n)
     (hu : u ∈ W.AΔ) {z : W.DD T} (hz : InFP W T c e (f * u) z) : InFP W T c e f z := by
@@ -964,7 +964,7 @@ theorem arc_section_map (hinj : Function.Injective (algebraMap O LL))
         by_cases h : j = c'
         · subst h; simp [letE]
         · simp [letE, h]
-      refine ⟨tt • b k, Relay2.InNΔi_smul W T₂ c' htt (hb.1.1 k), ?_⟩
+      refine ⟨tt • b k, Formalism.MainNotions.LiftingTheory.frame_smul_mem W T₂ c' htt (hb.1.1 k), ?_⟩
       have e1 : ((fun j => PowerSeries.C (a₀ j)) : LetA O n) • b k = a₀ c' • b k := by
         conv_lhs => rw [← hbl k]
         rw [smul_smul, hCl, ← smul_smul, hbl k, algebraMap_smul]

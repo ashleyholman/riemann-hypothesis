@@ -1077,12 +1077,6 @@ open GlobalTheory.CompanionTheory.BZPhiPG.HpgEmb
 
 variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
 
-theorem castM_val {a b : ℕ} (e : a = b) (m : Mir k a) (x y : Fin (b + 1)) :
-    ((castM k e m : Mir k b) : GL (Fin (b + 1)) k).val x y =
-      (m : GL (Fin (a + 1)) k).val (Fin.cast (by omega) x) (Fin.cast (by omega) y) := by
-  subst e
-  rfl
-
 theorem piPerm_cast (i t : ℕ) (s : Σ x, Two (Fin (i + 1)) (Fin (t + 1)) x) :
     piPerm i t (Fin.cast (by omega) (ePG i (t + 1) s)) = eGP (i + 1) t s := by
   show eGP (i + 1) t ((ePG i (t + 1)).symm (Fin.cast (by omega) (Fin.cast (by omega) (ePG i (t + 1) s)))) = _
@@ -1097,7 +1091,7 @@ theorem conj_block (i t : ℕ) (h : Mir k (i + (t + 1))) (s s' : Σ x, Two (Fin 
     (wGL k i t * ((castM k (by omega) h : Mir k ((i + 1) + t)) : GL (Fin ((i + 1) + t + 1)) k) * (wGL k i t)⁻¹).val
         (eGP (i + 1) t s) (eGP (i + 1) t s') =
       (h : GL (Fin (i + (t + 1) + 1)) k).val (ePG i (t + 1) s) (ePG i (t + 1) s') := by
-  rw [← piPerm_cast, ← piPerm_cast, conj_entry, castM_val]
+  rw [← piPerm_cast, ← piPerm_cast, conj_entry, GlobalTheory.CompanionTheory.BZPhiPG.Conj.castM_val]
   rfl
 
 theorem eta_val (i t : ℕ) (m : Mir k ((i + 1) + t)) (x y : Fin ((i + 1) + t + 1 + 1)) :

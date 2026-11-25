@@ -600,7 +600,7 @@ theorem tcoreAt_of_seg {C0 CYb Cde Ck CD Cb CE1 CE2 Cc : ℝ} (h : SegCoreAt C0 
   choose β' hBL hord u hu hEq using key
   rw [hsplit, Finset.prod_congr rfl fun j _ => hEq j]
   show symFam (KK O) X.p C0 CE1 CE2 X β' u ∈ _
-  refine symFam_span β' (fun j => genSet O (r := X.m)
+  refine UpperTheory.Reformulated.B.SymmetricFamilySpan.symFam_span β' (fun j => genSet O (r := X.m)
     (blockData X.p (X.seg C0 CE1 CE2 j) (segATop X.TT X.aT j) (segAPlus X.TT X.aT j)
       (mm + ((n - e : ℕ) : ℝ) * ka1 X) (β' j))) _ ?_ u (fun j => hu j)
   intro s hs

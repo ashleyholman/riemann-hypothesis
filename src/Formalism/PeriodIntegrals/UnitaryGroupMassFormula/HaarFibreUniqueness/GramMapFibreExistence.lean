@@ -260,7 +260,7 @@ theorem densAll_gen {F E : Type} [Field F] [NumberField F] [Field E] [NumberFiel
     refine ⟨N, hN, fun y hy Λ0 hB _ _ hsub => ?_⟩
     obtain ⟨Λ, H, D, h0, hΛo, hΛc, hΛa, hHo, hHc, hHb, hD, hyp⟩ := hd y hy Λ0 hB hsub
     subst h0
-    exact densCos_of_filt henselCount_holds cosDens_holds μ ν (gramR (Fv F v) σ J) Subtype.val
+    exact densCos_of_filt PI.VolStabS.henselCount_holds cosDens_holds μ ν (gramR (Fv F v) σ J) Subtype.val
       Subtype.val_injective (gramH (Fv F v) σ hσ J hJ) (Continuous.subtype_mk t5 _)
       (fun _ => rfl) y Λ H hΛo hΛc hΛa hHo hHc hHb D hD hyp
   have hLC := densLC_of_cosB _ _ (isCOBasis_latSub (Module.finBasis F E) v a n) hC

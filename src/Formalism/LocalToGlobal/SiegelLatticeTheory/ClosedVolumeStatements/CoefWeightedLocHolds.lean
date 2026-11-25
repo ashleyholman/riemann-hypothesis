@@ -823,9 +823,6 @@ lemma uMat_mul (I : AutInst) (s t : I.Ginf) (v : InfinitePlace I.F) :
 lemma inUJ_uMat (I : AutInst) (s : I.Ginf) (v : InfinitePlace I.F) : Formalism.REAL.inUJ (I.ε v) (uMat (s v)) :=
   (s v).2
 
-lemma cont_uMat (I : AutInst) (v : InfinitePlace I.F) : Continuous fun s : I.Ginf => uMat (s v) :=
-  Units.continuous_val.comp (continuous_subtype_val.comp (continuous_apply v))
-
 theorem build : Build := by
   intro hW I r k e f z lam hn hF hz hlam hw
   classical
@@ -889,7 +886,7 @@ theorem build : Build := by
       intro b
       simp only [Loc.LocFrame.M, hJ]
       exact continuous_const.dotProduct
-        (continuous_const.matrix_mulVec ((cont_uMat I v).matrix_mulVec continuous_const))
+        (continuous_const.matrix_mulVec ((PI.ScMuExists.UnitaryGroupMassFormula.continuous_uMat_apply I v).matrix_mulVec continuous_const))
     exact ((hπ v).2.2.1.2.2 y).comp hc.continuousOn
       (fun s hs => (L v).M_inUJ (inUJ_uMat I s v) (hs v))
 
@@ -964,13 +961,13 @@ theorem pos_of_perp (ε : Fin n → Bool) {r : ℕ} (σ : Fin (r + 1) → Fin n)
   have hG : ∀ k l, hJ ε (m k) (m l) = if k = l then D k else 0 := by
     intro k l
     rcases k with a | i <;> rcases l with b | j
-    · simp only [hmi, hJ_sub_left, hJ_sub_right, hee, hff, hef, hJ_conj ε (e b) (f a), hDi]
+    · simp only [hmi, hJ_sub_left, PI.ScPiBuildW.Loc.hJ_sub_right, hee, hff, hef, hJ_conj ε (e b) (f a), hDi]
       by_cases hab : a = b
       · subst hab
         norm_num
       · simp [hab, Ne.symm hab]
     · cases j <;> simp [hmi, hmf, hmt, hJ_sub_left, hez, hfz, hey, hfy]
-    · cases i <;> simp [hmi, hmf, hmt, hJ_sub_right, hJ_conj ε (e b) z, hJ_conj ε (f b) z,
+    · cases i <;> simp [hmi, hmf, hmt, PI.ScPiBuildW.Loc.hJ_sub_right, hJ_conj ε (e b) z, hJ_conj ε (f b) z,
         hJ_conj ε (e b) y, hJ_conj ε (f b) y, hez, hfz, hey, hfy]
     · cases i <;> cases j <;> simp [hmf, hmt, hDf, hDt, hzz, hzy, hJ_conj ε z y]
   obtain ⟨g, hg, k0, hk0⟩ := exists_rel (fun k : Fin r ⊕ Bool => fun j : Fin (r + 1) => m k (σ j))

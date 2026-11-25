@@ -154,9 +154,3 @@ theorem derivBoundOfDecay : DerivBoundOfDecay := by
   exact ⟨hc, fun j hj => (hb j hj).trans (mul_le_mul_of_nonneg_left (decayMin _ _ hpos hA) hK)⟩
 
 end Formalism.FourierDecayAlt.P.Ux7
-
-open Formalism.FourierDecayAlt.P.Ux7 in
-open Formalism.FourierDecayAlt.P.Ux7 in
-open Formalism.FourierDecayAlt.P.Ux7 in
-open Formalism.FourierDecayAlt.P.Ux7 in
-alias Formalism.FourierDecayAlt.P.scale_matching := _root_.Formalism.FourierDecayAlt.P.Ux7.scaleMatch

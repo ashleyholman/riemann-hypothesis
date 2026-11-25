@@ -1273,12 +1273,6 @@ section -- clump:auto
 @[expose] public section
 
 noncomputable section
-
-namespace Formalism.MainNotions.FormalGroupSystem.Pf
-
-open Formalism.MainNotions.G Formalism.BasicNotions Finset
-
-end Formalism.MainNotions.FormalGroupSystem.Pf
 end -- clump:auto
 end -- clump:auto
 end -- clump:auto

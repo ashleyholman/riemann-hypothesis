@@ -120,6 +120,4 @@ theorem real_point_representative_diagonal : _root_.Formalism.L2.SG.RealObj.InfC
     rw [hm1, hm2]
     exact hD v
 
-theorem real_point_representative_exists : StepPtRep := real_point_representative_diagonal
-
 end Formalism.L2.SG.RealObj.InfCut

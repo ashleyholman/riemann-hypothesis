@@ -134,16 +134,16 @@ theorem CalcC_proof : CalcC := by
     exact hth n
   have hF1 : F1 F' (cob F' (PowerSeries.map (MaximalUnramifiedExtension l).subtype (phFF l g2 g3 s2 ε))) := by
     rw [PhMap_proof _ _ (MaximalUnramifiedExtension l).subtype l hl]
-    exact first_level_on_curve ℂ_[l] l hU.1 hU.2.1 hnl F' hF' _ _ _ _ hg2 hg3 hε hth'
+    exact Formalism.L2.Th1.D.first_level_curve_holds ℂ_[l] l hU.1 hU.2.1 hnl F' hF' _ _ _ _ hg2 hg3 hε hth'
   obtain ⟨-, hFG, hC1⟩ := Formalism.L2.Th1.C.first_level_from_universal_holds ℂ_[l] F' _ _ _ hP (BrC.lawLog hl hF')
     hph hF1.2.1
   have hFr : Formalism.L2.Th1.C.Frame (unitBall ℂ_[l]) (lgF ℂ_[l] l) (expF ℂ_[l] l)
       (PowerSeries.map (MaximalUnramifiedExtension l).subtype (phFF l g2 g3 s2 ε)) := ⟨hP, hFG, hph⟩
-  have hσ : ∀ a : MaximalUnramifiedExtension l, ‖a‖ ≤ 1 → ‖σ a‖ ≤ 1 := (frobSq (MaximalUnramifiedExtension l) l σ hU).2
+  have hσ : ∀ a : MaximalUnramifiedExtension l, ‖a‖ ≤ 1 → ‖σ a‖ ≤ 1 := (Formalism.L2.Th1.D.frobenius_square (MaximalUnramifiedExtension l) l σ hU).2
   have hcl := Formalism.L2.Th1.C.unit_ball_closed ℂ_[l]
   have hbin : ∀ z : MaximalUnramifiedExtension l, ‖z‖ ≤ 1 → σ z = z →
       Formalism.L2.Th1.C.IsBinomScalar (unitBall ℂ_[l]) (z : ℂ_[l]) := fun z hz hs =>
-    of_closed_int hU (Formalism.L2.Th1.C.binomClosed ℂ_[l] _ hcl) (Formalism.L2.Th1.C.intBinomScalar ℂ_[l] _)
+    of_closed_int hU (Formalism.L2.Th1.C.binomialScalarClosed' ℂ_[l] _ hcl) (Formalism.L2.Th1.C.intBinomScalar ℂ_[l] _)
       hz hs
   let _ : StarRing (BrC.Osub σ) := BrC.starO hσ
   have key := _root_.Formalism.L2.Th1.C.norm_adjoint_all_places ℂ_[l] (unitBall ℂ_[l]) _ _ _ hFr (BrC.Osub σ)
@@ -151,8 +151,8 @@ theorem CalcC_proof : CalcC := by
     (fun α => endInt hU α.2.1 α.2.2)
     (fun z hz => hbin z.1 z.2.1 (congrArg Subtype.val hz))
     (fun z hz => of_closed_int hU
-      (Formalism.L2.Th1.C.zLinClosed ℂ_[l] _ hcl _ _ _ hP.1 hP.2.2.1 hph)
-      (Formalism.L2.Th1.C.zLinInt ℂ_[l] _ _ _ _ hFr hC1) z.2.1 (congrArg Subtype.val hz))
+      (Formalism.L2.Th1.C.scalarLinearClosed' ℂ_[l] _ hcl _ _ _ hP.1 hP.2.2.1 hph)
+      (Formalism.L2.Th1.C.scalarLinearInt' ℂ_[l] _ _ _ _ hFr hC1) z.2.1 (congrArg Subtype.val hz))
     hC1
     (by
       show ‖(2 : ℂ_[l])⁻¹‖ ≤ 1

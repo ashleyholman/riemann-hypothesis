@@ -89,7 +89,7 @@ theorem x0_mul_torus_element (hj : j + 1 ≤ r) {Z : Matrix (Fin j) (Fin j) ℂ}
     (γ : B.Mat k (r - (j + 1))) (s : ℂ) :
     x0 k r j hj Z τ γ * hM k r j hj (Fin.last j) (Fin.last j) s =
       (s * τ) • M1 k r j hj - (star s * (star τ)⁻¹) • M2 k r j hj := by
-  rw [level_point_eq_block_three, hM_blk, ← castM_mul', Ux4.block3_mul, zfull_conjTranspose_inv hZ hτ]
+  rw [level_point_eq_block_three, hM_blk, ← Formalism.FourierDecayAlt.P.Dx2.Tower.castM_mul, Ux4.block3_mul, zfull_conjTranspose_inv hZ hτ]
   unfold M1 M2
   rw [← castM_smul', ← castM_smul', ← castM_sub']
   congr 1
@@ -184,8 +184,6 @@ theorem lin_decomp (D : ℂ →L[ℝ] E) (w : ℂ) : D w = (w.re : ℂ) • D 1 
   conv_lhs => rw [hw]
   rw [map_add (f := _), map_smul, map_smul, Complex.coe_smul, Complex.coe_smul]
 
-alias half_I := _root_.PI.QnHermHaar.HermitianAdjointLemmas.two_I_inv
-
 theorem torus_id (D : ℂ →L[ℝ] E) (τ : ℂ) :
     D (1 / 2 * τ) + Complex.I • D (-Complex.I / 2 * τ) = τ • ((1 / 2 : ℂ) • (D 1 - Complex.I • D Complex.I)) := by
   rw [lin_decomp D (1 / 2 * τ), lin_decomp D (-Complex.I / 2 * τ)]
@@ -217,7 +215,7 @@ theorem hpart2_EE (hj : j + 1 ≤ r) :
       hM k r j hj (Fin.last j) (Fin.last j) (-Complex.I / 2) := by
   unfold hpart2 hM
   rw [Formalism.FourierDecayAlt.P.Qx2.hpk_inv, SingleEntryHermitianProducts.single_conjT, star_one, SingleEntryHermitianProducts.hpk_mul_single_eI, single_mul_hpk_eI,
-    smul_add, half_I]
+    smul_add, PI.QnHermHaar.HermitianAdjointLemmas.two_I_inv]
   have h2 : star (-Complex.I / 2 : ℂ) = -(-Complex.I / 2) := by
     apply Complex.ext <;> simp <;> norm_num
   rw [h2, neg_smul, sub_neg_eq_add]
@@ -239,7 +237,7 @@ theorem hpart2_SS (hj : j + 1 ≤ r) :
     hpart2 (Hpk k r) (Matrix.single (esI k r ⟨j, by omega⟩) (esI k r ⟨j, by omega⟩) (1 : ℂ)) =
       hM k r j hj (Fin.last j) (Fin.last j) (-Complex.I / 2) := by
   unfold hpart2 hM
-  rw [Formalism.FourierDecayAlt.P.Qx2.hpk_inv, SingleEntryHermitianProducts.single_conjT, star_one, SingleEntryHermitianProducts.hpk_mul_single_esI, single_mul_hpk_esI, half_I]
+  rw [Formalism.FourierDecayAlt.P.Qx2.hpk_inv, SingleEntryHermitianProducts.single_conjT, star_one, SingleEntryHermitianProducts.hpk_mul_single_esI, single_mul_hpk_esI, PI.QnHermHaar.HermitianAdjointLemmas.two_I_inv]
   have h2 : star (-Complex.I / 2 : ℂ) = Complex.I / 2 := by
     apply Complex.ext <;> simp
   rw [h2]

@@ -530,25 +530,25 @@ theorem folner_of_haar {D : D7} (X : Formalism.L2.SG.HidaSetting.HidaSetting D) 
     (fun v => X.wfr u v) (fun v => rv X.B.I v (X.zR u)) (fun _ => Tw u) (fun _ => hT) ?_ ?_ ?_ ?_ ?_ ?_ ?_ ?_ ?_ ?_
     (Formalism.L2.SG.RealObj.muS X u) hμ
   · intro v a b
-    exact (ProductExactness.hJ_X X v _ _).trans (by rw [X.ee]; simp)
+    exact (Formalism.L2.SG.PoincareInHH.Cut.hJ_crd X v _ _).trans (by rw [X.ee]; simp)
   · intro v a b
-    exact (ProductExactness.hJ_X X v _ _).trans (by rw [X.ff]; simp)
+    exact (Formalism.L2.SG.PoincareInHH.Cut.hJ_crd X v _ _).trans (by rw [X.ff]; simp)
   · intro v a b
-    exact (ProductExactness.hJ_X X v _ _).trans (by rw [X.ef]; split_ifs <;> simp)
+    exact (Formalism.L2.SG.PoincareInHH.Cut.hJ_crd X v _ _).trans (by rw [X.ef]; split_ifs <;> simp)
   · intro v a
     rw [hermitian_scaled_right]
     have : hJ (X.B.I.ε v) (rv X.B.I v (X.eR a)) (rv X.B.I v (X.zR u)) = 0 :=
-      (ProductExactness.hJ_X X v _ _).trans (by rw [(X.zu_orth u a).1]; simp)
+      (Formalism.L2.SG.PoincareInHH.Cut.hJ_crd X v _ _).trans (by rw [(X.zu_orth u a).1]; simp)
     rw [this, mul_zero]
   · intro v a
     rw [hermitian_scaled_right]
     have : hJ (X.B.I.ε v) (rv X.B.I v (X.fR a)) (rv X.B.I v (X.zR u)) = 0 :=
-      (ProductExactness.hJ_X X v _ _).trans (by rw [(X.zu_orth u a).2]; simp)
+      (Formalism.L2.SG.PoincareInHH.Cut.hJ_crd X v _ _).trans (by rw [(X.zu_orth u a).2]; simp)
     rw [this, mul_zero]
   · intro v
     rw [hermitian_scaled_right, hermitian_scaled_left]
     have h5 : hJ (X.B.I.ε v) (rv X.B.I v (X.zR u)) (rv X.B.I v (X.zR u)) = -(Tw (D := D) u : ℂ) :=
-      (ProductExactness.hJ_X X v _ _).trans (by rw [X.zu_norm u]; simp [Tw])
+      (Formalism.L2.SG.PoincareInHH.Cut.hJ_crd X v _ _).trans (by rw [X.zu_norm u]; simp [Tw])
     rw [h5]
     have hs : ((Real.sqrt (Tw (D := D) u))⁻¹ : ℝ) * (Real.sqrt (Tw (D := D) u))⁻¹ * Tw (D := D) u = 1 := by
       rw [← mul_inv, Real.mul_self_sqrt hT.le, inv_mul_cancel₀ hT.ne']

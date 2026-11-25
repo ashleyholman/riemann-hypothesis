@@ -53,8 +53,6 @@ theorem eq_zero_of_eig_of_mem_twKer {G V : Type} [Group G] [TopologicalSpace G] 
   · exact absurd h0 (Nat.cast_ne_zero.2 Fintype.card_ne_zero)
   · exact h0
 
-alias isSmooth_cInd := _root_.GlobalTheory.CompanionTheory.BZFun.isSmooth_cInd
-
 def evL {G Z : Type} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
     [AddCommGroup Z] [Module ℂ Z] (H : Subgroup G) (σ : Representation ℂ H Z) (x : G) : cIndSpace H σ →ₗ[ℂ] Z :=
   (LinearMap.proj x) ∘ₗ (indSpace H σ).subtype ∘ₗ (smoothPart (ind H σ)).subtype ∘ₗ (cIndSpace H σ).subtype
@@ -92,7 +90,7 @@ theorem avgVanish_of_fibre {G Z Γ A : Type} [Group G] [TopologicalSpace G] [IsT
     rw [add_zero] at this
     exact (mul_eq_left.1 this.symm)
   set θL : L →* ℂˣ := θ.comp (Subgroup.inclusion hLU) with hθL
-  obtain ⟨ι, _, r, c₀, h1, h2⟩ := GlobalTheory.CompanionTheory.TwAvgInd.exists_finite_average (cInd H σ) (isSmooth_cInd H σ) hLc θL hθ f
+  obtain ⟨ι, _, r, c₀, h1, h2⟩ := GlobalTheory.CompanionTheory.TwAvgInd.exists_finite_average (cInd H σ) (GlobalTheory.CompanionTheory.BZFun.isSmooth_cInd H σ) hLc θL hθ f
   obtain ⟨g, hg⟩ : ∃ g : cIndSpace H σ, g = c₀ • ∑ i, twOrbit (cInd H σ) L θL f (r i) := ⟨_, rfl⟩
   rw [← hg] at h1
   simp only [← hg] at h2

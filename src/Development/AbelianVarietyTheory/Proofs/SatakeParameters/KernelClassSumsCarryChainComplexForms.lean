@@ -607,7 +607,7 @@ theorem termLaw_of_xi : ∀ (D : D7) (L : SizeData₂ D) (hT : GatTies D) (Gi : 
     intro j τ
     have h1 := (D.chTw u μ).sDiv_eq j j.2 (t.seam.iT τ)
     rw [D.hcW_e] at h1
-    obtain ⟨m, hm⟩ := rank_even D.R j
+    obtain ⟨m, hm⟩ := Formalism.MainNotions.product_zeroth_first_parts.N_even D.R j
     have h2 : ((D.R.N j / 2 : ℕ) : ℚ) = (D.R.N j : ℚ) / 2 := by
       rw [hm]; push_cast; rw [show m + m = 2 * m by ring, Nat.mul_div_cancel_left _ two_pos]; push_cast; ring
     simp only [eZ]
@@ -632,7 +632,7 @@ theorem termLaw_of_xi : ∀ (D : D7) (L : SizeData₂ D) (hT : GatTies D) (Gi : 
     linear_combination this
   have hA : TaylorLogMetric.admitted D _ _ (t.seam.lat ((t.rd u μ).N i c)) (t.seam.lat ((t.rd u μ).N (i + 1) c')) := by
     rw [← t.O_lat, ← t.O_lat]
-    exact ⟨rank_even _ _, rank_even _ _, ((t.O u μ).lat i c).2, ((t.O u μ).lat (i + 1) c').2⟩
+    exact ⟨Formalism.MainNotions.product_zeroth_first_parts.N_even _ _, Formalism.MainNotions.product_zeroth_first_parts.N_even _ _, ((t.O u μ).lat i c).2, ((t.O u μ).lat (i + 1) c').2⟩
   have hSSc : ∀ P ∈ (t.rd u μ).SS, conjPrime₂ P ∉ (t.rd u μ).SS := by
     rw [hSS]
     exact _root_.GlobalTheory.BadNoConj.sall_noConj_ok t.sel (t.tup μ) hX t.pr_ok hsel (t.word u) (hTS _) hgS

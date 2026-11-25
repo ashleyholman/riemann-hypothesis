@@ -232,12 +232,6 @@ section -- clump:auto
 @[expose] public section
 
 open GlobalTheory.CompanionTheory.Ar.Num GlobalTheory.CompanionTheory.Ar.GR ReciprocityTheory.PGsh.L2 ReciprocityTheory.PGsh.Up
-
-namespace GlobalTheory.CompanionTheory.Ar.Num
-
-alias pt_af_type_main := _root_.PositivityTheory.Xgn.t_pt_af_type
-
-end GlobalTheory.CompanionTheory.Ar.Num
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AutomorphicSpectrum.Proofs.AlgebraProofs.PtAfTypeMain =====
@@ -267,18 +261,6 @@ theorem smul_mem_spanOver {o C V : Type} [CommRing o] [Field C] [Algebra o C] [A
   · rw [smul_zero]; exact AddSubgroup.zero_mem _
   · rw [smul_add]; exact AddSubgroup.add_mem _ h1 h2
   · rw [smul_neg]; exact AddSubgroup.neg_mem _ h
-
-theorem exists_dual_family (A M : Type) [CommRing A] [AddCommGroup M] [Module A M] [Module.Finite A M]
-    [Module.Projective A M] :
-    ∃ (n : ℕ) (e : Fin n → M) (f : Fin n → Module.Dual A M), ∀ m, ∑ i, f i m • e i = m := by
-  obtain ⟨n, t, ht⟩ := Module.Finite.exists_fin' A M
-  obtain ⟨s, hs⟩ := Module.projective_lifting_property t LinearMap.id ht
-  refine ⟨n, fun i => t (Pi.single i 1), fun i => LinearMap.proj i ∘ₗ s, fun m => ?_⟩
-  have h := LinearMap.congr_fun hs m
-  rw [LinearMap.comp_apply, LinearMap.id_apply] at h
-
-  conv_rhs => rw [← h, pi_eq_sum_univ' (s m), map_sum]
-  simp only [map_smul, LinearMap.comp_apply, LinearMap.proj_apply]
 
 theorem lattices_alg {O Ω C : Type} [CommRing O] [Field Ω] [Field C] [Algebra O Ω] [Algebra O C] [Algebra Ω C]
     (R : Subalgebra O Ω) (RC : Subalgebra O C) (hR : ∀ a ∈ R, algebraMap Ω C a ∈ RC)
@@ -375,7 +357,7 @@ theorem lattices_alg {O Ω C : Type} [CommRing O] [Field Ω] [Field C] [Algebra 
     · intro x _ hx
       simp only [Pi.neg_apply, neg_mul, Finset.sum_neg_distrib]
       exact RC.neg_mem hx
-  · obtain ⟨n, e, f, hef⟩ := exists_dual_family R L
+  · obtain ⟨n, e, f, hef⟩ := UpperTheory.Reformulated.B.DYhb1.main R L
     have hid : (∑ m, (j (f m)).smulRight (toLi (e m)) : Li →ₗ[Ω] Li) = LinearMap.id :=
       hbc.algHom_ext _ _ fun v => by
         rw [LinearMap.id_apply, LinearMap.sum_apply]
@@ -1654,7 +1636,7 @@ theorem PositivityTheory.Xgn.test_group_point_exists : GlobalTheory.CompanionThe
     exact ⟨o, by rw [← hOC', ho, ← hσ]; exact (hσ' a).symm, ho'⟩
   have hst := afLat_stable hdu φN hφN AA.carrier (fun a f hf => by rw [hAA] at hf ⊢; exact act_mem P a f hf) _
     (mem_pull φN AA)
-  have hhh := (pt_af_type_main RC p (ReciprocityTheory.PGsh.Up.hopfPull φN AA).carrier (ReciprocityTheory.PGsh.Up.hopfPull φN AA).le_int
+  have hhh := (PositivityTheory.Xgn.t_pt_af_type RC p (ReciprocityTheory.PGsh.Up.hopfPull φN AA).carrier (ReciprocityTheory.PGsh.Up.hopfPull φN AA).le_int
     ((chartD e b pq sc w P i).bc RC) χ' (Subtype.ext (by rw [← hχ', map_zero]; rfl))
     (Subtype.ext (by rw [← hχ', map_one]; rfl))
     (φN.symm.toAddMonoidHom.comp (TestPt.toNAdd sc)) ((TestPt.fromNAdd pq).comp φN.toAddMonoidHom)

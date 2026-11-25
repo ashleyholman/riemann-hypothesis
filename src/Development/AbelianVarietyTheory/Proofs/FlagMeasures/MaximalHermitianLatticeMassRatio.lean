@@ -347,7 +347,7 @@ theorem main : ∀ (K F V : Type) [Field K] [NumberField K] [StarRing K] [Field 
       exact LocF.le_locF _ _ (Submodule.subset_span ⟨i, rfl⟩)
     obtain ⟨t, ht, htx⟩ := (LocF.mem_locF_iff hpp M (b i)).1 hm
     have ht0 : algebraMap F K (t : F) ≠ 0 :=
-      (map_ne_zero (algebraMap F K)).2 (by exact_mod_cast Formalism.L2.SG.Pf.G2.ne_zero_of_notMem ht)
+      (map_ne_zero (algebraMap F K)).2 (by exact_mod_cast Formalism.HermitianLattices.Ext.L3.WCA.ne_zero_of_notMem ht)
     apply (Submodule.smul_mem_iff _ ht0).1
     rw [← IsScalarTower.algebraMap_apply (𝓞 F) F K, IsScalarTower.algebraMap_apply (𝓞 F) (𝓞 K) K, algebraMap_smul]
     exact Submodule.subset_span htx

@@ -908,7 +908,7 @@ theorem val_img {M : FlagModel y Ψ N j} {M' : FlagModel y' Ψ N j} (Cv : FlagCo
   obtain ⟨z₁, ho₁, hnorm⟩ := FibreCount.exists_normal_base M'.blk F'.c z fun k => FibreCount.chart_ne (hG'.1 k)
   have hz₁ := mem_mcPts_of_sameOrbit (CoordinateConeArithVar.isMultiHomogIdeal y') ho₁ hz
   have hG₁ : M'.GoodAt F' (mCoordIdeal (basePart M'.blk z₁)) := by
-    rw [FibreCount.mCoordIdeal_eq_of_orbit (FibreCount.basePart_orbit M'.blk ho₁)]; exact hG'
+    rw [GlobalTheory.CompanionTheory.Ar.PB.CovMap.ImgBase.mCoordIdeal_eq (FibreCount.basePart_orbit M'.blk ho₁)]; exact hG'
   obtain ⟨h, hh⟩ := (h3 F' hF' z₁ (h1 z₁ hz₁) hG₁ hnorm).1 hz₁
   have hv := _root_.GlobalTheory.CompanionTheory.Ar.PB.CovGraph.comp_v_mem_mcPts K ι Φ y Ψ N j M K' ι' Φ' y' M' Cv _ (h1 z₁ hz₁)
   obtain ⟨F, hF, hG⟩ := g2 _ hv

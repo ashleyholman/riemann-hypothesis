@@ -66,7 +66,7 @@ theorem unitaryInv_rect {K : Type} [Field K] [CharZero K] (R : Subring K) (l lin
     rintro (c | c)
     · exact ⟨by simp, fun k => by simp⟩
     · exact hu c
-  have key := unitaryInv K R l linv ph hFr O τ hE hB hF1 hN hA (n ⊕ m)
+  have key := Formalism.L2.Th1.C.unitary_inverse_identity K R l linv ph hFr O τ hE hB hF1 hN hA (n ⊕ m)
     (Matrix.fromBlocks P γ γ.conjTranspose 0) hΔ σ (Sum.elim (fun _ : n => 0) u) hu'
   have hph : PowerSeries.constantCoeff ph = 0 := hFr.2.2
   have hl : PowerSeries.constantCoeff l = 0 := hFr.1.1
@@ -83,7 +83,7 @@ theorem HostLog.subst_unitary : ∀ (p : ℕ) [Fact p.Prime] (g2 g3 s2 ε : Maxi
   classical
   obtain ⟨h5, hg2, hg3, hε, hθ, hU, hF, hN⟩ := hD
   obtain ⟨hFr, hF1, hall, hbin⟩ := Formalism.L2.Th1.Top.CalcC_proof p h5 g2 g3 ε s2 hg2 hg3 hε hθ σ hU F hF hN
-  have hσ : ∀ a : MaximalUnramifiedExtension p, ‖a‖ ≤ 1 → ‖σ a‖ ≤ 1 := (Formalism.L2.Th1.D.frobSq (MaximalUnramifiedExtension p) p σ hU).2
+  have hσ : ∀ a : MaximalUnramifiedExtension p, ‖a‖ ≤ 1 → ‖σ a‖ ≤ 1 := (Formalism.L2.Th1.D.frobenius_square (MaximalUnramifiedExtension p) p σ hU).2
   let _ : StarRing (Formalism.L2.Th1.D.BrC.Osub σ) := Formalism.L2.Th1.D.BrC.starO hσ
   let τ : Formalism.L2.Th1.D.BrC.Osub σ →+* ℂ_[p] := (MaximalUnramifiedExtension p).subtype.comp (Formalism.L2.Th1.D.BrC.Osub σ).subtype
   let γO : Matrix n m (Formalism.L2.Th1.D.BrC.Osub σ) :=

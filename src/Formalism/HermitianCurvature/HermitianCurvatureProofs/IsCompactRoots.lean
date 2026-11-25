@@ -50,7 +50,7 @@ theorem germ_core (m p : ℕ) (σh : Equiv.Perm (Fin p)) (dh : Fin p → ℂ) (h
             G.OmLong U.betaU (m + 1) (U.PhiTop (p := p) (s := m + 1 + 1) U.betaU σh dh Φ0) (l2 * z)‖ ≤ C * ‖x‖⁻¹ := by
   classical
   set Ψ := U.PhiTop (p := p) (s := m + 1 + 1) U.betaU σh dh Φ0 with hΨ
-  have hβ : U.betaU ≠ 0 := Formalism.FourierDecayAlt.P.scale_matching.2.1
+  have hβ : U.betaU ≠ 0 := Formalism.FourierDecayAlt.P.Ux7.scaleMatch.2.1
 
   obtain ⟨C₁, C₂, hUG⟩ := Formalism.FourierDecayAlt.P.germ_expansion_top_level
   set Nr : ℝ := ((p + (m + 1 + 1) : ℕ) : ℝ) with hNr

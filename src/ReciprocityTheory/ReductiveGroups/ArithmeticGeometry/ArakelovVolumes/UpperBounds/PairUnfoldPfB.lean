@@ -201,8 +201,6 @@ private theorem rmul_rmul_inv_mat_eq_self {y b : Frame X.Ψ r} (hb : b ∈ Bor X
   rw [Matrix.mul_nonsing_inv_cancel_right _ _ (Ne.isUnit (hb τ).1)]
   rfl
 
-private alias rmul_mem_T_iff := _root_.ReciprocityTheory.ChartRestriction.G.AR.Up.PairUnfoldPf.T_rmul
-
 theorem ind_rmul {γ : GL (Fin r) E} (hγ : γ ∈ X.Γ) {x b : Frame X.Ψ r} (hx : x ∈ X.dom)
     (hb : b ∈ Bor X.Ψ r) {M : Type*} [One M] [Zero M] :
     (T D FF).indicator (1 : Frame X.Ψ r → M) (lact γ⁻¹ (rmul x b)) =
@@ -216,11 +214,11 @@ theorem ind_rmul {γ : GL (Fin r) E} (hγ : γ ∈ X.Γ) {x b : Frame X.Ψ r} (h
       (Matrix.of (x τ)) (Matrix.of (b τ))).symm
   rw [hlr]
   by_cases h : lact γ⁻¹ x ∈ T D FF
-  · rw [Set.indicator_of_mem h, Set.indicator_of_mem ((rmul_mem_T_iff D FF hy hb).2 h)]
+  · rw [Set.indicator_of_mem h, Set.indicator_of_mem ((ReciprocityTheory.ChartRestriction.G.AR.Up.PairUnfoldPf.T_rmul D FF hy hb).2 h)]
     rfl
   · first
       | rw [Set.indicator_of_notMem h,
-          Set.indicator_of_notMem (fun h' => h ((rmul_mem_T_iff D FF hy hb).1 h'))]
+          Set.indicator_of_notMem (fun h' => h ((ReciprocityTheory.ChartRestriction.G.AR.Up.PairUnfoldPf.T_rmul D FF hy hb).1 h'))]
 
 theorem ind_cpt {z : V (nd X)} (hz : z ∈ OmF X x0) {M : Type*} [One M] [Zero M] :
     (T D FF).indicator (1 : Frame X.Ψ r → M) (cpt X x0 z) = FF.indicator 1 z := by

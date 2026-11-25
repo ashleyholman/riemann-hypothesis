@@ -48,7 +48,7 @@ theorem b_fg : (Submodule.span (v.adicCompletionIntegers F)
 def bAlg : Subalgebra (v.adicCompletionIntegers F) (Fv F v ⊗[F] E) :=
   Submodule.toSubalgebra (Submodule.span (v.adicCompletionIntegers F)
     ((fun x : 𝓞 E => inclR (F := F) (Fv F v) (x : E)) '' Set.univ)) (b_one_mem (E := E) v)
-    (fun _ _ hx hy => b_mul_mem v hx hy)
+    (fun _ _ hx hy => PI.OmLocU.oEv_mul v hx hy)
 
 theorem b_int_of_sc {a : Fv F v} (ha : sc (E := E) v a ∈ OEv (E := E) v) : a ∈ v.adicCompletionIntegers F := by
   have hfg : (Subalgebra.toSubmodule (bAlg (E := E) v)).FG := b_fg v

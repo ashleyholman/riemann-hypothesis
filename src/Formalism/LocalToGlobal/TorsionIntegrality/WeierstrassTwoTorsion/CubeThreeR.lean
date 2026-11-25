@@ -222,7 +222,7 @@ universe u v
 
 namespace Formalism.L2.Th1.A
 
-theorem coeffMem : CoeffMem.{u} := coeffMem_of zSerMap halfLog
+theorem coeffMem : CoeffMem.{u} := coeffMem_of Formalism.L2.Th1.A.z_series_map halfLog
 
 alias shortInv := _root_.Formalism.L2.Th1.A.short_weierstrass_inverse
 theorem wpNumEq : WpNumEq := wpNumEq_of wpShape wpRecursion

@@ -158,7 +158,7 @@ theorem sliceContQa : ∃ Cs : ℝ, 0 ≤ Cs ∧ ∀ Cc : ℝ, Cs ≤ Cc →
   obtain ⟨n, rfl⟩ : ∃ n, m = n + 1 := ⟨m - 1, by omega⟩
   have hPt : ∀ t : ℂ, D.ptSize (h0 ++ [(n + 1, t)]) = i := fun t => by
     rw [Formalism.FourierDecayAlt.P.Dx2.SL.ptSize_append]; exact hsz
-  have hd0 : ∀ q, D.ptDiag h0 q ≠ 0 := fun q => Formalism.FourierDecayAlt.P.JCTx6.Link2.ptScal_ne h0 hpb q q.2
+  have hd0 : ∀ q, D.ptDiag h0 q ≠ 0 := fun q => Formalism.FourierDecayAlt.P.Dx1.Rel.scal_ne h0 hpb q q.2
   have e1 : r = D.ptSize h0 + (n + 1) + (r - i) := by omega
   have e2 : D.ptSize h0 + (n + 1) + (r - i) = r := by omega
   have hj1 : 1 ≤ D.ptSize h0 + (n + 1) := by omega

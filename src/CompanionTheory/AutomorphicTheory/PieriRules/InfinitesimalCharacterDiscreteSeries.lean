@@ -109,7 +109,7 @@ def HCFdegG : Prop :=
 
 theorem harish_chandra_formal_degree : HCFdegG := by
   intro n ε hp hq
-  obtain ⟨c, hc, hF⟩ := G2.formal_degree_constant_measure n ε
+  obtain ⟨c, hc, hF⟩ := ReciprocityTheory.ChartRestriction.DS.fdCons_muG n ε
   refine ⟨c, hc, fun lam H _ _ _ σ hl hσ h hg hh => ?_⟩
   have := hσ.2.1
   obtain ⟨d, hd⟩ := PIW.HCFdeg.formal_degree_abstract_form n ε H σ hσ.2.2.1 hσ.2.2.2.1 hσ.2.2.2.2.1

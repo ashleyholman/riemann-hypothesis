@@ -814,7 +814,7 @@ theorem product_scaling_jets : ProdScaleJets := by
   intro K _ _ κ n _ _ _ c r H hr hH
   classical
   have hB : ∀ a : K, a ∈ Formalism.G.unitBall K ↔ ‖a‖ ≤ 1 := fun a => Iff.rfl
-  refine (Formalism.L2.Th1.G.jetsInNorm K n _).mpr ?_
+  refine (Formalism.L2.Th1.G.jets_in_norm_holds K n _).mpr ?_
   rw [linSub_scl]
   obtain ⟨hC, -, hadd, -, hmul⟩ := _root_.Formalism.L2.Th1.G.jets_ring_holds K (Formalism.G.unitBall K) n
 
@@ -1400,7 +1400,7 @@ theorem main_case {p : ℕ} [Fact p.Prime] (ι : ℂ ≃+* ℂ_[p]) {dK : ℕ} (
     simp
   have hd : 0 < dK := by omega
   obtain ⟨S, hS, hcard, hIso, -⟩ := Formalism.L2.Th1.F.hasCMByIsogeny dK L hcm m n hmn hd
-  obtain ⟨hst, -⟩ := Formalism.L2.Th1.F.hasCMByStable dK L hcm m n
+  obtain ⟨hst, -⟩ := Formalism.L2.Th1.F.has_cm_stable dK L hcm m n
   have hprod : ((m : ℂ) + (n : ℂ) * omegaK dK) * ((m : ℂ) + (n : ℂ) * (1 - omegaK dK)) =
       (S.card : ℂ) + 1 := by
     rw [Formalism.L2.Th1.D.CurveNormEndomorphisms.mul_bar]

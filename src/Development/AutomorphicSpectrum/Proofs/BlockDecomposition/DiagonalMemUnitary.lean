@@ -1168,17 +1168,12 @@ theorem alt_expand (e : Fin n → ℤ) (z : Fin n → ℂ) :
   rw [← Matrix.det_transpose, Matrix.det_apply']
   rfl
 
-theorem score_tZero (lev : Fin n → ℕ) (hm : Monotone lev) (a : Fin n) :
-    score (tZero lev) a = ((univ.filter fun b => lev a < lev b).card : ℤ) -
-      ((univ.filter fun b => lev b < lev a).card : ℤ) + ((a : ℕ) : ℤ) :=
-  _root_.GlobalTheory.CompanionTheory.CoefId.score_tZero_level lev hm a
-
 theorem step_unique (lev : Fin n → ℕ) (hm : Monotone lev) (L : Fin n → ℤ) (hL : StrictAnti L)
     (hb : ∀ a b, lev a = lev b → L a - L b = ((b : ℕ) : ℤ) - ((a : ℕ) : ℤ)) (σ : Equiv.Perm (Fin n))
     (T : Finset (Fin n × Fin n)) (hT : T ⊆ prs n)
     (h : ∀ a, score T a = score (tZero lev) a + 2 * (L a - L (σ a))) : σ = 1 ∧ T = tZero lev :=
   _root_.GlobalTheory.CompanionTheory.CoefId.Unique.tournament_unique lev hm L hL hb (fun a b hab => by
-    rw [score_tZero lev hm a, score_tZero lev hm b]
+    rw [GlobalTheory.CompanionTheory.CoefId.score_tZero_level lev hm a, GlobalTheory.CompanionTheory.CoefId.score_tZero_level lev hm b]
     simp only [hab, add_sub_cancel_right]) σ T hT h
 
 theorem perm_unique (x y : Fin n → ℤ) (hx : StrictAnti x) (hy : StrictAnti y) (σ : Equiv.Perm (Fin n))

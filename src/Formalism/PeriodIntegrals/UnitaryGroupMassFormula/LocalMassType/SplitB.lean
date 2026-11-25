@@ -128,15 +128,12 @@ theorem finrank_tens (h : Module.finrank F E = 2) :
 theorem finDim_tens : FiniteDimensional (Fv F v) (Fv F v ⊗[F] E) :=
   Module.Finite.of_basis (Algebra.TensorProduct.basis (Fv F v) (Module.finBasis F E))
 
-theorem sigR_sc (c : Fv F v) : sigR (Fv F v) σ (sc (E := E) v c) = sc (E := E) v c := by
-  simp [sigR, sc]
-
 theorem sigR_inclR (y : E) : sigR (Fv F v) σ (inclR (F := F) (Fv F v) y) = inclR (F := F) (Fv F v) (σ y) := by
   simp [sigR, inclR]
 
 theorem sigR_smul (c : Fv F v) (x : Fv F v ⊗[F] E) :
     sigR (Fv F v) σ (c • x) = c • sigR (Fv F v) σ x := by
-  rw [← PI.LocMassTypU.sc_mul_eq_smul, map_mul, sigR_sc, PI.LocMassTypU.sc_mul_eq_smul]
+  rw [← PI.LocMassTypU.sc_mul_eq_smul, map_mul, PI.OmLocU.sigR_sc, PI.LocMassTypU.sc_mul_eq_smul]
 
 theorem sigR_sigR (hσ : ∀ y, σ (σ y) = y) (x : Fv F v ⊗[F] E) :
     sigR (Fv F v) σ (sigR (Fv F v) σ x) = x := by

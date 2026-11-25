@@ -157,8 +157,8 @@ theorem flow_unique_integral : FlowUniqueZ.{u} := by
         exact dvd_add (Dvd.dvd.mul_left iy _) (Dvd.dvd.mul_left ix _)
       · rw [dy]
         exact dvd_sub (Dvd.dvd.mul_right ix _) (Dvd.dvd.mul_left iy _)
-  exact ⟨sub_eq_zero.1 (Nn.eq_zero_of_forall_X_pow_dvd fun n => (key n).1),
-    sub_eq_zero.1 (Nn.eq_zero_of_forall_X_pow_dvd fun n => (key n).2)⟩
+  exact ⟨sub_eq_zero.1 (Formalism.ELL.WeierstrassSeriesLimit.eq_zero_of_forall_X_pow_dvd fun n => (key n).1),
+    sub_eq_zero.1 (Formalism.ELL.WeierstrassSeriesLimit.eq_zero_of_forall_X_pow_dvd fun n => (key n).2)⟩
 
 end Formalism.L2.Th1.A
 end -- clump:auto
@@ -189,7 +189,7 @@ theorem division_spec : DivSpec.{u, v} := by
     rw [mul_comm]; exact h1
   · intro S _ φ
     have key := compInvMap R S φ (zSer W n) hcc hu
-    rw [zSerMap R S φ W n] at key
+    rw [Formalism.L2.Th1.A.z_series_map R S φ W n] at key
     exact key
   · intro h2
     subst h2
@@ -376,7 +376,7 @@ theorem difference_subst {τ : Type*} {p q : MvPowerSeries τ R}
 theorem difference_diagonal : (diff2 W).subst
     ![(MvPowerSeries.X 0 : MvPowerSeries (Fin 2) R), MvPowerSeries.X 0] = 0 := by
   rw [difference_subst W (X_cc 0) (X_cc 0)]
-  have h := congrArg (PowerSeries.subst (MvPowerSeries.X 0 : MvPowerSeries (Fin 2) R)) (fglInv R W)
+  have h := congrArg (PowerSeries.subst (MvPowerSeries.X 0 : MvPowerSeries (Fin 2) R)) (Formalism.L2.Th1.A.formal_group_inverse R W)
   have hX : HasSubst (MvPowerSeries.X 0 : MvPowerSeries (Fin 2) R) := HasSubst.X 0
   rw [PowerSeries.subst_def, MvPowerSeries.subst_comp_subst_apply (Fgl2.hasSubst_X_iSer W) hX.const,
     ← coe_substAlgHom hX, map_zero] at h

@@ -1257,13 +1257,6 @@ theorem opn_mul (A B : Mat k r) : opn (A * B) ≤ opn A * opn B := by
   unfold opn
   simpa only [map_mul] using norm_mul_le _ _
 
-theorem opn_conjTranspose (A : Mat k r) : opn Aᴴ = opn A := by
-  unfold opn
-  rw [← Matrix.star_eq_conjTranspose, map_star, norm_star]
-
-theorem opn_one : opn (1 : Mat k r) = 1 := by
-  unfold opn; rw [map_one]; exact norm_one
-
 local instance instAlgCLM (n : ℕ) :
     Algebra ℂ (EuclideanSpace ℂ (Fin n) →L[ℂ] EuclideanSpace ℂ (Fin n)) := ContinuousLinearMap.algebra
 
@@ -1272,44 +1265,9 @@ theorem opn_continuous : Continuous (fun M : Mat k r => opn M) := by
 
 theorem nilradical_half_sum_nonneg : 0 ≤ N1H k r := by unfold N1H; positivity
 
-theorem one_le_opn {g : Mat k r} (hg : g ∈ Gr k r) : 1 ≤ opn (Formalism.QuantumDeterminants.Hpk k r) * opn g := by
-  have h1 : opn (1 : Mat k r) ≤ opn g⁻¹ * opn g := by rw [← Grp.inv_mul hg]; exact opn_mul _ _
-  have h2 : opn g⁻¹ ≤ opn (Formalism.QuantumDeterminants.Hpk k r) * opn g * opn (Formalism.QuantumDeterminants.Hpk k r) := by
-    rw [Grp.inv_eq hg]
-    calc opn (Formalism.QuantumDeterminants.Hpk k r * gᴴ * Formalism.QuantumDeterminants.Hpk k r)
-        ≤ opn (Formalism.QuantumDeterminants.Hpk k r * gᴴ) * opn (Formalism.QuantumDeterminants.Hpk k r) := opn_mul _ _
-      _ ≤ opn (Formalism.QuantumDeterminants.Hpk k r) * opn gᴴ * opn (Formalism.QuantumDeterminants.Hpk k r) :=
-          mul_le_mul_of_nonneg_right (opn_mul _ _) (opn_nonneg _)
-      _ = _ := by rw [opn_conjTranspose]
-  rw [opn_one] at h1
-  have h0 := opn_nonneg g
-  have hH := opn_nonneg (Formalism.QuantumDeterminants.Hpk k r)
-  have h3 : (1 : ℝ) ^ 2 ≤ (opn (Formalism.QuantumDeterminants.Hpk k r) * opn g) ^ 2 := by nlinarith
-  have hx := sq_le_sq.mp h3
-  rwa [abs_one, abs_of_nonneg (mul_nonneg hH h0)] at hx
-
-theorem one_le_opn_Hpk_rpow_mul_opn_rpow {g : Mat k r} (hg : g ∈ Gr k r) :
-    1 ≤ opn (Formalism.QuantumDeterminants.Hpk k r) ^ N1H k r * opn g ^ N1H k r := by
-  rw [← Real.mul_rpow (opn_nonneg _) (opn_nonneg _)]
-  exact Real.one_le_rpow (one_le_opn hg) nilradical_half_sum_nonneg
-
 theorem opn_rpow_mul (a b : Mat k r) : opn (a * b) ^ N1H k r ≤ opn a ^ N1H k r * opn b ^ N1H k r := by
   rw [← Real.mul_rpow (opn_nonneg _) (opn_nonneg _)]
   exact Real.rpow_le_rpow (opn_nonneg _) (opn_mul _ _) nilradical_half_sum_nonneg
-
-theorem ae_fst {μW μN : Measure (Formalism.QuantumDeterminants.Mt k r)} [SFinite μN] {U : Set (Mat k r)}
-    (hU : μW {x | Matrix.of x ∉ U} = 0) : ∀ᵐ p ∂(μW.prod μN), Matrix.of p.1 ∈ U := by
-  rw [ae_iff]
-  have : {p : Formalism.QuantumDeterminants.Mt k r × Formalism.QuantumDeterminants.Mt k r | ¬ Matrix.of p.1 ∈ U} =
-      {x | Matrix.of x ∉ U} ×ˢ Set.univ := by ext p; simp
-  rw [this, Measure.prod_prod, hU, zero_mul]
-
-theorem ae_snd {μW μN : Measure (Formalism.QuantumDeterminants.Mt k r)} [SFinite μN] {U : Set (Mat k r)}
-    (hU : μN {x | Matrix.of x ∉ U} = 0) : ∀ᵐ p ∂(μW.prod μN), Matrix.of p.2 ∈ U := by
-  rw [ae_iff]
-  have : {p : Formalism.QuantumDeterminants.Mt k r × Formalism.QuantumDeterminants.Mt k r | ¬ Matrix.of p.2 ∈ U} =
-      Set.univ ×ˢ {x | Matrix.of x ∉ U} := by ext p; simp
-  rw [this, Measure.prod_prod, hU, mul_zero]
 
 section Int
 
@@ -1428,7 +1386,7 @@ theorem wcoef_zero_le (w' w : H) (y : Formalism.QuantumDeterminants.Mt k r) :
     rw [Set.indicator_of_mem hy', Set.indicator_of_mem hy', Real.rpow_zero, mul_one,
       ← ENNReal.ofReal_mul (Real.rpow_nonneg (opn_nonneg _) _)]
     apply ENNReal.ofReal_le_ofReal
-    nlinarith [one_le_opn_Hpk_rpow_mul_opn_rpow hy,
+    nlinarith [WlocSk.AK.ak_one_le hy,
       norm_nonneg (⟪w', σ (Matrix.of y) w⟫_ℂ)]
   · have hy' : y ∉ {y : Formalism.QuantumDeterminants.Mt k r | Matrix.of y ∈ Gr k r} := hy
     rw [Set.indicator_of_notMem hy']
@@ -1451,8 +1409,8 @@ theorem A_bound (hSG : SGrp) (hPU : PiUnit) (hSig : SigmaG) (hyp : Hyp k r z c u
     _ ≤ ∫⁻ p, ‖ξ‖ₑ * wcoef σ (σ x₀ w) w e (fun i j => (Matrix.of (mulP p) * Matrix.of x) i j)
         ∂(μW.prod μN) := by
         apply lintegral_mono_ae
-        filter_upwards [ae_fst (μN := μN) hW.2.2.1,
-          ae_snd (μW := μW) hN.2.2.1] with p h1 h2
+        filter_upwards [WlocSk.AE.ae_fst (μN := μN) hW.2.2.1,
+          WlocSk.AE.ae_snd (μW := μW) hN.2.2.1] with p h1 h2
         have hpG : Matrix.of p.1 * Matrix.of p.2 ∈ Gr k r := Grp.mul_mem (hWG h1) (hNG h2)
         rw [bInt_enorm hσ hx (σ x₀ w) w ξ p hpG (hψ _ h2) (hπ _ (hWinv _ h1) ξ)]
         have hyG : Matrix.of (fun i j => (Matrix.of (mulP p) * Matrix.of x) i j) ∈ Gr k r :=
@@ -1607,8 +1565,8 @@ theorem aF_eq (hSG : SGrp) (hPU : PiUnit) (hSig : SigmaG) (hyp : Hyp k r z c u v
   unfold aF
   rw [← lintegral_const_mul' _ _ enorm_ne_top]
   apply lintegral_congr_ae
-  filter_upwards [ae_fst (μN := μN) hW.2.2.1,
-    ae_snd (μW := μW) hN.2.2.1] with p h1 h2
+  filter_upwards [WlocSk.AE.ae_fst (μN := μN) hW.2.2.1,
+    WlocSk.AE.ae_snd (μW := μW) hN.2.2.1] with p h1 h2
   have hpG : Matrix.of p.1 * Matrix.of p.2 ∈ Gr k r := Grp.mul_mem (hWG h1) (hNG h2)
   rw [bInt_enorm hσ hy (σ x₀ w) w ξ p hpG (hψ _ h2) (hπ _ (hWinv _ h1) ξ)]
   have hyG : (fun i j => (Matrix.of (mulP p) * y) i j : Formalism.QuantumDeterminants.Mt k r) ∈
@@ -1635,8 +1593,8 @@ theorem wave_packet_l2_finite (hSG : SGrp) (hPU : PiUnit) (hSig : SigmaG) (hSP :
   have hN := hyp.2.2.2.2.2.2.2.2.1
   have := hW.1
   have := hN.1
-  have hWc := ae_fst (μN := μN) hW.2.2.1
-  have hNc := ae_snd (μW := μW) hN.2.2.1
+  have hWc := WlocSk.AE.ae_fst (μN := μN) hW.2.2.1
+  have hNc := WlocSk.AE.ae_snd (μW := μW) hN.2.2.1
   have hf₀m : Measurable (wcoef σ (σ x₀ w) w 0) := wcoef_meas hσ _ _ le_rfl
   have hFm : Measurable (Fq σ (σ x₀ w) w μW μN ξ) :=
     hf₀m.mul ((aF_meas hσ _ _ μW μN).const_mul _)

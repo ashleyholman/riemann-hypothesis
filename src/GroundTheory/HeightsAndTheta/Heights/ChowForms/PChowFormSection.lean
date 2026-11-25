@@ -32,11 +32,6 @@ theorem isChowForm_iff {P : Ideal (MvPolynomial (Fin n) F)} {k : ℕ}
     IsChowForm P k g ↔ g ≠ 0 ∧ incIdeal P k = Ideal.span {g} :=
   GlobalTheory.CompanionTheory.Ar.Short.ChowClosing.SectionAlgClosed.isChowForm_iff_span
 
-theorem dvd_of_forall_emultiplicity_le {R : Type*} [CommRing R] [IsDomain R]
-    [UniqueFactorizationMonoid R] {a b : R} (ha : a ≠ 0) (hb : b ≠ 0)
-    (h : ∀ p, Irreducible p → emultiplicity p a ≤ emultiplicity p b) : a ∣ b := by
-  apply GlobalTheory.CompanionTheory.Ar.Short.ChowClosing.SectionAlgClosed.dvd_of_forall_emultiplicity_le' <;> assumption
-
 theorem ChowFormSection.proof (h₁ : ConeDimOfChowForm.Statement) (h₂ : ConeDimComponent.Statement)
     (h₃ : ChowFormExists.Statement) (h₄ : IncIdealPrime.Statement) (h₅ : SectionOrder.Statement) :
     ChowFormSection.Statement := by
@@ -90,8 +85,8 @@ theorem ChowFormSection.proof (h₁ : ConeDimOfChowForm.Statement) (h₂ : ConeD
       rw [this, mul_zero]
   have hass : Associated Pr (specFirst f u) :=
     associated_of_dvd_dvd
-      (dvd_of_forall_emultiplicity_le hPr0 hh0 fun q hq => (hmult q hq).le)
-      (dvd_of_forall_emultiplicity_le hh0 hPr0 fun q hq => (hmult q hq).ge)
+      (GlobalTheory.CompanionTheory.Ar.Short.ChowClosing.SectionAlgClosed.dvd_of_forall_emultiplicity_le' hPr0 hh0 fun q hq => (hmult q hq).le)
+      (GlobalTheory.CompanionTheory.Ar.Short.ChowClosing.SectionAlgClosed.dvd_of_forall_emultiplicity_le' hh0 hPr0 fun q hq => (hmult q hq).ge)
   obtain ⟨v, hv⟩ := hass
   obtain ⟨c, hc, hvc⟩ := (isUnit_iff_eq_C_of_isReduced (P := (v : MvPolynomial (Fin e × Fin n) F))).mp
     v.isUnit

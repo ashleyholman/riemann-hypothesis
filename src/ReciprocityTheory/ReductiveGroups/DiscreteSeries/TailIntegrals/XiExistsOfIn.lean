@@ -351,20 +351,11 @@ private lemma s_facts {k : ℕ} (hk : 1 ≤ k) {s : Fin (0 + 1) → ℝ} (hs : S
   obtain ⟨h1, h2⟩ := h
   constructor <;> linarith
 
-private lemma nsq_tr_lemma {n : ℕ} (Y : Matrix (Fin n) (Fin n) ℂ) :
-    ((∑ i, ∑ j, Complex.normSq (Y i j) : ℝ) : ℂ) = (Yᴴ * Y).trace := by
-  simp only [Matrix.trace, Matrix.diag, Matrix.mul_apply, Matrix.conjTranspose_apply]
-  push_cast
-  rw [Finset.sum_comm]
-  refine Finset.sum_congr rfl fun j _ => Finset.sum_congr rfl fun i _ => ?_
-  rw [Complex.normSq_eq_conj_mul_self]
-  rfl
-
 private lemma gN_left_lemma_2 {k r : ℕ} {κ : Mat k r} (hκ : κᴴ * κ = 1) (X : Mat k r) : gN (κ * X) = gN X := by
   unfold gN
   congr 1
   apply Complex.ofReal_injective
-  rw [nsq_tr_lemma, nsq_tr_lemma, Matrix.conjTranspose_mul, Matrix.mul_assoc,
+  rw [ReciprocityTheory.ChartRestriction.DS.Xi.StepA.normSq_sum_eq_trace, ReciprocityTheory.ChartRestriction.DS.Xi.StepA.normSq_sum_eq_trace, Matrix.conjTranspose_mul, Matrix.mul_assoc,
     ← Matrix.mul_assoc κᴴ, hκ, Matrix.one_mul]
 
 private lemma gN_right_lemma_3 {k r : ℕ} {κ : Mat k r} (hκ : κᴴ * κ = 1) (X : Mat k r) : gN (X * κ) = gN X := by
@@ -374,7 +365,7 @@ private lemma gN_right_lemma_3 {k r : ℕ} {κ : Mat k r} (hκ : κᴴ * κ = 1)
   unfold gN
   congr 1
   apply Complex.ofReal_injective
-  rw [nsq_tr_lemma, nsq_tr_lemma, Matrix.conjTranspose_mul, Matrix.mul_assoc, Matrix.trace_mul_comm,
+  rw [ReciprocityTheory.ChartRestriction.DS.Xi.StepA.normSq_sum_eq_trace, ReciprocityTheory.ChartRestriction.DS.Xi.StepA.normSq_sum_eq_trace, Matrix.conjTranspose_mul, Matrix.mul_assoc, Matrix.trace_mul_comm,
     Matrix.mul_assoc, Matrix.mul_assoc, hκ', Matrix.mul_one]
 
 private lemma phiA_inv (k : ℕ) (A : ℝ) : ∀ κ ∈ Kset k 0, ∀ g,
@@ -1529,14 +1520,6 @@ end -- clump:auto
 -- clump-header: {"m": "ReciprocityTheory.ReductiveGroups.DiscreteSeries.TailIntegrals.XiIntStepOf", "h": "module\n\npublic import ReciprocityTheory.ReductiveGroups.DiscreteSeries.TailIntegrals.InductiveHeisenbergInputs\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Data.Nat.Choose.Multinomial\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\npublic import ReciprocityTheory.ReductiveGroups.DiscreteSeries.TailIntegrals.HermitianLiftIdentities\npublic import ReciprocityTheory.ReductiveGroups.DiscreteSeries.TailIntegrals.XiRNonneg\n\n"}
 section -- clump:auto
 @[expose] public section
-
-namespace ReciprocityTheory.ChartRestriction.DS.Xi
-
-theorem det_of (hB2 : InductiveHeisenbergInputs) : DET := detH hB2
-
-theorem coefStep_of (hB2 : InductiveHeisenbergInputs) (hT : TBoth) (hD : DET) : CoefStep := CB.coefStepC hB2 hT hD
-
-end ReciprocityTheory.ChartRestriction.DS.Xi
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: ReciprocityTheory.ReductiveGroups.DiscreteSeries.TailIntegrals.XiIntStepOf =====
@@ -1554,7 +1537,7 @@ theorem xiExists_of_in (h : InductiveHeisenbergInputs) : Formalism.FourierDecayA
     (bStepBase_of h)
     (bStepSucc_of h iwB FormulaFAux.formulaF_all
       (oscillatoryBound' (tailFin_of (ch_of c1)) c1 quadraticSublevelDecay' ker slow))
-    (coefStep_of h (tBothH iwB h) (det_of h)) (xiIntH h)
+    (ReciprocityTheory.ChartRestriction.DS.Xi.CB.coefStepC h (tBothH iwB h) (ReciprocityTheory.ChartRestriction.DS.Xi.detH h)) (xiIntH h)
 
 theorem xiExists : Formalism.FourierDecayAlt.B.XiExists := xiExists_of_in heisenbergHaarFacts_hold
 

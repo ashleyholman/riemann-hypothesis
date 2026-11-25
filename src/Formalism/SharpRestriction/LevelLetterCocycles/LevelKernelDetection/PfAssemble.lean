@@ -713,11 +713,6 @@ theorem gamInv_holds (uZ : ℤ_[PD.p]ˣ) (ιZ : ℤ_[PD.p] →+* O) (T : LocLat 
   rw [Pf_LvGam_grd_comm _ _ _ _ (Pf_LvGam_στ uZ ιZ s j)]
   exact congrArg (grd (levW W uZ ιZ s).σ (levW W uZ ιZ s).u) (hf j)
 
-theorem Pf_LvGam_coeff_neg {Ks : Type} [CommRing Ks] (x : PowerSeries Ks) (k : ℕ) :
-    (HahnSeries.ofPowerSeries ℤ Ks x).coeff (Int.negSucc k) = 0 := by
-  rw [HahnSeries.ofPowerSeries_apply, HahnSeries.embDomain_of_notMem_range]
-  simp
-
 theorem gamRho_holds (hR : Ring9 W) (uZ : ℤ_[PD.p]ˣ) (ιZ : ℤ_[PD.p] →+* O) (c : ZMod n)
     (lev_Γ : ∀ (g : W.Gam) (i : ZMod n) (ζ ζ' : LL) (j a : ℕ),
       IsPrimitiveRoot ζ (PD.p ^ j) → (j : WithTop ℚ) ≤ v (algebraMap O LL (W.χΓ g : O) - (a : LL)) →
@@ -760,7 +755,7 @@ theorem gamRho_holds (hR : Ring9 W) (uZ : ℤ_[PD.p]ˣ) (ιZ : ℤ_[PD.p] →+* 
       PowerSeries.coeff k (rhoL hR c s a) (powR LL PD.p s (redU PD.p s uZ) ζ) = _
     rw [zpow_natCast, Units.val_pow_eq_pow_val]
     rfl
-  · rw [Pf_LvGam_coeff_neg, Pf_LvGam_coeff_neg, map_zero, mul_zero]
+  · rw [Formalism.MainNotions.N.Ln03.Pf.Pf_LvExp_coeff_neg, Formalism.MainNotions.N.Ln03.Pf.Pf_LvExp_coeff_neg, map_zero, mul_zero]
 
 end Formalism.MainNotions.N.Ln03.Pf
 end -- clump:auto
@@ -1265,13 +1260,6 @@ theorem mapLocL_cmp_d (hR : Ring9 W) (T : LocLat G Qp LL O) (a : PowerSeries O) 
     ring
   rw [hd, add_smul, map_add (f := _), mul_smul, W.cmp_π, zero_add, algebraMap_smul, W.cmp_smul]
 
-theorem mapLocL_t_sum {T : LocLat G Qp LL O} (C : Coord W (baseIdOf hR) T) (i : ZMod n) {ι : Type}
-    (s : Finset ι) (f : ι → C.V) : C.t i (∑ l ∈ s, f l) = ∑ l ∈ s, C.t i (f l) := by
-  classical
-  induction s using Finset.induction_on with
-  | empty => simp [C.t_zero]
-  | insert a s ha ih => rw [Finset.sum_insert ha, Finset.sum_insert ha, C.t_add, ih]
-
 theorem mapLocL_map_φVB {T₁ T₂ : LocLat G Qp LL O} (f : T₁.V →ₗ[LL] T₂.V) (z : T₁.V ⊗[Qp] B) :
     AlgebraTensorModule.map f (LinearMap.id : B →ₗ[Qp] B) (φVB PD (LL := LL) (V := T₁.V) z) =
       φVB PD (LL := LL) (V := T₂.V) (AlgebraTensorModule.map f (LinearMap.id : B →ₗ[Qp] B) z) := by
@@ -1305,7 +1293,7 @@ theorem mapLocL_cmp_map {T₁ T₂ : LocLat G Qp LL O} {C₁ : Coord W (baseIdOf
     apply Subtype.ext
     rw [Submodule.coe_sum]
     show W.map F (C₁.t i x) = ∑ l, (baseIdOf hR).d (a l) • C₂.t i (e₂ l)
-    rw [← hC.coord_hom_map_trace, ha, mapLocL_t_sum]
+    rw [← hC.coord_hom_map_trace, ha, Formalism.MainNotions.N.Ln03.Pf.coord_t_sum]
     simp only [Coord.t_smul]
 
   rw [heq, map_sum]

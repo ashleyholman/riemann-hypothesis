@@ -1008,10 +1008,6 @@ open scoped TensorProduct NNReal ENNReal
 
 namespace GlobalTheory.CompanionTheory.CFin.Tri
 
-theorem cnt_le {r : ℕ} (S : Finset (Fin r)) (i : Fin r) : cnt S i ≤ S.card := by
-  unfold cnt
-  exact_mod_cast Finset.card_filter_le _ _
-
 theorem exists_least {r : ℕ} {S : Finset (Fin r)} {i : Fin r} (h : cnt S i < S.card) :
     ∃ j ∈ S, i ≤ j ∧ ∀ j' ∈ S, i ≤ j' → j ≤ j' := by
   have hne : (S.filter (i ≤ ·)).Nonempty := by
@@ -1086,7 +1082,7 @@ theorem col_zero {L : Type} [Field L] {n r m : ℕ} (X Y : Matrix (Fin n) (Fin r
       exact hbz k (lt_of_le_of_lt (hmin t htS hit) htk)
     · simp
   · simp [lev] at hv
-  · have := cnt_le S i
+  · have := GlobalTheory.CompanionTheory.CFin.Ratio.cnt_le_card S i
     simp only [lev] at hv
     omega
 
@@ -1140,13 +1136,13 @@ theorem block_tri (L : Type) [Field L] (s : L →+* L) (n r m : ℕ)
   · exact A1 u v huv hv
   push Not at hv
   rcases u with i | k | l
-  · have := cnt_le S i
+  · have := GlobalTheory.CompanionTheory.CFin.Ratio.cnt_le_card S i
     rw [lx] at huv
     omega
   · rw [lz] at huv
     omega
   have hl0 : lev m S (Sum.inl l) < 0 := by
-    have := cnt_le S l
+    have := GlobalTheory.CompanionTheory.CFin.Ratio.cnt_le_card S l
     rw [ly] at huv; rw [lx]; omega
   have hlv : lev m S v < - lev m S (Sum.inl l) := by rw [ly] at huv; rw [lx]; omega
   have e1 : M (Sum.inr (Sum.inr l)) v = (H * M) (Sum.inl l) v := by
@@ -1163,13 +1159,13 @@ theorem block_tri (L : Type) [Field L] (s : L →+* L) (n r m : ℕ)
     · simp [hrow]
     · by_cases hc : l' = c
       · subst hc
-        have := cnt_le S l'
+        have := GlobalTheory.CompanionTheory.CFin.Ratio.cnt_le_card S l'
         simp only [lx, ly] at hw hlv
         omega
       · simp [hrow, hc]
   · rw [lz] at hw
     omega
-  · have := cnt_le S l'
+  · have := GlobalTheory.CompanionTheory.CFin.Ratio.cnt_le_card S l'
     rw [ly] at hw
     omega
 

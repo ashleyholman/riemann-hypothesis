@@ -72,7 +72,7 @@ theorem family_dual_holds : FamDual := by
   obtain ⟨hwW, hwo, hwn, hτ, ⟨s₀, hu⟩, hcong, hunit⟩ := hg
   have hbw : ∀ i j, h (b i) (w j) = 0 := fun i j => GluedFormOrthogonality.form_U_orth (hbU i) (hwW j)
   have hwb : ∀ i j, h (w j) (b i) = 0 := fun i j => GluedFormOrthogonality.form_orth_U hs (hbU i) (hwW j)
-  have hϖ0 : algebraMap F K (π : F) ≠ 0 := by rw [← jι_eq']; exact jι_ne_zero hu.ne_zero
+  have hϖ0 : algebraMap F K (π : F) ≠ 0 := by rw [← Formalism.HermitianLattices.Ext.L3.MeanB.algebraMap_comp]; exact jι_ne_zero hu.ne_zero
   set L := Submodule.span (𝓞 K) (Set.range (glueFam K 𝔭 b a π w τ)) with hL
   have hGi : ∀ s, glueFam K 𝔭 b a π w τ s ∈ L := fun s => Submodule.subset_span ⟨s, rfl⟩
   have hGw : ∀ j, w j ∈ L := fun j => hGi (Sum.inr j)
@@ -87,7 +87,7 @@ theorem family_dual_holds : FamDual := by
     · rw [← hg0 i hi]; exact hGi _
     · have e : b i = (algebraMap (𝓞 F) (𝓞 K) π ^ vF 𝔭 (a i)) • glueFam K 𝔭 b a π w τ (Sum.inl i)
           - w (τ i) := by
-        rw [hg1 i hi, ← algebraMap_smul K, smul_smul, map_pow, jι_eq', ← mul_pow,
+        rw [hg1 i hi, ← algebraMap_smul K, smul_smul, map_pow, Formalism.HermitianLattices.Ext.L3.MeanB.algebraMap_comp, ← mul_pow,
           mul_inv_cancel₀ hϖ0, one_pow, one_smul, add_sub_cancel_right]
       rw [e]
       exact Submodule.sub_mem _ (Submodule.smul_mem _ _ (hGi _)) (hGw _)
@@ -127,7 +127,7 @@ theorem family_dual_holds : FamDual := by
     have h1 := hX _ (hGi (Sum.inl i))
     rwa [hg1 i hi, form_smul_left, star_inv_pow hF, map_add, LinearMap.add_apply, hbx, hwx] at h1
   have hA0 : ∀ i, algebraMap F K (a i : F) ≠ 0 := fun i => by
-    rw [← jι_eq']; exact jι_ne_zero (ha0 i)
+    rw [← Formalism.HermitianLattices.Ext.L3.MeanB.algebraMap_comp]; exact jι_ne_zero (ha0 i)
 
   have cf0 : ∀ i, vF 𝔭 (a i) = 0 → f (Sum.inl i) ∈ SP K 𝔭 := by
     intro i hi
@@ -271,7 +271,7 @@ theorem family_gram_holds : FamGram := by
     · push Not at hj
       exact (hunit j fun i hi => hj i hi).1
   have haS : ∀ i, algebraMap F K ((a i : 𝓞 F) : F) ∈ SP K 𝔭 := fun i => by
-    rw [← jι_eq']; exact jK_mem_SP _
+    rw [← Formalism.HermitianLattices.Ext.L3.MeanB.algebraMap_comp]; exact jK_mem_SP _
   have key_ii : ∀ i, h (b i + w (τ i)) (b i + w (τ i)) = algebraMap F K ((a i : F) + c (τ i)) := by
     intro i
     simp only [map_add (f := _), LinearMap.add_apply, hbw, hwb, hbn, hwn1]

@@ -51,7 +51,7 @@ theorem trOnto_holds (hstd : StdHyp σ J ψ) : TrOnto σ v := by
   have htr : ∀ a b : Fv F v, (sc (E := E) v a + sc (E := E) v b * iθ) +
       sigR (Fv F v) σ (sc (E := E) v a + sc (E := E) v b * iθ) = sc (E := E) v (2 * a + b * iO v t) := by
     intro a b
-    rw [map_add (f := _), map_mul, sigR_sc, sigR_sc, hsiθ]
+    rw [map_add (f := _), map_mul, PI.OmLocU.sigR_sc, PI.OmLocU.sigR_sc, hsiθ]
     simp only [sc_eq', map_add (f := _), map_mul, map_ofNat]
     ring
   obtain ⟨s0, s1, hs01⟩ := hsp s hs

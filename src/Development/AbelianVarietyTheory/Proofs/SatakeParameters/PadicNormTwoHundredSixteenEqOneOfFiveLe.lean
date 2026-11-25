@@ -63,7 +63,7 @@ theorem s2_in_unramified_closure (hTor : Formalism.L2.Th1.CM.CM4) (dK : ℕ) (L 
   have hlp : l.Prime := Fact.out
   have hd0 : 0 < dK := by omega
   obtain ⟨S, hS, -, -, hsum⟩ := Formalism.L2.Th1.F.hasCMByIsogeny dK L hcm (-1) 2 (by simp) hd0
-  obtain ⟨hst, hns⟩ := Formalism.L2.Th1.F.hasCMByStable dK L hcm (-1) 2
+  obtain ⟨hst, hns⟩ := Formalism.L2.Th1.F.has_cm_stable dK L hcm (-1) 2
   rw [Formalism.L2.Th1.D.HomotheticLatticeIntegrality.alpha_sq, hns] at hsum
   have hsum' : -(2 * (dK : ℂ)) * Formalism.L2.Th1.F.s2 L = ∑ P ∈ S, L.weierstrassP P := by
     rw [← hsum]; push_cast; ring
@@ -304,19 +304,19 @@ theorem curveDict_of_inputs (hGood : Formalism.L2.Th1.CM.CM2) (hTor : Formalism.
   have hNR : ∀ σ : MaximalUnramifiedExtension l →+* MaximalUnramifiedExtension l, UnrOK (MaximalUnramifiedExtension l) l σ →
       ∀ α : MaximalUnramifiedExtension l, ‖α‖ = 1 → σ (σ α) = α → NormRel l σ (phFF l G2 G3 S2 E) α := by
     intro σ hσ α hα hσα
-    have hw := (sqrtKur D.host.d hsqf hd4 l h5 hsq' ι).1
+    have hw := (Formalism.L2.Th1.D.sqrt_in_unramified_completion D.host.d hsqf hd4 l h5 hsq' ι).1
     have hmem : ∀ m n : ℤ, ι ((m : ℂ) + (n : ℂ) * omegaK D.host.d) ∈ MaximalUnramifiedExtension l := by
       intro m n
       rw [map_add (f := _), map_mul, map_intCast, map_intCast]
       exact add_mem (intCast_mem _ m) (mul_mem (intCast_mem _ n) hw)
     let S : Set (MaximalUnramifiedExtension l) := {a | ∃ m n : ℤ, ¬ (l : ℤ) ∣ normInt D.host.d m n ∧
       (a : ℂ_[l]) = ι ((m : ℂ) + (n : ℂ) * omegaK D.host.d)}
-    refine normUnits (MaximalUnramifiedExtension l) l σ hσ (phFF l G2 G3 S2 E) (FAux.cc_phFF (by omega) _ _ _ _) S ?_ α ?_
+    refine Formalism.L2.Th1.D.norm_units_alt (MaximalUnramifiedExtension l) l σ hσ (phFF l G2 G3 S2 E) (FAux.cc_phFF (by omega) _ _ _ _) S ?_ α ?_
     · rintro a ⟨m, n, hmn, ha⟩
       exact nrDense hTor D.host.d L hsqf hd4 hcmby l h5 hpd hsq' ι G2 G3 E S2 hgood hE1 hth
         c hc h2c h3c hsc σ hσ m n hmn a ha
     · intro e he
-      obtain ⟨m, n, hmn, hclose⟩ := denseOK D.host.d hsqf hd4 l h5 hsq' ι σ hσ α hα hσα e he
+      obtain ⟨m, n, hmn, hclose⟩ := Formalism.L2.Th1.D.dense_criterion D.host.d hsqf hd4 l h5 hsq' ι σ hσ α hα hσα e he
       exact ⟨⟨_, hmem m n⟩, ⟨m, n, hmn, rfl⟩, by simpa using hclose⟩
 
   have hBR : BeRat g (eLT hLT) := by

@@ -24,12 +24,6 @@ open scoped ContDiff
 
 namespace GlobalTheory.CompanionTheory.ParSmooth
 
-theorem continuous_iteratedFDeriv_partial {P Q E : Type*} [NormedAddCommGroup P] [NormedSpace ℝ P]
-    [NormedAddCommGroup Q] [NormedSpace ℝ Q] [NormedAddCommGroup E] [NormedSpace ℝ E]
-    (Ψ : P × Q → E) (hΨ : ContDiff ℝ ∞ Ψ) (k : ℕ) :
-    Continuous fun z : P × Q => iteratedFDeriv ℝ k (fun y => Ψ (y, z.2)) z.1 := by
-  apply CompanionTheory.D.gk.admitted.Gard.continuous_iter_partial <;> assumption
-
 theorem contDiff_integral_comp_compact {P Q E β : Type*} [NormedAddCommGroup P] [NormedSpace ℝ P]
     [FiniteDimensional ℝ P] [NormedAddCommGroup Q] [NormedSpace ℝ Q] [NormedAddCommGroup E]
     [NormedSpace ℝ E] [CompleteSpace E] [TopologicalSpace β] [T2Space β]
@@ -42,7 +36,7 @@ theorem contDiff_integral_comp_compact {P Q E β : Type*} [NormedAddCommGroup P]
       fun _ _ a ha => absurd (Set.mem_univ a) ha⟩)
   have h : Continuous fun p : P × β => (p.1, q p.2) :=
     continuous_fst.prodMk (hq.comp continuous_snd)
-  exact (continuous_iteratedFDeriv_partial Ψ hΨ k).comp h
+  exact (CompanionTheory.D.gk.admitted.Gard.continuous_iter_partial Ψ hΨ k).comp h
 
 end GlobalTheory.CompanionTheory.ParSmooth
 end -- clump:auto

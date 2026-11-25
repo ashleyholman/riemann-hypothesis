@@ -623,7 +623,7 @@ theorem exists_ne_zero_smul_mem {K V : Type} [Field K] [NumberField K] [AddCommG
     [Module K V] [Module (𝓞 K) V] [IsScalarTower (𝓞 K) K V]
     {M : Submodule (𝓞 K) V} {x : V} (hx : x ∈ Submodule.span K (M : Set V)) :
     ∃ d : 𝓞 K, d ≠ 0 ∧ d • x ∈ M := by
-  apply Formalism.L2.SG.Pf.LatEx.exists_smul_mem_of_mem_span <;> assumption
+  apply Bl.SecondBlockLemmaE.goal1 <;> assumption
 
 end GlobalTheory.NonzeroSmulMem
 end -- clump:auto

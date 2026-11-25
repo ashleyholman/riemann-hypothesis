@@ -616,10 +616,6 @@ theorem exists_prime (hsc : segCo y c ≠ 0) {W : Ideal (MRing J)} [hW : W.IsPri
     · exact Or.inl ⟨e, A, hA, h4⟩
     · exact Or.inr ⟨e', B, hB, h4⟩
 
-theorem unitAt_mul {X : Scheme.{0}} {ξ : Spec (CommRingCat.of Ω) ⟶ X} {q : Cpt ξ} {a b : Ω}
-    (ha : unitAt ξ q a) (hb : unitAt ξ q b) : unitAt ξ q (a * b) :=
-  ⟨mul_ne_zero ha.1 hb.1, mul_mem ha.2.1 hb.2.1, by rw [mul_inv]; exact mul_mem ha.2.2 hb.2.2⟩
-
 theorem exists_frac {X : Scheme.{0}} {ξ : Spec (CommRingCat.of Ω) ⟶ X} (hT : CoordTie ℤ ξ (segCo y))
     (hc : InChart ξ (segCo y) c (CptModel.self ξ)) (e : Ω) :
     ∃ (d : K → ℕ) (F G : MRing J), IsMultiHomog F d ∧ IsMultiHomog G d ∧ MvPolynomial.aeval y G ≠ 0 ∧
@@ -679,7 +675,7 @@ theorem unit_off {X : Scheme.{0}} {ξ : Spec (CommRingCat.of Ω) ⟶ X} {p : ℕ
     rw [← eq_inv_of_mul_eq_one_left hr3]; exact r'.2⟩
   obtain ⟨t, ht, hut, hts⟩ := (_root_.GlobalTheory.CompanionTheory.Ar.regAt_iff_exists_chart_fraction X Ω ξ ℤ _ (segCo y) hT c q hq s).1 hsu.2.1
   have hv : (⟨t, ht⟩ : chartA y c) ∉ I := (hu _).2 hut
-  have hu' : (⟨t * s, hts⟩ : chartA y c) ∉ I := (hu _).2 (unitAt_mul hut hsu)
+  have hu' : (⟨t * s, hts⟩ : chartA y c) ∉ I := (hu _).2 (GlobalTheory.CompanionTheory.Ar.SncBase.FracPts.unitAt_mul hut hsu)
   obtain ⟨dv, V, hV⟩ := exists_rep hsc ht
   obtain ⟨du, U, hU⟩ := exists_rep hsc hts
   have hVW : V ∉ W := fun h => hv ((hmem _).2 ⟨dv, V, hV, h⟩)

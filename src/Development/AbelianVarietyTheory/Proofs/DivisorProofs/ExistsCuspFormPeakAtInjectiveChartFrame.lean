@@ -255,7 +255,7 @@ theorem vanish_translate : ∀ {E : Type} [Field E] [NumberField E] [IsCMField E
     refine ⟨hzd, hF0 z (lt_of_not_ge fun hz => hγ1 ?_)⟩
     obtain ⟨-, hbO, hd⟩ := hdec _ hzd hΔz
     have e := IW.rmul_binv X (cpt X x1 (zOf (cpt X x z))) hbO
-    rw [← hd, hx1def, IW.cpt_lact] at e
+    rw [← hd, hx1def, ReciprocityTheory.ChartRestriction.G.AR.Up.KU.cpt_lact] at e
     have hw := (hsub hzb).2.2.2.2
     rw [mem_ball, dist_zero_right] at hw
     exact hinj γ hγ _ z hw.le hz _ (IW.binv_mem X hbO) e.symm
@@ -288,7 +288,7 @@ theorem vanish_translate : ∀ {E : Type} [Field E] [NumberField E] [IsCMField E
     have hd := IW.densF_pos X x1 hw1
     have hwd : cpt X x1 w ∈ X.dom := hw1
     have hΨw : Ψ (cpt X x1 w) = Ψ (cpt X x w) := by
-      rw [hx1def, IW.cpt_lact]; exact hΨΓ γ hγ _ hw0
+      rw [hx1def, ReciprocityTheory.ChartRestriction.G.AR.Up.KU.cpt_lact]; exact hΨΓ γ hγ _ hw0
     have hval : h w = densF X x1 w * (‖P (cpt X x1 w)‖ ^ 2 * Real.exp (-phla X la (cpt X x1 w))) := by
       simp only [hh]
       rw [sub_eq_add_neg, Real.exp_add, Real.exp_log hd]
@@ -590,7 +590,7 @@ theorem hormander_peak : ∃ C : ℝ, 0 ≤ C ∧ ∀ (E : Type) [Field E] [Numb
     measure_mono (Set.inter_subset_inter_left _ (Metric.ball_subset_ball hρR))
   have hA : A < ⊤ := ENNReal.mul_lt_top ENNReal.ofReal_lt_top (hμρ.trans_lt hfin)
   obtain ⟨F, hFd, hFI⟩ := _root_.GlobalTheory.HormanderLimit.hormander_limit hO (eF X x) (IW.eF_smooth X x ho) (IW.eF_levi X x ho)
-    (IW.eF_compact X x ho) φ hφs hφl hφmono F0 hF0s h hhm hdb A hhint
+    (ReciprocityTheory.ChartRestriction.G.AR.Up.ExF.isCompact_subF X x ho) φ hφs hφl hφmono F0 hF0s h hhm hdb A hhint
 
   have hexpφ : ∀ k, ∀ z ∈ OmF X x, Real.exp (-φ k z) = Real.exp (-phla X la (cpt X x z)) *
       Real.exp (bb * rhF X x z) * densF X x z * Real.exp (-ψ k (cpt X x z)) := by

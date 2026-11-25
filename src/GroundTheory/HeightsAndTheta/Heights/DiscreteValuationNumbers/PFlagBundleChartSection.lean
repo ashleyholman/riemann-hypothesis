@@ -66,7 +66,7 @@ theorem chartRing_forms_fin (y : (Σ k, ι k) → Ω) (w : Module.Basis (Fin N) 
     rw [hd]
     exact (hU l).mul (chartMono_homog M c _)
   · have hle : n l ≤ ∑ l, n l := Finset.single_le_sum (fun _ _ => Nat.zero_le _) (Finset.mem_univ l)
-    rw [eval₂_mul, hUe, eval_chartMono, ← map_mul]
+    rw [eval₂_mul, hUe, GroundTheory.Heights₂.Heights.NumbersDVR.FlagBundleSectionForms.eval_chartMono, ← map_mul]
     congr 1
     rw [Finset.prod_pow, mul_assoc, ← segreVec, ← pow_add, Nat.add_sub_cancel' hle]
 
@@ -256,7 +256,7 @@ theorem exists_section_form (y : (Σ k, ι k) → Ω) (B : ChartBundle F (segreV
     omega
   let f : MRing (bundleIdx ι M) F := ∑ l, U l * chartMono M c α * X ⟨none, l⟩
   have hg : eval₂ ((algebraMap Ω Φ).comp (algebraMap F Ω)) (projCoord y w φ (truncCoord t ((i : ℕ) + 1)))
-      (chartMono M c β) = algebraMap Ω Φ (∏ k, y ⟨k, c k⟩ ^ β k) := eval_chartMono y w φ _ c β
+      (chartMono M c β) = algebraMap Ω Φ (∏ k, y ⟨k, c k⟩ ^ β k) := GroundTheory.Heights₂.Heights.NumbersDVR.FlagBundleSectionForms.eval_chartMono y w φ _ c β
   have hf : eval₂ ((algebraMap Ω Φ).comp (algebraMap F Ω)) (projCoord y w φ (truncCoord t ((i : ℕ) + 1))) f
       = t i * eval₂ ((algebraMap Ω Φ).comp (algebraMap F Ω))
         (projCoord y w φ (truncCoord t ((i : ℕ) + 1))) (chartMono M c β) := by
@@ -264,7 +264,7 @@ theorem exists_section_form (y : (Σ k, ι k) → Ω) (B : ChartBundle F (segreV
     calc _ = ∑ l, algebraMap Ω Φ (u l * chartPow y c (-a)) *
             projCoord y w φ (truncCoord t ((i : ℕ) + 1)) ⟨none, l⟩ *
             algebraMap Ω Φ ((∏ k, y ⟨k, c k⟩ ^ β k) * chartPow y c (b i)) := by
-          simp only [f, eval₂_sum, eval₂_mul, eval₂_X, hUe, eval_chartMono]
+          simp only [f, eval₂_sum, eval₂_mul, eval₂_X, hUe, GroundTheory.Heights₂.Heights.NumbersDVR.FlagBundleSectionForms.eval_chartMono]
           refine Finset.sum_congr rfl fun l _ => ?_
           have hl : algebraMap Ω Φ (u l * segreVec y c ^ n) * algebraMap Ω Φ (∏ k, y ⟨k, c k⟩ ^ α k) =
               algebraMap Ω Φ (u l * chartPow y c (-a)) *
@@ -401,7 +401,7 @@ theorem FlagBundleChartSection.proof : FlagBundleChartSection.Statement := by
         r l * ((∏ k, y ⟨k, c k⟩ ^ δ k) * chartPow y c a) * (chartPow y c (b i))⁻¹ by ring, hid]
       field_simp
     have h2 := congrArg (algebraMap Ω Φ) hΩ
-    simp only [Y, u, eval₂_sub, eval₂_mul, eval₂_X, hRe, eval_chartMono, hfv, hrv]
+    simp only [Y, u, eval₂_sub, eval₂_mul, eval₂_X, hRe, GroundTheory.Heights₂.Heights.NumbersDVR.FlagBundleSectionForms.eval_chartMono, hfv, hrv]
     simp only [map_mul, map_inv₀] at h2 ⊢
     linear_combination (-(t i)) * h2
 

@@ -319,7 +319,7 @@ theorem domAt_index {L : SizeData₂ D} {nW : ℕ} {CP : ℝ} (h1 : 1 ≤ j) (h2
           rw [hd]; unfold g0; gcongr
     have hN' : (n0 D j : ℝ) ≤ (D.R.r : ℝ) + 2 * (2 * 5 ^ 4 * (D.R.r : ℝ)) * ((D.R.f : ℝ) * (D.R.r : ℝ) ^ 2 + 1) := by
       exact_mod_cast hN
-    have hf : (8 : ℝ) ≤ D.R.f := by exact_mod_cast f_ge D
+    have hf : (8 : ℝ) ≤ D.R.f := by exact_mod_cast Formalism.BasicNotions.D7.eight_le_f D
     have hr : (6 : ℝ) ≤ D.R.r := by exact_mod_cast r_ge D
     have hL : (1 : ℝ) ≤ L.sc.L := one_le_L L
     have hR3 : 0 ≤ (D.R.f : ℝ) * (D.R.r : ℝ) ^ 3 := by positivity
@@ -621,7 +621,7 @@ theorem b_le_size (T : ParamsT D L P) (hK : DV.KapDef D) (h1 : 1 ≤ j) (h2 : j 
   have hn : (kaR T hK j).n = D.R.nV := kaWt_n _ _ _ _
   have a5 : (D.R.k : ℝ) + j + D.R.t ≤ (D.R.nV : ℝ) + 1 := by
     exact_mod_cast (by unfold Ranks.nV Ranks.r; omega : D.R.k + j + D.R.t ≤ D.R.nV + 1)
-  have hf : (8 : ℝ) ≤ D.R.f := by exact_mod_cast f_ge D
+  have hf : (8 : ℝ) ≤ D.R.f := by exact_mod_cast Formalism.BasicNotions.D7.eight_le_f D
   have hr : (6 : ℝ) ≤ D.R.r := by exact_mod_cast r_ge D
   have hm := one_le_mu (D := D) (j := j)
   have a6 : (D.R.nV : ℝ) ≤ D.R.f * mu D j * D.R.r * D.R.nV := by

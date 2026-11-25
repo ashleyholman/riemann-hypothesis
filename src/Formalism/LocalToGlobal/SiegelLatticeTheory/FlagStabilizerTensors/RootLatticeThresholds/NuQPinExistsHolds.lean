@@ -867,7 +867,7 @@ theorem choicesC_of (hNu : NuQPinExists) (hL : LocSpExists) : ChoicesC := by
   obtain ⟨κ, hκ⟩ := Formalism.L2.SG.DataCut.rowLabelExists_holds D u u' (T.X.Fu u) (T.Y.what₂ u) (T.Y.rowsOK u)
   let i0 : ∀ _ : InfinitePlace T.X.B.I.F, Fin D.R.k := fun _ => ⟨0, by omega⟩
   exact ⟨i0, i0, νq, X0, Lsp, ϖ, κ, Formalism.L2.SG.NGAnalytic.MassDataLemmas.pairSys0 u u' (T.X.Fu u) (T.Y.what₂ u),
-    fun _ => rfl, Formalism.L2.SG.RealObj.InfCut.real_point_representative_exists D T.X u u' 1 one_pos i0, hνq, hX0, hϖ', hκ⟩
+    fun _ => rfl, Formalism.L2.SG.RealObj.InfCut.real_point_representative_diagonal D T.X u u' 1 one_pos i0, hνq, hX0, hϖ', hκ⟩
 
 end Choices
 

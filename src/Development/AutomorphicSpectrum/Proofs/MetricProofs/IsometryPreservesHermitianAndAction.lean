@@ -13,15 +13,9 @@ namespace GlobalTheory.CompanionTheory.Ar.Cusp.PeriodIso
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {g : ℕ} {Λ : Type} [AddCommGroup Λ] [Module (𝓞 E) Λ]
 
-alias ip_add_left' := _root_.LevelTowerAlt.ip_add_left
-
-alias ip_add_right' := _root_.LevelTowerAlt.ip_add_right
-
 theorem ip_smul_left' (R : RiemLat E g Λ) (c : ℂ) (x y : Fin g → ℂ) :
     R.ip (c • x) y = star c * R.ip x y := by
   simp [RiemLat.ip, star_smul, Matrix.mulVec_smul, dotProduct_smul]
-
-alias ip_smul_right' := _root_.LevelTowerAlt.ip_smul_right
 
 theorem real_smul_eq' (r : ℝ) (x : Fin g → ℂ) : r • x = (r : ℂ) • x := by
   ext i
@@ -36,16 +30,16 @@ theorem isometry_of_periods (R R' : RiemLat E g Λ) (hs : Submodule.span ℝ (Se
     (x y : Fin g → ℂ) : R'.ip (φ x) (φ y) = R.ip x y := by
   let D : (Fin g → ℂ) → (Fin g → ℂ) → ℂ := fun z w => R'.ip (φ z) (φ w) - R.ip z w
   have hl : ∀ z z' w, D (z + z') w = D z w + D z' w := fun z z' w => by
-    simp only [D, map_add (f := _), ip_add_left']
+    simp only [D, map_add (f := _), LevelTowerAlt.ip_add_left]
     ring
   have hr : ∀ z w w', D z (w + w') = D z w + D z w' := fun z w w' => by
-    simp only [D, map_add (f := _), ip_add_right']
+    simp only [D, map_add (f := _), LevelTowerAlt.ip_add_right]
     ring
   have hcl : ∀ (c : ℂ) z w, D (c • z) w = star c * D z w := fun c z w => by
     simp only [D, map_smul, ip_smul_left']
     ring
   have hcr : ∀ (c : ℂ) z w, D z (c • w) = c * D z w := fun c z w => by
-    simp only [D, map_smul, ip_smul_right']
+    simp only [D, map_smul, LevelTowerAlt.ip_smul_right]
     ring
   have h0l : ∀ w, D 0 w = 0 := fun w => by
     simp [D, RiemLat.ip]

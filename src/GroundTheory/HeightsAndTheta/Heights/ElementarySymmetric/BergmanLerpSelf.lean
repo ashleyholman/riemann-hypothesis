@@ -230,10 +230,10 @@ theorem ChartBergmanBound.proof (hP : PolydiscSubmean.Statement) (hT : ComplexTa
   have hR0 : 0 < R := by linarith
   set g : ℝ := ∏ j, 1 / gaussDiscMass (lam j) R with hg
   have hIpos : 0 < ∏ j, gaussDiscMass (lam j) R :=
-    Finset.prod_pos fun j _ => gaussDiscMass_pos (hlam j) hR0
+    Finset.prod_pos fun j _ => GroundTheory.Heights₂.Heights.HilbertSamuel.gaussDiscMass_pos (hlam j) hR0
   have hgI : g * ∏ j, gaussDiscMass (lam j) R = 1 := by
     rw [hg, ← Finset.prod_mul_distrib]
-    exact Finset.prod_eq_one fun j _ => one_div_mul_cancel (gaussDiscMass_pos (hlam j) hR0).ne'
+    exact Finset.prod_eq_one fun j _ => one_div_mul_cancel (GroundTheory.Heights₂.Heights.HilbertSamuel.gaussDiscMass_pos (hlam j) hR0).ne'
   set K : ℝ := C ^ 2 * R ^ 2 with hK
   have hcont : ContinuousAt (fun t : ℝ => Real.exp (t * K) / (1 - t) * g) 0 :=
     ((Real.continuous_exp.comp (continuous_id.mul continuous_const)).continuousAt.div

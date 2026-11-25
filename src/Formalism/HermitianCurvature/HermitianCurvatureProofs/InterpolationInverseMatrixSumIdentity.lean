@@ -761,13 +761,3 @@ theorem actualSHypOfParts : ActualSHypOfParts := by
     exact (comm_ops_of X L0 hL0 (fun l i => hop Y a b l i) (fun l i => hop (star Y) b a l i)).1 g hg
 
 end Formalism.FourierDecayAlt.P.NFx3
-
-namespace Formalism.FourierDecayAlt.P
-
-theorem normal_form_from_module : Formalism.FourierDecayAlt.NF.NormalFormFromModuleOfParts := by
-  exact NFx3.normalFormFromModuleOfParts
-
-theorem actual_hypotheses_of_parts : Formalism.FourierDecayAlt.NF.ActualSHypOfParts := by
-  exact NFx3.actualSHypOfParts
-
-end Formalism.FourierDecayAlt.P

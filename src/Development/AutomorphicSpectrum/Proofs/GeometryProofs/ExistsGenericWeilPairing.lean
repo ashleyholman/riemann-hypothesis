@@ -40,10 +40,6 @@ theorem epi_spMap_field : ∀ (K L : Type) [Field K] [Field L] (i : K →+* L), 
   haveI : Surjective (spMap i) := ⟨fun x => ⟨Nonempty.some inferInstance, Subsingleton.elim _ _⟩⟩
   exact Flat.epi_of_flat_of_surjective _
 
-theorem exists_common_closed : ∀ (Ω k K : Type) [Field Ω] [Field k] [Field K] (i : Ω →+* k) (i' : Ω →+* K),
-    ∃ (M : Type) (_ : Field M) (_ : IsAlgClosed M) (j : k →+* M) (j' : K →+* M), j.comp i = j'.comp i' := by
-  apply GlobalTheory.CommonAlgClosedExtension.exists_common_algClosed_extension
-
 theorem ef_dvd : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (D : Datum H) (n : ℕ),
     (∀ a : D.La, (∀ c, (n : ℤ) ∣ D.EF a c) → ∃ a', a = n • a') ∧
     (∀ c : D.La, (∀ a, (n : ℤ) ∣ D.EF a c) → ∃ c', c = n • c') := by
@@ -199,7 +195,7 @@ theorem genWeil_of_obj : Out.WeilSt → ∀ (E : Type) [Field E] [NumberField E]
       gk.left = spMap i ≫ g.left → Out.WeilIs t.G t.PP.L n xk gk (unitOn c) →
       c = Units.map i.toMonoidHom (e x g) := by
     intro k _ _ i x g hx hg xk gk c hxk hgk hc
-    obtain ⟨M, _, _, j, j', hjj⟩ := exists_common_closed Ω k K i iK
+    obtain ⟨M, _, _, j, j', hjj⟩ := GlobalTheory.CommonAlgClosedExtension.exists_common_algClosed_extension Ω k K i iK
     have hq : spMap (j.comp i) ≫ ξ₀ ≫ f = spMap j ≫ spMap i ≫ ξ₀ ≫ f := by
       rw [spMap_comp_of, Category.assoc]
     have hq' : spMap (j.comp i) ≫ ξ₀ ≫ f = spMap j' ≫ spMap iK ≫ ξ₀ ≫ f := by

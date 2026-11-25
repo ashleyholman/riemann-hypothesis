@@ -192,7 +192,7 @@ theorem blk_even (hs : sz = fun k => colH μ k.val) (I : ∀ k, Fin (sz k) → F
   have hQ : bideterminant K (fun k : Fin c => colH μ k.val) hsz I ∈ dualWeyl K n n μ := by
     have := bidetMem K n n c (fun k : Fin c => colH μ k.val) hsz I
     rwa [shape_even_holds n μ hμ c hc] at this
-  rw [← Top.fockRRowAct, rowAct_hvE, hz, pairing_even_holds K n μ hμ c hc _ _ hQ, BidetPairing.eval_bidet]
+  rw [← Formalism.L2.G.Model.TS.fock_pairing_row_action, rowAct_hvE, hz, pairing_even_holds K n μ hμ c hc _ _ hQ, BidetPairing.eval_bidet]
   have hk : ∀ k : Fin c, (Matrix.of fun p q : Fin (colH μ k.val) =>
       (if (I k p).val < i0 then π⁻¹ else 1) * w (I k p) (Fin.castLE (hsz k) q).val).det = _ := fun k =>
     col_even π hπ i0 (I k) (hI k) (fun i' => if h : i' < colH μ k.val then I k ⟨i', h⟩ else ⟨0, hn⟩)
@@ -217,7 +217,7 @@ theorem blk_odd (hs : sz = fun k => n - colH μ k.val) (I : ∀ k, Fin (sz k) �
   refine ⟨fun k i' => if h : i' < colH μ k.val then J0 k ⟨i', h⟩ else ⟨0, hn⟩, ∏ k, (ε0 k : K), ?_, fun h hi hh z w hz => ?_⟩
   · refine prod_sign _ _ fun k => ?_
     rcases hε k with h1 | h1 <;> rw [h1] <;> simp
-  rw [← Top.fockRRowAct, rowAct_hvO h hi hh, hz, fockR_smul_left, pairing_odd_holds K n μ hμ c hc]
+  rw [← Formalism.L2.G.Model.TS.fock_pairing_row_action, rowAct_hvO h hi hh, hz, fockR_smul_left, pairing_odd_holds K n μ hμ c hc]
   have hk : ∀ k : Fin c, (catM (colH μ k.val) (unitM K (I k)) fun a i => (if a.val < i0 then π else 1) * w a i).det =
       (ε0 k : K) * _ := fun k => (hdet k K _).trans (congrArg (fun y => (ε0 k : K) * y)
     (col_odd π i0 (J0 k) (fun i' => if h : i' < colH μ k.val then J0 k ⟨i', h⟩ else ⟨0, hn⟩) (fun q => by simp) w))

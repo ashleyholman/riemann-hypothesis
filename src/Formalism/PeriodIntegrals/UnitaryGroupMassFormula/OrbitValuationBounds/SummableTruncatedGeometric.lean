@@ -20,10 +20,6 @@ theorem orbit_map_add_natCast (D : D7) (p : ℕ) (z : Pl D) (s : ZMod (nP D p)) 
   unfold orbMap
   rw [posPl_add, ← posPl_mod D p z (s.val + e), ZMod.val_add, ZMod.val_natCast, Nat.add_mod_mod]
 
-alias base_shift_add_nsmul := _root_.Formalism.MainNotions.OrbitPlaces.bs_iter
-
-alias base_shift_idempotent := _root_.Formalism.MainNotions.OrbitPlaces.bs_idem
-
 theorem posPl_false_eq_odd_add_nsmul {p : ℕ} (hsg : IsSg D p) (t0 : HH D) (n : ℕ) :
     posPl D p (false, t0) n = (decide (Odd n), t0 + n • hP D p) := by
   first
@@ -38,7 +34,7 @@ theorem sum_tops_on_orbit (X : Inst D L) {p : ℕ} (hsg : IsSg D p) {t0 : HH D} 
     unfold reps at ht0
     rw [hst] at ht0
     obtain ⟨t', _, rfl⟩ := Finset.mem_image.1 ht0
-    exact base_shift_idempotent X _ t'
+    exact Formalism.MainNotions.OrbitPlaces.bs_idem X _ t'
   symm
   refine Finset.sum_nbij (fun s => (orbMap D p (false, t0) s).2) ?_ ?_ ?_ (fun _ _ => rfl)
   · intro s hs
@@ -50,7 +46,7 @@ theorem sum_tops_on_orbit (X : Inst D L) {p : ℕ} (hsg : IsSg D p) {t0 : HH D} 
     obtain ⟨m, hm⟩ := Nat.not_odd_iff_even.1 hev
     simp only [topsOn, Finset.mem_filter]
     refine ⟨hT.2, ?_⟩
-    rw [hst, hm, show (m + m) • hP D p = m • (2 • hP D p) by rw [smul_smul, mul_two], base_shift_add_nsmul, hb0]
+    rw [hst, hm, show (m + m) • hP D p = m • (2 • hP D p) by rw [smul_smul, mul_two], Formalism.MainNotions.OrbitPlaces.bs_iter, hb0]
   · intro s1 hs1 s2 hs2 heq
     have hT1 := (hTT s1).1 hs1
     have hT2 := (hTT s2).1 hs2

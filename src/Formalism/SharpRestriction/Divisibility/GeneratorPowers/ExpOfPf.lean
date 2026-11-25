@@ -17,20 +17,6 @@ namespace Formalism.MainNotions.ModuliIntegralCharts.H1
 open MvPowerSeries ReciprocityTheory.ChartRestriction.G.Geo.Tor.Germ ReciprocityTheory.ChartRestriction.G.TB ReciprocityTheory.ChartRestriction.G.TB.WickVanishing
 open NumberField ReciprocityTheory.ChartRestriction.G.Geo.Tor Formalism.L2.Pj
 
-namespace ExpOf
-
-variable {R : Type} [CommRing R]
-
-
-open Formalism.FG.SolveVAux in
-theorem coeff_single_subst {σ τ : Type} [Fintype σ] [DecidableEq σ] [DecidableEq τ]
-    (a : σ → MvPowerSeries τ R) (ha : ∀ s, constantCoeff (a s) = 0) (f : MvPowerSeries σ R) (t : τ) :
-    coeff (Finsupp.single t 1) (subst a f) =
-      ∑ s, coeff (Finsupp.single s 1) f * coeff (Finsupp.single t 1) (a s) := by
-  apply Formalism.MainNotions.ModuliIntegralCharts.H1.ExpActPf.coeff_single_subst <;> assumption
-
-end ExpOf
-
 def LinEigSt : Prop :=
   ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (Dw : Datum H) (l : Level H)
     (Xo : Moduli Dw l) (c : Coeff l) [StarRing (𝓞 E)] (S : Type) [CommRing S] [Algebra c.F S] [Algebra ℚ S]
@@ -103,7 +89,7 @@ theorem expPhi_const (uvec : Lt1 Dw → Fin d → S) (ε : Pt S 1 d) (hε : ∀ 
 theorem expPhi_lin (uvec : Lt1 Dw → Fin d → S) (ε : Pt S 1 d) (hdε : dLin ε = 1) (ℓ : Lt1 Dw) (j : Fin d) :
     coeff (Finsupp.single ((0 : Fin 1), ltIdx Dw ℓ) 1) (expPhi uvec ε j) = uvec ℓ j := by
   classical
-  rw [expPhi, coeff_single_subst (fun p : Fin 1 × Fin d => linPt uvec (0 : Fin 1) p.2)
+  rw [expPhi, Formalism.MainNotions.ModuliIntegralCharts.H1.ExpActPf.coeff_single_subst (fun p : Fin 1 × Fin d => linPt uvec (0 : Fin 1) p.2)
     (fun p => cc_linPt uvec (0 : Fin 1) p.2)]
   simp only [coeff_linPt]
   rw [Fintype.sum_prod_type, Fin.sum_univ_one]
@@ -209,13 +195,6 @@ theorem expPhi_hom (G : FGLaw S d) (uvec : Lt1 Dw → Fin d → S) (ℓ ε : Pt 
     refine Finset.sum_congr rfl fun ℓ' _ => ?_
     rw [mul_add]
   rw [hL, hR, hΦ]
-
-end ExpOf
-
-namespace ExpOf
-
-variable {S : Type} [CommRing S] [Algebra ℚ S]
-variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E} {Dw : Datum H} {d : ℕ}
 
 end ExpOf
 

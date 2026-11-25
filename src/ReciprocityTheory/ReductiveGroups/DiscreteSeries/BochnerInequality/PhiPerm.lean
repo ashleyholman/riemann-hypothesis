@@ -21,12 +21,6 @@ section PhiPerm
 variable {M : Type*} [NormedAddCommGroup M] [InnerProductSpace ℂ M] {ε : Fin n → Bool}
   {E : Fin n → Fin n → Module.End ℂ M} {V : Submodule ℂ M}
 
-theorem mem_ncV_iff_apply {k : ℕ} {F : Big n k M} :
-    F ∈ ncV ε V k ↔ ∀ κ : Fin k → Fin n × Fin n,
-      F κ ∈ (if ∀ i, ε (κ i).1 ≠ ε (κ i).2 then V else ⊥) := by
-  simp only [ncV, Submodule.mem_iInf, Submodule.mem_comap]
-  rfl
-
 theorem permute_apply {k : ℕ} (σ : Equiv.Perm (Fin k)) (F : Big n k M)
     (κ : Fin k → Fin n × Fin n) : permute σ F κ = F (κ ∘ σ) := rfl
 
@@ -97,7 +91,7 @@ theorem phi_permute_sub_mem (hE : IsGlRep E) (hV : IsKStableSub ε E V) {k : ℕ
     rw [hκ, permute_apply]
   rw [hre, ← Finset.sum_sub_distrib]
   refine Submodule.sum_mem _ (fun κ _ => ?_)
-  have hFκ := (mem_ncV_iff_apply.1 hF) κ
+  have hFκ := (ReciprocityTheory.ChartRestriction.DS.mem_noncompactPositionSubmodule_iff'.1 hF) κ
   by_cases hc : ∀ i, ε (κ i).1 ≠ ε (κ i).2
   · rw [ite_eq_left hc] at hFκ
     rw [word_eq_listProd, word_eq_listProd]

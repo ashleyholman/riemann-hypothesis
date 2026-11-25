@@ -17,8 +17,6 @@ open scoped ComplexConjugate
 
 noncomputable section
 
-alias det_UT := _root_.Formalism.FourierDecayAlt.P.C2x2.ut_det
-
 theorem sub_mul_left {r : ℕ} (A B : Matrix (Fin (r + 1)) (Fin (r + 1)) ℂ)
     (hA : ∀ i : Fin r, A (Fin.castSucc i) (Fin.last r) = 0) :
     (A * B).submatrix Fin.castSucc Fin.castSucc =
@@ -44,10 +42,10 @@ theorem UT_sub {r : ℕ} {U : Matrix (Fin (r + 1)) (Fin (r + 1)) ℂ} (hU : U �
 theorem minorsLU : MinorsLU := by
   unfold MinorsLU
   intro r L M U hL hU
-  refine ⟨by rw [Matrix.det_mul, Matrix.det_mul, _root_.Formalism.FourierDecayAlt.P.C2x2.lt_det hL, det_UT hU, one_mul, mul_one], ?_⟩
+  refine ⟨by rw [Matrix.det_mul, Matrix.det_mul, _root_.Formalism.FourierDecayAlt.P.C2x2.lt_det hL, Formalism.FourierDecayAlt.P.C2x2.ut_det hU, one_mul, mul_one], ?_⟩
   rw [sub_mul_right _ _ (fun j => hU.1 _ _ (Fin.castSucc_lt_last j)),
     sub_mul_left _ _ (fun i => hL.1 _ _ (Fin.castSucc_lt_last i)),
-    Matrix.det_mul, Matrix.det_mul, _root_.Formalism.FourierDecayAlt.P.C2x2.lt_det (LT_sub hL), det_UT (UT_sub hU), one_mul, mul_one]
+    Matrix.det_mul, Matrix.det_mul, _root_.Formalism.FourierDecayAlt.P.C2x2.lt_det (LT_sub hL), Formalism.FourierDecayAlt.P.C2x2.ut_det (UT_sub hU), one_mul, mul_one]
 
 theorem lowS_eq_low {m : ℕ} (w : Equiv.Perm (Fin m)) (x : C2.Lstidx w → ℂ) : lowS w x = Dx2.Rad.low w x := rfl
 

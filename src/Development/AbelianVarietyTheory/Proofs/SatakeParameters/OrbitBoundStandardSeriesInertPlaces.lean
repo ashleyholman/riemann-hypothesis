@@ -100,7 +100,7 @@ theorem constantCoeff_sumE {K ι : Type} [Field K] [Fintype ι] {N0 N1 : ℕ} (b
 
 theorem exists_root_sq (l : ℕ) [hl : Fact l.Prime] : ∃ ζ : MaximalUnramifiedExtension l, IsPrimitiveRoot ζ (l ^ 2 - 1) := by
   have h1 : 1 < l ^ 2 := by have := hl.out.two_le; nlinarith
-  refine Formalism.L2.Th1.D.kurRoots l (l ^ 2 - 1) (by omega) fun hd => ?_
+  refine Formalism.L2.Th1.D.unramified_completion_roots l (l ^ 2 - 1) (by omega) fun hd => ?_
   have h2 : l ∣ l ^ 2 := dvd_pow_self l two_ne_zero
   have h3 : l ∣ 1 := by
     have := (Nat.dvd_sub h2 hd)
@@ -123,7 +123,7 @@ theorem kernel_bound (l : ℕ) [Fact l.Prime] (ν m N0 N1 : ℕ) [NeZero ν] (hm
       (l : ℝ) ^ (-(excessGain (l : ℝ) TT (dSet TT) (fun s => (alG TT colN hts s : ℝ))
         (fun s => (capG TT colN hts s : ℝ)) (deLoss l N0 N1 TT (alG TT colN hts) (lsG TT colN hts)))) := by
   subst hm
-  have : CompleteSpace (MaximalUnramifiedExtension l) := Formalism.L2.Th1.D.kurComplete l
+  have : CompleteSpace (MaximalUnramifiedExtension l) := Formalism.L2.Th1.D.unramified_completion_complete l
   have hb : MvPowerSeries.constantCoeff (MvPowerSeries.map (MaximalUnramifiedExtension l).subtype be0) = 0 := by
     have h0 : MvPowerSeries.constantCoeff be0 = 0 := h1.1 0 (Or.inl rfl)
     rw [MvPowerSeries.constantCoeff_map, h0, map_zero]
@@ -1069,7 +1069,7 @@ theorem sum_topsOn (X : Inst D L) {p : ℕ} (hc : IsResidueClassZero D p) {t0 : 
     unfold reps at ht0
     rw [hst] at ht0
     obtain ⟨t', _, rfl⟩ := Finset.mem_image.1 ht0
-    exact base_shift_idempotent X _ t'
+    exact Formalism.MainNotions.OrbitPlaces.bs_idem X _ t'
   symm
   refine Finset.sum_nbij (fun s => (orbMap D p (false, t0) s).2) ?_ ?_ ?_ (fun _ _ => rfl)
   · intro s hs
@@ -1078,7 +1078,7 @@ theorem sum_topsOn (X : Inst D L) {p : ℕ} (hc : IsResidueClassZero D p) {t0 : 
     rw [e1] at hT ⊢
     simp only [topsOn, Finset.mem_filter]
     refine ⟨hT.2, ?_⟩
-    rw [hst, base_shift_add_nsmul, hb0]
+    rw [hst, Formalism.MainNotions.OrbitPlaces.bs_iter, hb0]
   · intro s1 hs1 s2 hs2 heq
     have hT1 := (hTT s1).1 hs1
     have hT2 := (hTT s2).1 hs2

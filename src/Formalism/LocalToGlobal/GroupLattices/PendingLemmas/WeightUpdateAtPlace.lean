@@ -22,11 +22,6 @@ theorem lsmul_one (L : P.Tup) : C.smul 1 L = L := by
   ext x
   simp [Level.smul]
 
-theorem lsmul_mul (γ γ' : C.Γ) (L : P.Tup) : C.smul (γ * γ') L = C.smul γ (C.smul γ' L) := by
-  funext v
-  ext x
-  simp [Level.smul, Matrix.mulVec_mulVec]
-
 theorem lsmul_inv_lsmul (γ : C.Γ) (L : P.Tup) : C.smul γ⁻¹ (C.smul γ L) = L := by
   rw [← _root_.Formalism.MainNotions.G.LatticeSystems.jd_smul_mul, inv_mul_cancel, lsmul_one]
 
@@ -43,7 +38,7 @@ def orbS : Setoid P.Tup where
       trans := fun {L L' L''} h h' => by
         obtain ⟨γ, h⟩ := h
         obtain ⟨γ', h'⟩ := h'
-        exact ⟨γ' * γ, by rw [h', h, lsmul_mul]⟩ }
+        exact ⟨γ' * γ, by rw [h', h, Formalism.MainNotions.G.LatticeSystems.jd_smul_mul]⟩ }
 
 def can (L : P.Tup) : P.Tup := (Quotient.mk (orbS C) L).out
 
@@ -90,8 +85,8 @@ theorem repC_ex (h : C.FinClasses) (L : P.Tup) (hL : P.IsLatTup L) :
 
 def stabConj (δ : C.Γ) (L : P.Tup) :
     {γ : C.Γ // C.smul γ (C.smul δ L) = C.smul δ L} ≃ {γ : C.Γ // C.smul γ L = L} where
-  toFun γ := ⟨δ⁻¹ * γ.1 * δ, by rw [lsmul_mul, lsmul_mul, γ.2, lsmul_inv_lsmul]⟩
-  invFun γ := ⟨δ * γ.1 * δ⁻¹, by rw [lsmul_mul, lsmul_mul, lsmul_inv_lsmul, γ.2]⟩
+  toFun γ := ⟨δ⁻¹ * γ.1 * δ, by rw [Formalism.MainNotions.G.LatticeSystems.jd_smul_mul, Formalism.MainNotions.G.LatticeSystems.jd_smul_mul, γ.2, lsmul_inv_lsmul]⟩
+  invFun γ := ⟨δ * γ.1 * δ⁻¹, by rw [Formalism.MainNotions.G.LatticeSystems.jd_smul_mul, Formalism.MainNotions.G.LatticeSystems.jd_smul_mul, lsmul_inv_lsmul, γ.2]⟩
   left_inv γ := by
     apply Subtype.ext
     show δ * (δ⁻¹ * γ.1 * δ) * δ⁻¹ = γ.1

@@ -35,10 +35,6 @@ theorem mIntegrable_zero (A : FinHolAtlas D X) (Φ : Fin D → LocPot X) :
     MIntegrable A Φ (fun _ => 0) := fun j K _ _ => by
   simp
 
-theorem mInt_zero (A : FinHolAtlas D X) (Φ : Fin D → LocPot X) : mInt A Φ (fun _ => 0) = 0 := by
-  unfold mInt ReciprocityTheory.AnForm.M.integralWith
-  split_ifs <;> simp
-
 theorem mInt_nonneg_on (A : FinHolAtlas D X) (V : Set X) (Φ : Fin D → LocPot X)
     (hpot : ∀ i, IsPotential A (Φ i)) (hnn : ∀ i, FormNonneg A V (Φ i)) (f : X → ℝ)
     (hf : ∀ x, 0 ≤ f x) (hf0 : ∀ x ∉ V, f x = 0) : 0 ≤ mInt A Φ f := by

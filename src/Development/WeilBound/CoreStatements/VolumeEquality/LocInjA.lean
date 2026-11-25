@@ -57,9 +57,9 @@ variable {E : Type} [Field E] [NumberField E] [IsCMField E] {g : ℕ} {Λ : Type
 
 def reForm (R : RiemLat E g Λ) : Λ →+ Λ →+ ℝ :=
   AddMonoidHom.mk' (fun x => AddMonoidHom.mk' (fun y => (R.ip (R.P x) (R.P y)).re) fun y y' => by
-    simp only [map_add (f := _), PeriodIso.ip_add_right', Complex.add_re]) fun x x' => by
+    simp only [map_add (f := _), LevelTowerAlt.ip_add_right, Complex.add_re]) fun x x' => by
     ext y
-    simp only [map_add (f := _), PeriodIso.ip_add_left', Complex.add_re, AddMonoidHom.mk'_apply, AddMonoidHom.add_apply]
+    simp only [map_add (f := _), LevelTowerAlt.ip_add_left, Complex.add_re, AddMonoidHom.mk'_apply, AddMonoidHom.add_apply]
 
 theorem reForm_apply (R : RiemLat E g Λ) (x y : Λ) : reForm R x y = (R.ip (R.P x) (R.P y)).re := rfl
 
@@ -96,7 +96,7 @@ theorem short_finite {X : Type} [TopologicalSpace X] (R : X → RiemLat E g Λ) 
     have : T x (r • a) = (r : ℂ) • T x a := by
       rw [← PeriodIso.real_smul_eq']
       simp only [T, Finset.smul_sum, smul_smul, Pi.smul_apply, smul_eq_mul]
-    simp only [Q, this, PeriodIso.ip_smul_left', PeriodIso.ip_smul_right', Complex.star_def, Complex.conj_ofReal,
+    simp only [Q, this, PeriodIso.ip_smul_left', LevelTowerAlt.ip_smul_right, Complex.star_def, Complex.conj_ofReal,
       Complex.re_ofReal_mul]
     ring
   have hK : IsCompact (Metric.sphere (0 : Fin (2 * g) → ℝ) 1) := isCompact_sphere _ _

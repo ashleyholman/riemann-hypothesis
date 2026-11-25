@@ -365,13 +365,11 @@ theorem countLow_of {C0 CYb Cde Ck CD Cb CE1 CE2 Cc : ℝ}
     _ ≤ KS * Hr := mul_le_mul_of_nonneg_left t2 hKS0
     _ ≤ _ := t0'
 
-private alias transported_and := _root_.Formalism.MainNotions.ColumnSystems.Pf.TransportedAlt.and
-
 theorem restCountLow_of (hT : RestTail) (hM : RestMatch) : RestCountLow := by
   unfold RestCountLow
   unfold RestTail at hT
   unfold RestMatch at hM
-  refine _root_.Formalism.MainNotions.ColumnSystems.Pf.TransportedAlt.mono ?_ (transported_and (transported_and threshold_standard_one hT) hM)
+  refine _root_.Formalism.MainNotions.ColumnSystems.Pf.TransportedAlt.mono ?_ (Formalism.MainNotions.ColumnSystems.Pf.TransportedAlt.and (Formalism.MainNotions.ColumnSystems.Pf.TransportedAlt.and threshold_standard_one hT) hM)
   intro _ _ _ _ _ _ _ _ _ _ h
   exact countLow_of h.1.1 h.1.2 h.2
 
@@ -515,7 +513,7 @@ theorem restMatch_of (hCD : ChainDimAt) (hMU : RestMatchUp) (hML : RestMatchLow)
   unfold RestMatch
   unfold RestMatchUp at hMU
   unfold RestMatchLow at hML
-  refine _root_.Formalism.MainNotions.ColumnSystems.Pf.TransportedAlt.mono ?_ (transported_and hMU hML)
+  refine _root_.Formalism.MainNotions.ColumnSystems.Pf.TransportedAlt.mono ?_ (Formalism.MainNotions.ColumnSystems.Pf.TransportedAlt.and hMU hML)
   intro _ _ _ _ _ _ _ _ _ _ h
   exact match_of hCD h.1 h.2
 

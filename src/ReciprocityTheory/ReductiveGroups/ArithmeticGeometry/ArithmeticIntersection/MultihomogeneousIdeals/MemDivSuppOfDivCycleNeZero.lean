@@ -145,11 +145,6 @@ theorem map_mk_mem_minimalPrimes {V W : Ideal R} {f : R} (hW : W ∈ (V ⊔ Idea
   rw [e, Ideal.minimalPrimes_map_of_surjective Ideal.Quotient.mk_surjective, Ideal.mk_ker, sup_comm]
   exact ⟨W, hW, rfl⟩
 
-theorem comap_map_mk_of_le {V Q : Ideal R} (h : V ≤ Q) :
-    (Q.map (Ideal.Quotient.mk V)).comap (Ideal.Quotient.mk V) = Q := by
-  rw [Ideal.comap_map_of_surjective _ Ideal.Quotient.mk_surjective, ← RingHom.ker_eq_comap_bot,
-    Ideal.mk_ker, sup_eq_left.mpr h]
-
 theorem eq_of_le_of_mem_minimalPrimes [IsNoetherianRing R] {V W Q : Ideal R} (hV : V.IsPrime) {f g : R}
     (hW : W ∈ (V ⊔ Ideal.span {f}).minimalPrimes) (hQ : Q.IsPrime) (hVQ : V ≤ Q) (hgQ : g ∈ Q)
     (hgV : g ∉ V) (hQW : Q ≤ W) : Q = W := by
@@ -164,7 +159,7 @@ theorem eq_of_le_of_mem_minimalPrimes [IsNoetherianRing R] {V W Q : Ideal R} (hV
   have hVW : V ≤ W := le_sup_left.trans hW.1.2
   have hlt : Q.map π < W.map π := by
     refine lt_of_le_of_ne (Ideal.map_mono hQW) fun e => hne ?_
-    rw [← comap_map_mk_of_le hVQ, e, comap_map_mk_of_le hVW]
+    rw [← ReciprocityTheory.ChartRestriction.G.Geo.DimF.comap_map_mk hVQ, e, ReciprocityTheory.ChartRestriction.G.Geo.DimF.comap_map_mk hVW]
   have hbot : (⊥ : Ideal (R ⧸ V)) < Q.map π := by
     refine bot_lt_iff_ne_bot.mpr fun e => hgV ?_
     have : π g ∈ Q.map π := Ideal.mem_map_of_mem _ hgQ

@@ -885,10 +885,6 @@ theorem isBlockMap_joinInl : IsBlockMap (Sum.inl : K → K ⊕ K₂) (joinInl ι
   · rintro ⟨k, i⟩ ⟨k', rfl⟩
     exact ⟨⟨k', i⟩, rfl⟩
 
-alias evC_rename_inl := _root_.GlobalTheory.CompanionTheory.Ar.Giv.ResProj.evC_rename_inl
-
-alias comp_inl_mem := _root_.GlobalTheory.CompanionTheory.Ar.Giv.ResProj.comp_inl_mem
-
 end ResTop
 
 open ResTop in
@@ -935,10 +931,10 @@ theorem resExists_of_resK : ReciprocityTheory.ChartRestriction.G.Geo.ResK.ResKSt
   · refine _root_.GlobalTheory.CompanionTheory.Ar.Giv.anLogRes_of_embedded_join K ι Ω y e M y' J₁ R (β * β') (b + b') hR hy' hy hγ hγP ?_ ?_
     · intro z hzm h0
       apply hz z hzm
-      rw [evC_rename_inl] at h0 ⊢
+      rw [GlobalTheory.CompanionTheory.Ar.Giv.ResProj.evC_rename_inl] at h0 ⊢
       rw [hmul] at h0
       rcases mul_eq_zero.mp h0 with h | h
-      · exact hzero _ (comp_inl_mem y y' hzm) h
+      · exact hzero _ (GlobalTheory.CompanionTheory.Ar.Giv.ResProj.comp_inl_mem y y' hzm) h
       · exact h
     · intro z hzm hne
       apply hG z hzm

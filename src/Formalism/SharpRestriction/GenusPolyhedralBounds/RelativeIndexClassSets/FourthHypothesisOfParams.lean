@@ -25,9 +25,6 @@ variable {D : D7} {L : SizeData₂ D} {P : ParameterChoice' D L}
 
 def q0N (T : ParamsT D L P) : ℕ := ⌈L.sc.b / (T.TO : ℝ)⌉₊
 
-theorem f_ge (D : D7) : 8 ≤ D.R.f := by
-  apply Formalism.BasicNotions.D7.eight_le_f
-
 theorem r_ge (D : D7) : 6 ≤ D.R.r := by
   unfold Ranks.r
   have := D.R.two_le_m
@@ -103,7 +100,7 @@ theorem discriminant_pow_eight_le_sqrt (P : ParameterChoice' D L) (S : SizesAt L
 theorem rn_of (T : ParamsT D L P) (S : SizesAt L) (hZ : 10 ^ 60 ≤ zBase L) :
     Rn ((D.R.f : ℝ) * D.R.r) D.R.k L.sc.b (L.sc.b ^ ((1 : ℝ) / 2)) T.PP T.TO D.host.rdE D.R.r ((T.Dp : ℝ) + 2) T.nWn T.nP
       (q0N T) := by
-  have hf8 : (8 : ℝ) ≤ D.R.f := by exact_mod_cast f_ge D
+  have hf8 : (8 : ℝ) ≤ D.R.f := by exact_mod_cast Formalism.BasicNotions.D7.eight_le_f D
   have hr6 : (6 : ℝ) ≤ D.R.r := by exact_mod_cast r_ge D
   have hfk : (D.R.f : ℝ) ≤ D.R.k := by exact_mod_cast f_le_k D
   have hr2k : (D.R.r : ℝ) ≤ 2 * D.R.k := by exact_mod_cast r_le_2k D
@@ -129,7 +126,7 @@ theorem rn_of (T : ParamsT D L P) (S : SizesAt L) (hZ : 10 ^ 60 ≤ zBase L) :
     exact Real.one_le_rpow hd (by positivity)
   have hnW : 40 ≤ T.nWn := by
     have h1 := T.nW_lo.1
-    have h2 := f_ge D
+    have h2 := Formalism.BasicNotions.D7.eight_le_f D
     have h3 := r_ge D
     have h4 : 8 * 6 ≤ D.R.f * D.R.r := Nat.mul_le_mul h2 h3
     have h5 : D.R.f * D.R.r ≤ D.R.f * D.R.r * (D.R.r + 1) := by
@@ -684,7 +681,7 @@ theorem fourth_hypothesis_of_params : L.sc.b ≤ (runOf T S hZ).ka.size ∧ (T.T
   · have h := (runOf T S hZ).wF_size_le
     have e : ((runOf T S hZ).nP : ℝ) = (T.nP : ℝ) := rfl
     rw [e] at h
-    have hf : (8 : ℝ) ≤ D.R.f := by exact_mod_cast f_ge D
+    have hf : (8 : ℝ) ≤ D.R.f := by exact_mod_cast Formalism.BasicNotions.D7.eight_le_f D
     have hr := hR.r6; have hT := hR.one_le_order_alt; have hn := hR.nPW; have hn2 := hR.nW_le
     have a0 : (0 : ℝ) ≤ (D.R.f : ℝ) * (D.R.r : ℝ) ^ 2 := by positivity
     have a1 : (D.R.f : ℝ) * (D.R.r : ℝ) ^ 2 * 1 ≤ (D.R.f : ℝ) * (D.R.r : ℝ) ^ 2 * T.TO := mul_le_mul_of_nonneg_left hT a0

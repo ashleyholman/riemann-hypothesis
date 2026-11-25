@@ -49,7 +49,7 @@ theorem homothetic_lattice_integral_of : HomotheticLatticeIntegralS2 := by
 
   have hd0 : 0 < dK := by omega
   obtain ⟨S, hS, -, -, hsum⟩ := Formalism.L2.Th1.F.hasCMByIsogeny dK L hcm (-1) 2 (by simp) hd0
-  obtain ⟨hst, hns⟩ := Formalism.L2.Th1.F.hasCMByStable dK L hcm (-1) 2
+  obtain ⟨hst, hns⟩ := Formalism.L2.Th1.F.has_cm_stable dK L hcm (-1) 2
   rw [HomotheticLatticeIntegrality.alpha_sq, hns] at hsum
   have hsum' : -(2 * (dK : ℂ)) * Formalism.L2.Th1.F.s2 L = ∑ P ∈ S, L.weierstrassP P := by
     rw [← hsum]; push_cast; ring

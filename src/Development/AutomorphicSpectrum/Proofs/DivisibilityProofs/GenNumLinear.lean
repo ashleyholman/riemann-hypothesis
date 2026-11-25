@@ -60,12 +60,6 @@ section -- clump:auto
 @[expose] public section
 
 open MvPolynomial GroundTheory.Heights₂.Heights.NumbersDVR GlobalTheory.CompanionTheory.Ar.Num
-
-namespace GlobalTheory.CompanionTheory.Ar.Num
-
-alias genNum_linear := _root_.BaseChangeColon.genNum_linear_in_polynomial
-
-end GlobalTheory.CompanionTheory.Ar.Num
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.GenNumLinear =====

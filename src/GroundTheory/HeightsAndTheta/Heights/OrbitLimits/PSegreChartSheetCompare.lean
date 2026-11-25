@@ -474,8 +474,6 @@ open ComplexSets Matrix Filter Topology
 
 namespace SegreChartSheetComparison
 
-alias hessC_congr_germ := _root_.ReciprocityTheory.AnForm.A.hessC_congr'
-
 variable {K : Type} [Fintype K] [DecidableEq K] {ι : K → Type} [∀ k, Fintype (ι k)]
 
 theorem eq_segre_chartLift {P : Ideal (MRing ι)} {m : ℕ} {σ : Fin m ≃ ((k : K) → ι k)}
@@ -530,7 +528,7 @@ theorem SegreChartSheetCompare.of_segreSheetFormCompare (hF : SegreSheetFormComp
         (A *ᵥ x) := by
     unfold ReciprocityTheory.AnForm.maDens
     dsimp only
-    rw [hessC_congr_germ hfs]
+    rw [ReciprocityTheory.AnForm.A.hessC_congr' hfs]
   have hpot : (fun k => chartPot σ i L k ∘ s) = fun j => pot L j ∘ z := rfl
   rw [hpot, hden]
   calc _ ≤ _ := h1

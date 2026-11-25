@@ -192,7 +192,7 @@ theorem jets_fourth_holds : JetsFourth := by
 theorem jets_of_dist_jets_holds : JetsOfDJets := by
   intro K _ _ R l linv f h
   unfold JetsIn1
-  simp only [Formalism.L2.Th1.C.jetAdditive K l linv f h]
+  simp only [Formalism.L2.Th1.C.jetAdditivity K l linv f h]
 
 private theorem intPS_inv_of_isOneUnit {K : Type} [Field K] {R : Subring K} {u : PowerSeries K}
     (hu : Formalism.L2.Th1.C.IsOneUnit R u) : Formalism.L2.Th1.C.IntPS R u⁻¹ := by

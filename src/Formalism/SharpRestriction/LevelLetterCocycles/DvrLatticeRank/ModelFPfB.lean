@@ -50,8 +50,6 @@ theorem γLA_smulLA (a : LetA O n) (x : LA W T π' c) :
     rfl
   | add x y hx hy => simp only [map_add (f := _), hx, hy]
 
-alias γA_mem_AΔ := _root_.Formalism.MainNotions.LiftingTheory.tr_γA_mem
-
 theorem range_rep (u : LA W T π' c) (hu : u ∈ LinearMap.range (toLA W T π' c ⊤)) :
     ∃ (m : ℕ) (a : Fin m → ↥W.AΔ) (y : Fin m → W.DD T) (hy : ∀ j, y j ∈ NcS W T (c - 1)),
       u = ∑ j, algebraMap (LetA O n) W.EE ((letE c : LetA O n) * a j) ⊗ₜ
@@ -113,7 +111,7 @@ theorem range_γ {u : LA W T π' c} (hu : u ∈ LinearMap.range (toLA W T π' c 
     γLA W T π' c u ∈ LinearMap.range (toLA W T π' c ⊤) := by
   obtain ⟨m, a, y, hy, rfl⟩ := range_rep W T π' c u hu
   rw [γLA_rep]
-  exact rep_mem W T π' c _ (fun j => γA_mem_AΔ W _ (a j).2) y hy
+  exact rep_mem W T π' c _ (fun j => Formalism.MainNotions.LiftingTheory.tr_γA_mem W _ (a j).2) y hy
 
 theorem mem_LamLA (x : LA W T π' c) :
     x ∈ LamLA W T π' Eπ h' c ⊤ ↔

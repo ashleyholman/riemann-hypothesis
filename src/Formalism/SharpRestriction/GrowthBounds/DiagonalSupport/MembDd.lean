@@ -153,8 +153,6 @@ theorem exists_llPos (j x : ℤ) (hx : x ∈ Fr.LLset j) :
   unfold llPos
   rw [List.getD_eq_getElem _ _ hl, hlx]
 
-alias posOf_add_n := _root_.Formalism.MainNotions.G.WittFrameLocaliserOrders.bf_posOf_add
-
 theorem shift (hper : ∀ j : ℤ, ∀ i, Fr.fr (j + Fr.J) i = Fr.fr j i + n') {J : ℕ} [NeZero J] (hJ : J = Fr.J)
     (j : ZMod J) :
     ∃ s : ℤ, (s = 0 ∨ s = n') ∧ ∀ k, Fr.fr (segZ j) k = Fr.fr (segZ (j + 1) - 1) k + s ∧
@@ -342,7 +340,7 @@ theorem restDdG_holds : RestDdG := by
       rw [hposTL]
       rcases hs with rfl | rfl
       · simp
-      · exact DdG.posOf_add_n _
+      · exact Formalism.MainNotions.G.WittFrameLocaliserOrders.bf_posOf_add _
     have hBC : Fr.fr (segZ j - 1) (r - 1) < Fr.fr (segZ j) (r - 1) :=
       hsepj.trans_le (DdG.fr_le Fr hmono _ (Nat.zero_le _) (by omega))
     have hexp : (Fr.fr (segZ j - 1) (r - 1) - Fr.fr (segZ j - 1) i).toNat +

@@ -198,12 +198,6 @@ theorem exists_scalar (x : AF D.host.F) :
   rw [halfTr_algebraMap_mul, e2, GlobalTheory.CompanionTheory.HermPoisson.halfTr_incA', mul_assoc, ← map_mul, inv_mul_cancel₀ hc,
     map_one, mul_one]
 
-theorem cA_algebraMap' (t : AF D.host.F) :
-    cA D (algebraMap (AF D.host.F) (AE D) t) = algebraMap (AF D.host.F) (AE D) t := by
-  change t ⊗ₜ[D.host.F] D.sp.cm.sig 1 = _
-  rw [map_one]
-  rfl
-
 theorem adj_rat_herm (β : HermE D n) : adj (rat β.1 : Mx D n n) = rat β.1 := by
   ext i j
   have h := congrFun (congrFun β.2 i) j
@@ -235,7 +229,7 @@ theorem small_cell : ∀ {D : D7} {n : ℕ} {ψ : AddChar (AF D.host.F) ℂ}, Is
   obtain ⟨t, ht⟩ := exists_scalar (D := D) x0
   have hν : adj ((algebraMap (AF D.host.F) (AE D) t) • ((rat V0 : Mx D n 1) ⬝ (rat R0 : Mx D 1 n) + adj (rat R0 : Mx D 1 n) ⬝ adj (rat V0 : Mx D n 1))) =
       (algebraMap (AF D.host.F) (AE D) t) • ((rat V0 : Mx D n 1) ⬝ (rat R0 : Mx D 1 n) + adj (rat R0 : Mx D 1 n) ⬝ adj (rat V0 : Mx D n 1)) := by
-    rw [adj_smul, cA_algebraMap', adj_add, adj_mul, adj_mul, adj_adj, adj_adj, add_comm]
+    rw [adj_smul, Formalism.IndefR.PHeisTh.cA_algebraMap, adj_add, adj_mul, adj_mul, adj_adj, adj_adj, add_comm]
   refine ⟨⟨_, hν⟩, ?_, ?_⟩
   · have h := trace_val (rat β.1) (adj_rat_herm β) (rat V0) (rat R0) (algebraMap (AF D.host.F) (AE D) t) hS
     change ψ (-halfTr (Matrix.trace ((rat β.1 : Mx D n n) ⬝ _))) ≠ 1

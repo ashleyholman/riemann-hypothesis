@@ -164,7 +164,7 @@ theorem stepChoiceDataC_of_leavesG
   exact ⟨0, 0, 1, X.Fu u, Y.what₂ u, fun _ => 0, pairSys0 u u' (X.Fu u) (Y.what₂ u), fun _ => idx0 D,
     fun _ => idx0 D, fun _ => 0,
     massDataValid_bk_of X hb Y u u' X0 ψ 0 0 1 (fun _ => 0) (pairSys0 u u' (X.Fu u) (Y.what₂ u)) (fun _ => idx0 D)
-      (fun _ => idx0 D) (fun _ => 0) hc hrd (by linarith) hT (level_s_at_instance X hb Y.hK _ _ u u' X0 _ _)
+      (fun _ => idx0 D) (fun _ => 0) hc hrd (by linarith) hT (MassDataLevelSSteps.inLevelSAt_holds X hb Y.hK _ _ u u' X0 _ _)
       (Formalism.L2.SG.Pf.MassDataX.inMassesAt_holds X hb Y.hK _ _ u u' X0 _ _)
       (Formalism.L2.SG.Pf.MassDataX.inColumnsAt_holds X hb Y.hK _ _ u u' X0 _ _)
       (_root_.local_indices_at_instance X hb Y.hK _ _ u u' X0 _ _)

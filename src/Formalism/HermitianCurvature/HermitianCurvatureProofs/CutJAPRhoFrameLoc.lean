@@ -114,7 +114,7 @@ theorem ehat_facts {e₀ b : Fin (2 * r + k + 1) → ℂ} (hN : 0 < (herm (Hpk k
     herm (Hpk k r) (ehat k r e₀ b) (ehat k r e₀ b) = 1 ∧
       herm (Hpk k r) (ehat k r e₀ b) e₀ =
         ((‖herm (Hpk k r) b e₀‖ / Real.sqrt (herm (Hpk k r) b b).re : ℝ) : ℂ) ∧ phi k r e₀ b ≠ 0 := by
-  have hbb : herm (Hpk k r) b b = (((herm (Hpk k r) b b).re : ℝ) : ℂ) := SSn.Geom.herm_self_real b
+  have hbb : herm (Hpk k r) b b = (((herm (Hpk k r) b b).re : ℝ) : ℂ) := Formalism.FourierDecayAlt.P.B2x6.herm_self_real b
   set N : ℝ := (herm (Hpk k r) b b).re with hNdef
   set sv : ℂ := herm (Hpk k r) b e₀ with hsv
   have hq : 0 < Real.sqrt N := Real.sqrt_pos.2 hN
@@ -222,7 +222,7 @@ theorem frame_locality_holds : FrameLoc := by
   set e₀ : Fin (2 * r + k + 1) → ℂ := (((Real.sqrt N₀)⁻¹ : ℝ) : ℂ) • b a₀ with he₀def
   have he₀W : InW k r z e₀ :=
     ⟨inWb_smul _ (hbW a₀).1, by rw [he₀def, Qx8.herm_smul_left', (hbW a₀).2, mul_zero]⟩
-  have hbb₀ : herm (Hpk k r) (b a₀) (b a₀) = (N₀ : ℂ) := SSn.Geom.herm_self_real (b a₀)
+  have hbb₀ : herm (Hpk k r) (b a₀) (b a₀) = (N₀ : ℂ) := Formalism.FourierDecayAlt.P.B2x6.herm_self_real (b a₀)
   have he₀1 : herm (Hpk k r) e₀ e₀ = 1 := by
     rw [he₀def, Qx8.herm_smul_left', Qx8.herm_smul_right', hbb₀, Complex.star_def, Complex.conj_ofReal]
     have hq2 : ((Real.sqrt N₀ : ℝ) : ℂ) ^ 2 = (N₀ : ℂ) := by

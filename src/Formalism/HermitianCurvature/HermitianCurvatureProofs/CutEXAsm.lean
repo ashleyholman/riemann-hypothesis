@@ -656,7 +656,7 @@ theorem exceptional_assumption_holds : Asm := by
         Φ₀ Z (Matrix.of.symm (h₁ * Matrix.of y * h₂)) = ((p.T.bs P.r).π h₁).comp ((Φ₀ Z y).comp ((p.T.bs P.r).π' h₂)) := by
     intro Z y hy h₁ hh₁ h₂ hh₂
     have hGG : Q.GGl P.k (P.r - P.r) (p.T.bs P.r).z (p.T.bs P.r).z' (h₁ * Matrix.of y * h₂) =
-        Q.GGl P.k (P.r - P.r) (p.T.bs P.r).z (p.T.bs P.r).z' (Matrix.of y) := Formalism.FourierDecayAlt.P5.Rad.GGl_uw hh₁ hh₂ _
+        Q.GGl P.k (P.r - P.r) (p.T.bs P.r).z (p.T.bs P.r).z' (Matrix.of y) := Formalism.FourierDecayAlt.P.Qx8.GGl_equiv hh₁ hh₂ _
     have hy' : h₁ * Matrix.of y * h₂ ∈ Q.Glev P.k (P.r - P.r) (Fin.last _) :=
       Formalism.FourierDecayAlt.P.Qx8.glev_mul (Formalism.FourierDecayAlt.P.Qx8.glev_mul (Formalism.FourierDecayAlt.P.Qx8.uw_glev _ hh₁) hy)
         (Formalism.FourierDecayAlt.P.Qx8.uw_glev _ hh₂)

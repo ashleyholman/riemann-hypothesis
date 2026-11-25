@@ -117,7 +117,7 @@ end ToZ
 theorem ShapeToZ_proof : ShapeToZ := by
   intro K _ _ _ l linv ph hlp hph n _ T γ hS
   obtain ⟨κ, _, r, V, hr, hV, e⟩ := hS
-  obtain ⟨e1, hInt⟩ := Formalism.L2.Th1.E.prodInt K κ (Fin 4 × n) ph r V hph hr hV
+  obtain ⟨e1, hInt⟩ := Formalism.L2.Th1.E.product_integral K κ (Fin 4 × n) ph r V hph hr hV
   refine ⟨Formalism.L2.Th1.E.thetaProd r V, fun d => hInt d, ?_⟩
   rw [← ToZ.toZ_tensor4 hlp, e, e1, ToZ.phSum_one]
   rfl

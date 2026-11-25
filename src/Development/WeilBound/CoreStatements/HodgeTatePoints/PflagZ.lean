@@ -108,8 +108,8 @@ theorem genNum_hsymm {N : ℕ} (x : Fin N → K → ℤ) (a : ℕ) (Q : List (K 
     genNum F V x (hsymm (Fin N) ℝ a) Q =
       ((∑ α ∈ Finset.Nat.antidiagonalTuple N a, intNumL F V (rootList x α ++ Q) : ℤ) : ℝ) := by
   classical
-  rw [hsymm, (genNum_linear F K ι (Fin N) V x Q).2.2.1]
-  simp_rw [prod_map_X, (genNum_linear F K ι (Fin N) V x Q).2.2.2, one_mul]
+  rw [hsymm, (BaseChangeColon.genNum_linear_in_polynomial F K ι (Fin N) V x Q).2.2.1]
+  simp_rw [prod_map_X, (BaseChangeColon.genNum_linear_in_polynomial F K ι (Fin N) V x Q).2.2.2, one_mul]
   push_cast
   symm
   refine Finset.sum_bij'

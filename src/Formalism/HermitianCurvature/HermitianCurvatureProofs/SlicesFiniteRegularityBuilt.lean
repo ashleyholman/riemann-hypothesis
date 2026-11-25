@@ -445,8 +445,6 @@ theorem ckOn_cutF {k r : ℕ} {Wp Wq : Type} [NormedAddCommGroup Wp] [InnerProdu
   convert this using 2 with g
   simp [D.cutF, Complex.coe_smul]
 
-alias ptScal_ne := _root_.Formalism.FourierDecayAlt.P.Dx1.Rel.scal_ne
-
 theorem lowV_liftVec {k i ρ j : ℕ} (hj : j = i) (e : i + ρ = j + ρ) (v : Fin (2 * ρ + k + 1) → ℂ) :
     U.lowV k j ρ (D.castV e (liftVec k i ρ v)) = v := by
   subst hj
@@ -508,7 +506,7 @@ theorem pos_levels (hL : LettersDD) (hP : PosCore) (hI : IntG) (hT : OrbitSliceI
   have ht : t ≠ 0 := (hpb (n + 1, t) (by simp)).2
   have hloc : D.IsLocPt (h ++ [(n + 1, t)]) (D.ptSize (h ++ [(n + 1, t)])) := ⟨hpb, rfl⟩
   have hlocH := Formalism.FourierDecayAlt.P.Dx2.SL.isLocPt_head hloc
-  have hd0 : ∀ q, D.ptDiag h q ≠ 0 := fun q => ptScal_ne h hlocH.1 q q.2
+  have hd0 : ∀ q, D.ptDiag h q ≠ 0 := fun q => Formalism.FourierDecayAlt.P.Dx1.Rel.scal_ne h hlocH.1 q q.2
   set ρ := r - D.ptSize (h ++ [(n + 1, t)]) with hρ
   have hsum : ph + (n + 1) + ρ = r := by omega
 

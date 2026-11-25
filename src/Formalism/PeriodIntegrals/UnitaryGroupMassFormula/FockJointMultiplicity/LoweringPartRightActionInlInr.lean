@@ -647,13 +647,3 @@ theorem mem_hwSub2 (μ : Ix r s → ℚ) (P : Pol p q r s) :
 end HW
 
 end PI.WFJM
-
-namespace PI.FJM
-
-alias jointHarmonicsIffLaplacians := _root_.PI.WFJM.jointHarmonicsIffLaplacians
-alias leftDiagonalActionFormula := _root_.PI.WFJM.leftDiagonalActionFormula
-alias rightDiagonalActionFormula := _root_.PI.WFJM.rightDiagonalActionFormula
-alias leftOffDiagonalActionFormula := _root_.PI.WFJM.leftOffDiagonalActionFormula
-alias rightOffDiagonalActionFormula := _root_.PI.WFJM.rightOffDiagonalActionFormula
-
-end PI.FJM

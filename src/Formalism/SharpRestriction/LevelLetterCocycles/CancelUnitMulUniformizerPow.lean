@@ -158,7 +158,7 @@ theorem tauZ_exists [IsDomain O] (T : LocLat G Qp LL O) (hC : Ctx W T) (h9 : For
     rw [hSdef, map_sum]
     refine Finset.sum_congr rfl fun r _ => ?_
 
-    rw [φpow_smul, map_pow, Formalism.MainNotions.LiftingTheory.vecB, map_sum, Finset.smul_sum]
+    rw [Formalism.MainNotions.UnusedSlot80.SatPW.φD_pow_smulA, map_pow, Formalism.MainNotions.LiftingTheory.vecB, map_sum, Finset.smul_sum]
     refine Finset.sum_congr rfl fun m _ => ?_
     rw [map_smul, ← algebraMap_smul (LetA O n) (y r m), smul_smul]
   have key : Formalism.MainNotions.ArcLiftingSetup.lA W ^ 0 • (Formalism.MainNotions.ArcLiftingSetup.lA W ^ κ • τ - Formalism.MainNotions.ArcLiftingSetup.lA W ^ σ • ((W.φD T) ^ A.j) S) =
@@ -406,8 +406,8 @@ theorem pp_pull [NeZero n] [IsDomain O] (hinj : Function.Injective (algebraMap O
       have hmi : Formalism.MainNotions.LiftingTheory.InNΔi W T₂ c m := Relay2.InNΔi_of W T₂ c
         ⟨hmN, fun δ hδ => inj _ _ (by rw [W.map_γ, hm, hnNΔ.2 δ hδ])⟩ (inj _ _ (by rw [Relay2.mapA_smul, hm, hnc]))
       refine ⟨a * (W.φA ^ e') h₀, a • ((W.φD T₂) ^ e') m, Relay2.Pp_gen W T₂ c e' ha hmi, ?_, ?_⟩
-      · rw [Relay2.mapA_smul, Relay2.map_φpow, hπz, Split.φpow_smulA, hφe, smul_smul, smul_smul]
-      · rw [Relay2.mapA_smul, Relay2.map_φpow, hm, map_sub, Split.φpow_smulA, Split.φpow_smulA,
+      · rw [Relay2.mapA_smul, Relay2.map_φpow, hπz, Formalism.MainNotions.UnusedSlot80.SatPW.φD_pow_smulA, hφe, smul_smul, smul_smul]
+      · rw [Relay2.mapA_smul, Relay2.map_φpow, hm, map_sub, Formalism.MainNotions.UnusedSlot80.SatPW.φD_pow_smulA, Formalism.MainNotions.UnusedSlot80.SatPW.φD_pow_smulA,
           smul_sub, smul_comm _ a, ← mul_smul, mul_comm]
         simp only [mul_smul]
   obtain ⟨θ, v, hv, h₁, h₂⟩ := key _ hx
@@ -442,8 +442,8 @@ theorem cutData_of [NeZero n] [IsDomain O] (hinj : Function.Injective (algebraMa
   have hπ : W.π₀ ∈ W.AΔ := hR9Y.1.1
   have hWY : Win W A Y := win_ext W A hJ hone hT₂ hY hses
   have hM : 2 * A.G₀ ≤ (PD.p - 1) * A.M PD.p := Relay2.arith_M PD.p A.G₀ A.h hl hA.2.2.2.2.2.1
-  have hlt : A.h < (PD.p - 1) * A.M PD.p := Split.arith_h PD.p A.h hl
-  have hJ2 := Split.jumpsLe_of_win W A hA T₂ hT₂
+  have hlt : A.h < (PD.p - 1) * A.M PD.p := Formalism.MainNotions.UnusedSlot80.Relay2.arith_h PD.p A.h hl
+  have hJ2 := Formalism.MainNotions.UnusedSlot80.Relay2.jumpsLe_of_win W A hA T₂ hT₂
   have hF1a := ((hF1 hCA A.h (A.M PD.p) hlt).1 T₂ hT₂c hJ2).1
   have hq : qA W ∈ W.AΔ := W.AΔ.add_mem hπ (W.AΔ.natCast_mem _)
   have hγι : ∀ z : W.DD T₂, W.map ι (W.γ T₂ z) = W.γ Y (W.map ι z) := fun z => W.map_γ ι W.gam z
@@ -655,7 +655,7 @@ theorem cutData_of [NeZero n] [IsDomain O] (hinj : Function.Injective (algebraMa
   obtain ⟨M', hM'⟩ : ∃ M', A.M PD.p = M' + 1 := ⟨A.M PD.p - 1, by have := Relay2.M_pos A PD.p; omega⟩
   set z₀ : W.DD T₂ := W.π₀ ^ M' • y'' - lA W ^ A.σ PD.p • u' c with hz₀
   have hz₀i : Formalism.MainNotions.LiftingTheory.InNΔi W T₂ c z₀ :=
-    Relay2.InNΔi_sub W T₂ c (Relay2.InNΔi_smul W T₂ c (W.AΔ.pow_mem hπ _) hy''i)
+    Relay2.InNΔi_sub W T₂ c (Formalism.MainNotions.LiftingTheory.frame_smul_mem W T₂ c (W.AΔ.pow_mem hπ _) hy''i)
       (Relay2.InNΔi_lsmul W T₂ c _ hu'i)
   have hγw' : W.γ T₂ w - w = W.π₀ • z₀ := by
     rw [hγw, hy'', hM', hz₀]

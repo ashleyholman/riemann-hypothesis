@@ -127,8 +127,6 @@ theorem io_zero : (io (0 : A) : SlopeTestRemainingChoices S A) = 0 := by simp [i
 
 theorem io_one : (io (1 : A) : SlopeTestRemainingChoices S A) = 1 := by simp [io]
 
-alias lift_reduction_mul := _root_.Formalism.FourierDecayAlt.P.Wd7.lift_reduction_mul
-
 theorem liftMatrix_one : (lift0 (1 : M2 A) : M2 (SlopeTestRemainingChoices S A)) = 1 := by
   refine Matrix.ext fun i j => ?_
   by_cases h : i = j <;> simp [lift0, Matrix.one_apply, h, io_one, io_zero]
@@ -137,7 +135,7 @@ theorem liftMatrix_list_prod (L : List (M2 A)) :
     (lift0 L.prod : M2 (SlopeTestRemainingChoices S A)) = (L.map lift0).prod := by
   induction L with
   | nil => simp [liftMatrix_one]
-  | cons M L ih => simp [lift_reduction_mul, ih]
+  | cons M L ih => simp [Formalism.FourierDecayAlt.P.Wd7.lift_reduction_mul, ih]
 
 theorem diagScalar_mul (a b : SlopeTestRemainingChoices S A) : d0 (a * b) = d0 a * d0 b := by
   simp [d0]
@@ -280,7 +278,7 @@ private theorem lift0_conjT_prod_lemma (L : List (Site A)) (Y : K) :
   induction L with
   | nil => simp [liftMatrix_one]
   | cons σ L ih =>
-    rw [List.map_cons, List.prod_cons, Matrix.conjTranspose_mul, lift_reduction_mul, ih,
+    rw [List.map_cons, List.prod_cons, Matrix.conjTranspose_mul, Formalism.FourierDecayAlt.P.Wd7.lift_reduction_mul, ih,
       List.reverse_cons, List.map_append, List.prod_append]
     simp
 

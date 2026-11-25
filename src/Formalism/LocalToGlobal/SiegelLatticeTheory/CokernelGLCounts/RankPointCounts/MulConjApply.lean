@@ -31,7 +31,7 @@ theorem mem_of_adj {l : Matrix (Fin n) (Fin n) E} (hR : ∀ a b, l a b ∈ Mp.R)
 theorem intLow_inv {l : Matrix (Fin n) (Fin n) E} (h : TieN.IntLow Mp l) : TieN.IntLow Mp l⁻¹ := by
   have hlo : IsLo l := ⟨h.1, h.2.1⟩
   have hinv := isLo_inv hlo
-  have hdet : l.det = 1 := det_lo' hlo
+  have hdet : l.det = 1 := Formalism.L2.SG.Pf.AtPt.det_lo hlo
   refine ⟨hinv.1, hinv.2, fun a b => ?_⟩
   rw [Matrix.inv_def, hdet, Ring.inverse_one, one_smul]
   exact mem_of_adj h.2.2 a b
@@ -39,7 +39,7 @@ theorem intLow_inv {l : Matrix (Fin n) (Fin n) E} (h : TieN.IntLow Mp l) : TieN.
 theorem intUp_inv {l : Matrix (Fin n) (Fin n) E} (h : TieN.IntUp Mp l) : TieN.IntUp Mp l⁻¹ := by
   have hup : IsUp l := ⟨h.1, fun a b hab => h.2.1 b a hab⟩
   have hinv := isUp_inv hup
-  have hdet : l.det = 1 := det_up' hup
+  have hdet : l.det = 1 := Formalism.L2.SG.Pf.AtPt.det_up hup
   refine ⟨hinv.1, fun a b hab => hinv.2 b a hab, fun a b => ?_⟩
   rw [Matrix.inv_def, hdet, Ring.inverse_one, one_smul]
   exact mem_of_adj h.2.2 a b
@@ -134,8 +134,8 @@ theorem locReal_ord (hA : ∀ p, Agree δ M p) (u u' : D.what₂.Word) (w : Poin
   set h := Loc.uUp w₀ η with hhdef
   have hg : IsLo g := isLo_uLow ξ
   have hh : IsUp h := isUp_uUp w₀ η
-  have hgu : IsUnit g.det := by rw [det_lo' hg]; exact isUnit_one
-  have hhu : IsUnit h.det := by rw [det_up' hh]; exact isUnit_one
+  have hgu : IsUnit g.det := by rw [Formalism.L2.SG.Pf.AtPt.det_lo hg]; exact isUnit_one
+  have hhu : IsUnit h.det := by rw [Formalism.L2.SG.Pf.AtPt.det_up hh]; exact isUnit_one
 
   obtain ⟨c, hc0, hcz⟩ := clear_at p (ι := Fin (D.R.rS + 1) × Fin (D.R.rS + 1) × Fin (D.R.rS + 1) × Bool)
     (fun k => if k.2.2.2 then fr k.1 * fri k.2.1 * g⁻¹ k.2.1 k.2.2.1 else h⁻¹ k.1 k.2.1 * fri k.2.1 * fr k.2.2.1)
@@ -220,8 +220,8 @@ theorem locReal_ord (hA : ∀ p, Agree δ M p) (u u' : D.what₂.Word) (w : Poin
     have e2 : ρ' = h * mu := by rw [hmu, ← Matrix.mul_assoc, Matrix.mul_nonsing_inv h hhu, Matrix.one_mul]
     rw [e1, e2]
     simp only [Matrix.mul_assoc]
-  have hlamu : IsUnit lam.det := by rw [det_lo' ⟨hlamI.1, hlamI.2.1⟩]; exact isUnit_one
-  have hmuu : IsUnit mu.det := by rw [det_up' ⟨hmuI.1, fun a b hab => hmuI.2.1 b a hab⟩]; exact isUnit_one
+  have hlamu : IsUnit lam.det := by rw [Formalism.L2.SG.Pf.AtPt.det_lo ⟨hlamI.1, hlamI.2.1⟩]; exact isUnit_one
+  have hmuu : IsUnit mu.det := by rw [Formalism.L2.SG.Pf.AtPt.det_up ⟨hmuI.1, fun a b hab => hmuI.2.1 b a hab⟩]; exact isUnit_one
   have h2 : Y = lam⁻¹ * (lam * Y * mu) * mu⁻¹ := by
     rw [show lam⁻¹ * (lam * Y * mu) * mu⁻¹ = (lam⁻¹ * lam) * Y * (mu * mu⁻¹) by simp only [Matrix.mul_assoc],
       Matrix.nonsing_inv_mul lam hlamu, Matrix.mul_nonsing_inv mu hmuu, Matrix.one_mul, Matrix.mul_one]

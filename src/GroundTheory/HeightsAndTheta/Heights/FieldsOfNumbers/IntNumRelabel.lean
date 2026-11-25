@@ -22,20 +22,6 @@ section Eventual
 
 variable {K₁ K₂ : Type*} (e : K₁ ≃ K₂)
 
-def precompOrderIso : (K₂ → ℤ) ≃o (K₁ → ℤ) where
-  toFun m := m ∘ e
-  invFun m := m ∘ e.symm
-  left_inv m := by funext k; simp
-  right_inv m := by funext k; simp
-  map_rel_iff' := by
-    intro a b
-    constructor
-    · intro h k
-      have := h (e.symm k)
-      simpa using this
-    · intro h k
-      exact h (e k)
-
 theorem eventualValue_congr {K K' : Type*} {f : (K → ℤ) → ℤ} {g : (K' → ℤ) → ℤ}
     (h : ∀ c, (∀ᶠ m in atTop, f m = c) ↔ ∀ᶠ m in atTop, g m = c) :
     eventualValue f = eventualValue g := by
@@ -49,16 +35,6 @@ theorem eventualValue_congr {K K' : Type*} {f : (K → ℤ) → ℤ} {g : (K' �
     exact hm1.symm.trans hm2
   · have hg : ¬ ∃ c, ∀ᶠ m in atTop, g m = c := fun ⟨c, hc⟩ => hf ⟨c, (h c).2 hc⟩
     rw [dite_eq_right hf, dite_eq_right hg]
-
-theorem eventualValue_precomp (g : (K₁ → ℤ) → ℤ) :
-    eventualValue (fun m : K₂ → ℤ => g (m ∘ e)) = eventualValue g := by
-  refine eventualValue_congr fun c => ?_
-  rw [← (precompOrderIso e).map_atTop, Filter.eventually_map]
-  rfl
-
-theorem mixedDiff_precomp {n : ℕ} (bs : Fin n → K₂ → ℤ) (h : (K₁ → ℤ) → ℤ) :
-    mixedDiff bs (fun m => h (m ∘ e)) = fun m => mixedDiff (fun i => bs i ∘ e) h (m ∘ e) := by
-  apply _root_.GroundTheory.Heights₂.Heights.FieldNumbers.RenameIntNum.mixedDiff_comp
 
 end Eventual
 
@@ -137,7 +113,7 @@ theorem intNum_map_rename (I : Ideal (MRing ι₁ F)) {n : ℕ} (bs : Fin n → 
   unfold intNum
   have h : hilbFn (I.map (renameEquiv F φ)) = fun m => hilbFn I (m ∘ e) :=
     funext (hilbFn_map_rename e φ hφ I)
-  rw [h, mixedDiff_precomp, eventualValue_precomp]
+  rw [h, GroundTheory.Heights₂.Heights.FieldNumbers.RenameIntNum.mixedDiff_comp, GroundTheory.Heights₂.Heights.FieldNumbers.RenameIntNum.eventualValue_comp]
 
 end Rename
 

@@ -93,7 +93,7 @@ theorem hostNum_of_sizes {D : D7} {L : SizeData₂ D} (P : ParameterChoice' D L)
   · exact sQD.2.2.2.2.1.trans (Real.rpow_le_rpow_of_exponent_le hx1 (by unfold szTh; linarith))
   · exact le_trans (Nat.le_floor (by exact_mod_cast a5)) L.split_tie
   · exact Nat.Coprime.mul_right (coprime_fifteen (D.host.g_prime 0) (hgl 0)) (coprime_fifteen (D.host.g_prime 1) (hgl 1))
-  · have hZ := Pm.one_le_Z L
+  · have hZ := Formalism.MainNotions.WeightFamilies.one_le_zBase L
     have h1 : zBase L ^ 12 ≤ zBase L ^ T.eP := by
       rw [← Real.rpow_natCast]
       exact Real.rpow_le_rpow_of_exponent_le hZ (by exact_mod_cast T.eP_ge)

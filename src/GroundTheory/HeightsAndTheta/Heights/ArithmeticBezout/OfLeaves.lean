@@ -836,8 +836,6 @@ alias SphereMeanLinear.full := _root_.GroundTheory.Heights₂.Heights.sphereMean
 
 theorem ChowHeightMul.full : ChowHeightMul.Statement := chowHeightMul_of_mahlerMul mahlerMul
 
-alias ChowHeightRecursion.of_leaves := _root_.GroundTheory.Heights₂.Heights.ChowHeightRecursion.proof
-
 end GroundTheory.Heights₂.Heights
 end -- clump:auto
 end -- clump:auto

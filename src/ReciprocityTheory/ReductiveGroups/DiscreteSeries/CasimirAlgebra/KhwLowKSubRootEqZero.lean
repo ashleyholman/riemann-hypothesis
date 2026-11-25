@@ -147,10 +147,6 @@ theorem wd_ind (ε : Fin n → Bool) (a b : Fin n) :
     · simp [h, lt_asymm h, he]
     · simp [h, lt_asymm h, he, Ne.symm he]
 
-theorem wd_card (p : Fin n → Prop) [DecidablePred p] :
-    ((univ.filter p).card : ℝ) = ∑ b, if p b then (1:ℝ) else 0 := by
-  rw [Finset.sum_boole]
-
 theorem wd_diag (ε : Fin n → Bool) (μ : Fin n → ℝ) :
     ∑ a, ∑ b ∈ univ.filter (fun b => wdP ε a b), (μ a - μ b) = 2 * dot μ (rhoC ε - rhoN ε) := by
   have h1 : ∀ a, ∑ b ∈ univ.filter (fun b => wdP ε a b), (μ a - μ b) =
@@ -165,7 +161,7 @@ theorem wd_diag (ε : Fin n → Bool) (μ : Fin n → ℝ) :
   have hk : ∀ b, (if wdP ε a b then μ a else 0) - (if wdP ε b a then μ a else 0) =
       μ a * ((if wdP ε a b then (1:ℝ) else 0) - (if wdP ε b a then (1:ℝ) else 0)) := by
     intro b; split_ifs <;> ring
-  simp only [hk, wd_ind, ← mul_sum, sum_sub_distrib, Pi.sub_apply, rhoC, rhoN, wd_card]
+  simp only [hk, wd_ind, ← mul_sum, sum_sub_distrib, Pi.sub_apply, rhoC, rhoN, ReciprocityTheory.ChartRestriction.DS.numRho_cardR]
   ring
 
 theorem wd_offdiag (ε : Fin n → Bool) (f : Fin n → Fin n → ℝ) :

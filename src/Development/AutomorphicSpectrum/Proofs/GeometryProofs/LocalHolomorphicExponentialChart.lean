@@ -875,14 +875,10 @@ open GlobalTheory.HolHom GlobalTheory.CompanionTheory.Ar.Flat.ExpChart
 
 variable {R C D : Type} [CommRing R] [CommRing C] [CommRing D]
 
-theorem surj_fstC (q : Sp (DualNumber C)) :
-    ∃ p : Sp C, spMap (TrivSqZeroExt.fstHom C C C).toRingHom p = q := by
-  apply GlobalTheory.CompanionTheory.Ar.InvDer.surj_fst
-
 theorem le_dual {X : Scheme.{0}} {v : Sp (DualNumber C) ⟶ X} {x : Sp C ⟶ X}
     (h : spMap (TrivSqZeroExt.fstHom C C C).toRingHom ≫ v = x) {U : X.Opens} (hx : ⊤ ≤ x ⁻¹ᵁ U) : ⊤ ≤ v ⁻¹ᵁ U := by
   intro q _
-  obtain ⟨p, rfl⟩ := surj_fstC q
+  obtain ⟨p, rfl⟩ := GlobalTheory.CompanionTheory.Ar.InvDer.surj_fst q
   subst h
   have h1 := hx (Set.mem_univ p)
   change (spMap (TrivSqZeroExt.fstHom C C C).toRingHom ≫ v) p ∈ U at h1

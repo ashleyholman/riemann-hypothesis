@@ -36,12 +36,6 @@ lemma io_one : (io (1 : A) : SlopeTestRemainingChoices S A) = 1 := by
 lemma io_comm {x y : A} (h : Commute x y) : Commute (io x : SlopeTestRemainingChoices S A) (io y) := by
   simp only [Commute, SemiconjBy, ← io_mul, h.eq]
 
-lemma io_star [StarRing A] (x : A) : star (io x : SlopeTestRemainingChoices S A) = io (star x) := by
-  unfold io
-  rw [Matrix.scalar_apply, Matrix.scalar_apply, Matrix.star_eq_conjTranspose,
-    Matrix.diagonal_conjTranspose]
-  rfl
-
 end Io
 
 section Level
@@ -126,9 +120,6 @@ lemma io_alg (c : ℂ) : (io (algebraMap ℂ A c) : SlopeTestRemainingChoices S 
 lemma hat_apply {Y : ℂ} (hY : Y ∈ f.reg) (i j : Fin 2) : f.hatT Y i j = f.F * f.TT Y i j * f.Fi := by
   simp [FrameData.hatT, hY]
 
-lemma hat_τ (hf : IsFrame L f) {Y : ℂ} (hY : Y ∈ f.reg) : f.hatT Y 1 1 = io L.GG * f.x Y := by
-  rw [hat_apply hY, hf.frame_τ Y hY, mul_assoc, hf.F_Fi, mul_one]
-
 lemma commute_x_l0 (hf : IsFrame L f) (Ya Y : ℂ) : Commute (f.x Ya) (io (L.l0 Y)) := by
   unfold LevelData.l0
   have e : (io (-L.nab - algebraMap ℂ A (Y + 1 / 2) * (L.ζb * L.GGi)) : SlopeTestRemainingChoices S A) =
@@ -137,28 +128,6 @@ lemma commute_x_l0 (hf : IsFrame L f) (Ya Y : ℂ) : Commute (f.x Ya) (io (L.l0 
   rw [e]
   exact ((hf.x_nab Ya).neg_right).sub_right ((Algebra.commute_algebraMap_right _ _).mul_right
     ((hf.x_fn Ya _ (mζb L)).mul_right (hf.x_fn Ya _ (mGGi L))))
-
-lemma star_ζb (hL : IsStarLevel L) : star L.ζb = L.ζ := by rw [← hL.1, star_star]
-
-lemma star_GG (hL : IsStarLevel L) : star L.GG = L.GG := by
-  rw [L.GG_def, star_sub, star_mul, hL.1, star_ζb hL, ← algebraMap_star_comm, hL.2.2]
-
-lemma star_GGi (hL : IsStarLevel L) : star L.GGi = L.GGi := by
-  calc star L.GGi = star L.GGi * (L.GG * L.GGi) := by rw [L.GG_GGi, mul_one]
-    _ = star (L.GG * L.GGi) * L.GGi := by rw [star_mul, star_GG hL, mul_assoc]
-    _ = L.GGi := by rw [L.GG_GGi, star_one, one_mul]
-
-lemma wt_star (hL : IsStarLevel L) : star (wt L : SlopeTestRemainingChoices S A) = wt L := by
-  unfold wt
-  rw [io_star, star_mul, star_mul, hL.1, star_ζb hL, star_GGi hL,
-    ((zc L (mGGi L) (mζ L)).mul_right (zc L (mGGi L) (mζb L))).eq]
-
-lemma c_wt (hf : IsFrame L f) : Commute f.c (wt L) := by
-  simpa [wt, io_mul] using ((hf.c_fn _ (mζ L)).mul_right (hf.c_fn _ (mζb L))).mul_right (hf.c_fn _ (mGGi L))
-
-lemma d_star (hL : IsStarLevel L) (hf : IsFrame L f) : star (f.d L) = f.d L := by
-  unfold FrameData.d
-  rw [star_mul, star_pow, wt_star hL, hf.c_star, ((c_wt hf).pow_right _).eq]
 
 lemma wti_wt : (wti L : SlopeTestRemainingChoices S A) * wt L = 1 := by
   have e : L.GG * L.ζi * L.ζbi * (L.ζ * L.ζb * L.GGi) = 1 := by
@@ -220,7 +189,7 @@ theorem ee_conjugation : Formalism.FourierDecayAlt.Fr.EeConj := by
     unfold FrameData.DD
     rw [← neg_sub Y Ya, ← neg_sub (f.ee Y) (f.ee Ya), inv_neg, smul_neg, neg_smul, neg_neg]
   unfold eta at y1
-  rw [Hl Y hY hY1, Hl Ya hYa hYa1, hη, hat_τ hf (hf.inv_reg hYa), hDD] at y1
+  rw [Hl Y hY hY1, Hl Ya hYa hYa1, hη, Formalism.FourierDecayAlt.P.Fr9.hat_τ hf (hf.inv_reg hYa), hDD] at y1
   unfold FrameData.l at y1
   refine eeConj_abs (io L.GG) (io L.GGi) (f.x Ya) (f.xi Ya) (io (L.l0 Y)) (io (L.ζb * L.GGi)) (kapL L)
     (io (L.GG * L.ζ * L.ζbi)) (f.ee Y) (f.DD Y Ya) ?_ ?_ (hf.x_xi Ya hYa).2 ?_ (commute_x_l0 hf Ya Y) ?_ ?_ ?_
@@ -245,14 +214,14 @@ theorem frame_adjoint_m : Formalism.FourierDecayAlt.Fr.FrameM := by
   have hr' : star (Y - 1) = Y - 1 := by rw [star_sub, hr, star_one]
   have hY' : Y - 1 + 1 ∈ f.inv := by rwa [sub_add_cancel]
   have adj := adjoint_l_shift_relation ℂ (SlopeTestRemainingChoices S A) f.hatT (fun Y => io L.GGi * f.xi Y) f.hatQ f.inv (f.d L) H
-    (d_star hL hf) (Y - 1) hYm hY' (hat_herm hf (hf.inv_reg hYm) hr')
+    (Formalism.FourierDecayAlt.P.Fr9.star_d hL hf) (Y - 1) hYm hY' (hat_herm hf (hf.inv_reg hYm) hr')
   rw [Hl (Y - 1) hYm hY', sub_add_cancel] at adj
   have hm : mf f.hatT (fun Y => io L.GGi * f.xi Y) Y = f.m L Y := by
     unfold FrameData.m
     rw [mul_assoc, ← adj, ← mul_assoc, di_d hf, one_mul]
   have hτ : io L.GG * f.x Y * (io L.GGi * f.xi Y) = 1 := by
     have := (H.2.2.2.1 Y hY).1
-    rwa [hat_τ hf (hf.inv_reg hY)] at this
+    rwa [Formalism.FourierDecayAlt.P.Fr9.hat_τ hf (hf.inv_reg hY)] at this
   rw [← hm]
   unfold mf
   rw [← mul_assoc (io L.GG * f.x Y), hτ, one_mul, hat_apply (hf.inv_reg hY), mul_assoc, hf.Fi_F, mul_one]

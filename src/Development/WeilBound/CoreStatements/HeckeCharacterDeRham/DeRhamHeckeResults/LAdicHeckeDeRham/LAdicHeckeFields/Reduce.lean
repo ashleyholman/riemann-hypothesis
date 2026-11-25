@@ -1695,7 +1695,7 @@ theorem lubinTate_at_embedding (HP : LTPeriods) : ∀ {E Ω : Type} [Field E] [N
   have hper := HP P AI hT Bw.Kw χ hχ hc
   have hsplit : ∀ (μ : ↥Bw.Kw.1 →ₐ[ℚ_[l]] Om l) (x : ↥Bw.Kw.1), μ x ∈ LL'.1 :=
     fun μ x => hLL (Bw.LL_split μ x)
-  obtain ⟨hd, hm⟩ := GlobalTheory.T.de_rham_rank_lubin_tate_line P AI hT Bw.Kw LL' hsplit χ hper τ
+  obtain ⟨hd, hm⟩ := GlobalTheory.CompanionTheory.LTRead.jumps_of_periods P AI hT Bw.Kw LL' hsplit χ hper τ
   set ψ : ↥(GK Bw.Kw) →* (↥LL'.1)ˣ := (Units.map ((τ : ↥Bw.Kw.1 →+* ↥LL'.1) : ↥Bw.Kw.1 →* ↥LL'.1)).comp χ with hψ
   have hnorm : ∀ x : ↥Bw.Kw.1, ‖((τ x : ↥LL'.1) : Om l)‖ = ‖(x : Om l)‖ := fun x =>
     GlobalTheory.CompanionTheory.EmbUniq.norm_coe_algHom τ x

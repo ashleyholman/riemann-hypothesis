@@ -561,11 +561,6 @@ namespace GroundTheory.Heights₂.Heights.NumbersDVR
 
 universe u
 
-private theorem mem_minimalPrimes_of_locCycle_ne_zero {S : Type*} [CommRing S] {J W : Ideal S}
-    (h : locCycle J W ≠ 0) : W ∈ J.minimalPrimes := by
-  by_contra hc
-  exact h (by unfold locCycle; rw [dite_eq_right hc])
-
 theorem LocalCoeffRing.proof (h₁ : LocalQuotRing.Statement.{u}) (h₂ : LocalQuotPrimes.Statement.{u})
     (h₃ : LocCycleLocalQuot.Statement.{u}) (h₄ : LocalQuotColon.Statement.{u})
     (h₅ : LocalQuotFinsum.Statement.{u}) (h₆ : LocalCoeffLocal.Statement.{u}) :
@@ -576,9 +571,9 @@ theorem LocalCoeffRing.proof (h₁ : LocalQuotRing.Statement.{u}) (h₂ : LocalQ
   have := hdom
   have := hloc
   obtain ⟨hup, hdown⟩ := h₂ R P U hPU
-  have hmin := fun {J W : Ideal R} (h : locCycle J W ≠ 0) => mem_minimalPrimes_of_locCycle_ne_zero h
+  have hmin := fun {J W : Ideal R} (h : locCycle J W ≠ 0) => GroundTheory.Heights₂.Heights.NumbersDVR.mem_minimalPrimes_of_locCycle_ne_zero' h
   have hmin' := fun {J W : Ideal (localQuot P U)} (h : locCycle J W ≠ 0) =>
-    mem_minimalPrimes_of_locCycle_ne_zero h
+    GroundTheory.Heights₂.Heights.NumbersDVR.mem_minimalPrimes_of_locCycle_ne_zero' h
 
   have hm : IsLocalRing.maximalIdeal (localQuot P U) = U.map (localQuotMap P U) := by
     ext y

@@ -30,7 +30,7 @@ theorem side0Pos_of (hW : PartialBesselProperness.PbWords) (hPr : ProperLeftVari
   obtain ⟨hab, rfl⟩ := hh
   have hjr : D.ptSize h ≤ P.r := by omega
   have e0 : D.ptSize h + (P.r - D.ptSize h) = P.r := by omega
-  have hd : ∀ q, D.ptDiag h q ≠ 0 := fun q => Formalism.FourierDecayAlt.P.JCTx6.Link2.ptScal_ne h hab q q.2
+  have hd : ∀ q, D.ptDiag h q ≠ 0 := fun q => Formalism.FourierDecayAlt.P.Dx1.Rel.scal_ne h hab q q.2
   have hT := p.hT
   obtain ⟨R, hR⟩ := hF.2.1
 

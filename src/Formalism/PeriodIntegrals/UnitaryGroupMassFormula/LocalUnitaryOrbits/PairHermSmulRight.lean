@@ -81,7 +81,7 @@ theorem pair_int (hcm : IsCMExt F E σ) {a : ℕ} {S T : HermR (Fv F v) σ a} (h
   set u := ∑ p, ∑ q, (S : Matrix (Fin a) (Fin a) (Fv F v ⊗[F] E)) p q * (T : Matrix (Fin a) (Fin a) _) q p
     with hudef
   have hu : u ∈ OEv (E := E) v :=
-    sum_mem fun p _ => sum_mem fun q _ => b_mul_mem v (hS p q) (hT q p)
+    sum_mem fun p _ => sum_mem fun q _ => PI.OmLocU.oEv_mul v (hS p q) (hT q p)
   have hfix : sigR (Fv F v) σ u = u := by
 
     rw [hudef, map_sum]

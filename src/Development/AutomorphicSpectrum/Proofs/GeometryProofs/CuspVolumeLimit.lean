@@ -67,7 +67,7 @@ theorem eig_of_isDiff {X : Scheme.{0}} {G : Over X} [GrpObj G] {z : Sp ℂ ⟶ X
     exact isTangent_lft hpb (isTanAt_comp f₀ hv)
   have key : GlobalTheory.CMCurveTest.scaleVec c v' = v' ≫ f := (lft_unique hpb e2).trans (lft_unique hpb e1).symm
   rw [key] at d2
-  exact eq_of_isDiff u t₂ d1 d2
+  exact GlobalTheory.CompanionTheory.Ar.HodgeUnique.eq_of_isDiff u t₂ d1 d2
 
 section LinAlg
 

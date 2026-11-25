@@ -80,13 +80,9 @@ theorem twT_ee (ε : Fin n → Bool) (E : Fin n → Fin n → Module.End ℂ M) 
   congr 1
   linear_combination (-sg ε (Fin.rev d)) * sg_sq ε (Fin.rev c)
 
-theorem mem_Xs {A : Module.End ℂ (Fin n → M)} {S : Submodule ℂ M} {θ : ℝ} {f : Fin n → M} :
-    f ∈ Xs A S θ ↔ (∀ c, f c ∈ S) ∧ A f = ((θ : ℝ) : ℂ) • f := by
-  simp [Xs, Submodule.mem_inf, Submodule.mem_pi, LinearMap.mem_ker, sub_eq_zero]
-
 theorem xs_tw {ε : Fin n → Bool} {E : Fin n → Fin n → Module.End ℂ M} {S : Submodule ℂ M} {θ : ℝ}
     {f : Fin n → M} (h : f ∈ Xs (eeVd E) S θ) : twT ε f ∈ Xs (eeV (twE ε E)) S θ := by
-  rw [mem_Xs] at h ⊢
+  rw [ReciprocityTheory.ChartRestriction.DS.Lap.LemK.mem_eigenTensorSpace_iff] at h ⊢
   refine ⟨fun c => ?_, ?_⟩
   · rw [twT_apply]; exact S.smul_mem _ (h.1 _)
   · rw [twT_ee, h.2, map_smul]

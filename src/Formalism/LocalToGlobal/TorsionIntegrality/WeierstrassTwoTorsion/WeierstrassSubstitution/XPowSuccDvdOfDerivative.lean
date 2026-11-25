@@ -36,8 +36,6 @@ theorem X_pow_succ_dvd_of_derivative
     rw [mul_comm]
     exact_mod_cast hk
 
-alias eq_zero_of_forall_X_pow_dvd := _root_.Formalism.ELL.WeierstrassSeriesLimit.eq_zero_of_forall_X_pow_dvd
-
 end Unique
 
 end Nn

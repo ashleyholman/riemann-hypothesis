@@ -146,7 +146,7 @@ theorem poin_of (hL : LocStatement (E := E)) (hB : BallStatement (E := E)) (hF :
     exact Summable.of_nonneg_of_le (fun _ => norm_nonneg _)
       (fun γ => (hterm γ x).le.trans (hub γ x (Metric.mem_ball_self hε))) hu
   · unfold poin
-    refine differentiableOn_tsum_loc (isOpenDom X) _ (fun γ => ?_) (fun x hx => ?_)
+    refine differentiableOn_tsum_loc (ReciprocityTheory.ChartRestriction.G.FD.FourierCoefficientDomain.isOpen_dom X) _ (fun γ => ?_) (fun x hx => ?_)
     · exact (differentiableOn_const _).mul
         (hP.1.comp (differentiable_lact γ.1).differentiableOn fun y hy => lactDom X γ.2 hy)
     · obtain ⟨ε, hε, u, hu, hub⟩ := hL r X x0 la W bb F P H x hx

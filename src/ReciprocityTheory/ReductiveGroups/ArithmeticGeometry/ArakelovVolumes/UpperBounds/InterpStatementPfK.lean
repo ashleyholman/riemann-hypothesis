@@ -45,11 +45,6 @@ theorem lact_one (x : Frame X.Ψ r) : lact (1 : GL (Fin r) E) x = x := by
   rw [Units.val_one, Matrix.map_one _ (map_zero τ.1) (map_one τ.1), Matrix.one_mul]
   rfl
 
-theorem cpt_lact (γ : GL (Fin r) E) (x : Frame X.Ψ r) (z : V (nd X)) :
-    cpt X (lact γ x) z = lact γ (cpt X x z) := by
-  funext τ
-  exact Matrix.mul_assoc ((γ : Matrix (Fin r) (Fin r) E).map τ.1) (mat x τ) (mat (nmat X z) τ)
-
 def sig (w0 : Frame X.Ψ r → ℂ) (s : Fin (nd X) → Frame X.Ψ r → ℂ) (x : Frame X.Ψ r) : V (nd X) :=
   WithLp.toLp 2 fun k => s k x / w0 x
 

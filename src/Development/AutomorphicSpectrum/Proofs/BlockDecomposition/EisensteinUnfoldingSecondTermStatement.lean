@@ -542,8 +542,6 @@ namespace GlobalTheory.CompanionTheory.EisUnfold.Period
 
 variable {D : D7}
 
-alias rat_sub' := _root_.GlobalTheory.MixModel.rat_sub
-
 theorem psi_inner_rat {ψ : AddChar (AF D.host.F) ℂ} (hψ : IsCharAF D.host.F ψ) (V : HSp D) {s : ℕ}
     (q q₀ : Matrix (Fin V.rank) (Fin s) D.host.E) :
     ψ (trA (Matrix.trace (inner V (rat q) (rat q₀)))) = 1 := by
@@ -571,8 +569,8 @@ theorem term_shift {ψ : AddChar (AF D.host.F) ℂ} (hψ : IsCharAF D.host.F ψ)
     (p p₀ : Matrix (Fin V.rank) (Fin r) D.host.E) (q q₀ : Matrix (Fin V.rank) (Fin s) D.host.E)
     (y₁ : Mx D V.rank r) (y₂ : Mx D V.rank s) :
     cellTerm ψ V b a Φ p q (y₁ + rat p₀) (y₂ + rat q₀) = cellTerm ψ V b a Φ (p - p₀) q y₁ y₂ := by
-  have e₁ : y₁ + rat p₀ - rat p = y₁ - rat (p - p₀) := by rw [rat_sub']; abel
-  have e₂ : rat p - (y₁ + rat p₀) = rat (p - p₀) - y₁ := by rw [rat_sub']; abel
+  have e₁ : y₁ + rat p₀ - rat p = y₁ - rat (p - p₀) := by rw [GlobalTheory.MixModel.rat_sub]; abel
+  have e₂ : rat p - (y₁ + rat p₀) = rat (p - p₀) - y₁ := by rw [GlobalTheory.MixModel.rat_sub]; abel
   have e₃ : ψ (trA (Matrix.trace (inner V (rat q) (y₂ + rat q₀)))) =
       ψ (trA (Matrix.trace (inner V (rat q) y₂))) := by
     rw [inner_add_right', Matrix.trace_add, trA_add', AddChar.map_add_eq_mul, psi_inner_rat hψ, mul_one]

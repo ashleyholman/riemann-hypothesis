@@ -38,10 +38,6 @@ theorem herm_zero_of_lieW {ζ : B.Mat k r} (hζ : B.inLie k r ζ) (z : Fin (2 * 
 end
 
 end Formalism.FourierDecayAlt.P.CutMP.JfS.Sym
-
-namespace Formalism.FourierDecayAlt.P.CutMP.JfS
-
-end Formalism.FourierDecayAlt.P.CutMP.JfS
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.CutJfSSymbolW =====

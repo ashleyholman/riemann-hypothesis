@@ -466,12 +466,6 @@ theorem entry_of_inG {ε : Fin n → Bool} {Y : Matrix (Fin n) (Fin n) ℂ} (h :
   have h' := congrFun (congrFun (show Yᴴ * Jm ε + Jm ε * Y = 0 from h) i) j
   simpa [Jm, sg, Matrix.mul_diagonal, Matrix.diagonal_mul, Matrix.conjTranspose_apply] using h'
 
-theorem inG_of_entry' {ε : Fin n → Bool} {Y : Matrix (Fin n) (Fin n) ℂ}
-    (h : ∀ i j, star (Y j i) * sg ε j + sg ε i * Y i j = 0) : inG ε Y := by
-  show Yᴴ * Jm ε + Jm ε * Y = 0
-  ext i j
-  simpa [Jm, sg, Matrix.mul_diagonal, Matrix.diagonal_mul, Matrix.conjTranspose_apply] using h i j
-
 def cLin (ε : Fin n → Bool) : Matrix (Fin n) (Fin n) ℂ →ₗ[ℝ] GCo ε where
   toFun Y := ((fun a => (Y a a).im, fun ab => Y ab.1.1 ab.1.2), fun ab => Y ab.1.1 ab.1.2)
   map_add' _ _ := by
@@ -525,35 +519,6 @@ theorem gMat_cLin {ε : Fin n → Bool} {Y : Matrix (Fin n) (Fin n) ℂ} (h : in
     have h2 : ¬ a < b := not_lt_of_gt hab
     cases ha : ε a <;> cases hb : ε b <;> simp [h1, h2, hab]
 
-theorem sg_eq {ε : Fin n → Bool} {i j : Fin n} (h : ε i = ε j) : sg ε i = sg ε j := by
-  simp [sg, h]
-
-theorem sg_ne {ε : Fin n → Bool} {i j : Fin n} (h : ¬ ε i = ε j) : sg ε i = -sg ε j := by
-  unfold sg
-  cases hi : ε i <;> cases hj : ε j <;> simp_all
-
-theorem inG_gMat {ε : Fin n → Bool} (s : GCo ε) : inG ε (gMat s) := by
-  apply inG_of_entry'
-  intro i j
-  obtain ⟨⟨d, k⟩, p⟩ := s
-  simp only [gMat, kMat, pmat, Matrix.add_apply]
-  rcases lt_trichotomy i j with hij | rfl | hij
-  · have h1 : i ≠ j := ne_of_lt hij
-    have h2 : ¬ j < i := not_lt_of_gt hij
-    by_cases hε : ε i = ε j
-    · simp [hε, h1, h1.symm, h2, hij, sg_eq hε]
-      ring
-    · simp [hε, Ne.symm hε, h1, h1.symm, h2, hij, sg_ne hε]
-      ring
-  · simp <;> ring
-  · have h1 : i ≠ j := ne_of_gt hij
-    have h2 : ¬ i < j := not_lt_of_gt hij
-    by_cases hε : ε i = ε j
-    · simp [hε, h1, h1.symm, h2, hij, sg_eq hε]
-      ring
-    · simp [hε, Ne.symm hε, h1, h1.symm, h2, hij, sg_ne hε]
-      ring
-
 end ReciprocityTheory.ChartRestriction.DS.HPol
 end -- clump:auto
 end -- clump:auto
@@ -600,7 +565,7 @@ def gLin (ε : Fin n → Bool) : GCo ε →ₗ[ℝ] Matrix (Fin n) (Fin n) ℂ w
 theorem inUJ_pol {ε : Fin n → Bool} (s : GCo ε) :
     inUJ ε (NormedSpace.exp (kMat s.1) * NormedSpace.exp (pmat s.2)) := by
   rw [← gMat_fst, ← gMat_snd]
-  exact ReciprocityTheory.ChartRestriction.DS.pact_inUJ_mul (exp_inUJ (inG_gMat _)) (exp_inUJ (inG_gMat _))
+  exact ReciprocityTheory.ChartRestriction.DS.pact_inUJ_mul (exp_inUJ (ReciprocityTheory.ChartRestriction.DS.HExp.gMat_inG _)) (exp_inUJ (ReciprocityTheory.ChartRestriction.DS.HExp.gMat_inG _))
 
 def Lm {ε : Fin n → Bool} (s : GCo ε) : GCo ε :=
   cLin ε (logM n (NormedSpace.exp (kMat s.1) * NormedSpace.exp (pmat s.2)))
@@ -1297,8 +1262,6 @@ private theorem isClosedEmbedding_coe_of_mem_iff_conjTranspose_Jm_mul_eq (ε : F
     exact (continuous_id.matrix_conjTranspose.matrix_mul continuous_const).matrix_mul continuous_id
   exact isClosed_eq hq continuous_const
 
-alias toM_emb := _root_.ReciprocityTheory.ChartRestriction.DS.measurableEmbedding_toM
-
 lemma umat_emb (ε : Fin n → Bool) :
     MeasurableEmbedding (β := Fin n → Fin n → ℂ) (fun g : Formalism.REAL.UJ ε => Formalism.MainNotions.S.umat g) := by
   have h := isClosedEmbedding_coe_of_mem_iff_conjTranspose_Jm_mul_eq ε (Formalism.REAL.UJ ε) (fun g => Iff.rfl)
@@ -1318,13 +1281,13 @@ lemma key (cd : Formalism.BasicNotions.CDHaar) {P Q : ℕ} (e : Fin P ⊕ Fin Q 
   refine ⟨(s : ENNReal), ENNReal.coe_ne_top, fun E => ?_⟩
   have hemb : MeasurableEmbedding (β := Fin n → Fin n → ℂ)
       (fun g : Formalism.BasicNotions.UpqT P Q => Matrix.reindex e e (Formalism.BasicNotions.UpqT.mat g)) :=
-    (toM_emb ε).comp (psiM e he1 he2).measurableEmbedding
+    (ReciprocityTheory.ChartRestriction.DS.measurableEmbedding_toM ε).comp (psiM e he1 he2).measurableEmbedding
   have h1 : cd.cd P Q E = Measure.map (psiM e he1 he2) (cd.cd P Q) (psiM e he1 he2 '' E) := by
     rw [MeasurableEquiv.map_apply, Set.preimage_image_eq _ (psiM e he1 he2).injective]
   have h2 : muPolar ε (psiM e he1 he2 '' E) =
       muPolarMat ε ((fun g : Formalism.BasicNotions.UpqT P Q => Matrix.reindex e e (Formalism.BasicNotions.UpqT.mat g)) '' E) := by
     unfold muPolar
-    rw [(toM_emb ε).comap_apply]
+    rw [(ReciprocityTheory.ChartRestriction.DS.measurableEmbedding_toM ε).comap_apply]
     exact congrArg (muPolarMat ε) (Set.image_image _ _ _)
   have h3 : muCDtr e ε E = ENNReal.ofReal (cPQ ε) *
       muPolarMat ε ((fun g : Formalism.BasicNotions.UpqT P Q => Matrix.reindex e e (Formalism.BasicNotions.UpqT.mat g)) '' E) := by
@@ -1446,7 +1409,7 @@ theorem muCD_eq_cd_vol (cd : Formalism.BasicNotions.CDHaar) {P Q : ℕ} (e : Fin
   rw [(ENNReal.mul_right_inj hc0 ENNReal.ofReal_ne_top).1 hE]
   have hemb : MeasurableEmbedding (β := Fin n → Fin n → ℂ)
       (fun g : Formalism.BasicNotions.UpqT P Q => Matrix.reindex e e (Formalism.BasicNotions.UpqT.mat g)) :=
-    (toM_emb ε).comp (psiM e he1 he2).measurableEmbedding
+    (ReciprocityTheory.ChartRestriction.DS.measurableEmbedding_toM ε).comp (psiM e he1 he2).measurableEmbedding
   have himg : (fun g : Formalism.BasicNotions.UpqT P Q => Matrix.reindex e e (Formalism.BasicNotions.UpqT.mat g)) '' E =
       (fun g : Formalism.REAL.UJ ε => Formalism.MainNotions.S.umat g) '' A := by
     ext M

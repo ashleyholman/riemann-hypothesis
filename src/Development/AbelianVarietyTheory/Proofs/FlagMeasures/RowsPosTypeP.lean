@@ -667,7 +667,7 @@ theorem pairsPar : ∀ (Ca Cg cb Cw cT CT C0 C' Cl : ℝ) (D : D7) (large₂ : S
         _ ≤ D.R.k := h2
     exact_mod_cast this
   · rw [hvI]
-    have hrd : 0 < D.host.rdE := pf_rd_pos D
+    have hrd : 0 < D.host.rdE := Formalism.MainNotions.S.rdE_pos D
     have hL0 : 0 < large₂.sc.L := by linarith
     have h1 : Real.log D.host.rdE ≤ large₂.sc.L := by
       refine h11.trans ?_

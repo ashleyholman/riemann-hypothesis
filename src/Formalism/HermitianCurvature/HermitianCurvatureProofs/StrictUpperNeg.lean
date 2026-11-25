@@ -66,7 +66,7 @@ theorem upper_utInv {m : ℕ} (u : G.UT m → ℂ) : G.upper (utInv m u) = (G.up
 
 theorem utInv_eQ {j : ℕ} (p : (G.UT j → ℂ) × (Fin j → ℂ)) :
     utInv (j + 1) (eQ j p) = eQ j (utInv j p.1, -((G.upper p.1)⁻¹ *ᵥ p.2)) := by
-  have hu1 : IsUnit (G.upper p.1).det := by rw [StabilizerDisintegration.UC.det_UT (StabilizerDisintegration.UC.upper_mem _)]; exact isUnit_one
+  have hu1 : IsUnit (G.upper p.1).det := by rw [Formalism.FourierDecayAlt.P.C2x2.ut_det (StabilizerDisintegration.UC.upper_mem _)]; exact isUnit_one
   have hprod : G.upper (eQ j (utInv j p.1, -((G.upper p.1)⁻¹ *ᵥ p.2))) * G.upper (eQ j p) = 1 := by
     ext a b
     rw [Matrix.mul_apply, Fin.sum_univ_castSucc]
@@ -97,7 +97,7 @@ theorem utInv_mp : ∀ m : ℕ, MeasurePreserving (utInv m) volume volume
     have hA : ∀ u1 : G.UT j → ℂ, ‖(-(G.upper u1)⁻¹).det‖ = 1 := by
       intro u1
       have hu := upper_inv_mem u1
-      rw [Matrix.det_neg, StabilizerDisintegration.UC.det_UT hu, mul_one]
+      rw [Matrix.det_neg, Formalism.FourierDecayAlt.P.C2x2.ut_det hu, mul_one]
       simp
     have hg : MeasurePreserving (fun p : (G.UT j → ℂ) × (Fin j → ℂ) => (utInv j p.1, -((G.upper p.1)⁻¹ *ᵥ p.2)))
         volume volume := by
@@ -108,7 +108,7 @@ theorem utInv_mp : ∀ m : ℕ, MeasurePreserving (utInv m) volume volume
             have : (fun p : (G.UT j → ℂ) × (Fin j → ℂ) => (G.upper p.1)⁻¹) =
                 fun p => (G.upper p.1).adjugate := by
               funext p
-              rw [Matrix.inv_def, StabilizerDisintegration.UC.det_UT (StabilizerDisintegration.UC.upper_mem _)]; simp
+              rw [Matrix.inv_def, Formalism.FourierDecayAlt.P.C2x2.ut_det (StabilizerDisintegration.UC.upper_mem _)]; simp
             rw [this]
             exact (StabilizerDisintegration.UC.cont_upper.comp continuous_fst).matrix_adjugate
           exact (h1.matrix_mulVec continuous_snd).neg
@@ -230,7 +230,7 @@ theorem muN_rev (j : ℕ) : D.muN k (j + 0) = ((U.muRC k j 0).prod (volume : Mea
     negRC_mp.prod (utInv_mp j)
   have e : (B2.invM ∘ psiF k j) = psiR k j ∘ (fun p : U.RC k j 0 × (G.UT j → ℂ) => (-p.1, utInv j p.2)) := by
     funext p
-    have hu : IsUnit (G.upper p.2).det := by rw [StabilizerDisintegration.UC.det_UT (StabilizerDisintegration.UC.upper_mem _)]; exact isUnit_one
+    have hu : IsUnit (G.upper p.2).det := by rw [Formalism.FourierDecayAlt.P.C2x2.ut_det (StabilizerDisintegration.UC.upper_mem _)]; exact isUnit_one
     show Matrix.of.symm ((Matrix.of (Matrix.of.symm (U.Rn k j 0 p.1 * U.muP k j 0 (G.upper p.2))))⁻¹) =
       Matrix.of.symm (U.muP k j 0 (G.upper (utInv j p.2)) * U.Rn k j 0 (-p.1))
     rw [show Matrix.of (Matrix.of.symm (U.Rn k j 0 p.1 * U.muP k j 0 (G.upper p.2))) =

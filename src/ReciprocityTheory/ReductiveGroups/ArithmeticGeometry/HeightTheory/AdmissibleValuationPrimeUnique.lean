@@ -536,7 +536,6 @@ section -- clump:auto
 
 open NumberField
 
-alias HtGaussUniq := _root_.GaussValuationUniqueness.admissibleValuation_prime_subsingleton
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.GaussHeights.GaussUniqueness.GaussUniquenessStatements.GaussUniquenessTheorem.HtGaussUniq =====
@@ -564,7 +563,7 @@ variable (d : Data K ι Ω WT A)
 theorem AdmissibleValuationPrimeUnique (hd : d.AxH 𝒜) (h : d.S1) (c : ι) :
     ∀ v : AddValuation (Ω c) (WithTop ℤ), d.admitted c v → IsTrivOn K v →
       {p | p ∈ d.HtOne ∧ ∃ w ∈ d.GoodP c p, d.Wres c w = v}.Subsingleton :=
-  HtGaussUniq 𝒜 d hd h c
+  GaussValuationUniqueness.admissibleValuation_prime_subsingleton 𝒜 d hd h c
 
 theorem GeneratorMultiHomogeneous (hd : d.AxH 𝒜) (h : d.S1) (c : ι) :
     ∀ p ∈ d.HtOne, (∃ w, w ∈ d.GoodP c p) →

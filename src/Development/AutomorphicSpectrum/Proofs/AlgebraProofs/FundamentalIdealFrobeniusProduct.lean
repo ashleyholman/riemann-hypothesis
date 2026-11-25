@@ -115,12 +115,6 @@ section -- clump:auto
 
 open scoped Matrix TensorProduct
 open Matrix
-
-namespace GlobalTheory.CompanionTheory.Ar.GR
-
-alias frobeniusChain_carry := _root_.PositivityTheory.HtPt.Ra.carry
-
-end GlobalTheory.CompanionTheory.Ar.GR
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AutomorphicSpectrum.Proofs.AlgebraProofs.FrobeniusChainCarry =====
@@ -251,7 +245,7 @@ theorem _root_.GlobalTheory.CompanionTheory.Relay.fundamental_ideal_frobenius_pr
     rw [pow_eq_pow_iff_modEq, hord, pow_add]
     have : p ^ f ≡ 1 [MOD (p ^ f - 1)] := ((Nat.modEq_iff_dvd' hq).2 dvd_rfl).symm
     simpa using this.mul_left (p ^ n)
-  have hcarry := frobeniusChain_carry p f hp2 hf0 (fun n => v (algebraMap R C (c n)))
+  have hcarry := PositivityTheory.HtPt.Ra.carry p f hp2 hf0 (fun n => v (algebraMap R C (c n)))
     (fun n => v_eq_of_span hv (by rw [← hc, ← hc, hper])) (fun n => hv.map_le_one _)
     (fun n => by simpa only [map_pow] using v_le_of_mem hv (hdvd n))
   choose c' hc'0 hc' using fun m : ℕ => (hprin (σ ^ m)).1

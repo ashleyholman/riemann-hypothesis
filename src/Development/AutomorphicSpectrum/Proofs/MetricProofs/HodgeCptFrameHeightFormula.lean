@@ -582,11 +582,6 @@ open Matrix
 
 namespace GlobalTheory.CompanionTheory.Metric.UnitMinor
 
-theorem det_mul_expand {K : Type*} [CommRing K] {a n : ℕ}
-    (P : Matrix (Fin a) (Fin n) K) (Q : Matrix (Fin n) (Fin a) K) :
-    (P * Q).det = ∑ J : Fin a → Fin n, (∏ l, P l (J l)) * (Q.submatrix J id).det :=
-  _root_.Bl.general_b_fact.goal1 P Q
-
 theorem mul_submatrix_castLE {Φ : Type*} [CommRing Φ] {n r a : ℕ} (ha : a ≤ r)
     (Fm : Matrix (Fin n) (Fin r) Φ) (U : Matrix (Fin r) (Fin r) Φ)
     (hU : U.BlockTriangular id) {m : Type*} (J : m → Fin n) :
@@ -675,7 +670,7 @@ theorem unit_minor : ∀ (Φ : Type) [Field Φ] (R : Subring Φ) (n r : ℕ) (Fm
   have hρR : ρ ∈ R :=
     R.sum_mem fun J _ => R.mul_mem (R.prod_mem fun l _ => hC _ _) (hratio J)
   have hone : w * ρ = 1 := by
-    have h1 := det_mul_expand (C.submatrix (Fin.castLE ha) id) (B.submatrix id (Fin.castLE ha))
+    have h1 := Bl.general_b_fact.goal1 (C.submatrix (Fin.castLE ha) id) (B.submatrix id (Fin.castLE ha))
     rw [hprod, Matrix.det_one] at h1
     rw [h1, hρ, Finset.mul_sum]
     refine Finset.sum_congr rfl fun J _ => ?_

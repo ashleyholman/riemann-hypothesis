@@ -590,11 +590,6 @@ theorem simeq_refl' {ι : Type} [Finite ι] (f : MvPowerSeries ι (K0 p)) : Sime
   refine ⟨by rw [sub_self, map_zero], 0, map_zero _, ?_⟩
   rw [sub_self, inParam_zero, expS_zero', map_zero, add_zero]
 
-theorem cc_be {be : MvPowerSeries (Fin 2) (K0 p)} (hB : BeProp p be) : MvPowerSeries.constantCoeff be = 0 := by
-  by_contra h
-  have := hB.ab 0 (by rwa [MvPowerSeries.coeff_zero_eq_constantCoeff_apply])
-  simp at this
-
 theorem constantCoeff_sub2_eq_zero {τ : Type} {be : MvPowerSeries (Fin 2) (K0 p)} (h0 : MvPowerSeries.constantCoeff be = 0)
     (x y : MvPowerSeries τ (K0 p)) (hx : MvPowerSeries.constantCoeff x = 0) (hy : MvPowerSeries.constantCoeff y = 0) :
     MvPowerSeries.constantCoeff (sub2 p be x y) = 0 := by
@@ -611,7 +606,7 @@ theorem cc_sumBe {ι : Type} [Fintype ι] {be : MvPowerSeries (Fin 2) (K0 p)} (h
 
 theorem first_kernel_of_sum : FirstKernelGeneratorOfSum := by
   intro p _ ι _ K1 _ _ R1 be Th hB hE hI
-  have h0 := cc_sumBe (ι := ι) (cc_be hB)
+  have h0 := cc_sumBe (ι := ι) (Formalism.MainNotions.FormalGroupSystem.Pf.th_be_const hB)
   refine ⟨sumBe p be, Th * MvPowerSeries.map (algebraMap (K0 p) K1) (expS p (sumBe p be)), ?_, hI, hE, hB,
     simeq_refl' _⟩
   rw [mul_left_comm, ← map_mul, expS_neg_mul _ h0, map_one, mul_one]

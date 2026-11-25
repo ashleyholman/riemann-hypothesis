@@ -93,10 +93,6 @@ theorem det_gram_nonneg {ι : Type*} [Fintype ι] [DecidableEq ι] (w : ι → V
     0 ≤ det (gram ℂ w) :=
   (posSemidef_gram ℂ w).det_nonneg
 
-theorem im_det_gram {ι : Type*} [Fintype ι] [DecidableEq ι] (w : ι → V) :
-    (det (gram ℂ w)).im = 0 :=
-  ((Complex.nonneg_iff.mp (det_gram_nonneg w)).2).symm
-
 theorem det_gram_re_nonneg {ι : Type*} [Fintype ι] [DecidableEq ι] (w : ι → V) :
     0 ≤ (det (gram ℂ w)).re :=
   (Complex.nonneg_iff.mp (det_gram_nonneg w)).1
@@ -171,7 +167,7 @@ theorem re_det_gram_sumElim_ge {ι κ : Type*} [Fintype ι] [DecidableEq ι] [Fi
       (det (gram ℂ (Sum.elim v u))).re := by
   set U := Submodule.span ℂ (Set.range v)
   have hUW : U ≤ W := Submodule.span_le.mpr (Set.range_subset_iff.mpr hv)
-  rw [det_gram_sumElim_eq, Complex.mul_re, im_det_gram v, zero_mul, sub_zero]
+  rw [det_gram_sumElim_eq, Complex.mul_re, GroundTheory.Heights₂.Heights.det_gram_im v, zero_mul, sub_zero]
   refine mul_le_mul_of_nonneg_left ?_ (det_gram_re_nonneg v)
   have hQ : (fun j ↦ Wᗮ.starProjection (u j)) =
       fun j ↦ Wᗮ.starProjection (u j - U.starProjection (u j)) := by

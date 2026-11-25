@@ -871,7 +871,7 @@ theorem ramShare_of_freeT {D : D7} {u : D.what₂.Word} (W : Formalism.MainNotio
 
 theorem ramShare_of_trueD (D : D7) (u : D.what₂.Word) (hD : TrueD D) : RamShare D u :=
   TrueD.elim (Q := fun D => ∀ u : D.what₂.Word, RamShare D u)
-    (fun _ _ _ _ _ w u => ramShare_of_freeT (Formalism.L2.GlobalTheoryTheory.LocalLatticeBases.freeT_0 (w.C.forms u).to0).some) hD u
+    (fun _ _ _ _ _ w u => ramShare_of_freeT (Formalism.L2.GlobalTheoryTheory.LocalLatticeBases.S0.freeT_tied (w.C.forms u).to0).some) hD u
 
 end GlobalTheory.Core.Rk
 end -- clump:auto

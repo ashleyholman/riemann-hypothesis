@@ -754,10 +754,6 @@ open Matrix TensorProduct ReciprocityTheory.ChartRestriction.DS ReciprocityTheor
 
 variable {n : ℕ} {ε : Fin n → Bool}
 
-theorem sp_blk_surj' (ε : Fin n → Bool) (c : Bool) (a : Fin n) (h : ε a = c) : ∃ r, blk ε c r = a := by
-  subst h
-  exact sp_blk_surj ε a
-
 theorem sp_tens_ne (Λ' : Fin n → ℝ) (T1 : KType (fun _ : Fin (cnt ε true) => true) (fun r => Λ' (blk ε true r)))
     (T2 : KType (fun _ : Fin (cnt ε false) => true) (fun r => Λ' (blk ε false r))) :
     (T1.w ⊗ₜ[ℂ] T2.w) ≠ 0 := by
@@ -771,23 +767,23 @@ theorem sp_tens_hw (Λ' : Fin n → ℝ) (T1 : KType (fun _ : Fin (cnt ε true) 
     Formalism.REAL.KHighest ε (sp_rep T1 T2).units Λ' (T1.w ⊗ₜ[ℂ] T2.w) := by
   refine ⟨fun a => ?_, fun a b hab he => ?_⟩
   · cases hc : ε a
-    · obtain ⟨r, rfl⟩ := sp_blk_surj' ε false a hc
+    · obtain ⟨r, rfl⟩ := ReciprocityTheory.ChartRestriction.TR.Weyl.bp_blk_surj ε false a hc
       rw [sp_units_false, TensorProduct.map_tmul, LinearMap.id_apply]
       show T1.w ⊗ₜ (T2.dτ (single r r 1) T2.w) = _
       rw [T2.w_wt r, TensorProduct.tmul_smul]; rfl
-    · obtain ⟨r, rfl⟩ := sp_blk_surj' ε true a hc
+    · obtain ⟨r, rfl⟩ := ReciprocityTheory.ChartRestriction.TR.Weyl.bp_blk_surj ε true a hc
       rw [sp_units_true, TensorProduct.map_tmul, LinearMap.id_apply]
       show (T1.dτ (single r r 1) T1.w) ⊗ₜ T2.w = _
       rw [T1.w_wt r, ← TensorProduct.smul_tmul']; rfl
   · cases hc : ε a
-    · obtain ⟨r, rfl⟩ := sp_blk_surj' ε false a hc
-      obtain ⟨s, rfl⟩ := sp_blk_surj' ε false b (he ▸ hc)
+    · obtain ⟨r, rfl⟩ := ReciprocityTheory.ChartRestriction.TR.Weyl.bp_blk_surj ε false a hc
+      obtain ⟨s, rfl⟩ := ReciprocityTheory.ChartRestriction.TR.Weyl.bp_blk_surj ε false b (he ▸ hc)
       have hrs : r < s := (blk_strictMono ε false).lt_iff_lt.mp hab
       rw [sp_units_false, TensorProduct.map_tmul, LinearMap.id_apply]
       show T1.w ⊗ₜ (T2.dτ (single r s 1) T2.w) = 0
       rw [T2.w_hw r s hrs rfl, TensorProduct.tmul_zero]
-    · obtain ⟨r, rfl⟩ := sp_blk_surj' ε true a hc
-      obtain ⟨s, rfl⟩ := sp_blk_surj' ε true b (he ▸ hc)
+    · obtain ⟨r, rfl⟩ := ReciprocityTheory.ChartRestriction.TR.Weyl.bp_blk_surj ε true a hc
+      obtain ⟨s, rfl⟩ := ReciprocityTheory.ChartRestriction.TR.Weyl.bp_blk_surj ε true b (he ▸ hc)
       have hrs : r < s := (blk_strictMono ε true).lt_iff_lt.mp hab
       rw [sp_units_true, TensorProduct.map_tmul, LinearMap.id_apply]
       show (T1.dτ (single r s 1) T1.w) ⊗ₜ T2.w = 0

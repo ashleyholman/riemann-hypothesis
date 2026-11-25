@@ -39,13 +39,10 @@ theorem framepf_lev_q_simple (c : ZMod n) (ζ : LL) (hζ : IsPrimitiveRoot ζ PD
     ∃ u : PowerSeries LL, W.lev c ζ W.q = X * u ∧ constantCoeff u ≠ 0 := by
   apply Formalism.MainNotions.N.Pv.LocalLengthBound.lev_q_simple <;> assumption
 
-theorem framepf_Q_eq_q (hs : W.s = 1) : W.Q = W.q := by
-  simp [Formalism.BasicNotions.LocWach.Q, hs]
-
 theorem framepf_Q_at (hs : W.s = 1) (c : ZMod n) (ζ : LL) (hζ : IsPrimitiveRoot ζ PD.p) :
     PowerSeries.constantCoeff (W.lev c ζ W.Q) = 0 ∧ PowerSeries.coeff 1 (W.lev c ζ W.Q) ≠ 0 := by
   obtain ⟨u, hu, hu0⟩ := framepf_lev_q_simple W c ζ hζ
-  rw [framepf_Q_eq_q W hs, hu]
+  rw [Formalism.MainNotions.LiftingTheory.wmap_Q_one W hs, hu]
   refine ⟨by simp, ?_⟩
   have h1 : PowerSeries.coeff 1 (PowerSeries.X * u) = PowerSeries.coeff 0 u :=
     PowerSeries.coeff_succ_X_mul 0 u

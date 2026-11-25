@@ -400,10 +400,6 @@ theorem lifts_scale (W : LocWach PD LL O v n) (A : ArcP n) {T₁ T₂ : LocLat G
   rw [hfun]
   exact h5
 
-theorem lE_alg (W : LocWach PD LL O v n) (k : ℕ) :
-    lE W k = algebraMap (LetA O n) W.EE (lA W ^ k) := by
-  simp only [lE, lA, map_pow, map_natCast]
-
 theorem algO (W : LocWach PD LL O v n) (x : O) :
     algebraMap O W.EE x = algebraMap (LetA O n) W.EE (algebraMap O (LetA O n) x) := IsScalarTower.algebraMap_apply O (LetA O n) W.EE x
 
@@ -459,7 +455,7 @@ theorem den_step [IsDomain O] [IsDiscreteValuationRing O] [IsAdicComplete (IsLoc
       algebraMap (LetA O n) W.EE (letE c * Br.cst G) := by
     rw [algO, e1]
     simp only [map_sub, map_mul] at hfu ⊢
-    rw [← lE_alg]
+    rw [← Formalism.MainNotions.N.FrobeniusPowerSeries.TC.lE_eq]
     linear_combination (lE W de) * hfu
   refine ⟨⟨Br.cst G, Br.cst_mem G, ?_⟩, ?_⟩
   · rw [hps 1 y, hkey, mul_one]
@@ -473,7 +469,7 @@ theorem den_step [IsDomain O] [IsDiscreteValuationRing O] [IsAdicComplete (IsLoc
   obtain ⟨u₂, hu₂, hxu⟩ := hx
   have hxu2 : algebraMap (LetA O n) W.EE (lA W ^ (κ - de) * (letE c * Br.cst G)) =
       algebraMap (LetA O n) W.EE (letE c * Br.cst (X ^ Bq) * u₂) := by
-    rw [map_mul, ← hkey, ← lE_alg, ← hxu, hscale]
+    rw [map_mul, ← hkey, ← Formalism.MainNotions.N.FrobeniusPowerSeries.TC.lE_eq, ← hxu, hscale]
     ring
   have hxc := congrFun (W.EE_inj hxu2) c
   obtain ⟨F₂, hF₂⟩ := Br.range u₂ hu₂ c
@@ -1163,10 +1159,6 @@ section -- clump:auto
 @[expose] public section
 
 noncomputable section
-
-namespace Formalism.MainNotions.N.FrobeniusPowerSeries
-
-end Formalism.MainNotions.N.FrobeniusPowerSeries
 end -- clump:auto
 end -- clump:auto
 end -- clump:auto

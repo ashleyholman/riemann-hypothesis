@@ -108,7 +108,7 @@ theorem exists_denom {X : Scheme.{0}} (G : Over X) [GrpObj G] [IsCommMonObj G] [
     have t : _ ≫ (M₀.pt l).left = _ := M₀.tan l
     rw [one_left] at t
     show _ ≫ (ψ ≫ M₀.pt l).left = _
-    rw [hleft, one_left, ← Category.assoc, ← spec_comp, dual_fst, spec_comp, Category.assoc, t]
+    rw [hleft, one_left, ← Category.assoc, ← spec_comp, GlobalTheory.CompanionTheory.Ar.SqAdd.fst_comp_dualMap, spec_comp, Category.assoc, t]
     simp
   choose j hj using fun l => M'.onto _ (htan l)
   have hjl : ∀ l, (M'.pt (j l)).left =
@@ -117,7 +117,7 @@ theorem exists_denom {X : Scheme.{0}} (G : Over X) [GrpObj G] [IsCommMonObj G] [
   have jadd : ∀ a b, j (a + b) = j a + j b := fun a b => M'.inj (by
     rw [hj, M'.add, M₀.add, hj, hj, comp_mul])
   have jsmul : ∀ (r : R) a, j (r • a) = r • j a := fun r a => M'.inj (Over.OverMorphism.ext (by
-    rw [hsm, M'.smul, hjl, hjl, M₀.smul, ← Category.assoc, ← Category.assoc, ← spec_comp, ← spec_comp, dual_eps]))
+    rw [hsm, M'.smul, hjl, hjl, M₀.smul, ← Category.assoc, ← Category.assoc, ← spec_comp, ← spec_comp, GlobalTheory.CompanionTheory.Ar.LieCarrier.dualMap_epsMul]))
   let β : L₀ →ₗ[R] L' :=
     { toFun := j
       map_add' := jadd
@@ -168,7 +168,7 @@ theorem core_tan_of {X : Scheme.{0}} {Ω : Type} [Field Ω] {ξ : Spec (CommRing
   replace hU : algebraMap R O u * U' = 1 := hU
   have hje : g (algebraMap R O u) • e = j b := M.inj (Over.OverMorphism.ext (by
     rw [M.smul, he, hj, ← dual_comp, spec_comp, Category.assoc, ← hub, ← Category.assoc, ← Category.assoc,
-      ← spec_comp, ← spec_comp, dual_eps]))
+      ← spec_comp, ← spec_comp, GlobalTheory.CompanionTheory.Ar.LieCarrier.dualMap_epsMul]))
   have hwe : g (algebraMap R O u) * w e = g (algebraMap R O (w₀ b)) := by
     have := congrArg w hje
     rwa [map_smul, smul_eq_mul, hwj] at this
@@ -203,7 +203,7 @@ theorem core_tan_of {X : Scheme.{0}} {Ω : Type} [Field Ω] {ξ : Spec (CommRing
     rw [e3'] at e3
     have e4 : valAt vv ⊤ le_top s = dualMap φb (valAt v₀ ⊤ le_top s) := by
       subst hvvd
-      exact valAt_spec (dualMap φb) v₀ ⊤ le_top le_top s
+      exact PositivityTheory.HtPt.Htat.Pull.valAt_spec (dualMap φb) v₀ ⊤ le_top le_top s
     have e5 : dualMap φb (TrivSqZeroExt.inl 1 + TrivSqZeroExt.inr (Ideal.Quotient.mk (Ideal.span {(n : R)}) (w₀ b))) =
         TrivSqZeroExt.inl 1 + TrivSqZeroExt.inr (Ideal.Quotient.mk (Ideal.span {(n : O)}) (algebraMap R O (w₀ b))) := by
       have := RingHom.congr_fun hφ (w₀ b)
@@ -213,7 +213,7 @@ theorem core_tan_of {X : Scheme.{0}} {Ω : Type} [Field Ω] {ξ : Spec (CommRing
     obtain ⟨r, hr⟩ := snd_of_mod n _ _ e3
     have e6 : valAt y' W hy' f = epsMul (algebraMap R O u) (valAt v.left W h f) := by
       subst hy'd
-      exact valAt_spec (epsMul (algebraMap R O u)) v.left W h hy' f
+      exact PositivityTheory.HtPt.Htat.Pull.valAt_spec (epsMul (algebraMap R O u)) v.left W h hy' f
     refine ⟨U' * r, ?_⟩
     rw [hr, e6, snd_epsMul]
     linear_combination (valAt v.left W h f).snd * hU
@@ -253,7 +253,7 @@ theorem isHTAt_of_isHT : ∀ (X : Scheme.{0}) [IsLocallyNoetherian X] (Ω : Type
       κ.toRingHom.comp (algebraMap R (FractionRing R)) := by
     have h1 : Spec.map (CommRingCat.ofHom ((genMap ξ q).comp (algebraMap R (X.presheaf.stalk q.1)))) ≫ x =
         Spec.map (CommRingCat.ofHom (κ.toRingHom.comp (algebraMap R (FractionRing R)))) ≫ x := by
-      rw [spec_comp, Category.assoc, hzs, hk_stalk ξ q]
+      rw [spec_comp, Category.assoc, hzs, GlobalTheory.CompanionTheory.Ar.LieTangent.spec_genMap ξ q]
       exact hx.symm
     have h2 := Spec.map_injective ((cancel_mono x).1 h1)
     exact congrArg CommRingCat.Hom.hom h2
@@ -278,7 +278,7 @@ theorem isHTAt_of_isHT : ∀ (X : Scheme.{0}) [IsLocallyNoetherian X] (Ω : Type
   have hval : ∀ {B : Type} [CommRing B] (y : Spec (CommRingCat.of B) ⟶ Γ.G.left) (h : ⊤ ≤ (y ≫ i) ⁻¹ᵁ W),
       valAt (y ≫ i) W h f = valAt y ⊤ le_top s := by
     intro B _ y h
-    rw [valAt_comp, hf]
+    rw [PositivityTheory.HtPt.Htat.Pull.valAt_comp, hf]
     exact valAt_res y (i ⁻¹ᵁ W) ⊤ le_top h le_top s
   have hcore := fun (e' : E) (v : epsAt (X.fromSpecStalk q.1) ⟶ G) (hv' : IsTanAt G _ v)
       (he : (M.pt e').left = Spec.map (CommRingCat.ofHom (dualMap (genMap ξ q))) ≫ v.left) =>
@@ -326,10 +326,10 @@ theorem isHTAt_of_isHT : ∀ (X : Scheme.{0}) [IsLocallyNoetherian X] (Ω : Type
     have e2 : secVal (B := K) g'.left W h f =
         valAt (spMap a ≫ (Spec.map (CommRingCat.ofHom κ.toRingHom) ≫ (Γ.pt t).left) ≫ i) W
           (by rw [← e1]; exact h) f :=
-      valAt_congr e1 W _ _ f
-    have e7 := valAt_spec κ.toRingHom (Y := Γ.G.left) (Γ.pt t).left ⊤ le_top le_top s
+      PositivityTheory.HtPt.Htat.Pull.valAt_congr e1 W _ _ f
+    have e7 := PositivityTheory.HtPt.Htat.Pull.valAt_spec κ.toRingHom (Y := Γ.G.left) (Γ.pt t).left ⊤ le_top le_top s
     have e8 : valAt (Γ.pt t).left ⊤ le_top s = algebraMap R (FractionRing R) (χ t : R) := hs t
-    rw [e2, valAt_spec a _ W h1, hval]
+    rw [e2, PositivityTheory.HtPt.Htat.Pull.valAt_spec a _ W h1, hval]
     refine (congrArg a e7).trans ?_
     rw [e8, hc₁, ← hχ t g₀ ht.symm]
     rfl

@@ -38,17 +38,6 @@ namespace Formalism.FourierDecayAlt.P.CutBP
 
 noncomputable section
 
-theorem ccleQ_nonneg {k r : ℕ} {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E] {A : ℝ} {m : ℕ}
-    {F : B.Mat k r → E} {b : ℝ} (h : B.CCle A m F b) : 0 ≤ b := by
-  obtain ⟨g, hg⟩ : ∃ g, g ∈ B.GV k r := ⟨1, by simp [B.GV, Formalism.QuantumDeterminants.UH]⟩
-  have h1 := h.2 [] [] (by simp) (by simp) (by simp) g hg
-  have h2 : 0 ≤ B.gN g ^ A * ‖B.dLR [] [] F g‖ :=
-    mul_nonneg (Real.rpow_nonneg (gN_pos hg).le _) (norm_nonneg _)
-  linarith
-
-theorem ccleQ_mono_c {k r : ℕ} {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E] {A : ℝ} {m : ℕ}
-    {F : B.Mat k r → E} {b b' : ℝ} (h : B.CCle A m F b) (hb : b ≤ b') : B.CCle A m F b' := ⟨h.1, fun u v hu hv hl g hg => (h.2 u v hu hv hl g hg).trans hb⟩
-
 private theorem le_foldr_max_zero_of_mem : ∀ (l : List ℕ), ∀ x ∈ l, x ≤ l.foldr max 0 := by
   intro l
   induction l with
@@ -84,7 +73,7 @@ theorem jdCCLowerQ {k r : ℕ} {Wp Wq : Type} [NormedAddCommGroup Wp] [InnerProd
     obtain ⟨C, hC⟩ := hcb m
     set s : ℂ := (((T.word.map nz).prod : ℝ) : ℂ) with hs
     refine ⟨2 ^ m * (|C| * ‖s‖), by positivity, fun F b hF => ?_⟩
-    have hb0 : 0 ≤ b := ccleQ_nonneg hF
+    have hb0 : 0 ≤ b := Formalism.FourierDecayAlt.P.JCx2.pd_ccle_nonneg hF
     have hlen : T.word.length ≤ o := word_le_opOrder Θ T hT
     have hF1 : B.CCle A (m + (T.word.map nrm).length) F b :=
       CCle_mono_m (by simp; omega) hF
@@ -98,7 +87,7 @@ theorem jdCCLowerQ {k r : ℕ} {Wp Wq : Type} [NormedAddCommGroup Wp] [InnerProd
     have hR' : B.CCle (A - d + d) m (B.Rw T.word F) (‖s‖ * b) := by rw [sub_add_cancel]; exact hR
     have hP := prodBound hO hcov (sCkOn_mono le_top hc1)
       (fun u v hu hv hl g hg _ => (hC u v hu hv hl g hg).1) hR' (fun g _ hg => by simp at hg)
-    refine ccleQ_mono_c hP (le_of_eq ?_)
+    refine Formalism.FourierDecayAlt.P.JCx2.pd_ccle_mono_c hP (le_of_eq ?_)
     rw [abs_of_nonneg (mul_nonneg (norm_nonneg _) hb0)]
     ring
 

@@ -835,14 +835,6 @@ theorem continuousAt_of_chart {X E F : Type*} [TopologicalSpace X] [TopologicalS
   filter_upwards [c.open_source.mem_nhds hx] with z hz
   simp [c.left_inv hz]
 
-theorem holoOn_continuousAt {e : ℕ} {X : Type*} [TopologicalSpace X] (A : FinHolAtlas e X) {W : Set X}
-    {g : X → ℂ} (h : A.HoloOn W g) {x : X} (hx : x ∈ W) : ContinuousAt g x := by
-  obtain ⟨j, hj⟩ := A.cover x
-  refine continuousAt_of_chart (A.chart j) hj ?_
-  have hm : (A.chart j) x ∈ (A.chart j).target ∩ (A.chart j).symm ⁻¹' W :=
-    ⟨(A.chart j).map_source hj, by simpa [(A.chart j).left_inv hj] using hx⟩
-  exact (h j _ hm).continuousAt
-
 theorem smoothOn_continuousAt {e : ℕ} {X : Type*} [TopologicalSpace X] (A : FinHolAtlas e X) {W : Set X}
     (hW : IsOpen W) {g : X → ℝ} (h : A.SmoothOn W g) {x : X} (hx : x ∈ W) : ContinuousAt g x := by
   obtain ⟨j, hj⟩ := A.cover x
@@ -941,9 +933,9 @@ theorem stepPh_le_log : ∀ (K : Type) [Fintype K] (ι : K → Type) [∀ k, Fin
     let u : R.X → ℝ := fun y' => blockPot j p.2 1 (H y') + Real.log ‖D y'‖ -
       Real.log ((fsHerm ιk fun k => M.dy p (κ k)).h (R.lift y₀ y'))
     have hu : ContinuousAt u y₀ := by
-      refine ((continuousAt_blockPot_one j p.2 (fun a b => holoOn_continuousAt R.A (hH a b) hy₀)
+      refine ((continuousAt_blockPot_one j p.2 (fun a b => GlobalTheory.CompanionTheory.Ar.PB.Proj.continuousAt_of_holoOn R.A (hH a b) hy₀)
         (hHd y₀ hy₀).2).add ?_).sub ?_
-      · exact ContinuousAt.log (holoOn_continuousAt R.A hD hy₀).norm (norm_ne_zero_iff.2 (hDne y₀ hy₀))
+      · exact ContinuousAt.log (GlobalTheory.CompanionTheory.Ar.PB.Proj.continuousAt_of_holoOn R.A hD hy₀).norm (norm_ne_zero_iff.2 (hDne y₀ hy₀))
       · exact smoothOn_continuousAt R.A (R.isOpen_U y₀) (hpot.1 y₀) (R.mem_U y₀)
     refine ⟨W ∩ {y' | |u y'| < |u y₀| + 1}, inter_mem (hW.mem_nhds hy₀)
       (hu.abs.eventually_lt continuousAt_const (lt_add_one _)), (3 / 2) * N * |BM.Cst| + (|u y₀| + 1), ?_⟩
@@ -1173,10 +1165,6 @@ namespace GlobalTheory.CompanionTheory.Ar.PB.Transport
 
 variable {e : ℕ} {X : Type} [TopologicalSpace X]
 
-theorem isOpen_compl_bdry (A : FinHolAtlas e X) (L : LocPot X) (s : X → X → ℂ)
-    (hs : IsSection A L s) : IsOpen (bdry s)ᶜ := by
-  apply PositivityTheory.Xgp.c_grad_atlas.isOpen_compl_bdry <;> assumption
-
 theorem contDiffAt_two {A : FinHolAtlas e X} {U : Set X} {f : X → ℝ} (h : A.SmoothOn U f)
     (hU : IsOpen U) (j : Fin A.n) {y : Fin e → ℂ} (hy : y ∈ (A.chart j).target)
     (hyU : (A.chart j).symm y ∈ U) : ContDiffAt ℝ 2 (f ∘ (A.chart j).symm) y :=
@@ -1238,7 +1226,7 @@ theorem isPshOn_transport {A : FinHolAtlas e X} {L : LocPot X} {s : X → X → 
     ⟨hyt, ⟨th'.mem_U _, Set.mem_univ _⟩, hyb⟩ w
   have hb : ContDiffAt ℝ 2 ((th' + LocPot.ofFun ph).φ ((A.chart j).symm y) ∘ (A.chart j).symm) y :=
     (contDiffAt_two (hth'.1 _) (th'.isOpen_U _) j hyt (th'.mem_U _)).add
-      (contDiffAt_two hsm (isOpen_compl_bdry A L s hs) j hyt hyb)
+      (contDiffAt_two hsm (PositivityTheory.Xgp.c_grad_atlas.isOpen_compl_bdry A L s hs) j hyt hyb)
   rw [levi_eq_of_sub_re A j hyt oW mW hG (a := (th + LocPot.ofFun ph).φ x)
     (b := (th' + LocPot.ofFun ph).φ ((A.chart j).symm y)) (fun z hz => by
       have h1 := hW z hz

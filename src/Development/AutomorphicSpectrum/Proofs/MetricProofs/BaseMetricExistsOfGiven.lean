@@ -1148,16 +1148,6 @@ theorem isBlockDiag_conjTranspose {N j : ℕ} {A : Matrix (Fin N) (Fin N) ℂ} (
     IsBlockDiag j Aᴴ := fun a b h => by
   rw [Matrix.conjTranspose_apply, hA b a fun e => h e.symm, star_zero]
 
-theorem blockG_conj (Γ : Matrix (Fin (p + q)) (Fin (p + q)) ℂ) :
-    blockG (Γ.map (starRingEnd ℂ)) = (blockG Γ).map (starRingEnd ℂ) := by
-  have e : (omBlock (Γ.map (starRingEnd ℂ)))ᵀ⁻¹ = ((omBlock Γ)ᵀ⁻¹).map (starRingEnd ℂ) := by
-    show ((omBlock Γ)ᵀᴴᵀ)⁻¹ = ((omBlock Γ)ᵀ⁻¹)ᴴᵀ
-    rw [← Matrix.transpose_nonsing_inv, ← Matrix.conjTranspose_nonsing_inv]
-  unfold blockG
-  rw [e, ← Matrix.submatrix_map, Matrix.fromBlocks_map]
-  simp only [Matrix.map_zero _ (map_zero (starRingEnd ℂ))]
-  rfl
-
 theorem blockG_change {Γ Γ' Rz Rz' : Matrix (Fin (p + q)) (Fin (p + q)) ℂ} (hΓ : Γ.PosDef) (hΓ' : Γ'.PosDef)
     (bR : IsBlockDiag p Rz) (bR' : IsBlockDiag p Rz') (e : Rz' * Rz = 1)
     (eo : omBlock Γ' = (omBlock Rz')ᵀᴴ * omBlock Γ * (omBlock Rz')ᵀ)
@@ -1312,7 +1302,7 @@ theorem gr_conj (tie : FlagTie M 𝔐) (F τ w G) (h : Gr tie F τ w G) :
   obtain ⟨hF, gd, z, Γ, hw, hi, hΓ, hp, rfl⟩ := h
   have hcc := _root_.GlobalTheory.CompanionTheory.Ar.CoordConj.centre_and_coords_conj 𝔐.X M.Ω 𝔐.ξ _ _ M.x z w
   refine ⟨hF, ?_, _, _, hcc.2 hw, ?_, _root_.GlobalTheory.CompanionTheory.Ar.HodgeMetric.ConjPoint.gramAt_conj_point E H D l Xo c Y S M.Ω _ _ M.x 𝔐 z _ _ _ hΓ, ?_,
-    (blockG_conj Γ).symm⟩
+    (PositivityTheory.Xgp.c_bm_exists_period.blockG_conj Γ).symm⟩
   · have e : mCoordIdeal (conjVec w) = mCoordIdeal w :=
       (ptIdeal_centre (hcc.2 hw) (𝔐.all _)).symm.trans
         ((congrArg (ptIdeal 𝔐.ξ M.x) (Subtype.ext hcc.1)).trans (ptIdeal_centre hw (𝔐.all _)))

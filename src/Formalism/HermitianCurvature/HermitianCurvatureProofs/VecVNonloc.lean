@@ -82,7 +82,7 @@ theorem gN_top_gram {Cb Cc : ℝ} {S : C.HidaSetting E Wp Wq} {p : ∀ v, KB.Pl 
   · obtain ⟨hPl, hQl⟩ := hloc
     have hPs : D.IsLocPt (PBL.stdS S P) (S.G.r + 1) := (PBD.isLocPt_toStd_iff _ _ hgpos _ 1 _).2 hPl
     have hQs : D.IsLocPt (PBL.stdS S Q) (S.G.r + 1) := (PBD.isLocPt_toStd_iff _ _ hgpos _ 1 _).2 hQl
-    rw [PBL.gN_setC hB, PBL.rr_top_eq Formalism.FourierDecayAlt.P.vector_valued_types (p v) (F v ε) a _ _ hPs hQs]
+    rw [PBL.gN_setC hB, PBL.rr_top_eq Formalism.FourierDecayAlt.P.Topx1.vecw_main (p v) (F v ε) a _ _ hPs hQs]
     unfold Top.topOf
     rw [Finset.mul_sum, Fintype.sum_prod_type]
     refine Finset.sum_congr rfl fun e _ => ?_

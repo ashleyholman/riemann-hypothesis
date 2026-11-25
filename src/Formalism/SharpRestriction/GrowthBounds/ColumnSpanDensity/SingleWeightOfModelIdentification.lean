@@ -107,7 +107,6 @@ section -- clump:auto
 namespace Formalism.CountingSumsFrames.Top
 
 theorem harProj : Formalism.CountingSumsFrames.HarProj := Formalism.CountingSumsFrames.harmonicProjection_holds
-theorem levelProj : Formalism.CountingSumsFrames.LevelProj := Formalism.CountingSumsFrames.isotypicProjection_holds
 end Formalism.CountingSumsFrames.Top
 end -- clump:auto
 end -- clump:auto
@@ -174,7 +173,7 @@ theorem oneTop_abs (K : Type) [Field K] [CharZero K] (k P Q p : ℕ) (hk : 1 ≤
             latOf g (GaussLat Ov.toSubring)) := by
   classical
   have HP : Formalism.CountingSumsFrames.HarProj := Formalism.CountingSumsFrames.Top.harProj
-  have IP : Formalism.CountingSumsFrames.LevelProj := Formalism.CountingSumsFrames.Top.levelProj
+  have IP : Formalism.CountingSumsFrames.LevelProj := Formalism.CountingSumsFrames.isotypicProjection_holds
   have GP : Formalism.CountingSumsFrames.GaussProj := _root_.Formalism.CountingSumsFrames.gaussLatticeProjection_holds
   have GLP : Formalism.CountingSumsFrames.GaussLemmaH := _root_.Formalism.CountingSumsFrames.Har4.gaussLemmaPairing_holds
   have IL : Formalism.CountingSumsFrames.LevelLattice := _root_.Formalism.CountingSumsFrames.Har4.isotypicLattice_holds

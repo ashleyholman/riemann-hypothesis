@@ -549,11 +549,6 @@ theorem nf_blkW (hS : SizesAt L) (hh0 : L.etaSz = (D.R.m : ℝ) * (h0 : ℝ)) :
   rw [e]
   exact hE.2.2.2.2.1
 
-theorem cloudConstant_nonneg : 0 ≤ L.Nc := by
-  unfold SizeData₂.Nc budgetNc rankBudget bSize
-  have := x_pos' (L := L)
-  positivity
-
 theorem logCardGroup_nonneg (G : Type) [Group G] [Fintype G] : 0 ≤ Real.log (Fintype.card G : ℝ) :=
   Real.log_nonneg (by exact_mod_cast Fintype.card_pos)
 
@@ -1146,10 +1141,6 @@ theorem place_cases (τ : D.what₂.Tau) :
   · exact Or.inr (Or.inl ⟨h1, h2⟩)
   exact Or.inr (Or.inr ⟨(D.eTau τ).2, h1, h2⟩)
 
-theorem a_nonneg_rec : 0 ≤ L.sc.a := le_of_lt (mul_pos (lt_trans zero_lt_one L.sc.one_lt_alt) (Real.exp_pos _))
-
-theorem b'_nonneg_rec : 0 ≤ L.sc.b' := div_nonneg (a_nonneg_rec L) (Real.exp_pos _).le
-
 theorem top_of_mem (τ : D.what₂.Tau) (h : (D.eTau τ : D.R.GG) ∈ D.host.topPlaces) :
     ∃ t : D.host.TT, (D.eTau τ : D.R.GG) = D.R.tau1 t := by
   unfold Host.topPlaces at h
@@ -1163,7 +1154,7 @@ theorem wj_ge_rec (X : ℝ) (hb : X ≤ L.sc.b) (hw : X ≤ L.sc.w'' D.R.n) (hb'
   · obtain ⟨t, ht⟩ := top_of_mem τ h
     have hw := (L.win_top j hj1 hjm τ t ht).1
     have hbt := L.bT_ge t
-    have : 0 ≤ L.sc.b' / L.sc.x := div_nonneg (b'_nonneg_rec L) (by linarith [L.sc.one_lt_alt])
+    have : 0 ≤ L.sc.b' / L.sc.x := div_nonneg (Formalism.MainNotions.DIV.Proofs.HHParts.b'_nonneg L) (by linarith [L.sc.one_lt_alt])
     linarith
   · linarith [(L.win_thick j hj1 hjm τ h.2).1]
   · linarith [(L.win_thin j hj1 hjm τ h).1]
@@ -1205,7 +1196,7 @@ theorem nu_nonneg_from_bounds (hDel : D.s.Del = (Del : ℚ)) (P5 : ParameterChoi
     have hk : 5 ≤ D.R.k := by have := D.R.m_add_three_le_k; have := D.R.two_le_m; omega
     set τ := tauPl D z with hτ
     have hx1 : 1 < L.sc.x := L.sc.one_lt_alt
-    have hb'0 := b'_nonneg_rec L
+    have hb'0 := Formalism.MainNotions.DIV.Proofs.HHParts.b'_nonneg L
     have hbx : L.sc.b' / L.sc.x ≤ L.sc.b' := div_le_self hb'0 hx1.le
     have hkR : (5 : ℝ) ≤ D.R.k := by exact_mod_cast hk
 
@@ -1375,9 +1366,9 @@ theorem w''_le_b'x : L.sc.w'' D.R.n ≤ L.sc.b' / L.sc.x := by
     exact_mod_cast this
   unfold Scale.w''
   rw [← div_div]
-  exact div_le_self (div_nonneg (b'_nonneg_rec L) hx0.le) hn
+  exact div_le_self (div_nonneg (Formalism.MainNotions.DIV.Proofs.HHParts.b'_nonneg L) hx0.le) hn
 
-theorem b'x_le_b' : L.sc.b' / L.sc.x ≤ L.sc.b' := div_le_self (b'_nonneg_rec L) L.sc.one_lt_alt.le
+theorem b'x_le_b' : L.sc.b' / L.sc.x ≤ L.sc.b' := div_le_self (Formalism.MainNotions.DIV.Proofs.HHParts.b'_nonneg L) L.sc.one_lt_alt.le
 
 theorem w''_le_b : L.sc.w'' D.R.n ≤ L.sc.b := by
   have hx1 : 1 < L.sc.x := L.sc.one_lt_alt
@@ -1969,7 +1960,7 @@ theorem numFacts_rec (hS : SizesAt L) (hB : BigX L) (hDel : D.s.Del = (Del : ℚ
     (ofRecord D L Del h0).NumFacts (letterOf D L Del h0 u) L.Nc (Real.log (Fintype.card G)) C0 ce Ch (swRec L) (constantOneChoice L) := by
   obtain ⟨c1, c2, c3, c4, c5⟩ := nf_consts_rec L Del h0 P5 hS hx9 Ch C0 ce hCh hC0 hce
   exact numFacts_rows L Del h0 hDel hh0 P5 u hx3 L.Nc (Real.log (Fintype.card G)) C0 ce Ch
-    (nf_logrd L Del h0 hS hB) (nf_logx L Del h0 hB) (cloudConstant_nonneg L) (size_le_two_b L Del h0 hS hB) (nf_Om L Del h0 hS hB)
+    (nf_logrd L Del h0 hS hB) (nf_logx L Del h0 hB) (Formalism.MainNotions.Nc_nonneg L) (size_le_two_b L Del h0 hS hB) (nf_Om L Del h0 hS hB)
     (nf_lam L Del h0 G hS hB hc) (logCardGroup_nonneg G) (rank_sq_le_b L Del h0 hS hB) (cube_rank_sq_le_b L Del h0 hS hB) (nf_eta L Del h0 hS hh0)
     (nf_kN L Del h0 hS hB) (nf_kS L Del h0 hS hDel) (nf_blkW L Del h0 hS hh0) (nf_Nw L Del h0 hS hB) (nf_bN L Del h0 hS hB)
     (nf_mkb L Del h0 hS hB) c1 c2 c3 c4 c5 hC1
@@ -2015,7 +2006,7 @@ theorem arithAt_rec (hS : SizesAt L) (hB : BigX L) (hDel : D.s.Del = (Del : ℚ)
   have hLam : Real.log (Fintype.card G) + Real.log ((1 : ℕ) : ℝ) ≤
       2 * (((ofRecord D L Del h0).R.m : ℝ) * (ofRecord D L Del h0).unitE L.Nc) :=
     Formalism.L2.DIV.Cons.lamSizeAt_record_one (G := G) L hS.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.2.1 hS.2.2.2.2.2.1 Del h0 L.Nc
-      (cloudConstant_nonneg L) hc
+      (Formalism.MainNotions.Nc_nonneg L) hc
   have hce' : C + 2 + C + (Ce + cD) + 1 ≤ ce := hce
   have hce0' : 0 ≤ ce := by linarith
   have hFo : 2 * FoOfR Pk.core = L.Fo :=

@@ -319,10 +319,6 @@ namespace ReciprocityTheory.ChartRestriction.DS
 
 variable {n : ℕ} {ε : Fin n → Bool}
 
-theorem coefIntVG_toE_continuous (n : ℕ) :
-    Continuous (Matrix.toEuclideanCLM (n := Fin n) (𝕜 := ℂ)) := by
-  exact (Matrix.toEuclideanCLM (n := Fin n) (𝕜 := ℂ)).toAlgEquiv.toLinearMap.continuous_of_finiteDimensional
-
 theorem integrable_opPow_of_dec (Ψ : Matrix (Fin n) (Fin n) ℂ → ℂ)
     (hcont : ContinuousOn Ψ {g | inUJ ε g}) (hle : ∀ g, inUJ ε g → ‖Ψ g‖ ≤ 1)
     {h : ℝ} (hq : 1 ≤ S7.q0 ε)
@@ -347,7 +343,7 @@ theorem integrable_opPow_of_dec (Ψ : Matrix (Fin n) (Fin n) ℂ → ℂ)
   have hfc : Continuous fun g : S7.UJ ε => Ψ (S7.toM g) :=
     hcont.comp_continuous (S7.continuous_toM ε) (fun g => g.2)
   have hoc : Continuous fun g : S7.UJ ε => ‖Matrix.toEuclideanCLM (𝕜 := ℂ) (S7.toM g)‖ :=
-    ((coefIntVG_toE_continuous n).comp (S7.continuous_toM ε)).norm
+    ((ReciprocityTheory.ChartRestriction.DS.coefIntCpt_toE_continuous n).comp (S7.continuous_toM ε)).norm
   have hFc : Continuous F := hfc.norm.mul (hoc.rpow_const (fun _ => Or.inr hN))
   set M : ℝ := Real.sqrt ((n : ℝ) * Real.exp 2 + 1) ^ N with hMdef
   have hM1 : 1 ≤ M := by

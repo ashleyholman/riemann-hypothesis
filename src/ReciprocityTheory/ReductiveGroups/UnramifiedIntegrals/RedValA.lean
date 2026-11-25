@@ -47,7 +47,7 @@ theorem exists_cm_lattice_equal_invariants (d : ℕ) (L : PeriodPair) (hCM : Has
     rw [← hc2]
     norm_num
   obtain ⟨-, -, -, -, -, -, -, -, -, hg2, hg3⟩ := homogeneity L c hc
-  refine ⟨scalePair L c hc, hasCMByScale d L c hc hCM, jInvScale L c hc, ?_, ?_⟩
+  refine ⟨scalePair L c hc, hasCMByScale d L c hc hCM, Formalism.L2.Th1.F.j_invariant_scale L c hc, ?_, ?_⟩
   · rw [hg2, jInv_ratio L h3, show c ^ 4 = (c ^ 2) ^ 2 by ring, hc2]
     field_simp
   · rw [hg3, jInv_ratio L h3, show c ^ 6 = (c ^ 2) ^ 3 by ring, hc2]

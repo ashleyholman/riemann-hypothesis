@@ -24,7 +24,7 @@ open scoped Matrix.Norms.Elementwise
 variable {n : ℕ} {ε : Fin n → Bool}
 
 lemma hinvol (ε : Fin n → Bool) : AAInvW.HInvol (Formalism.REAL.Jm ε) := by
-  refine ⟨?_, signature_matrix_sq ε⟩
+  refine ⟨?_, Formalism.REAL.Jm_mul_self ε⟩
   unfold Formalism.REAL.Jm
   rw [Matrix.diagonal_conjTranspose]
   congr 1

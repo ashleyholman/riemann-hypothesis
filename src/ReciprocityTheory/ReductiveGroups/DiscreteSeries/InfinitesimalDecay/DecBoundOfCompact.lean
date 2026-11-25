@@ -136,9 +136,6 @@ theorem nuJ_le_add_of (σ : Matrix (Fin n) (Fin n) ℂ → (H →L[ℂ] H)) (a b
     simp only [nuJ, List.map_cons, List.sum_cons] at h2 ⊢
     linarith
 
-theorem NE_nonneg' {D : Submodule ℂ H} (E : Fin n → Fin n → Module.End ℂ D) (j : ℕ) (x : D) : 0 ≤ NE E j x :=
-  Finset.sum_nonneg fun _ _ => Finset.sum_nonneg fun _ _ => norm_nonneg _
-
 end Gen
 
 variable {ε : Fin n → Bool} {lam : Fin n → ℝ} {T : S7.KType ε (lowK ε lam)}
@@ -482,8 +479,8 @@ theorem decBoundJ_sigLam {ε : Fin n → Bool} {lam : Fin n → ℝ} {T : S7.KTy
       rw [Submodule.coe_inner, sigLam_coe hgap hP hv₀ hg]
     rw [he]
     have hb := hC x hxg y hyg g hg
-    have hx0 := NE_nonneg' (smE ε (rreg ε)) N x
-    have hy0 := NE_nonneg' (smE ε (rreg ε)) N y
+    have hx0 := ReciprocityTheory.ChartRestriction.DS.DecInf.NE_nonneg (smE ε (rreg ε)) N x
+    have hy0 := ReciprocityTheory.ChartRestriction.DS.DecInf.NE_nonneg (smE ε (rreg ε)) N y
     have hxb := hNE' x hx
     have hyb := hNE' y hy
     calc _ ≤ C * NE (smE ε (rreg ε)) N x * NE (smE ε (rreg ε)) N y := hb

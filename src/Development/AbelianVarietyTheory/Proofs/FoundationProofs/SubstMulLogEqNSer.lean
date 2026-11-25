@@ -64,7 +64,7 @@ def formalGroup : FormalGroup R where
 variable {σ : Type*}
 
 theorem map_zsmul (φ : R →+* S) (n : ℤ) : PowerSeries.map φ (zSer W n) = zSer (W.map φ) n :=
-  zSerMap R S φ W n
+  Formalism.L2.Th1.A.z_series_map R S φ W n
 
 end Group
 

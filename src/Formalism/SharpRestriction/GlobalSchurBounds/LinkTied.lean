@@ -43,16 +43,16 @@ theorem chiFin0_to0S {D : D7} {u : D.what₂.Word} {Ch : ℕ → Type} {chOf : �
 
 theorem freeTT_holds (D : D7) (u : D.what₂.Word) : FreeTT D u := by
   rintro ⟨⟨Ch, chOf, T, -⟩, -⟩
-  exact LocalLatticeBases.freeT_0 T.to0
+  exact Formalism.L2.GlobalTheoryTheory.LocalLatticeBases.S0.freeT_tied T.to0
 
 theorem slopeLineT_holds (D : D7) (u : D.what₂.Word) : SlopeLineT D u := by
   rintro hS ⟨⟨Ch, chOf, T, hC⟩, -⟩
-  exact LocalLatticeBases.slopeLine_0 hS T.to0 (chiFin0_to0S T hC)
+  exact Formalism.L2.GlobalTheoryTheory.LocalLatticeBases.S0.slopeLine_tied hS T.to0 (chiFin0_to0S T hC)
 
 theorem lemmaB_second_branch_of_length_formula (D : D7) (u : D.what₂.Word) (h : product_first_zeroth_parts.HidaSetting D u → ConcreteFormsLevelZero D u → LocalLatticeBases.SeenPlaceLatticeLengthFormula D u) : SecondBranchIntegralityUnderForms D u := by
   rintro hS hT
   obtain ⟨⟨Ch, chOf, T, -⟩, -⟩ := id hT
-  exact LocalLatticeBases.second_branch_incl_length_level_zero' T.to0 (h hS hT)
+  exact Formalism.L2.GlobalTheoryTheory.LocalLatticeBases.S0.second_branch_incl_length_level_zero T.to0 (h hS hT)
 
 def RealPlaceSecondLayerConditions (Fm : FamP eps) : Prop :=
   ∃ x0 : ℝ, ∀ x ≥ x0, ∀ i : Fm.Ix x, Formalism.L2.Theta.RealTied (Fm.D x i) ∧

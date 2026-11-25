@@ -982,15 +982,11 @@ noncomputable section
 
 namespace GlobalTheory.CompanionTheory.LeibPhi.UNorm
 
-theorem mem_of_mirProj_eq_one {k : Type} [Field k] {n : ℕ} (u : Mir k n) (hu : mirabolicProjection k n u = 1) :
-    u ∈ MirUin k n := by
-  apply GlobalTheory.CompanionTheory.BZPhiPG.Grp.mem_of_mirProj_eq_one' <;> assumption
-
 theorem mirUin_normal : ∀ (k : Type) [Field k] [ValuativeRel k] [TopologicalSpace k]
     [IsNonarchimedeanLocalField k] (n : ℕ), (MirUin k n).Normal := by
   intro k _ _ _ _ n
   refine ⟨fun u hu g => ?_⟩
-  apply GlobalTheory.CompanionTheory.LeibPhi.UNorm.mem_of_mirProj_eq_one
+  apply GlobalTheory.CompanionTheory.BZPhiPG.Grp.mem_of_mirProj_eq_one'
   rw [map_mul, map_mul, map_inv, GlobalTheory.CompanionTheory.BZPhiPG.Grp.mirProj_eq_one_of_mem u hu,
     mul_one, mul_inv_cancel]
 

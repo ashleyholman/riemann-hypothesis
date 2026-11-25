@@ -367,7 +367,7 @@ theorem hvO_eq_inv (L : Type) [CommRing L] (n : ℕ) (μ : Fin n → ℕ) (hμ :
     rfl
 
 theorem fockR_smul' {σ R : Type} [CommRing R] (a : R) (f g : MvPolynomial σ R) : fockR (a • f) g = a * fockR f g :=
-  (Top.fockRBilin σ R f 0 g a).2.1
+  (Formalism.L2.G.Model.TS.fock_pairing_bilinear σ R f 0 g a).2.1
 
 theorem pairO_inv (L : Type) [Field L] [CharZero L] (n : ℕ) (μ : Fin n → ℕ) (hμ : Antitone μ) (c : ℕ)
     (hc : ∀ t, μ t ≤ c) (x : Fin n → ℕ → L) (Z : Matrix (Fin n) (Fin n) L)
@@ -379,8 +379,8 @@ theorem pairO_inv (L : Type) [Field L] [CharZero L] (n : ℕ) (μ : Fin n → �
     have := bidetMem L n n c _ (fun _ => Nat.sub_le _ _) I
     rwa [shape_odd_holds n μ hμ c hc] at this
   unfold lhsO rhsO
-  rw [hvO_eq_inv L n μ hμ c hc x Z hZX hXZ, C_mul', fockR_smul', Top.fockRRowAct,
-    Top.fock_pairing_highest_weight L n n le_rfl _ (kap_antitone hμ c) _ (dualWeylRowStable L n n _ _ _ hB), eval_idFrame_rowAct,
+  rw [hvO_eq_inv L n μ hμ c hc x Z hZX hXZ, C_mul', fockR_smul', Formalism.L2.G.Model.TS.fock_pairing_row_action,
+    Formalism.L2.G.Model.TS.fock_pairing_highest_weight_proof L n n le_rfl _ (kap_antitone hμ c) _ (dualWeylRowStable L n n _ _ _ hB), eval_idFrame_rowAct,
     eval_bidet]
   have hR : ∀ k : Fin c, (catM (colH μ k.val) (unitM L (I k)) x).det =
       (catM (colH μ k.val) (Matrix.of fun a t : Fin n => x a (n - 1 - t.val)) x).det *
@@ -478,8 +478,8 @@ open BidetPairing
 
 theorem pairing_even_holds : PairE := by
   intro K _ _ n ν hν c hc x Q hQ
-  rw [hvE_eq K n ν hν c hc x, Top.fockRRowAct,
-    Top.fock_pairing_highest_weight K n n le_rfl ν hν _ (dualWeylRowStable K n n ν _ Q hQ), eval_idFrame_rowAct]
+  rw [hvE_eq K n ν hν c hc x, Formalism.L2.G.Model.TS.fock_pairing_row_action,
+    Formalism.L2.G.Model.TS.fock_pairing_highest_weight_proof K n n le_rfl ν hν _ (dualWeylRowStable K n n ν _ Q hQ), eval_idFrame_rowAct]
   rfl
 
 theorem pairing_odd_holds : PairO := by

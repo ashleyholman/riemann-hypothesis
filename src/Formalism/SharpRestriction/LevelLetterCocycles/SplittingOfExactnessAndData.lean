@@ -55,14 +55,6 @@ def SplitShape : Prop :=
     ∀ (d : ℕ) (b : Fin d → W.DD T₂) (sol : Fin d → ℕ → Fin d → LL),
       IsHor W T₂ (c - ((A.len c : ℕ) : ZMod n)) b sol → PoleOK W A T₂ c b sol w
 
-theorem arith_h (p h : ℕ) (hp : 2 ≤ p) : h < (p - 1) * (2 * h / (p - 1) + 1) := by
-  have := Nat.lt_mul_div_succ (2 * h) (show 0 < p - 1 by omega)
-  omega
-
-theorem jumpsLe_of_win (A : ArcP n) (hA : A.OK) (T : LocLat G Qp LL O)
-    (hT : Win W A T) : JumpsLe PD T A.h := by
-  apply Formalism.MainNotions.UnusedSlot80.Relay2.jumpsLe_of_win <;> assumption
-
 theorem lA_pow_smul (T : LocLat G Qp LL O) (k : ℕ) (x : W.DD T) :
     lA W ^ k • x = (((PD.p : ℕ) : O) ^ k) • x := by
   simp only [lA]
@@ -183,8 +175,8 @@ theorem splitCore_of [NeZero n] (hO : Function.Injective (algebraMap O LL)) (h9 
   have hclass := hEK hs hp T₂ Y ι π (a • cc) hκ hcoc xt
     (b * ((PD.p : ℕ) : O) ^ (rr + A.σ PD.p)) hxπ hxΔ ⟨(y, z), hyz⟩ hyι hzγK
 
-  have hJ := jumpsLe_of_win W A hA T₂ hT₂
-  have hlt : A.h < (PD.p - 1) * A.M PD.p := arith_h PD.p A.h (by omega)
+  have hJ := Formalism.MainNotions.UnusedSlot80.Relay2.jumpsLe_of_win W A hA T₂ hT₂
+  have hlt : A.h < (PD.p - 1) * A.M PD.p := Formalism.MainNotions.UnusedSlot80.Relay2.arith_h PD.p A.h (by omega)
   obtain ⟨-, hF1uniq, hF1cls, -, -⟩ := (hF1 hCA A.h (A.M PD.p) hlt).1 T₂ hT₂.1 hJ
 
   have hcls : ∀ c ∈ A.cuts, ∃ xc, Cls W T₂ (A.M PD.p)
@@ -414,23 +406,6 @@ theorem sum_prev [NeZero n] (A : ArcP n) (hA : A.OK) {M : Type} [AddCommMonoid M
     subst hk0
     exact ⟨c, hc, by simpa using h⟩
 
-theorem map_φpow {T T' : LocLat G Qp LL O} (f : LatHom T.L T'.L) (k : ℕ) (x : W.DD T) :
-    W.map f (((W.φD T) ^ k) x) = ((W.φD T') ^ k) (W.map f x) := by
-  induction k with
-  | zero => rfl
-  | succ k ih =>
-    rw [PhiPowers.pow_apply_succ, PhiPowers.pow_apply_succ, ← ih]
-    first
-    | exact W.map_φ f _
-
-theorem φpow_smulA (T : LocLat G Qp LL O) (k : ℕ) (a : LetA O n) (x : W.DD T) :
-    ((W.φD T) ^ k) (a • x) = (W.φA ^ k) a • ((W.φD T) ^ k) x := by
-  induction k with
-  | zero => rfl
-  | succ k ih =>
-    rw [PhiPowers.pow_apply_succ, ih, φD_smulA, PhiPowers.pow_apply_succ, pow_succ']
-    rfl
-
 theorem φA_pow_lA (k s : ℕ) : (W.φA ^ k) (lA W ^ s) = lA W ^ s := by
   simp [lA, map_pow, map_natCast]
 
@@ -472,7 +447,7 @@ theorem Pp_φpow (T : LocLat G Qp LL O) (c : ZMod n) (e m : ℕ) {y : W.DD T}
   | mem z hz =>
     obtain ⟨a, ha, x, hx, rfl⟩ := hz
     apply AddSubgroup.subset_closure
-    exact ⟨(W.φA ^ m) a, PhiPowers.φA_pow_mem_AΔ (W := W) ha m, x, hx, by rw [φpow_smulA, φpow_add]⟩
+    exact ⟨(W.φA ^ m) a, PhiPowers.φA_pow_mem_AΔ (W := W) ha m, x, hx, by rw [Formalism.MainNotions.UnusedSlot80.SatPW.φD_pow_smulA, φpow_add]⟩
   | zero =>
     rw [map_zero]
     exact zero_mem _
@@ -515,8 +490,8 @@ theorem splitLift_of [NeZero n] (h9 : Formalism.MainNotions.DeltaInvariantLattic
   have hq : qA W ∈ W.AΔ := W.AΔ.add_mem hπ (W.AΔ.natCast_mem _)
   obtain ⟨hπι, hinj, hmid⟩ := hEx T₂ Y ι π hT₂.1 hY hses
   obtain ⟨x, τ₂, m, hcut⟩ := hCut hCA h5 A hA T₂ Y ι π hT₂ hY hses rr hK e heN heSpan heφ heγ b
-  have hJ := jumpsLe_of_win W A hA T₂ hT₂
-  have hlt : A.h < (PD.p - 1) * A.M PD.p := arith_h PD.p A.h (by omega)
+  have hJ := Formalism.MainNotions.UnusedSlot80.Relay2.jumpsLe_of_win W A hA T₂ hT₂
+  have hlt : A.h < (PD.p - 1) * A.M PD.p := Formalism.MainNotions.UnusedSlot80.Relay2.arith_h PD.p A.h (by omega)
   have h1 := ((hF1 hCA A.h (A.M PD.p) hlt).1 T₂ hT₂.1 hJ).1
   set σ := A.σ PD.p with hσ
   set X := xsh W A ι x τ₂ with hX
@@ -527,7 +502,7 @@ theorem splitLift_of [NeZero n] (h9 : Formalism.MainNotions.DeltaInvariantLattic
     intro c hc
     have hxπ := (hcut c hc).2.1
     simp only [hX, xsh]
-    rw [map_sub, hπι, sub_zero, Formalism.MainNotions.WachCoordinates.Br.map_smulA, map_φpow, hxπ, φpow_smulO,
+    rw [map_sub, hπι, sub_zero, Formalism.MainNotions.WachCoordinates.Br.map_smulA, Formalism.MainNotions.UnusedSlot80.Relay2.map_φpow, hxπ, φpow_smulO,
       φ_letE_e W e heφ, lA_pow_smul, smul_smul, hcb]
     congr 1; ring
   have hw : ∀ c, ∃ wc : W.DD T₂, c ∈ A.cuts → W.map ι wc =
@@ -537,7 +512,7 @@ theorem splitLift_of [NeZero n] (h9 : Formalism.MainNotions.DeltaInvariantLattic
     · have hjL : A.j ≤ A.len c := hA.2.2.2.1 c hc
       obtain ⟨wc, hwc⟩ := hmid (((W.φD Y) ^ (A.len c - A.j)) (X (c - ((A.len c : ℕ) : ZMod n))) -
           lA W ^ σ • x c) (by
-        rw [map_sub, map_φpow, hXπ _ (hpv c hc), φpow_smulO, φ_letE_e W e heφ,
+        rw [map_sub, Formalism.MainNotions.UnusedSlot80.Relay2.map_φpow, hXπ _ (hpv c hc), φpow_smulO, φ_letE_e W e heφ,
           Formalism.MainNotions.WachCoordinates.Br.map_smulA, (hcut c hc).2.1, lA_pow_smul, smul_smul,
           show c - ((A.len c : ℕ) : ZMod n) + (A.j : ZMod n) + ((A.len c - A.j : ℕ) : ZMod n) = c by
             rw [Nat.cast_sub hjL]; ring, hcb, sub_eq_zero]
@@ -550,7 +525,7 @@ theorem splitLift_of [NeZero n] (h9 : Formalism.MainNotions.DeltaInvariantLattic
   have hterm : ∀ c ∈ A.cuts, ∀ k : ℕ, W.map π (((W.φD Y) ^ k) (X (c - ((A.len c : ℕ) : ZMod n)))) =
       cb • ((letE (c - ((A.len c : ℕ) : ZMod n) + (k : ZMod n) + (A.j : ZMod n)) : LetA O n) • e) := by
     intro c hc k
-    rw [map_φpow, hXπ _ (hpv c hc), φpow_smulO, φ_letE_e W e heφ]
+    rw [Formalism.MainNotions.UnusedSlot80.Relay2.map_φpow, hXπ _ (hpv c hc), φpow_smulO, φ_letE_e W e heφ]
     congr 3; ring
   have hxtπ : W.map π xt = cb • e := by
     calc W.map π xt = ∑ c ∈ A.cuts, ∑ k ∈ Finset.range (A.len c),
@@ -590,7 +565,7 @@ theorem splitLift_of [NeZero n] (h9 : Formalism.MainNotions.DeltaInvariantLattic
 
     rw [map_sum, map_sum, ← Finset.sum_sub_distrib]
     refine Finset.sum_congr rfl fun k _ => ?_
-    rw [map_φpow, ← (hcut _ (hpv c hc)).2.2.2.2.2.1, map_sub]
+    rw [Formalism.MainNotions.UnusedSlot80.Relay2.map_φpow, ← (hcut _ (hpv c hc)).2.2.2.2.2.1, map_sub]
     have := γ_φpow W Y k (X (c - ((A.len c : ℕ) : ZMod n)))
     simp only [LocWach.γ] at this
     rw [this]
@@ -640,8 +615,8 @@ theorem splitLift_of [NeZero n] (h9 : Formalism.MainNotions.DeltaInvariantLattic
 
       rw [Formalism.MainNotions.WachCoordinates.Br.map_smulA, hy, hφxt, hR, Finset.smul_sum, map_sum]
       refine Finset.sum_congr rfl fun c hc => ?_
-      rw [map_sub, map_neg, Formalism.MainNotions.WachCoordinates.Br.map_smulA, Formalism.MainNotions.WachCoordinates.Br.map_smulA, map_φpow, hwι c hc,
-        map_sub, φpow_smulA, φA_pow_lA, φpow_add, Nat.sub_add_cancel (hA.2.2.2.1 c hc)]
+      rw [map_sub, map_neg, Formalism.MainNotions.WachCoordinates.Br.map_smulA, Formalism.MainNotions.WachCoordinates.Br.map_smulA, Formalism.MainNotions.UnusedSlot80.Relay2.map_φpow, hwι c hc,
+        map_sub, Formalism.MainNotions.UnusedSlot80.SatPW.φD_pow_smulA, φA_pow_lA, φpow_add, Nat.sub_add_cancel (hA.2.2.2.1 c hc)]
       simp only [hX, xsh]
       rw [smul_sub, smul_sub, smul_sub]
       abel

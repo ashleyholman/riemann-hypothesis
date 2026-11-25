@@ -35,10 +35,6 @@ theorem hJ_sub_left (ε : Fin n → Bool) (x x' y : Fin n → ℂ) :
     hJ ε (x - x') y = hJ ε x y - hJ ε x' y := by
   simp only [hJ_eq_sum, Pi.sub_apply, star_sub, sub_mul, Finset.sum_sub_distrib]
 
-theorem hJ_sub_right (ε : Fin n → Bool) (x y y' : Fin n → ℂ) :
-    hJ ε x (y - y') = hJ ε x y - hJ ε x y' := by
-  simp only [hJ_eq_sum, Pi.sub_apply, mul_sub, Finset.sum_sub_distrib]
-
 theorem hJ_smul_left (ε : Fin n → Bool) (c : ℂ) (x y : Fin n → ℂ) :
     hJ ε (c • x) y = star c * hJ ε x y := by
   simp only [hJ_eq_sum, Pi.smul_apply, smul_eq_mul, star_mul', Finset.mul_sum]

@@ -342,17 +342,15 @@ lemma exp_kdD (ε : Fin n → Bool) (v : ∀ s : Bool, Matrix (Fin (kdC ε s)) (
     ((NormedSpace.expSeries_radius_eq_top ℂ
       (∀ s : Bool, Matrix (Fin (kdC ε s)) (Fin (kdC ε s)) ℂ)).symm ▸ edist_lt_top _ _)).symm
 
-lemma kd_Jm_true (k : ℕ) : Jm (fun _ : Fin k => true) = 1 := by simp [Jm]
-
 lemma kd_un_unitary {N : ℕ} (u : UNgrp N) : toM u * (toM u)ᴴ = 1 := by
   have h : (toM u)ᴴ * Jm (fun _ : Fin N => true) * toM u = Jm (fun _ : Fin N => true) := u.2
-  rw [kd_Jm_true, Matrix.mul_one] at h
+  rw [ReciprocityTheory.ChartRestriction.DS.HW.Jm_allPos, Matrix.mul_one] at h
   exact mul_eq_one_comm.1 h
 
 def kdMkU {N : ℕ} (A : Matrix (Fin N) (Fin N) ℂ) (h : A * Aᴴ = 1) : UNgrp N :=
   ⟨⟨A, Aᴴ, h, mul_eq_one_comm.1 h⟩, by
     show Aᴴ * Jm (fun _ : Fin N => true) * A = Jm (fun _ : Fin N => true)
-    rw [kd_Jm_true, Matrix.mul_one]; exact mul_eq_one_comm.1 h⟩
+    rw [ReciprocityTheory.ChartRestriction.DS.HW.Jm_allPos, Matrix.mul_one]; exact mul_eq_one_comm.1 h⟩
 
 lemma kd_toM_inj {ε : Fin n → Bool} {g h : UJ ε} (e : toM g = toM h) : g = h := Subtype.ext (Units.ext e)
 
@@ -664,20 +662,6 @@ variable {N : ℕ}
 
 def kdF (N : ℕ) (x : UCo N) : Fin N → Fin N → ℂ := Matrix.of.symm (NormedSpace.exp (skMat x))
 
-lemma kd_continuous_skMat : Continuous (skMat (N := N)) := by
-  refine continuous_matrix fun a b => ?_
-  simp only [skMat]
-  split_ifs
-  · exact continuous_const.mul (Complex.continuous_ofReal.comp ((continuous_apply a).comp continuous_fst))
-  · exact (continuous_apply _).comp continuous_snd
-  · exact ((continuous_apply _).comp continuous_snd).star.neg
-  · exact continuous_const
-
-lemma kd_skMat_zero : skMat (0 : UCo N) = 0 := by
-  ext a b
-  simp only [skMat]
-  split_ifs <;> simp
-
 lemma kd_exp_injOn {𝔸 : Type*} [NormedRing 𝔸] [NormedAlgebra ℂ 𝔸] [CompleteSpace 𝔸] :
     ∃ V : Set 𝔸, IsOpen V ∧ (0 : 𝔸) ∈ V ∧ InjOn (NormedSpace.exp : 𝔸 → 𝔸) V := by
   have h : HasStrictFDerivAt (NormedSpace.exp : 𝔸 → 𝔸)
@@ -704,13 +688,13 @@ lemma kd_exp_continuous :
 end KDCont
 
 lemma continuous_kdF : Continuous (kdF N) := by
-  exact kd_exp_continuous.comp kd_continuous_skMat
+  exact kd_exp_continuous.comp ReciprocityTheory.ChartRestriction.DS.volU_continuous_skMat
 
 lemma kdF_injOn : ∃ r > 0, InjOn (kdF N) (Metric.ball 0 r) := by
   obtain ⟨V, hVo, hV0, hVi⟩ := kd_exp_injOn_nhds (N := N)
-  have hU : IsOpen (skMat ⁻¹' V) := hVo.preimage kd_continuous_skMat
+  have hU : IsOpen (skMat ⁻¹' V) := hVo.preimage ReciprocityTheory.ChartRestriction.DS.volU_continuous_skMat
   have h0 : (0 : UCo N) ∈ skMat ⁻¹' V := by
-    rw [Set.mem_preimage, kd_skMat_zero]
+    rw [Set.mem_preimage, ReciprocityTheory.ChartRestriction.DS.volU_skMat_zero]
     exact hV0
   obtain ⟨r, hr, hball⟩ := Metric.isOpen_iff.1 hU 0 h0
   refine ⟨r, hr, fun x hx y hy hxy => ReciprocityTheory.ChartRestriction.DS.volU_skMat_injective (hVi (hball hx) (hball hy) ?_)⟩

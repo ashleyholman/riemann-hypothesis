@@ -234,27 +234,13 @@ section types
 def typM (P : M.Par) (ρ : M.Ty P) : Fin (P.k - 1) → ℂ :=
   fun j => (M.rho P ρ ((j : ℕ) + 1) : ℂ) - ((P.k : ℂ) - 2) / 2
 
-theorem typ_prod_Icc (n : ℕ) (f : ℕ → ℂ) : ∏ i ∈ Finset.Icc 1 n, f i = ∏ j : Fin n, f ((j : ℕ) + 1) := by
-  induction n with
-  | zero => first | simp
-  | succ n ih =>
-    first
-    | (rw [Finset.prod_Icc_succ_top (by omega), ih, Fin.prod_univ_castSucc]; simp)
-
 theorem typ_xC (P : M.Par) (ρ : M.Ty P) (w : ℂ) :
     M.xC P ρ (w - ((P.k : ℂ) - 2) / 2) = Qr.cpol (typM P ρ) w := by
   unfold M.xC Qr.cpol
-  rw [typ_prod_Icc]
+  rw [Formalism.FourierDecayAlt.P.ProductIntervalFrames.prod_Icc_one]
   refine Finset.prod_congr rfl fun j _ => ?_
   simp only [typM]
   ring
-
-theorem typ_rho_succ (P : M.Par) (ρ : M.Ty P) (j : Fin (P.k - 1)) :
-    M.rho P ρ ((j : ℕ) + 1) = P.lo ((j : ℕ) + 1) + ((ρ j : ℕ) : ℝ) := by
-  have hj := j.isLt
-  unfold M.rho
-  rw [dite_eq_left (show 1 ≤ (j : ℕ) + 1 ∧ (j : ℕ) + 1 ≤ P.k - 1 by omega)]
-  all_goals first | rfl
 
 private theorem u_add_le_u_of_ok {Q : M.Par} (h : Q.OK) {i : ℕ} (hi1 : 1 ≤ i) :
     ∀ d : ℕ, i + d ≤ Q.k - 1 → Q.u (i + d) ≤ Q.u i := by
@@ -273,7 +259,7 @@ private theorem u_add_le_u_of_ok {Q : M.Par} (h : Q.OK) {i : ℕ} (hi1 : 1 ≤ i
 
 private theorem rho_succ_le_hi_of_ok {Q : M.Par} (h : Q.OK) (π : M.Ty Q) (j : Fin (Q.k - 1)) :
     M.rho Q π ((j : ℕ) + 1) ≤ Q.hi ((j : ℕ) + 1) := by
-  rw [typ_rho_succ]
+  rw [Formalism.FourierDecayAlt.Q.LieAlgebraWeightVectors.cb_rho_eq']
   have hj := j.isLt
   have hg : Q.lo ((j : ℕ) + 1) ≤ Q.hi ((j : ℕ) + 1) := h.gap _ (Finset.mem_Icc.mpr ⟨by omega, by omega⟩)
   have h1 := (π j).isLt
@@ -289,8 +275,8 @@ theorem typ_rho_gap (P : M.Par) (hOK : P.OK) (ρ : M.Ty P) (a b : Fin (P.k - 1))
   have ha := a.isLt
   have hb := b.isLt
   have hlt : (a : ℕ) < b := hab
-  have r1 := typ_rho_succ P ρ a
-  have r3 := typ_rho_succ P ρ b
+  have r1 := Formalism.FourierDecayAlt.Q.LieAlgebraWeightVectors.cb_rho_eq' P ρ a
+  have r3 := Formalism.FourierDecayAlt.Q.LieAlgebraWeightVectors.cb_rho_eq' P ρ b
   have r2 := rho_succ_le_hi_of_ok hOK ρ b
   have hlo : P.lo ((a : ℕ) + 1) = max (P.u ((a : ℕ) + 1 + 1)) (P.u' ((a : ℕ) + 1 + 1)) + 1 / 2 := rfl
   have hloB : P.lo ((b : ℕ) + 1) = max (P.u ((b : ℕ) + 1 + 1)) (P.u' ((b : ℕ) + 1 + 1)) + 1 / 2 := rfl
@@ -403,7 +389,7 @@ theorem typ_poly_ne (P : M.Par) (hOK : P.OK) (ρ ρ' : M.Ty P) (h : ρ ≠ ρ') 
     have h3 : ((M.rho P ρ ((j : ℕ) + 1) : ℝ) : ℂ) = ((M.rho P ρ' ((j : ℕ) + 1) : ℝ) : ℂ) := by
       linear_combination ej
     exact_mod_cast h3
-  rw [typ_rho_succ, typ_rho_succ] at ej2
+  rw [Formalism.FourierDecayAlt.Q.LieAlgebraWeightVectors.cb_rho_eq', Formalism.FourierDecayAlt.Q.LieAlgebraWeightVectors.cb_rho_eq'] at ej2
   have ej3 : ((ρ j : ℕ) : ℝ) = ((ρ' j : ℕ) : ℝ) := by linarith
   exact Fin.ext (by exact_mod_cast ej3)
 
@@ -804,7 +790,7 @@ def vecwM (Q : M.Par) (π : M.Ty Q) : Fin (Q.k - 1) → ℂ := fun j => ((M.rho 
 
 theorem vecw_xC_cpol (Q : M.Par) (π : M.Ty Q) (Y : ℂ) : M.xC Q π Y = Qr.cpol (vecwM Q π) Y := by
   unfold M.xC Qr.cpol
-  rw [typ_prod_Icc]
+  rw [Formalism.FourierDecayAlt.P.ProductIntervalFrames.prod_Icc_one]
   all_goals rfl
 
 theorem vecw_sdec {Q : M.Par} (h : Q.OK) (π : M.Ty Q) : Qr.SDec (vecwM Q π) := by
@@ -853,8 +839,8 @@ theorem vecw_ty_exists {P : M.Par} (h : P.OK) (τ : M.Ty (parametersUForUPrime P
     have hj := j.isLt
     have hmem : (j : ℕ) + 1 ∈ Finset.Icc 1 (P.k - 1) := Finset.mem_Icc.mpr ⟨by omega, by omega⟩
     have e1 := he _ hmem
-    have t1 := typ_rho_succ (parametersUForUPrime P) τ j
-    have t2 := typ_rho_succ (parametersUPrimeForU P) σ j
+    have t1 := Formalism.FourierDecayAlt.Q.LieAlgebraWeightVectors.cb_rho_eq' (parametersUForUPrime P) τ j
+    have t2 := Formalism.FourierDecayAlt.Q.LieAlgebraWeightVectors.cb_rho_eq' (parametersUPrimeForU P) σ j
     have b1 := vecw_rho_bounds (parameters_u_for_u_prime_ok h) τ hmem
     have b2 := vecw_rho_bounds (parameters_u_prime_for_u_ok h) σ hmem
     have hlo1 : (parametersUForUPrime P).lo ((j : ℕ) + 1) = P.u ((j : ℕ) + 1 + 1) + 1 / 2 := parameters_u_for_u_prime_lower P _
@@ -898,7 +884,7 @@ theorem vecw_ty_exists {P : M.Par} (h : P.OK) (τ : M.Ty (parametersUForUPrime P
   refine ⟨f, fun i hi => ?_⟩
   have hi' := Finset.mem_Icc.mp hi
   obtain ⟨j, rfl⟩ : ∃ j : Fin (P.k - 1), (j : ℕ) + 1 = i := ⟨⟨i - 1, by omega⟩, by show i - 1 + 1 = i; omega⟩
-  rw [typ_rho_succ P f j, hf j]
+  rw [Formalism.FourierDecayAlt.Q.LieAlgebraWeightVectors.cb_rho_eq' P f j, hf j]
 
 theorem vecw_xC_match {P : M.Par} (τ : M.Ty (parametersUForUPrime P)) (ρ : M.Ty P)
     (hρ : ∀ i ∈ Icc 1 (P.k - 1), M.rho P ρ i = M.rho (parametersUForUPrime P) τ i) (Y : ℂ) :
@@ -910,8 +896,6 @@ end par
 
 section final
 open Finset
-
-alias vecw_frame_exists := _root_.Formalism.FourierDecayAlt.P.Topx1.typ_frame_exists
 
 variable {Wp : Type} [NormedAddCommGroup Wp] [InnerProductSpace ℂ Wp] [FiniteDimensional ℂ Wp]
 
@@ -997,7 +981,7 @@ theorem vecw_main : Formalism.FourierDecayAlt.Top.VecVTypes := by
   have hee : herm (Hpk P.k P.r) (m₀ *ᵥ ν') (m₀ *ᵥ ν') = 1 := by rw [Dx2.DF.herm_m0_mulVec_invariant m₀ hmU]; exact hνν
   have hez : herm (Hpk P.k P.r) (m₀ *ᵥ ν') S.z = 0 := by
     rw [hzeq, Qx8.herm_smul_right', Dx2.DF.herm_m0_mulVec_invariant m₀ hmU, hνz, mul_zero]
-  obtain ⟨Bs₀', hB₀'⟩ := vecw_frame_exists P.k P.r hOK.k_pos S.z' ν' hz' S.T'_pos hν hνz hνν
+  obtain ⟨Bs₀', hB₀'⟩ := Formalism.FourierDecayAlt.P.Topx1.typ_frame_exists P.k P.r hOK.k_pos S.z' ν' hz' S.T'_pos hν hνz hνν
   have hB₀ := vecw_frame_fwd S hbase hB₀'
   obtain ⟨S', hInt', -, heig⟩ := branching_proof Wq (parametersUPrimeForU P) (parameters_u_prime_for_u_ok hOK) rfl S.z' ν' S.π' hz'
     S.T'_pos hty' hν hνz hνν
@@ -1018,7 +1002,5 @@ theorem vecw_main : Formalism.FourierDecayAlt.Top.VecVTypes := by
     simp only [map_add (f := _), Finset.sum_add_distrib, ha, hb]
 
 end Formalism.FourierDecayAlt.P.Topx1
-
-alias Formalism.FourierDecayAlt.P.vector_valued_types := _root_.Formalism.FourierDecayAlt.P.Topx1.vecw_main
 
 end PartVec

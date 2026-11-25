@@ -604,9 +604,6 @@ section
 
 variable {n' : ℕ}
 
-theorem segDists_mono (TT : Finset (Fin n')) (j : Fin (numSeg TT)) : StrictMono (segDists TT j).get :=
-  (Finset.sortedLT_sort _).strictMono_get
-
 theorem other_even (TT : Finset (Fin n')) (h2 : 2 ≤ numSeg TT) (j : Fin (numSeg TT)) :
     ∃ e ∈ TT, Even e.val ∧ e ≠ segStart TT j := by
   apply _root_.Formalism.MainNotions.ColumnSystems.Pf.other_start <;> assumption
@@ -730,7 +727,7 @@ theorem restOddTops : RestOddTops := by
       show segStart TT j = segStart TT j'
       rw [← a1.2, ← a2.2, h'])
     subst hj
-    have hi : i = i' := (segDists_mono TT j).injective (by rw [← a1.1, ← a2.1, h'])
+    have hi : i = i' := (Formalism.MainNotions.ColumnSystems.Pf.dist_strictMono TT j).injective (by rw [← a1.1, ← a2.1, h'])
     subst hi
     rfl
   · intro y hy

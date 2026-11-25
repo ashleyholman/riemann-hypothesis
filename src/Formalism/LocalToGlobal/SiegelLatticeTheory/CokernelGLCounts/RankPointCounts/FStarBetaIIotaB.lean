@@ -64,8 +64,8 @@ theorem g2 {Λ : Submodule (𝓞 D.host.E) (VS D).V} {T T' : D.host.E} (F : LFla
     simpa using this
   have hXA : XLam Λ F ≤ NgX Λ (gS D) F F' := le_sup_right.trans le_sup_left
   have hXB : XLam Λ F' ≤ NgX Λ (gS D) F F' := le_sup_right
-  have a1 := localLattice_mono Zd p hXA (hA _ (sub_mem (BwdNP.baseChange_mem_localLattice Zd hy p) hxΛ) d2)
-  have a2 := localLattice_mono Zd p hXB (hB _ (sub_mem (BwdNP.baseChange_mem_localLattice Zd hy' p) hx''Λ) d1)
+  have a1 := Formalism.L2.SG.Pf.BBTie.latP_mono Zd p hXA (hA _ (sub_mem (BwdNP.baseChange_mem_localLattice Zd hy p) hxΛ) d2)
+  have a2 := Formalism.L2.SG.Pf.BBTie.latP_mono Zd p hXB (hB _ (sub_mem (BwdNP.baseChange_mem_localLattice Zd hy' p) hx''Λ) d1)
   have a3 : (x : Vp D p) - x'' ∈ lattice₂ D Zd.M p (NgX Λ (gS D) F F') := by
     refine (Submodule.span_le.2 ?_) hdiff
     rintro _ ⟨v, hv, rfl⟩

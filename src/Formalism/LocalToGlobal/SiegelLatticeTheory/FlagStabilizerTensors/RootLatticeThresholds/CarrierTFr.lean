@@ -211,7 +211,7 @@ theorem exists_Cc_data : ∃ Cc : ℝ, ∀ {D : D7} (X : Formalism.L2.SG.HidaSet
         (towersOf X C u u' e j).base.π (towersOf X C u u' e j).base.π' Xo μ L st (l + 1) := by
   have hLAB : Formalism.FourierDecayAlt.JCT.LevelsActualBuilt := by
     first
-      | exact Formalism.FourierDecayAlt.P.levels_of_built_setting
+      | exact Formalism.FourierDecayAlt.P.JCTx5.levelsActualBuilt
   obtain ⟨Cc, hC⟩ := hLAB
   refine ⟨Cc, ?_⟩
   intro D X θ C u u' e he hv CA de de' l grid grid1 fc c ν' m₀ Θ TP A₀ hB j

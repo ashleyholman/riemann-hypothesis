@@ -25,11 +25,6 @@ theorem hG_add_left (x y z : Fin I.n → I.E) : hG I (x + y) z = hG I x z + hG I
 theorem hG_add_right (x y z : Fin I.n → I.E) : hG I x (y + z) = hG I x y + hG I x z := by
   simp only [hG_def, Pi.add_apply, mul_add, Finset.sum_add_distrib]
 
-theorem hG_smul_left (c : I.E) (x y : Fin I.n → I.E) : hG I (c • x) y = star c * hG I x y := by
-  simp only [hG_def, Pi.smul_apply, smul_eq_mul, star_mul', Finset.mul_sum]
-  refine Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => ?_
-  ring
-
 theorem hG_smul_right (c : I.E) (x y : Fin I.n → I.E) : hG I x (c • y) = c * hG I x y := by
   simp only [hG_def, Pi.smul_apply, smul_eq_mul, Finset.mul_sum]
   refine Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => ?_
@@ -40,12 +35,6 @@ theorem hG_zero_left (y : Fin I.n → I.E) : hG I 0 y = 0 := by
 
 theorem hG_zero_right (x : Fin I.n → I.E) : hG I x 0 = 0 := by
   simp [hG_def]
-
-theorem hG_neg_right (x y : Fin I.n → I.E) : hG I x (-y) = - hG I x y := by
-  simp only [hG_def, Pi.neg_apply, mul_neg, Finset.sum_neg_distrib]
-
-theorem hG_sub_right (x y z : Fin I.n → I.E) : hG I x (y - z) = hG I x y - hG I x z := by
-  rw [sub_eq_add_neg, hG_add_right, hG_neg_right, ← sub_eq_add_neg]
 
 theorem hG_sum_right {ι : Type*} (s : Finset ι) (x : Fin I.n → I.E) (y : ι → Fin I.n → I.E) :
     hG I x (∑ t ∈ s, y t) = ∑ t ∈ s, hG I x (y t) := by

@@ -166,14 +166,6 @@ theorem zOp_contDiffOn (w : List (Bool × ℕ)) {u : Mat n → V} (hu : ContDiff
   | nil => exact hu
   | cons p w ih => exact GlobalTheory.CompanionTheory.RCalc.gel_contDiffOn p.1 p.2 ih
 
-theorem zOp_append (w w' : List (Bool × ℕ)) (u : Mat n → V) :
-    zOp (w ++ w') u = zOp w (zOp w' u) := by
-  induction w with
-  | nil => rfl
-  | cons p w ih =>
-    show gel p.1 p.2 (zOp (w ++ w') u) = gel p.1 p.2 (zOp w (zOp w' u))
-    rw [ih]
-
 end Ops
 
 private theorem isHecke_div_and_resEtaPow_div (n : ℕ) (s : Bool) (m : ℕ) : ∃ (M : ℕ) (e : Fin M → ℂ) (v : Fin M → List (Bool × ℕ)), (∀ χ : Inf n, IsHerm χ → conj (zVal [(s, m)] χ) = ∑ j, e j * zVal (v j) χ) ∧ (LgFacts → RCalc → ∀ [MeasurableSpace (G n)] [BorelSpace (G n)] (μ : Measure (G n)) [μ.IsHaarMeasure] (V : Type) [NormedAddCommGroup V] [InnerProductSpace ℂ V] [CompleteSpace V] (f h : Mat n → V), ContDiffOn ℝ ∞ f (GLs n) → ContDiffOn ℝ ∞ h (GLs n) → Cpt f → Cpt h → ∫ y : G n, ⟪gel s m f y.val, h y.val⟫_ℂ ∂μ = ∑ j, e j * ∫ y : G n, ⟪f y.val, zOp (v j) h y.val⟫_ℂ ∂μ) := by
@@ -238,7 +230,7 @@ theorem word_adjoint : ∀ (n : ℕ) (w : List (Bool × ℕ)), ∃ (N : ℕ) (c 
       refine Finset.sum_congr rfl fun j _ => ?_
       rw [hi hL hR μ V f (zOp (v j) h) hf (zOp_contDiffOn _ hh) cf (cpt_zOp hL _ ch), Finset.mul_sum]
       refine Finset.sum_congr rfl fun i _ => ?_
-      rw [zOp_append]
+      rw [GlobalTheory.CompanionTheory.WaveMult.Swap.zOp_append]
       ring
 
 end GlobalTheory.CompanionTheory.WaveMult.WordAdj

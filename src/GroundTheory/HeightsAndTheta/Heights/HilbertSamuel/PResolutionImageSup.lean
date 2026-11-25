@@ -61,15 +61,6 @@ theorem continuous_ptNorm_resPt (d : HSMDatum D Ω κ) {n : ℕ} {f : MvPolynomi
   filter_upwards [(d.R.isOpen_U y₀).mem_nhds (d.R.mem_U y₀)] with y hy
   exact (ptNorm_resPt_eq d hf hy).symm
 
-theorem lintegral_chart_le {X : Type*} [TopologicalSpace X] [MeasurableSpace X] [BorelSpace X] {e : ℕ}
-    (φ : OpenPartialHomeomorph X (Fin e → ℂ)) (μ : Measure X) {ν : (Fin e → ℂ) → ℝ}
-    (hν : ContinuousOn ν φ.target)
-    (hμ : ∀ S : Set X, MeasurableSet S → S ⊆ φ.source →
-      μ S = ∫⁻ y in φ.target ∩ φ.symm ⁻¹' S, ENNReal.ofReal (ν y))
-    {g : X → ENNReal} (hg : Measurable g) :
-    ∫⁻ z in φ.target, ENNReal.ofReal (ν z) * g (φ.symm z) ≤ ∫⁻ y, g y ∂μ := by
-  apply GroundTheory.Heights₂.Heights.HilbertSamuel.BlockResolutionImageSup.lintegral_chart_le <;> assumption
-
 theorem local_bound (hC : ChartSupBound.Statement) (d : HSMDatum D Ω κ) (x₀ : d.R.X) :
     ∃ N : Set d.R.X, IsOpen N ∧ x₀ ∈ N ∧ ∃ C : ℝ, 0 ≤ C ∧ ∀ n : ℕ, 1 ≤ n →
       ∀ f : MvPolynomial (Ix κ) ℂ, f.IsHomogeneous n → ∀ y ∈ N,
@@ -131,7 +122,7 @@ theorem local_bound (hC : ChartSupBound.Statement) (d : HSMDatum D Ω κ) (x₀ 
       _ ≤ ∫⁻ z in e.target, ENNReal.ofReal (ν z) *
             ENNReal.ofReal (ptNorm d.m (RingHom.id ℂ) n f (resPt d (e.symm z)) ^ 2) :=
           lintegral_mono_set inter_subset_left
-      _ ≤ _ := lintegral_chart_le e d.dV hνs.continuousOn hνV hgm
+      _ ≤ _ := GroundTheory.Heights₂.Heights.HilbertSamuel.BlockResolutionImageSup.lintegral_chart_le e d.dV hνs.continuousOn hνV hgm
   have hn0 : (0 : ℝ) ≤ (n : ℝ) ^ D := by positivity
   have h2 : ENNReal.ofReal (ptNorm d.m (RingHom.id ℂ) n f (resPt d y) ^ 2) ≤
       ENNReal.ofReal (max C₀ 0 * (n : ℝ) ^ D * resolutionVolumeL2Complex d n f ^ 2) := by

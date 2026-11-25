@@ -586,16 +586,6 @@ theorem lie_rsmul {X : Q.Mx k r} (hX : Q.inLieLev k r i X) (x : ℝ) : Q.inLieLe
   · rw [hs, (h2 a ha).1, smul_zero]
   · rw [hs, (h2 a ha).2, smul_zero]
 
-private theorem inLieLev_add {X Y : Q.Mx k r} (hX : Q.inLieLev k r i X) (hY : Q.inLieLev k r i Y) :
-    Q.inLieLev k r i (X + Y) := by
-  unfold Formalism.FourierDecayAlt.Q.inLieLev at hX hY ⊢
-  refine ⟨?_, fun a ha => ⟨?_, ?_⟩⟩
-  · rw [Matrix.conjTranspose_add, Matrix.add_mul, Matrix.mul_add,
-      show Xᴴ * Hpk k r + Yᴴ * Hpk k r + (Hpk k r * X + Hpk k r * Y) =
-        (Xᴴ * Hpk k r + Hpk k r * X) + (Yᴴ * Hpk k r + Hpk k r * Y) by abel, hX.1, hY.1, add_zero]
-  · rw [Matrix.add_mulVec, (hX.2 a ha).1, (hY.2 a ha).1, add_zero]
-  · rw [Matrix.add_mulVec, (hX.2 a ha).2, (hY.2 a ha).2, add_zero]
-
 theorem glc_lin {Z Z' : Q.Mx k r} (hZ : GLc k r Z) (hZ' : GLc k r Z') (a : ℂ) : GLc k r (a • Z + Z') := by
   unfold GLc at *
   obtain ⟨h1, h2⟩ := hZ
@@ -628,8 +618,8 @@ theorem glc_lin {Z Z' : Q.Mx k r} (hZ : GLc k r Z) (hZ' : GLc k r Z') (a : ℂ) 
       Matrix.sub_apply, Matrix.smul_apply, smul_eq_mul, Complex.real_smul]
     linear_combination (-(a.im : ℂ) * Z i j / 2 + (a.im : ℂ) * ((Hpk k r)⁻¹ * Zᴴ * Hpk k r) i j / 2) * Complex.I_sq
   rw [e1, e2]
-  exact ⟨inLieLev_add (inLieLev_add (lie_rsmul h1 _) (lie_rsmul h2 _)) h1',
-    inLieLev_add (inLieLev_add (lie_rsmul h1 _) (lie_rsmul h2 _)) h2'⟩
+  exact ⟨Formalism.FourierDecayAlt.P.Qx5.lie_add (Formalism.FourierDecayAlt.P.Qx5.lie_add (lie_rsmul h1 _) (lie_rsmul h2 _)) h1',
+    Formalism.FourierDecayAlt.P.Qx5.lie_add (Formalism.FourierDecayAlt.P.Qx5.lie_add (lie_rsmul h1 _) (lie_rsmul h2 _)) h2'⟩
 
 private theorem hermitian_halves_smul_add (Z Z' : Q.Mx k r) (a : ℂ) :
     hpart1 (Hpk k r) (a • Z + Z') =
@@ -694,9 +684,9 @@ private theorem rc_smul_add_of_smoothLev_of_gLc {E : Type*} [NormedAddCommGroup 
   obtain ⟨h1', h2'⟩ := hz'
   unfold Rc
   rw [e1, e2,
-    Formalism.FourierDecayAlt.P.Qx5.rd_addX hf hg (inLieLev_add (lie_rsmul h1 _) (lie_rsmul h2 _)) h1',
+    Formalism.FourierDecayAlt.P.Qx5.rd_addX hf hg (Formalism.FourierDecayAlt.P.Qx5.lie_add (lie_rsmul h1 _) (lie_rsmul h2 _)) h1',
     Formalism.FourierDecayAlt.P.Qx5.rd_addX hf hg (lie_rsmul h1 _) (lie_rsmul h2 _),
-    Formalism.FourierDecayAlt.P.Qx5.rd_addX hf hg (inLieLev_add (lie_rsmul h1 _) (lie_rsmul h2 _)) h2',
+    Formalism.FourierDecayAlt.P.Qx5.rd_addX hf hg (Formalism.FourierDecayAlt.P.Qx5.lie_add (lie_rsmul h1 _) (lie_rsmul h2 _)) h2',
     Formalism.FourierDecayAlt.P.Qx5.rd_addX hf hg (lie_rsmul h1 _) (lie_rsmul h2 _)]
   simp only [rdV_real_smul, Complex.ofReal_neg]
   have haI : a * Complex.I = (a.re : ℂ) * Complex.I - a.im := by

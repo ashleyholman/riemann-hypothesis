@@ -1196,10 +1196,4 @@ section
 open MeasureTheory
 open scoped ENNReal
 
-namespace Formalism.MainNotions.BridgeCSB
-
-open Formalism.QuantumDeterminants Formalism.MainNotions.S Formalism.BasicNotions
-
-end Formalism.MainNotions.BridgeCSB
-
 end

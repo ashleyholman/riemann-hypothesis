@@ -160,7 +160,7 @@ theorem zb [NeZero n] [IsDomain O] (hR : Formalism.MainNotions.LiftingTheory.lif
     (L_osmul W _ (L_sub W (L_osmul W _ hD.1) (L_sub W (L_γ W hPl) hPl))) hae
   have hS : tt ∈ Formalism.MainNotions.ArcLiftingSetup.Pp W T i j := Pp_tt W hR T i hcN hrs
   have hV : ((PD.p : ℕ) : O) ^ σ • ((W.φD T) ^ j) ζ - (W.γ T tt - tt) ∈ Formalism.MainNotions.ArcLiftingSetup.Pp W T i j := by
-    rw [hζ, φpow_smul]
+    rw [hζ, Formalism.MainNotions.UnusedSlot80.SatPW.φD_pow_smulA]
     exact (Formalism.MainNotions.ArcLiftingSetup.Pp W T i j).sub_mem (Pp_osmul W T i j _ _
       (Pp_gen W T i j (Formalism.MainNotions.UnusedSlot80.PhiPowers.φA_pow_mem_AΔ W hR.πΔ j) hz'))
       ((Formalism.MainNotions.ArcLiftingSetup.Pp W T i j).sub_mem (Pp_γ W T i j tt hS) hS)
@@ -278,7 +278,7 @@ theorem partialSum_mem_uniformizer_mul (hπ : W.π₀ ∈ W.AΔ) (T : LocLat G Q
     ∃ E', Formalism.MainNotions.LiftingTheory.InNΔi W T i E' ∧ P0 W T K c = W.π₀ • E' := by
   refine ⟨∑ y ∈ Finset.range K, ((PD.p : ℕ) : O) ^ (Formalism.MainNotions.CrystallineLiftingInputs.eY PD.p K - Formalism.MainNotions.CrystallineLiftingInputs.eY PD.p y) •
       (W.π₀ ^ (y - 1) • c y),
-    InNΔi_sum W T i _ _ fun y _ => InNΔi_osmul W T i _ (InNΔi_smul W T i (W.AΔ.pow_mem hπ _) (hc y)), ?_⟩
+    InNΔi_sum W T i _ _ fun y _ => InNΔi_osmul W T i _ (Formalism.MainNotions.LiftingTheory.frame_smul_mem W T i (W.AΔ.pow_mem hπ _) (hc y)), ?_⟩
   rw [P0, Finset.smul_sum]
   refine Finset.sum_congr rfl fun y _ => ?_
   rcases Nat.eq_zero_or_pos y with rfl | hy

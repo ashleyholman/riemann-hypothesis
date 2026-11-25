@@ -51,9 +51,9 @@ theorem leadM_mul {m : ℕ} {L X U : Matrix (Fin m) (Fin m) K} (hL : IsLo L) (hU
         rw [hL.2 _ _ (by simp only [Fin.lt_def, Fin.val_castLE]; omega), zero_mul]
     rw [e, Matrix.det_mul, Matrix.det_mul]
     have h1 : (L.submatrix (Fin.castLE hl) (Fin.castLE hl)).det = 1 :=
-      det_lo' ⟨fun a => hL.1 _, fun a b hab => hL.2 _ _ hab⟩
+      Formalism.L2.SG.Pf.AtPt.det_lo ⟨fun a => hL.1 _, fun a b hab => hL.2 _ _ hab⟩
     have h2 : (U.submatrix (Fin.castLE hl) (Fin.castLE hl)).det = 1 :=
-      det_up' ⟨fun a => hU.1 _, fun a b hab => hU.2 _ _ hab⟩
+      Formalism.L2.SG.Pf.AtPt.det_up ⟨fun a => hU.1 _, fun a b hab => hU.2 _ _ hab⟩
     rw [h1, h2, one_mul, mul_one]
   · rfl
 

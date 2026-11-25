@@ -416,13 +416,6 @@ theorem pow_dualFam (E : Fin n → Fin n → Module.End ℂ V) (m : ℕ) (a b : 
 
 end Dual
 
-theorem epow_eq_pow {n : ℕ} {V : Type} [NormedAddCommGroup V] [InnerProductSpace ℂ V]
-    (E : Fin n → Fin n → Module.End ℂ V) (m : ℕ) (a b : Fin n) :
-    epow E m a b = ((Matrix.of E : Matrix (Fin n) (Fin n) (Module.End ℂ V)) ^ m) a b := by
-  induction m generalizing a b with
-  | zero => simp [epow, Matrix.one_apply]
-  | succ m ih => simp only [epow, pow_succ', Matrix.mul_apply, Matrix.of_apply, ih]
-
 theorem ev_gelA : ∀ (n : ℕ) (V : Type) [NormedAddCommGroup V] [InnerProductSpace ℂ V]
     (E : Fin n → Fin n → Module.End ℂ V), Formalism.REAL.GlRel E → ∀ (ev : V →ₗ[ℂ] ℂ) (x : Fin n → ℂ),
     (∀ a b, b < a → ∀ v, ev (E a b v) = 0) → (∀ a v, ev (E a a v) = x a * ev v) →
@@ -444,7 +437,7 @@ theorem ev_gelA : ∀ (n : ℕ) (V : Type) [NormedAddCommGroup V] [InnerProductS
     rw [GlobalTheory.Dec.gelfVal, this]
 
   rw [hval, ← h2, gelA, LinearMap.sum_apply, map_sum]
-  exact Finset.sum_congr rfl fun a _ => by rw [epow_eq_pow]
+  exact Finset.sum_congr rfl fun a _ => by rw [GlobalTheory.CompanionTheory.ModelS.epow_eq_pow_of]
 
 end GlobalTheory.CompanionTheory.EvGel
 end -- clump:auto

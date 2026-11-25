@@ -223,7 +223,7 @@ theorem wave_bound3 (hP : P5.ThmPActualCpt) {Wp Wq : Type} [NormedAddCommGroup W
   refine mul_le_mul_of_nonneg_left ?_ (abs_nonneg _)
   obtain ⟨hc1, hc2, hpw⟩ := hgr n
   set ys := List.ofFn fun a => grid a (n a) with hys
-  obtain ⟨hq, hss⟩ := Formalism.FourierDecayAlt.P.size_standard_compact hP Wp Wq P p j hj w ys hc1 hc2 hpw
+  obtain ⟨hq, hss⟩ := Formalism.FourierDecayAlt.P.PBF.pb_sizeStdCpt_main hP Wp Wq P p j hj w ys hc1 hc2 hpw
   set X := KB.slv p.T F j hj (KB.plusW ys w) h hh.2 with hX
   set Y := KB.slv p.T F j hj (KB.minusW ys w) h' hh'.2 with hY
   have hXc : ∀ e, KB.CptCoef (p.T.bs j) (X e) := fun e =>
@@ -231,7 +231,7 @@ theorem wave_bound3 (hP : P5.ThmPActualCpt) {Wp Wq : Type} [NormedAddCommGroup W
   have hYc : ∀ e, KB.CptCoef (p.T.bs j) (Y e) := fun e =>
     Formalism.FourierDecayAlt.P.slice_compact_support_coefficient Wp Wq P p F j hj (KB.minusW ys w) h' hh' hF e
   have hOc : ∀ e, KB.CptCoef (p.T.bs j) (KB.onOld Mo ys X e) := onOld_cpt (p.T.bs j) Mo hMoC ys X hXc
-  obtain ⟨hWc, hiso⟩ := Formalism.FourierDecayAlt.P.vector_isomorphism_compact_support hP Wp Wq P p j hj (KB.plusW ys w) hc1 s
+  obtain ⟨hWc, hiso⟩ := Formalism.FourierDecayAlt.P.PBFV.vIsoCpt_main hP Wp Wq P p j hj (KB.plusW ys w) hc1 s
     (KB.onOld Mo ys X) (KB.onOld Mo ys X) hOc hOc
   have key := hss (KB.waveG (p.T.bs j) s (KB.plusW ys w) (KB.onOld Mo ys X)) Y hWc hYc
   rw [hiso] at key

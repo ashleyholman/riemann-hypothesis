@@ -237,7 +237,7 @@ theorem second_level_of_norm_holds : SecondLevelOfNorm := by
   intro K _ _ _ l σ hU F hF ph hph hF1 hN
   have hl : 2 ≤ l := hU.1.two_le
   have hP := logPair (K := K) hl
-  have hσ : ∀ a : K, ‖a‖ ≤ 1 → ‖σ a‖ ≤ 1 := (frobSq K l σ hU).2
+  have hσ : ∀ a : K, ‖a‖ ≤ 1 → ‖σ a‖ ≤ 1 := (Formalism.L2.Th1.D.frobenius_square K l σ hU).2
   obtain ⟨hFr, hC1, hFe, hall⟩ := all hU hF hph hF1 hN
   refine ⟨?_, fun α hα hs => (phNorm_iff ph α).1 (hall α hα hs).1, ?_⟩
   · intro α hα hs e e' he he'
@@ -279,7 +279,7 @@ theorem norm_units_alt : NormUnits := by
   have hl : 2 ≤ l := by have := hU.2.1; omega
   obtain ⟨hL0, -, hE0, -, -⟩ := BrC.logPair (K := K) hl
   have hσc : Continuous σ := (AddMonoidHomClass.isometry_of_norm σ (sigma_isometry K l σ hU)).continuous
-  have hC := Formalism.L2.Th1.C.phNormClosed K (Formalism.G.unitBall K) (Formalism.L2.Th1.C.unit_ball_closed K)
+  have hC := Formalism.L2.Th1.C.logNormClosed' K (Formalism.G.unitBall K) (Formalism.L2.Th1.C.unit_ball_closed K)
     (lgF K l) (expF K l) ph hL0 hE0 hph
   have hC' : IsClosed {a : K | NormRel l σ ph a} := by
     have h2 := hC.preimage (continuous_id.prodMk hσc)

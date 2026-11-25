@@ -30,10 +30,6 @@ theorem cc_psubst {ι : Type} {a : MvPowerSeries ι K} (ha : MvPowerSeries.const
     MvPowerSeries.constantCoeff (PowerSeries.subst a f) = 0 :=
   PowerSeries.constantCoeff_subst_eq_zero ha f hf
 
-theorem constantCoeff_inVar_eq_zero {ι : Type} (x : ι) {f : PowerSeries K} (hf : PowerSeries.constantCoeff f = 0) :
-    MvPowerSeries.constantCoeff (at1 x f) = 0 :=
-  cc_psubst (MvPowerSeries.constantCoeff_X x) hf
-
 theorem pd_mul {ι : Type} (i : ι) (x y : MvPowerSeries ι K) :
     pd i (x * y) = x * pd i y + y * pd i x := by
   simp only [Formalism.L2.Th1.B.pd, Derivation.leibniz, smul_eq_mul]

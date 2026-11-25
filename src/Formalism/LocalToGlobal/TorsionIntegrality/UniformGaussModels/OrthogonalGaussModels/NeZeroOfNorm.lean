@@ -425,6 +425,6 @@ theorem CalcP_of (hD : CMDatum) : CalcP := by
       (by
         rintro _ ⟨n, rfl⟩
         exact Formalism.L2.Th1.C.intBinomScalar ℂ_[p] _ n)
-      (Formalism.L2.Th1.C.binomClosed ℂ_[p] _ (Formalism.L2.Th1.C.unit_ball_closed ℂ_[p])) hz
+      (Formalism.L2.Th1.C.binomialScalarClosed' ℂ_[p] _ (Formalism.L2.Th1.C.unit_ball_closed ℂ_[p])) hz
 
 end Formalism.L2.Th1.Top

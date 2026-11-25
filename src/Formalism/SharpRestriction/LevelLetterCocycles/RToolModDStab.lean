@@ -25,8 +25,6 @@ section DStab
 
 variable (W : LocWach PD LL O v n) (T : LocLat G Qp LL O)
 
-alias γD_smul' := _root_.Formalism.MainNotions.LiftingTheory.gammaD_semilinear
-
 theorem rToolMod_geom (a : LetA O n) (m : ℕ) : ∃ g : LetA O n, (1 + a) ^ m = 1 + a * g := by
   induction m with
   | zero => exact ⟨0, by simp⟩
@@ -129,7 +127,7 @@ theorem rToolMod_dStab [NeZero n] (hP9 : Formalism.MainNotions.DeltaInvariantLat
       _ = Ring.inverse (algebraMap (LetA O n) W.EE W.π₀) := by
           rw [Ring.inverse_mul_cancel _ ha, map_one, one_mul]
   have hγsm : ∀ (g : W.Gam) (b : LetA O n) (z : W.DD T'),
-      W.γD T' g (b • z) = W.γA g b • W.γD T' g z := γD_smul' W T'
+      W.γD T' g (b • z) = W.γA g b • W.γD T' g z := Formalism.MainNotions.LiftingTheory.gammaD_semilinear W T'
   have hdOp : ∀ z, Formalism.MainNotions.CrystallineLiftingInputs.dOp W T' z = e • (W.γD T' W.gam z - z) := fun z => by rw [he]; rfl
   have hγy : ∀ (m : ℕ) (z : W.DD T'), W.γD T' W.gam (Formalism.MainNotions.LiftingTheory.qp W ^ m • z) =
       (1 + W.π₀ * (w₂ : LetA O n)) ^ m • (Formalism.MainNotions.LiftingTheory.qp W ^ m • W.γD T' W.gam z) := by

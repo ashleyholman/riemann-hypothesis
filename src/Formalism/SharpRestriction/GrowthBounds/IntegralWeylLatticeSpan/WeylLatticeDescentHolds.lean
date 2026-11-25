@@ -111,8 +111,6 @@ noncomputable section
 
 namespace PI.OddDualWeyl.Uniq
 
-alias aeval_smul_hom := _root_.Bl.general_b_fact_right_alt.goal1
-
 def P (Rg : Type*) [CommRing Rg] (k : ℕ) : Matrix (Fin k) (Fin k) Rg :=
   Matrix.of fun i j => if i = Fin.rev j then 1 else 0
 
@@ -169,7 +167,7 @@ theorem highest_weight_vector_unique : Uniq := by
     have e : G = aeval (fun v : Fin 1 × Fin 1 => X (0, 0) * (1 : MvPolynomial (Fin 1 × Fin 1) K)) G := by
       conv_lhs => rw [← aeval_X_left_apply G]
       exact congrArg (fun f => aeval f G) (funext fun v => by rw [mul_one, Subsingleton.elim v (0, 0)])
-    rw [e, aeval_smul_hom hG, ← hS, h0, mul_zero]
+    rw [e, Bl.general_b_fact_right_alt.goal1 hG, ← hS, h0, mul_zero]
   · set c : MvPolynomial (Fin k × Fin k) K := (P _ k).det * (genM K k).det ^ (k - 2)
     have hc : c ≠ 0 := by
       refine mul_ne_zero ?_ (pow_ne_zero _ ?_)
@@ -180,7 +178,7 @@ theorem highest_weight_vector_unique : Uniq := by
       have : (dualSub K k).comp (dualSub K k) = aeval fun v => c * X v := by
         rw [dualSub, comp_aeval]; congr 1; funext v
         exact dualSub_dualM hk v.1 v.2
-      rw [← AlgHom.comp_apply, this, aeval_smul_hom hG, aeval_X_left_apply]
+      rw [← AlgHom.comp_apply, this, Bl.general_b_fact_right_alt.goal1 hG, aeval_X_left_apply]
     rw [h0, map_zero] at e
     exact (mul_eq_zero.mp e.symm).resolve_left (pow_ne_zero _ hc)
 

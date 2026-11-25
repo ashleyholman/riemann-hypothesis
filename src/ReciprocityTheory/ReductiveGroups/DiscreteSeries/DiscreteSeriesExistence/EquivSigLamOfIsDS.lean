@@ -23,14 +23,12 @@ variable {H : Type*} [NormedAddCommGroup H] [InnerProductSpace ℂ H] [CompleteS
   {lam : Fin n → ℝ} {σ : Matrix (Fin n) (Fin n) ℂ → (H →L[ℂ] H)} {D : Submodule ℂ H}
   {E : Fin n → Fin n → Module.End ℂ D} {V : Submodule ℂ D}
 
-alias cf_no_of_vogan := _root_.ReciprocityTheory.ChartRestriction.DS.cfa_no_of_vogan
-
 theorem casOnDatum_of_isDS (hDS : Formalism.MainNotions.S.IsDS ε lam σ) (hgap : StdGap ε lam) (hD : IsDerivedOn ε σ D E)
     (hV : IsKIrrHW ε E (lowK ε lam) V) (hVK : ∀ k ∈ Kset ε, ∀ v ∈ V, ∃ w ∈ V, (w : H) = σ k v) :
     ∀ v ∈ V, casimir E v = (casVal lam : ℂ) • v := by
   have hσ : IsURepOn (UJset ε) σ := hDS.2.2.1
   exact casimir_eq_casVal_of_no hgap.1 hD.glRep (isInfUnitary_of_isDerivedOn hσ hD) hV
-    (cf_no_of_vogan hgap hσ hD hV hVK hDS.2.2.2.2.2.2)
+    (ReciprocityTheory.ChartRestriction.DS.cfa_no_of_vogan hgap hσ hD hV hVK hDS.2.2.2.2.2.2)
 
 end Datum
 

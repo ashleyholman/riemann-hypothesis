@@ -500,11 +500,6 @@ theorem hJ_sum_r {ι : Type*} (s : Finset ι) (x : Fin n → ℂ) (f : ι → Fi
   | empty => simp [PI.SchurPlaces.LeviLA.hJ_zero_right]
   | insert i s hi ih => rw [Finset.sum_insert hi, Finset.sum_insert hi, _root_.Formalism.L2.SG.RealObj.InfCut.ProductExactness.hJ_add_r, ih]
 
-theorem hJ_unit (M : Matrix (Fin n) (Fin n) ℂ) (hM : Mᴴ * Formalism.REAL.Jm ε * M = Formalism.REAL.Jm ε) (x y : Fin n → ℂ) :
-    hJ ε (M *ᵥ x) (M *ᵥ y) = hJ ε x y := by
-  unfold hJ
-  rw [Matrix.star_mulVec, ← Matrix.dotProduct_mulVec, Matrix.mulVec_mulVec, Matrix.mulVec_mulVec, hM]
-
 theorem recon (e u : Fin r → Fin n → ℂ) (κ : Fin r → ℂ) (hκ : ∀ d, κ d ≠ 0)
     (hue : ∀ d c, hJ ε (u d) (e c) = if d = c then κ d else 0) (s : Finset (Fin r)) (w : Fin n → ℂ)
     (hw : w ∈ Submodule.span ℂ (e '' ↑s)) : w = ∑ c ∈ s, (hJ ε (u c) w / κ c) • e c := by
@@ -562,11 +557,11 @@ theorem st_one_lin (e : Fin r → Fin n → ℂ) (z z' : Fin n → ℂ) (G Gi M 
     · rw [ite_eq_right h, ite_eq_right (Ne.symm h), map_zero]
   have hu2 : ∀ d c, hJ ε (Gi *ᵥ e d) (e c) = if d = c then cv d else 0 := by
     intro d c
-    rw [← hJ_unit ε G hG, hGGi, hZ]
+    rw [← Formalism.L2.SG.CovariantRepresentation.hJ_unitary ε G hG, hGGi, hZ]
   have hk1 : ∀ d, conj (cv d) ≠ 0 := fun d => by simpa using hcv d
   have hfx : ∀ x y, M *ᵥ x = x → hJ ε x (M *ᵥ y) = hJ ε x y := fun x y hx => by
     conv_lhs => rw [← hx]
-    exact hJ_unit ε M hM x y
+    exact Formalism.L2.SG.CovariantRepresentation.hJ_unitary ε M hM x y
 
   have key : ∀ m : ℕ, ∀ c : Fin r, c.1 = m → M *ᵥ e c = e c ∧ M *ᵥ (G *ᵥ e c) = G *ᵥ e c := by
     intro m
@@ -590,7 +585,7 @@ theorem st_one_lin (e : Fin r → Fin n → ℂ) (z z' : Fin n → ℂ) (G Gi M 
       have h0 := zero_of_pair ε e (fun d => Gi *ᵥ e d) cv hcv hu2 _ _ hw (by
         intro d hd
         simp only [Finset.mem_filter, Finset.mem_univ, true_and] at hd
-        rw [← hJ_unit ε G hG, hGGi, Matrix.sub_mulVec, Matrix.one_mulVec, Matrix.mulVec_sub, hMG, _root_.Formalism.L2.SG.PoincareInHH.Cut.hJ_sub_right,
+        rw [← Formalism.L2.SG.CovariantRepresentation.hJ_unitary ε G hG, hGGi, Matrix.sub_mulVec, Matrix.one_mulVec, Matrix.mulVec_sub, hMG, _root_.Formalism.L2.SG.PoincareInHH.Cut.hJ_sub_right,
           hfx _ _ (ih' d hd).1, sub_self])
       rw [Matrix.sub_mulVec, Matrix.one_mulVec, sub_eq_zero] at h0
       rw [← hMG, h0]
@@ -602,7 +597,7 @@ theorem st_one_lin (e : Fin r → Fin n → ℂ) (z z' : Fin n → ℂ) (G Gi M 
     set S1 : Fin n → ℂ := ∑ c, (hJ ε (G *ᵥ e c) v / conj (cv c)) • e c with hS1
     set S2 : Fin n → ℂ := ∑ c, (hJ ε (e c) v / cv c) • (G *ᵥ e c) with hS2
     set v1 := v - S1 - S2 with hv1
-    have hGe : ∀ d c, hJ ε (G *ᵥ e d) (G *ᵥ e c) = 0 := fun d c => by rw [hJ_unit ε G hG, hee]
+    have hGe : ∀ d c, hJ ε (G *ᵥ e d) (G *ᵥ e c) = 0 := fun d c => by rw [Formalism.L2.SG.CovariantRepresentation.hJ_unitary ε G hG, hee]
     have ho1 : ∀ d, hJ ε (e d) v1 = 0 := by
       intro d
       rw [hv1, _root_.Formalism.L2.SG.PoincareInHH.Cut.hJ_sub_right, _root_.Formalism.L2.SG.PoincareInHH.Cut.hJ_sub_right, hS1, hS2, hJ_sum_r, hJ_sum_r]
@@ -620,14 +615,14 @@ theorem st_one_lin (e : Fin r → Fin n → ℂ) (z z' : Fin n → ℂ) (G Gi M 
 
     have hX : (M - 1) *ᵥ v1 ∈ spanLt e r := hN.2 v1 ho1
     have hGX : (Gi * M * G - 1) *ᵥ (Gi *ᵥ v1) ∈ spanLt e r :=
-      hN'.2 _ (fun a => by rw [← hJ_unit ε G hG, hGGi]; exact ho2 a)
+      hN'.2 _ (fun a => by rw [← Formalism.L2.SG.CovariantRepresentation.hJ_unitary ε G hG, hGGi]; exact ho2 a)
     have hw : (M - 1) *ᵥ v1 = G *ᵥ ((Gi * M * G - 1) *ᵥ (Gi *ᵥ v1)) := by
       rw [Matrix.sub_mulVec (Gi * M * G), Matrix.mulVec_sub, hMG, hGGi, Matrix.one_mulVec, hGGi,
         Matrix.sub_mulVec, Matrix.one_mulVec]
     rw [spanLt_eq] at hX
     have h0 := zero_of_pair ε e (fun d => G *ᵥ e d) (fun d => conj (cv d)) hk1 hu1 _ _ hX (by
       intro d _
-      rw [hw, hJ_unit ε G hG]
+      rw [hw, Formalism.L2.SG.CovariantRepresentation.hJ_unitary ε G hG]
       exact orth_span ε e (e d) _ (fun c _ => hee d c) _ hGX)
     rw [Matrix.sub_mulVec, Matrix.one_mulVec, sub_eq_zero] at h0
     rw [hv, Matrix.mulVec_add, Matrix.mulVec_add, h0, hS1, hS2, Matrix.mulVec_sum, Matrix.mulVec_sum]

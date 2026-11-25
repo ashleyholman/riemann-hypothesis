@@ -267,9 +267,7 @@ theorem parA_of (P : ParameterChoice' D L) (S : SizesAt L) (hg : ∀ i, Real.log
     linarith
   · exact (logOm_le P).trans (by linarith)
 
-alias one_le_Z := _root_.Formalism.MainNotions.WeightFamilies.one_le_zBase
-
-theorem Zpow_le (L : SizeData₂ D) {a n : ℕ} (h : a ≤ n) : zBase L ^ a ≤ zBase L ^ n := pow_le_pow_right₀ (one_le_Z L) h
+theorem Zpow_le (L : SizeData₂ D) {a n : ℕ} (h : a ≤ n) : zBase L ^ a ≤ zBase L ^ n := pow_le_pow_right₀ (Formalism.MainNotions.WeightFamilies.one_le_zBase L) h
 
 theorem PO_le (L : SizeData₂ D) : PO D L ≤ 217 * zBase L ^ 2 := by
   have hf : (2 : ℝ) ≤ D.R.f := two_le_f D
@@ -492,7 +490,7 @@ theorem domAt_of (P : ParameterChoice' D L) (T : ParamsT D L P) (S : SizesAt L) 
   have hL := one_le_L L
   have hLZ := L_le_Z L
   have hZ := Z_ge S hx
-  have hZ1 := one_le_Z L
+  have hZ1 := Formalism.MainNotions.WeightFamilies.one_le_zBase L
   have eZ : Zb D L = zBase L := rfl
   unfold DomAt
   rw [eZ]

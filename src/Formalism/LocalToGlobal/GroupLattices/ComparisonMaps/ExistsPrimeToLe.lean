@@ -53,13 +53,11 @@ end CRT
 
 variable {D : D7}
 
-alias exists_den := _root_.UpperTheory.Reformulated.B.ExistsDenominatorThird.exists_den
-
 theorem locWBack_proved (T : ∀ u : D.what₂.Word, Forms0 D u) : LocWBack T := by
   intro u w x hx
   have key : ∀ (r : 𝓞 D.what₂.LL) (v : ((D.fm u).lat 0).V), r • v = (algebraMap (𝓞 D.what₂.LL) D.what₂.LL r) • v :=
     fun r v => (algebraMap_smul D.what₂.LL r v).symm
-  obtain ⟨d, hd0, hdL⟩ := exists_den u x
+  obtain ⟨d, hd0, hdL⟩ := UpperTheory.Reformulated.B.ExistsDenominatorThird.exists_den u x
   obtain ⟨s, hsP, hsv⟩ := exists_prime_to_le (D.plEq w) d hd0
   have hs0 : s ≠ 0 := fun h => hsP (h ▸ Submodule.zero_mem _)
   have hsL : s • x ∈ ((D.fm u).lat 0).L := by

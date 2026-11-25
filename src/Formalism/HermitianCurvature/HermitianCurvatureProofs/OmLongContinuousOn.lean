@@ -169,7 +169,7 @@ theorem vecV_continuousOn (P : M.Par) (p : KB.Pl P Wp Wq) (F : B.Mat P.k P.r →
     ContinuousOn (fun c : ℂ => p.V F (h ++ [(m, c)])) {0}ᶜ := by
   obtain ⟨Φ0, hs, hc, hdet, hV⟩ := Formalism.FourierDecayAlt.P.phi_zero_hermitian_curvature Wp Wq P p F hF
   obtain ⟨m', rfl⟩ : ∃ m', m = m' + 1 := ⟨m - 1, by omega⟩
-  have hβ : U.betaU ≠ 0 := Formalism.FourierDecayAlt.P.scale_matching.2.1
+  have hβ : U.betaU ≠ 0 := Formalism.FourierDecayAlt.P.Ux7.scaleMatch.2.1
   obtain ⟨κ, Ψ', -, hdec, hrep⟩ := vec_rep U.betaU hβ Φ0 ⟨hs, hc, hdet⟩ h hh m' hsz
   set a : ℝ := 2 * (((m' : ℝ) + 1) * ((m' : ℝ) + 1)) + 1 with ha
   obtain ⟨K, hΨc, hK⟩ := hdec a

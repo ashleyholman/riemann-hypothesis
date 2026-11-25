@@ -352,22 +352,20 @@ theorem Gm_isMF' {p : ℕ} (hp : p.Prime) : IsMF (12 * ((2 * (p + 1) : ℕ) : �
 
 theorem kronFun_isMF {p : ℕ} (hp : p.Prime) : IsMF (12 * ((2 * (p + 1) : ℕ) : ℤ)) (kronFun p) := (Gm_isMF' hp).add (kronSq_isMF p)
 
-alias aC_conv := _root_.ReciprocityTheory.ChartRestriction.L1.convergesOnDisk_eisensteinFourCubeSeries
-alias dC_conv := _root_.ReciprocityTheory.ChartRestriction.L1.convergesOnDisk_discriminantSeries
 theorem kronFun_qExp {p : ℕ} (hp : p.Prime) :
     qExpansion 1 (kronFun p) = qExpansion 1 (Gm p) + (aC * dC ^ p - aC ^ p * dC) ^ 2 := by
   have hq : ∀ τ : ℍ, ‖qm 1 τ‖ < 1 := fun τ => by
     rw [qm_one_eq]
     simpa using UpperHalfPlane.norm_qParam_lt_one 1 τ
   have hG := Gm_isMF' hp
-  have c1 : Conv (aC * dC ^ p) := aC_conv.mul (dC_conv.pow p)
-  have c2 : Conv (aC ^ p * dC) := (aC_conv.pow p).mul dC_conv
+  have c1 : Conv (aC * dC ^ p) := ReciprocityTheory.ChartRestriction.L1.convergesOnDisk_eisensteinFourCubeSeries.mul (ReciprocityTheory.ChartRestriction.L1.convergesOnDisk_discriminantSeries.pow p)
+  have c2 : Conv (aC ^ p * dC) := (ReciprocityTheory.ChartRestriction.L1.convergesOnDisk_eisensteinFourCubeSeries.pow p).mul ReciprocityTheory.ChartRestriction.L1.convergesOnDisk_discriminantSeries
   have c3 : Conv (aC * dC ^ p - aC ^ p * dC) := c1.sub c2
   apply (kronFun_isMF hp).qExp_eq (hG.conv.add (c3.pow 2))
   intro τ
   rw [ev_add hG.conv (c3.pow 2) (hq τ), hG.ev_eq τ, ev_pow c3 2 (hq τ), ev_sub c1 c2 (hq τ),
-    ev_mul aC_conv (dC_conv.pow p) (hq τ), ev_pow dC_conv p (hq τ), ev_mul (aC_conv.pow p) dC_conv (hq τ),
-    ev_pow aC_conv p (hq τ), _root_.ReciprocityTheory.ChartRestriction.L1.evalSeries_eisensteinFourCubeSeries, _root_.ReciprocityTheory.ChartRestriction.L1.evalSeries_discriminantSeries]
+    ev_mul ReciprocityTheory.ChartRestriction.L1.convergesOnDisk_eisensteinFourCubeSeries (ReciprocityTheory.ChartRestriction.L1.convergesOnDisk_discriminantSeries.pow p) (hq τ), ev_pow ReciprocityTheory.ChartRestriction.L1.convergesOnDisk_discriminantSeries p (hq τ), ev_mul (ReciprocityTheory.ChartRestriction.L1.convergesOnDisk_eisensteinFourCubeSeries.pow p) ReciprocityTheory.ChartRestriction.L1.convergesOnDisk_discriminantSeries (hq τ),
+    ev_pow ReciprocityTheory.ChartRestriction.L1.convergesOnDisk_eisensteinFourCubeSeries p (hq τ), _root_.ReciprocityTheory.ChartRestriction.L1.evalSeries_eisensteinFourCubeSeries, _root_.ReciprocityTheory.ChartRestriction.L1.evalSeries_discriminantSeries]
   rfl
 
 theorem kronFun_div {p : ℕ} (hp : p.Prime) :

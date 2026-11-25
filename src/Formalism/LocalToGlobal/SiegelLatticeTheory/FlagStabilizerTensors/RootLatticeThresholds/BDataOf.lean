@@ -402,14 +402,6 @@ theorem normTie_bdOf {large₂ : SizeData₂ D} {C1 Ca Ch Cg Cβ Cb Cn Cfac Ire 
           ← mul_assoc]
     _ ≤ _ := ENNReal.ofReal_le_ofReal (mul_le_mul_of_nonneg_right hreal hIre)
 
-theorem hypTT_of {u u' : D.what₂.Word} (h : Formalism.MainNotions.S.Cnt.Stand D u u') : HypTT D u u' := by
-  obtain ⟨-, hpu, hpu', h3u, h3u', -, -, -, -, -, -, -, hmod⟩ := h
-  refine ⟨hpu, hpu', h3u, h3u', ?_⟩
-  unfold Int.ModEq
-  have e : (D.mem u).A.T % (D.host.g 0 * D.host.g 1) = (D.mem u').A.T % (D.host.g 0 * D.host.g 1) := hmod
-  have e2 := congrArg (fun n : ℕ => (n : ℤ)) e
-  simpa [Int.natCast_mod] using e2
-
 theorem tr_pos {u u' : D.what₂.Word} (h : Formalism.MainNotions.S.Cnt.Stand D u u') : 0 < Tr D u ∧ 0 < Tr D u' := by
   obtain ⟨-, -, -, h3u, h3u', -⟩ := h
   exact ⟨Nat.cast_pos.2 (show 0 < (D.mem u).A.T from lt_of_lt_of_le (by norm_num) h3u),

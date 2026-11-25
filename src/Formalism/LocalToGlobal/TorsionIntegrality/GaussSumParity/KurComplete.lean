@@ -135,7 +135,7 @@ theorem inS_add (hU : UnrOK K l σ) (hF : IsLawOfLog l F) (hF1 : F1 F be0) {α �
     (hα : InS l σ be0 α) (hβ : InS l σ be0 β) : InS l σ be0 (α + β) := by
   obtain ⟨hadd1, hadd2, -⟩ := pairRules K l σ hU F hF be0 hF1 (Fin 2)
   obtain ⟨-, -, hmul⟩ := _root_.Formalism.L2.Th1.D.integral_part_closure K l σ (Fin 2)
-  have hσ1 := (frobSq K l σ hU).2
+  have hσ1 := (Formalism.L2.Th1.D.frobenius_square K l σ hU).2
   have hG := integral_part_at_variable hU.1 σ (0 : Fin 2)
   have hH := integral_part_at_variable hU.1 σ (1 : Fin 2)
   refine ⟨(IsUltrametricDist.norm_add_le_max _ _).trans (max_le hα.1 hβ.1), ?_, ?_⟩
@@ -177,7 +177,7 @@ theorem approx_one (hU : UnrOK K l σ) (hF : IsLawOfLog l F) (hB : BetaHyp l F b
     have : 2 ^ 2 ≤ l ^ 2 := Nat.pow_le_pow_left hl 2
     omega
   have h1 : ‖α ^ (l ^ 2) - α‖ ≤ (l : ℝ)⁻¹ := by
-    have h := (frobSq K l σ hU).1.2.2.2 α hα
+    have h := (Formalism.L2.Th1.D.frobenius_square K l σ hU).1.2.2.2 α hα
     rwa [RingHom.comp_apply, hfix, norm_sub_rev, hpn] at h
   have e : α ^ (l ^ 2) - α = α * ∏ z ∈ Polynomial.nthRootsFinset (l ^ 2 - 1) (1 : K), (α - z) := by
     have h := hζ0.pow_sub_pow_eq_prod_sub_mul α 1 hN
@@ -307,8 +307,6 @@ namespace Formalism.L2.Th1.D
 
 theorem kurIntegers : KurIntegers := KurIntegers_of _root_.Formalism.L2.Th1.D.ring_a_facts
 theorem kurUnram : KurUnram := KurUnram_of kurIntegers
-alias kurRoots := _root_.Formalism.L2.Th1.D.unramified_completion_roots
-alias kurComplete := _root_.Formalism.L2.Th1.D.unramified_completion_complete
 theorem frobAIsom : FrobAIsom := FrobAIsom_of _root_.Formalism.L2.Th1.D.ring_a_facts
 theorem kurFrob : KurFrob := KurFrob_of _root_.Formalism.L2.Th1.D.frobenius_on_ring_a frobAIsom kurIntegers kurUnram
 end Formalism.L2.Th1.D

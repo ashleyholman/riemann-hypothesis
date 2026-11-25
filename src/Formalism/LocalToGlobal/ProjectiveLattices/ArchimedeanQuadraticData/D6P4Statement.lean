@@ -379,15 +379,6 @@ section -- clump:auto
 @[expose] public section
 
 noncomputable section
-
-namespace Formalism.L2.Pj.FundamentalDomainD5
-
-open NumberField Matrix ComplexConjugate ReciprocityTheory.MultiplicativeHeights
-
-theorem d5_translation : ReciprocityTheory.ChartRestriction.G.FD.CoveringRadiusStatement :=
-  GlobalTheory.CMTransference.cmApproximation_transference
-
-end Formalism.L2.Pj.FundamentalDomainD5
 end -- clump:auto
 end -- clump:auto
 end -- clump:auto
@@ -405,7 +396,7 @@ open NumberField
 variable {E : Type} [Field E] [NumberField E] [IsCMField E]
 
 theorem t41H_statement : ReciprocityTheory.ChartRestriction.G.FD.FrameAtHalfMaximum (E := E) :=
-  ReciprocityTheory.ChartRestriction.G.FD.maxPointFrame_of_transference d5_translation
+  ReciprocityTheory.ChartRestriction.G.FD.maxPointFrame_of_transference GlobalTheory.CMTransference.cmApproximation_transference
 
 end Formalism.L2.Pj.FundamentalDomainD5
 end -- clump:auto

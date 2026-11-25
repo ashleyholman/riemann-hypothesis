@@ -51,10 +51,6 @@ section Places
 
 variable {L : Type} [Field L] [NumberField L]
 
-lemma product_formula {x : L} (hx : x ≠ 0) :
-    (∑ᶠ v : FinitePlace L, Real.log (v x)) + ∑ σ : L →+* ℂ, Real.log ‖σ x‖ = 0 := by
-  apply GlobalTheory.CompanionTheory.Ar.RootHt.RatioSum.finsum_log_add_sum_log <;> assumption
-
 lemma finsum_le_of_le {α : Type} {f g : α → ℝ} (hf : (Function.support f).Finite) (hg : (Function.support g).Finite)
     (h : ∀ a, f a ≤ g a) : ∑ᶠ a, f a ≤ ∑ᶠ a, g a := by
   classical
@@ -187,7 +183,7 @@ variable {L : Type} [Field L] [NumberField L]
 lemma blockHt_nonneg (w : (Σ k, ι k) → L) (k : K) (h : ∃ i, w ⟨k, i⟩ ≠ 0) : 0 ≤ blockHt L w k := by
   obtain ⟨i₀, hi₀⟩ := h
   refine mul_nonneg (inv_nonneg.2 (Nat.cast_nonneg _)) ?_
-  rw [← product_formula hi₀]
+  rw [← GlobalTheory.CompanionTheory.Ar.RootHt.RatioSum.finsum_log_add_sum_log hi₀]
   refine add_le_add ?_ (Finset.sum_le_sum fun σ _ => ?_)
   · refine finsum_le_of_le (_root_.GlobalTheory.CompanionTheory.Ar.Ht.SecLow.log_support_finite hi₀) (GlobalTheory.CompanionTheory.Ar.Ht.CloseHt.log_sup_support (fun i => w ⟨k, i⟩) ⟨i₀, hi₀⟩) fun v => ?_
     have hp : 0 < v (w ⟨k, i₀⟩) := by

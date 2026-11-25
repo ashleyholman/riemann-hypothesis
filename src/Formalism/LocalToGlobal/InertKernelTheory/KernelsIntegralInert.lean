@@ -90,8 +90,6 @@ namespace FrRat
 
 variable (D : D7)
 
-alias lamOf_mem := _root_.Formalism.L2.GlobalTheoryTheory.IntegralLatticeDensity.FL.lam_mem
-
 theorem order_ideal_smul_mem (c : 𝓞 D.host.K) {a : D.host.E} (ha : a ∈ (D.host.AA0 : Submodule (𝓞 D.host.E) D.host.E)) :
     ((c : D.host.K) : D.host.E) * a ∈ (D.host.AA0 : Submodule (𝓞 D.host.E) D.host.E) := by
   have h := Submodule.smul_mem _ (⟨((c : D.host.K) : D.host.E), _root_.Formalism.L2.GlobalTheoryTheory.IntegralLatticeDensity.FL.intK D c⟩ : 𝓞 D.host.E) ha
@@ -117,7 +115,7 @@ theorem lamMM_mem (cc : Ideal (𝓞 D.host.K)) (δ : ℂ) :
     show AddSubgroup.closure _ ≤ S
     rw [AddSubgroup.closure_le]
     rintro _ ⟨w, hw, a, ha, rfl⟩
-    obtain ⟨c, -, rfl⟩ := lamOf_mem D cc δ w hw
+    obtain ⟨c, -, rfl⟩ := Formalism.L2.GlobalTheoryTheory.IntegralLatticeDensity.FL.lam_mem D cc δ w hw
     refine ⟨((c : D.host.K) : D.host.E) * a, order_ideal_smul_mem D c ha, ?_⟩
     funext τ
     rw [map_mul, _root_.Formalism.L2.GlobalTheoryTheory.IntegralLatticeDensity.FL.embT_K D τ _ (SetLike.coe_mem _)]
@@ -168,7 +166,7 @@ theorem rational_coordinates : RatCoord := by
     rintro rfl
     have hω1 : B.L.ω₁ ∈ TaylorLogMetric.lamOf D cc' 0 := by
       rw [← hL]; exact B.L.ω₁_mem_lattice
-    obtain ⟨c, -, hc⟩ := lamOf_mem D cc' 0 _ hω1
+    obtain ⟨c, -, hc⟩ := Formalism.L2.GlobalTheoryTheory.IntegralLatticeDensity.FL.lam_mem D cc' 0 _ hω1
     have hω0 : B.L.ω₁ ≠ 0 := by simpa using B.L.indep.ne_zero 0
     exact hω0 (by rw [hc]; ring)
   have hNA0 : N * A ≠ 0 := ne_zero_of_coprime hp (Nat.Coprime.mul_left hNc hcop)
@@ -1418,10 +1416,6 @@ theorem subst_expMv {σ τ : Type} {b : σ → MvPowerSeries τ ℂ_[p]} (hb : M
 section G
 variable (g : G1 p)
 
-theorem cc_lg {σ : Type} {a : MvPowerSeries σ ℂ_[p]} (ha : MvPowerSeries.constantCoeff a = 0) :
-    MvPowerSeries.constantCoeff (g.lg a) = 0 :=
-  PowerSeries.constantCoeff_subst_eq_zero ha _ (_root_.Formalism.MainNotions.Ext.CutA.l0 g)
-
 theorem cc_pt (hOk : g.Ok) {σ : Type} {y : MvPowerSeries σ ℂ_[p]} (hy : MvPowerSeries.constantCoeff y = 0) :
     MvPowerSeries.constantCoeff (g.pt y) = 0 :=
   PowerSeries.constantCoeff_subst_eq_zero hy _ hOk.2.2.1
@@ -1445,7 +1439,7 @@ theorem add_eq_subst (hOk : g.Ok) {σ : Type} {a b : MvPowerSeries σ ℂ_[p]}
     MvPowerSeries.hasSubst_of_constantCoeff_zero (fun i => by fin_cases i <;> simpa)
   have hX : ∀ i : Fin 2, MvPowerSeries.constantCoeff (Xv i : MvPowerSeries (Fin 2) ℂ_[p]) = 0 := fun i => by simp
   have h0 : MvPowerSeries.constantCoeff (g.lg (Xv 0) + g.lg (Xv 1) : MvPowerSeries (Fin 2) ℂ_[p]) = 0 := by
-    rw [map_add (f := _), cc_lg g (hX 0), cc_lg g (hX 1), add_zero]
+    rw [map_add (f := _), Formalism.MainNotions.J.cc_lg g (hX 0), Formalism.MainNotions.J.cc_lg g (hX 1), add_zero]
   unfold G1.add G1.pt
   rw [msubst_psubst h0 hs, ← MvPowerSeries.coe_substAlgHom hs, map_add (f := _), MvPowerSeries.coe_substAlgHom hs,
     subst_lg g (hX 0) hs, subst_lg g (hX 1) hs, MvPowerSeries.subst_X hs, MvPowerSeries.subst_X hs]
@@ -1457,7 +1451,7 @@ theorem mulBy_eq_subst {σ : Type} (c : ℂ_[p]) {a : MvPowerSeries σ ℂ_[p]} 
     MvPowerSeries.hasSubst_of_constantCoeff_zero (fun _ => ha)
   have hX : MvPowerSeries.constantCoeff (Xv () : MvPowerSeries Unit ℂ_[p]) = 0 := by simp
   have h0 : MvPowerSeries.constantCoeff (MvPowerSeries.C c * g.lg (Xv ()) : MvPowerSeries Unit ℂ_[p]) = 0 := by
-    rw [map_mul, cc_lg g hX, mul_zero]
+    rw [map_mul, Formalism.MainNotions.J.cc_lg g hX, mul_zero]
   unfold G1.mulBy G1.pt
   rw [msubst_psubst h0 hs, ← MvPowerSeries.coe_substAlgHom hs, map_mul, MvPowerSeries.coe_substAlgHom hs,
     MvPowerSeries.subst_C, subst_lg g hX hs, MvPowerSeries.subst_X hs]
@@ -1477,7 +1471,7 @@ theorem lin_partial (hOk : g.Ok) {r : ℕ} (c : Fin r → ℂ_[p])
     intro t
 
     rw [map_sum]
-    exact Finset.sum_eq_zero fun j _ => by rw [map_mul, cc_lg g (hX j), mul_zero]
+    exact Finset.sum_eq_zero fun j _ => by rw [map_mul, Formalism.MainNotions.J.cc_lg g (hX j), mul_zero]
   refine Finset.induction_on s ?_ ?_
   · rw [Finset.sum_empty]
     unfold G1.pt
@@ -1486,7 +1480,7 @@ theorem lin_partial (hOk : g.Ok) {r : ℕ} (c : Fin r → ℂ_[p])
   · intro j t hj ih
     have hm0 : MvPowerSeries.constantCoeff (g.mulBy (c j) (Xv j) : MvPowerSeries (Fin r) ℂ_[p]) = 0 := by
       unfold G1.mulBy
-      exact cc_pt g hOk (by rw [map_mul, cc_lg g (hX j), mul_zero])
+      exact cc_pt g hOk (by rw [map_mul, Formalism.MainNotions.J.cc_lg g (hX j), mul_zero])
     have hmI : IntegralMv (g.mulBy (c j) (Xv j) : MvPowerSeries (Fin r) ℂ_[p]) := by
       rw [mulBy_eq_subst g (c j) (hX j)]
       exact IntegralOrthonormalChange.integral_subst _ (fun _ => hX j) (fun _ => fun n => by
@@ -1495,9 +1489,9 @@ theorem lin_partial (hOk : g.Ok) {r : ℕ} (c : Fin r → ℂ_[p])
         g.lg (g.mulBy (c j) (Xv j)) + g.lg (g.pt (∑ j' ∈ t, MvPowerSeries.C (c j') * g.lg (Xv j'))) := by
       rw [Finset.sum_insert hj, lg_pt g hOk (hT t)]
       unfold G1.mulBy
-      rw [lg_pt g hOk (by rw [map_mul, cc_lg g (hX j), mul_zero])]
+      rw [lg_pt g hOk (by rw [map_mul, Formalism.MainNotions.J.cc_lg g (hX j), mul_zero])]
     rw [e]
-    refine ⟨cc_pt g hOk (by rw [map_add (f := _), cc_lg g hm0, cc_lg g ih.1, add_zero]), ?_⟩
+    refine ⟨cc_pt g hOk (by rw [map_add (f := _), Formalism.MainNotions.J.cc_lg g hm0, Formalism.MainNotions.J.cc_lg g ih.1, add_zero]), ?_⟩
     change IntegralMv (g.add _ _)
     rw [add_eq_subst g hOk hm0 ih.1]
     exact IntegralOrthonormalChange.integral_subst _ (fun i => by fin_cases i <;> simp [hm0, ih.1])
@@ -1517,7 +1511,7 @@ theorem lg_lin (hOk : g.Ok) {r : ℕ} (c : Fin r → ℂ_[p]) :
   refine lg_pt g hOk ?_
 
   rw [map_sum]
-  exact Finset.sum_eq_zero fun j _ => by rw [map_mul, cc_lg g (by simp), mul_zero]
+  exact Finset.sum_eq_zero fun j _ => by rw [map_mul, Formalism.MainNotions.J.cc_lg g (by simp), mul_zero]
 
 theorem inv_ePhi1 (he1 : PowerSeries.constantCoeff (ePhi1 g.lam g.abelian₂ g.C g.wq) = 1) {σ : Type}
     {y : MvPowerSeries σ ℂ_[p]} (hy : MvPowerSeries.constantCoeff y = 0) :

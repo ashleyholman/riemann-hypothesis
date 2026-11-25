@@ -76,8 +76,6 @@ section main
 variable {k p ρ : ℕ} {Wp Wq : Type} [NormedAddCommGroup Wp] [InnerProductSpace ℂ Wp] [NormedAddCommGroup Wq]
   [InnerProductSpace ℂ Wq]
 
-alias ae_inSS := _root_.Formalism.FourierDecayAlt.P.Dx2.OrbJ.ae_inSS
-
 theorem ae_goodL (Bj : B.RealPlaceData k ρ Wp Wq) (σ : Equiv.Perm (Fin p)) : ∀ᵐ x ∂(muL Bj σ), GoodL Bj σ x := by
   have := Formalism.FourierDecayAlt.P.B5.haar_sigmaFinite Bj.haarW
   have := Formalism.FourierDecayAlt.P.B5.haar_sigmaFinite Bj.haarN
@@ -149,7 +147,7 @@ theorem core_main (hGS : GaXiSplit) (hPR : PsiRight) (hPA : PsiRnAct) (hPM : Psi
   set F := FL Bj (liftVec k p ρ Bj.z) (liftVec k p ρ Bj.z') σ d H g with hF
   obtain ⟨M, C, R', hM0, hball, hb⟩ := slice_bound hp σ d hd H hHc R hR
   have hgG : g ∈ B.GV k ρ := hg.1
-  have hSS := ae_inSS Bj
+  have hSS := Formalism.FourierDecayAlt.P.B7.ae_inSS Bj
 
   have hS1 : ∀ γ ∈ B.GV k ρ, Integrable (fun ξ : U.Xi k p 0 ρ σ =>
       U.psiStar k ρ σ (liftVec k p ρ Bj.z) (liftVec k p ρ Bj.z') ξ • H (U.gaXi k ρ σ d ξ (fun a => a.elim0) γ))

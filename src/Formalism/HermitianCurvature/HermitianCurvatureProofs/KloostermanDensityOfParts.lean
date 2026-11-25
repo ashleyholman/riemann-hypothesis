@@ -355,12 +355,10 @@ theorem ptMatN_block (m : ℕ) (t c : ℂ) :
   rw [e1, e2] at h
   rw [ptBlock_eq]; exact h
 
-alias ptScal_ne := _root_.Formalism.FourierDecayAlt.P.Dx1.Rel.scal_ne
-
 theorem exists_hMat (a : C.LPt) (ha : ∀ b ∈ a, 1 ≤ b.1 ∧ b.2 ≠ 0) :
     ∃ (σ : Equiv.Perm (Fin (D.ptSize a))) (d : Fin (D.ptSize a) → ℂ), (∀ i, d i ≠ 0) ∧
       U.hMat σ d = D.ptMatN a (D.ptSize a) := by
-  refine ⟨D.ptPerm a, D.ptDiag a, fun i => ptScal_ne a ha i i.isLt, ?_⟩
+  refine ⟨D.ptPerm a, D.ptDiag a, fun i => Formalism.FourierDecayAlt.P.Dx1.Rel.scal_ne a ha i i.isLt, ?_⟩
   exact ((_root_.Formalism.FourierDecayAlt.P.Dx1.d_ptPermSpec a (D.ptSize a) ⟨ha, rfl⟩).2.2).symm
 
 end points
@@ -604,7 +602,7 @@ end main
 
 theorem kloosterman_density_of_parts : KloostDensOfParts := by
   intro hFub hFr hOL hOB n V _ _ _ Ψ hs hc hdet hbig a σ d ha hM
-  exact main hFub hFr hOL hOB U.betaU Formalism.FourierDecayAlt.P.scale_matching.2.1 n V Ψ ⟨hs, hc, hdet⟩ hbig a σ d ha hM
+  exact main hFub hFr hOL hOB U.betaU Formalism.FourierDecayAlt.P.Ux7.scaleMatch.2.1 n V Ψ ⟨hs, hc, hdet⟩ hbig a σ d ha hM
 
 end Formalism.FourierDecayAlt.P.PBJ.Asm
 end -- clump:auto

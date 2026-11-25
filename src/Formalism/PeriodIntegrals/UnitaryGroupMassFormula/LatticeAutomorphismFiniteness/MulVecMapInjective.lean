@@ -113,10 +113,6 @@ open Matrix Formalism.BasicNotions
 
 variable {E : Type} [Field E] [NumberField E] [StarRing E] (S : HSpace E)
 
-theorem hT_expand (x y : S.V) :
-    S.hT x y = ∑ i, ∑ j, star (S.frame.repr x i) * S.gram i j * S.frame.repr y j := by
-  apply PI.CntNotPosW.hT_expand'
-
 theorem herm_swap (x y : S.V) : S.hT y x = star (S.hT x y) := by
   rw [← S.herm.eq x y]; rfl
 
@@ -126,7 +122,7 @@ def coordC {k : Type} (τ : E →+* ℂ) (u : k → S.V) : Matrix (Fin S.rank) k
 theorem gram_entry (hstar : ∀ (τ : E →+* ℂ) (a : E), τ (star a) = starRingEnd ℂ (τ a))
     {k : Type} (τ : E →+* ℂ) (u : k → S.V) (a b : k) :
     ((coordC S τ u)ᴴ * S.gram.map τ * coordC S τ u) a b = τ (S.hT (u a) (u b)) := by
-  rw [hT_expand, Matrix.mul_apply]
+  rw [PI.CntNotPosW.hT_expand', Matrix.mul_apply]
 
   simp only [Matrix.mul_apply, Matrix.conjTranspose_apply, coordC, Matrix.of_apply, Matrix.map_apply,
   map_sum, map_mul, hstar, Finset.sum_mul]

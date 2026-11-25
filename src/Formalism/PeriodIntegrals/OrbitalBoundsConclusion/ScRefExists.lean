@@ -209,7 +209,7 @@ theorem hG_LA (hp : p.Prime) {x y : Fin I.n → I.E} (hx : x ∈ LA I p) (hy : y
   obtain ⟨t, ht, hty⟩ := (mem_LA_iff hp).1 hy
   obtain ⟨o, ho⟩ := hG_L hsx hty
   refine ⟨s * t, Nat.Coprime.mul_left hs ht, o, ?_⟩
-  rw [hG_smul_left, hG_smul_right, star_natCast] at ho
+  rw [PI.ScRefExists.PPA.hG_smul_left, hG_smul_right, star_natCast] at ho
   rw [show ((o : 𝓞 I.E) : I.E) = algebraMap (𝓞 I.E) I.E o from rfl, ho]; push_cast; ring
 
 theorem dual_LA (hp : p.Prime) {x : Fin I.n → I.E} (hx : ∀ y ∈ I.L, hG I y x ∈ Ap I p) : x ∈ LA I p := by
@@ -238,7 +238,7 @@ theorem dual_LA (hp : p.Prime) {x : Fin I.n → I.E} (hx : ∀ y ∈ I.L, hG I y
     | smul o y _ hy =>
       obtain ⟨o1, h1⟩ := hy
       refine ⟨PI.ScRefExists.TH.sg I o * o1, ?_⟩
-      rw [osmul, hG_smul_left, ← h1]; simp [PI.ScRefExists.TH.sg_coe]
+      rw [osmul, PI.ScRefExists.PPA.hG_smul_left, ← h1]; simp [PI.ScRefExists.TH.sg_coe]
   have hSx : (S : I.E) • x ∈ I.L := (I.L_dual _).2 key
   exact (mem_LA_iff hp).2 ⟨S, hS, hSx⟩
 
@@ -406,7 +406,7 @@ theorem fam_sp (hp : p.Prime) (he : ∀ a b, hG I (e a) (e b) = 0) (hf : ∀ a b
   have hz : y - proj e f y ∈ Submodule.span (Ap I p) (Set.range w) := by
     apply hW _ (sub_mem hyA (proj_mem hp heA hfA hyA))
     intro a
-    rw [hG_sub_right, hG_sub_right, hG_e_proj he hef, hG_f_proj hf hef, sub_self, sub_self]
+    rw [PI.ScRefExists.PPA.hG_sub_right, PI.ScRefExists.PPA.hG_sub_right, hG_e_proj he hef, hG_f_proj hf hef, sub_self, sub_self]
     exact ⟨rfl, rfl⟩
   have key : ∀ z ∈ Submodule.span (Ap I p) (Set.range w),
       z ∈ Submodule.span I.E (Set.range (fam e f w)) := by
@@ -448,7 +448,7 @@ theorem wFrame_of (hPID : ApPID) (hWB : WBasis) : WFrame := by
       exact hu j
     | zero => exact hG_zero_left I u
     | add x y _ _ hx hy => rw [hG_add_left, hx, hy, add_zero]
-    | smul c x _ hx => rw [hG_smul_left, hx, mul_zero]
+    | smul c x _ hx => rw [PI.ScRefExists.PPA.hG_smul_left, hx, mul_zero]
   let T : (Fin I.n → I.E) →ₗ[I.E] (Fin r ⊕ (Fin r ⊕ Fin (k + 1)) → I.E) :=
     { toFun := fun d j => hG I (fam e f w j) d
       map_add' := fun x y => by
@@ -493,7 +493,7 @@ theorem wFrame_of (hPID : ApPID) (hWB : WBasis) : WFrame := by
     have hz : y - proj e f y ∈ Submodule.span (Ap I p) (Set.range w) := by
       apply hwsp _ (sub_mem hyA (proj_mem hp heA hfA hyA))
       intro a
-      rw [hG_sub_right, hG_sub_right, hG_e_proj he hef, hG_f_proj hf hef, sub_self, sub_self]
+      rw [PI.ScRefExists.PPA.hG_sub_right, PI.ScRefExists.PPA.hG_sub_right, hG_e_proj he hef, hG_f_proj hf hef, sub_self, sub_self]
       exact ⟨rfl, rfl⟩
     have h1 := proj_span e f hp heA hfA hyA (Set.range e ∪ Set.range f ∪ Set.range w)
       Set.subset_union_left
@@ -531,14 +531,14 @@ theorem wFrame_of (hPID : ApPID) (hWB : WBasis) : WFrame := by
     have hyA : y ∈ LA I p := L_le_LA hy
     have hzA : y - proj e f y ∈ LA I p := sub_mem hyA (proj_mem hp heA hfA hyA)
     have hze : ∀ a, hG I (e a) (y - proj e f y) = 0 := fun a => by
-      rw [hG_sub_right, hG_e_proj he hef, sub_self]
+      rw [PI.ScRefExists.PPA.hG_sub_right, hG_e_proj he hef, sub_self]
     have hzf : ∀ a, hG I (f a) (y - proj e f y) = 0 := fun a => by
-      rw [hG_sub_right, hG_f_proj hf hef, sub_self]
+      rw [PI.ScRefExists.PPA.hG_sub_right, hG_f_proj hf hef, sub_self]
     have hzeq : y - proj e f y = ∑ i, hG I (w i) (y - proj e f y) • wd i := by
       rw [← sub_eq_zero]
       apply hT0
       intro j
-      rw [hG_sub_right, hG_sum_right]
+      rw [PI.ScRefExists.PPA.hG_sub_right, hG_sum_right]
       simp only [hG_smul_right]
       rcases j with a | a | j
       · simp [fam, hze a, hewd]

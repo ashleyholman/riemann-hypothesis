@@ -119,8 +119,6 @@ theorem ioBlock_add (j : Fin (numSeg X.TT)) (b : SegBlock (segS X.TT j) X.m)
   unfold ioBlock
   rw [map_add (f := _), mul_add]
 
-alias symFam_span := _root_.UpperTheory.Reformulated.B.SymmetricFamilySpan.symFam_span
-
 end Multi
 
 theorem ssg_int {O : Type} [CommRing O] [IsDomain O] {C0 Cde CE1 CE2 : ℝ} {X : Loc} [NeZero X.m] {mu E : ℝ} {o : ℕ}
@@ -208,7 +206,7 @@ theorem lemma44_at_body {C0 CYb Cde Ck CD Cb CE1 CE2 Cc : ℝ} (hK : KeptBLAt C0
   rw [hmar] at hs
   have hσ : symFam (KK O) X.p C0 CE1 CE2 X β s ∈ SSg O C0 Cde CE1 CE2 X (mm + (X.c : ℝ) * ka1 X)
       (((X.c - X.c : ℕ) : ℝ) * ka1 X) (ordFam C0 CE1 CE2 X β) := by
-    refine symFam_span β (fun j => genSet O (r := X.m)
+    refine UpperTheory.Reformulated.B.SymmetricFamilySpan.symFam_span β (fun j => genSet O (r := X.m)
       (blockData X.p (X.seg C0 CE1 CE2 j) (segATop X.TT X.aT j) (segAPlus X.TT X.aT j)
         (mm + (X.c : ℝ) * ka1 X) (β j))) _ (fun s' hs' => ?_) s hs
     refine Submodule.subset_span ⟨β, fun j => ?_, le_rfl, s', hs', rfl⟩

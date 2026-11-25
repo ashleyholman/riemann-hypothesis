@@ -265,11 +265,6 @@ namespace Formalism.L2.Th1.C
 alias phOIsPh := _root_.Formalism.L2.Th1.C.odd_phi_is_phi
 alias first_level_from_universal_law := _root_.Formalism.L2.Th1.C.first_level_from_universal_holds
 
-alias logDerivInt := _root_.Formalism.L2.Th1.C.log_derivative_integral'
-alias derivation_cube_integral_jet := _root_.Formalism.L2.Th1.C.third_jet_integral
-alias jetsUnramified := _root_.Formalism.L2.Th1.C.jets_unramified
-alias jetsShape := _root_.Formalism.L2.Th1.C.jets_shape
-
 end Formalism.L2.Th1.C
 end -- clump:auto
 end -- clump:auto

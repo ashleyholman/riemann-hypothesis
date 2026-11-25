@@ -71,7 +71,7 @@ theorem main {E W : Type} [Field E] [NumberField E] [AddCommGroup W] [Module E W
     (L : Submodule (NumberField.RingOfIntegers E) W) :
     ∀ v ∈ Submodule.span E (↑L : Set W),
       ∃ (c : NumberField.RingOfIntegers E), c ≠ (0 : NumberField.RingOfIntegers E) ∧ c • v ∈ L := by
-  apply Formalism.L2.SG.Pf.LatEx.exists_smul_mem_of_mem_span
+  apply Bl.SecondBlockLemmaE.goal1
 
 end GlobalTheory.ClearingDenominatorsInOrder
 end -- clump:auto

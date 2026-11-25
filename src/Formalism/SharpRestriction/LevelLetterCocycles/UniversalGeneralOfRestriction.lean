@@ -951,8 +951,6 @@ variable {G : Type} [Group G] [TopologicalSpace G] {Qp K₀ K : Type} [Field Qp]
     {v : AddValuation LL (WithTop ℚ)} {n : ℕ} (W : LocWach PD LL O v n)
     (T : LocLat G Qp LL O) {d : ℕ} (b : Fin d → W.DD T) (sol : Fin d → ℕ → Fin d → LL)
 
-alias lA_mem := _root_.Formalism.MainNotions.UnusedSlot80.Relay2.lA_mem
-
 omit [TopologicalSpace G] in
 theorem lin_sub_id {R M : Type} [CommRing R] [AddCommGroup M] [Module R M] (u Λ : R)
     (κ1 κ1' κ2 κ2' : ℕ) (x y S1 S2 : M) :
@@ -1039,8 +1037,8 @@ theorem repVV_sub (hinj : Function.Injective (algebraMap O LL)) {c' : ZMod n} {e
       rw [hS]
       exact lin_sub_id (lA W) Λ κ1 κ1' κ2 κ2' x y S1 S2
     rw [e1]
-    exact Relay2.inMultiple_sub W T c' e _ (Relay2.inMultiple_smul W T c' e _ (W.AΔ.pow_mem (lA_mem W) _) hD1)
-      (Relay2.inMultiple_smul W T c' e _ (W.AΔ.pow_mem (lA_mem W) _) hD2)
+    exact Relay2.inMultiple_sub W T c' e _ (Relay2.inMultiple_smul W T c' e _ (W.AΔ.pow_mem (Formalism.MainNotions.UnusedSlot80.Relay2.lA_mem W) _) hD1)
+      (Relay2.inMultiple_smul W T c' e _ (W.AΔ.pow_mem (Formalism.MainNotions.UnusedSlot80.Relay2.lA_mem W) _) hD2)
 
 theorem repVV_γ {c' : ZMod n} {e M : ℕ} {Λ : LetA O n}
     (hsol : ∀ k, Formalism.MainNotions.LiftingTheory.IsSol W T c' b 0 (sol k))
@@ -1072,7 +1070,7 @@ theorem repVV_γ {c' : ZMod n} {e M : ℕ} {Λ : LetA O n}
       Relay2.InFP_γ W T c' e hπΛ hD
     have hY : InFP W T c' e (W.π₀ * Λ ^ 2) (lA W ^ κ' • ∑ k, (w' * W.γA W.gam (a k)) •
         (((W.φD T) ^ e) (W.γ T (Hh k)) - ((W.φD T) ^ e) (Hh k))) := by
-      refine Relay2.inMultiple_smul W T c' e _ (W.AΔ.pow_mem (lA_mem W) _)
+      refine Relay2.inMultiple_smul W T c' e _ (W.AΔ.pow_mem (Formalism.MainNotions.UnusedSlot80.Relay2.lA_mem W) _)
         (Relay2.inMultiple_sum W T c' e _ _ _ fun k _ => ?_)
       refine Relay2.inMultiple_smul W T c' e _ (W.AΔ.mul_mem hw' (Formalism.MainNotions.LiftingTheory.tr_γA_mem W W.gam (ha k).1)) ?_
       obtain ⟨x', hx', he⟩ := γ_horTr W T b sol (hsol k) (hHh k)
@@ -1450,7 +1448,7 @@ theorem frame_indep (T : LocLat G Qp LL O) (hT : IsCrys PD T.ρ) (hs : W.s = 1)
     have h2 : ∑ j, (∑ m, γ m * (W.φA ^ e) (α m j)) • ((W.φD T) ^ e) (Bb j) = 0 := by
       rw [← h]
 
-      simp only [hbα, map_sum, Relay2.φpow_smul, Finset.smul_sum, Finset.sum_smul, smul_smul]
+      simp only [hbα, map_sum, Formalism.MainNotions.UnusedSlot80.SatPW.φD_pow_smulA, Finset.smul_sum, Finset.sum_smul, smul_smul]
       rw [Finset.sum_comm]
     have h3 : ∑ j, algebraMap (LetA O n) W.EE (∑ m, γ m * (W.φA ^ e) (α m j)) •
         ((W.φD T) ^ e) (Bb j) = 0 := by
@@ -2269,8 +2267,8 @@ theorem section_restriction_first [IsDomain O] [Fintype (K →ₐ[Qp] LL)] (hinj
   obtain ⟨-, -, -, hF⟩ := hAC
   obtain ⟨⟨hLI, -⟩, -⟩ := hF d b sol hFO.1
   obtain ⟨κ, fp, hfpR, hfpS⟩ := hwPole
-  have h1 := repVV_smul W hfpR (W.AΔ.pow_mem (lA_mem W) (A.σ PD.p))
-  have h2 := repVV_smul W hfR (W.AΔ.pow_mem (lA_mem W) κ)
+  have h1 := repVV_smul W hfpR (W.AΔ.pow_mem (Formalism.MainNotions.UnusedSlot80.Relay2.lA_mem W) (A.σ PD.p))
+  have h2 := repVV_smul W hfR (W.AΔ.pow_mem (Formalism.MainNotions.UnusedSlot80.Relay2.lA_mem W) κ)
   have h3 := repVV_sub W hinj h2 h1
   rw [smul_comm (lA W ^ κ) (lA W ^ A.σ PD.p) w, sub_self] at h3
   have hq : IsUnit (ιE W.q) := by

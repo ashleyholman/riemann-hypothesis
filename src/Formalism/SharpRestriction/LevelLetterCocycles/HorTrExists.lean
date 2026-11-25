@@ -51,7 +51,7 @@ theorem horTr_mem (T : LocLat G Qp LL O) (c' : ZMod n) {d : ℕ} (b : Fin d → 
 
   rw [map_sum]
   refine AddSubgroup.sum_mem _ fun r _ => ?_
-  rw [Formalism.MainNotions.UnusedSlot80.Relay2.φpow_smul]
+  rw [Formalism.MainNotions.UnusedSlot80.SatPW.φD_pow_smulA]
   refine Formalism.MainNotions.UnusedSlot80.Relay2.Pp_gen W T c' e (Formalism.MainNotions.UnusedSlot80.PhiPowers.φA_pow_mem_AΔ W (W.AΔ.pow_mem hπ r) e) ?_
   unfold Formalism.MainNotions.LiftingTheory.vecB
   refine ⟨?_, ?_⟩

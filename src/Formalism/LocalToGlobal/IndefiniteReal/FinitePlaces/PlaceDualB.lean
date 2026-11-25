@@ -137,9 +137,6 @@ section V
 variable {S T : HSp D} {ΛS : Submodule (𝓞 D.host.E) (Fin S.rank → D.host.E)}
   {ΛT : Submodule (𝓞 D.host.E) (Fin T.rank → D.host.E)}
 
-lemma one_mem_intAf : (1 : Af D.host.F) ∈ intAf D.host.F := fun v => by
-  rw [map_one]; exact one_mem _
-
 lemma gen_single (hS : IsSelfDualC S ΛS) (hT : IsSelfDualC T ΛT) (i : Fin T.rank) (j : Fin S.rank) :
     ∃ NT NS : ℕ, 0 < NT ∧ 0 < NS ∧ ∀ α ∈ intAf D.host.F, ∀ a ∈ D.host.AA,
       Matrix.single i j (pairA D.host.F 0 α ⊗ₜ[D.host.F] (a * ((NT * NS : ℕ) : D.host.E))) ∈ latAll S T ΛS ΛT := by

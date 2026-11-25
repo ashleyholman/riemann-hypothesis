@@ -420,18 +420,6 @@ theorem slopeLine_tied (hS : Formalism.MainNotions.product_first_zeroth_parts.Hi
   exact slopeLine_of_tied hS Tf hC (admissible_stabilisers_of_compatible_forms Tf)
 
 end Formalism.L2.GlobalTheoryTheory.LocalLatticeBases.S0
-
-namespace Formalism.L2.GlobalTheoryTheory.LocalLatticeBases
-
-open Formalism.BasicNotions Formalism.L2.Forms
-
-variable {D : D7} {u : D.what₂.Word}
-
-alias freeT_0 := _root_.Formalism.L2.GlobalTheoryTheory.LocalLatticeBases.S0.freeT_tied
-
-alias slopeLine_0 := _root_.Formalism.L2.GlobalTheoryTheory.LocalLatticeBases.S0.slopeLine_tied
-
-end Formalism.L2.GlobalTheoryTheory.LocalLatticeBases
 end -- clump:auto
 end -- clump:auto
 end -- clump:auto

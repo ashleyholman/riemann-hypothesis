@@ -51,12 +51,6 @@ theorem xOf_redOf (m : ℕ) (p : XY m) (k : Fin (m + 1)) :
     xOf (strictUpper (redOf m p).2.2.1) (redOf m p).2.2.2 k = p.1 k := by
   apply _root_.Formalism.FourierDecayAlt.P.WeakApproximationGL.xOf_redOf <;> assumption
 
-theorem wM_redOf (m : ℕ) (t ρ₁ : ℂ) (p : XY m) :
-    wMat (m + 2) * Mcoord t (strictUpper (redOf m p).2.2.1) (redOf m p).2.2.2
-        (Fin.cons ρ₁ (redOf m p).2.1) (redOf m p).1 =
-      t • subShift (m + 2) + Matrix.diagonal (Fin.cons ρ₁ p.1 : Fin (m + 2) → ℂ) + strictUpper p.2 := by
-  apply Formalism.FourierDecayAlt.P.WeakApproximationGL.matrix_redOf
-
 end Formalism.FourierDecayAlt.P.FourierUniquenessMirabolic
 
 namespace Formalism.FourierDecayAlt.P
@@ -137,7 +131,7 @@ theorem amplitude_eq : Formalism.FourierDecayAlt.G.AmpEq := by
 
 theorem limit_coordinates_xy : Formalism.FourierDecayAlt.G.LimitCoordsXY := by
   intro m z y
-  rw [wM_redOf m 0 z (fun _ => z, y)]
+  rw [Formalism.FourierDecayAlt.P.WeakApproximationGL.matrix_redOf m 0 z (fun _ => z, y)]
   congr 1
   rw [zero_smul, zero_add]
   ext i j

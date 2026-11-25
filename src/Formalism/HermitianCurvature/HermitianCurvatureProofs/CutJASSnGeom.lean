@@ -714,10 +714,6 @@ theorem geomUBL_of (h6 : UBLInvSqrt) : GeomUBL := by
 
 theorem geometry_unipotent_bound_holds : GeomUBL := geomUBL_of unipotent_inverse_sqrt_bound
 
-namespace S7
-
-end S7
-
 end
 
 end Formalism.FourierDecayAlt.P.CutMP.JA.SSn.Geom
@@ -1207,11 +1203,6 @@ lemma PpG_mulVec (z z' : Fin (2 * r + k + 1) → ℂ) (g : B.Mat k r) (v : Fin (
     rw [smul_smul, div_eq_inv_mul]
   rw [Matrix.sub_mulVec, ← Matrix.mulVec_mulVec, _root_.PI.UnitaryGroupMassFormula.GsFr.Rk_mulVec, hPm]
 
-lemma ioG_mulVec (z z' : Fin (2 * r + k + 1) → ℂ) (g : B.Mat k r) (v : Fin (2 * r + k + 1) → ℂ) :
-    ioG z z' g *ᵥ v = Phi k r z z' g *ᵥ (PpG z z' g *ᵥ v) := by
-  show (PI.UnitaryGroupMassFormula.GsFr.Phi k r z z' g * PpG z z' g) *ᵥ v = _
-  rw [← Matrix.mulVec_mulVec]
-
 lemma lift_eq {z z' : Fin (2 * r + k + 1) → ℂ} (hz : C2.StdZ k r z) (hz' : C2.StdZ k r z')
     {n h n' h' g y : B.Mat k r} (hn : n ∈ Nset k r) (hh : h ∈ UWset k r z) (hn' : n' ∈ Nset k r)
     (hh' : h' ∈ UWset k r z') (hd : (Zhat k r z z' g).det ≠ 0) (hdy : (Zhat k r z z' y).det ≠ 0)
@@ -1288,7 +1279,7 @@ theorem geometry_equivariance_embedding : GeomEqvIo := by
     rw [Phi_mulVec, Phi_mulVec, lift_eq hz hz' hn hh hn' hh' hd hdy hgy hw, mulVec_mulVec _ n' h', mulVec_mulVec,
       hgy, ← mulVec_mulVec, ← mulVec_mulVec, prW_NUW hz hn hh (lift_orth hdy w)]
   have key : ∀ v, ioG z z' g *ᵥ (h' *ᵥ v) = h *ᵥ (ioG z z' y *ᵥ v) := by
-    intro v; rw [ioG_mulVec, ioG_mulVec, hP, hPhi _ (hPw v)]
+    intro v; rw [Formalism.FourierDecayAlt.P.CutMP.JA.SSn.Geom.S5.embedding_mul_vec_factorization, Formalism.FourierDecayAlt.P.CutMP.JA.SSn.Geom.S5.embedding_mul_vec_factorization, hP, hPhi _ (hPw v)]
   have hm : ioG z z' g * h' = h * ioG z z' y := by
     ext i j
     have := congrFun (key (Pi.single j 1)) i

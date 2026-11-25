@@ -268,9 +268,9 @@ theorem local_factors_pos_typical_general {D : D7} (X : HidaSetting D) (hb : AdB
     ⟨X.B.I.L, inferInstance, rfl⟩ (hTF p).1
     (gAt_mem X p) (hTF p).2.1 (hTF p).2.2.1 (hTF p).2.2.2.2
     _ (hL v).1 _ (hL v).2.1 (hL v).2.2.1 _ (hL' v).2.1 (hL' v).2.2.1 (hL v).2.2.2 (hL' v).2.2.2
-  have hpos := div_pos (mul_pos (gv_pos X p (kg_sub_kv X p) subset_rfl)
+  have hpos := div_pos (mul_pos (gv_pos X p (MassDataIdxSteps.kg_sub X p) subset_rfl)
       (gv_pos X p (kg_sub_knat X p u) (knat_sub_kv X p u)))
-      (mul_pos (sv_pos X u p (kg_sub_kv X p) subset_rfl) (sv_pos X u' p (kg_sub_kv X p) subset_rfl))
+      (mul_pos (sv_pos X u p (MassDataIdxSteps.kg_sub X p) subset_rfl) (sv_pos X u' p (MassDataIdxSteps.kg_sub X p) subset_rfl))
   have hR : 0 < MX X u u' ψ v / localVolumeUnit X ψ v := by
     unfold MX localVolumeUnit OmX
     rw [ite_eq_left hv, ite_eq_left hv]

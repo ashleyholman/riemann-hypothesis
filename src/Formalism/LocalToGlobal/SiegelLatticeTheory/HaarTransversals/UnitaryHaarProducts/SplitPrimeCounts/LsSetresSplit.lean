@@ -12,13 +12,6 @@ open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions.S
 
 namespace Formalism.L2.SG.SplitPrimeNormLemmas.SplitG
 
-theorem ef_one_of_split (E L : Type) [Field E] [NumberField E] [Field L] [NumberField L] [Algebra E L] (p : ℕ)
-    (hall : ∀ W : HeightOneSpectrum (𝓞 L), ((p : ℕ) : 𝓞 L) ∈ W.asIdeal →
-      W.asIdeal.ramificationIdx ℤ = 1 ∧ W.asIdeal.inertiaDeg ℤ = 1)
-    (Q : Ideal (𝓞 E)) (hQp : Q.IsPrime) (hQb : Q ≠ ⊥) (hpQ' : ((p : ℕ) : 𝓞 E) ∈ Q) :
-    Q.ramificationIdx ℤ = 1 ∧ Q.inertiaDeg ℤ = 1 := by
-  apply (config := { allowSynthFailures := true }) GlobalTheory.FrameIntegral.ef_one_of_split <;> assumption
-
 theorem card_over_of_split (F E L : Type) [Field F] [NumberField F] [Field E] [NumberField E] [Field L]
     [NumberField L] [Algebra F E] [Algebra E L] (p : ℕ) (hp : p.Prime)
     (hall : ∀ W : HeightOneSpectrum (𝓞 L), ((p : ℕ) : 𝓞 L) ∈ W.asIdeal →
@@ -47,7 +40,7 @@ theorem card_over_of_split (F E L : Type) [Field F] [NumberField F] [Field E] [N
       invFun := fun Q => ⟨⟨Q.1, Q.2.1, hne Q⟩, Q.2.2.over.symm⟩
       left_inv := fun w => rfl
       right_inv := fun Q => rfl }
-  have hE := ef_one_of_split E L p hall
+  have hE := GlobalTheory.FrameIntegral.ef_one_of_split E L p hall
   have hterm : ∀ Q : P.primesOver (𝓞 E),
       Q.1.ramificationIdx (𝓞 F) * Q.1.inertiaDeg (𝓞 F) = 1 := by
     intro Q

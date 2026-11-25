@@ -619,11 +619,6 @@ theorem partialDeriv_inVar_of_ne {i x : Fin 3} (h : x ≠ i) (f : PowerSeries K)
   rw [pderiv_series_at_variable, show pd i (MvPowerSeries.X x : A3) = 0 by
     simp [MvPowerSeries.pderiv_X, Pi.single_eq_of_ne h], mul_zero]
 
-theorem X_ne (j : Fin 3) : (MvPowerSeries.X j : A3) ≠ 0 := by
-  intro h
-  have h' := congrArg (MvPowerSeries.coeff (Finsupp.single j 1)) h
-  simp [MvPowerSeries.coeff_X] at h'
-
 def Xt (P : PowerSeries K) (j : Fin 3) : A3 := 1 + MvPowerSeries.X j ^ 2 * at1 j P
 
 def Yt (P : PowerSeries K) (j : Fin 3) : A3 := -2 + MvPowerSeries.X j ^ 3 * at1 j (dz P)
@@ -791,7 +786,7 @@ theorem determinant_derivative_rule_holds : DetRule := by
     (curve_eq hP 2) (X_mul_dXt P 0) (X_mul_dXt P 1) (X_mul_dXt P 2) (X_mul_dYt hP 1)
     (X_mul_dYt hP 2)
   have habc : (MvPowerSeries.X 0 * MvPowerSeries.X 1 * MvPowerSeries.X 2 : MvPowerSeries (Fin 3) K) ≠ 0 :=
-    mul_ne_zero (mul_ne_zero (X_ne 0) (X_ne 1)) (X_ne 2)
+    mul_ne_zero (mul_ne_zero (Formalism.L2.Th1.B.Fs.X_ne_zero 0) (Formalism.L2.Th1.B.Fs.X_ne_zero 1)) (Formalism.L2.Th1.B.Fs.X_ne_zero 2)
   rw [pderiv_one_det_three_points, pderiv_two_det_three_points, pderiv_left_weierstrass_pair P (by decide : (1 : Fin 3) ≠ 0),
     pderiv_right_weierstrass_pair P (by decide : (0 : Fin 3) ≠ 1), pderiv_left_weierstrass_pair P (by decide : (2 : Fin 3) ≠ 0),
     pderiv_right_weierstrass_pair P (by decide : (0 : Fin 3) ≠ 2), pderiv_left_weierstrass_pair P (by decide : (2 : Fin 3) ≠ 1),
@@ -1414,7 +1409,7 @@ theorem sigma_addition_holds : SAdd := by
   set n : MvPowerSeries (Fin 2) K :=
     at1 0 (sW w) * at1 1 (dz (sW w)) + at1 1 (sW w) * at1 0 (dz (sW w)) with hn
   have hd0 : MvPowerSeries.constantCoeff d = 1 := by
-    rw [hd, map_sub, map_mul, Add1.constantCoeff_inVar_eq_zero 1 hw0, mul_zero, map_one, sub_zero]
+    rw [hd, map_sub, map_mul, Formalism.L2.Th1.B.ParO.constantCoeff_inVar 1 hw0, mul_zero, map_one, sub_zero]
   have hdne : d ≠ 0 := by
     intro h
     rw [h, map_zero] at hd0

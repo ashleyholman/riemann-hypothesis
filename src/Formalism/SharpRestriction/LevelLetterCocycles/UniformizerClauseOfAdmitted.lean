@@ -705,12 +705,6 @@ variable {G : Type} [Group G] [TopologicalSpace G] {Qp K₀ K : Type} [Field Qp]
     [CommRing O] [Algebra O LL] {v : AddValuation LL (WithTop ℚ)} {n : ℕ} [NeZero n]
     (W : LocWach PD LL O v n)
 
-theorem filLev_anti (T : LocLat G Qp LL O) (i : ZMod n) :
-    Antitone fun a : ℤ => Formalism.MainNotions.WachCoordinates.FilLev W T i 0 a := by
-  intro a b hab
-  exact Submodule.map_mono (Submodule.map_mono
-    (inf_le_inf_right _ fun x hx => Formalism.MainNotions.UnusedSlot80.LevR.filCris_anti T.ρ hab hx))
-
 theorem filLev_zero_high (hbij : Function.Bijective (algebraMap K₀ K)) (T : LocLat G Qp LL O)
     (i : ZMod n) (H : ℕ)
     (hJ : ∀ τ : K →ₐ[Qp] LL, Formalism.MainNotions.LiftingTheory.Over W τ i → ∀ a, IsJumpV PD T.ρ τ a → a ≤ (H : ℤ))
@@ -774,7 +768,7 @@ theorem adaptBas_of (hE : Formalism.MainNotions.RamifiedCoefficientChains.DcrisE
       rw [Submodule.map_comap_eq, inf_eq_right.2 (hFilR u)]
     rw [← hmap]
     exact LinearEquiv.finrank_eq (Submodule.equivMapOfInjective Ψ hΨinj (Gs u))
-  have hGanti : Antitone Gs := fun a b hab => Submodule.comap_mono (filLev_anti W T₂ i hab)
+  have hGanti : Antitone Gs := fun a b hab => Submodule.comap_mono (Formalism.MainNotions.RamifiedCoefficientChains.S9.GM.filLev_anti W T₂ i hab)
 
   let Fch : ℕ → Submodule O (Fin (finrank LL T₂.V) → O) := fun k => AdB.FF (O := O) (Gs (-(η : ℤ) + k))
   obtain ⟨b', hb'⟩ := AdB.chain (Pi.basisFun O (Fin (finrank LL T₂.V))) Fch

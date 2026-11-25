@@ -706,7 +706,7 @@ lemma intAE_residues (N : ℕ) (hN : 0 < N) :
   obtain ⟨x, w', hw', e⟩ := intAE_decomp N hN hw
   obtain ⟨r, hr, y, hy⟩ := hRE x
   have h1 : (1 : Af D.host.F) ⊗ₜ[D.host.F] (y : D.host.E) ∈ intAE D :=
-    AddSubgroup.subset_closure ⟨1, one_mem_intAf, y, rfl⟩
+    AddSubgroup.subset_closure ⟨1, Formalism.IndefR.Fin.one_intAf, y, rfl⟩
   refine ⟨_, Finset.mem_image_of_mem _ hr, (1 : Af D.host.F) ⊗ₜ[D.host.F] (y : D.host.E) + w', add_mem h1 hw', ?_⟩
   rw [e, hy]
   push_cast

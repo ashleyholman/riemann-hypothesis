@@ -1484,8 +1484,6 @@ theorem gen_low_inV {N : ℕ} (hN : 0 < N) {f : PowerSeries C} (hf0 : PowerSerie
   · exact gen_mm_pw hN hf0 hf1 _ hμ
   · exact gen_mm_zero
 
-alias gen_intS_X := _root_.Formalism.L2.FormalSeriesBounds.PartialDerivEval.intS_X
-
 theorem gen_intS_psubst {τ : Type} {a : MvPowerSeries τ C} (ha0 : MvPowerSeries.constantCoeff a = 0) (ha : IntS V a)
     {f : PowerSeries C} (hf : ∀ m, V.Ge 0 (PowerSeries.coeff m f)) : IntS V (PowerSeries.subst a f) :=
   IntS.subst (σ := Unit) (fun _ => ha0) (fun _ => ha) (intS_ps.2 hf)
@@ -1608,11 +1606,11 @@ theorem generic_point_unit_congruence : GenericPointUnitCongruence := by
     fun i => gen_pw hN0 (hδ i)
   have hpt : ∀ f : PowerSeries C, (PowerSeries.constantCoeff f = 0 ∧ ∀ m, V.Ge 0 (PowerSeries.coeff m f)) →
       MvPowerSeries.constantCoeff (genL κ f) = 0 ∧ IntS V (genL κ f) := fun f hf =>
-    ⟨gen_cc_psubst genS_cc hf.1, gen_intS_psubst genS_cc (gen_intS_X _) hf.2⟩
+    ⟨gen_cc_psubst genS_cc hf.1, gen_intS_psubst genS_cc (Formalism.L2.FormalSeriesBounds.PartialDerivEval.intS_X _) hf.2⟩
 
   have BI := (hBi (κ ⊕ Unit) V.l (fun k i => genL κ (PowerSeries.rescale (ζ ^ k) (z i)))
     (fun i => genL κ (pw n ε i)) (fun i => MvPowerSeries.X (Sum.inl i))
-    (fun k i => hpt _ (hzk k i)) (fun i => hpt _ (hεn i)) (fun i => ⟨by simp, gen_intS_X _⟩) (by
+    (fun k i => hpt _ (hzk k i)) (fun i => hpt _ (hεn i)) (fun i => ⟨by simp, Formalism.L2.FormalSeriesBounds.PartialDerivEval.intS_X _⟩) (by
       intro i
       have e1 : alongCv (pw n ε) (X.lg i) =
           PowerSeries.subst ((PowerSeries.X : PowerSeries C) ^ n) (alongCv ε (X.lg i)) :=
@@ -1643,8 +1641,8 @@ theorem generic_point_unit_congruence : GenericPointUnitCongruence := by
   have hΦint : ∀ s, IntS V (genPhi N δ s) := by
     intro s
     cases s with
-    | inl i => exact gen_intS_psubst (by simp) (gen_intS_X _) (hδN i).2
-    | inr u => exact gen_intS_X _
+    | inl i => exact gen_intS_psubst (by simp) (Formalism.L2.FormalSeriesBounds.PartialDerivEval.intS_X _) (hδN i).2
+    | inr u => exact Formalism.L2.FormalSeriesBounds.PartialDerivEval.intS_X _
   have hXc : ∀ i, MvPowerSeries.constantCoeff (MvPowerSeries.X (Sum.inl i) : MvPowerSeries (κ ⊕ Unit) C) = 0 :=
     fun i => by simp
   have hsE : MvPowerSeries.subst (genPhi N δ) E =

@@ -115,7 +115,7 @@ variable {n : ℕ}
 theorem fix_of {σ : Fin n → Fin n} (hσ : ∀ a, σ (σ a) = a) {ν : Fin n → K} (hν : ∀ a, IsUnit (ν a))
     {z w : Matrix (Fin n) (Fin n) K} (hw : IsUp w) (h : z * mono σ ν * w = mono σ ν) :
     (∀ i j, σ j < σ i → z i j = 0) ∧ cOf σ ν z * w = 1 ∧ w * cOf σ ν z = 1 := by
-  have hdw : IsUnit w.det := by rw [det_up' hw]; exact isUnit_one
+  have hdw : IsUnit w.det := by rw [Formalism.L2.SG.Pf.AtPt.det_up hw]; exact isUnit_one
   have e1 : z * mono σ ν = mono σ ν * w⁻¹ := by
     calc z * mono σ ν = z * mono σ ν * (w * w⁻¹) := by rw [Matrix.mul_nonsing_inv _ hdw, Matrix.mul_one]
       _ = mono σ ν * w⁻¹ := by rw [← Matrix.mul_assoc, h]
@@ -134,7 +134,7 @@ theorem fix_of {σ : Fin n → Fin n} (hσ : ∀ a, σ (σ a) = a) {ν : Fin n �
 theorem fix_inv {σ : Fin n → Fin n} (hσ : ∀ a, σ (σ a) = a) {ν : Fin n → K} (hν : ∀ a, IsUnit (ν a))
     {x w : Matrix (Fin n) (Fin n) K} (hx : IsLo x) (hw : IsUp w) (h : x * mono σ ν * w = mono σ ν) :
     IsLo x⁻¹ ∧ (∀ i j, σ j < σ i → x⁻¹ i j = 0) ∧ x * x⁻¹ = 1 := by
-  have hdx : IsUnit x.det := by rw [det_lo' hx]; exact isUnit_one
+  have hdx : IsUnit x.det := by rw [Formalism.L2.SG.Pf.AtPt.det_lo hx]; exact isUnit_one
   have e1 : x⁻¹ * mono σ ν = mono σ ν * w := by
     calc x⁻¹ * mono σ ν = x⁻¹ * (x * mono σ ν * w) := by rw [h]
       _ = mono σ ν * w := by

@@ -34,12 +34,6 @@ section Form
 
 variable (S : HSpace E)
 
-theorem hl_sub (x y z : S.V) : S.hT (x - y) z = S.hT x z - S.hT y z := by
-  simp
-theorem hl_add (x y z : S.V) : S.hT (x + y) z = S.hT x z + S.hT y z := by
-  simp
-theorem hl_smul (c : E) (x z : S.V) : S.hT (c • x) z = star c * S.hT x z := by
-  simp [starRingEnd_apply]
 theorem hl_sum {ι : Type} (s : Finset ι) (x : ι → S.V) (z : S.V) :
     S.hT (∑ i ∈ s, x i) z = ∑ i ∈ s, S.hT (x i) z := by
 
@@ -121,7 +115,7 @@ theorem h_z_e (a : Fin r) : S.hT F.z (F.e a) = 0 := by
 theorem h_v_v (hP : (Pm F F').det ≠ 0) (a b : Fin r) :
     S.hT (vv F F' a) (vv F F' b) = if a = b then -2 else 0 := by
   unfold vv
-  rw [hl_sub, hr_sub, hr_sub, F.e_iso, h_e_ed F F' hP, h_ed_e F F' hP, h_ed_ed]
+  rw [PI.ScalarPairDr.W.hT_sub_left, hr_sub, hr_sub, F.e_iso, h_e_ed F F' hP, h_ed_e F F' hP, h_ed_ed]
   split_ifs <;> ring
 
 theorem h_ed_zt (hP : (Pm F F').det ≠ 0) (b : Fin r) : S.hT (ed F F' b) (zt F F') = 0 := by
@@ -139,7 +133,7 @@ theorem h_zt_zt : S.hT (zt F F') (zt F F') = -(T : E) := by
   have h2 : S.hT F.z (zt F F') = -(T : E) := by
     simp [zt, hr_sub, h_z_e, F.z_norm]
   calc S.hT (zt F F') (zt F F')
-      = S.hT F.z (zt F F') - S.hT (∑ a, cz F F' a • F.e a) (zt F F') := hl_sub S _ _ _
+      = S.hT F.z (zt F F') - S.hT (∑ a, cz F F' a • F.e a) (zt F F') := PI.ScalarPairDr.W.hT_sub_left S _ _ _
     _ = -(T : E) := by rw [h1, h2, sub_zero]
 
 theorem h_e_zt' (hP : (Pm F F').det ≠ 0) (b : Fin r) : S.hT (F.e b) (zt' F F') = 0 := by
@@ -157,7 +151,7 @@ theorem h_zt'_zt' : S.hT (zt' F F') (zt' F F') = -(T' : E) := by
   have h2 : S.hT F'.z (zt' F F') = -(T' : E) := by
     simp [zt', hr_sub, h_zp_ed, F'.z_norm]
   calc S.hT (zt' F F') (zt' F F')
-      = S.hT F'.z (zt' F F') - S.hT (∑ a, cz' F F' a • ed F F' a) (zt' F F') := hl_sub S _ _ _
+      = S.hT F'.z (zt' F F') - S.hT (∑ a, cz' F F' a • ed F F' a) (zt' F F') := PI.ScalarPairDr.W.hT_sub_left S _ _ _
     _ = -(T' : E) := by rw [h1, h2, sub_zero]
 
 theorem h_v_zt (hP : (Pm F F').det ≠ 0) (a : Fin r) : S.hT (vv F F' a) (zt F F') = 0 := by
@@ -182,7 +176,7 @@ theorem hermForm_second_anisotropic (hT : (T : E) ≠ 0) :
   have hb : S.hT (zt' F F') (zt F F') = star (beta F F') := h_swap S (zt F F') (zt' F F')
   have hb' : S.hT (zt F F') (zt' F F') = beta F F' := rfl
   unfold zt2
-  rw [hl_add, hl_smul, hr_add, hr_add, hr_smul, hr_smul, h_zt'_zt', h_zt_zt, hb, hb',
+  rw [PI.ScalarPairDr.W.hT_add_left, PI.ScalarPairDr.W.hT_smul_left, hr_add, hr_add, hr_smul, hr_smul, h_zt'_zt', h_zt_zt, hb, hb',
     star_div₀, star_natCast]
   field_simp
   ring
@@ -286,7 +280,7 @@ theorem det_Zt (F : FlagG S r (T : E)) (F' : FlagG S r (T' : E)) (hP : (Pm F F')
     ext a b
     simp [Fin.succAbove_last, gv, FlagG.fvec, Pm]
   have hlast : S.hT (F.fvec (Fin.last r)) (gv F F' (Fin.last r)) = beta F F' := by
-    simp only [FlagG.fvec, gv, Fin.snoc_last, beta, zt, hl_sub, hl_sum, hl_smul, h_e_zt' F F' hP,
+    simp only [FlagG.fvec, gv, Fin.snoc_last, beta, zt, PI.ScalarPairDr.W.hT_sub_left, hl_sum, PI.ScalarPairDr.W.hT_smul_left, h_e_zt' F F' hP,
       mul_zero, Finset.sum_const_zero, sub_zero]
   rw [Matrix.det_succ_column _ (Fin.last r), Fintype.sum_eq_single (Fin.last r)]
   · rw [hsub, Matrix.of_apply, hlast, Fin.val_last]

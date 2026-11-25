@@ -519,8 +519,6 @@ section disint
 
 variable {k r : ℕ}
 
-alias det_UT := _root_.Formalism.FourierDecayAlt.P.C2x2.ut_det
-
 lemma upper_mem {m : ℕ} (u : G.UT m → ℂ) : G.upper u ∈ C2.UTset m := by
   refine ⟨fun i j hij => ?_, fun i => ?_⟩
   · simp [G.upper, G.strictUpper, ne_of_gt hij, not_lt.mpr hij.le]
@@ -595,7 +593,7 @@ theorem cont_tauU (z : Fin (2 * r + k + 1) → ℂ) :
         mXa k r ((G.upper u).submatrix Fin.castSucc Fin.castSucc) := by
     funext u
     unfold C2.tauM
-    rw [mX_eq (det_UT (sub_upper_mem u))]
+    rw [mX_eq (Formalism.FourierDecayAlt.P.C2x2.ut_det (sub_upper_mem u))]
   rw [e]
   refine ((cont_nEich z).comp ?_).matrix_mul (cont_mXa.comp ?_)
   · exact continuous_pi fun a => (continuous_apply_apply _ _).comp hup
@@ -709,7 +707,7 @@ lemma bC_mem {z : Fin (2 * r + k + 1) → ℂ} (hz : C2.StdZ k r z) {a : B.Mat k
   have hmem1 : (C2.tauM k r z (C2.uMap k r z a * G.upper u))⁻¹ * a ∈ Nset k r := hN.mul_mem _ (hN.inv_mem _ hT1) _ ha
   refine ⟨hN.mul_mem _ hmem1 _ hT0, ?_⟩
   rw [uMap_mul hz hmem1 hT0, uMap_mul hz (hN.inv_mem _ hT1) ha, uMap_inv hz hT1, tau_u hz hAU, tau_u hz (upper_mem u)]
-  have hdet : IsUnit (C2.uMap k r z a * G.upper u).det := by rw [det_UT hAU]; exact isUnit_one
+  have hdet : IsUnit (C2.uMap k r z a * G.upper u).det := by rw [Formalism.FourierDecayAlt.P.C2x2.ut_det hAU]; exact isUnit_one
   rw [Matrix.mul_assoc, Matrix.nonsing_inv_mul _ hdet]
 
 lemma Phi_S {z : Fin (2 * r + k + 1) → ℂ} (hz : C2.StdZ k r z) {a : B.Mat k r} (ha : a ∈ Nset k r)

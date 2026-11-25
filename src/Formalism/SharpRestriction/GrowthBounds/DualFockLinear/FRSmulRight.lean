@@ -19,11 +19,11 @@ section F
 
 variable {τ K : Type} [CommRing K]
 
-theorem fR_symm (f g : MvPolynomial τ K) : fockR f g = fockR g f := (Formalism.L2.G.Model.TS.Top.fockRBilin τ K f 0 g 0).2.2
+theorem fR_symm (f g : MvPolynomial τ K) : fockR f g = fockR g f := (Formalism.L2.G.Model.TS.fock_pairing_bilinear τ K f 0 g 0).2.2
 theorem fR_add_left (f f' g : MvPolynomial τ K) : fockR (f + f') g = fockR f g + fockR f' g :=
-  (Formalism.L2.G.Model.TS.Top.fockRBilin τ K f f' g 0).1
+  (Formalism.L2.G.Model.TS.fock_pairing_bilinear τ K f f' g 0).1
 theorem fR_smul_left (a : K) (f g : MvPolynomial τ K) : fockR (a • f) g = a * fockR f g :=
-  (Formalism.L2.G.Model.TS.Top.fockRBilin τ K f 0 g a).2.1
+  (Formalism.L2.G.Model.TS.fock_pairing_bilinear τ K f 0 g a).2.1
 theorem fR_add_right (f g g' : MvPolynomial τ K) : fockR f (g + g') = fockR f g + fockR f g' := by
   rw [fR_symm, fR_add_left, fR_symm g, fR_symm g']
 theorem fR_smul_right (a : K) (f g : MvPolynomial τ K) : fockR f (a • g) = a * fockR f g := by

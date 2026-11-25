@@ -43,15 +43,10 @@ theorem hsOne_conj {k : Matrix (Fin n) (Fin n) ℂ} (hk : k ∈ Matrix.unitaryGr
     (g : Matrix (Fin n) (Fin n) ℂ) : _root_.ReciprocityTheory.ChartRestriction.DS.hsdA (k * g * star k) = _root_.ReciprocityTheory.ChartRestriction.DS.hsdA g :=
   by apply _root_.ReciprocityTheory.ChartRestriction.DS.hsdA_conj; assumption
 
-theorem contDiff_hsOne : ContDiff ℝ ∞ (_root_.ReciprocityTheory.ChartRestriction.DS.hsdA (n := n)) := by
-  unfold _root_.ReciprocityTheory.ChartRestriction.DS.hsdA
-  refine ContDiff.sum fun i _ => ContDiff.sum fun j _ => ?_
-  exact (contDiff_norm_sq ℂ).comp ((_root_.ReciprocityTheory.ChartRestriction.DS.contDiff_entryA i j).sub contDiff_const)
-
 def arbB (r : ℝ) (g : Matrix (Fin n) (Fin n) ℂ) : ℝ := Real.smoothTransition (r ^ 2 - _root_.ReciprocityTheory.ChartRestriction.DS.hsdA g)
 
 theorem contDiff_arbB (r : ℝ) : ContDiff ℝ ∞ (arbB (n := n) r) :=
-  (Real.smoothTransition.contDiff (n := ⊤)).comp (contDiff_const.sub contDiff_hsOne)
+  (Real.smoothTransition.contDiff (n := ⊤)).comp (contDiff_const.sub ReciprocityTheory.ChartRestriction.DS.contDiff_hsdA)
 
 theorem arbB_nonneg (r : ℝ) (g : Matrix (Fin n) (Fin n) ℂ) : 0 ≤ arbB r g :=
   Real.smoothTransition.nonneg _

@@ -30,7 +30,7 @@ attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
 section heads
 
 theorem ptDiag_ne {h : C.LPt} {j : ℕ} (hh : D.IsLocPt h j) (a : Fin (D.ptSize h)) : D.ptDiag h a ≠ 0 :=
-  Formalism.FourierDecayAlt.P.PBJ.Asm.ptScal_ne h hh.1 a a.isLt
+  Formalism.FourierDecayAlt.P.Dx1.Rel.scal_ne h hh.1 a a.isLt
 
 theorem zxH_det_ne {h : C.LPt} {j : ℕ} (hh : D.IsLocPt h j) (v : XH h) : (zxH h j hh.2 v).det ≠ 0 := by
   unfold zxH

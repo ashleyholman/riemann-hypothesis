@@ -1301,11 +1301,11 @@ theorem dual_bases_holds : DualBases := by
     constructor
     · intro x hx
       apply Subtype.ext
-      refine Top.nondegK K n n le_rfl ν hν x.1 (hWV ▸ x.2) fun P hP => ?_
+      refine Formalism.L2.G.Model.TS.nondegenerate_over_field K n n le_rfl ν hν x.1 (hWV ▸ x.2) fun P hP => ?_
       exact (FockPairing.pair_comm P x.1).trans (hx ⟨P, hWV ▸ hP⟩)
     · intro y hy
       apply Subtype.ext
-      exact Top.nondegK K n n le_rfl ν hν y.1 (hWV ▸ y.2) fun P hP => hy ⟨P, hWV ▸ hP⟩
+      exact Formalism.L2.G.Model.TS.nondegenerate_over_field K n n le_rfl ν hν y.1 (hWV ▸ y.2) fun P hP => hy ⟨P, hWV ▸ hP⟩
   let d := Bf.dualBasis hnd bW
   have hd : ∀ i k, fockR (e i) (d k : MvPolynomial (Fin n × Fin n) K) = if i = k then 1 else 0 := by
     intro i k
@@ -1317,7 +1317,7 @@ theorem dual_bases_holds : DualBases := by
   · intro k
     have hkV : c • (d k : MvPolynomial (Fin n × Fin n) K) ∈ dualWeyl K n n ν :=
       Submodule.smul_mem _ _ (hWV ▸ (d k).2)
-    refine Top.dualWeylIn O K n n le_rfl ν hν _ hkV fun P hP => ⟨bD.repr ⟨P, hP⟩ k, ?_⟩
+    refine Formalism.L2.G.Model.TS.dual_weyl_inclusion O K n n le_rfl ν hν _ hkV fun P hP => ⟨bD.repr ⟨P, hP⟩ k, ?_⟩
     show fockR P (c • (d k : MvPolynomial (Fin n × Fin n) K)) = _
     conv_lhs => rw [hrep P hP]
     rw [fockR_sum_left]

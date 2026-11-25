@@ -19,13 +19,6 @@ section -- clump:auto
 
 open Matrix Formalism.FourierDecayAlt Formalism.QuantumDeterminants
 open scoped ComplexConjugate
-
-namespace Formalism.FourierDecayAlt.P
-
-theorem zhat_norm_bound : C2.ZhatBound := by
-  apply PI.PolynomialProperness.GN.zhat_norm_linear_bound
-
-end Formalism.FourierDecayAlt.P
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.ZhatNormBound =====
@@ -84,7 +77,7 @@ theorem cpt_of_fibre {E : Type*} [NormedAddCommGroup E] (Bs : B.RealPlaceData k 
     (hΨ : ∀ Z, Ψ Z ≠ 0 → ∃ g ∈ B.GV k r, F g ≠ 0 ∧ Zhat k r Bs.z Bs.z' g = Matrix.of Z) :
     HasCompactSupport Ψ ∧ ∀ Z ∈ tsupport Ψ, G.detM Z ≠ 0 := by
   obtain ⟨_, ⟨R, hR⟩, ε, hε, hεG⟩ := hF
-  obtain ⟨C, hC⟩ := zhat_norm_bound k r Bs.z Bs.z'
+  obtain ⟨C, hC⟩ := PI.PolynomialProperness.GN.zhat_norm_linear_bound k r Bs.z Bs.z'
   set TT : ℝ := Tz k r Bs.z * Tz k r Bs.z' with hTT
   set K : Set (G.Mat (r + 1)) :=
     Metric.closedBall 0 (max C 0 * R) ∩ {Z | ε ≤ gPoly TT (Matrix.of Z)} with hK

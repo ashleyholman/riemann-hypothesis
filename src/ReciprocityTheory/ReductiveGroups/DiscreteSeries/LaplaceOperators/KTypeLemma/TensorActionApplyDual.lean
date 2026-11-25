@@ -72,10 +72,6 @@ theorem wordAction_cons (E : Fin n → Fin n → Module.End ℂ M) (p : Fin n ×
     (x : M) : wordE E (p :: w) x = E p.1 p.2 (wordE E w x) := by
   simp [wordE]
 
-theorem wordAction_cons_dual (E : Fin n → Fin n → Module.End ℂ MM) (p : Fin n × Fin n) (w : List (Fin n × Fin n))
-    (x : MM) : wordE E (p :: w) x = E p.1 p.2 (wordE E w x) := by
-  simp [wordE]
-
 theorem sT_sES (E : Fin n → Fin n → Module.End ℂ M) (V : Submodule ℂ M) (x : KS (n := n) V) :
     sT E V (sES V x) = eeV E (sT E V x) := by
   induction x using Finsupp.induction_linear with
@@ -106,7 +102,7 @@ theorem sθ_sES (V : Submodule ℂ M) (EM : Fin n → Fin n → Module.End ℂ M
     rw [sθ_single, tensorAction_apply_dual]
 
     simp only [sES, Finsupp.lsum_single, LinearMap.sum_apply, Finset.sum_apply, Finsupp.lsingle_apply,
-    map_sum, sθ_single, wordAction_cons_dual]
+    map_sum, sθ_single, ReciprocityTheory.ChartRestriction.DS.Lap.LemK.wordAction_cons]
     rw [Finset.sum_eq_single d', Finset.sum_eq_single c]
     · simp
     · intro c' _ hc'; simp [hc']

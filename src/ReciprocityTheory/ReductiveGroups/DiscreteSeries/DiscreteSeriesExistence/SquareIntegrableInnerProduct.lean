@@ -27,11 +27,9 @@ def rreg (ε : Fin n → Bool) (g : Matrix (Fin n) (Fin n) ℂ) : L2 ε →L[ℂ
 def toL2 (ε : Fin n → Bool) (F : Matrix (Fin n) (Fin n) ℂ → ℂ) : L2 ε :=
   if h : MemLp (fun g : Formalism.REAL.UJ ε => F (Formalism.MainNotions.S.umat g)) 2 (Formalism.REAL.muG ε) then h.toLp _ else 0
 
-alias signature_matrix_sq := _root_.Formalism.REAL.Jm_mul_self
-
 theorem exists_unitary_preimage (ε : Fin n → Bool) {g : Matrix (Fin n) (Fin n) ℂ} (hg : g ∈ UJset ε) :
     ∃ y : Formalism.REAL.UJ ε, Formalism.MainNotions.S.umat y = g := by
-  have hJ := signature_matrix_sq ε
+  have hJ := Formalism.REAL.Jm_mul_self ε
   have h : gᴴ * Formalism.REAL.Jm ε * g = Formalism.REAL.Jm ε := hg
   have hl : (Formalism.REAL.Jm ε * gᴴ * Formalism.REAL.Jm ε) * g = 1 := by
     simp only [Matrix.mul_assoc]

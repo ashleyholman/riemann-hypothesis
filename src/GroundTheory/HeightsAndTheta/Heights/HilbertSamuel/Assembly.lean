@@ -204,7 +204,7 @@ theorem back_fwd_sub_mem (h : IsBlockImage y k₀ M N x) {f : MRing ι} {n : ℕ
     exact Finset.sum_congr rfl fun j _ => by
       rw [map_mul, MvPolynomial.bind₁_C_right, MvPolynomial.bind₁_X_right]
   rw [blockSubst_block, e3]
-  exact (Ideal.Quotient.eq.mpr (BlockImageTop.sub_mem_mCoordIdeal h i)).symm
+  exact (Ideal.Quotient.eq.mpr (GroundTheory.Heights₂.Heights.HilbertSamuel.BlockGraphFibreRatio.sub_mem_mCoordIdeal h i)).symm
 
 theorem aeval_back (h : IsBlockImage y k₀ M N x) (g : MvPolynomial (Ix (Fin r)) ℤ) :
     aeval y (back k₀ M g) = aeval x g := by

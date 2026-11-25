@@ -98,13 +98,6 @@ theorem diag_comm {A : Type*} [Ring A] {f : A} {M : Matrix (Fin 2) (Fin 2) A} (h
   rw [Matrix.diagonal_mul, Matrix.mul_diagonal]
   exact (h i j).eq
 
-theorem commute_inv_of {A : Type*} [Ring A] {f fi x : A} (h1 : f * fi = 1) (h2 : fi * f = 1) (h : Commute f x) :
-    Commute fi x := by
-  show fi * x = x * fi
-  calc fi * x = fi * x * (f * fi) := by rw [h1, mul_one]
-    _ = fi * (f * x) * fi := by rw [h.eq]; simp only [mul_assoc]
-    _ = x * fi := by rw [← mul_assoc, h2, one_mul]
-
 theorem waveQQ_castSucc (X : ActualOps P.k P.r z z' π π') (L : R.LevelData (Pr (RadSp P.k P.r z z' π π')) P.r)
     (st : Fr.Start (Pr (RadSp P.k P.r z z' π π'))) (hAL : IsActualLevel X L) (l : Fin P.r) (s : ℂ)
     (Wv Wv' : Module.End ℂ (RadSp P.k P.r z z' π π'))
@@ -132,7 +125,7 @@ theorem waveQQ_castSucc (X : ActualOps P.k P.r z z' π π') (L : R.LevelData (Pr
   have ha := congrArg Matrix.conjTranspose (hT (star Y))
   rw [Matrix.conjTranspose_mul, Matrix.conjTranspose_mul, Matrix.conjTranspose_mul, hDf] at ha
   have hci' : ∀ a b, Commute (mkP Wv' Wv) (QQi L st l.succ Y a b) := fun a b =>
-    commute_inv_of h1 h2 (hC Y a b)
+    Formalism.FourierDecayAlt.P.Fr9.comm_inv h1 h2 (hC Y a b)
   have hb : Matrix.diagonal (fun _ => mkP Wv' Wv) * QQi L st l.succ Y * Matrix.diagonal (fun _ => mkP Wv Wv') =
       QQi L st l.succ Y := by
     rw [diag_comm hci', Matrix.mul_assoc, Matrix.diagonal_mul_diagonal, h2]

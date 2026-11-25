@@ -507,8 +507,6 @@ theorem mul_mem_cancel {I J K : FI} (hK : K ≠ 0) {x y : D.host.E} (hx : x ∈ 
 
 variable (X : HidaSetting D)
 
-alias aa_ne := _root_.Formalism.L2.SG.Pf.NcReal.JX.CovB.aaD_ne_zero
-
 theorem e_mem {a : Fin D.R.rS} {c : D.host.E} (hc : c ∈ aaD D a) : c • X.eX a ∈ (VS D).L0 := by
   rw [X.Lam_split]
   exact Submodule.mem_sup_left (Submodule.mem_sup_left (Submodule.subset_span ⟨a, c, hc, rfl⟩))
@@ -537,14 +535,14 @@ theorem gmap_symm {m : (VS D).V ≃ₗ[D.host.E] (VS D).V} (hL : Formalism.Hermi
 
 theorem ex_shape {m : (VS D).V ≃ₗ[D.host.E] (VS D).V} (hL : Formalism.HermitianLatticesTheory.gmap m (VS D).L0 = (VS D).L0)
     (b d : Fin D.R.rS) : (VS D).hT (X.fY b) (m (X.eX d)) ∈ aaD D b * (aaD D d)⁻¹ := by
-  refine mem_mul_inv_of (aa_ne X d) fun c hc => ?_
+  refine mem_mul_inv_of (Formalism.L2.SG.Pf.NcReal.JX.CovB.aaD_ne_zero X d) fun c hc => ?_
   have h := Formalism.L2.SG.Pf.LatDict.coefficient_mem_fractional_ideal X b (lattice_map_preserves_base hL (e_mem X hc))
   rw [map_smul, map_smul, smul_eq_mul] at h
   exact h
 
 theorem fa_shape {m : (VS D).V ≃ₗ[D.host.E] (VS D).V} (hL : Formalism.HermitianLatticesTheory.gmap m (VS D).L0 = (VS D).L0)
     (b a : Fin D.R.rS) : (VS D).hT (X.fY b) (m (X.fY a)) ∈ aaD D b * aaD D a := by
-  have hne : (aaD D a)⁻¹ ≠ 0 := inv_ne_zero (aa_ne X a)
+  have hne : (aaD D a)⁻¹ ≠ 0 := inv_ne_zero (Formalism.L2.SG.Pf.NcReal.JX.CovB.aaD_ne_zero X a)
   have := mem_mul_inv_of hne (J := aaD D b) (x := (VS D).hT (X.fY b) (m (X.fY a))) fun c hc => by
     have h := Formalism.L2.SG.Pf.LatDict.coefficient_mem_fractional_ideal X b (lattice_map_preserves_base hL (f_mem X hc))
     rw [map_smul, map_smul, smul_eq_mul] at h
@@ -572,7 +570,7 @@ theorem rows_mem (hL : Formalism.HermitianLatticesTheory.gmap n (VS D).L0 = (VS 
     have := ((LatA.mem_hermitianStandardLattice_iff_pairing_integral X _).1 h).2.2
     rwa [pW_smul] at this
   have h1 : (1 : D.host.E) ∈ aaD D b * (aaD D b)⁻¹ := by
-    rw [mul_inv_cancel₀ (aa_ne X b)]; exact FractionalIdeal.one_mem_one _
+    rw [mul_inv_cancel₀ (Formalism.L2.SG.Pf.NcReal.JX.CovB.aaD_ne_zero X b)]; exact FractionalIdeal.one_mem_one _
   have key : ∀ t ∈ ((aaD D b * (aaD D b)⁻¹ : FI) : Submodule (𝓞 D.host.E) D.host.E),
       t • xq X n b ∈ aaLb X b := by
     intro t ht
@@ -593,7 +591,7 @@ theorem dictLatF_holds : DictLatF := by
   show ((Xq X n)⁻¹ * Aq X n) b a ∈ _
   rw [hinv, Matrix.mul_apply]
   refine Submodule.sum_mem _ fun d _ => ?_
-  exact mul_mem_cancel (aa_ne X d) (ex_shape (gmap_symm hL) b d) (fa_shape hL d a)
+  exact mul_mem_cancel (Formalism.L2.SG.Pf.NcReal.JX.CovB.aaD_ne_zero X d) (ex_shape (gmap_symm hL) b d) (fa_shape hL d a)
 
 end Formalism.L2.SG.Pf.NcReal.JX.NOf
 end -- clump:auto

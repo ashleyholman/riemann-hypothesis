@@ -762,11 +762,6 @@ theorem lim_chi_zero {Wp Wq : Type} [NormedAddCommGroup Wp] [InnerProductSpace �
     [NormedAddCommGroup Wq] [InnerProductSpace ℂ Wq] (D : RealPlaceData k r Wp Wq) {t : ℝ} (ht : t ≤ 0) : D.χ t = 0 := by
   apply _root_.PI.BICNZ.chi_eq_zero <;> assumption
 
-theorem lim_chi_hcs {Wp Wq : Type} [NormedAddCommGroup Wp] [InnerProductSpace ℂ Wp]
-    [NormedAddCommGroup Wq] [InnerProductSpace ℂ Wq] (D : RealPlaceData k r Wp Wq) : HasCompactSupport D.χ :=
-  IsCompact.of_isClosed_subset isCompact_Icc (isClosed_tsupport _)
-    (D.χ_supp.trans Set.Ioo_subset_Icc_self)
-
 theorem lim_pi_inner {Wp : Type} [NormedAddCommGroup Wp] [InnerProductSpace ℂ Wp] {U : Set (Mat k r)}
     {π : Mat k r → (Wp →L[ℂ] Wp)} (hπ : IsCRepOn U π) (hu : ∀ h ∈ U, ∀ v, ‖π h v‖ = ‖v‖)
     {H : Mat k r} (hH : H ∈ U) (hHi : H⁻¹ ∈ U) (hHu : IsUnit H.det) (ξ : Wp) :
@@ -865,7 +860,7 @@ theorem lim_leftLimit : LeftLimit := by
       (fun n : Mt k r => lam k r D.z (Matrix.of n)) (conjM (aDil k r t) n) =
         t * (fun n : Mt k r => lam k r D.z (Matrix.of n)) n :=
     fun t ht n hn => (Formalism.FourierDecayAlt.P.dilation_unipotent_measure k r D.z t ht.ne' D.z_mem (Matrix.of n) hn).2.2
-  have key := lim_dil_fubini D.μW D.μN hJ D.χ D.χ_smooth.continuous (lim_chi_hcs D) (fun t ht => lim_chi_zero D ht)
+  have key := lim_dil_fubini D.μW D.μN hJ D.χ D.χ_smooth.continuous (PI.BICNZ.chi_hasCompactSupport D) (fun t ht => lim_chi_zero D ht)
     D.χ_int {n : Mt k r | Matrix.of n ∈ Nset k r} (ae_iff.2 D.haarN.conc)
     (fun n : Mt k r => lam k r D.z (Matrix.of n)) hΛ (Lf D σ v ξ) hLi2
   rw [← hfint, ← hLint]
@@ -901,7 +896,7 @@ theorem lim_rightLimit : RightLimit := by
     have := (Formalism.FourierDecayAlt.P.dilation_unipotent_measure k r D.z' t ht.ne' D.z'_mem (Matrix.of n) hn).2.2
     show -lam k r D.z' (aDil k r t * Matrix.of n * (aDil k r t)⁻¹) = t * -lam k r D.z' (Matrix.of n)
     rw [this]; ring
-  have key := lim_dil_fubini D.μW' D.μN hJ D.χ D.χ_smooth.continuous (lim_chi_hcs D) (fun t ht => lim_chi_zero D ht)
+  have key := lim_dil_fubini D.μW' D.μN hJ D.χ D.χ_smooth.continuous (PI.BICNZ.chi_hasCompactSupport D) (fun t ht => lim_chi_zero D ht)
     D.χ_int {n : Mt k r | Matrix.of n ∈ Nset k r} (ae_iff.2 D.haarN.conc)
     (fun n : Mt k r => -lam k r D.z' (Matrix.of n)) hΛ (Rf D σ v' ξ') hLi2
   rw [← hfint, ← hLint]

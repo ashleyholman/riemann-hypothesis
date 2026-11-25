@@ -177,7 +177,7 @@ theorem mInt_le_of_abs_le [CompactSpace X] [T2Space X] (A : FinHolAtlas e X) (V 
   have l2 := ReciprocityTheory.AnForm.M.mIntLinear A Φ hpot K (fun _ => 1) (fun _ => 0) h1
     (SystemIndependence.mIntegrable_zero A Φ)
   beta_reduce at l1 l2
-  rw [SystemIndependence.mInt_zero] at l2
+  rw [ReciprocityTheory.AnForm.M.st_mInt_zero] at l2
   simp only [mul_one, add_zero] at l2
   rw [l1, l2] at habs
   linarith [le_abs_self (mInt A Φ g)]
@@ -1645,8 +1645,6 @@ alias GreenMassError.full := _root_.GroundTheory.Heights₂.Heights.AnalyticLimi
 
 theorem UniformIntegrability.full : UniformIntegrability.Statement :=
   UniformIntegrability.of_greenMass GreenMassStep.full GreenMassReplace.full GreenMassError.full
-
-alias ListTailLog.of_lemmaE := _root_.GroundTheory.Heights₂.Heights.AnalyticLimit.ListTailLog.proof
 
 end GroundTheory.Heights₂.Heights.AnalyticLimit
 end -- clump:auto

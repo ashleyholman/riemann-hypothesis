@@ -76,7 +76,7 @@ theorem curveJetsUnram (K : Type) [NormedField K] [IsUltrametricDist K] [CharZer
     intro h
     rw [h, sub_self, norm_zero] at hd
     exact zero_ne_one hd
-  exact (jetsUnramified K (unitBall K) (logSer W) (expSer W) _ al albar hFr hF1
+  exact (Formalism.L2.Th1.C.jets_unramified K (unitBall K) (logSer W) (expSer W) _ al albar hFr hF1
     (curveNegNorm K (unitBall K) W hc h2R s2) h2R hAdj (inv_mem_unitBall hd) hne).1
 
 end Formalism.L2.Th1.G

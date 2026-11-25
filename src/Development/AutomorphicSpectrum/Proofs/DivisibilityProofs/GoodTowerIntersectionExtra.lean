@@ -89,20 +89,6 @@ section
 variable {Ω : Type} [Field Ω] {K : Type} [Fintype K] {ι : K → Type} [∀ b, Fintype (ι b)]
   {K' : Type} [Fintype K'] {ι' : K' → Type} [∀ b, Fintype (ι' b)]
 
-theorem asm_vdeg_join_inl (O : ValuationSubring Ω) (y : (Σ b, ι b) → Ω) (y' : (Σ b, ι' b) → Ω) (a : K → ℤ) :
-    vdeg O (joinPt y y') (Sum.elim a (0 : K' → ℤ)) = vdeg O y a := by
-  unfold vdeg
-  rw [Fintype.prod_sum_type]
-  simp only [Sum.elim_inl, Sum.elim_inr, Pi.zero_apply, zpow_zero, Finset.prod_const_one, mul_one]
-  rfl
-
-theorem asm_vdeg_join_inr (O : ValuationSubring Ω) (y : (Σ b, ι b) → Ω) (y' : (Σ b, ι' b) → Ω) (a : K' → ℤ) :
-    vdeg O (joinPt y y') (Sum.elim (0 : K → ℤ) a) = vdeg O y' a := by
-  unfold vdeg
-  rw [Fintype.prod_sum_type]
-  simp only [Sum.elim_inl, Sum.elim_inr, Pi.zero_apply, zpow_zero, Finset.prod_const_one, one_mul]
-  rfl
-
 end
 
 theorem degPush_of (hEq : NumEq) (hPF : GeoPF) (hFib : FibNum) (hTr : TrdegU) (hRel : TestRelabel) (hTest : GeoTest)
@@ -164,9 +150,9 @@ theorem degPush_of (hEq : NumEq) (hPF : GeoPF) (hFib : FibNum) (hTr : TrdegU) (h
     (Fin.append (fun _ : Fin Dc.n => Sum.elim Hd.aMu (0 : M.K → ℤ)) fun j => Sum.elim (0 : K → ℤ) (fibDeg M.xdeg (ee j)))
     hM1 hJ1 fun j => by
       refine Fin.addCases (fun j => ?_) (fun j => ?_) j
-      · simpa only [Fin.append_left, ValEq, asm_vdeg_join_inl] using hμ
+      · simpa only [Fin.append_left, ValEq, SheetDecomposition.vdeg_join_inl] using hμ
       · refine ⟨1, one_ne_zero, fun O _ => ?_⟩
-        simp only [Fin.append_right, asm_vdeg_join_inr, map_one, one_mul]
+        simp only [Fin.append_right, SheetDecomposition.vdeg_join_inr, map_one, one_mul]
   have hG1 := (hMap Ω Ω (RingHom.id Ω) _ _ Dc.y Dc.n Dc.birational Dc.arith (by
     rw [show (RingHom.id Ω).fieldRange = ⊤ from RingHom.fieldRange_eq_top_iff.2 Function.surjective_id]
     have : Module.Finite (⊤ : Subfield Ω) Ω :=

@@ -78,7 +78,7 @@ theorem common_den {Ω₀ : Type} [Field Ω₀] (y₀ : (Σ k, J₀ k) → Ω₀
   refine ⟨fun j => g j * ∏ k ∈ (Finset.range n).erase j, h k, ∑ k ∈ Finset.range n, d k,
     ∏ k ∈ Finset.range n, aeval y₀ (h k), Finset.prod_ne_zero_iff.2 fun k _ => h0 k, fun j hj => ⟨?_, ?_⟩⟩
   · rw [← Finset.add_sum_erase _ _ hj]
-    exact isMultiHomog_mul' (hg j) (isMultiHomog_prod' _ fun k _ => hh k)
+    exact ReciprocityTheory.ChartRestriction.G.ArakelovGeometry.isMultiHomog_mul' (hg j) (isMultiHomog_prod' _ fun k _ => hh k)
   · rw [← Finset.mul_prod_erase _ _ hj, map_mul, map_prod, he, mul_assoc]
 
 theorem zeros_proj {Ω₀ Ω : Type} [Field Ω₀] [Field Ω] (y₀ : (Σ k, J₀ k) → Ω₀) (y : (Σ k, J k) → Ω) (i : Ω₀ →+* Ω)
@@ -123,7 +123,7 @@ theorem zeros_proj {Ω₀ Ω : Type} [Field Ω₀] [Field Ω] (y₀ : (Σ k, J�
       have hΦh : IsMultiHomog Φ (Function.extend κ a 0 + n • aF) := by
         refine _root_.GroundTheory.Heights₂.Heights.HilbertSamuel.SectionBounded.homog_sum _ fun j hj => ?_
         have hjn : j ≤ n := Nat.lt_succ_iff.1 (Finset.mem_range.1 hj)
-        have h1 := isMultiHomog_mul' (isMultiHomog_mul' (isMultiHomog_rename' hv (hcc j hj).1) (_root_.GroundTheory.Heights₂.Heights.IndefiniteRowSideFullHecke.HeightsSet.isMultiHomog_pow hF j))
+        have h1 := ReciprocityTheory.ChartRestriction.G.ArakelovGeometry.isMultiHomog_mul' (ReciprocityTheory.ChartRestriction.G.ArakelovGeometry.isMultiHomog_mul' (isMultiHomog_rename' hv (hcc j hj).1) (_root_.GroundTheory.Heights₂.Heights.IndefiniteRowSideFullHecke.HeightsSet.isMultiHomog_pow hF j))
           (_root_.GroundTheory.Heights₂.Heights.IndefiniteRowSideFullHecke.HeightsSet.isMultiHomog_pow hM (n - j))
         convert h1 using 1
         rw [add_assoc, ← add_nsmul, Nat.add_sub_cancel' hjn]
@@ -182,8 +182,8 @@ theorem birational_of_closure {Ω : Type} [Field Ω] {n : ℕ} (yf : Fin n → �
   | add x y _ _ hx hy =>
     obtain ⟨d, g, h, hg, hh, h0, he⟩ := hx
     obtain ⟨d', g', h', hg', hh', h0', he'⟩ := hy
-    refine ⟨d + d', g * h' + h * g', h * h', _root_.GroundTheory.Heights₂.Heights.HilbertSamuel.BirationalModelExists.isMultiHomog_add' (isMultiHomog_mul' hg hh') (isMultiHomog_mul' hh hg'),
-      isMultiHomog_mul' hh hh', by rw [map_mul]; exact mul_ne_zero h0 h0', ?_⟩
+    refine ⟨d + d', g * h' + h * g', h * h', _root_.GroundTheory.Heights₂.Heights.HilbertSamuel.BirationalModelExists.isMultiHomog_add' (ReciprocityTheory.ChartRestriction.G.ArakelovGeometry.isMultiHomog_mul' hg hh') (ReciprocityTheory.ChartRestriction.G.ArakelovGeometry.isMultiHomog_mul' hh hg'),
+      ReciprocityTheory.ChartRestriction.G.ArakelovGeometry.isMultiHomog_mul' hh hh', by rw [map_mul]; exact mul_ne_zero h0 h0', ?_⟩
     simp only [map_add (f := _), map_mul, he, he']
     ring
   | neg x _ hx =>
@@ -199,8 +199,8 @@ theorem birational_of_closure {Ω : Type} [Field Ω] {n : ℕ} (yf : Fin n → �
   | mul x y _ _ hx hy =>
     obtain ⟨d, g, h, hg, hh, h0, he⟩ := hx
     obtain ⟨d', g', h', hg', hh', h0', he'⟩ := hy
-    refine ⟨d + d', g * g', h * h', isMultiHomog_mul' hg hg',
-      isMultiHomog_mul' hh hh', by rw [map_mul]; exact mul_ne_zero h0 h0', ?_⟩
+    refine ⟨d + d', g * g', h * h', ReciprocityTheory.ChartRestriction.G.ArakelovGeometry.isMultiHomog_mul' hg hg',
+      ReciprocityTheory.ChartRestriction.G.ArakelovGeometry.isMultiHomog_mul' hh hh', by rw [map_mul]; exact mul_ne_zero h0 h0', ?_⟩
     simp only [map_mul, he, he']
     ring
 
@@ -481,7 +481,7 @@ theorem exists_res_degree (hRes : ResExistsStatement) {K₀ K : Type} [Fintype K
     exact isAlgebraic_algebraMap (R := Ω) (A := Ω) α
   obtain ⟨G₄, a₄', hG₄h, hG₄y, hG₄z⟩ := RootFieldNumerics.Ref.Zeros.zeros_proj y₀ y (RingHom.id Ω) hv hy hB₀ halg1 hF₁h hF₁P
   have hG₄P : G₄ ∉ mCoordIdeal y₀ := not_mem_mCoordIdeal_of_aeval_ne_zero y₀ G₄ hG₄y
-  have hFh := GlobalTheory.CompanionTheory.Ar.Chg.DegBlock.isMultiHomog_mul' (GlobalTheory.CompanionTheory.Ar.Chg.DegBlock.isMultiHomog_mul' hG₁ hG₃) hG₄h
+  have hFh := ReciprocityTheory.ChartRestriction.G.ArakelovGeometry.isMultiHomog_mul' (ReciprocityTheory.ChartRestriction.G.ArakelovGeometry.isMultiHomog_mul' hG₁ hG₃) hG₄h
   have hFP : G₁ * G₃ * G₄ ∉ mCoordIdeal y₀ := by
     intro hm
     rcases hP₀.mem_or_mem hm with hm | hm

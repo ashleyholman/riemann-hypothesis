@@ -88,11 +88,6 @@ def Shh (p : Mt k r × Mt k r) : Mt k r × Mt k r := (p.1, conjM (Matrix.of p.1)
 
 def Ivh (p : Mt k r × Mt k r) : Mt k r × Mt k r := (invM (Shh p).1, (Shh p).2)
 
-theorem bh_ae_prod_and {α β : Type*} [MeasurableSpace α] [MeasurableSpace β] {μ : Measure α}
-    {ν : Measure β} [SFinite μ] [SFinite ν] {P : α → Prop} {Q : β → Prop} (hP : ∀ᵐ x ∂μ, P x)
-    (hQ : ∀ᵐ y ∂ν, Q y) : ∀ᵐ p ∂(μ.prod ν), P p.1 ∧ Q p.2 :=
-  (Measure.quasiMeasurePreserving_fst.ae hP).and (Measure.quasiMeasurePreserving_snd.ae hQ)
-
 theorem bh_meas_inv : Measurable (invM (k := k) (r := r)) :=
   _root_.Formalism.FourierDecayAlt.P.B7.measurable_invM
 
@@ -110,7 +105,7 @@ variable {Wp : Type} [NormedAddCommGroup Wp] [InnerProductSpace ℂ Wp] (D : Rea
 theorem ae_SSh : ∀ᵐ p ∂(D.μW.prod D.μN), p ∈ SSh D.z := by
   have := Formalism.FourierDecayAlt.P.B2x9.sigmaFinite_of_haar D.haarW
   have := Formalism.FourierDecayAlt.P.B2x9.sigmaFinite_of_haar D.haarN
-  exact bh_ae_prod_and (ReciprocityTheory.ChartRestriction.DS.Mult1.bc_isHaarOn_ae_mem D.haarW) (ReciprocityTheory.ChartRestriction.DS.Mult1.bc_isHaarOn_ae_mem D.haarN)
+  exact ReciprocityTheory.ChartRestriction.DS.Mult1.BesselPositivity.bp_ae_prod_and (ReciprocityTheory.ChartRestriction.DS.Mult1.bc_isHaarOn_ae_mem D.haarW) (ReciprocityTheory.ChartRestriction.DS.Mult1.bc_isHaarOn_ae_mem D.haarN)
 
 theorem mp_Shh (hCI : ConjInv D) (hInv : HaarInv) (hCW : ClosedW) (hCN : ClosedN) :
     MeasurePreserving (Shh (k := k) (r := r)) (D.μW.prod D.μN) (D.μW.prod D.μN) := by
@@ -348,21 +343,14 @@ theorem inCC_five_four {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E] {A
   obtain ⟨c, hc⟩ := h
   exact ⟨c, ccle_five_four hc⟩
 
-theorem norm_xiTau (D : RealPlaceData k r Wp Wq) (τ : ℝ × ℝ) (p : SS k r) : ‖xiTau D τ p‖ = 1 := by
-  unfold Formalism.FourierDecayAlt.B.xiTau
-  rw [mul_comm]
-  exact Complex.norm_exp_ofReal_mul_I _
-
 theorem continuous_cf (D : RealPlaceData k r Wp Wq) {P : SS k r → ℂ} (hP : Integrable P D.μSS) :
     Continuous fun τ : ℝ × ℝ => ∫ p, xiTau D τ p * P p ∂D.μSS := by
   refine continuous_of_dominated (bound := fun p => ‖P p‖) (fun τ => ?_) (fun τ => ?_) hP.norm ?_
   · exact ((Formalism.FourierDecayAlt.P.B7.continuous_xi D).comp (continuous_const.prodMk continuous_id)).aestronglyMeasurable.mul
       hP.aestronglyMeasurable
-  · exact Filter.Eventually.of_forall fun p => by simp only [norm_mul, norm_xiTau, one_mul, le_refl]
+  · exact Filter.Eventually.of_forall fun p => by simp only [norm_mul, Formalism.FourierDecayAlt.P.B7.norm_xi, one_mul, le_refl]
   · exact Filter.Eventually.of_forall fun p =>
       ((Formalism.FourierDecayAlt.P.B7.continuous_xi D).comp (continuous_id.prodMk continuous_const)).mul continuous_const
-
-theorem integrable_test {w : ℝ → ℝ} (hw : IsTest w) : Integrable (fun x => (w x : ℂ)) volume := (hw.1.continuous.integrable_of_hasCompactSupport hw.2.1).ofReal
 
 theorem inner_om (w₁ w₂ : ℝ → ℝ) (a b : ℝ) :
     ∫ τ : ℝ × ℝ, ((w₁ τ.1 * w₂ τ.2 : ℝ) : ℂ) *
@@ -392,7 +380,7 @@ theorem fubini_cf (D : RealPlaceData k r Wp Wq) {P : SS k r → ℂ} (hP : Integ
     · haveI : OpensMeasurableSpace ((ℝ × ℝ) × SS k r) := Prod.opensMeasurableSpace
       exact (Formalism.FourierDecayAlt.P.B7.w_hW h₁ h₂).aestronglyMeasurable.comp_fst.mul
         ((Formalism.FourierDecayAlt.P.B7.continuous_xi D).aestronglyMeasurable.mul hP.aestronglyMeasurable.comp_snd)
-    · exact Filter.Eventually.of_forall fun x => by simp only [norm_mul, norm_xiTau, one_mul, le_refl]
+    · exact Filter.Eventually.of_forall fun x => by simp only [norm_mul, Formalism.FourierDecayAlt.P.B7.norm_xi, one_mul, le_refl]
   simp_rw [← integral_const_mul]
   rw [integral_integral_swap (f := fun τ p => ((w₁ τ.1 * w₂ τ.2 : ℝ) : ℂ) * (xiTau D τ p * P p)) hint]
   refine integral_congr_ae (Filter.Eventually.of_forall fun p => ?_)
@@ -402,8 +390,6 @@ theorem fubini_cf (D : RealPlaceData k r Wp Wq) {P : SS k r → ℂ} (hP : Integ
     fun τ => by unfold Formalism.FourierDecayAlt.B.xiTau; ring
   simp only [e]
   rw [integral_mul_const, inner_om]
-
-theorem isOpen_Quad : IsOpen Quad := isOpen_Ioi.prod isOpen_Ioi
 
 theorem integrable_test_mul {w₁ w₂ : ℝ → ℝ} (h₁ : IsTest w₁) (h₂ : IsTest w₂) {f : ℝ × ℝ → ℂ}
     (hf : ContinuousOn f Quad) : Integrable (fun τ : ℝ × ℝ => ((w₁ τ.1 * w₂ τ.2 : ℝ) : ℂ) * f τ) volume := by
@@ -442,7 +428,7 @@ theorem betaInf_eq_of (D : RealPlaceData k r Wp Wq) [FiniteDimensional ℂ Wq] (
       =ᵐ[volume.restrict Quad] fun _ => 0 := by
     filter_upwards [hae] with τ hτ
     simpa using hτ.2.symm
-  have heq := Measure.eqOn_open_of_ae_eq h0 isOpen_Quad (hc1.sub hc2) continuousOn_const
+  have heq := Measure.eqOn_open_of_ae_eq h0 Formalism.FourierDecayAlt.P.BetaSesquilinearity.isOpen_Quad (hc1.sub hc2) continuousOn_const
   have h11 : ((1 : ℝ), (1 : ℝ)) ∈ Quad := by
     unfold Quad
     exact ⟨by norm_num, by norm_num⟩
@@ -1490,13 +1476,6 @@ theorem inCC_scalF {Wp : Type} [NormedAddCommGroup Wp] [InnerProductSpace ℂ Wp
   obtain ⟨c, hc⟩ := hf
   exact ⟨c, ccle_scalF hc⟩
 
-theorem inCC_five_four' {A : ℝ} {f : Mat k r → E} (h : InCC A 5 f) : InCC A 4 f := by
-  obtain ⟨c, hck, hb⟩ := h
-  refine ⟨c, ?_, fun u v hu hv hl g hg => hb u v hu hv (by omega) g hg⟩
-  intro g₀ hg₀
-  obtain ⟨U, f', hU, hgU, hcd, heq⟩ := hck g₀ hg₀
-  exact ⟨U, f', hU, hgU, hcd.of_le (WithTop.coe_le_coe.mpr (Nat.cast_le.mpr (by norm_num))), heq⟩
-
 theorem continuousOn_of_ckOn {m : ℕ∞} {f : Mat k r → E} (h : CkOn m (GV k r) f) :
     ContinuousOn f (GV k r) :=
   _root_.Formalism.FourierDecayAlt.P.B5.ckOn_continuousOn h
@@ -1547,12 +1526,6 @@ theorem volume_normSq_eq (c : ℝ) :
   refine measure_mono_null hsub ?_
   rw [Measure.volume_eq_prod, Measure.prod_prod, Measure.addHaar_sphere, mul_zero]
 
-theorem bcWeight_nonneg (T T' : ℝ) (q : (Fin r → ℂ) × ℂ) : 0 ≤ bcWeight k r T T' q := by
-  unfold bcWeight
-  split_ifs with h
-  · exact mul_nonneg (Finset.prod_nonneg fun a _ => by positivity) (pow_nonneg (by linarith) _)
-  · exact le_rfl
-
 end ReciprocityTheory.ChartRestriction.DS.Mult1.SymBetaA
 end -- clump:auto
 end -- clump:auto
@@ -1578,7 +1551,7 @@ theorem stSymBeta (h : UnitaryGroupStructuralFacts) : StSymBeta := by
   unfold StSymBeta
   intro k r Wp _ _ _ D X hD hX γ hγ A hA hJ f F' hf hF'
   have hfi := SymBetaA.integrable_of_inCC hGI hGL hCl D hA hf
-  have hae := (hJ (scalF Wp f) (SymBetaA.inCC_five_four' (SymBetaA.inCC_scalF hf))).1
+  have hae := (hJ (scalF Wp f) (ReciprocityTheory.ChartRestriction.DS.Mult1.BetaInfA.inCC_five_four (SymBetaA.inCC_scalF hf))).1
   have hbd : volume {q : (Fin r → ℂ) × ℂ | Complex.normSq q.2 = Tz k r D.z * Tz k r D.z} = 0 :=
     SymBetaA.volume_normSq_eq _
   unfold beta betaBig
@@ -1586,7 +1559,7 @@ theorem stSymBeta (h : UnitaryGroupStructuralFacts) : StSymBeta := by
   filter_upwards [ae_imp_of_ae_restrict hae, measure_eq_zero_iff_ae_notMem.1 hbd] with q hq hq2
   by_cases hw : bcWeight k r (Tz k r D.z) (Tz k r D.z') q = 0
   · simp [hw]
-  have hQ : q ∈ Qset D := lt_of_le_of_ne (SymBetaA.bcWeight_nonneg _ _ q) (Ne.symm hw)
+  have hQ : q ∈ Qset D := lt_of_le_of_ne (Formalism.FourierDecayAlt.P.B7.boundary_weight_nonneg _ _ q) (Ne.symm hw)
   have hle : Tz k r D.z * Tz k r D.z ≤ Complex.normSq q.2 := by
     by_contra hc
     apply hw

@@ -47,8 +47,6 @@ section Point
 
 variable {D : D7} {X : HidaSetting D} {Y : Full X} {hF : FinX Y} (hI : SIso D.s (sOf hF))
 
-alias tu_ne := _root_.Formalism.L2.SG.Corank.tu_ne_zero
-
 def IsFrameLift {u u' : D.what₂.Word} (t : D.s.Term u u') (g : (VS D).V ≃ₗ[D.host.E] (VS D).V) : Prop :=
   g ∈ Formalism.HermitianLatticesTheory.isom (VS D).hT ∧ (∀ a, g ((X.Fu u').e a) = (repF (tc hI t)).fl.e a) ∧
     g (X.Fu u').z = (repF (tc hI t)).fl.z
@@ -377,7 +375,7 @@ section Witt
 variable {D : D7} {X : HidaSetting D} {Y : Full X} {hF : FinX Y} (hI : SIso D.s (sOf hF))
 
 theorem frameLiftEx_holds (u u' : D.what₂.Word) : FrameLiftEx hI u u' := fun t =>
-  Formalism.L2.SG.Pf.WittFlags.flag_witt (tu_ne u') rfl (X.Fu u') (repF (tc hI t)).fl
+  Formalism.L2.SG.Pf.WittFlags.flag_witt (Formalism.L2.SG.Corank.tu_ne_zero u') rfl (X.Fu u') (repF (tc hI t)).fl
 
 theorem tau_nonempty (D : D7) : Nonempty D.what₂.Tau := by
   rw [← Fintype.card_pos_iff, D.what₂.card_Tau]
@@ -418,8 +416,6 @@ theorem gamR_mem {u u' : D.what₂.Word} (t : D.s.Term u u') (τ : D.what₂.Tau
 end UHmem
 
 section Scale
-
-alias rdE_pos := _root_.Formalism.MainNotions.S.rdE_pos
 
 variable {K : Type*} [Field K] (e : K →+* ℂ) (c : ℕ → ℂ)
 
@@ -538,13 +534,13 @@ theorem zhat_eq {u u' : D.what₂.Word} (t : D.s.Term u u') (τ : D.what₂.Tau)
 
 theorem rhoF_pos (D : D7) (a : Fin (D.R.rS + 1)) : 0 < rhoF D a := by
   unfold rhoF
-  exact Real.rpow_pos_of_pos (rdE_pos D) _
+  exact Real.rpow_pos_of_pos (Formalism.MainNotions.S.rdE_pos D) _
 
 def cRho (D : D7) (n : ℕ) : ℂ := ((D.host.rdE ^ (-(2 * (D.R.rS : ℝ) - n)) : ℝ) : ℂ)
 
 theorem cRho_ne (D : D7) (n : ℕ) : cRho D n ≠ 0 := by
   unfold cRho
-  exact Complex.ofReal_ne_zero.2 (Real.rpow_pos_of_pos (rdE_pos D) _).ne'
+  exact Complex.ofReal_ne_zero.2 (Real.rpow_pos_of_pos (Formalism.MainNotions.S.rdE_pos D) _).ne'
 
 theorem rho_mul (D : D7) (a b : Fin (D.R.rS + 1)) :
     ((rhoF D a : ℝ) : ℂ) * ((rhoF D b : ℝ) : ℂ) = cRho D (a + b) := by
@@ -552,7 +548,7 @@ theorem rho_mul (D : D7) (a b : Fin (D.R.rS + 1)) :
   rw [← Complex.ofReal_mul]
   congr 1
   unfold rhoF
-  rw [← Real.rpow_add (rdE_pos D)]
+  rw [← Real.rpow_add (Formalism.MainNotions.S.rdE_pos D)]
   congr 1
   push_cast
   ring

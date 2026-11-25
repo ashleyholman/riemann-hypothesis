@@ -16,8 +16,6 @@ theorem succAbove_val {n : ℕ} (p : Fin (n + 1)) (l : Fin n) :
   unfold Fin.succAbove
   split_ifs with h1 h2 h2 <;> simp_all [Fin.lt_def]
 
-private alias sgnW_succ' := _root_.Formalism.FourierDecayAlt.P.SignAntidiagonal.sgnW_succ
-
 theorem zb_det (i0 s : ℕ) (h : Matrix (Fin i0) (Fin i0) ℂ) (t : ℂ) :
     (Matrix.of fun a b : Fin (i0 + s) => Zb i0 s h t a.val b.val).det = h.det * t ^ s * sgnW s := by
   induction s with
@@ -44,7 +42,7 @@ theorem zb_det (i0 s : ℕ) (h : Matrix (Fin i0) (Fin i0) ℂ) (t : ℂ) :
         · simp only [ha, ite_false]
           unfold Zb
           split_ifs <;> first | rfl | omega
-      rw [hsub, ih, sgnW_succ']
+      rw [hsub, ih, Formalism.FourierDecayAlt.P.SignAntidiagonal.sgnW_succ]
       have he : Zb i0 (s + 1) h t i0 (i0 + s) = t := by
         simp only [Zb]
         rw [dite_eq_right (lt_irrefl _), ite_eq_left (by omega)]

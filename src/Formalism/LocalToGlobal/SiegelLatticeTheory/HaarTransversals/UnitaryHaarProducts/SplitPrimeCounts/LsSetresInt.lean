@@ -22,7 +22,7 @@ theorem coprime_gi (i : Fin 2) : Nat.Coprime (Ideal.absNorm (differentIdeal ℤ 
   have hall := (ReciprocityTheory.ChartRestriction.N2.ncard_places_eq_finrank_iff D.host.E _ (D.host.g_prime i)).mp (D.nd.g_split i)
   refine Nat.Coprime.symm ((Nat.Prime.coprime_iff_not_dvd (D.host.g_prime i)).2 ?_)
   refine GlobalTheory.FrameIntegral.not_dvd_absNorm_different D.host.F _ (D.host.g_prime i) fun P hPp hPb hpP => ?_
-  exact (SplitG.ef_one_of_split D.host.F D.host.E _ hall P hPp hPb hpP).1
+  exact (GlobalTheory.FrameIntegral.ef_one_of_split D.host.F D.host.E _ hall P hPp hPb hpP).1
 
 theorem natNorm_mem (m : ℕ) :
     (((Ideal.absNorm (differentIdeal ℤ (𝓞 D.host.F)) ^ m : ℕ) : D.host.E)) ∈ ddS D ^ m := by

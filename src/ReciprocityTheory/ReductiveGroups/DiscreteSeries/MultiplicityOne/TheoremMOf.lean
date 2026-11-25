@@ -260,9 +260,6 @@ variable {Wp : Type} [NormedAddCommGroup Wp] [InnerProductSpace ℂ Wp] [FiniteD
 
 theorem hsVec_smul (c : ℂ) (A : Wp →L[ℂ] Wp) : hsVec (c • A) = c • hsVec A := rfl
 
-theorem hsInner_smul_left (c : ℂ) (A B : Wp →L[ℂ] Wp) : hsInner (c • A) B = c * hsInner A B := by
-  simp only [hsInner, hsVec_smul, inner_smul_right]
-
 theorem hsInner_smul_right (c : ℂ) (A B : Wp →L[ℂ] Wp) : hsInner A (c • B) = conj c * hsInner A B := by
   simp only [hsInner, hsVec_smul, inner_smul_left]
 
@@ -290,7 +287,7 @@ theorem stCut1 (h : UnitaryGroupStructuralFacts) : StCut1 := by
           (Matrix.of g) * conj (mc X a₂ b₂ (Matrix.of g))) *
         hsInner ((D.π (Matrix.of p.1.1)).comp (D.π (Matrix.of p.2.1)⁻¹)) X₀ := by
     filter_upwards [hG] with g hg
-    rw [rho_scal, hD.π_eq, hsInner_smul_left, hsInner_smul_right, sgs_eq,
+    rw [rho_scal, hD.π_eq, ReciprocityTheory.ChartRestriction.DS.Mult1.HilbertSchmidtFunctionals.hilbertSchmidt_inner_smul_left, hsInner_smul_right, sgs_eq,
       hf _ (GV_mul_mem (GV_mul_mem (GV_inv_mem hs) hg) hs'), mc_conj X x y hs hg hs']
     ring
   simp only [Ph]

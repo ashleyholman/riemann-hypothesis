@@ -165,16 +165,6 @@ section TopWs
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E]
   (v : HeightOneSpectrum (𝓞 F)) {n : ℕ}
 
-theorem sdc_isOpen_latLoc (Λ : Set (Fin n → E))
-    (hL : ∃ L : Submodule (𝓞 E) (Fin n → E), Submodule.IsFullLattice E L ∧ (L : Set (Fin n → E)) = Λ) :
-    IsOpen (latLoc (E := E) v Λ : Set (Fin n → Fv F v ⊗[F] E)) := by
-  apply PI.OmLocU.isOpen_latLoc <;> assumption
-
-theorem sdc_isCompact_latLoc (Λ : Set (Fin n → E))
-    (hL : ∃ L : Submodule (𝓞 E) (Fin n → E), Submodule.IsLattice E L ∧ (L : Set (Fin n → E)) = Λ) :
-    IsCompact (latLoc (E := E) v Λ : Set (Fin n → Fv F v ⊗[F] E)) := by
-  apply PI.OmLocU.isCompact_latLoc <;> assumption
-
 theorem topW_holds (Λ : Set (Fin n → E)) (a : ℕ)
     (hFull : ∃ L : Submodule (𝓞 E) (Fin n → E),
       Submodule.IsFullLattice E L ∧ (L : Set (Fin n → E)) = Λ) : TopW v Λ a := by
@@ -184,8 +174,8 @@ theorem topW_holds (Λ : Set (Fin n → E)) (a : ℕ)
     ext X
     simp [LamT, Set.mem_pi]
   rw [e]
-  exact ⟨isCompact_univ_pi fun _ => sdc_isCompact_latLoc v Λ hL,
-    isOpen_set_pi Set.finite_univ fun _ _ => sdc_isOpen_latLoc v Λ hFull⟩
+  exact ⟨isCompact_univ_pi fun _ => PI.OmLocU.isCompact_latLoc v Λ hL,
+    isOpen_set_pi Set.finite_univ fun _ _ => PI.OmLocU.isOpen_latLoc v Λ hFull⟩
 
 end TopWs
 

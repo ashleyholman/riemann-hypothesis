@@ -519,16 +519,12 @@ variable {X : Scheme.{0}} {Ω : Type} [Field Ω] {ξ : Spec (CommRingCat.of Ω) 
 
 alias unit_mul := _root_.GlobalTheory.CompanionTheory.Ar.Flat.ZUnit.mul
 
-alias unit_inv := _root_.GlobalTheory.CompanionTheory.Ar.Flat.ZUnit.inv
-
 alias unit_pow := _root_.GlobalTheory.CompanionTheory.Ar.Flat.ZUnit.pow
 
 theorem unit_change {L : Lat ξ Ω} {p : Cpt ξ} {σ π e f : Ω} {M : ℕ} (he : L.IsGenAt p e) (hf : L.IsGenAt p f)
     (h : unitAt ξ p (π / (σ / f) ^ M)) : unitAt ξ p (π / (σ / e) ^ M) := by
   rw [CurvePositivity.change_gen σ π e f M hf.1]
   exact unit_mul h (unit_pow (ProjectiveLinePlaces.unitAt_div he hf) M)
-
-alias exists_local_gen := _root_.GlobalTheory.CompanionTheory.Ar.Flat.ZLat.GlobalTheory.CompanionTheory.Ar.Flat.ZLat.exists_local_gen
 
 end PositivityTheory.Xgn.ProperZeroNumerical
 
@@ -552,7 +548,7 @@ theorem PositivityTheory.Xgn.normal_proper_line_order : ∀ (X : Scheme.{0}) (Ω
     · rintro ⟨W, hW, hq⟩
       exact hW.2 q hq
     · rintro ⟨e, he, hu⟩
-      obtain ⟨U, b, hqU, hb⟩ := exists_local_gen hvb q
+      obtain ⟨U, b, hqU, hb⟩ := GlobalTheory.CompanionTheory.Ar.Flat.ZLat.GlobalTheory.CompanionTheory.Ar.Flat.ZLat.exists_local_gen hvb q
       obtain ⟨U', hqU', hU'⟩ := (regAt_unitAt_open X Ω ξ q _).2 (unit_change (hb q hqU) he hu)
       exact ⟨(U : Set X) ∩ U', ⟨U.isOpen.inter U'.isOpen, fun r hr => ⟨b, hb r hr.1, hU' r hr.2⟩⟩, hqU, hqU'⟩
   have hZ : IsClosed (zeroSet ξ (algebraMap O Ω ϖ)) := by
@@ -572,7 +568,7 @@ theorem PositivityTheory.Xgn.normal_proper_line_order : ∀ (X : Scheme.{0}) (Ω
     refine subset_of_specializes hZ hconn.2 hVo ⟨p₀.1, ⟨p₀.2, hp₀⟩, (hV p₀).2 ⟨e₀, ⟨he₀, hL₀⟩, ?_⟩⟩ ?_
     · have e1 : σ / e₀ = c₀ := by rw [hσ₀, smul_eq_mul, mul_div_cancel_right₀ _ he₀]
       rw [e1, ← inv_div]
-      exact unit_inv hu₀
+      exact GlobalTheory.CompanionTheory.Ar.Flat.ZUnit.inv hu₀
     · rintro y x ⟨hy, hyn⟩ hyV hyx
       obtain ⟨x', hx', hcl⟩ :=
         (isClosed_closure (s := ({x} : Set X))).exists_closed_singleton ⟨x, subset_closure rfl⟩
@@ -580,7 +576,7 @@ theorem PositivityTheory.Xgn.normal_proper_line_order : ∀ (X : Scheme.{0}) (Ω
       refine hxx.mem_open hVo ?_
       have hyx' : y ⤳ x' := hyx.trans hxx
       let q : Cpt ξ := ⟨x', hy.trans hyx'⟩
-      obtain ⟨U, b, hqU, hb⟩ := exists_local_gen hvb q
+      obtain ⟨U, b, hqU, hb⟩ := GlobalTheory.CompanionTheory.Ar.Flat.ZLat.GlobalTheory.CompanionTheory.Ar.Flat.ZLat.exists_local_gen hvb q
       refine (hV q).2 ⟨b, hb q hqU, ?_⟩
       by_contra hnu
       obtain ⟨e, he, hue⟩ := (hV ⟨y, hy⟩).1 hyV
@@ -603,14 +599,14 @@ theorem PositivityTheory.Xgn.normal_proper_line_order : ∀ (X : Scheme.{0}) (Ω
       exact (s p.1).isPrime.ne_top (Ideal.eq_top_of_isUnit_mem _ h u.isUnit)
     refine ⟨σ, 1, (hgen p hp).1, (hgen p hp).2, (one_smul _ _).symm, ?_⟩
     rw [one_pow, one_div]
-    refine unit_inv ⟨zpow_ne_zero a hu.1, ZLat.zpow_mem_regAt hu a, ?_⟩
+    refine GlobalTheory.CompanionTheory.Ar.Flat.ZUnit.inv ⟨zpow_ne_zero a hu.1, ZLat.zpow_mem_regAt hu a, ?_⟩
     rw [← zpow_neg]
     exact ZLat.zpow_mem_regAt hu _
   · obtain ⟨e, he, hue⟩ := (hV p).1 (hsub ⟨p.2, hu⟩)
     refine ⟨e, σ / e, he.1, he.2, ?_, ?_⟩
     · rw [smul_eq_mul, div_mul_cancel₀ _ he.1]
     · rw [← inv_div]
-      exact unit_inv hue
+      exact GlobalTheory.CompanionTheory.Ar.Flat.ZUnit.inv hue
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.NormalProperLineOrder =====

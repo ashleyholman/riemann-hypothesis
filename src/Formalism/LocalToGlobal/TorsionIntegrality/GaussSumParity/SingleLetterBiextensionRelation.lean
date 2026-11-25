@@ -38,7 +38,7 @@ theorem NRCM_of (hS : SqrtKur) (hD : DenseOK) (h2 : HomotheticLatticeIntegralS2)
     exact add_mem (intCast_mem _ m) (mul_mem (intCast_mem _ n) hw)
   let S : Set (MaximalUnramifiedExtension l) := {a | ∃ m n : ℤ, ¬ (l : ℤ) ∣ normInt dK m n ∧
     (a : ℂ_[l]) = ι ((m : ℂ) + (n : ℂ) * omegaK dK)}
-  refine normUnits (MaximalUnramifiedExtension l) l σ hσ (phFF l g2 g3 ⟨_, hs2K⟩ ε) (FAux.cc_phFF (by omega) _ _ _ _) S ?_ α ?_
+  refine Formalism.L2.Th1.D.norm_units_alt (MaximalUnramifiedExtension l) l σ hσ (phFF l g2 g3 ⟨_, hs2K⟩ ε) (FAux.cc_phFF (by omega) _ _ _ _) S ?_ α ?_
   · rintro a ⟨m, n, hmn, ha⟩
     exact hN h4 dK L hsq hd4 hCM l hl5 hld hinert ι g2 g3 ε ⟨_, hs2K⟩ hgood hε hθ c hc hg2 hg3 rfl
       σ hσ m n hmn a ha
@@ -59,9 +59,9 @@ section -- clump:auto
 
 namespace Formalism.L2.Th1.D
 
-theorem nrDense : NRDense := NRDense_of sqrtKur
+theorem nrDense : NRDense := NRDense_of Formalism.L2.Th1.D.sqrt_in_unramified_completion
 
-theorem nrcmOfCM4 : Formalism.L2.Th1.CM.CM4 → NRCM := NRCM_of sqrtKur denseOK _root_.Formalism.L2.Th1.D.homothetic_lattice_integral_of nrDense
+theorem nrcmOfCM4 : Formalism.L2.Th1.CM.CM4 → NRCM := NRCM_of Formalism.L2.Th1.D.sqrt_in_unramified_completion Formalism.L2.Th1.D.dense_criterion _root_.Formalism.L2.Th1.D.homothetic_lattice_integral_of nrDense
 
 end Formalism.L2.Th1.D
 end -- clump:auto

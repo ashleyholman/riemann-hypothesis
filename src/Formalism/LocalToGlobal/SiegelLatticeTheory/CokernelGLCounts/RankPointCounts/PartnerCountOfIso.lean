@@ -326,7 +326,7 @@ theorem det_shift {n s : K} {P X L U : Matrix (Fin (m + 1)) (Fin (m + 1)) K} (hL
   have hX' : ∀ a : Fin m, (X + n • Ecorner m : Matrix (Fin (m + 1)) (Fin (m + 1)) K) a.castSucc (Fin.last m) = 0 ∧
       (X + n • Ecorner m : Matrix (Fin (m + 1)) (Fin (m + 1)) K) (Fin.last m) a.castSucc = 0 := fun a => by
     simp [Ecorner, (hX a).1, (hX a).2, Fin.castSucc_ne_last]
-  rw [e, Matrix.det_mul, Matrix.det_mul, det_lo' hL, det_up' hU, one_mul, mul_one, det_of_corner _ hX',
+  rw [e, Matrix.det_mul, Matrix.det_mul, Formalism.L2.SG.Pf.AtPt.det_lo hL, Formalism.L2.SG.Pf.AtPt.det_up hU, one_mul, mul_one, det_of_corner _ hX',
     leadM_add_corner, hP, leadM_mul hL hU]
   simp [Ecorner, hs]
 

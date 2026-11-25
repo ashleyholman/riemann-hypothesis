@@ -102,7 +102,7 @@ theorem adjoint_unit_norm_holds : AdjUnitNorm := by
   refine adjFromNorm K R l linv ph a b hFr ha hEa (inverse_endo_integral_holds K R l linv a hFr.1 ha hai hEa) hEb
     hPh ?_
   rw [hN]
-  exact zLinInt K R l linv ph hFr hF1 N
+  exact Formalism.L2.Th1.C.scalarLinearInt' K R l linv ph hFr hF1 N
 
 theorem half_valuation_holds : HalfValuation := by
   intro K _ S c d hc hd hS
@@ -128,16 +128,16 @@ theorem ramified_shape_holds : RamifiedShape := by
     show ‖(2 : K)⁻¹‖ ≤ 1
     rw [norm_inv, h2, inv_one]
   have hdK : (d : K) ≠ 0 := Nat.cast_ne_zero.mpr hd
-  obtain ⟨⟨H, hH, hexp⟩, hS⟩ := jetsShape K (unitBall K) l linv ph hFr hF1 hNeg h2i
+  obtain ⟨⟨H, hH, hexp⟩, hS⟩ := Formalism.L2.Th1.C.jets_shape K (unitBall K) l linv ph hFr hF1 hNeg h2i
   have hl' : IsOneUnit (unitBall K) (PowerSeries.derivative (R := K) l) :=
-    logDerivInt K (unitBall K) l linv hlp hFr.2.1
+    Formalism.L2.Th1.C.log_derivative_integral' K (unitBall K) l linv hlp hFr.2.1
   refine ⟨half_valuation_holds K _ (a - b) d hab hdK (hS a b hAdj), ?_, ?_⟩
   · intro i hi hi2
     rcases Nat.lt_or_ge i 3 with h3 | h3
     · have : i = 1 := by omega
       subst this
-      exact jetOne K (unitBall K) l linv ph hlp hl' hFr.2.2 hNeg h2i
-    · exact (derivation_cube_integral_jet K (unitBall K) l linv ph hFr hF1).2 i h3
+      exact Formalism.L2.Th1.C.jetOne' K (unitBall K) l linv ph hlp hl' hFr.2.2 hNeg h2i
+    · exact (Formalism.L2.Th1.C.third_jet_integral K (unitBall K) l linv ph hFr hF1).2 i h3
   · have hs : PowerSeries.HasSubst linv := JetSubstitutionLemmas.hs1 hlp.2.2.1
     set c : K := jet l ph 2 / 2 with hc
     have hq0 : PowerSeries.constantCoeff (-(PowerSeries.C c * l ^ 2)) = 0 := by

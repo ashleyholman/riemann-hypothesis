@@ -383,8 +383,6 @@ alias ResolutionMixedBridge.full := _root_.GroundTheory.Heights₂.Heights.Hilbe
 theorem Closed.Inter.pullbackPushforward_holds : GroundTheory.Heights₂.Heights.Inter.pullbackPushforward_holds.Statement :=
   GroundTheory.Heights₂.Heights.Inter.pullbackPushforward_holds.proof Closed.Inter.BlockGenFinite _root_.GroundTheory.Heights₂.Heights.Inter.FibreIsolFinite.proof
 
-alias Closed.ReciprocityTheory.ChartRestriction.G.Geo.ResBridge := _root_.ReciprocityTheory.ChartRestriction.G.Geo.resBridge
-
 end GroundTheory.Heights₂.Heights.HilbertSamuel
 end -- clump:auto
 end -- clump:auto

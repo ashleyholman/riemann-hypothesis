@@ -593,7 +593,7 @@ theorem framepf_locC (hc : IsCrys PD T.ρ) (hs : W.s = 1) (c : ZMod n) (ζ : LL)
     rw [hπ, map_mul, map_pow, map_mul, map_pow, framepf_lev_π_one, zero_pow (by omega), mul_zero]
   have hE0 : PowerSeries.constantCoeff (W.lev c ζ Eπ) = 0 := by
     have h0 := hQ0
-    rw [framepf_Q_eq_q W hs, hq, map_mul, map_mul] at h0
+    rw [Formalism.MainNotions.LiftingTheory.wmap_Q_one W hs, hq, map_mul, map_mul] at h0
     exact (mul_eq_zero.1 h0).resolve_left ((hw'.map (W.lev c ζ)).map PowerSeries.constantCoeff).ne_zero
   have hsm : ∀ (b : LetA O n) (t : LA W T π' c), Ψ (smulLA W T π' c b t) = b • Ψ t := by
     intro b t
@@ -916,11 +916,6 @@ theorem rigid (h : Hyp O σ Γ π ev) (M : ℕ) (hM : 1 ≤ M) (a : A) (o' : O)
 
 end Const
 
-theorem mul_comm_of_mul_eq_smul {R : Type*} [CommRing R] {n : ℕ} (P Q : Matrix (Fin n) (Fin n) R)
-    (c : R) (hc : c ∈ nonZeroDivisors R) (h : Q * P = c • (1 : Matrix (Fin n) (Fin n) R)) :
-    P * Q = c • (1 : Matrix (Fin n) (Fin n) R) := by
-  first | (apply Bl.FirstLemmaB.goal1 <;> assumption)
-
 theorem quot_sq_nzd {I : Ideal A} {c : A} (hc : ∀ a : A, c * a ∈ I → a ∈ I) :
     Ideal.Quotient.mk I (c ^ 2) ∈ nonZeroDivisors (A ⧸ I) := by
   have aux : ∀ x : A ⧸ I, x * Ideal.Quotient.mk I (c ^ 2) = 0 → x = 0 := by
@@ -987,7 +982,7 @@ theorem dual_frame_products (h : Hyp O σ Γ π ev) (M : ℕ) (hM : 1 ≤ M) (c 
     ext i j
     by_cases hij : i = j <;> simp [hij]
   rw [Matrix.map_mul, hsm] at h1 ⊢
-  exact mul_comm_of_mul_eq_smul _ _ _ (quot_sq_nzd hc) h1
+  exact Bl.FirstLemmaB.goal1 _ _ _ (quot_sq_nzd hc) h1
 
 theorem frame_products {O : Type*} [CommRing O] [Algebra O A] {σ : A →+* A}
     {Γ : Matrix (Fin d) (Fin d) A} {π : A} {ev : ℕ → A} (h : Hyp O σ Γ π ev) (M : ℕ) (hM : 1 ≤ M)

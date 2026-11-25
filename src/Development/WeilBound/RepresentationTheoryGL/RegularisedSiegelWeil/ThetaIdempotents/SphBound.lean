@@ -1121,7 +1121,7 @@ theorem small : ∀ {D : D7} {n ρ p : ℕ} (hn : ρ + p = n) {ψ : AddChar (AF 
   obtain ⟨t, ht⟩ := exists_scalar (D := D) x0
   have hν : adj (rk2 (algebraMap (AF D.host.F) (AE D) t) v r) = rk2 (algebraMap (AF D.host.F) (AE D) t) v r := by
     unfold rk2
-    rw [adj_smul, cA_algebraMap', adj_add, adj_mul, adj_mul, adj_adj, adj_adj, add_comm]
+    rw [adj_smul, Formalism.IndefR.PHeisTh.cA_algebraMap, adj_add, adj_mul, adj_mul, adj_adj, adj_adj, add_comm]
   refine ⟨⟨_, hν⟩, ?_, ?_⟩
   · have h := trace_val (rat β.1) (adj_rat_herm β) (rat V0) (rat R0) (algebraMap (AF D.host.F) (AE D) t) hS
     change ψ (halfTr (Matrix.trace ((rat β.1 : Mx D ρ ρ) ⬝ _))) ≠ 1

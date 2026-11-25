@@ -387,7 +387,7 @@ theorem inverse_unitary_block_form {K : Type} [Field K] (σ : K →+* K) {n : �
     (blk4 a b c d)⁻¹ = blk4 (cT σ d) (-cT σ b) (-cT σ c) (cT σ a) := by
   have hJJ' : (blk4 0 (-1) 1 0 : Matrix (Fin (n + n)) (Fin (n + n)) K) * blk4 0 1 (-1) 0 = 1 := by
     rw [submatrix_fromBlocks_mul]
-    simp [GlobalTheory.CompanionTheory.SwUnf.BigCell.block_identity_eq_one]
+    simp [GlobalTheory.StdUnn.Model.block_matrix_one]
   have h0 : cT σ (blk4 a b c d) * blk4 0 1 (-1) 0 * blk4 a b c d = blk4 0 1 (-1) 0 := h
   have h1 : (blk4 0 (-1) 1 0 * cT σ (blk4 a b c d) * blk4 0 1 (-1) 0) * blk4 a b c d = 1 := by
     rw [mul_assoc (blk4 0 (-1) 1 0), mul_assoc (blk4 0 (-1) 1 0), h0, hJJ']
@@ -481,10 +481,10 @@ theorem what₂ (σ : K →+* K) {A B C E : Matrix (Fin n) (Fin n) K}
     A * cT σ B = B * cT σ A ∧ A * cT σ E = 1 + B * cT σ C ∧ C * cT σ E = E * cT σ C := by
   have hJJ : (blk4 0 1 (-1) 0 : Matrix (Fin (n + n)) (Fin (n + n)) K) * blk4 0 (-1) 1 0 = 1 := by
     rw [submatrix_fromBlocks_mul]
-    simp [BigCell.block_identity_eq_one]
+    simp [GlobalTheory.StdUnn.Model.block_matrix_one]
   have hJJ' : (blk4 0 (-1) 1 0 : Matrix (Fin (n + n)) (Fin (n + n)) K) * blk4 0 1 (-1) 0 = 1 := by
     rw [submatrix_fromBlocks_mul]
-    simp [BigCell.block_identity_eq_one]
+    simp [GlobalTheory.StdUnn.Model.block_matrix_one]
   have h0 : cT σ (blk4 A B C E) * blk4 0 1 (-1) 0 * blk4 A B C E = blk4 0 1 (-1) 0 := h
   have h1 : (blk4 0 (-1) 1 0 * cT σ (blk4 A B C E) * blk4 0 1 (-1) 0) * blk4 A B C E = 1 := by
     rw [mul_assoc (blk4 0 (-1) 1 0), mul_assoc (blk4 0 (-1) 1 0), h0, hJJ']
@@ -553,7 +553,7 @@ theorem y_inv (σ : K →+* K) (hσ : ∀ x, σ (σ x) = x) {a b c d : Matrix (F
     have e2 : a * -cT σ b + b * cT σ a = 0 := by rw [mul_neg, r2]; simp
     have e3 : c * cT σ d + d * -cT σ c = 0 := by rw [mul_neg, r3]; simp
     have e4 : c * -cT σ b + d * cT σ a = 1 := by rw [mul_neg, ← r1']; abel
-    rw [e1, e2, e3, e4, BigCell.block_identity_eq_one]
+    rw [e1, e2, e3, e4, GlobalTheory.StdUnn.Model.block_matrix_one]
   exact mul_eq_one_comm.1 hm
 
 theorem y_left (σ : K →+* K) (hσ : ∀ x, σ (σ x) = x) {a b c d : Matrix (Fin p) (Fin p) K}
@@ -561,7 +561,7 @@ theorem y_left (σ : K →+* K) (hσ : ∀ x, σ (σ x) = x) {a b c d : Matrix (
     cT σ d * a + -cT σ b * c = 1 ∧ cT σ d * b + -cT σ b * d = 0 ∧
       -cT σ c * a + cT σ a * c = 0 ∧ -cT σ c * b + cT σ a * d = 1 := by
   have hv := y_inv σ hσ r1 r2 r3
-  rw [submatrix_fromBlocks_mul, ← BigCell.block_identity_eq_one] at hv
+  rw [submatrix_fromBlocks_mul, ← GlobalTheory.StdUnn.Model.block_matrix_one] at hv
   exact blockMatrixTwoByTwoFin_injective hv
 
 theorem y_unit (σ : K →+* K) (hσ : ∀ x, σ (σ x) = x) {a b c d : Matrix (Fin p) (Fin p) K}
@@ -821,7 +821,7 @@ theorem rowReduce_lowerC : ∀ {K : Type} [Field K] (σ : K →+* K), (∀ x, σ
   have hmdet : IsUnit m.det := by
     refine Matrix.isUnit_det_of_left_inverse (B := blk4 (cT σ T) 0 0 T⁻¹) ?_
     rw [hm, submatrix_fromBlocks_mul]
-    simp [hTi, hcTi, GlobalTheory.CompanionTheory.SwUnf.BigCell.block_identity_eq_one]
+    simp [hTi, hcTi, GlobalTheory.StdUnn.Model.block_matrix_one]
   have hmx : m * x = blk4 (cT σ T⁻¹ * a) (cT σ T⁻¹ * b) (T * lowerC x) (T * GlobalTheory.CompanionTheory.RatPtsUnn.blkD x) := by
     conv_lhs => rw [hx, hm, submatrix_fromBlocks_mul]
     simp

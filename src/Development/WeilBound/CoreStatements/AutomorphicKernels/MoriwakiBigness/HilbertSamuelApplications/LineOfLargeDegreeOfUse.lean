@@ -1321,10 +1321,10 @@ theorem lineOfLargeDegree_of_use :
   have hAI3 : Inter.PushforwardArithIntersection.Statement := _root_.GlobalTheory.CompanionTheory.Ar.Giv.genDeg_of_system hAIS
   have hPts : PtsIntegrableStatement := _root_.GlobalTheory.CompanionTheory.Ar.Giv.ptsIntegrable_of_resK hResK
   have hInd : PtsIndepStatement :=
-    ReciprocityTheory.ChartRestriction.G.Geo.ptsIndep_of (GlobalTheory.T.resolution_exists_of_resolution_statement hResK) HilbertSamuel.Closed.ReciprocityTheory.ChartRestriction.G.Geo.ResBridge
+    ReciprocityTheory.ChartRestriction.G.Geo.ptsIndep_of (GlobalTheory.T.resolution_exists_of_resolution_statement hResK) ReciprocityTheory.ChartRestriction.G.Geo.resBridge
   have hSheet : SheetIndepStatement :=
     ReciprocityTheory.ChartRestriction.G.Geo.sheetIndep_of ReciprocityTheory.ChartRestriction.G.Geo.osgood
-      HilbertSamuel.Closed.ReciprocityTheory.ChartRestriction.G.Geo.FibreFinite
+      ReciprocityTheory.ChartRestriction.G.Geo.fibreFinite
   have hChange : IntCoordChange.Statement :=
     IntCoordChange.proof Inter.Closed.ReciprocityTheory.ChartRestriction.G.AI.I2.Unique IntCoordGeoNum.proof
       (IntCoordArInt.proof hInd hSheet)

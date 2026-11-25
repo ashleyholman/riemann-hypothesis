@@ -512,19 +512,19 @@ theorem split_vanishing_at_two : Formalism.L2.Th1.G.SplitVanishTwo := by
   have hli := hF.1.2.2.1
   have hph := hF.2.2
   have hB : IsBinomScalar R a := by
-    refine closure_minimal ?_ (binomClosed K R hR) hcl
+    refine closure_minimal ?_ (Formalism.L2.Th1.C.binomialScalarClosed' K R hR) hcl
     rintro _ ⟨n, rfl⟩
     exact intBinomScalar K R n
   have hZ : ZLinAt R l linv ph a := by
-    refine closure_minimal ?_ (zLinClosed K R hR l linv ph hl hli hph) hcl
+    refine closure_minimal ?_ (Formalism.L2.Th1.C.scalarLinearClosed' K R hR l linv ph hl hli hph) hcl
     rintro _ ⟨n, rfl⟩
-    exact zLinInt K R l linv ph hF hF1 n
+    exact Formalism.L2.Th1.C.scalarLinearInt' K R l linv ph hF hF1 n
   have key : ∀ x y : MvPowerSeries Unit K, IsPt R x → IsPt R y → LG R (be0 l linv ph x y) :=
     fun x y hx hy =>
       biextension_vanishes_split hF ha hB hZ hN (mul_ne_zero ha0 (sub_ne_zero.2 hab)) hi1 hx hy
   have hA : PhNormAt R l linv ph a 1 := by
     have hc : IsClosed {c : K | PhNormAt R l linv ph c 1} :=
-      (phNormClosed K R hR l linv ph hl hli hph).preimage
+      (Formalism.L2.Th1.C.logNormClosed' K R hR l linv ph hl hli hph).preimage
         (continuous_id.prodMk continuous_const)
     refine closure_minimal ?_ hc hcl
     rintro _ ⟨n, rfl⟩
@@ -644,7 +644,7 @@ theorem two_adic_scalar_conditions : TwoAdicScalars := by
     rw [FGInt, ← Formalism.L2.Th1.C.Dict.law_eq hlp hL.1 hL.2.2.2.2]
     exact hL.2.1
   have hbin : ∀ x : ℤ_[2], IsBinomScalar (unitBall K) (phi K x) :=
-    phi_mem_of_closed (Formalism.L2.Th1.C.binomClosed K (unitBall K) hcl)
+    phi_mem_of_closed (Formalism.L2.Th1.C.binomialScalarClosed' K (unitBall K) hcl)
       (Formalism.L2.Th1.C.intBinomScalar K (unitBall K))
   have hal : al = phi K b := rfl
   have halb : albar = phi K b' := rfl
@@ -782,10 +782,6 @@ end -- clump:auto
 -- clump-header: {"m": "Formalism.LocalToGlobal.TorsionIntegrality.TorsionTranslationPowers.Th0FromPhPrime", "h": "module\n\npublic import Formalism.LocalToGlobal.TorsionIntegrality.TorsionTranslationPowers.StatementX\npublic import Formalism.LocalToGlobal.TorsionIntegrality.TorsionTranslationPowers.NonsingularJetNorms.Joints\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Gamma.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}
 section -- clump:auto
 @[expose] public section
-
-namespace Formalism.L2.Th1.E
-
-end Formalism.L2.Th1.E
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Formalism.LocalToGlobal.TorsionIntegrality.TorsionTranslationPowers.Th0FromPhPrime =====

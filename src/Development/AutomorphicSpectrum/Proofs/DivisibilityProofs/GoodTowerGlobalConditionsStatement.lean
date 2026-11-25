@@ -747,8 +747,6 @@ section Lines
 variable {K : Type} [Fintype K] {ι : K → Type} [∀ k, Fintype (ι k)]
   {K' : Type} [Fintype K'] {ι' : K' → Type} [∀ k, Fintype (ι' k)]
 
-theorem smooth_trivLine : IsSmoothHerm (trivLine ι) := contDiffOn_const
-
 theorem pull_trivLine (κ : K → K') (v : (Σ k, ι k) → (Σ k', ι' k')) :
     IsPullHerm κ v (trivLine ι) (trivLine ι') := by
   refine ⟨?_, fun _ => rfl⟩
@@ -766,7 +764,7 @@ theorem smooth_monoLines {J : Type} {ℓ : J → HermLine ι} (h : ∀ j, IsSmoo
   unfold monoLines
   split_ifs
   · exact h _
-  · exact smooth_trivLine
+  · exact GlobalTheory.CompanionTheory.Ar.Chg.isSmoothHerm_trivLine
 
 theorem pull_monoLines {J : Type} {κ : K → K'} {v : (Σ k, ι k) → (Σ k', ι' k')} {ℓ : J → HermLine ι}
     {ℓ' : J → HermLine ι'} (h : ∀ j, IsPullHerm κ v (ℓ j) (ℓ' j)) (m : J →₀ ℕ) (d : ℕ) (k : Fin d) :
@@ -1202,12 +1200,6 @@ section -- clump:auto
 @[expose] public section
 
 open MvPolynomial GroundTheory.Heights₂.Heights.NumbersDVR GlobalTheory.CompanionTheory.Ar.Num
-
-namespace GlobalTheory.CompanionTheory.Ar.Num
-
-alias genNum_mul_expand := _root_.BaseChangeColon.genNum_mul_expansion
-
-end GlobalTheory.CompanionTheory.Ar.Num
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.GenNumProductExpansion =====
@@ -1399,12 +1391,6 @@ section -- clump:auto
 @[expose] public section
 
 open MvPolynomial GroundTheory.Heights₂.Heights.NumbersDVR GlobalTheory.CompanionTheory.Ar.Num
-
-namespace GlobalTheory.CompanionTheory.Ar.Num
-
-alias hsymm_dualRoots_triv_numZero := _root_.BaseChangeColon.flag_frame_of_point_ideal
-
-end GlobalTheory.CompanionTheory.Ar.Num
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.HsymmDualRootsTrivNumZero =====
@@ -1419,10 +1405,10 @@ open MvPolynomial GroundTheory.Heights₂.Heights.NumbersDVR GlobalTheory.Compan
 theorem _root_.GlobalTheory.CompanionTheory.Relay.flag_frame_point_dimension : NumericalSegre.Statement → ∀ (F : Type) [Field F] (Ω : Type) [Field Ω] [Algebra F Ω] (K : Type) [Fintype K] [DecidableEq K] (ι : K → Type) [∀ k, Fintype (ι k)] (y : (Σ k, ι k) → Ω) (e : ℕ), IsMultiProjPrime (pointIdeal F y) → ringKrullDim (MRing ι F ⧸ pointIdeal F y) = ((e + Fintype.card K : ℕ) : WithBot ℕ∞) → ∀ (N : ℕ) (w : Module.Basis (Fin N) Ω (Fin N → Ω)) (b : Fin N → K → ℤ), IsFlagFrame y (scaledTrivBundle F (segreVec y) N (one_ne_zero (α := Ω))) w b → ∀ k : ℕ, 1 ≤ k → ∀ Q : List (K → ℤ), Q.length + k = e → genNum F (pointIdeal F y) b (∑ i, X i ^ k) Q = 0 := by
   intro hS F _ Ω _ _ K _ _ ι _ y e hP hdim N w b hb k hk Q hQ
   obtain ⟨R, hR, hsum⟩ := psum_eq_sum_hsymm_neg N k hk
-  rw [hsum, (genNum_linear F K ι (Fin N) (pointIdeal F y) b Q).2.2.1]
+  rw [hsum, (BaseChangeColon.genNum_linear_in_polynomial F K ι (Fin N) (pointIdeal F y) b Q).2.2.1]
   refine Finset.sum_eq_zero fun a ha => ?_
   obtain ⟨ha1, hak⟩ := Finset.mem_Icc.mp ha
-  rw [genNum_mul_expand]
+  rw [BaseChangeColon.genNum_mul_expansion]
   refine Finset.sum_eq_zero fun μ hμ => ?_
   have hlen : (classList b μ).length = k - a :=
     PositivityTheory.HtPt.Pflag.length_classList_of_hom b (hR a) hμ
@@ -1432,7 +1418,7 @@ theorem _root_.GlobalTheory.CompanionTheory.Relay.flag_frame_point_dimension : N
   rw [PositivityTheory.HtPt.Pflag.genNum_neg F K ι (pointIdeal F y) e hP hdim b _ a
       (PositivityTheory.HtPt.Pflag.isHomogeneous_hsymm_real N a) _ hl,
     PositivityTheory.HtPt.Pflag.genNum_hsymm,
-    hsymm_dualRoots_triv_numZero hS F Ω K ι y e hP hdim N w b hb a ha1 _ hl]
+    BaseChangeColon.flag_frame_of_point_ideal hS F Ω K ι y e hP hdim N w b hb a ha1 _ hl]
   simp
 end -- clump:auto
 end -- clump:auto

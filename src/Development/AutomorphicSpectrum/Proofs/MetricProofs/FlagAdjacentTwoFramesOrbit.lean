@@ -105,14 +105,9 @@ theorem regAt_zpow {s : Ω} (h : RegAt x (mCoordIdeal z) s) (h' : RegAt x (mCoor
   · rw [zpow_natCast]; exact Subring.pow_mem _ a n
   · rw [_root_.zpow_neg, zpow_natCast, ← inv_pow]; exact Subring.pow_mem _ b n
 
-theorem coord_ne (hz : z ∈ mcPts (mCoordIdeal x)) {q : Σ k, ι k} (hq : (X q : MRing ι) ∉ mCoordIdeal z) :
-    x q ≠ 0 := by
-  have := ValRing.aeval_ne_zero_of_notMem hz (isMultiHomog_X_single q) hq
-  simpa using this
-
 theorem regAt_ratio (hz : z ∈ mcPts (mCoordIdeal x)) {k : K} (a b : ι k)
     (hb : (X ⟨k, b⟩ : MRing ι) ∉ mCoordIdeal z) : RegAt x (mCoordIdeal z) (x ⟨k, a⟩ / x ⟨k, b⟩) := by
-  have hx := coord_ne hz hb
+  have hx := GlobalTheory.CompanionTheory.Ar.PB.CovMap.LocImg.Ind.coord_ne hz hb
   refine ⟨_, X ⟨k, a⟩, X ⟨k, b⟩, isMultiHomog_X_single _, isMultiHomog_X_single _, hb, ?_⟩
   simp [div_mul_cancel₀ _ hx]
 
@@ -154,9 +149,9 @@ theorem detFac_improper (hz : zb ∈ mcPts (mCoordIdeal M.x)) (hF₁ : M.IsFrame
   have hl := M.lam_ne_zero p hp
   have hd₁ := detFac_ne_zero M.j_le p.2 hT₁.1 hT₁.2
   have hA₁ : (∏ k', M.x ⟨k', F₁.c k'⟩ ^ M.b p k') ≠ 0 :=
-    Finset.prod_ne_zero_iff.2 fun k' _ => zpow_ne_zero _ (coord_ne hz (hG₁.1 k'))
+    Finset.prod_ne_zero_iff.2 fun k' _ => zpow_ne_zero _ (GlobalTheory.CompanionTheory.Ar.PB.CovMap.LocImg.Ind.coord_ne hz (hG₁.1 k'))
   have hA₂ : (∏ k', M.x ⟨k', F₂.c k'⟩ ^ M.b p k') ≠ 0 :=
-    Finset.prod_ne_zero_iff.2 fun k' _ => zpow_ne_zero _ (coord_ne hz (hG₂.1 k'))
+    Finset.prod_ne_zero_iff.2 fun k' _ => zpow_ne_zero _ (GlobalTheory.CompanionTheory.Ar.PB.CovMap.LocImg.Ind.coord_ne hz (hG₂.1 k'))
   obtain ⟨v₁, rv₁, ri₁⟩ := hG₁.2.2 p hp
   obtain ⟨v₂, rv₂, ri₂⟩ := hG₂.2.2 p hp
   generalize detFac j p.2 ((F₁.T p.1)⁻¹ * F₂.T p.1) = D at *
@@ -204,7 +199,7 @@ theorem minor_change (hz : zb ∈ mcPts (mCoordIdeal M.x)) (hF₁ : M.IsFrame F�
   have hm := (hi.2.2.2 _ _ hT₁.1 hC).2
   rw [Matrix.mul_nonsing_inv_cancel_left _ _ hu₁] at hm
   have hA₁ : (∏ k', M.x ⟨k', F₁.c k'⟩ ^ M.b p k') ≠ 0 :=
-    Finset.prod_ne_zero_iff.2 fun k' _ => zpow_ne_zero _ (coord_ne hz (hG₁.1 k'))
+    Finset.prod_ne_zero_iff.2 fun k' _ => zpow_ne_zero _ (GlobalTheory.CompanionTheory.Ar.PB.CovMap.LocImg.Ind.coord_ne hz (hG₁.1 k'))
   have hE : IsBlockDiag j (unitCols I' (stepCols N j p.2) hI'.1 : Matrix (Fin N) (Fin N) M.Ω) :=
     unitCols_blockDiag _ _ _ (stepRows_same_side hI')
   have hmin : ∀ I, minorIJ ((F₁.T p.1)⁻¹ * F₂.T p.1 * unitCols I' (stepCols N j p.2) hI'.1) I (stepCols N j p.2) =
@@ -1127,17 +1122,6 @@ open GlobalTheory.CompanionTheory.Ar.PB.MinorCalc
 
 variable {N : ℕ}
 
-theorem minorIJ_one_of_ne {I S : Finset (Fin N)} (hI : I ≠ S) :
-    minorIJ (1 : Matrix (Fin N) (Fin N) ℂ) I S = 0 := by
-  by_cases e : I.card = S.card
-  · have hs : ¬ I ⊆ S := fun hs => hI (Finset.eq_of_subset_of_card_le hs e.ge)
-    obtain ⟨a, ha, has⟩ := Finset.not_subset.mp hs
-    exact minorIJ_eq_zero_of_row _ ha fun c hc => Matrix.one_apply_ne fun h => has (h ▸ hc)
-  · exact minorIJ_of_card_ne _ e
-
-theorem minorIJ_one_self' (S : Finset (Fin N)) : minorIJ (1 : Matrix (Fin N) (Fin N) ℂ) S S = 1 := by
-  rw [minorIJ_eq_det _ S S _ rfl rfl, Matrix.submatrix_one _ (S.orderEmbOfFin rfl).injective, Matrix.det_one]
-
 theorem det_submatrix_eq_zero (A : Matrix (Fin N) (Fin N) ℂ) (S : Finset (Fin N))
     (hA : ∀ I, I ≠ S → minorIJ A I S = 0) (f : Fin S.card → Fin N) (x : Fin S.card) (hx : f x ∉ S) :
     (A.submatrix f (S.orderEmbOfFin rfl)).det = 0 := by
@@ -1171,7 +1155,7 @@ theorem eq_zero_of_minors (B : Matrix (Fin N) (Fin N) ℂ) (hB : B.det ≠ 0) (S
   have hS : minorIJ B S S ≠ 0 := by
     intro h0
     have h1 := minorIJ_mul B⁻¹ B S S
-    rw [Matrix.nonsing_inv_mul _ hu, minorIJ_one_self',
+    rw [Matrix.nonsing_inv_mul _ hu, GlobalTheory.CompanionTheory.Ar.PB.CovMap.LocImg.FV.minorIJ_one_same,
       Finset.sum_eq_single S (fun I _ hI => by rw [hA I hI, mul_zero]) (by simp), h0, mul_zero] at h1
     exact one_ne_zero h1
   rw [minorIJ_eq_det B S S _ rfl rfl] at hS
@@ -1214,7 +1198,7 @@ theorem triangular_of_minors_proportional : ∀ (N j : ℕ) (h g : Matrix (Fin N
         μ * minorIJ (h⁻¹ * h) I (stepCols N j i) := by
       rw [minorIJ_mul, minorIJ_mul, Finset.mul_sum]
       exact Finset.sum_congr rfl fun I' _ => by rw [hm I']; ring
-    rw [h1, Matrix.nonsing_inv_mul _ huh, minorIJ_one_of_ne hI, mul_zero]
+    rw [h1, Matrix.nonsing_inv_mul _ huh, GlobalTheory.CompanionTheory.Ar.PB.CovMap.LocImg.FV.minorIJ_one_ne hI, mul_zero]
   intro r s hrs
   have hsr : (s : ℕ) < r := hrs
   have hrN := r.2
@@ -1521,15 +1505,11 @@ section Scal
 
 variable {N j : ℕ}
 
-theorem minor_one (S : Finset (Fin N)) : minorIJ (1 : Matrix (Fin N) (Fin N) ℂ) S S = 1 := by
-  unfold minorIJ
-  rw [dite_eq_left rfl, Matrix.submatrix_one _ (S.orderEmbOfFin rfl).injective, Matrix.det_one]
-
 theorem exists_minor_ne (hj : j ≤ N) (i : Fin N) {h : Matrix (Fin N) (Fin N) ℂ} (hd : h.det ≠ 0) :
     ∃ I, minorIJ h I (stepCols N j i) ≠ 0 := by
   by_contra! hc
   have e := (_root_.GlobalTheory.CompanionTheory.Ar.PB.MinorCalc.minors_main ℂ N j i hj).1 h⁻¹ h (stepCols N j i) (stepCols N j i)
-  rw [Matrix.nonsing_inv_mul _ hd.isUnit, minor_one, Finset.sum_eq_zero fun I _ => by rw [hc I, mul_zero]] at e
+  rw [Matrix.nonsing_inv_mul _ hd.isUnit, GlobalTheory.CompanionTheory.Ar.PB.CovMap.LocImg.FV.minorIJ_one_same, Finset.sum_eq_zero fun I _ => by rw [hc I, mul_zero]] at e
   exact one_ne_zero e
 
 theorem scal_eq (hj : j ≤ N) (i : Fin N) {h B : Matrix (Fin N) (Fin N) ℂ} (hd : h.det ≠ 0) (hB : IsBlockDiag j B)

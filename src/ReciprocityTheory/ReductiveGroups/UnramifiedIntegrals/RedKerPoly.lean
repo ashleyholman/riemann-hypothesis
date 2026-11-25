@@ -396,8 +396,8 @@ def uFun (L : PeriodPair) (z : ℂ) : ℂ := 1 + z ^ 2 * L.weierstrassPExcept 0 
 
 theorem hasT_uFun (L : PeriodPair) : HasT (uFun L) (wpNum L.g₂ L.g₃) := by
   have h : HasT (L.weierstrassPExcept 0) (pOf L.g₂ L.g₃) :=
-    ⟨L.analyticAt_weierstrassPExcept 0, pOfLattice L⟩
-  rw [(wpNumDen ℂ L.g₂ L.g₃).1]
+    ⟨L.analyticAt_weierstrassPExcept 0, Formalism.L2.Th1.F.weierstrass_p_of_lattice L⟩
+  rw [(Formalism.L2.Th1.F.weierstrass_numerator_denominator ℂ L.g₂ L.g₃).1]
   have h3 := (hasT_const 1).add ((hasT_id.pow 2).mul h)
   rw [map_one] at h3
   exact h3
@@ -579,7 +579,7 @@ namespace ReciprocityTheory.ChartRestriction.L1
 
 theorem wpNum_coeff_mem (k : Subfield ℂ) {g2 g3 : ℂ} (h2 : g2 ∈ k) (h3 : g3 ∈ k) (n : ℕ) :
     PowerSeries.coeff n (wpNum g2 g3) ∈ k := by
-  have h := (seriesMap k ℂ k.subtype ⟨g2, h2⟩ ⟨g3, h3⟩ 0 0).1
+  have h := (Formalism.L2.Th1.F.series_map k ℂ k.subtype ⟨g2, h2⟩ ⟨g3, h3⟩ 0 0).1
   have h' : wpNum g2 g3 = PowerSeries.map k.subtype (wpNum (⟨g2, h2⟩ : k) ⟨g3, h3⟩) := h.symm
   rw [h', PowerSeries.coeff_map]
   exact (PowerSeries.coeff n (wpNum (⟨g2, h2⟩ : k) ⟨g3, h3⟩)).2

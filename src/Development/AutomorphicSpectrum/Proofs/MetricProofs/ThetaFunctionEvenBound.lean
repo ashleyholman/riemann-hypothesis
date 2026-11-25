@@ -1323,10 +1323,6 @@ open GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Sl
 namespace GlobalTheory.CompanionTheory.Ar.NForm
 
 open Matrix in
-theorem periodMatrix_im {g : ℕ} (X Y : Matrix (Fin g) (Fin g) ℝ) : (periodMatrix X Y).map Complex.im = Y := by
-  ext i j; simp [periodMatrix]
-
-open Matrix in
 theorem periodMatrix_isSymm {g : ℕ} {X Y : Matrix (Fin g) (Fin g) ℝ} (hX : X.IsSymm) (hY : Y.IsSymm) :
     (periodMatrix X Y).IsSymm := by
   ext i j
@@ -1412,7 +1408,7 @@ theorem exists_reduced (g : ℕ) [NeZero g] (Λ : Submodule ℤ (Fin g → ℂ))
   obtain ⟨bs, ρ, hρ, hρ2, hJ, hfirst, hmin, hdet⟩ :=
     _root_.GlobalTheory.CompanionTheory.Ar.NformRed.symplectic_reduction_basis g Λ Hm bs0 hH hpos hJ0 (by rw [hG0]; exact hS.1) (by rw [hG0]; exact hS.2)
   obtain ⟨h, X, Y, hh, hX, hY, hHh, hin, hinr, -⟩ := _root_.GlobalTheory.CompanionTheory.NForm.normal_form_gram g Hm (fun α => (bs α : Fin g → ℂ)) hH hpos hJ
-  have hτim : (periodMatrix X Y).map Complex.im = Y := periodMatrix_im X Y
+  have hτim : (periodMatrix X Y).map Complex.im = Y := GlobalTheory.CompanionTheory.Ar.Nform.periodMatrix_map_im X Y
   have hexp : ∀ x : Λ, (x : Fin g → ℂ) = ∑ α, (bs.repr x α) • (bs α : Fin g → ℂ) := fun x => by
     have := congrArg Subtype.val (bs.sum_repr x)
     simp only [AddSubmonoidClass.coe_finsetSum, SetLike.val_smul] at this

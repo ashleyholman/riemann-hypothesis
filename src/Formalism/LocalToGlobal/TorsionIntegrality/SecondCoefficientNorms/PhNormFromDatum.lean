@@ -224,15 +224,8 @@ namespace Formalism.L2.Th1.C
 
 alias ptClosure := _root_.Formalism.L2.Th1.C.integralPointClosure'
 theorem adjFromNorm : AdjFromNorm := adjoint_from_norm_form
-theorem unitaryInv : UnitaryInv := unitary_inverse_identity
-alias binomClosed := _root_.Formalism.L2.Th1.C.binomialScalarClosed'
-alias phNormClosed := _root_.Formalism.L2.Th1.C.logNormClosed'
-alias zLinClosed := _root_.Formalism.L2.Th1.C.scalarLinearClosed'
-alias zLinInt := _root_.Formalism.L2.Th1.C.scalarLinearInt'
 theorem endoAll : EndoAll := endoAll_of _root_.Formalism.L2.Th1.C.norm_adjoint_all_places
 
-alias jetAdditive := _root_.Formalism.L2.Th1.C.jetAdditivity
-alias jetOne := _root_.Formalism.L2.Th1.C.jetOne'
 alias endIntFromDatum := _root_.Formalism.L2.Th1.C.integral_endomorphism_from_datum
 alias phNormFromDatum := _root_.Formalism.L2.Th1.C.phi_norm_from_datum
 theorem endoAllFromData : EndoAllFromData := endoAllFromData_of endoAll

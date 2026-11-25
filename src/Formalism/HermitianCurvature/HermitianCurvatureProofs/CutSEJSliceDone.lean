@@ -201,19 +201,9 @@ theorem op_pt (X : ActualOps k r z z' π π') (l : Fin r) (i : Fin 6) (Ψ : RadS
       opL l i (fun c' => (Ψ : Fn k r (Wq →L[ℂ] Wp)) c' g) p := by
   rw [X.op_apply]; rfl
 
-theorem wOp_cons (X : ActualOps k r z z' π π') (l : Fin r) (j : Fin 6) (js : List (Fin 6))
-    (Ψ : RadSp k r z z' π π') : wOp X l (j :: js) Ψ = X.op l j (wOp X l js Ψ) := by
-  simp [wOp, List.map_cons, List.prod_cons]
-
 theorem slice_diffAt (Ψ : RadSp k r z z' π π') (g : Mx k r) {p : Fin r → ℂ} (hp : p ∈ OmX r) :
     DifferentiableAt ℝ (fun c' => (Ψ : Fn k r (Wq →L[ℂ] Wp)) c' g) p :=
   (radSp_regular Ψ g p).1 hp
-
-theorem isOpen_OmX' (m : ℕ) : IsOpen (OmX m) := by
-  have : OmX m = ⋂ l : Fin m, (fun x : Fin m → ℂ => x l) ⁻¹' {0}ᶜ := by
-    ext x; simp [OmX]
-  rw [this]
-  exact isOpen_iInter_of_finite fun l => isOpen_compl_singleton.preimage (continuous_apply l)
 
 def NFP (X : ActualOps k r z z' π π') (l : Fin r) (s : ℂ) (Wv : Module.End ℂ (RadSp k r z z' π π'))
     (js : List (Fin 6)) : Prop :=
@@ -238,7 +228,7 @@ theorem nfp_mul (j : Fin 6) (a : ℂ → ℂ) (ha : ContDiffOn ℝ ∞ a {0}ᶜ)
   obtain ⟨K, m, ab, hm, hab, hE⟩ := h
   refine ⟨K, fun i t => a t * m i t, ab, fun i => ha.mul (hm i), hab, ?_⟩
   intro Φ p hp g
-  rw [wOp_cons, hop, hE Φ p hp g, Finset.smul_sum]
+  rw [Formalism.FourierDecayAlt.P.CutSE.wOp_cons, hop, hE Φ p hp g, Finset.smul_sum]
   refine Finset.sum_congr rfl fun i _ => ?_
   rw [smul_smul]; ring_nf
 
@@ -275,7 +265,7 @@ theorem nfp_der (b : Bool) (js : List (Fin 6)) (h : NFP X l s Wv js) :
 
   have hev : (fun c' => (wOp X l js (Wv Φ) : Fn k r (Wq →L[ℂ] Wp)) c' g) =ᶠ[𝓝 p]
       fun c' => ∑ i, (fun t => m i t * fsv s t) (c' l) • v i c' := by
-    filter_upwards [(isOpen_OmX' r).mem_nhds hp] with c' hc'
+    filter_upwards [(Formalism.QuantumDeterminants.WRPres.isOpen_omX r).mem_nhds hp] with c' hc'
     exact hE Φ c' hc' g
   have hsd : ∀ i ∈ (Finset.univ : Finset (Fin K)),
       DifferentiableAt ℝ (fun c' => (fun t => m i t * fsv s t) (c' l) • v i c') p := by
@@ -300,12 +290,12 @@ theorem nfp_der (b : Bool) (js : List (Fin 6)) (h : NFP X l s Wv js) :
     rw [e1, (wirt_fsum Finset.univ l _ p hsd).2]
     refine Finset.sum_congr rfl fun i _ => ?_
     rw [(wirt_comp_smul l _ (v i) p (hqd i) (hvd i)).2, mfs_dZb s (hmd i)]
-  rw [wOp_cons, op_pt, Fin.sum_univ_add]
+  rw [Formalism.FourierDecayAlt.P.CutSE.wOp_cons, op_pt, Fin.sum_univ_add]
   simp only [Fin.append_left, Fin.append_right]
   have hR : ∀ i, (wOp X l ((if b then (0 : Fin 6) else 3) :: ab i) Φ : Fn k r (Wq →L[ℂ] Wp)) p g =
       if b then p l • Formalism.QuantumDeterminants.wirt l (v i) p else star (p l) • Formalism.QuantumDeterminants.wirtBar l (v i) p := by
     intro i
-    rw [wOp_cons, op_pt]
+    rw [Formalism.FourierDecayAlt.P.CutSE.wOp_cons, op_pt]
     cases b
     · simp only [Bool.false_eq_true, ite_false]
       show Formalism.QuantumDeterminants.pbOp l _ p = _

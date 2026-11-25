@@ -20,11 +20,6 @@ open NumberField IsDedekindDomain
 
 variable {K : Type} [Field K] [NumberField K] (v : HeightOneSpectrum (𝓞 K))
 
-open Classical in
-theorem exists_mul_mem (x : K) (hx : v.valuation K x ≤ 1) :
-    ∃ s : 𝓞 K, s ∉ v.asIdeal ∧ ∃ a : 𝓞 K, (s : K) * x = (a : K) := by
-  apply Formalism.MainNotions.BridgeLemma.exists_den <;> assumption
-
 theorem dense_algebraMap : DenseRange (algebraMap K (v.adicCompletion K)) :=
   _root_.IsDedekindDomain.HeightOneSpectrum.denseRange_algebraMap (K := K) v
 
@@ -42,7 +37,7 @@ theorem exists_approx (y : v.adicCompletion K) (hy : Valued.v y ≤ 1) :
     have : algebraMap K (v.adicCompletion K) x = (algebraMap K (v.adicCompletion K) x - y) + y := by ring
     rw [this]
     exact Valuation.map_add_le _ hz'.le hy
-  obtain ⟨s, hs, a, hsa⟩ := exists_mul_mem v x hvx
+  obtain ⟨s, hs, a, hsa⟩ := Formalism.MainNotions.BridgeLemma.exists_den v x hvx
   obtain ⟨t, i, hi, hti⟩ := v.isMaximal.exists_inv hs
   refine ⟨t * a, ?_⟩
   have hxi : x - ((t * a : 𝓞 K) : K) = x * (i : K) := by

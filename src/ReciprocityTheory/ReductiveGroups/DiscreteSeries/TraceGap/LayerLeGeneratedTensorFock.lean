@@ -203,12 +203,6 @@ theorem dD_physSub (E : Fin n → Fin n → Module.End ℂ N) {y : TensorProduct
     (hy : y ∈ physicalSubspace (N := N) ε) : (dOp ε (eT E) cpT + dOp' ε (eT E) cmT) y ∈ physicalSubspace ε :=
   Submodule.add_mem _ ((physSub_stable ε E).2.2.1 y hy) ((physSub_stable ε E).2.2.2.1 y hy)
 
-theorem casimir_eT (E : Fin n → Fin n → Module.End ℂ N) :
-    casimir (eT (n := n) E) = TensorProduct.map (casimir E) LinearMap.id := by
-  apply TensorProduct.ext'
-  intro m f
-  simp [casimir, eT, LinearMap.sum_apply, TensorProduct.sum_tmul]
-
 theorem gradT_D (E : Fin n → Fin n → Module.End ℂ N) (y : TensorProduct ℂ N (Fock n)) :
     gradT ((dOp ε (eT E) cpT + dOp' ε (eT E) cmT) y) = -(dOp ε (eT E) cpT + dOp' ε (eT E) cmT) (gradT y) := by
   have h1 := LinearMap.congr_fun (gradT_props ε E).2.1 y
@@ -261,7 +255,7 @@ theorem diracSquare_mem_layer (hE : IsGlRep E) (hVk : IsKStableSub ε E V) {c : 
   have h2 := LinearMap.congr_fun (two_D_sq (eT_isGlRep hE) cpT_cmT_isCAR (eT_commutesCAR E) ε) y
   rw [LinearMap.smul_apply, Module.End.mul_apply] at h2
   have hcas : casimir (eT (n := n) E) y = c • y := by
-    rw [casimir_eT]
+    rw [ReciprocityTheory.ChartRestriction.DS.ssh_casimir_eT]
     exact map_eq_smul_of_tensFock (fun v hv => hc v (layer_le_genSub J hv)) hy.1
   have hmem : (2 : ℂ) • (dOp ε (eT E) cpT + dOp' ε (eT E) cmT) ((dOp ε (eT E) cpT + dOp' ε (eT E) cmT) y) ∈
       Y0 ε E V J := by

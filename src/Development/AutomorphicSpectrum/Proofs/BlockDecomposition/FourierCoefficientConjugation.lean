@@ -24,15 +24,11 @@ theorem adj_mul_sq (x y : Mx D n n) : adj (x * y) = adj y * adj x := adj_mul x y
 
 theorem rat_mul_sq (x y : Matrix (Fin n) (Fin n) D.host.E) : (rat (x * y) : Mx D n n) = rat x * rat y := rat_mul x y
 
-alias rat_one_sq := _root_.GlobalTheory.MixModel.rat_one
-
-alias adj_one_sq := _root_.GlobalTheory.MixModel.adj_one
-
 theorem rat_gl_mul_inv (a : GL (Fin n) D.host.E) : (rat a.1 * rat (a⁻¹).1 : Mx D n n) = 1 := by
-  rw [← rat_mul_sq, show a.1 * (a⁻¹).1 = 1 from by simp, rat_one_sq]
+  rw [← rat_mul_sq, show a.1 * (a⁻¹).1 = 1 from by simp, GlobalTheory.MixModel.rat_one]
 
 theorem rat_gl_inv_mul (a : GL (Fin n) D.host.E) : (rat (a⁻¹).1 * rat a.1 : Mx D n n) = 1 := by
-  rw [← rat_mul_sq, show (a⁻¹).1 * a.1 = 1 from by simp, rat_one_sq]
+  rw [← rat_mul_sq, show (a⁻¹).1 * a.1 = 1 from by simp, GlobalTheory.MixModel.rat_one]
 
 def congH (u : Matrix (Fin n) (Fin n) D.host.E) (b : hermA D n) : hermA D n :=
   ⟨rat u * b.1 * adj (rat u), by
@@ -46,7 +42,7 @@ theorem congH_val (u : Matrix (Fin n) (Fin n) D.host.E) (b : hermA D n) :
 theorem congH_cancel {u v : Matrix (Fin n) (Fin n) D.host.E} (h : (rat u * rat v : Mx D n n) = 1) (b : hermA D n) :
     congH u (congH v b) = b := by
   apply Subtype.ext
-  have h' : (adj (rat v) * adj (rat u) : Mx D n n) = 1 := by rw [← adj_mul_sq, h, adj_one_sq]
+  have h' : (adj (rat v) * adj (rat u) : Mx D n n) = 1 := by rw [← adj_mul_sq, h, GlobalTheory.MixModel.adj_one]
   rw [congH_val, congH_val]
   calc rat u * (rat v * b.1 * adj (rat v)) * adj (rat u)
       = (rat u * rat v) * b.1 * (adj (rat v) * adj (rat u)) := by simp only [mul_assoc]
@@ -122,7 +118,7 @@ theorem trace_cg (a : GL (Fin n) D.host.E) (β : HermE D n) (b : hermA D n) :
     show rat (_ * β.1 * a.1) = _
     rw [rat_mul_sq, rat_mul_sq]
     rfl
-  have h2 : (adj (rat (a⁻¹).1) * adj (rat a.1) : Mx D n n) = 1 := by rw [← adj_mul_sq, rat_gl_mul_inv, adj_one_sq]
+  have h2 : (adj (rat (a⁻¹).1) * adj (rat a.1) : Mx D n n) = 1 := by rw [← adj_mul_sq, rat_gl_mul_inv, GlobalTheory.MixModel.adj_one]
   show Matrix.trace ((cg a β).1.map (incA D) * (tauH a b).1 : Mx D n n) = Matrix.trace (rat β.1 * b.1 : Mx D n n)
   rw [h1, tauH_apply, congH_val]
   have e : adj (rat a.1) * rat β.1 * rat a.1 * (rat (a⁻¹).1 * b.1 * adj (rat (a⁻¹).1)) =

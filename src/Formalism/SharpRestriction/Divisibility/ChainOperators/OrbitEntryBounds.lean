@@ -1234,7 +1234,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-alias PI.SumOrbC := _root_.SumOrbCW.sumOrbC
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Formalism.PeriodIntegrals.OrbitalBoundsConclusion.SumOrbC =====
@@ -1272,7 +1271,7 @@ theorem orbit_entry_bounds_of_family (D : D7) (L : SizeData₂ D) (X : Inst D L)
     (hF : OrbitPlaces.OrbitValuationBound E X K ce) (hs : OrbitPlaces.ThetaKernelShapeAtD E Dx) (hS : OrbitPlaces.Shape D L X E) (hC : OrbitPlaces.CLarge C6 C K ce) :
     OrbitPlaces.Core D L X K Dx E ce C :=
   ⟨addition_bound_holds D E, orbitsAddAtConjugate_ent D E, hF, entry_divisor_bound_holds D E Dx hs,
-    PI.SumOrbC D L X K ce E C6 C hS hC, entry_number_bound_holds D L X K E ce C6 C hS hC⟩
+    SumOrbCW.sumOrbC D L X K ce E C6 C hS hC, entry_number_bound_holds D L X K E ce C6 C hS hC⟩
 
 theorem orbit_entry_bounds_hold (D : D7) (L : SizeData₂ D) (X : Inst D L) (K : Consts) (Dx : DivX D) (E : OrbitPlaces.Ent D) (ce : ErrC) (C6 C : ℝ)
     (hA : OrbitPlaces.OrbitLetterBoundsAll C6 C) (hs : OrbitPlaces.ThetaKernelShapeAtD E Dx) (hS : OrbitPlaces.Shape D L X E) (hC : OrbitPlaces.CLarge C6 C K ce) :

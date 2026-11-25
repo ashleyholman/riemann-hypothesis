@@ -13,9 +13,6 @@ namespace PI.OmFibreUniq.W.SdChar
 
 open Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes MeasureTheory Topology Filter NumberField IsDedekindDomain
 
-theorem eq_one_of_pow_near (w : ℂ) (hw : ‖w‖ = 1) (h : ∀ m : ℕ, ‖w ^ m - 1‖ < 1) : w = 1 := by
-  apply PI.OmFibreUniq.W.Sd.eq_one_of_pow_near <;> assumption
-
 variable {F : Type} [Field F] [NumberField F] (v : HeightOneSpectrum (𝓞 F))
   (ψ0 : Fv F v → ℂ) (hψc : Continuous ψ0) (hψa : ∀ r s, ψ0 (r + s) = ψ0 r * ψ0 s)
   (hψn : ∀ r, ‖ψ0 r‖ = 1)
@@ -60,7 +57,7 @@ theorem Aset_mem_nhds : Aset v ψ0 ∈ 𝓝 (0 : Fv F v) := by
     calc Valued.v.restrict c' * Valued.v.restrict t ≤ 1 * Valued.v.restrict t := by gcongr
       _ = Valued.v.restrict t := one_mul _
       _ < _ := ht
-  apply eq_one_of_pow_near _ (hψn _)
+  apply PI.OmFibreUniq.W.Sd.eq_one_of_pow_near _ (hψn _)
   intro m
   rw [← psi_natCast_mul v ψ0 hψa hψn, ← mul_assoc]
   exact hin _ (mul_mem (natCast_mem _ m) hc)

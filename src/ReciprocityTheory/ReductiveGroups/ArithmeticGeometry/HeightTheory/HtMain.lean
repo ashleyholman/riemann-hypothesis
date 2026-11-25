@@ -785,15 +785,6 @@ namespace ReciprocityTheory.ChartRestriction.G.T0
 
 open NumberField ReciprocityTheory.MultiplicativeHeights
 
-theorem isMultiHomogeneous_mul' {R : Type*} [CommSemiring R] {B n : ℕ} {a a' : Fin B → ℕ}
-    {f g : MvPolynomial (Fin B × Fin n) R} (hf : IsMultiHomogeneous a f)
-    (hg : IsMultiHomogeneous a' g) : IsMultiHomogeneous (a + a') (f * g) := by
-  classical
-  unfold IsMultiHomogeneous at *
-  intro s hs b
-  obtain ⟨s1, hs1, s2, hs2, rfl⟩ := Finset.mem_add.mp (MvPolynomial.support_mul f g hs)
-  simp only [Finsupp.add_apply, Finset.sum_add_distrib, Pi.add_apply, hf s1 hs1 b, hg s2 hs2 b]
-
 theorem isMultiHomogeneous_one {R : Type*} [CommSemiring R] {B n : ℕ} :
     IsMultiHomogeneous (0 : Fin B → ℕ) (1 : MvPolynomial (Fin B × Fin n) R) := by
   first
@@ -815,7 +806,7 @@ theorem height_pow_multiHomogeneous {K : Type} [Field K] [NumberField K] {B n : 
   | succ e ih =>
     obtain ⟨h1, h2, h3⟩ := ih
     refine ⟨pow_ne_zero _ hg0, ?_, ?_⟩
-    · rw [pow_succ, succ_nsmul]; exact isMultiHomogeneous_mul' h2 hg
+    · rw [pow_succ, succ_nsmul]; exact ReciprocityTheory.ChartRestriction.G.T0.HeightMultiplicativity.multi_mul h2 hg
     · rw [pow_succ, (ReciprocityTheory.MultiplicativeHeights.Closed.gauss_height_additivity K B n _ _ _ _ hn h1 hg0 h2 hg).1, h3]
       push_cast; ring
 
@@ -832,7 +823,7 @@ theorem height_prod_pow_multiHomogeneous {K : Type} [Field K] [NumberField K] {B
     obtain ⟨hq0, aq, hqa⟩ := hg q (Finset.mem_insert_self q T)
     obtain ⟨p1, p2, p3⟩ := height_pow_multiHomogeneous hn hq0 hqa (e q)
     rw [Finset.prod_insert hq, Finset.sum_insert hq]
-    refine ⟨mul_ne_zero p1 h1, ⟨_, isMultiHomogeneous_mul' p2 h2⟩, ?_⟩
+    refine ⟨mul_ne_zero p1 h1, ⟨_, ReciprocityTheory.ChartRestriction.G.T0.HeightMultiplicativity.multi_mul p2 h2⟩, ?_⟩
     rw [(ReciprocityTheory.MultiplicativeHeights.Closed.gauss_height_additivity K B n _ _ _ _ hn p1 h1 p2 h2).1, p3, h3]
 
 namespace Data

@@ -313,7 +313,6 @@ section -- clump:auto
 
 open NumberField
 
-alias HtPlacesSum := _root_.PI.HtPlacesSumWork.places_over_height_one_prime
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.HeightTheory.GaussHeights.PlaceSumHeights.PlaceSumStatements.PlaceSumTheorem.HtPlacesSum =====
@@ -342,7 +341,7 @@ theorem places_over_la (hd : d.AxH 𝒜) (h : d.S1) (la : IsDedekindDomain.Heigh
     (d.PlOver la c).Finite ∧
       (∑ᶠ (w : AddValuation (OmS (Ω c) d.D d.N) (WithTop ℤ)) (_ : w ∈ d.PlOver la c),
         (d.fze h c w : ℤ) * ramIdx (K := K) (d.Wres c w) la) = d.delc c :=
-  HtPlacesSum 𝒜 d hd h la c
+  PI.HtPlacesSumWork.places_over_height_one_prime 𝒜 d hd h la c
 
 end Data
 

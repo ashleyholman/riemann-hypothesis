@@ -49,8 +49,6 @@ theorem residue_nat_ne_zero_level_zero (Tt : Forms0 D u) (v : (D.mem u).A.vT) (s
     rw [← map_natCast e s, h, map_zero]
   exact (CharP.cast_eq_zero_iff (ZMod (D.mem u).A.T) (D.mem u).A.T s).mp h2
 
-alias not_T_dvd_finset_prod := _root_.Formalism.L2.GlobalTheoryTheory.LocalLatticeBases.not_dvd_prod_of_not_dvd
-
 theorem det_basis_change_mem_prime_zero (Tt : Forms0 D u) (w : D.what₂.places.Pl) (hw : OverT D u w) (v : (D.mem u).A.vT)
     (i : ℕ) (hi : i ≤ D.R.m) (h0 : i = 0) (c : (D.mem u).C.cls i) (B B' : GL (Fin (D.R.N i)) D.host.E)
     (hB : IsLocBasis (D.mem u).A.T (Ld D u i hi c : Set _) B)
@@ -77,7 +75,7 @@ theorem det_basis_change_mem_prime_zero (Tt : Forms0 D u) (w : D.what₂.places.
   choose s2 hs2 hs2m using hco
   set S : ℕ := ∏ k, s2 k * sk k with hSdef
   have hS : ¬ (D.mem u).A.T ∣ S :=
-    not_T_dvd_finset_prod D u _ _ (fun k _ => by
+    Formalism.L2.GlobalTheoryTheory.LocalLatticeBases.not_dvd_prod_of_not_dvd D u _ _ (fun k _ => by
       intro hd
       rcases (Nat.Prime.dvd_mul (D.mem u).A.T_prime).1 hd with h | h
       · exact hs2 k h
@@ -91,7 +89,7 @@ theorem det_basis_change_mem_prime_zero (Tt : Forms0 D u) (w : D.what₂.places.
 
   choose tb htb htbL using fun a => bwD_col_loc D u w hw hB a
   set t : ℕ := ∏ a, tb a with htdef
-  have ht : ¬ (D.mem u).A.T ∣ t := not_T_dvd_finset_prod D u _ _ (fun a _ => htb a)
+  have ht : ¬ (D.mem u).A.T ∣ t := Formalism.L2.GlobalTheoryTheory.LocalLatticeBases.not_dvd_prod_of_not_dvd D u _ _ (fun a _ => htb a)
   have hbL : ∀ a, (t : D.host.E) • (fun r => (B : Matrix (Fin (D.R.N i)) (Fin (D.R.N i)) D.host.E) r a) ∈ (Ld D u i hi c : Set _) := by
     intro a
     obtain ⟨q, hq⟩ : tb a ∣ t := Finset.dvd_prod_of_mem _ (Finset.mem_univ a)

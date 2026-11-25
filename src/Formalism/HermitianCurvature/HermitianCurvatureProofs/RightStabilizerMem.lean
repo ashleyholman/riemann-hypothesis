@@ -125,8 +125,8 @@ theorem left_stabilizer_mem (x : C2.Lstidx w → ℂ) (y : C2.LPidx w → ℂ) :
       = ((lowP w y)ᴴ).adjugate * (((lowS w x)ᴴ).adjugate * (lowS w x)ᴴ) * (lowP w y)ᴴ := by
         simp only [Matrix.mul_assoc]
     _ = 1 := by
-        rw [Matrix.adjugate_mul, A.det_UT (lowSH_UT x), one_smul, Matrix.mul_one, Matrix.adjugate_mul,
-          A.det_UT (lowPH_UT y), one_smul]
+        rw [Matrix.adjugate_mul, Formalism.FourierDecayAlt.P.C2x2.ut_det (lowSH_UT x), one_smul, Matrix.mul_one, Matrix.adjugate_mul,
+          Formalism.FourierDecayAlt.P.C2x2.ut_det (lowPH_UT y), one_smul]
 
 include hγ hd hZw hpos in
 theorem uP_UT (x : C2.Lstidx w → ℂ) (u : G.UT (r + 1) → ℂ) :
@@ -154,7 +154,7 @@ theorem right_stabilizer_mem (x : C2.Lstidx w → ℂ) (u : G.UT (r + 1) → ℂ
     (hUF.1 _ (A.n_in_S h1)).2.2 _ (A.n_in_S hρ), A.uMap_inv hz' hτa,
     (Formalism.FourierDecayAlt.P.c2_tau_mem k r S.z' hz' _ (uP_UT S hγ hd hZw hpos x u)).2.2,
     (Formalism.FourierDecayAlt.P.c2_tau_mem k r S.z' hz' _ (UC.upper_mem u)).2.2, Matrix.mul_assoc,
-    Matrix.adjugate_mul, A.det_UT (uP_UT S hγ hd hZw hpos x u), one_smul]
+    Matrix.adjugate_mul, Formalism.FourierDecayAlt.P.C2x2.ut_det (uP_UT S hγ hd hZw hpos x u), one_smul]
 
 
 include hγ hd hZw hpos he in

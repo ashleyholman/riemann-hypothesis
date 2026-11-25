@@ -198,7 +198,7 @@ theorem BaseChangeColon.cycList_additive_first_class : ∀ (O : Type) [CommRing 
       show d + 1 + Fintype.card K = l.length + 2 + Fintype.card K by omega] at hdim
     have key := IntNumAddFirst.full _ K ι l.length (specialIdeal W)
       (SpecialIdealCorresp.full O ϖ hϖ K ι P W hWp hϖW).1 (SpecialIdealMultiHomog.full O K ι W hWh)
-      (AdditivityInDivisor.withBot_lt_of_add_one_le hdim) b b' l.get
+      (GroundTheory.Heights₂.Heights.NumbersDVR.lt_natCast_of_add_one_le hdim) b b' l.get
     rw [← BaseChangeColon.intNumL_cons, ← BaseChangeColon.intNumL_cons, ← BaseChangeColon.intNumL_cons] at key
     exact key
   · have h0 := _root_.GlobalTheory.CompanionTheory.Ar.Num.horizontal_vNumL_eq_zero O ϖ hϖ K ι P d hP a f hf hfP W hW hϖW
@@ -760,18 +760,10 @@ section Forms
 
 variable {K : Type} [Fintype K] [DecidableEq K] {ι : K → Type} [∀ k, Fintype (ι k)] {Ω : Type} [Field Ω]
 
-theorem weight_blockWeight_apply (d : (Σ k, ι k) →₀ ℕ) (k : K) :
-    Finsupp.weight (GroundTheory.Heights₂.Heights.NumbersDVR.blockWeight ι) d k = ∑ i, d ⟨k, i⟩ := by
-  rw [Finsupp.weight_apply, Finsupp.sum_fintype _ _ (by simp)]
-  simp only [Finset.sum_apply, Pi.smul_apply, smul_eq_mul, GroundTheory.Heights₂.Heights.NumbersDVR.blockWeight,
-    Pi.single_apply]
-  rw [Fintype.sum_sigma]
-  simp
-
 theorem isMultiHomog_blocks {f : MvPolynomial (Σ k, ι k) ℤ} {b : K → ℕ}
     (h : GroundTheory.Heights₂.Heights.NumbersDVR.IsMultiHomog f b) : IsMultiHomog f b := by
   intro m hm k
-  rw [← weight_blockWeight_apply, h (mem_support_iff.mp hm)]
+  rw [← GroundTheory.Heights₂.Heights.HilbertSamuel.weight_blockWeight_apply, h (mem_support_iff.mp hm)]
 
 theorem mConeMap_form (y : (Σ k, ι k) → Ω) {h : MRing ι} {d : K → ℕ} (hh : IsMultiHomog h d) :
     mConeMap y h = MvPolynomial.C (aeval y h) * ∏ k, (X k : MvPolynomial K Ω) ^ d k := by
@@ -1180,10 +1172,6 @@ section -- clump:auto
 @[expose] public section
 
 open MvPolynomial GroundTheory.Heights₂.Heights.NumbersDVR GlobalTheory.CompanionTheory.Ar.Num NumberField
-
-namespace GlobalTheory.CompanionTheory.Ar.Num
-
-end GlobalTheory.CompanionTheory.Ar.Num
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AutomorphicSpectrum.Proofs.AlgebraProofs.TeichmullerLiftOfEmbedding =====
@@ -1257,11 +1245,6 @@ variable {O O' Ω Ω' C : Type} [CommRing O] [CommRing O'] [Field Ω] [Field Ω'
   [Algebra Ω' C] [IsScalarTower O O' C] [IsScalarTower Ω Ω' C]
   {F : Type} [Zero F] {n : ℕ} {Sg : Type} {r s : Sg → ℕ}
 
-theorem bcMap_smul (ι : Type) (a : Ω') (v : ι → Ω') :
-    bcMap Ω' C ι (a • v) = algebraMap Ω' C a • bcMap Ω' C ι v := by
-  funext i
-  simp [bcMap]
-
 omit [Algebra O' C] [Algebra O C] in
 variable (Ω' C) in
 theorem bcMap_bcMap (ι : Type) (v : ι → Ω) : bcMap Ω' C ι (bcMap Ω Ω' ι v) = bcMap Ω C ι v := by
@@ -1274,7 +1257,7 @@ theorem bc_bc (D : LieLatticeData Ω F n Sg r s) (R₁ : Subalgebra O Ω') (RC :
       spanOver RC (bcMap Ω' C ι '' (spanOver R₁ (bcMap Ω Ω' ι '' (L : Set (ι → Ω))) : Set (ι → Ω'))) =
         spanOver RC (bcMap Ω C ι '' (L : Set (ι → Ω))) := by
     intro ι L
-    have := span_span R₁ RC hR (bcMap Ω' C ι).toAddMonoidHom (bcMap_smul ι) (bcMap Ω Ω' ι) (L : Set (ι → Ω))
+    have := span_span R₁ RC hR (bcMap Ω' C ι).toAddMonoidHom (PositivityTheory.Xgn.TestFactsBaseChange.bcMap_smul ι) (bcMap Ω Ω' ι) (L : Set (ι → Ω))
     refine this.trans ?_
     congr 2
     funext v
@@ -1287,7 +1270,7 @@ theorem bc_bc (D : LieLatticeData Ω F n Sg r s) (R₁ : Subalgebra O Ω') (RC :
     intro ι κ L
     have := span_span R₁ RC hR
       ((bcMap Ω' C ι).toAddMonoidHom.prodMap (bcMap Ω' C κ).toAddMonoidHom)
-      (fun a v => Prod.ext (bcMap_smul ι a v.1) (bcMap_smul κ a v.2))
+      (fun a v => Prod.ext (PositivityTheory.Xgn.TestFactsBaseChange.bcMap_smul ι a v.1) (PositivityTheory.Xgn.TestFactsBaseChange.bcMap_smul κ a v.2))
       (Prod.map (bcMap Ω Ω' ι) (bcMap Ω Ω' κ)) (L : Set ((ι → Ω) × (κ → Ω)))
     refine this.trans ?_
     congr 2

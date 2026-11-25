@@ -19,20 +19,6 @@ section -- clump:auto
 
 noncomputable section
 
-namespace Formalism.MainNotions.UnusedSlot33
-
-open NumberField Formalism.FrobeniusOrbits Formalism.BasicNotions Formalism.MainNotions.GlobalTheoryTheory Formalism.TwoAdicCyclotomicDecomposition Ideal IntermediateField
-open scoped Pointwise
-open Formalism.MainNotions.UnusedSlot33.SlopeTestRemainingChoices
-
-namespace CMIdealEquivalence
-
-end CMIdealEquivalence
-
-open CMIdealEquivalence
-
-end Formalism.MainNotions.UnusedSlot33
-
 end
 end -- clump:auto
 end -- clump:auto
@@ -62,15 +48,6 @@ namespace PolarisationData
 variable (D : D7)
 
 local notation "FI" => FractionalIdeal (nonZeroDivisors (𝓞 D.host.E)) D.host.E
-
-theorem galE_conj : D.host.galE D.host.conj = D.R.cc := by
-  show D.host.gal (D.host.gal.symm _) = _
-  exact MulEquiv.apply_symm_apply _ _
-
-theorem conj_b : D.host.conj D.host.sqrtMinusD = - D.host.sqrtMinusD := by
-  show D.host.conj D.host.sqd = - D.host.sqd
-  rw [D.host.gal_sqd, show D.host.gal D.host.conj = D.R.cc from galE_conj D]
-  simp [Formalism.HC.Frame.cc, Formalism.FrobeniusOrbits.c0]
 
 end PolarisationData
 

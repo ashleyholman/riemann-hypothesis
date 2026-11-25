@@ -64,11 +64,6 @@ theorem avg_eq_sum (k : ℕ) (H : AddSubgroup W) [Fintype (Qt k H)] (g : W → �
     avg k H g = (Fintype.card (Qt k H) : ℂ)⁻¹ * ∑ q : Qt k H, g ((q.out : H) : W) := by
   rw [avg, finsum_eq_sum_of_fintype, Nat.card_eq_fintype_card]
 
-theorem avg_comp_surj {A B : Type*} [AddCommGroup A] [AddCommGroup B] [Fintype A] [Fintype B] [DecidableEq B]
-    (π : A →+ B) (hπ : Function.Surjective π) (G : B → ℂ) :
-    (Fintype.card A : ℂ)⁻¹ * ∑ a, G (π a) = (Fintype.card B : ℂ)⁻¹ * ∑ b, G b := by
-  first | (apply Bl.SecondBlockLemmaD.goal1 <;> assumption)
-
 theorem avg_mul (k j : ℕ) (H : AddSubgroup W) [Finite (Qt k H)] [Finite (Qt (k * j) H)] (g : W → ℂ)
     (hg : IsInv k H g) : avg (k * j) H g = avg k H g := by
   classical
@@ -91,7 +86,7 @@ theorem avg_mul (k j : ℕ) (H : AddSubgroup W) [Finite (Qt k H)] [Finite (Qt (k
     rw [this, hg.out_mk]
   rw [avg_eq_sum, avg_eq_sum]
   simp_rw [key]
-  exact avg_comp_surj π hπ (fun b => g ((b.out : H) : W))
+  exact Bl.SecondBlockLemmaD.goal1 π hπ (fun b => g ((b.out : H) : W))
 
 
 open Classical in

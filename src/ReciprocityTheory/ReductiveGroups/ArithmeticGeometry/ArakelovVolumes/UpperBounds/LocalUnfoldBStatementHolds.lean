@@ -70,19 +70,6 @@ open scoped ENNReal ContDiff
 
 noncomputable section
 
-theorem densF_meas {E : Type} [Field E] [NumberField E] [IsCMField E] {r : ℕ} (X : Data E r)
-    (x : Frame X.Ψ r) : Measurable fun w => ENNReal.ofReal (densF X x w) := by
-  have hm : ∀ (τ : X.Ψ) (i : Fin r), Measurable fun w => ‖dmin X.Gm (cpt X x w) τ i.castSucc‖ :=
-    fun τ i => (OntoB.cd_dmin (X := X) (x0 := x) (τ := τ) (i := i.castSucc)).continuous.norm.measurable
-  have hf : ∀ (τ : X.Ψ) (i : Fin r), Measurable fun w => ‖dmin X.Gm (cpt X x w) τ i.castSucc‖ ^ (-2 : ℤ) := by
-    intro τ i
-    simp only [zpow_neg, zpow_ofNat]
-    exact ((hm τ i).pow_const 2).inv
-  have hp : Measurable fun w => densF X x w := by
-    unfold densF
-    exact Finset.measurable_prod _ fun τ _ => Finset.measurable_prod _ fun i _ => hf τ i
-  exact ENNReal.measurable_ofReal.comp hp
-
 theorem localUnfoldB_of {E : Type} [Field E] [NumberField E] [IsCMField E] (hLU : LUStatement (E := E)) :
     LocalUnfoldBStatement (E := E) := by
   intro r X x0 ho hPD FF hFF x1 hx1
@@ -189,7 +176,7 @@ theorem localUnfoldB_of {E : Type} [Field E] [NumberField E] [IsCMField E] (hLU 
       ∫⁻ w in Φ X b1 D '' Metric.ball 0 ρ, ENNReal.ofReal (densF X x1' w) * G (cpt X x1' w) := by
     unfold muF
     rw [restrict_withDensity hA]
-    refine (lintegral_withDensity_le_lintegral_mul _ (densF_meas X x1') _).trans ?_
+    refine (lintegral_withDensity_le_lintegral_mul _ (ReciprocityTheory.ChartRestriction.G.AR.Up.OntoC.measurable_densF X x1') _).trans ?_
     refine lintegral_mono' (Measure.restrict_mono subset_rfl Measure.restrict_le_self) (fun w => le_rfl)
   have hder : ∀ z ∈ Metric.ball (0 : V (nd X)) ρ,
       HasFDerivWithinAt (Φ X b1 D) (fderiv ℝ (Φ X b1 D) z) (Metric.ball 0 ρ) z := fun z hz =>

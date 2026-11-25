@@ -487,8 +487,6 @@ section AtRecordC
 
 variable {D : D7} {L : SizeData₂ D} (X : G.Inst D L) (K : G.Consts) (Cr C bo : ℝ)
 
-alias pc_mem_Ps := _root_.Formalism.L2.GlobalTheoryTheory.Loss.pa_mem_PsAt
-
 theorem pc_X'_le (L : SizeData₂ D) : L.sc.X' ≤ L.sc.X'' D.R.n := by
   obtain ⟨hx, hb, ha, hX, hb'⟩ := Lnk.sc_pos L.sc
   have hn := Lnk.one_le_n D.R
@@ -540,7 +538,7 @@ variable {X K Cr}
 
 theorem pc_drop_iff (H : PtH X K Cr) (hT : ∀ u, ¬ InertK D (D.mem u).A.T) {p : ℕ} (hp : p ∈ PsAt L) :
     p ∈ L.drop ↔ NoGain X K Cr p := by
-  obtain ⟨-, hpp, hI⟩ := pc_mem_Ps.1 hp
+  obtain ⟨-, hpp, hI⟩ := Formalism.L2.GlobalTheoryTheory.Loss.pa_mem_PsAt.1 hp
   rw [H.drop_iff p hpp]
   constructor
   · exact fun h => h.1
@@ -630,7 +628,7 @@ theorem unserved_bad (H : PtH X K Cr) (hT : ∀ u, ¬ InertK D (D.mem u).A.T) (p
     (h : clAt X K p = PClass.served) (n : ℕ)
     (hn : n ∈ TTv D \ (ldAt X K C bo).TTp p) : p ∈ largeOrderResiduePrimes L ∧ badAt X p n := by
   classical
-  obtain ⟨-, hpp, hI⟩ := pc_mem_Ps.1 hp
+  obtain ⟨-, hpp, hI⟩ := Formalism.L2.GlobalTheoryTheory.Loss.pa_mem_PsAt.1 hp
   have hnd : ¬ NoGain X K Cr p := by
     rw [← pc_drop_iff H hT hp]
     exact (pc_served_iff X K p).1 h
@@ -678,7 +676,7 @@ theorem loss_bound_at (H : PtH X K Cr) (hT : ∀ u, ¬ InertK D (D.mem u).A.T)
       (fun j t p => askAt ((ldAt X K C bo).Iex j t p) ((ldAt X K C bo).at_ t) p ((ldAt X K C bo).wz j t p))
       (ldAt X K C bo).gain (ldAt X K C bo).tau (ldAt X K C bo).lo (ldAt X K C bo).fl p := by
   classical
-  obtain ⟨-, hpp, hI⟩ := pc_mem_Ps.1 hp
+  obtain ⟨-, hpp, hI⟩ := Formalism.L2.GlobalTheoryTheory.Loss.pa_mem_PsAt.1 hp
   have hle := served_le X K Cr H hT p hp h
   have hnd : p ∉ L.drop := (pc_served_iff X K p).1 h
   obtain ⟨w, hw⟩ := Lnk.place_over D p hpp
@@ -751,7 +749,7 @@ theorem firstHyp_at (H : PtH X K Cr) (hT : ∀ u, ¬ InertK D (D.mem u).A.T) (P 
     FirstHyp P (PsAt L) (clAt X K) := by
   classical
   intro p hp hcl
-  obtain ⟨-, hpp, hI⟩ := pc_mem_Ps.1 hp
+  obtain ⟨-, hpp, hI⟩ := Formalism.L2.GlobalTheoryTheory.Loss.pa_mem_PsAt.1 hp
   have hXp : P.Xp = L.sc.X' := by
     unfold Par.Xp Formalism.LFunctionChainParameters.LErr.XpTx Scale.X'
     rw [tie.x, tie.ε]
@@ -1536,24 +1534,6 @@ end
 
 noncomputable section
 
-namespace Formalism.L2.GlobalTheoryTheory.Loss
-
-open Formalism.BasicNotions Formalism.MainNotions
-
-section AtRecordMean
-
-variable {D : D7} {L : SizeData₂ D}
-
-end AtRecordMean
-
-section FamilyMean
-
-variable {eps : ℝ} {Fm : FamP eps} {x : ℝ} {i0 : Fm.Ix x}
-
-end FamilyMean
-
-end Formalism.L2.GlobalTheoryTheory.Loss
-
 end
 
 noncomputable section
@@ -1591,8 +1571,6 @@ theorem mem_PsAt {p : ℕ} (hp : p ∈ PsAt L) : p.Prime ∧ InertK D p := by
 theorem two_not_inert (D : D7) : ¬ InertK D 2 := by
   have hcl : D.host.cls 2 = PrimeClass.ram2 := primeClass_two D.host.toHostRaw
   rintro (h | h) <;> rw [hcl] at h <;> cases h
-
-alias mem_sAt := _root_.Formalism.L2.GlobalTheoryTheory.Loss.pa_mem_sAt
 
 end AtRecord
 

@@ -60,15 +60,6 @@ variable {E : Type} [Field E] [NumberField E] [IsCMField E] {Wp Wq : InfinitePla
   [∀ x, NormedAddCommGroup (Wp x)] [∀ x, InnerProductSpace ℂ (Wp x)] [∀ x, NormedAddCommGroup (Wq x)]
   [∀ x, InnerProductSpace ℂ (Wq x)]
 
-theorem ae_coords_ne (S : C.HidaSetting E Wp Wq) : ∀ᵐ c : J.CV E, ∀ v, c (S.pl v) ≠ 0 := by
-  have hnull : volume (Formalism.FourierDecayAlt.P.JCx1.needs.Qm S ⁻¹' (⋃ v, {y : Fin S.f → ℂ | y v = 0})) = 0 := by
-    rw [(Formalism.FourierDecayAlt.P.JCx1.needs.Qm_mp S).measure_preimage (MeasurableSet.iUnion fun v =>
-      measurableSet_eq_fun (measurable_pi_apply v) measurable_const).nullMeasurableSet]
-    exact measure_iUnion_null fun v => Measure.pi_hyperplane _ v 0
-  filter_upwards [measure_eq_zero_iff_ae_notMem.mp hnull] with c hc
-  intro v hv
-  exact hc (Set.mem_preimage.mpr (Set.mem_iUnion.mpr ⟨v, by simp [Formalism.FourierDecayAlt.P.JCx1.needs.Qm_apply, hv]⟩))
-
 theorem continuous_coord (S : C.HidaSetting E Wp Wq) (v : Fin S.f) : Continuous fun c : J.CV E => c (S.pl v) :=
   (EuclideanSpace.proj (𝕜 := ℂ) (S.pl v)).continuous
 
@@ -101,7 +92,7 @@ theorem aestronglyMeasurable_level_norm (S : C.HidaSetting E Wp Wq) (hInt : KB.I
     exact continuous_finsetSum _ fun h _ => continuous_finsetSum _ fun h' _ =>
       continuous_const.mul (continuous_finsetProd _ fun v _ => (hφc v h h').comp (continuous_coord S v))
   refine hΦc.aestronglyMeasurable.congr ?_
-  filter_upwards [ae_coords_ne S] with c hc
+  filter_upwards [Formalism.FourierDecayAlt.P.Cx2.ae_allNe S] with c hc
   simp only [hΦ, C.HidaSetting.N1]
   congr 1
   rw [← Finset.sum_coe_sort Y]
@@ -215,7 +206,7 @@ theorem tendsto_Nhat (hInt : ∀ n, KB.IntAll (KB.withRR S (RR n)))
     (fun n => ?_) ?_
   · exact (aestronglyMeasurable_level_norm (KB.withRR S (RR n)) (hInt n) ε hε i hi1 hi2 w Y hY κ).mul
       (continuous_psiInf S l).aestronglyMeasurable
-  · filter_upwards [ae_coords_ne S] with c hc
+  · filter_upwards [Formalism.FourierDecayAlt.P.Cx2.ae_allNe S] with c hc
     rw [norm_mul, norm_psiInf, mul_one, level_norm_of_regularization_eq, norm_div]
     simp only [g, Formalism.FourierDecayAlt.P.JCx1.needs.Qm_apply]
     refine div_le_div_of_nonneg_right ?_ (norm_nonneg _)
@@ -1498,10 +1489,6 @@ theorem sumFormOfLoc : KB.SumFormOfLoc := by
 end
 
 end Formalism.FourierDecayAlt.P.PBC
-
-namespace Formalism.FourierDecayAlt.P
-
-end Formalism.FourierDecayAlt.P
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.PBCFinal =====
@@ -1871,10 +1858,6 @@ theorem builtBounds2CptOfParts : BuiltBounds2CptOfParts := by
 end
 
 end Formalism.FourierDecayAlt.P.PBASM
-
-namespace Formalism.FourierDecayAlt.P
-
-end Formalism.FourierDecayAlt.P
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.BuiltBoundsCompactOfParts =====

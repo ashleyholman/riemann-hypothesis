@@ -46,10 +46,6 @@ attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
 
 variable {n : ℕ}
 
-theorem cdom_antisymm {ε : Fin n → Bool} {μ Λ : Fin n → ℝ} (h₁ : Formalism.MainNotions.S.CDom ε μ Λ)
-    (h₂ : Formalism.MainNotions.S.CDom ε Λ μ) : μ = Λ := by
-  apply Formalism.MainNotions.BridgeLemma.cdom_antisymm <;> assumption
-
 theorem stdGap_of {ε : Fin n → Bool} {lam : Fin n → ℝ} {h : ℝ} (hlam : S7.IsHCParam lam)
     (hgap : GapAtLeast ε lam h) (hN : hNeed ε < h) : StdGap ε lam := by
   refine ⟨hlam.1, h, hgap, ?_⟩
@@ -67,8 +63,6 @@ theorem eight_lt_of {ε : Fin n → Bool} {h : ℝ} (hN : hNeed ε < h) : 8 * (n
   have : 0 ≤ (n : ℝ) * (min (pOf ε) (qOf ε) : ℝ) := by positivity
   have : 0 ≤ Real.sqrt (2 * (min (pOf ε) (qOf ε) : ℝ)) := Real.sqrt_nonneg _
   nlinarith
-
-alias inUJ_mul := _root_.ReciprocityTheory.ChartRestriction.DS.mul_mem_unitaryJ
 
 lemma umat_mem {ε : Fin n → Bool} (y : Formalism.REAL.UJ ε) : Formalism.MainNotions.S.umat y ∈ UJset ε := y.2
 
@@ -102,7 +96,7 @@ lemma exists_smooth_convolution_fixing_lowest (hgap : StdGap ε lam) (hP : IsPsi
     obtain ⟨v, hv, hv0, hvw⟩ := hS'.2.2.2.1
     have c1 := hS'.2.2.2.2 _ u (by rw [hS'eq]; exact hu) hu0 huw
     have c2 := hW.2.2.2.2 _ v (by rw [← hS'eq]; exact hv) hv0 hvw
-    have hμ : μ' = Formalism.QuantumDeterminants.lowK ε lam := cdom_antisymm c2 c1
+    have hμ : μ' = Formalism.QuantumDeterminants.lowK ε lam := Formalism.MainNotions.BridgeLemma.cdom_antisymm c2 c1
     subst hμ
     exact (hlow.2 S hS).le
   have hsum : lowKSubLam ε Ψ v₀ ≤
@@ -145,7 +139,7 @@ theorem repro_real (hgap : StdGap ε lam) (hP : IsPsiFor ε lam T Ψ) :
       show ⟪(⟨uniformisationL2 ε Ψ T.w v₂, datumEmbedding_mem_Hlam hP v₂⟩ : Hlam ε Ψ T.w), sigLam ε Ψ T.w g
         (α (Formalism.MainNotions.S.umat y) • sigLam ε Ψ T.w (Formalism.MainNotions.S.umat y) ⟨uniformisationL2 ε Ψ T.w v₁, datumEmbedding_mem_Hlam hP v₁⟩)⟫_ℂ = _
       dsimp only
-      rw [map_smul, inner_smul_right, hF _ (inUJ_mul hg (umat_mem y)), hU.1.2 g hg _ (umat_mem y),
+      rw [map_smul, inner_smul_right, hF _ (ReciprocityTheory.ChartRestriction.DS.rq_UJ_mul hg (umat_mem y)), hU.1.2 g hg _ (umat_mem y),
         ContinuousLinearMap.comp_apply]
     · have h0 : (⟨uniformisationL2 ε Ψ T.w v₁, datumEmbedding_mem_Hlam hP v₁⟩ : Hlam ε Ψ T.w) = 0 := by
         rw [← hfix, opConv]
@@ -156,7 +150,7 @@ theorem repro_real (hgap : StdGap ε lam) (hP : IsPsiFor ε lam T Ψ) :
       symm
       refine integral_eq_zero_of_ae (Filter.Eventually.of_forall fun y => ?_)
       simp only [Pi.zero_apply]
-      rw [hz _ (inUJ_mul hg (umat_mem y)), mul_zero]
+      rw [hz _ (ReciprocityTheory.ChartRestriction.DS.rq_UJ_mul hg (umat_mem y)), mul_zero]
   have e2 : ∫ y : Formalism.REAL.UJ ε, α (Formalism.MainNotions.S.umat y) *
         (((‖uniformisationL2 ε Ψ T.w T.w‖ ^ 2 : ℝ) : ℂ) * ⟪v₂, Ψ (g * Formalism.MainNotions.S.umat y) v₁⟫_ℂ) ∂(Formalism.REAL.muG ε) =
       ((‖uniformisationL2 ε Ψ T.w T.w‖ ^ 2 : ℝ) : ℂ) *
@@ -531,7 +525,7 @@ theorem conv_dec {n : ℕ} (hn : 0 < n) (ε : Fin n → Bool) (ν : Measure (S7.
         exact pow_le_pow_left₀ h0 hyR 2
       rw [Set.indicator_of_mem hyS, norm_mul]
       have hy1 : S7.toM y ∈ UJset ε := y.2
-      have hgy : g * S7.toM y ∈ UJset ε := DecDerivA.inUJ_mul hg hy1
+      have hgy : g * S7.toM y ∈ UJset ε := ReciprocityTheory.ChartRestriction.DS.rq_UJ_mul hg hy1
       have hgy1 := one_le_frob hn ε _ hgy
       have hinvM : (S7.toM y)⁻¹ = S7.toM y⁻¹ := Matrix.inv_eq_right_inv (S7.toM_mul_invVG y)
       have hle : frob g ≤ frob (g * S7.toM y) * R := by

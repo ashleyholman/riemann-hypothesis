@@ -445,10 +445,6 @@ theorem levTransportU : Formalism.FourierDecayAlt.P.PTie.LevTransportU := by
     exact hA3 l hl
 
 end Formalism.FourierDecayAlt.P.PTieUL
-
-namespace Formalism.FourierDecayAlt.P
-
-end Formalism.FourierDecayAlt.P
 end -- clump:auto
 end -- clump:auto
 end -- clump:auto

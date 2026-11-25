@@ -1092,7 +1092,7 @@ theorem exists_chart_spread : ∀ (X : Scheme.{0}) (G : Over X) [GrpObj G] [IsCo
   obtain ⟨F', _, _, ⟨MR⟩⟩ := lieModel_exists X G R x
   obtain ⟨β₁, B₁, hB₁, hβ₁⟩ := LieVB.basis_tr (algebraMap R₁ R) x₁ x rfl MF MR b
   obtain ⟨j, hj⟩ := LieVB.exists_tr (A := R) (B := X.presheaf.stalk P) x (X.fromSpecStalk P) θ hxθ MR Ms
-  have hjB : ∀ k, j (B₁ k) = B k := fun k => LieVB.pt_left_inj Ms (by
+  have hjB : ∀ k, j (B₁ k) = B k := fun k => GlobalTheory.CompanionTheory.Ar.LieFin.pt_left_inj Ms (by
     rw [hj, hB₁, hβ₁, ← Category.assoc, LieVB.spMap_dual_comp, hθc, hB, hβ])
   refine ⟨R, inferInstance, x, hx, θ, fun i => MR.pt (∑ k, c' i k • B₁ k), f', ?_, hxθ, hf',
     fun i => MR.tan _, fun i => ?_⟩

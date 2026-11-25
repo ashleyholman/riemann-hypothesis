@@ -1318,7 +1318,7 @@ theorem loss_setting_family : LossSettingFamily := by
   · intro p _ h
     obtain ⟨h1, h2⟩ := second_spec X K p h
     rw [eθ]
-    exact ⟨(mem_sAt K).mpr h1, h2⟩
+    exact ⟨(Formalism.L2.GlobalTheoryTheory.Loss.pa_mem_sAt K).mpr h1, h2⟩
   · intro p hp h n hn
     have hn' : n ∈ TTv D ∧ n ∉ (ldAt X K C bo).TTp p := by
       simpa only [Finset.mem_sdiff] using hn

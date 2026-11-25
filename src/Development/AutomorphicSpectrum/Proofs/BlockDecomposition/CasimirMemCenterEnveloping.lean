@@ -23,17 +23,6 @@ open Polynomial
 
 noncomputable def rev {ι : Type} (s : Finset ι) (f : ι → ℂ) : ℂ[X] := ∏ l ∈ s, (1 + C (f l) * X)
 
-theorem scalar_core (n : ℕ) (hn : 2 ≤ n) (ρ μ a : Fin n → ℂ) (b : Fin n → Fin n → ℂ) (r : ℕ → ℂ)
-    (e c : ℂ)
-    (h : ∀ Y : ℂ, (∏ l, (Y + ρ l)) * e + ∑ i, (∏ l ∈ univ.erase i, (Y + ρ l)) * a i
-      + ∑ i, ∑ j ∈ univ.filter (fun j => i < j), (∏ l ∈ (univ.erase i).erase j, (Y + ρ l)) * b i j
-      + ∑ d ∈ range (n - 2), (Y + c) ^ d * r d = (∏ l, (Y + μ l)) * e) :
-    (∑ l, ρ l) * e + ∑ i, a i = (∑ l, μ l) * e ∧
-    ((∑ l, ρ l) ^ 2 - ∑ l, ρ l ^ 2) * e + 2 * ∑ i, (∑ l ∈ univ.erase i, ρ l) * a i
-      + 2 * ∑ i, ∑ j ∈ univ.filter (fun j => i < j), b i j
-      = ((∑ l, μ l) ^ 2 - ∑ l, μ l ^ 2) * e := by
-  apply GlobalTheory.CapelliCasimir.scalar_core <;> assumption
-
 
 end GlobalTheory.CompanionTheory.Inh.CapelliCasimir
 end -- clump:auto
@@ -86,7 +75,7 @@ theorem cas_mem_of_qdet_mem {A : Type} [Ring A] [Algebra ℂ A] (S : Subalgebra 
       rw [Nat.cast_sub (by omega)]; push_cast; ring
     linear_combination (h1.trans h2) / 2
   have core := fun (f : A →ₗ[ℂ] ℂ) (hf : ∀ z ∈ S, f z = 0) =>
-    scalar_core n hn ρ (fun _ => 0) (fun i => f (E i i))
+    GlobalTheory.CapelliCasimir.scalar_core n hn ρ (fun _ => 0) (fun i => f (E i i))
       (fun i j => f (E i i * E j j - E j i * E i j)) (fun d => f (Rm d)) (f 1)
       (((n : ℂ) - 1) / 2)
       (fun Y => by

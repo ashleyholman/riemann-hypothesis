@@ -58,7 +58,7 @@ theorem isHTAt_iff (_h455 : type_of% @_root_.GlobalTheory.CompanionTheory.Ar.Lie
       rw [valAt_sub, sub_eq_zero]
       refine Eq.trans ?_ (valAt_res _ _ ⊤ le_top h le_top s).symm
       rw [hs t]
-      refine (valAt_comp (Γ.pt t).left i W h f).symm.trans ?_
+      refine (PositivityTheory.HtPt.Htat.Pull.valAt_comp (Γ.pt t).left i W h f).symm.trans ?_
       let k := AlgebraicClosure Ω
       let a : Ω →+* k := algebraMap Ω k
       let ψ : Over.mk (spMap a ≫ ξ) ⟶ Over.mk ξ := Over.homMk (spMap a) rfl
@@ -72,12 +72,12 @@ theorem isHTAt_iff (_h455 : type_of% @_root_.GlobalTheory.CompanionTheory.Ar.Lie
       have h2 := hf k a (ψ ≫ y) (ψ ≫ g) c (by rw [e1]; exact h1) rfl (by rw [← comp_pow', hg1, MonObj.comp_one])
         ((hW t k a (ψ ≫ y) (ψ ≫ g) c rfl e0).2 rfl)
       apply (a.comp κ.toRingHom).injective
-      exact (valAt_spec (a.comp κ.toRingHom) _ W h h1 f).symm.trans ((valAt_congr e1 W _ h1 f).symm.trans h2)
+      exact (PositivityTheory.HtPt.Htat.Pull.valAt_spec (a.comp κ.toRingHom) _ W h h1 f).symm.trans ((PositivityTheory.HtPt.Htat.Pull.valAt_congr e1 W _ h1 f).symm.trans h2)
     have hval : ∀ {B : Type} [CommRing B] (y : Spec (CommRingCat.of B) ⟶ Γ.G.left) (b : X.presheaf.stalk q.1 →+* B),
         y ≫ Γ.G.hom = Spec.map (CommRingCat.ofHom (b.comp (algebraMap R (X.presheaf.stalk q.1)))) →
           ∀ h : ⊤ ≤ (y ≫ i) ⁻¹ᵁ W, valAt (y ≫ i) W h f = valAt y ⊤ le_top s := by
       intro B _ y _ _ h
-      refine (valAt_comp y i W h f).trans ?_
+      refine (PositivityTheory.HtPt.Htat.Pull.valAt_comp y i W h f).trans ?_
       rw [sub_eq_zero.1 hsec]
       exact valAt_res y (i ⁻¹ᵁ W) ⊤ le_top h le_top s
     refine ⟨(n : Ω)⁻¹ • (w' - w), fun e' he' => ?_, ?_⟩
@@ -105,10 +105,10 @@ theorem isHTAt_iff (_h455 : type_of% @_root_.GlobalTheory.CompanionTheory.Ar.Lie
       have hc₁ := (hW t K a xk g' c hxk (by rw [hg₀, ht])).1 hweil
       have e1 : g'.left = (Spec.map (CommRingCat.ofHom (a.comp κ.toRingHom)) ≫ (Γ.pt t).left) ≫ i := by
         rw [hg₀, ht, spec_comp]; simp only [ptG, Category.assoc]
-      refine (valAt_congr e1 W₀ h (by rw [← e1]; exact h) f₀).trans ?_
+      refine (PositivityTheory.HtPt.Htat.Pull.valAt_congr e1 W₀ h (by rw [← e1]; exact h) f₀).trans ?_
       rw [hval₀ _ (a.comp (genMap ξ q)) (by
         rw [Category.assoc, Over.w, RingHom.comp_assoc, hg, ← RingHom.comp_assoc, spec_comp (algebraMap R _)]; rfl)]
-      refine (valAt_spec (a.comp κ.toRingHom) (Γ.pt t).left ⊤ le_top le_top s).trans ?_
+      refine (PositivityTheory.HtPt.Htat.Pull.valAt_spec (a.comp κ.toRingHom) (Γ.pt t).left ⊤ le_top le_top s).trans ?_
       rw [hs t, hc₁]
       rfl
     · intro e' v hv' h

@@ -27,8 +27,6 @@ def TestExP {V : Type} [AddCommGroup V] [TopologicalSpace V] [MeasurableSpace V]
 
 open MeasureTheory Complex Filter Topology
 
-alias char_real := _root_.Bl.general_b_fact_third_further.goal1
-
 theorem freq_unique {u v : ℝ} (h : ∀ s : ℝ, exp (↑(u * s) * I) = exp (↑(v * s) * I)) : u = v := by
   by_contra huv
   have hne : u - v ≠ 0 := sub_ne_zero.2 huv
@@ -63,7 +61,7 @@ theorem IsBichar.zero_left {χ : W → W → ℂ} (h : IsBichar χ) (y : W) : χ
 
 theorem IsBichar.freq {χ : W → W → ℂ} (h : IsBichar χ) (v y : W) :
     ∃ β : ℝ, ∀ s : ℝ, χ (s • v) y = exp (↑(β * s) * I) :=
-  char_real (fun s => χ (s • v) y) ((h.contL y).comp (continuous_id.smul continuous_const))
+  Bl.general_b_fact_third_further.goal1 (fun s => χ (s • v) y) ((h.contL y).comp (continuous_id.smul continuous_const))
     (fun s t => by simp only [add_smul]; exact h.addL _ _ y) (fun s => h.norm1 _ y)
 
 theorem arg_exp_small {θ : ℝ} (h : θ ∈ Set.Ioo (-Real.pi) Real.pi) : arg (exp (↑θ * I)) = θ := by

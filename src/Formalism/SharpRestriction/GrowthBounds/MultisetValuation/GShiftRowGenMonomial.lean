@@ -244,14 +244,6 @@ theorem mem_deltaL {O Kf : Type} [CommRing O] [Field Kf] [Algebra O Kf] {k : ℕ
   first
   | rfl
 
-theorem dl_P (O Kf : Type) [CommRing O] [IsDomain O] [Field Kf] [Algebra O Kf] (m r : ℕ)
-    (lam : Fin (m + 1) → ℤ) (hlam : Antitone lam)
-    (w : O) (hw : algebraMap O Kf w ≠ 0) (g : Matrix (Fin (m + 1)) (Fin (m + 1)) Kf)
-    (F : MvPolynomial (Fin (m + 1) × Fin (m + 1)) Kf) (hF : F ∈ deltaLTw O Kf m lam g) :
-    (algebraMap O Kf w ^ (∑ i : Fin (m + 1) with i.val < r, lam i)) • F ∈
-      deltaLTw O Kf m lam (g * lb_D (m + 1) r (algebraMap O Kf w)) :=
-  Formalism.L2.G.Model.dl_P O Kf m r lam hlam w hw g F hF
-
 theorem dl_indep (O Kf : Type) [CommRing O] [IsDomain O] [Field Kf] [Algebra O Kf]
     (hinj : Function.Injective (algebraMap O Kf)) (m : ℕ) (lam : Fin (m + 1) → ℤ)
     (g h : Matrix (Fin (m + 1)) (Fin (m + 1)) Kf) (hg : IsUnit g.det)
@@ -270,7 +262,7 @@ theorem dl_pos (O Kf : Type) [CommRing O] [IsDomain O] [Field Kf] [Algebra O Kf]
   by_cases hlam : Antitone lam
   · rw [ite_eq_left hlam] at hF ⊢
     have h1 : F ∈ deltaLTw O Kf m lam g := (iInf₂_le g ⟨hg, rfl⟩ : _ ≤ deltaLTw O Kf m lam g) hF
-    have h2 := dl_P O Kf m r lam hlam w hw g F h1
+    have h2 := Formalism.L2.G.Model.dl_P O Kf m r lam hlam w hw g F h1
     exact (le_iInf₂ fun h hh => dl_indep O Kf hinj m lam _ h hgD hh.2 :
       deltaLTw O Kf m lam (g * lb_D (m + 1) r (algebraMap O Kf w)) ≤ _) h2
   · rw [ite_eq_right hlam] at hF ⊢

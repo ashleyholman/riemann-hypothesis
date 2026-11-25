@@ -818,14 +818,6 @@ theorem zuckerman_dual_tensor_exists :
 
 variable {n : ℕ}
 
-section FdCons
-
-open ReciprocityTheory.ChartRestriction.DS.S7
-
-alias formal_degree_constant_measure := _root_.ReciprocityTheory.ChartRestriction.DS.fdCons_muG
-
-end FdCons
-
 end ReciprocityTheory.ChartRestriction.DS.G2
 end -- clump:auto
 end -- clump:auto

@@ -301,23 +301,19 @@ theorem sum_iota {N : ℕ} (F : Ix (Fin N) → M.Ty P → ℂ) :
   rw [← Fintype.sum_prod_type']
   exact Fintype.sum_equiv (iotaEquiv P N) _ _ fun i => rfl
 
-def fstP : (DQ P).Pr →+* (DQ P).Op := RingHom.fst (DQ P).Op (DQ P).Opᵐᵒᵖ
-
 theorem pfst_add (x y : (DQ P).Pr) : (x + y).1 = x.1 + y.1 := rfl
 theorem pfst_mul (x y : (DQ P).Pr) : (x * y).1 = x.1 * y.1 := rfl
 theorem pfst_alg (z : ℂ) : (algebraMap ℂ (DQ P).Pr z).1 = algebraMap ℂ (DQ P).Op z := rfl
 theorem pfst_smul (z : ℂ) (x : (DQ P).Pr) : (z • x).1 = z • x.1 := by
   rw [Algebra.smul_def, pfst_mul, pfst_alg, ← Algebra.smul_def]
-theorem pfst_sum {ι : Type} (s : Finset ι) (x : ι → (DQ P).Pr) : (∑ t ∈ s, x t).1 = ∑ t ∈ s, (x t).1 :=
-  map_sum (fstP P) x s
 
 theorem matrix_mul_entry {S : Type} [Fintype S] [DecidableEq S] (b c : SlopeTestRemainingChoices S (A P (DQ P))) (e e' : Ix S)
     (π π' : M.Ty P) : (((b * c) e e') π π').1 = ∑ e'', ∑ π'', ((b e e'') π π'').1 * ((c e'' e') π'' π').1 := by
   show (((b * c : Matrix (Ix S) (Ix S) (Matrix (M.Ty P) (M.Ty P) (DQ P).Pr)) e e') π π').1 = _
-  rw [Matrix.mul_apply, Matrix.sum_apply, pfst_sum]
+  rw [Matrix.mul_apply, Matrix.sum_apply, Formalism.FourierDecayAlt.P.CutMP.Gauge.fst_sum]
   refine Finset.sum_congr rfl fun e'' _ => ?_
   show (((b e e'' : Matrix (M.Ty P) (M.Ty P) (DQ P).Pr) * c e'' e') π π').1 = _
-  rw [Matrix.mul_apply, pfst_sum]
+  rw [Matrix.mul_apply, Formalism.FourierDecayAlt.P.CutMP.Gauge.fst_sum]
   rfl
 
 theorem matrix_add_entry {S : Type} [Fintype S] [DecidableEq S] (b c : SlopeTestRemainingChoices S (A P (DQ P))) (e e' : Ix S)
@@ -330,11 +326,8 @@ theorem evQ_add (f g : SmQ P.r P.TT) (q : Qp P.r P.TT) : evQ P (f + g) q = evQ P
 theorem evQ_smul (z : ℂ) (f : SmQ P.r P.TT) (q : Qp P.r P.TT) : evQ P (z • f) q = z * evQ P f q := rfl
 theorem evQ_zero (q : Qp P.r P.TT) : evQ P 0 q = 0 := rfl
 
-theorem toSm_of_mem {u : Qp P.r P.TT → ℂ} (h : u ∈ smSub P.r P.TT) : toSm P u = ⟨u, h⟩ := by
-  unfold toSm; rw [dite_eq_left h]
-
 theorem evQ_toSm {u : Qp P.r P.TT → ℂ} (h : u ∈ smSub P.r P.TT) (q : Qp P.r P.TT) : evQ P (toSm P u) q = u q := by
-  rw [toSm_of_mem P h]; rfl
+  rw [Formalism.FourierDecayAlt.P.CutMP.Gauge.toSm_of_mem P h]; rfl
 
 theorem apply_matrix_def {N : ℕ} (b : SlopeTestRemainingChoices (Fin N) (A P (DQ P))) (U : Qp P.r P.TT → Iota P N → ℂ) (q : Qp P.r P.TT)
     (i : Iota P N) : wordModuleApply P b U q i = ∑ e', ∑ π', evQ P (((b (ixOf P N i).1 e') (ixOf P N i).2 π').1
@@ -6074,8 +6067,6 @@ noncomputable section
 theorem up_relation_source_unique (P : M.Par) (m : ℕ) (π₁ π₂ π : M.Ty P) (h1 : M.Up P m π₁ π) (h2 : M.Up P m π₂ π) : π₁ = π₂ := by
   funext i; apply Fin.ext; have := h1 i; have := h2 i; omega
 
-alias up_tgt := _root_.Formalism.FourierDecayAlt.P.Mx4.up_fun
-
 theorem dSS_sparse (P : M.Par) (w : List ℝ) (Y₁ Y₂ : ℝ) (q : Qp P.r P.TT) (e e' : Ix (Fin w.length))
     (π π' : M.Ty P) :
     dSS P w Y₁ Y₂ q e e' π π' = ∑ m : Fin (P.k - 1),
@@ -6943,7 +6934,7 @@ theorem Ctx.ss_bound (h : Ctx P l α β Lb Ntot w Y s) (q : Qp P.r P.TT) (v : Io
     (fun (m : Fin (P.k - 1)) (i i' : Iota P w.length) => (ixOf P w.length i).1 = (ixOf P w.length i').1 ∧
       M.Up P ((m : ℕ) + 1) (ixOf P w.length i').2 (ixOf P w.length i).2)
     (fun m i i₁ i₂ h1 h2 => ixOf_inj P _ _ _ (Prod.ext (h1.1.symm.trans h2.1) (up_relation_source_unique P _ _ _ _ h1.2 h2.2)))
-    (fun m i₁ i₂ i' h1 h2 => ixOf_inj P _ _ _ (Prod.ext (h1.1.trans h2.1.symm) (up_tgt P _ _ _ _ h1.2 h2.2)))
+    (fun m i₁ i₂ i' h1 h2 => ixOf_inj P _ _ _ (Prod.ext (h1.1.trans h2.1.symm) (Formalism.FourierDecayAlt.P.Mx4.up_fun P _ _ _ _ h1.2 h2.2)))
     _ _ _ (fun (m : Fin (P.k - 1)) (i' : Iota P w.length) => if ∃ πt, M.Up P ((m : ℕ) + 1) (ixOf P w.length i').2 πt then
         4 * Real.exp 7 * Lb ^ 2 * summand P (ixOf P w.length i').2 Y ((m : ℕ) + 1) else 0)
     (fun i => (h.weights_nonneg q i).1) (fun i => (h.weights_nonneg q i).2) ?_ ?_ (88 * Real.exp 7) ?_ v
@@ -7838,7 +7829,7 @@ theorem scalar_projection_apply {x : (DQ P).Pr} (hx : x ∈ G.pr0 P) (g : (DQ P)
 
 theorem ent_mul {a : A P (DQ P)} (ha : a ∈ G.BaseMatrixAlgebra P) (b : A P (DQ P)) (π π'' : M.Ty P) (q : Qp P.r P.TT) :
     evQ P (((a * b) π π'').1 1) q = ∑ π', evQ P ((a π π').1 1) q * evQ P ((b π' π'').1 1) q := by
-  rw [Matrix.mul_apply, G.pfst_sum, LinearMap.sum_apply]
+  rw [Matrix.mul_apply, Formalism.FourierDecayAlt.P.CutMP.Gauge.fst_sum, LinearMap.sum_apply]
   refine (MAx2.Jet.evQ_sum P _ _ q).trans (Finset.sum_congr rfl fun π' _ => ?_)
   show evQ P ((a π π').1 ((b π' π'').1 1)) q = _
   rw [scalar_projection_apply P (ha π π')]
@@ -8070,10 +8061,10 @@ theorem apply_matrix_linear {N : ℕ} {ι : Type} (s : Finset ι) (b : SlopeTest
       funext q'; simp
     have hmem : (fun q' => ∑ t ∈ s, a t * V t q' k) ∈ smSub P.r P.TT := by
       rw [hf]; exact Subalgebra.sum_mem _ fun t _ => Subalgebra.smul_mem _ (hV t k) _
-    rw [G.toSm_of_mem P hmem]
+    rw [Formalism.FourierDecayAlt.P.CutMP.Gauge.toSm_of_mem P hmem]
     apply Subtype.ext
     funext q'
-    simp [G.toSm_of_mem P (hV _ k)]
+    simp [Formalism.FourierDecayAlt.P.CutMP.Gauge.toSm_of_mem P (hV _ k)]
   calc wordModuleApply P b (fun q' i' => ∑ t ∈ s, a t * V t q' i') q i
       = ∑ e', ∑ π', ∑ t ∈ s, a t * evQ P (((b (ixOf P N i).1 e') (ixOf P N i).2 π').1
           (toSm P fun q' => V t q' (iotaOf P N e' π'))) q := by
@@ -8430,8 +8421,6 @@ open Formalism.FourierDecayAlt.R Formalism.FourierDecayAlt.R.LevelData Formalism
 
 variable {A : Type} [Ring A] [Algebra ℂ A] {r : ℕ} (L : LevelData A r)
 
-alias D_Di := _root_.Formalism.FourierDecayAlt.P.MAx3.NF.D_Di
-alias Di_D := _root_.Formalism.FourierDecayAlt.P.MAx3.NF.Di_D
 theorem Db_Dbi : L.Db * L.Dbi = 1 := by
   unfold LevelData.Db LevelData.Dbi
   rw [mul_assoc, ← mul_assoc L.ζb, L.ζb_ζbi, one_mul, Drb_Drbi]
@@ -8444,10 +8433,8 @@ theorem memDi : L.Di ∈ Subring.closure (FS L) := Subring.mul_mem _ (memF L (m_
 theorem memDb : L.Db ∈ Subring.closure (FS L) := Subring.mul_mem _ (memDrb L) (memF L (m_ζb L))
 theorem memDbi : L.Dbi ∈ Subring.closure (FS L) := Subring.mul_mem _ (memF L (m_ζbi L)) (memDrbi L)
 
-alias hat_Dbi := _root_.Formalism.FourierDecayAlt.P.MAx3.NF.hat_Dbi
-
 theorem hat_Db (Y : ℂ) : L.Db * L.Ahat Y = L.Ahat Y * L.Db ∧ L.Db * L.R0 Y = L.R0 Y * L.Db := by
-  obtain ⟨h1, h2⟩ := hat_Dbi L Y
+  obtain ⟨h1, h2⟩ := Formalism.FourierDecayAlt.P.MAx3.NF.hat_Dbi L Y
   constructor
   · have := congrArg (fun x => L.Db * x * L.Db) h1
     simp only [← mul_assoc, Db_Dbi, one_mul] at this
@@ -8461,14 +8448,14 @@ theorem hat_Db (Y : ℂ) : L.Db * L.Ahat Y = L.Ahat Y * L.Db ∧ L.Db * L.R0 Y =
 theorem Ahat_Di (Y : ℂ) : L.Ahat Y * L.Di = L.Di * L.Ahat (Y - 1) := by
   have h := (Formalism.FourierDecayAlt.P.shiftConjugation A r L (Y - 1)).1
   rw [sub_add_cancel] at h
-  rw [← h, mul_assoc, mul_assoc, D_Di, mul_one]
+  rw [← h, mul_assoc, mul_assoc, Formalism.FourierDecayAlt.P.NormalFormRelations.D_Di, mul_one]
 
 theorem raising_mul_D_inv (Y : ℂ) : L.R0 Y * L.Di =
     L.Di * (L.R0 (Y - 1) - algebraMap ℂ A L.TT * (L.Drb * L.Di * L.Ahat (Y - 1))) := by
   have h := (Formalism.FourierDecayAlt.P.shiftConjugation A r L (Y - 1)).2.1
   rw [sub_add_cancel] at h
   have h2 : L.Di * L.R0 (Y - 1) = (L.R0 Y + algebraMap ℂ A L.TT * (L.Drb * L.Di * L.Ahat Y)) * L.Di := by
-    rw [← h, mul_assoc, mul_assoc, D_Di, mul_one]
+    rw [← h, mul_assoc, mul_assoc, Formalism.FourierDecayAlt.P.NormalFormRelations.D_Di, mul_one]
   rw [mul_sub, h2, add_mul]
   have e1 : L.Di * algebraMap ℂ A L.TT = algebraMap ℂ A L.TT * L.Di := (Algebra.commutes _ _).symm
   have e2 : L.Di * L.Drb = L.Drb * L.Di := cl_comm L (memDi L) (memDrb L)
@@ -8504,10 +8491,10 @@ theorem Ahat_Dipow (i : ℕ) (Y : ℂ) : L.Ahat Y * L.Di ^ i = L.Di ^ i * L.Ahat
     congr 2; push_cast; ring
 
 theorem comm_Dbipow_A (i : ℕ) (Y : ℂ) : L.Ahat Y * L.Dbi ^ i = L.Dbi ^ i * L.Ahat Y :=
-  ((Commute.pow_right (hat_Dbi L Y).1.symm i).symm).eq.symm
+  ((Commute.pow_right (Formalism.FourierDecayAlt.P.MAx3.NF.hat_Dbi L Y).1.symm i).symm).eq.symm
 
 theorem comm_Dbipow_R (i : ℕ) (Y : ℂ) : L.R0 Y * L.Dbi ^ i = L.Dbi ^ i * L.R0 Y :=
-  ((Commute.pow_right (hat_Dbi L Y).2.symm i).symm).eq.symm
+  ((Commute.pow_right (Formalism.FourierDecayAlt.P.MAx3.NF.hat_Dbi L Y).2.symm i).symm).eq.symm
 
 theorem memPow {x : A} (hx : x ∈ Subring.closure (FS L)) (i : ℕ) : x ^ i ∈ Subring.closure (FS L) :=
   Subring.pow_mem _ hx i
@@ -8982,10 +8969,8 @@ open Formalism.FourierDecayAlt.R Formalism.FourierDecayAlt.R.LevelData Formalism
 
 variable {A : Type} [Ring A] [Algebra ℂ A] {r : ℕ} (L : LevelData A r)
 
-alias Ahat_D := _root_.Formalism.FourierDecayAlt.P.MAx3.NF.Ahat_D
-
 theorem raising_mul_D (Y : ℂ) : L.R0 Y * L.D = L.D * (L.R0 (Y + 1) + L.TT • (L.Drb * L.Di * L.Ahat (Y + 1))) := by
-  rw [Algebra.smul_def, ← (Formalism.FourierDecayAlt.P.shiftConjugation A r L Y).2.1, ← mul_assoc, ← mul_assoc, D_Di, one_mul]
+  rw [Algebra.smul_def, ← (Formalism.FourierDecayAlt.P.shiftConjugation A r L Y).2.1, ← mul_assoc, ← mul_assoc, Formalism.FourierDecayAlt.P.NormalFormRelations.D_Di, one_mul]
 
 theorem raising_mul_D_inv_expanded (Y : ℂ) : L.R0 Y * L.Di = L.Di * L.R0 (Y - 1) - L.TT • (L.Di * (L.Drb * L.Di) * L.Ahat (Y - 1)) := by
   rw [raising_mul_D_inv, mul_sub, Algebra.smul_def, ← mul_assoc, ← mul_assoc, ← Algebra.commutes L.TT L.Di]
@@ -8995,7 +8980,7 @@ theorem memDD : L.D * L.Dbi ∈ Subring.closure (FS L) := Subring.mul_mem _ (mem
 theorem memDbD : L.Db * L.Di ∈ Subring.closure (FS L) := Subring.mul_mem _ (memDb L) (memDi L)
 
 theorem gen_DD_A (Y : ℂ) : L.Ahat Y * (L.D * L.Dbi) = L.D * L.Dbi * L.Ahat (Y + 1) := by
-  rw [← mul_assoc, Ahat_D, mul_assoc, ← (hat_Dbi L (Y + 1)).1, mul_assoc]
+  rw [← mul_assoc, Formalism.FourierDecayAlt.P.MAx3.NF.Ahat_D, mul_assoc, ← (Formalism.FourierDecayAlt.P.MAx3.NF.hat_Dbi L (Y + 1)).1, mul_assoc]
 
 theorem gen_DD_R (Y : ℂ) : L.R0 Y * (L.D * L.Dbi) = L.D * L.Dbi * L.R0 (Y + 1) +
     L.TT • (L.D * L.Dbi * (L.Drb * L.Di) * L.Ahat (Y + 1)) := by
@@ -9007,7 +8992,7 @@ theorem gen_DD_R (Y : ℂ) : L.R0 Y * (L.D * L.Dbi) = L.D * L.Dbi * L.R0 (Y + 1)
     _ = L.D * (L.R0 (Y + 1) * L.Dbi) + L.TT • (L.D * (L.Drb * L.Di) * (L.Ahat (Y + 1) * L.Dbi)) := by
         rw [raising_mul_D, mul_add, add_mul, mul_smul_comm, smul_mul_assoc]; simp only [mul_assoc]
     _ = _ := by
-        rw [← (hat_Dbi L (Y + 1)).1, ← (hat_Dbi L (Y + 1)).2, ← mul_assoc (L.D * (L.Drb * L.Di)), hf]
+        rw [← (Formalism.FourierDecayAlt.P.MAx3.NF.hat_Dbi L (Y + 1)).1, ← (Formalism.FourierDecayAlt.P.MAx3.NF.hat_Dbi L (Y + 1)).2, ← mul_assoc (L.D * (L.Drb * L.Di)), hf]
         simp only [mul_assoc]
 
 theorem gen_DbD_A (Y : ℂ) : L.Ahat Y * (L.Db * L.Di) = L.Db * L.Di * L.Ahat (Y + -1) := by
@@ -11582,7 +11567,7 @@ theorem chiJ_eq (j : M.Ty P → SmQ P.r P.TT) (c : LE.Cut) (ε : ℝ) :
       rfl
     rw [← e]; exact h
   show toSm P _ = _
-  rw [G.toSm_of_mem P hm]
+  rw [Formalism.FourierDecayAlt.P.CutMP.Gauge.toSm_of_mem P hm]
   apply Subtype.ext
   funext q
   show (c.sc ε 1 (Gq P q) : ℂ) * (j π).1 q = evQ P (MAx2.Jet.Phi P (chi c ε) 0 * j π) q
@@ -12346,7 +12331,7 @@ theorem fst_leib (x : (DQ P).Pr) (c : ℕ → (DQ P).Pr) (d : ℕ) (σ : ℝ) (h
   have h1 : G.Gpow P (-s) * asS P (x.1 (G.Gpow P s * f)) =
       ∑ k ∈ Finset.range (d + 1), (((σ * s : ℝ) : ℂ) ^ k) • asS P ((c k).1 f) := by
     have := congrArg (fun y : (DQ P).Pr => asS P (y.1 f)) (hconj s)
-    simp only [asS, G.pfst_mul, multiplierPair_fst, G.pfst_sum, _root_.Formalism.FourierDecayAlt.P.MAx3.G.pfst_smul, G.op_mul_apply, G.op_sum_apply] at this
+    simp only [asS, G.pfst_mul, multiplierPair_fst, Formalism.FourierDecayAlt.P.CutMP.Gauge.fst_sum, _root_.Formalism.FourierDecayAlt.P.MAx3.G.pfst_smul, G.op_mul_apply, G.op_sum_apply] at this
     exact this
   show asS P (x.1 (G.Gpow P s * f)) = _
   rw [show asS P (x.1 (G.Gpow P s * f)) = G.Gpow P s * (G.Gpow P (-s) * asS P (x.1 (G.Gpow P s * f))) by
@@ -12436,7 +12421,7 @@ theorem pr_leibniz (x : (DQ P).Pr) (c : ℕ → (DQ P).Pr) (d : ℕ) (σ : ℝ)
   refine Prod.ext ?_ (MulOpposite.unop_injective ?_)
   · apply LinearMap.ext; intro f
     refine (fst_leib P x c d σ hx1 hconj φ hφ (asS P f)).trans ?_
-    rw [G.pfst_sum, LinearMap.sum_apply]
+    rw [Formalism.FourierDecayAlt.P.CutMP.Gauge.fst_sum, LinearMap.sum_apply]
     exact Finset.sum_congr rfl fun p _ => rfl
   · apply LinearMap.ext; intro f
     have := snd_leib P x c d σ hc2 hconj φ hφ (asS P f)
@@ -13035,15 +13020,15 @@ theorem raising_variant_mul_D_bar (Y : ℂ) : L.R0v Y * L.Db = L.Db * (L.R0v (Y 
 
 theorem raising_variant_commute_D (Y : ℂ) : L.R0v Y * L.D = L.D * L.R0v Y := by
   have h := (hatv_D_fns L).2 Y
-  calc L.R0v Y * L.D = L.D * L.Di * (L.R0v Y * L.D) := by rw [D_Di, one_mul]
+  calc L.R0v Y * L.D = L.D * L.Di * (L.R0v Y * L.D) := by rw [Formalism.FourierDecayAlt.P.NormalFormRelations.D_Di, one_mul]
     _ = L.D * (L.R0v Y * L.Di) * L.D := by rw [h]; simp only [mul_assoc]
-    _ = L.D * L.R0v Y := by rw [mul_assoc, mul_assoc, Di_D, mul_one]
+    _ = L.D * L.R0v Y := by rw [mul_assoc, mul_assoc, Formalism.FourierDecayAlt.P.MAx3.NF.Di_D, mul_one]
 
 theorem Ahatv_D (Y : ℂ) : L.Ahatv Y * L.D = L.D * L.Ahatv Y := by
   have h := (hatv_D_fns L).1 Y
-  calc L.Ahatv Y * L.D = L.D * L.Di * (L.Ahatv Y * L.D) := by rw [D_Di, one_mul]
+  calc L.Ahatv Y * L.D = L.D * L.Di * (L.Ahatv Y * L.D) := by rw [Formalism.FourierDecayAlt.P.NormalFormRelations.D_Di, one_mul]
     _ = L.D * (L.Ahatv Y * L.Di) * L.D := by rw [h]; simp only [mul_assoc]
-    _ = L.D * L.Ahatv Y := by rw [mul_assoc, mul_assoc, Di_D, mul_one]
+    _ = L.D * L.Ahatv Y := by rw [mul_assoc, mul_assoc, Formalism.FourierDecayAlt.P.MAx3.NF.Di_D, mul_one]
 
 theorem vgen_DD_A (Y : ℂ) : L.Ahatv Y * (L.D * L.Dbi) = L.D * L.Dbi * L.Ahatv (Y + 1) := by
   rw [← mul_assoc, Ahatv_D, mul_assoc, Ahatv_Dbi, mul_assoc]
@@ -13231,19 +13216,13 @@ noncomputable section
 section Abs
 variable {A : Type} [Ring A]
 
-theorem transpose_mul_comm (M N : Matrix (Fin 2) (Fin 2) A) (h : ∀ i j k l, M i j * N k l = N k l * M i j) :
-    (M * N)ᵀ = Nᵀ * Mᵀ := by
-  ext i j
-  simp only [transpose_apply, Matrix.mul_apply]
-  exact Finset.sum_congr rfl fun k _ => h _ _ _ _
-
 theorem transpose_list_prod : ∀ (l : List (Matrix (Fin 2) (Fin 2) A)),
     l.Pairwise (fun M N => ∀ i j k m, M i j * N k m = N k m * M i j) →
     (l.prod)ᵀ = (l.map transpose).reverse.prod
   | [], _ => by simp
   | M :: l, h => by
     rw [List.pairwise_cons] at h
-    rw [List.prod_cons, transpose_mul_comm, transpose_list_prod l h.2, List.map_cons, List.reverse_cons,
+    rw [List.prod_cons, Formalism.FourierDecayAlt.P.W.transpose_mul_of_comm, transpose_list_prod l h.2, List.map_cons, List.reverse_cons,
       List.prod_append, List.prod_singleton]
     intro i j k m
     have key : ∀ N ∈ l, ∀ i j k m, M i j * N k m = N k m * M i j := h.1
@@ -15504,10 +15483,6 @@ end Formalism.FourierDecayAlt.P.MAx3.AD
 
 end S_AD_AD12
 
-namespace Formalism.FourierDecayAlt.P.MAx3.AD
-
-end Formalism.FourierDecayAlt.P.MAx3.AD
-
 section S_AD_AD14
 
 set_option linter.unusedVariables false
@@ -16057,7 +16032,7 @@ theorem W_eq : L.ζ * L.ζb * L.GGi = L.D * L.Db * G.Gs P (-1) := by
   have h := WDD hTTp hL hLaw
   obtain ⟨hD, hDi, hDb, hDbi, -⟩ := fnP_D hL
   calc L.ζ * L.ζb * L.GGi = L.ζ * L.ζb * L.GGi * ((L.Di * L.D) * (L.Dbi * L.Db)) := by
-        rw [Di_D, Dbi_Db, mul_one, mul_one]
+        rw [Formalism.FourierDecayAlt.P.MAx3.NF.Di_D, Dbi_Db, mul_one, mul_one]
     _ = L.ζ * L.ζb * L.GGi * (L.Di * L.Dbi) * (L.D * L.Db) := by
         rw [mul_assoc (L.Di) L.D, ← mul_assoc L.D, isFnP_comm hD hDbi]; simp only [mul_assoc]
     _ = L.D * L.Db * G.Gs P (-1) := by rw [h, isFnP_comm (isFnP_Gs (-1)) (isFnP_mul hD hDb)]
@@ -16180,7 +16155,7 @@ theorem fnPs : IsFnP L.D ∧ IsFnP L.Di ∧ IsFnP L.Db ∧ IsFnP L.Dbi ∧ IsFnP
 theorem rels : let h := fnPs hTTp hL hLaw
     f L.D h.1 * f L.Di h.2.1 = 1 ∧ f L.Db h.2.2.1 * f L.Dbi h.2.2.2.1 = 1 ∧
     f (L.ζ * L.ζb * L.GGi) h.2.2.2.2.2 = f L.D h.1 * f L.Db h.2.2.1 * f (G.Gs P (-1)) h.2.2.2.2.1 := by
-  refine ⟨Subtype.ext (D_Di L), Subtype.ext (Db_Dbi L), Subtype.ext (W_eq hTTp hL hLaw)⟩
+  refine ⟨Subtype.ext (Formalism.FourierDecayAlt.P.NormalFormRelations.D_Di L), Subtype.ext (Db_Dbi L), Subtype.ext (W_eq hTTp hL hLaw)⟩
 
 theorem D_power_identity_one (N : ℕ) : L.Dbi * ((L.ζ * L.ζb * L.GGi) ^ (N + 1) * L.Dbi ^ (N + 1)) =
     L.D ^ (N + 1) * L.Dbi * G.Gs P (-1) ^ (N + 1) := by
@@ -16256,10 +16231,8 @@ noncomputable section
 
 variable {P : M.Par}
 
-alias cf_Ph := _root_.Formalism.FourierDecayAlt.P.MAx3.Z.cf_Ph
-
 theorem cf_Gs (t : ℝ) : CF (G.Gs P t) (fun q => ((Gq P q ^ t : ℝ) : ℂ)) :=
-  cf_Ph (φ := fun x : ℝ => x ^ t) (_root_.Formalism.FourierDecayAlt.P.LEx2.smoothLog_rpow t)
+  Formalism.FourierDecayAlt.P.MAx3.Z.cf_Ph (φ := fun x : ℝ => x ^ t) (_root_.Formalism.FourierDecayAlt.P.LEx2.smoothLog_rpow t)
 
 variable {L : LevelData (A P (DQ P)) P.r} {j : M.Ty P → SmQ P.r P.TT}
 

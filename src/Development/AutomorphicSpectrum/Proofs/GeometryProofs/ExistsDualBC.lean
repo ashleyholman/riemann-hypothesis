@@ -165,7 +165,7 @@ theorem tan_ext {O : Type} [CommRing O] [Algebra A O] {z : Spec (CommRingCat.of 
   · have t : _ ≫ (M₀.pt b).left = _ := M₀.tan b
     rw [one_left] at t
     show _ ≫ (ψ ≫ M₀.pt b).left = _
-    rw [hleft, one_left, ← Category.assoc, ← spec_comp, dual_fst, spec_comp, Category.assoc, t]
+    rw [hleft, one_left, ← Category.assoc, ← spec_comp, GlobalTheory.CompanionTheory.Ar.SqAdd.fst_comp_dualMap, spec_comp, Category.assoc, t]
     simp only [Over.mk_hom]
     rw [← Category.assoc, hzs]
   · rw [hleft, hj, ← Category.assoc, ← spec_comp, dual_comp, hg]
@@ -182,7 +182,7 @@ theorem tan_denom {O : Type} [CommRing O] [Algebra A O] (S : Submonoid A) [IsLoc
   have hgu : g (algebraMap A O u) = algebraMap A Ω u := RingHom.congr_fun hg u
   refine ⟨u, hu, b, hgu ▸ M.inj (Over.OverMorphism.ext ?_)⟩
   rw [M.smul, he', hj, ← hg, ← dual_comp, spec_comp, Category.assoc, ← hub, ← Category.assoc, ← Category.assoc,
-    ← spec_comp, ← spec_comp, dual_eps]
+    ← spec_comp, ← spec_comp, GlobalTheory.CompanionTheory.Ar.LieCarrier.dualMap_epsMul]
 
 theorem mem_omLat_iff (hξ : IsCptGen ξ) (hk : Function.Injective (algebraMap A Ω))
     (hx : Spec.map (CommRingCat.ofHom (algebraMap A Ω)) ≫ x = ξ) (j₀ : L₀ → Li)

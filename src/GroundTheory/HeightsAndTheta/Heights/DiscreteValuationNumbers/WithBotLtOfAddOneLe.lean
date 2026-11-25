@@ -48,10 +48,6 @@ theorem ratDiv_support_finite {P : Ideal (MRing ι R)} {f g : MRing ι R}
   simp only [Set.mem_union, Function.mem_support, not_or, not_not] at h
   exact hW (by simp [ratDiv, h.1, h.2])
 
-theorem withBot_lt_of_add_one_le {x : WithBot ℕ∞} {n : ℕ} (hx : x + 1 ≤ (n : WithBot ℕ∞)) :
-    x < (n : WithBot ℕ∞) := by
-  apply GroundTheory.Heights₂.Heights.NumbersDVR.lt_natCast_of_add_one_le <;> assumption
-
 theorem ratDiv_mul_mul (hmul : DivCycleMul.Statement.{u}) {O : Type u} [CommRing O] [IsNoetherianRing O]
     {K : Type} [Fintype K] {ι : K → Type} [∀ k, Fintype (ι k)] {P : Ideal (MRing ι O)} (hP : P.IsPrime)
     {f₁ g₁ f₂ g₂ : MRing ι O} (hf₁ : f₁ ∉ P) (hf₂ : f₂ ∉ P) (hg₁ : g₁ ∉ P) (hg₂ : g₂ ∉ P) :
@@ -93,7 +89,7 @@ theorem AdditivityInDivisor.proof (hmul : DivCycleMul.Statement.{u}) (hfin : Div
       rw [hP.dim, ← hqd O ϖ hϖ K ι W hϖW,
         show d + 1 + 1 + Fintype.card K = d + 2 + Fintype.card K by ring] at hdim
       exact hadd _ K ι d (specialIdeal W) (hcor O ϖ hϖ K ι P W hWp hϖW).1 (hspm O K ι W hWh)
-        (withBot_lt_of_add_one_le hdim) b₁ b₂ L
+        (GroundTheory.Heights₂.Heights.NumbersDVR.lt_natCast_of_add_one_le hdim) b₁ b₂ L
     ·
       obtain ⟨hV₁, hV₂⟩ := hsH W hW hϖW
       rw [ratDiv_mul_mul hmul hWp hV₁.num_not_mem hV₂.num_not_mem hV₁.den_not_mem hV₂.den_not_mem]

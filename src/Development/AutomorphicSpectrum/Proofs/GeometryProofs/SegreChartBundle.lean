@@ -87,10 +87,6 @@ theorem exists_chart (hT : CoordTie o ξ x) {c : κ} (hc : x c ≠ 0) :
       ∀ a : Ω, a ∈ Algebra.adjoin o (Set.range fun j => x j / x c) ↔ a ∈ (secVal ξ U h).range :=
   _root_.GlobalTheory.CompanionTheory.Ar.TieVB.exists_chart hT hc
 
-theorem exists_point (hT : CoordTie o ξ x) {c : κ} (hc : x c ≠ 0) (P : Ideal (chartRing o x c)) (hP : P.IsPrime) :
-    ∃ p : Cpt ξ, InChart ξ x c p ∧ ∀ s : chartRing o x c, s ∈ P ↔ ¬ unitAt ξ p s := by
-  apply GlobalTheory.CompanionTheory.Ar.TieVB.exists_point <;> assumption
-
 theorem exists_basic (hT : CoordTie o ξ x) {c : κ} (hc : x c ≠ 0) (V : X.Opens) {q : Cpt ξ}
     (hq : InChart ξ x c q) (hV : q.1 ∈ V) :
     ∃ g ∈ chartRing o x c, unitAt ξ q g ∧ ∀ p : Cpt ξ, InChart ξ x c p → unitAt ξ p g → p.1 ∈ V := by
@@ -103,7 +99,7 @@ theorem ideal_eq_top (hT : CoordTie o ξ x) {c : κ} (hc : x c ≠ 0) (I : Ideal
     (h : ∀ p : Cpt ξ, InChart ξ x c p → ∃ s ∈ I, unitAt ξ p s) : I = ⊤ := by
   by_contra hI
   obtain ⟨M, hM, hle⟩ := Ideal.exists_le_maximal I hI
-  obtain ⟨p, hp, hs⟩ := exists_point hT hc M hM.isPrime
+  obtain ⟨p, hp, hs⟩ := GlobalTheory.CompanionTheory.Ar.TieVB.exists_point hT hc M hM.isPrime
   obtain ⟨s, hsI, hu⟩ := h p hp
   exact (hs s).1 (hle hsI) hu
 
@@ -139,7 +135,7 @@ theorem exists_pow_mul_mem (hT : CoordTie o ξ x) {c : κ} (hc : x c ≠ 0) {f a
     rw [Ideal.radical_eq_sInf, Ideal.mem_sInf]
     rintro P ⟨hle, hP⟩
     by_contra hfP
-    obtain ⟨p, hp, hs⟩ := exists_point hT hc P hP
+    obtain ⟨p, hp, hs⟩ := GlobalTheory.CompanionTheory.Ar.TieVB.exists_point hT hc P hP
     have hu : unitAt ξ p f := by
       by_contra hn
       exact hfP ((hs ⟨f, hf⟩).2 hn)

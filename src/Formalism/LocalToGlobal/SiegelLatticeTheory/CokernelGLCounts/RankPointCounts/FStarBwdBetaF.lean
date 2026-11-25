@@ -186,7 +186,7 @@ theorem coef_int (γ : TermDef.Term D u u' F0 what₂) {Λ₂ : Submodule (𝓞 
     subst ha
     have : h.unit = 1 := Units.ext (IsUnit.unit_spec h)
     rw [this, inv_one, Units.val_one]
-  have hone := key (hu p (Fin.last D.R.rS)) (by rw [sgnP_last, frFac_last', mul_one])
+  have hone := key (hu p (Fin.last D.R.rS)) (by rw [Formalism.L2.SG.Pf.BBTie.sgnP_last₂, Formalism.L2.SG.Pf.BBTie.bt_frFac_last, mul_one])
   rw [hone, mul_one, sub_eq_zero] at h3
   rw [← h3]
   exact (o (Fin.last D.R.rS)).2
@@ -655,7 +655,7 @@ theorem pair_core (hΛ : Submodule.IsFullLattice E Λ) (F : LFlag S r T) (F' F''
     refine mem_orth'.2 fun x hx => ?_
     obtain ⟨a, ha, b, hb, rfl⟩ := Submodule.mem_sup.1 hx
     obtain ⟨c, rfl⟩ := Submodule.mem_span_singleton.1 hb
-    rw [LinearMap.map_add₂, mem_orth'.1 hνX a ha, NMoveP.hT_smulL, hzz, mul_zero, add_zero]
+    rw [LinearMap.map_add₂, mem_orth'.1 hνX a ha, PI.ScalarPairDr.W.hT_smul_left, hzz, mul_zero, add_zero]
   obtain ⟨c, hc⟩ := (Submodule.mem_span_range_iff_exists_fun E).1 hΩ.1
   have hSg'' : SgRel F F'' ν 0 T⁻¹ (c (Fin.last r)) := by
     refine ⟨0, Submodule.zero_mem _, ∑ i : Fin r, c i.castSucc • F''.fl.e i,

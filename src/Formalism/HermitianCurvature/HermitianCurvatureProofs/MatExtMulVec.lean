@@ -178,8 +178,6 @@ theorem tau_comm {z : Fin (2 * r + k + 1) → ℂ} {h : B.Mat k r} (hh : h ∈ U
   unfold C2.tauM
   rw [← mul_assoc, nEich_comm hh _, mul_assoc, mX_comm hh _, ← mul_assoc]
 
-alias det_UT := _root_.Formalism.FourierDecayAlt.P.C2x2.ut_det
-
 theorem adj_eq_inv {m : ℕ} {A : Matrix (Fin m) (Fin m) ℂ} (h : A.det = 1) : A.adjugate = A⁻¹ := by
   rw [Matrix.inv_def, h, Ring.inverse_one, one_smul]
 
@@ -197,7 +195,7 @@ theorem LT_col_last {l : Matrix (Fin (r + 1)) (Fin (r + 1)) ℂ} (hl : l ∈ C2.
 
 theorem UT_row_last {u : Matrix (Fin (r + 1)) (Fin (r + 1)) ℂ} (hu : u ∈ C2.UTset (r + 1)) :
     Pi.single (Fin.last r) 1 ᵥ* u.adjugate = Pi.single (Fin.last r) 1 := by
-  rw [adj_eq_inv (det_UT hu)]
+  rw [adj_eq_inv (Formalism.FourierDecayAlt.P.C2x2.ut_det hu)]
   obtain ⟨h1, h2⟩ := C2x2.ut_inv hu
   funext j
   simp only [Matrix.vecMul, dotProduct, Pi.single_apply, ite_mul, one_mul, zero_mul, Finset.sum_ite_eq',
@@ -271,7 +269,7 @@ theorem uMap_inv {z : Fin (2 * r + k + 1) → ℂ} (hz : C2.StdZ k r z) {n : B.M
     C2.uMap k r z n⁻¹ = (C2.uMap k r z n).adjugate := by
   have hs := n_in_S (z := z) hn
   have hU : C2.uMap k r z n ∈ C2.UTset (r + 1) := ((unipotent_map_frame k r z hz).1 n hs).2.1
-  have hdet : (C2.uMap k r z n).det = 1 := det_UT hU
+  have hdet : (C2.uMap k r z n).det = 1 := Formalism.FourierDecayAlt.P.C2x2.ut_det hU
   have hUu : IsUnit (C2.uMap k r z n).det := by
     rw [hdet]
     exact isUnit_one
@@ -305,8 +303,8 @@ private theorem isDFrame_inv_mul_mul_of_frame_compat (S : B.RealPlaceData k r Wp
     (hPn : ∀ x, D.prW k r S.z (n *ᵥ x) = D.prW k r S.z x)
     (hPn' : ∀ x, D.prW k r S.z' (n' *ᵥ x) = D.prW k r S.z' x)
     (hD : D.IsDFrame S ν' m₀ γ) : D.IsDFrame S ν' m₀ (n⁻¹ * γ * n') := by
-  have hdU : U.det = 1 := det_UT hU
-  have hdU' : U'.det = 1 := det_UT hU'
+  have hdU : U.det = 1 := Formalism.FourierDecayAlt.P.C2x2.ut_det hU
+  have hdU' : U'.det = 1 := Formalism.FourierDecayAlt.P.C2x2.ut_det hU'
   have hUu : IsUnit U.det := by
     rw [hdU]
     exact isUnit_one
@@ -406,10 +404,10 @@ theorem dframe_tau_inv (S : B.RealPlaceData k r Wp Wq) (ν' : Fin (2 * r + k + 1
   have hτu := _root_.Formalism.FourierDecayAlt.P.Dx2.OrbJ.isUnit_of_N hN
   have hτu' := _root_.Formalism.FourierDecayAlt.P.Dx2.OrbJ.isUnit_of_N hN'
   have hvu : IsUnit v.det := by
-    rw [det_UT hv]
+    rw [Formalism.FourierDecayAlt.P.C2x2.ut_det hv]
     exact isUnit_one
   have hu'u : IsUnit u'.det := by
-    rw [det_UT hu']
+    rw [Formalism.FourierDecayAlt.P.C2x2.ut_det hu']
     exact isUnit_one
   have hF : C2.tauM k r S.z v * Fz k r S.z = Fz k r S.z * v := by
     have h := frame_mul hz (n_in_S hN)

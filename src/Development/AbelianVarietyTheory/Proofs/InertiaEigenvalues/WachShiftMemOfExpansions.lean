@@ -261,7 +261,7 @@ theorem wachExp_mem_iff (W : LocWach PD LL O v n) (h9 : Formalism.MainNotions.De
   have hqΔ := Formalism.MainNotions.LiftingTheory.lifta_qΔ W hR.πΔ
   have hDL : DL W T i (qp W ^ y • x) := by
     refine ⟨by rw [smul_comm, hx.1], fun δ hδ => ?_⟩
-    rw [γD_smul', map_pow, hqΔ δ hδ, hx.2 δ hδ]
+    rw [Formalism.MainNotions.LiftingTheory.gammaD_semilinear, map_pow, hqΔ δ hδ, hx.2 δ hδ]
   obtain ⟨⟨u, hu, hq⟩, -, -⟩ := hRg hA i ζ hζ
   have hE := (hRu hA T hT i ζ hζ).2.2.2.2.1 (qp W ^ y) x d hd
   have hN : qp W ^ Y • (qp W ^ y • x) ∈ W.N T := by

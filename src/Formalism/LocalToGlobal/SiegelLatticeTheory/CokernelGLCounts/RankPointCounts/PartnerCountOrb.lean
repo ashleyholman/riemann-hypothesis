@@ -190,7 +190,7 @@ theorem inOrbP_of_orb {δ : ∀ p : PlF D, (D.s.atP p).Fp} {T T' : ℕ} {p : PlF
     · intro h; exact absurd (Finset.mem_univ _) h
     · intro c _ hc; rw [hW a c, ite_eq_right hc, zero_mul]
     · intro h; exact absurd (Finset.mem_univ _) h
-  have hβdet : IsUnit β.det := by rw [det_up' hβU]; exact isUnit_one
+  have hβdet : IsUnit β.det := by rw [Formalism.L2.SG.Pf.AtPt.det_up hβU]; exact isUnit_one
   have hβblk : ∀ a c, blk a ≠ blk c → β a c = 0 := fun a c h => by simp [β, bdM, h]
   have hβi : bdM blk β⁻¹ = β⁻¹ := by
     have h1 := bdM_mul blk β β⁻¹ hβblk

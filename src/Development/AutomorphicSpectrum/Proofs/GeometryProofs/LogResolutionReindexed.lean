@@ -111,8 +111,6 @@ namespace GlobalTheory.CompanionTheory.Ar.Chg.DegBlock
 
 variable {K₀ K : Type} [Fintype K₀] [Fintype K] {J₀ : K₀ → Type} {J : K → Type} [∀ k, Fintype (J₀ k)] [∀ k, Fintype (J k)]
 
-alias isMultiHomog_mul' := _root_.ReciprocityTheory.ChartRestriction.G.ArakelovGeometry.isMultiHomog_mul
-
 theorem isMultiHomog_rename' {κ : K₀ → K} {v : (Σ k, J₀ k) → (Σ k, J k)} (hv : IsBlockMap κ v) {f : MRing J₀}
     {a : K₀ → ℕ} (hf : IsMultiHomog f a) : IsMultiHomog (rename v f : MRing J) (Function.extend κ a 0) := by
   intros
@@ -164,7 +162,7 @@ theorem isMultiHomog_prod' {X : Type} (s : Finset X) {f : X → MRing J₀} {a :
   | empty => simpa using GroundTheory.Heights₂.Heights.HilbertSamuel.SectionBounded.homog_one
   | insert x s hx ih =>
     rw [Finset.prod_insert hx, Finset.sum_insert hx]
-    exact isMultiHomog_mul' (h x (Finset.mem_insert_self x s))
+    exact ReciprocityTheory.ChartRestriction.G.ArakelovGeometry.isMultiHomog_mul' (h x (Finset.mem_insert_self x s))
       (ih fun u hu => h u (Finset.mem_insert_of_mem hu))
 
 theorem exists_local_section {Ω₀ Ω : Type} [Field Ω₀] [Field Ω] [CharZero Ω] (y₀ : (Σ k, J₀ k) → Ω₀)
@@ -259,7 +257,7 @@ theorem isDegreeOff_of_block : ∀ (K₀ K : Type) [Fintype K₀] [Fintype K] (J
   obtain ⟨G₁, a₁, hG₁, hG₁n, hcount⟩ := exists_count y₀ y bk bx i D d hbk hy hA₀ hA hB₀ hB hfin hd
   obtain ⟨G₂, a₂, hG₂, hG₂n, hloc⟩ := exists_local_section y₀ y bk bx i d hy hprime hB₀ hfin hd
   have hGn : G₁ * G₂ ∉ mCoordIdeal y₀ := fun hm => (hprime.mem_or_mem hm).elim hG₁n hG₂n
-  have hGh : IsMultiHomog (G₁ * G₂) (a₁ + a₂) := isMultiHomog_mul' hG₁ hG₂
+  have hGh : IsMultiHomog (G₁ * G₂) (a₁ + a₂) := ReciprocityTheory.ChartRestriction.G.ArakelovGeometry.isMultiHomog_mul' hG₁ hG₂
   have hev : ∀ w : (Σ k, J₀ k) → ℂ, eval w (map (Int.castRingHom ℂ) (G₁ * G₂)) ≠ 0 →
       eval w (map (Int.castRingHom ℂ) G₁) ≠ 0 ∧ eval w (map (Int.castRingHom ℂ) G₂) ≠ 0 := by
     intro w hw

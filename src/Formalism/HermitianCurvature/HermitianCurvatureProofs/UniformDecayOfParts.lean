@@ -193,7 +193,7 @@ theorem mDiff_cpt (hP : P5.ThmPActualCpt) (P : M.Par) (p : KB.Pl P Wp Wq) (j : �
     (x : Wd.Ix (Fin w.length) → B.Mat P.k (P.r - j) → (Wq →L[ℂ] Wp)) (hx : ∀ e, KB.CptCoef (p.T.bs j) (x e)) :
     ∀ e, KB.CptCoef (p.T.bs j) (mDiff (p.T.bs j) σ w x e) := by
   have hc : ∀ t e, KB.CptCoef (p.T.bs j) (KB.waveG (p.T.bs j) t w x e) := fun t =>
-    (Formalism.FourierDecayAlt.P.vector_isomorphism_compact_support hP Wp Wq P p j hj w hw t x x hx hx).1
+    (Formalism.FourierDecayAlt.P.PBFV.vIsoCpt_main hP Wp Wq P p j hj w hw t x x hx hx).1
   intro e
   rw [mDiff_apply_eq]
   exact Formalism.FourierDecayAlt.P.PBG.cpt_add_smul _ _ (Formalism.FourierDecayAlt.P.PBG.cpt_add_smul _ _
@@ -481,8 +481,8 @@ theorem xi_bound (hP : P5.ThmPActualCpt) {Wp Wq : Type} [NormedAddCommGroup Wp] 
   have hR : 0 ≤ R := Real.sqrt_nonneg _
 
   have hCS : ‖p.form j hj w (KB.waveG (p.T.bs j) s w (Mo x)) y‖ ≤ R := by
-    obtain ⟨-, hss⟩ := Formalism.FourierDecayAlt.P.size_standard_compact hP Wp Wq P p j hj w [] hw hw List.Pairwise.nil
-    obtain ⟨hWc, hiso⟩ := Formalism.FourierDecayAlt.P.vector_isomorphism_compact_support hP Wp Wq P p j hj w hw s (Mo x) (Mo x) (hMoC x hxc)
+    obtain ⟨-, hss⟩ := Formalism.FourierDecayAlt.P.PBF.pb_sizeStdCpt_main hP Wp Wq P p j hj w [] hw hw List.Pairwise.nil
+    obtain ⟨hWc, hiso⟩ := Formalism.FourierDecayAlt.P.PBFV.vIsoCpt_main hP Wp Wq P p j hj w hw s (Mo x) (Mo x) (hMoC x hxc)
       (hMoC x hxc)
     have key := hss (KB.waveG (p.T.bs j) s w (Mo x)) y hWc hyc
     simp only [List.map_nil, List.prod_nil, mul_one] at key
@@ -509,7 +509,7 @@ theorem xi_bound (hP : P5.ThmPActualCpt) {Wp Wq : Type} [NormedAddCommGroup Wp] 
     rw [hKdef, Finset.sum_mul]
     refine Finset.sum_le_sum fun n _ => ?_
     obtain ⟨hc1, hc2, hpw⟩ := hgr n
-    obtain ⟨hq, -⟩ := Formalism.FourierDecayAlt.P.size_standard_compact hP Wp Wq P p j hj w _ hc1 hc2 hpw
+    obtain ⟨hq, -⟩ := Formalism.FourierDecayAlt.P.PBF.pb_sizeStdCpt_main hP Wp Wq P p j hj w _ hc1 hc2 hpw
     have hqpos : 0 < ((List.ofFn fun a => grid a (n a)).map fun y : ℝ => (Wd.qw (M.qC P) (D.positionted w) y).re).prod := by
       refine List.prod_pos fun c hc => ?_
       obtain ⟨y, hy, rfl⟩ := List.mem_map.1 hc

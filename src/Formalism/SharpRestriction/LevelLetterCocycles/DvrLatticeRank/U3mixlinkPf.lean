@@ -787,7 +787,7 @@ theorem u3mixlink_pf : MixedSlotOfModels := by
     u3downPf_jumps T₁ τ (up τ) (b τ) S η h' (hd1 τ) (hηb τ) (hbS τ)
   have hJ2 : ∀ τ, JumpsInV ((D.loc l).PD K) T₂.ρ τ (Set.Icc (-(h' : ℤ)) h') := fun τ =>
     u3downPf_jumps T₂ τ (up τ) (b τ) S η h' (hd2 τ) (hηb τ) (hbS τ)
-  have hs1 : 1 ≤ sK l K := u3downPf_sK_pos hl K LL hG
+  have hs1 : 1 ≤ sK l K := Formalism.MainNotions.N.Ln34.frobpin_sK_pos hl K LL hG
   have hM : 1 ≤ MK l K h' := u3upPf_MK_pos hl K LL hG h' hh
   have hF' := hMF l hl K LL hG π' E hp h' hh c α β hfr
   have hs : ((HW l).W K 1 LL hG).s = 1 := (HW l).W_s K 1 LL hG

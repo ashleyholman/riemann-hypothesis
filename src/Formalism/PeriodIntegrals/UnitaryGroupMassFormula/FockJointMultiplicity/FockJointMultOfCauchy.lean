@@ -152,7 +152,7 @@ variable {p q r s : ℕ} {μ : Ix p q → ℚ} {μ' : Ix r s → ℚ} {P : Pol p
 theorem pure_of (hM : MinHyp p q r s μ μ' P) {e : Ln p q r s →₀ ℕ} (he : e ∈ P.support) {l : Ln p q r s}
     (hl : e l ≠ 0) : nu1 p q r s μ l.1 ≠ 0 ∧ nu2 p q r s μ' l.2 ≠ 0 ∧
       (linePos l = true ↔ 0 < nu1 p q r s μ l.1) ∧ (linePos l = true ↔ 0 < nu2 p q r s μ' l.2) :=
-  pureJ_of leftDiagonalActionFormula rightDiagonalActionFormula p q r s μ μ' P hM e he l hl
+  pureJ_of PI.WFJM.leftDiagonalActionFormula PI.WFJM.rightDiagonalActionFormula p q r s μ μ' P hM e he l hl
 
 theorem blkHyp_pos (hM : MinHyp p q r s μ μ' P) {m n : ℕ} (iX : Fin m → Ix p q) (jX : Fin n → Ix r s)
     (hi : Function.Injective iX) (hj : Function.Injective jX)
@@ -184,7 +184,7 @@ theorem blkHyp_pos (hM : MinHyp p q r s μ μ' P) {m n : ℕ} (iX : Fin m → Ix
     exact ha (hrow k a (h4.2 (hnu2 k)) (h3.1 (h4.2 (hnu2 k))))
   have rowv : ∀ e ∈ P.support, ∀ i, nu1 p q r s μ (iX i) = ((∑ k, e ((iX i, jX k) : Ln p q r s) : ℕ) : ℚ) := by
     intro e he i
-    rw [← monomialLeftWeight_eq_weight_sub leftDiagonalActionFormula hw1 e he (iX i)]
+    rw [← monomialLeftWeight_eq_weight_sub PI.WFJM.leftDiagonalActionFormula hw1 e he (iX i)]
     have h := sw_pos_block e (fun c : Ix r s => ((iX i, c) : Ln p q r s)) (fun c => linePos ((iX i, c) : Ln p q r s))
       jX hj (fun c hc => urow i c hc e he) (fun k => hlp i k)
     rw [show wt1 e (iX i) = sw e (fun c : Ix r s => ((iX i, c) : Ln p q r s))
@@ -192,7 +192,7 @@ theorem blkHyp_pos (hM : MinHyp p q r s μ μ' P) {m n : ℕ} (iX : Fin m → Ix
     push_cast; rfl
   have colv : ∀ e ∈ P.support, ∀ k, nu2 p q r s μ' (jX k) = ((∑ i, e ((iX i, jX k) : Ln p q r s) : ℕ) : ℚ) := by
     intro e he k
-    rw [← monomialRightWeight_eq_weight_sub rightDiagonalActionFormula hw2 e he (jX k)]
+    rw [← monomialRightWeight_eq_weight_sub PI.WFJM.rightDiagonalActionFormula hw2 e he (jX k)]
     have h := sw_pos_block e (fun a : Ix p q => ((a, jX k) : Ln p q r s)) (fun a => linePos ((a, jX k) : Ln p q r s))
       iX hi (fun a ha => ucol k a ha e he) (fun i => hlp i k)
     rw [show wt2 e (jX k) = sw e (fun a : Ix p q => ((a, jX k) : Ln p q r s))
@@ -202,13 +202,13 @@ theorem blkHyp_pos (hM : MinHyp p q r s μ μ' P) {m n : ℕ} (iX : Fin m → Ix
   refine ⟨fun a b hab => ?_, fun c d hcd => ?_, fun e he => ⟨fun i => ?_, fun k => ?_⟩, fun i => ?_, fun k => ?_⟩
   · have hne := ne_of_posC (hmi a b hab)
     have hR := ker_of_hw hw1 (iX a) (iX b) (hmi a b hab)
-    rw [leftOffDiagonalActionFormula p q r s _ _ hne, leftRootOperator_eq_signedPolarization _ _ hne (hs1 a b) P,
+    rw [PI.WFJM.leftOffDiagonalActionFormula p q r s _ _ hne, leftRootOperator_eq_signedPolarization _ _ hne (hs1 a b) P,
       gR_pos_block _ _ _ jX hj P (fun c hc => urow a c hc) (fun c hc => urow b c hc) (fun k => hlp a k)] at hR
     rw [bRow_apply']
     exact hR
   · have hne := ne_of_posC (hmj c d hcd)
     have hR := ker_of_hw hw2 (jX c) (jX d) (hmj c d hcd)
-    rw [rightOffDiagonalActionFormula p q r s _ _ hne, rightRootOperator_eq_signedPolarization _ _ hne (hs2 c d) P,
+    rw [PI.WFJM.rightOffDiagonalActionFormula p q r s _ _ hne, rightRootOperator_eq_signedPolarization _ _ hne (hs2 c d) P,
       gR_pos_block _ _ _ iX hi P (fun a ha => ucol c a ha) (fun a ha => ucol d a ha) (fun i => hlp i c)] at hR
     rw [bCol_apply']
     exact hR
@@ -275,7 +275,7 @@ theorem blkHyp_neg (hM : MinHyp p q r s μ μ' P) {m n : ℕ} (iX : Fin m → Ix
     exact ha (hrow k a hf hneg)
   have rowv : ∀ e ∈ P.support, ∀ i, -nu1 p q r s μ (iX i) = ((∑ k, e ((iX i, jX k) : Ln p q r s) : ℕ) : ℚ) := by
     intro e he i
-    rw [← monomialLeftWeight_eq_weight_sub leftDiagonalActionFormula hw1 e he (iX i)]
+    rw [← monomialLeftWeight_eq_weight_sub PI.WFJM.leftDiagonalActionFormula hw1 e he (iX i)]
     have h := sw_neg_block e (fun c : Ix r s => ((iX i, c) : Ln p q r s)) (fun c => linePos ((iX i, c) : Ln p q r s))
       jX hj (fun c hc => urow i c hc e he) (fun k => hlp i k)
     rw [show wt1 e (iX i) = sw e (fun c : Ix r s => ((iX i, c) : Ln p q r s))
@@ -283,7 +283,7 @@ theorem blkHyp_neg (hM : MinHyp p q r s μ μ' P) {m n : ℕ} (iX : Fin m → Ix
     push_cast; ring
   have colv : ∀ e ∈ P.support, ∀ k, -nu2 p q r s μ' (jX k) = ((∑ i, e ((iX i, jX k) : Ln p q r s) : ℕ) : ℚ) := by
     intro e he k
-    rw [← monomialRightWeight_eq_weight_sub rightDiagonalActionFormula hw2 e he (jX k)]
+    rw [← monomialRightWeight_eq_weight_sub PI.WFJM.rightDiagonalActionFormula hw2 e he (jX k)]
     have h := sw_neg_block e (fun a : Ix p q => ((a, jX k) : Ln p q r s)) (fun a => linePos ((a, jX k) : Ln p q r s))
       iX hi (fun a ha => ucol k a ha e he) (fun i => hlp i k)
     rw [show wt2 e (jX k) = sw e (fun a : Ix p q => ((a, jX k) : Ln p q r s))
@@ -293,14 +293,14 @@ theorem blkHyp_neg (hM : MinHyp p q r s μ μ' P) {m n : ℕ} (iX : Fin m → Ix
   refine ⟨fun a b hab => ?_, fun c d hcd => ?_, fun e he => ⟨fun i => ?_, fun k => ?_⟩, fun i => ?_, fun k => ?_⟩
   · have hne := ne_of_posC (hmi a b hab)
     have hR := ker_of_hw hw1 (iX b) (iX a) (hmi a b hab)
-    rw [leftOffDiagonalActionFormula p q r s _ _ hne, leftRootOperator_eq_signedPolarization _ _ hne (hs1 b a) P,
+    rw [PI.WFJM.leftOffDiagonalActionFormula p q r s _ _ hne, leftRootOperator_eq_signedPolarization _ _ hne (hs1 b a) P,
       gR_neg_block _ _ _ jX hj P (fun c hc => urow b c hc) (fun c hc => urow a c hc) (fun k => hlp b k),
       neg_eq_zero] at hR
     rw [bRow_apply']
     exact hR
   · have hne := ne_of_posC (hmj c d hcd)
     have hR := ker_of_hw hw2 (jX d) (jX c) (hmj c d hcd)
-    rw [rightOffDiagonalActionFormula p q r s _ _ hne, rightRootOperator_eq_signedPolarization _ _ hne (hs2 d c) P,
+    rw [PI.WFJM.rightOffDiagonalActionFormula p q r s _ _ hne, rightRootOperator_eq_signedPolarization _ _ hne (hs2 d c) P,
       gR_neg_block _ _ _ iX hi P (fun a ha => ucol d a ha) (fun a ha => ucol c a ha) (fun i => hlp i d),
       neg_eq_zero] at hR
     rw [bCol_apply']
@@ -354,7 +354,7 @@ theorem neg_of_sign {x : ℚ} {b : Bool} (hb : b = false) (h0 : x ≠ 0) (h : b 
 
 theorem segs_of {p q r s : ℕ} {μ : Ix p q → ℚ} {μ' : Ix r s → ℚ} {P : Pol p q r s}
     (hM : MinHyp p q r s μ μ' P) : SegFacts p q r s μ μ' :=
-  segJ_of leftDiagonalActionFormula rightDiagonalActionFormula leftOffDiagonalActionFormula rightOffDiagonalActionFormula p q r s μ μ' P hM
+  segJ_of PI.WFJM.leftDiagonalActionFormula PI.WFJM.rightDiagonalActionFormula PI.WFJM.leftOffDiagonalActionFormula PI.WFJM.rightOffDiagonalActionFormula p q r s μ μ' P hM
 
 theorem hypothesis_first_cover : HypA := by
   intro p q r s μ μ' P hM
@@ -490,8 +490,8 @@ theorem intFacts_of {p q r s : ℕ} {μ : Ix p q → ℚ} {μ' : Ix r s → ℚ}
     (hM : MinHyp p q r s μ μ' P) : IntFacts p q r s μ μ' := by
   obtain ⟨e0, he0⟩ := exists_mem_support hM.2.1
   refine ⟨fun a => ?_, fun c => ?_⟩
-  · rw [← monomialLeftWeight_eq_weight_sub leftDiagonalActionFormula (mem_leftHighestWeight_of_isMinimalJointVector hM) e0 he0 a, Int.floor_intCast]
-  · rw [← monomialRightWeight_eq_weight_sub rightDiagonalActionFormula (mem_rightHighestWeight_of_isMinimalJointVector hM) e0 he0 c, Int.floor_intCast]
+  · rw [← monomialLeftWeight_eq_weight_sub PI.WFJM.leftDiagonalActionFormula (mem_leftHighestWeight_of_isMinimalJointVector hM) e0 he0 a, Int.floor_intCast]
+  · rw [← monomialRightWeight_eq_weight_sub PI.WFJM.rightDiagonalActionFormula (mem_rightHighestWeight_of_isMinimalJointVector hM) e0 he0 c, Int.floor_intCast]
 
 end PI.FJMS
 end -- clump:auto
@@ -1496,8 +1496,8 @@ theorem rankLe_of_cauchy (hC : CauchyHW) : RankLe := by
     exact ⟨c, by rw [hc, C_mul']⟩
 
 theorem fockJointMult_of_cauchy (hC : CauchyHW) : PI.FockDegreeTwoParts.JointMult := jointMult_of
-    (exist_of PI.FJMD.shapeVector_ne_zero (PI.FJMD.vecJ_of jointHarmonicsIffLaplacians) (PI.FJMX.vecHW1_of leftDiagonalActionFormula leftOffDiagonalActionFormula)
-      (PI.FJMX.vecHW2_of rightDiagonalActionFormula rightOffDiagonalActionFormula))
+    (exist_of PI.FJMD.shapeVector_ne_zero (PI.FJMD.vecJ_of PI.WFJM.jointHarmonicsIffLaplacians) (PI.FJMX.vecHW1_of PI.WFJM.leftDiagonalActionFormula PI.WFJM.leftOffDiagonalActionFormula)
+      (PI.FJMX.vecHW2_of PI.WFJM.rightDiagonalActionFormula PI.WFJM.rightOffDiagonalActionFormula))
     (shapeOf_of_cauchy hC) (rankLe_of_cauchy hC)
 
 end PI.FJM

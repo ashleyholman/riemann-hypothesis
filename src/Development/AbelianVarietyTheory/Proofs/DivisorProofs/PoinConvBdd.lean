@@ -150,7 +150,7 @@ theorem locD (X : Data E r) (x0 : Frame X.Ψ r) (la : Wt X.Ψ r) (W : Frame X.Ψ
     simp only [rmul, mat, Matrix.mul_apply, Matrix.of_apply]
     fun_prop
   obtain ⟨ε1, hε1, h1⟩ := Metric.continuousAt_iff.1 hcont.continuousAt ε hε
-  obtain ⟨ε2, hε2, h2⟩ := Metric.isOpen_iff.1 (isOpenDom X) x hx
+  obtain ⟨ε2, hε2, h2⟩ := Metric.isOpen_iff.1 (ReciprocityTheory.ChartRestriction.G.FD.FourierCoefficientDomain.isOpen_dom X) x hx
   set x1 := rmul x b0 with hx1def
   set I : X.Γ → ℝ≥0∞ := fun γ => ∫⁻ w in Bset X x1 ρ0,
     ‖P (lact γ.1 (cpt X x1 w))‖ₑ ^ 2 * W (lact γ.1 (cpt X x1 w)) with hIdef
@@ -225,7 +225,7 @@ theorem GlobalTheory.PoinSumBound.poin_conv_bdd : ∀ (E : Type) [Field E] [Numb
     exact Summable.of_nonneg_of_le (fun _ => norm_nonneg _)
       (fun γ => (hterm γ x).le.trans (hub γ x (Metric.mem_ball_self hε))) hu
   · unfold poin
-    refine PoinPf.differentiableOn_tsum_loc (PoinPf.isOpenDom X) _ (fun γ => ?_) (fun x hx => ?_)
+    refine PoinPf.differentiableOn_tsum_loc (ReciprocityTheory.ChartRestriction.G.FD.FourierCoefficientDomain.isOpen_dom X) _ (fun γ => ?_) (fun x hx => ?_)
     · exact (differentiableOn_const _).mul
         (hP.1.comp (PoinPf.differentiable_lact γ.1).differentiableOn fun y hy => lactDom X γ.2 hy)
     · obtain ⟨ε, hε, u, hu, hub⟩ := GlobalTheory.PoinSumBound.locD X x0 la W bb F P H x hx

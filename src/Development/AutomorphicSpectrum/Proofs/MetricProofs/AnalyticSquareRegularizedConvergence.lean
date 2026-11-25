@@ -101,7 +101,7 @@ theorem unifIntSigned (hU : UnifIntStatement) {e : ℕ} {X : Type} [TopologicalS
     have hz : ∀ i : Fin e, IsSingWeight A L s (LocPot.ofFun 0) 0 |C₅| ∧
         IsRegFamily A Θ L s (LocPot.ofFun 0) 0 (fun _ => 0) |C| (min t₀ (Real.exp (-Real.exp 1))) ∧
         IsRegFamilyC2 A s 0 (fun _ => 0) := fun i =>
-      zero_member A Θ L s |C₅| |C| _ hΘ hΘp hs (abs_nonneg _) (abs_nonneg _)
+      GlobalTheory.CompanionTheory.Ar.Giv.zeroMember_isRegFamily A Θ L s |C₅| |C| _ hΘ hΘp hs (abs_nonneg _) (abs_nonneg _)
         (lt_min (hRF i).1 (Real.exp_pos _)) (min_le_right _ _)
     refine ⟨fun i => ?_, fun i => ?_, fun i => ?_⟩ <;> by_cases hi : i ∈ T <;>
       simp only [hi, ↓reduceIte]
@@ -131,9 +131,9 @@ theorem unifIntSigned (hU : UnifIntStatement) {e : ℕ} {X : Type} [TopologicalS
   have hlimT := fun T : Finset (Fin e) => _root_.GlobalTheory.CompanionTheory.Ar.Giv.mInt_eq_integral_maMeasure_off_null A U
     (fun i => if i ∈ T then th i else LocPot.ofFun 0) (fun i => if i ∈ T then ph i else 0) Θ hUo hnull
     (fun i => ((hmem T).1 i).1) hΘ hΘpsh (fun i => smoothOn_mono A hUs ((hmem T).1 i).2.1)
-    (fun i => isPshOn_add_psh A _ _ _ Θ hUo ((hmem T).1 i).1 hΘ (smoothOn_mono A hUs ((hmem T).1 i).2.1)
+    (fun i => GlobalTheory.CompanionTheory.Ar.PshAdd.isPshOn_add_psh A _ _ _ Θ hUo ((hmem T).1 i).1 hΘ (smoothOn_mono A hUs ((hmem T).1 i).2.1)
       (isPshOn_mono A hUs ((hmem T).1 i).2.2.1) hΘpsh) g hgc (hconv T).1
-  have hexpL := expand_mInt A U th ph Θ g hUo hnull (fun i => (hSW i).1) hΘ
+  have hexpL := GlobalTheory.CompanionTheory.Metric.ExpandMInt.expand_mInt A U th ph Θ g hUo hnull (fun i => (hSW i).1) hΘ
     (fun i => smoothOn_mono A hUs (hSW i).2.1) (fun T => (hlimT T).1)
   have hev : ∀ᶠ t in 𝓝[>] (0 : ℝ), (∀ i, A.Smooth (phT i t)) ∧
       ∀ T : Finset (Fin e), (∀ i, A.Smooth (if i ∈ T then phT i t else 0) ∧
@@ -142,10 +142,10 @@ theorem unifIntSigned (hU : UnifIntStatement) {e : ℕ} {X : Type} [TopologicalS
         Integrable g (maMeasure A (fun i => (if i ∈ T then th i else LocPot.ofFun 0) +
           LocPot.ofFun (if i ∈ T then phT i t else 0) + Θ)) := by
     refine (eventually_all.2 fun i => ?_).and (eventually_all.2 fun T => ?_)
-    · exact (eventually_isPsh A Θ L s (th i) (ph i) (phT i) C t₀ hΘ hΘp (hSW i).1 (hRF i)).mono
+    · exact (GlobalTheory.CompanionTheory.Ar.Giv.EvPsh.eventually_isPsh_add_pot A Θ L s (th i) (ph i) (phT i) C t₀ hΘ hΘp (hSW i).1 (hRF i)).mono
         fun t ht => ht.1
     · refine (eventually_all.2 fun i => ?_).and (hconv T).2.1
-      exact eventually_isPsh A Θ L s _ _ _ _ _ hΘ hΘp ((hmem T).1 i).1 ((hmem T).2.1 i)
+      exact GlobalTheory.CompanionTheory.Ar.Giv.EvPsh.eventually_isPsh_add_pot A Θ L s _ _ _ _ _ hΘ hΘp ((hmem T).1 i).1 ((hmem T).2.1 i)
   have hreg : ∀ᶠ t in 𝓝[>] (0 : ℝ), MIntegrable A (fun i => th i + LocPot.ofFun (phT i t)) g ∧
       ∑ T : Finset (Fin e), (-1 : ℝ) ^ (e - T.card) *
         ∫ y, g y ∂maMeasure A (fun i => (if i ∈ T then th i else LocPot.ofFun 0) +
@@ -156,7 +156,7 @@ theorem unifIntSigned (hU : UnifIntStatement) {e : ℕ} {X : Type} [TopologicalS
       (fun i => if i ∈ T then th i else LocPot.ofFun 0) (fun i => if i ∈ T then phT i t else 0) Θ hUo hnull
       (fun i => ((hmem T).1 i).1) hΘ hΘpsh (fun i => smoothOn_of_smooth A _ _ ((ht.2 T).1 i).1)
       (fun i => isPshOn_of_isPsh A _ _ ((ht.2 T).1 i).2) g hgc (ht.2 T).2
-    have hx := expand_mInt A U th (fun i => phT i t) Θ g hUo hnull (fun i => (hSW i).1) hΘ
+    have hx := GlobalTheory.CompanionTheory.Metric.ExpandMInt.expand_mInt A U th (fun i => phT i t) Θ g hUo hnull (fun i => (hSW i).1) hΘ
       (fun i => smoothOn_of_smooth A _ _ (ht.1 i)) (fun T => (hmt T).1)
     refine ⟨hx.1, ?_⟩
     rw [hx.2]

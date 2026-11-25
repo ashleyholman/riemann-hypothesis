@@ -166,8 +166,6 @@ noncomputable section
 namespace GlobalTheory.CompanionTheory.Ar.BT.Tan
 open CategoryTheory Limits AlgebraicGeometry MonoidalCategory CartesianMonoidalCategory MonObj GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.LieEx
 
-alias one_left_eq := _root_.ReciprocityTheory.ChartRestriction.G.Chart.one_left'
-
 section Rel
 variable {R : Type} [CommRing R] [IsDomain R] {T : Type} [CommGroup T] (Γ : QFGroup R T)
   {S : Scheme.{0}} {G : Over S} [GrpObj G] {x : Spec (CommRingCat.of R) ⟶ S} {N : ℕ} {i : Γ.G.left ⟶ G.left}
@@ -191,13 +189,13 @@ theorem unit_i (ht : Γ.IsTorsionAlong G x N i) (Y : Over (Spec (CommRingCat.of 
 
 theorem unit_i' (ht : Γ.IsTorsionAlong G x N i) : η[Γ.G].left ≫ i = x ≫ η[G].left := by
   have h := unit_i Γ ht (Over.mk (𝟙 _))
-  rw [one_left_eq, one_left_eq] at h
+  rw [GlobalTheory.CompanionTheory.Ar.ChartDer.one_left, GlobalTheory.CompanionTheory.Ar.ChartDer.one_left] at h
   simpa using h
 
 theorem unit_j (hj : Γ.IsEmb (Γ.btOrder ⊤) j) :
     η[Γ.G].left ≫ j = Spec.map (CommRingCat.ofHom (ev1 Γ).toRingHom) := by
   have h1 : (Γ.pt 1).left = (genPt R).hom ≫ η[Γ.G].left := by
-    rw [map_one, one_left_eq]
+    rw [map_one, GlobalTheory.CompanionTheory.Ar.ChartDer.one_left]
   have h2 := hj.pt 1
   rw [h1, Category.assoc] at h2
   let ρ := Spec.preimage (η[Γ.G].left ≫ j)
@@ -251,14 +249,14 @@ theorem fst_comp_eq_unit (ht : Γ.IsTorsionAlong G x N i) {y : Spec (CommRingCat
   have := ht.inj (Over.mk (𝟙 _)) (Over.homMk (a ≫ y) (by
       change (a ≫ y) ≫ Γ.G.hom = 𝟙 _
       rw [Category.assoc, y1, ha])) 1 (by
-    rw [one_left_eq]
+    rw [GlobalTheory.CompanionTheory.Ar.ChartDer.one_left]
     simp only [Over.homMk_left, Over.mk_hom, Category.id_comp, Category.assoc]
     rw [unit_i' Γ ht, y3]
     have := congrArg Over.Hom.left h1
-    rw [one_left_eq, Over.comp_left] at this
+    rw [GlobalTheory.CompanionTheory.Ar.ChartDer.one_left, Over.comp_left] at this
     exact this)
   have h := congrArg Over.Hom.left this
-  rw [one_left_eq] at h
+  rw [GlobalTheory.CompanionTheory.Ar.ChartDer.one_left] at h
   simpa [a] using h
 
 theorem mem_of_fst_comp (U : Γ.G.left.Opens) {y : Spec (CommRingCat.of (TrivSqZeroExt R V)) ⟶ Γ.G.left}
@@ -309,7 +307,7 @@ theorem rel_exists_open (U : Γ.G.left.Opens) (ht : Γ.IsTorsionAlong G x N i) (
       change Spec.map (CommRingCat.ofHom (TrivSqZeroExt.fstHom R R V).toRingHom) ≫ y' ≫ U.ι = _
       rw [← Category.assoc, e0, hl]
     apply Over.OverMorphism.ext
-    rw [one_left_eq, Over.comp_left]
+    rw [GlobalTheory.CompanionTheory.Ar.ChartDer.one_left, Over.comp_left]
     change (zsec x : Over.mk x ⟶ ob x V).left ≫ y ≫ i = x ≫ _
     rw [← Category.assoc, e1, unit_i' Γ ht]
   · exact (ht.kernel (Over.mk (Spec.map (CommRingCat.ofHom (algebraMap R (TrivSqZeroExt R V))))) v).2

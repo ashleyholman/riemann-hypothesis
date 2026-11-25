@@ -327,8 +327,8 @@ theorem locglob : ∀ (D : D7) (Z : LocDat D) (p : PlF D), (Z.M p).split ≠ non
       refine add_mem ?_ (IotaBP.smul_gS_mem Z p F F' (Formalism.L2.SG.Pf.LocalDenominators.smul_mem_localLattice Z p ho hyp))
       rw [he]
       refine add_mem (add_mem (smulLat_le Z p g hs Λ F F' hA) ?_) ?_
-      · exact IotaBP.localLattice_mono Z p (le_sup_right.trans le_sup_left) (mem_latP_XLam Z p hΛ.fg F hB hBX)
-      · exact IotaBP.localLattice_mono Z p le_sup_right (mem_latP_XLam Z p hΛ.fg F' hC hCX)
+      · exact Formalism.L2.SG.Pf.BBTie.latP_mono Z p (le_sup_right.trans le_sup_left) (mem_latP_XLam Z p hΛ.fg F hB hBX)
+      · exact Formalism.L2.SG.Pf.BBTie.latP_mono Z p le_sup_right (mem_latP_XLam Z p hΛ.fg F' hC hCX)
     · obtain ⟨o', ho', hao'⟩ := hoth p' hp
       have e : baseChange₂ D p' (a • y) = (D.s.atP p').ιE ((gS D : ℕ) : D.host.E) • (o' • baseChange₂ D p' y) := by
         rw [bcP_osmul, smul_smul, ← hao']

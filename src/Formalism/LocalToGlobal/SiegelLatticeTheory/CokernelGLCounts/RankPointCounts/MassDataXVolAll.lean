@@ -16,7 +16,7 @@ theorem massDataVolAll_of (hSW : PI.VolStabS.MassDataS.SWXS) :
   intro D T u u' X0 sd C Th Q i0 i0' νq
   refine ⟨PI.VolStabS.MassDataS.inVolumesAt_of_SWS hSW _ _ _ _ _ _ _ _ _ _, ?_, ?_, ?_, ?_⟩
   · first
-      | apply level_s_at_instance
+      | apply MassDataLevelSSteps.inLevelSAt_holds
   · apply inMassesAt_holds
   · apply inColumnsAt_holds
   · apply _root_.local_indices_at_instance

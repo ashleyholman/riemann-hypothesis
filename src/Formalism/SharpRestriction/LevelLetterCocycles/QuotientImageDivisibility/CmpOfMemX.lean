@@ -37,8 +37,6 @@ theorem cc_Q (hs : W.s = 1) (i : ZMod n) :
     PowerSeries.constantCoeff (W.Q i) = (PD.p : O) := by
   rw [Q_eq_q W hs]; exact Formalism.MainNotions.UnusedSlot80.ArcF.constantCoeff_q_zero_eq_p W
 
-alias p_ne_zero_O := _root_.Formalism.MainNotions.LiftingTheory.tr_p_ne
-
 theorem osmul_comm (a : LetA O n) (o : O) (x : W.DD T) : a • o • x = o • a • x := by
   rw [← algebraMap_smul (LetA O n) o x, ← algebraMap_smul (LetA O n) o (a • x), smul_smul,
     smul_smul, mul_comm]
@@ -66,14 +64,14 @@ theorem qp_unit [IsDomain O] (hs : W.s = 1) (hR : Formalism.MainNotions.UnusedSl
     have hw1 : PowerSeries.constantCoeff ((w : LetA O n) i) = 1 := by
       have h2 : (1 : O) * (PD.p : O) = PowerSeries.constantCoeff ((w : LetA O n) i) * (PD.p : O) := by
         rw [one_mul]; exact h1
-      exact (mul_right_cancel₀ (p_ne_zero_O W) h2).symm
+      exact (mul_right_cancel₀ (Formalism.MainNotions.LiftingTheory.tr_p_ne W) h2).symm
     have h3 := congrArg (fun z : LetA O n => PowerSeries.constantCoeff (z i)) (Units.inv_mul w)
     simp only [Pi.mul_apply, map_mul, hw1, mul_one, Pi.one_apply, map_one] at h3
     exact h3
 
 theorem letter_phi (c : ZMod n) {x : W.DD T} (hxi : (letE (c - 1) : LetA O n) • x = x) :
     (letE c : LetA O n) • W.φD T x = W.φD T x := by
-  have e := Formalism.MainNotions.UnusedSlot80.Relay2.φpow_smul W T 1 (letE (c - 1)) x
+  have e := Formalism.MainNotions.UnusedSlot80.SatPW.φD_pow_smulA W T 1 (letE (c - 1)) x
   rw [Formalism.MainNotions.UnusedSlot80.SatPW.φA_pow_letE W (c - 1) 1, hxi] at e
   simp only [pow_one, Nat.cast_one, sub_add_cancel] at e
   exact e.symm

@@ -34,11 +34,6 @@ theorem isMultiHomog_blockForms (k₀ : K) (M : Matrix (Ix κ) (ι k₀) ℤ) (q
     simp [blockDeg, Finsupp.single_apply]
   · simp [blockDeg, hk, Sigma.ext_iff]
 
-theorem sub_mem_mCoordIdeal {Ω : Type} [Field Ω] {y : (Σ k, ι k) → Ω} {k₀ : K} {M : Matrix (Ix κ) (ι k₀) ℤ}
-    {N : Matrix (ι k₀) (Ix κ) ℤ} {x : Ix κ → Ω} (h : IsBlockImage y k₀ M N x) (i : ι k₀) :
-    X ⟨k₀, i⟩ - ∑ j, C (N i j) * blockForms k₀ M j ∈ mCoordIdeal y := by
-  apply GroundTheory.Heights₂.Heights.HilbertSamuel.BlockGraphFibreRatio.sub_mem_mCoordIdeal <;> assumption
-
 theorem isBasePtFree_blockForms {Ω : Type} [Field Ω] {y : (Σ k, ι k) → Ω} {k₀ : K} {M : Matrix (Ix κ) (ι k₀) ℤ}
     {N : Matrix (ι k₀) (Ix κ) ℤ} {x : Ix κ → Ω} (h : IsBlockImage y k₀ M N x) :
     IsBasePtFree (mCoordIdeal y) (blockForms k₀ M) := by
@@ -51,7 +46,7 @@ theorem isBasePtFree_blockForms {Ω : Type} [Field Ω] {y : (Σ k, ι k) → Ω}
     refine Ideal.sum_mem _ fun j _ => Ideal.mul_mem_left _ _ (Ideal.subset_span ⟨j.2, ?_⟩)
     cases k₂
     rfl
-  have := Ideal.add_mem _ (Ideal.mem_sup_left (sub_mem_mCoordIdeal h (i k₀))) (Ideal.mem_sup_right hspan)
+  have := Ideal.add_mem _ (Ideal.mem_sup_left (GroundTheory.Heights₂.Heights.HilbertSamuel.BlockGraphFibreRatio.sub_mem_mCoordIdeal h (i k₀))) (Ideal.mem_sup_right hspan)
   rwa [sub_add_cancel] at this
 
 theorem isSmoothHerm_ofCone {m : ConeMetric ℂ (Ix κ)} (hm : IsSmoothMetric m) :

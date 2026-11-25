@@ -514,7 +514,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-alias level_s_at_instance := _root_.MassDataLevelSSteps.inLevelSAt_holds
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Formalism.PeriodIntegrals.OrbitalBoundsConclusion.MassDataLevelS =====

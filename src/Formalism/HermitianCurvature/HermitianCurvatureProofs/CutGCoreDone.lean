@@ -737,12 +737,6 @@ noncomputable section
 
 open Formalism.FourierDecayAlt.P.CutMP.Gauge
 
-private theorem hsVec_finset_sum_smul {Wp Wq : Type} [NormedAddCommGroup Wp] [InnerProductSpace ℂ Wp]
-    [NormedAddCommGroup Wq] [InnerProductSpace ℂ Wq] [FiniteDimensional ℂ Wq] {ι : Type} [Fintype ι]
-    (c : ι → ℂ) (A : ι → Wq →L[ℂ] Wp) : B.hsVec (∑ i, c i • A i) = ∑ i, c i • B.hsVec (A i) := by
-  ext j
-  simp [B.hsVec]
-
 private theorem hsVec_injective_apply {Wp Wq : Type} [NormedAddCommGroup Wp] [InnerProductSpace ℂ Wp]
     [NormedAddCommGroup Wq] [InnerProductSpace ℂ Wq] [FiniteDimensional ℂ Wq] (A C : Wq →L[ℂ] Wp)
     (h : B.hsVec A = B.hsVec C) : A = C := by
@@ -798,7 +792,7 @@ theorem radial_constant_of_point_and_line (hPt : GTKPt) (hLine : GTKLine) : GTRC
   have hspan1 : ∀ Y ∈ NF.Fib P.k P.r Bs.z Bs.z' Bs.μsec Bs.π Bs.π' ζ0,
       B.hsVec Y ∈ Submodule.span ℂ (Set.range (fun σ => B.hsVec (e1 σ ζ0))) := by
     intro Y hY
-    rw [(he1F.2 ζ0 hζ0).2.2 Y hY, hsVec_finset_sum_smul]
+    rw [(he1F.2 ζ0 hζ0).2.2 Y hY, Formalism.FourierDecayAlt.P.CutMP.En.hsVec_sum_smul]
     exact Submodule.sum_mem _ (fun i _ => Submodule.smul_mem _ _ (Submodule.subset_span ⟨i, rfl⟩))
   have hle : Submodule.span ℂ (Set.range (fun σ => B.hsVec (E σ))) ≤
       Submodule.span ℂ (Set.range (fun σ => B.hsVec (e1 σ ζ0))) := by
@@ -817,7 +811,7 @@ theorem radial_constant_of_point_and_line (hPt : GTKPt) (hLine : GTKLine) : GTRC
       rw [← hc]
       exact hv.inner_right_fintype c σ
     apply hsVec_injective_apply
-    rw [hsVec_finset_sum_smul]
+    rw [Formalism.FourierDecayAlt.P.CutMP.En.hsVec_sum_smul]
     simp only [hcoef]
     exact hc.symm
   refine ⟨fun ρ _ => E ρ, ⟨fun ρ => contDiffOn_const, fun ζ hζ =>
@@ -1572,9 +1566,6 @@ theorem pt_poly (hQ : QTop) {k r : ℕ} {V : Type} [NormedAddCommGroup V] [Norme
     rw [e0, map_zero, add_zero, LinearMap.sum_apply, Submodule.coe_sum, Finset.sum_apply]
     exact Finset.sum_congr rfl fun b _ => (OperatorRepresentations.rep_EV (E := V) hD b b).mkV hD hf hg
 
-theorem mdim_last (k r : ℕ) : mdim k r (Fin.last r) = k + 1 := by
-  simp [Q.mdim]
-
 theorem gTRTopAct_of_cut (hQ : QTop) : GTRTopAct := by
   intro Wp Wq _ _ _ _ _ _ P z z' π π' hpl hk X
   obtain ⟨W, hW⟩ := vdm_inv (P.k + 2)
@@ -1598,8 +1589,8 @@ theorem gTRTopAct_of_cut (hQ : QTop) : GTRTopAct := by
       exact hF.comp hc.contDiffOn (fun g hg => hg)
     have hg : x.2 ∈ Glev P.k P.r (Fin.last P.r) ∩ D := ⟨hx.2.1, by simpa [hDdef] using hxU⟩
     obtain ⟨a, ha, htop⟩ := pt_poly hQ D hD _ hf hg
-    have hm : mdim P.k P.r (Fin.last P.r) + 1 = P.k + 2 := by rw [mdim_last]
-    have hm1 : mdim P.k P.r (Fin.last P.r) - 1 = P.k := by rw [mdim_last]; rfl
+    have hm : mdim P.k P.r (Fin.last P.r) + 1 = P.k + 2 := by rw [Formalism.FourierDecayAlt.P.NFx3.mdim_last]
+    have hm1 : mdim P.k P.r (Fin.last P.r) - 1 = P.k := by rw [Formalism.FourierDecayAlt.P.NFx3.mdim_last]; rfl
     refine ⟨a, fun Y => ?_, ?_⟩
     · rw [X.t_apply Y 0 0 Φ x hx, ← hm]
       exact ha Y

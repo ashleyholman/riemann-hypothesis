@@ -347,11 +347,6 @@ namespace GlobalTheory.CompanionTheory.WordProd
 
 variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
 
-theorem col_equiv (a : IrrGL (k := k)) {α : Type} [Fintype α] [LinearOrder α] (b : α → ℕ) (i₀ : α)
-    (hb : b i₀ = a.1) (hb0 : ∀ i, i ≠ i₀ → b i = 0) (g : (Σ i, Fin (b i)) ≃ Fin a.1) :
-    Nonempty ((multiProd g fun i => (clOf a (b i)).rep.ρ).Equiv a.rep) :=
-  _root_.GlobalTheory.CompanionTheory.WordProd.OneBlockProd.multiProd_clOf_single a b i₀ hb hb0 g
-
 
 theorem jm_congr' {h N : ℕ} {x x' : Fin h → IrrGL (k := k)} (e : x = x') (hd : ∑ a, (x a).1 = N)
     (hd' : ∑ a, (x' a).1 = N) {V : Type} [AddCommGroup V] [Module ℂ V] (π : Representation ℂ (GL (Fin N) k) V) :
@@ -456,7 +451,7 @@ theorem wd_prod₂_of_interleave_fin (hA : GlobalTheory.Published.IrreducibleAdm
       jhMult τ (piTensor fun j => multiProd (g j) fun i => (s₀ i j).rep.ρ) ≠ 0 := by
     intro g
     have hcol : ∀ j, Nonempty ((multiProd (g j) fun i => (s₀ i j).rep.ρ).Equiv (w.get j).rep) := fun j =>
-      col_equiv (w.get j) (fun i => b₀.1 i j) (r j) (by simp [b₀]) (fun i hi => by simp [b₀, Ne.symm hi])
+      GlobalTheory.CompanionTheory.WordProd.OneBlockProd.multiProd_clOf_single (w.get j) (fun i => b₀.1 i j) (r j) (by simp [b₀]) (fun i hi => by simp [b₀, Ne.symm hi])
         (g j)
     rw [jhMult_congr_right τ (piTensorEquiv fun j => (hcol j).some), jhMult_self hτ]
     exact one_ne_zero

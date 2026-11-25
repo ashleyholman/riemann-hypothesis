@@ -14,7 +14,7 @@ theorem resBridge : ResBridgeStatement := by
   haveI := R.compact
   haveI := R.t2
 
-  have key := pushForward_null R.A (fun j => potOf R (L j))
+  have key := ReciprocityTheory.ChartRestriction.G.Geo.pushForward_null' R.A (fun j => potOf R (L j))
     (fun j => potOf_isPotential R (L j) (hL j)) (brQ R Ψ) (brBad R Ψ)
     (brBad_null R Ψ hP hΨ)
     (fun x hx j hj => by

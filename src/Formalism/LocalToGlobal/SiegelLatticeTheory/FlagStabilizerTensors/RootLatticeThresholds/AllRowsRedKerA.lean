@@ -255,8 +255,6 @@ theorem hhat_sub_left (y y' z : Fin I.n → I.E ⊗[I.F] Af I.F) : hhat I (y - y
   unfold hhat
   exact hform_sub_left _ _ y y' z
 
-alias hhat_fmat := _root_.PIW.AdelClassFin.dictTop_hhat_unit
-
 theorem hhat_Lq {w : HeightOneSpectrum (𝓞 I.E)} {t β : 𝓞 I.E}
     (hβ : ∀ a ∈ (wc I w).asIdeal, ∃ g, β * a = t * g) {u : Fin I.n → I.E ⊗[I.F] Af I.F} (hu : u ∈ Lq I w)
     {v : Fin I.n → I.E ⊗[I.F] Af I.F} (hv : v ∈ I.Lf) :
@@ -352,7 +350,7 @@ theorem stepB {w : HeightOneSpectrum (𝓞 I.E)} {x : I.Gf} (hx : x ∈ I.Kset)
     have e1 : hhat I u (I.fmat x *ᵥ y) = hhat I (I.fmat x⁻¹ *ᵥ u) y := by
       conv_lhs => rw [show u = I.fmat x *ᵥ (I.fmat x⁻¹ *ᵥ u) by
         rw [Matrix.mulVec_mulVec, DictGen.fmat_mul_inv, Matrix.one_mulVec]]
-      exact hhat_fmat I x _ _
+      exact PIW.AdelClassFin.dictTop_hhat_unit I x _ _
     rw [hz_def, Matrix.sub_mulVec, Matrix.one_mulVec, hhat_sub_right, e1, Matrix.sub_mulVec, Matrix.one_mulVec,
       hhat_sub_left]
   have hmem : ∀ u ∈ I.Lf, (I.fmat x⁻¹ - 1) *ᵥ u ∈ Lq I w := by

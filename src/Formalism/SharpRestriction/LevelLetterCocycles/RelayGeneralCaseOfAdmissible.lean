@@ -27,9 +27,6 @@ variable {G : Type} [Group G] [TopologicalSpace G] {Qp K₀ K : Type} [Field Qp]
     {v : AddValuation LL (WithTop ℚ)} {n : ℕ} (W : LocWach PD LL O v n)
 
 open Formalism.MainNotions.UnusedSlot80.PhiPowers in
-alias φpow_smul := _root_.Formalism.MainNotions.UnusedSlot80.SatPW.φD_pow_smulA
-
-open Formalism.MainNotions.UnusedSlot80.PhiPowers in
 theorem γ_φpow (T : LocLat G Qp LL O) (g : W.Gam) (k : ℕ) (x : W.DD T) :
     W.γD T g (((W.φD T) ^ k) x) = ((W.φD T) ^ k) (W.γD T g x) := by
   induction k with
@@ -40,14 +37,12 @@ theorem γD_comm (T : LocLat G Qp LL O) (g h : W.Gam) (x : W.DD T) :
     W.γD T g (W.γD T h x) = W.γD T h (W.γD T g x) := by
   rw [← W.γD_mul, mul_comm, W.γD_mul]
 
-alias InNΔi_smul := _root_.Formalism.MainNotions.LiftingTheory.frame_smul_mem
-
 alias InNΔi_add := _root_.Formalism.MainNotions.LiftingTheory.frame_add_mem
 
 theorem InNΔi_osmul (T : LocLat G Qp LL O) (c : ZMod n) (o : O) {x : W.DD T}
     (hx : Formalism.MainNotions.LiftingTheory.InNΔi W T c x) : Formalism.MainNotions.LiftingTheory.InNΔi W T c (o • x) := by
   rw [← algebraMap_smul (LetA O n) o x]
-  exact InNΔi_smul W T c ((W.AΔ).algebraMap_mem o) hx
+  exact Formalism.MainNotions.LiftingTheory.frame_smul_mem W T c ((W.AΔ).algebraMap_mem o) hx
 
 theorem InNΔi_zero (T : LocLat G Qp LL O) (c : ZMod n) : Formalism.MainNotions.LiftingTheory.InNΔi W T c 0 :=
   ⟨(W.NΔ T).zero_mem, (W.Nl T c).zero_mem⟩
@@ -296,7 +291,7 @@ theorem phij_pi0pow (T : LocLat G Qp LL O) (c : ZMod n) (hπ : W.π₀ ∈ W.AΔ
     (j y M : ℕ) (hM : y ≤ (PD.p - 1) * M) {x : W.DD T} (hx : Formalism.MainNotions.LiftingTheory.InNΔi W T c x) :
     Formalism.MainNotions.ArcLiftingSetup.InFP W T c j (Formalism.MainNotions.LiftingTheory.JJ W j y M) (((W.φD T) ^ j) (W.π₀ ^ M • x)) := by
   obtain ⟨u, hu, -, -, -, hj⟩ := h2 j M
-  rw [φpow_smul, map_pow, hj]
+  rw [Formalism.MainNotions.UnusedSlot80.SatPW.φD_pow_smulA, map_pow, hj]
   have e : u * W.π₀ ^ M * ∏ k ∈ Finset.range j, Formalism.MainNotions.LiftingTheory.pk W k ^ ((PD.p - 1) * M) =
       Formalism.MainNotions.LiftingTheory.JJ W j y M * (u * ∏ k ∈ Finset.range j, Formalism.MainNotions.LiftingTheory.pk W k ^ ((PD.p - 1) * M - y)) := by
     rw [Formalism.MainNotions.LiftingTheory.JJ]
@@ -380,7 +375,7 @@ theorem formal_unique (T : LocLat G Qp LL O) (c : ZMod n)
       rw [sub_eq_zero] at h4
       have hyN : Formalism.MainNotions.LiftingTheory.InNΔi W T c y := by
         rw [hy, sub_eq_add_neg, ← neg_one_smul O x', ← lsmul_eq]
-        exact InNΔi_add W T c (InNΔi_smul W T c (W.AΔ.pow_mem hπ _) (InNΔi_osmul W T c _ hz))
+        exact InNΔi_add W T c (Formalism.MainNotions.LiftingTheory.frame_smul_mem W T c (W.AΔ.pow_mem hπ _) (InNΔi_osmul W T c _ hz))
           (InNΔi_osmul W T c _ hx')
       refine ⟨k + (1 + padicValNat PD.p r), e • y, InNΔi_osmul W T c e hyN, ?_⟩
       rw [pow_add, mul_smul, smul_comm, hkx, ← lsmul_eq, smul_comm, ← he, mul_smul,
@@ -389,7 +384,7 @@ theorem formal_unique (T : LocLat G Qp LL O) (c : ZMod n)
   rcases Nat.eq_zero_or_pos R with h0 | hpos
   · subst h0
     obtain ⟨E', hE', rfl⟩ := hE
-    exact ⟨0, W.π₀ • E', InNΔi_smul W T c hπ hE', by simp⟩
+    exact ⟨0, W.π₀ • E', Formalism.MainNotions.LiftingTheory.frame_smul_mem W T c hπ hE', by simp⟩
   · exact key R hpos le_rfl
 
 theorem JJ_mem_PiPs (j y M : ℕ) : Formalism.MainNotions.LiftingTheory.JJ W j y M ∈ Formalism.MainNotions.ArcLiftingSetup.PiPs W := by
@@ -491,7 +486,7 @@ theorem lA_mem : Formalism.MainNotions.ArcLiftingSetup.lA W ∈ W.AΔ := W.AΔ.n
 
 theorem InNΔi_lsmul (T : LocLat G Qp LL O) (c : ZMod n) (k : ℕ) {x : W.DD T}
     (hx : Formalism.MainNotions.LiftingTheory.InNΔi W T c x) : Formalism.MainNotions.LiftingTheory.InNΔi W T c (Formalism.MainNotions.ArcLiftingSetup.lA W ^ k • x) :=
-  InNΔi_smul W T c (W.AΔ.pow_mem (lA_mem W) k) hx
+  Formalism.MainNotions.LiftingTheory.frame_smul_mem W T c (W.AΔ.pow_mem (lA_mem W) k) hx
 
 theorem InNΔi_sub (T : LocLat G Qp LL O) (c : ZMod n) {x y : W.DD T}
     (hx : Formalism.MainNotions.LiftingTheory.InNΔi W T c x) (hy : Formalism.MainNotions.LiftingTheory.InNΔi W T c y) :
@@ -688,7 +683,7 @@ theorem solOK_of_sol (T : LocLat G Qp LL O) (hinj : Function.Injective (algebraM
       rw [hy 0 (by omega) m, hc0]
       simp
     refine ⟨∑ r ∈ Finset.range M', W.π₀ ^ r • Formalism.MainNotions.LiftingTheory.vecB W T b (y (r + 1)),
-      InNΔi_sum W T c _ _ fun r _ => InNΔi_smul W T c (W.AΔ.pow_mem hπ _)
+      InNΔi_sum W T c _ _ fun r _ => Formalism.MainNotions.LiftingTheory.frame_smul_mem W T c (W.AΔ.pow_mem hπ _)
         (Formalism.MainNotions.LiftingTheory.frame_vecB_mem W T c b hb _), ?_⟩
     rw [Finset.sum_range_succ', hy0, Finset.smul_sum]
     have h0 : Formalism.MainNotions.LiftingTheory.vecB W T b 0 = 0 := by simp [Formalism.MainNotions.LiftingTheory.vecB]
@@ -900,7 +895,7 @@ theorem tau_exists [IsDomain O] (T : LocLat G Qp LL O) (hC : Ctx W T) (h9 : Form
     rw [hSdef, map_sum]
     refine Finset.sum_congr rfl fun r _ => ?_
 
-    rw [φpow_smul, map_pow, Formalism.MainNotions.LiftingTheory.vecB, map_sum, Finset.smul_sum]
+    rw [Formalism.MainNotions.UnusedSlot80.SatPW.φD_pow_smulA, map_pow, Formalism.MainNotions.LiftingTheory.vecB, map_sum, Finset.smul_sum]
     refine Finset.sum_congr rfl fun m _ => ?_
     rw [map_smul, ← algebraMap_smul (LetA O n) (y r m), smul_smul]
   have key : Formalism.MainNotions.ArcLiftingSetup.lA W ^ 0 • (Formalism.MainNotions.ArcLiftingSetup.lA W ^ κ • τ - Formalism.MainNotions.ArcLiftingSetup.lA W ^ σ • ((W.φD T) ^ A.j) S) =
@@ -988,7 +983,7 @@ theorem InFNc_γ (T : LocLat G Qp LL O) (hC : Ctx W T) (i : ZMod n) (r : ℕ) {x
   obtain ⟨y, hy, hyc, rfl⟩ := hx
   obtain ⟨y', hy', e⟩ := hC.H1 i r y (InNΔi_of W T i hy hyc)
   have hz : Formalism.MainNotions.LiftingTheory.InNΔi W T i ((Formalism.MainNotions.LiftingTheory.u₁ W ^ r - 1) • y + W.π₀ • y') :=
-    InNΔi_add W T i (InNΔi_osmul W T i _ (InNΔi_of W T i hy hyc)) (InNΔi_smul W T i hC.hπ hy')
+    InNΔi_add W T i (InNΔi_osmul W T i _ (InNΔi_of W T i hy hyc)) (Formalism.MainNotions.LiftingTheory.frame_smul_mem W T i hC.hπ hy')
   refine ⟨_, hz.1, InNΔi_letter W T i hz, ?_⟩
   rw [e, smul_add, smul_smul, ← pow_succ, smul_comm]
 
@@ -1026,7 +1021,7 @@ theorem gamma_clause (T : LocLat G Qp LL O) (hC : Ctx W T) (hSAT : Formalism.Mai
     rw [e]
     refine (Formalism.MainNotions.ArcLiftingSetup.Pp W T c j).sub_mem (Pp_smul W T c j (W.AΔ.pow_mem (lA_mem W) _) _ ?_)
       ((Formalism.MainNotions.ArcLiftingSetup.Pp W T c j).sub_mem (Pp_γ W T c j τ hτ) hτ)
-    rw [φpow_smul]
+    rw [Formalism.MainNotions.UnusedSlot80.SatPW.φD_pow_smulA]
     exact Pp_gen W T c j (PhiPowers.φA_pow_mem_AΔ W hC.hπ j) (InNΔi_of W T c hz hzc)
 
   have hX' := InFNc_of_FP W T A c hfirst hX
@@ -1291,7 +1286,7 @@ theorem relayCore_of [IsDomain O] (hinj : Function.Injective (algebraMap O LL))
           Pp_gen W T c j ?_ (InNΔi_of W T c hu0 hu0c), ?_⟩
         · exact W.AΔ.mul_mem (W.AΔ.mul_mem (W.AΔ.pow_mem (lA_mem W) _) hu)
             (W.AΔ.prod_mem fun k _ => W.AΔ.pow_mem (pk_mem_AΔ W hC.hπ k) _)
-        · rw [hwu, φpow_smul, smul_smul, smul_smul, ← pow_one ((W.φA ^ j) W.π₀), hu1]
+        · rw [hwu, Formalism.MainNotions.UnusedSlot80.SatPW.φD_pow_smulA, smul_smul, smul_smul, ← pow_one ((W.φA ^ j) W.π₀), hu1]
           congr 1; ring
       have hG := good_self W T c j (2 * A.G₀) M σ ⟨u0, InNΔi_of W T c hu0 hu0c, hwu⟩
       refine ⟨_, mkTr W hinj hO2 h9 hH hTr hA T hTc A hM c (Z_of_InI W T c hw) hτ hG, ?_⟩
@@ -1311,7 +1306,7 @@ theorem relayCore_of [IsDomain O] (hinj : Function.Injective (algebraMap O LL))
           (Pp_smul W T c j (W.AΔ.pow_mem (lA_mem W) _) _ (Pp_phi W T c j (InNΔi_of W T c hn' hn'c)))
           (Pp_smul W T c j hφΛ _ (hTP h))
       convert (hfirst _ hmem).2 using 1
-      rw [mul_smul, smul_sub, smul_comm ((W.φA ^ j) Λ') (Formalism.MainNotions.ArcLiftingSetup.lA W ^ σ), ← φpow_smul, hΛw,
+      rw [mul_smul, smul_sub, smul_comm ((W.φA ^ j) Λ') (Formalism.MainNotions.ArcLiftingSetup.lA W ^ σ), ← Formalism.MainNotions.UnusedSlot80.SatPW.φD_pow_smulA, hΛw,
         one_smul]
     ·
       rintro w₁ w₂ x₁ x₂ hw₁ hw₂ ⟨τ₁, h₁, hx₁⟩ ⟨τ₂, h₂, hx₂⟩

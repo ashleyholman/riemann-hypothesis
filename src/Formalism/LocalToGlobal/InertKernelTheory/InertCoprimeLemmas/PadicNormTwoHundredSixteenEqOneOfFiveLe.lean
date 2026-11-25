@@ -36,8 +36,8 @@ theorem taylor_sgStar_map (L : PeriodPair) (a2 a3 s0 : Formalism.MainNotions.Tay
     (hs : Formalism.L2.Th1.F.s2 L = s0) :
     Formalism.L2.Th1.F.taylor0 (Formalism.L2.Th1.F.sgStar L) =
       PowerSeries.map (algebraMap Formalism.MainNotions.TaylorLogMetric.Qbar ℂ) (Formalism.L2.Th1.B.sgStar s0 (Formalism.L2.Th1.F.pOf a2 a3)) := by
-  rw [Formalism.L2.Th1.F.taylorSgStar L, Formalism.L2.Th1.F.pOfLattice L, h2, h3, hs]
-  have hm := Formalism.L2.Th1.F.seriesMap Formalism.MainNotions.TaylorLogMetric.Qbar ℂ (algebraMap Formalism.MainNotions.TaylorLogMetric.Qbar ℂ) a2 a3 s0
+  rw [Formalism.L2.Th1.F.taylorSgStar L, Formalism.L2.Th1.F.weierstrass_p_of_lattice L, h2, h3, hs]
+  have hm := Formalism.L2.Th1.F.series_map Formalism.MainNotions.TaylorLogMetric.Qbar ℂ (algebraMap Formalism.MainNotions.TaylorLogMetric.Qbar ℂ) a2 a3 s0
     (Formalism.L2.Th1.F.pOf a2 a3)
   rw [hm.2.2.2.2.2, hm.2.2.1]
   rfl
@@ -58,7 +58,7 @@ theorem sgSer_eq {p : ℕ} [Fact p.Prime] (lam : Formalism.MainNotions.TaylorLog
     unfold Formalism.MainNotions.TaylorLogMetric.sgSer
     rw [PowerSeries.coeff_mk, PowerSeries.coeff_map, hsg, hn]
     exact lamC_coe lam _
-  have hm := Formalism.L2.Th1.F.seriesMap Formalism.MainNotions.TaylorLogMetric.Qbar ℂ_[p] lam a2 a3 s0 (Formalism.L2.Th1.F.pOf a2 a3)
+  have hm := Formalism.L2.Th1.F.series_map Formalism.MainNotions.TaylorLogMetric.Qbar ℂ_[p] lam a2 a3 s0 (Formalism.L2.Th1.F.pOf a2 a3)
   rw [e, hm.2.2.2.2.2, hm.2.2.1]
 
 theorem wModel_g {p : ℕ} [Fact p.Prime] (lam : Formalism.MainNotions.TaylorLogMetric.Qbar →+* ℂ_[p]) (Λ : AddSubgroup ℂ)
@@ -197,7 +197,7 @@ theorem s2_in_unramified_closure (dK : ℕ) (L : PeriodPair) (hsq : Squarefree d
   have hlp : l.Prime := Fact.out
   have hd0 : 0 < dK := by omega
   obtain ⟨S, hS, -, -, hsum⟩ := Formalism.L2.Th1.F.hasCMByIsogeny dK L hcm (-1) 2 (by simp) hd0
-  obtain ⟨hst, hns⟩ := Formalism.L2.Th1.F.hasCMByStable dK L hcm (-1) 2
+  obtain ⟨hst, hns⟩ := Formalism.L2.Th1.F.has_cm_stable dK L hcm (-1) 2
   rw [Formalism.L2.Th1.D.HomotheticLatticeIntegrality.alpha_sq, hns] at hsum
   have hsum' : -(2 * (dK : ℂ)) * Formalism.L2.Th1.F.s2 L = ∑ P ∈ S, L.weierstrassP P := by
     rw [← hsum]; push_cast; ring

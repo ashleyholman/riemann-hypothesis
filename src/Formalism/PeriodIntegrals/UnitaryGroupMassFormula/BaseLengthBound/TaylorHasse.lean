@@ -382,8 +382,6 @@ theorem bcol_size {N : ℕ} (jj : Fin N) (α : Fin (WeightFamilies.dimY D j) →
   rw [Finsupp.sum_fintype _ _ (fun _ => rfl), Fintype.sum_prod_type, Fin.sum_univ_succ]
   simp [bcol]
 
-alias size_eq_degree := _root_.PI.HJP.sum_eq_degree
-
 end THs
 
 open THs in
@@ -439,10 +437,10 @@ theorem taylorHasse_of (hY : YmDeriv) : TaylorHasse := by
       rw [h0, add_zero] at hq
       exact Prod.ext hq h0
     have hdeg : Finsupp.degree q.1 + Finsupp.degree q.2 = k := by
-      rw [← map_add (f := _), hq, ← size_eq_degree, hβs]
+      rw [← map_add (f := _), hq, ← PI.HJP.sum_eq_degree, hβs]
     have hpos : Finsupp.degree q.2 ≠ 0 := fun h0 => hq2 ((Finsupp.degree_eq_zero_iff _).1 h0)
     have hA := hasse_mem_pow_smul_HK G la (wt0 D j) q.1 (∑ i, γ i) _ (ym_mem G la γ)
-    rw [hγk, size_eq_degree] at hA
+    rw [hγk, PI.HJP.sum_eq_degree] at hA
     have hA' : hs G la q.1 (ym G la γ : Lw X la G.w) ∈ Jid X la G.w • HK X la G.w (wt0 D j) :=
       Submodule.smul_mono_left (Ideal.pow_le_self (by omega)) hA
     exact mul_mem_J_smul_HK G la hA' (hasse_mem_HK G la wF q.2 (cf γ).2)

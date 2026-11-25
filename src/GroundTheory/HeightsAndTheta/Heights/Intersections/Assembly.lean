@@ -1681,12 +1681,10 @@ theorem ArithmeticIntersectionVertical.of_remaining
     ArithmeticIntersectionVertical.Statement :=
   ArithmeticIntersectionVertical.proof (by intros; exact GroundTheory.Heights₂.Heights.geoNumStatement _) (by intros; exact GroundTheory.Heights₂.Heights.Targets.ExistsUnique.full _ _) (by intros; exact GroundTheory.Heights₂.Heights.Targets.ProjContract.full _ _ _ _ _) hProjDeg VerticalDegree.full
 
-alias FibreOverFinite.of_remaining := _root_.GroundTheory.Heights₂.Heights.Inter.FibreOverFinite.proof
-
 theorem SemilocChartRatio.of_remaining
     (hFibreIncomp : FibreIncomp.Statement) :
     SemilocChartRatio.Statement :=
-  SemilocChartRatio.proof (FibreOverFinite.of_remaining hFibreIncomp)
+  SemilocChartRatio.proof (GroundTheory.Heights₂.Heights.Inter.FibreOverFinite.proof hFibreIncomp)
 
 theorem SemilocRankFrac.of_remaining
     (hFibreIncomp : FibreIncomp.Statement) :
@@ -1704,21 +1702,19 @@ theorem SemilocRank.of_remaining
     SemilocRank.Statement :=
   SemilocRank.proof hFibreDim (SemilocRankAdjoin.of_remaining hFibreIncomp)
 
-alias FibreDivSupp.of_remaining := _root_.GroundTheory.Heights₂.Heights.Inter.FibreDivSupp.proof
-
 theorem SemilocLengthSum.of_remaining
     (hFibreIncomp : FibreIncomp.Statement)
     (hSemilocMaxIdeals : SemilocMaxIdeals.Statement)
     (hSemilocResidueDeg : SemilocResidueDeg.Statement) :
     SemilocLengthSum.Statement :=
-  SemilocLengthSum.proof SemilocFinite.full hSemilocMaxIdeals hSemilocResidueDeg (FibreDivSupp.of_remaining hFibreIncomp) LocRingDimOne.full (FibreOverFinite.of_remaining hFibreIncomp)
+  SemilocLengthSum.proof SemilocFinite.full hSemilocMaxIdeals hSemilocResidueDeg (GroundTheory.Heights₂.Heights.Inter.FibreDivSupp.proof hFibreIncomp) LocRingDimOne.full (GroundTheory.Heights₂.Heights.Inter.FibreOverFinite.proof hFibreIncomp)
 
 theorem SemilocLength.of_remaining
     (hFibreIncomp : FibreIncomp.Statement)
     (hSemilocMaxIdeals : SemilocMaxIdeals.Statement)
     (hSemilocResidueDeg : SemilocResidueDeg.Statement) :
     SemilocLength.Statement :=
-  SemilocLength.proof (SemilocLengthSum.of_remaining hFibreIncomp hSemilocMaxIdeals hSemilocResidueDeg) (FibreDivSupp.of_remaining hFibreIncomp) regularityDehomogenization_holds.full
+  SemilocLength.proof (SemilocLengthSum.of_remaining hFibreIncomp hSemilocMaxIdeals hSemilocResidueDeg) (GroundTheory.Heights₂.Heights.Inter.FibreDivSupp.proof hFibreIncomp) regularityDehomogenization_holds.full
 
 theorem ArithmeticIntersectionDivisorPushforward.of_remaining
     (hFibreIncomp : FibreIncomp.Statement)

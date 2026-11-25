@@ -159,7 +159,7 @@ theorem exists_stableEig : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E
   have hB' : ∀ s i, (B.reindex q.symm) ⟨s, i⟩ = β (b s i) := fun s i => by
     rw [Module.Basis.reindex_apply, Equiv.symm_symm, hB, Module.Basis.reindex_apply, Equiv.symm_apply_apply,
       totBasis_apply]
-  have hact : ∀ a e, ρ' a (β e) = β (ρ a e) := fun a e => pt_left_inj M' (by
+  have hact : ∀ a e, ρ' a (β e) = β (ρ a e) := fun a e => GlobalTheory.CompanionTheory.Ar.LieFin.pt_left_inj M' (by
     rw [hβ, hρ a e, Over.comp_left, ← Category.assoc, ← hβ e, hρ' a (β e), Over.comp_left])
   have hsp' : Splits ρ' (fun s : E →+* ℂ => θ.comp (κ.comp (tauIn c s))) := splits_of c (θ.comp κ) ρ'
   obtain ⟨hli, hspan⟩ := image_frame hsp' b β (B.reindex q.symm) hB' hact σ

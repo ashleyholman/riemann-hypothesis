@@ -660,15 +660,6 @@ open GlobalTheory.CompanionTheory.ColumnSplitting
 
 namespace GlobalTheory.CompanionTheory.ColumnSplitting.Form
 
-theorem continuous_jn_pair {D : D7} {a r t n : ℕ} (hn : r + t = n) :
-    Continuous fun z : Mx D a r × Mx D a t => jn hn z.1 z.2 := by
-  unfold jn
-  refine continuous_pi fun i => continuous_pi fun j => ?_
-  simp only [Matrix.submatrix_apply, id]
-  cases (finSumFinEquiv.trans (finCongr hn)).symm j with
-  | inl c => simpa using continuous_fst.matrix_elem i c
-  | inr c => simpa using continuous_snd.matrix_elem i c
-
 theorem continuous_yv_pair {D : D7} {r t : ℕ} (V : HSp D) (b₀ : HermE D r) :
     Continuous (yv (t := t) V b₀) := by
   have := isTopologicalRing_tens (F := D.host.F) (E := D.host.E) (R := AF D.host.F)
@@ -691,7 +682,7 @@ theorem nuT_form : ZpEq → AcEq → JnPi → Ext0 → Fub4 → ∀ (D : D7) (n 
   have hηc := (GlobalTheory.CompanionTheory.WeilTheta.schwartzA_continuous_and_dominated D θ hθ _ _ η hη).1
   have hGc : Continuous fun z : Mx D B.rank W.rank × Mx D B.rank t =>
       Φ (jn hn z.1 z.2) * conj (η (yv B b₀ z)) :=
-    (hΦc.comp (continuous_jn_pair hn)).mul
+    (hΦc.comp (GlobalTheory.CompanionTheory.ColumnSplitting.Integ.continuous_jn hn)).mul
       (Complex.continuous_conj.comp (hηc.comp (continuous_yv_pair B b₀)))
   have hπ := measurable_pi hn I x₀
   have hcomp : (fun z : Mx D B.rank W.rank × Mx D B.rank t => Φ (jn hn z.1 z.2) * conj (η (yv B b₀ z))) ∘

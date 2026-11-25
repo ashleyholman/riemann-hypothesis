@@ -541,7 +541,7 @@ theorem centre_ident (e : FamExp t.G M B ψ) {b : Fin n → ℂ} (hb : b ∈ B) 
       exact ⟨r, hr, by show ℓ (p - r) = 0; rw [map_sub, hrp, sub_self]⟩
   refine ⟨Φ, hΦ, fun a x => ?_, fun x x' => ?_, fun p => ?_⟩
   · have d1 := GlobalTheory.FibreDeriv.isDerivAt0_comp (DiffL.isDerivAt0_pt e hb Mz hL (Φ x)) (t.act.act a).left
-    have d2 := PerGram.isDerivAt0_comp_linMap (PerSpan.isHolTo_ex_slice e hb) (Bb a)
+    have d2 := PerGram.isDerivAt0_comp_linMap (GlobalTheory.CompanionTheory.Ar.Flat.ExpOnto.isHolTo_ex e hb) (Bb a)
       (DiffL.isDerivAt0_pt e hb Mz hL (Bb a (Φ x)))
     have e1 : (fun z => (e.ex b (Bb a z)).left) = fun z => (e.ex b z).left ≫ (t.act.act a).left :=
       funext fun z => by rw [hB, Over.comp_left]

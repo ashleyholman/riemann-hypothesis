@@ -826,13 +826,8 @@ namespace Formalism.MainNotions.flipOneThree.Pf
 
 open Formalism.MainNotions.G Formalism.MainNotions.flipOneThree Formalism.CountingSumsFrames Formalism.GradedWeylDivisibility MvPolynomial Formalism.MainNotions.G.LatticeSystems
 
-theorem midOf_zero (r : ℕ) : midOf (0 : Fin (r + 1 + 1)) = none := by
-  unfold midOf
-  rw [dite_eq_right]
-  simp
-
 theorem subY_X_zero (A : Type) [CommRing A] (r : ℕ) (a : Fin (r + 1 + 1)) : subY A r (X (a, 0)) = X (a, 0) := by
-  simp only [subY, aeval_X, midOf_zero]
+  simp only [subY, aeval_X, Formalism.MainNotions.flipOneThree.Pf.qc_midOf_zero]
 
 def dOneY (A : Type) [CommRing A] (r : ℕ) :
     Matrix (Fin (r + 1)) (Fin (r + 1)) (MvPolynomial (Fin (r + 1 + 1) × Fin (r + 1 + 1)) (MvPolynomial (Fin r × Fin r) A)) :=

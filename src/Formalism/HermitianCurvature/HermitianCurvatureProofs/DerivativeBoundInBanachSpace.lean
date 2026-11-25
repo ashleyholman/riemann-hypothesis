@@ -625,9 +625,6 @@ theorem _root_.Formalism.FourierDecayAlt.P.stationary_estimate_of_parts : Formal
     _ ≤ (|C| * |Cst₁| * K * ‖t‖ ^ (m + 2)) * CM := mul_le_mul_of_nonneg_left hMb (by positivity)
     _ = _ := by ring
 
-theorem gr_norm_psi (β w : ℂ) : ‖psi β w‖ = 1 := by
-  simpa only [psi, mul_comm] using Complex.norm_exp_ofReal_mul_I _
-
 section
 
 variable {V : Type} [NormedAddCommGroup V] [NormedSpace ℂ V]
@@ -852,7 +849,7 @@ theorem _root_.Formalism.FourierDecayAlt.P.germ_rate_of_estimates : Formalism.Fo
       rw [← hDdef] at s3
       have s4 := hAL V Φ A K k hAl hk3 hΦ t D z ht hl4 hD hz'
       have s5 := hLI (m + 1) β z hzne V Φ
-      have g := gr_term m _ _ _ _ (psi β (((m : ℂ) + 2) * z / t)) (gr_norm_psi _ _) ‖t‖ ‖z‖ (c3 * K) (c4 * K)
+      have g := gr_term m _ _ _ _ (psi β (((m : ℂ) + 2) * z / t)) (Formalism.FourierDecayAlt.P.WirtingerIntegrationByParts.norm_psi _ _) ‖t‖ ‖z‖ (c3 * K) (c4 * K)
         hτ hζ s3 s4 s5
       refine g.trans ?_
       have hzR : ‖z‖ ^ (m + 1) ≤ R ^ (m + 1) := pow_le_pow_left₀ hζ.le (hR D hD z hz') _
@@ -1209,8 +1206,6 @@ def Idx (k ρ mm : ℕ) : Type :=
 variable {k ρ mm : ℕ} {E V : Type} [NormedAddCommGroup E] [NormedSpace ℂ E] [NormedAddCommGroup V]
   [NormedSpace ℂ V] {a : ℝ} {S : Set (B.Mat k ρ)}
 
-lemma gNa_nonneg (γ : B.Mat k ρ) (a : ℝ) : 0 ≤ B.gN γ ^ a := Real.rpow_nonneg (Real.sqrt_nonneg _) a
-
 lemma ev_add (M : U.CCModel k ρ E a mm S V) (w₁ w₂ : V) :
     M.ev (w₁ + w₂) = fun g => M.ev w₁ g + M.ev w₂ g := by
   rw [map_add (f := _)]; rfl
@@ -1233,7 +1228,7 @@ def lamL (M : U.CCModel k ρ E a mm S V) (t : Idx k ρ mm) : V →ₗ[ℂ] E whe
 
 lemma lamL_norm (M : U.CCModel k ρ E a mm S V) (t : Idx k ρ mm) (w : V) : ‖lamL M t w‖ ≤ ‖w‖ := by
   show ‖((B.gN t.1.2.2 ^ a : ℝ) : ℂ) • B.dLR t.1.1 t.1.2.1 (M.ev w) t.1.2.2‖ ≤ ‖w‖
-  rw [norm_smul, Complex.norm_real, Real.norm_of_nonneg (gNa_nonneg _ _)]
+  rw [norm_smul, Complex.norm_real, Real.norm_of_nonneg (Formalism.FourierDecayAlt.P.B4.gN_rpow_nonneg _ _)]
   exact (M.mem w).2 _ _ t.2.1 t.2.2.1 t.2.2.2.1 _ t.2.2.2.2
 
 def lamC (M : U.CCModel k ρ E a mm S V) (t : Idx k ρ mm) : V →L[ℂ] E :=
@@ -1246,7 +1241,7 @@ lemma lamC_norming (M : U.CCModel k ρ E a mm S V) (w : V) (c : ℝ) (h : ∀ t,
   refine M.least w c ⟨(M.mem w).1, fun u v hu hv hl g hg => ?_⟩
   have := h ⟨(u, v, g), hu, hv, hl, hg⟩
   change ‖((B.gN g ^ a : ℝ) : ℂ) • B.dLR u v (M.ev w) g‖ ≤ c at this
-  rwa [norm_smul, Complex.norm_real, Real.norm_of_nonneg (gNa_nonneg g a)] at this
+  rwa [norm_smul, Complex.norm_real, Real.norm_of_nonneg (Formalism.FourierDecayAlt.P.B4.gN_rpow_nonneg g a)] at this
 
 def sc (E : Type) [NormedAddCommGroup E] [NormedSpace ℂ E] (c : ℝ) : E →L[ℝ] E :=
   ((c : ℂ) • ContinuousLinearMap.id ℂ E).restrictScalars ℝ
@@ -1307,7 +1302,7 @@ theorem _root_.Formalism.FourierDecayAlt.P.theorem_u_of_parts : Formalism.Fourie
         _ ≤ B.gN t.1.2.2 ^ (U.a1 (p + s + ρ) A₁ m mm) *
             ‖iteratedFDeriv ℝ q (fun Z' : G.Mat s =>
               B.dLR t.1.1 t.1.2.1 (U.PhiFun k ρ σ d z z' F₁ Z') t.1.2.2) Z‖ :=
-            mul_le_mul_of_nonneg_right (sc_norm _ (gNa_nonneg _ _)) (norm_nonneg _)
+            mul_le_mul_of_nonneg_right (sc_norm _ (Formalism.FourierDecayAlt.P.B4.gN_rpow_nonneg _ _)) (norm_nonneg _)
         _ ≤ _ := h2)
   exact fun Z hZ => ⟨hcont.contDiffAt (hΩ.mem_nhds hZ), fun q hq => hbound q hq Z hZ⟩
 
@@ -1345,7 +1340,7 @@ theorem corollary_u2_germ_hypothesis : Formalism.FourierDecayAlt.U.GermExpansion
 
 theorem germ_expansion_applies : Formalism.FourierDecayAlt.U.UseGerm :=
   _root_.Formalism.FourierDecayAlt.P.Ux8.useGermOfParts germ_rate det_weyl_matrix corollary_u2_germ_hypothesis _root_.Formalism.FourierDecayAlt.P.Ux7.derivBoundOfDecay
-    _root_.Formalism.FourierDecayAlt.P.Ux7.powerMatch scale_matching
+    _root_.Formalism.FourierDecayAlt.P.Ux7.powerMatch Formalism.FourierDecayAlt.P.Ux7.scaleMatch
 
 theorem germ_expansion_top_level : Formalism.FourierDecayAlt.U.UseGermTop :=
   _root_.Formalism.FourierDecayAlt.P.Ux8.useGermTopOfParts germ_rate det_weyl_matrix top_cells _root_.Formalism.FourierDecayAlt.P.Ux7.derivBoundOfDecay

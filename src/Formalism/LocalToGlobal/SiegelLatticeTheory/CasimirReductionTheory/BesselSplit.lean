@@ -39,13 +39,9 @@ section Smooth
 
 attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
 
-theorem contDiff_matMul {n : ℕ} :
-    ContDiff ℝ ∞ (fun p : Matrix (Fin n) (Fin n) ℂ × Matrix (Fin n) (Fin n) ℂ => p.1 * p.2) := by
-  apply CompanionTheory.D.gk.admitted.Gard.contDiff_mul
-
 theorem contDiff_mulRight {n : ℕ} (g : Matrix (Fin n) (Fin n) ℂ) :
     ContDiff ℝ ∞ (fun x : Matrix (Fin n) (Fin n) ℂ => x * g) :=
-  (@contDiff_matMul n).comp (contDiff_id.prodMk contDiff_const)
+  (@CompanionTheory.D.gk.admitted.Gard.contDiff_mul n).comp (contDiff_id.prodMk contDiff_const)
 
 end Smooth
 

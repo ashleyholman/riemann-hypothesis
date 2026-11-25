@@ -782,7 +782,7 @@ theorem whit_step (hK : WhitKA) {D : D7} {n : ℕ} {V : HSp D} {ψ : AddChar (AF
       rw [this, Matrix.mul_sub, Matrix.trace_sub, sub_eq_add_neg]
     have hch : ψ (-halfTr (Matrix.trace (HMul.hMul (β.1.map (incA D)) (cg a (b' - b1)).1 : Mx D n n))) =
         ψ (-halfTr (Matrix.trace (HMul.hMul T b'.1 : Mx D n n))) * ct := by
-      rw [e1, e2, halfTr_add, halfTr_neg, neg_add, neg_neg, AddChar.map_add_eq_mul]
+      rw [e1, e2, halfTr_add, GlobalTheory.CompanionTheory.HermPoisson.halfTr_neg', neg_add, neg_neg, AddChar.map_add_eq_mul]
     rw [hHe, hJ, hch, npow_mul', npow_inv' hA, show -(z - s0 V n) = s0 V n - z from neg_sub z (s0 V n)]
     ring
   have hint : ∀ z : ℂ, (∫ b, npow (H (w * nb b * (m * u * k))) (z - s0 V n) * Jt ψ V μ (ω (m * u * k) Φ).1 b *

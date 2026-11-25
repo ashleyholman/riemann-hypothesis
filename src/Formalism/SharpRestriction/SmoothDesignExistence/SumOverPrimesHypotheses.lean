@@ -819,9 +819,6 @@ section VGeLemmas
 variable {D : D7} {w : D.what₂.places.Pl} {V : Type} [AddCommGroup V] [Module D.what₂.LL V] [Module (𝓞 D.what₂.LL) V]
   {Λ : Submodule (𝓞 D.what₂.LL) V}
 
-theorem VGe_zero (s : ℝ) : VGe D w Λ (0 : V) s := by
-  exact ⟨0, 0, zero_mem _, by simp, Or.inl rfl⟩
-
 theorem VGe_of_mem {z : V} (hz : z ∈ locW D.what₂.places w Λ) : VGe D w Λ z 0 := by
   refine ⟨1, z, hz, (one_smul _ _).symm, Or.inr ?_⟩
   rw [vAdd_one]
@@ -892,7 +889,7 @@ theorem step_loc (i : ℕ) (s : ℝ)
   induction hz using Submodule.span_induction with
   | mem x hx => exact hstep x hx
   | zero =>
-    refine ⟨0, ?_, VGe_zero s⟩
+    refine ⟨0, ?_, Formalism.MainNotions.OrbitPlaces.VGe.zero s⟩
     show M.emb (i + 1) 0 = C.Klin i (M.emb i 0)
     rw [map_zero, map_zero, map_zero]
   | add a b _ _ ha hb =>

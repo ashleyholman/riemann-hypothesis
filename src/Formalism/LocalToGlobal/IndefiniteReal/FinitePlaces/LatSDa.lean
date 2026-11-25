@@ -449,11 +449,6 @@ theorem lsd_snd (z : AE D) (k : Fin (Module.finrank D.host.F D.host.E)) :
       rw [map_add (f := _)]; rfl
     rw [h1, map_add (f := _), hx, hy, ← Finsupp.add_apply, ← LinearEquiv.map_add (e := _), ← RingHom.map_add (f := _)]
 
-theorem lsd_alg_int (y : 𝓞 D.host.F) : algebraMap D.host.F (Af D.host.F) (y : D.host.F) ∈ intAf D.host.F := by
-  intro v
-  rw [AlgHom.commutes, HeightOneSpectrum.mem_adicCompletionIntegers]
-  exact Formalism.IndefR.Fin.val_coe_le_one v y
-
 open Formalism.IndefR.PHeisFC in
 theorem lsd_int_coord : ∃ r : 𝓞 D.host.F, r ≠ 0 ∧ ∀ w ∈ intAE D, ∀ k,
     algebraMap D.host.F (Af D.host.F) (r : D.host.F) *
@@ -467,7 +462,7 @@ theorem lsd_int_coord : ∃ r : 𝓞 D.host.F, r ≠ 0 ∧ ∀ w ∈ intAE D, �
     simp only [Finsupp.smul_apply, Finsupp.mapRange_apply, smul_eq_mul]
     obtain ⟨y, hy⟩ := hcoord x k
     rw [mul_left_comm, ← map_mul, hy]
-    exact intAf_mul ha (lsd_alg_int y)
+    exact intAf_mul ha (Formalism.IndefR.Fin.intAf_int y)
   | zero => simp only [map_zero, Finsupp.zero_apply, mul_zero]; exact fun v => zero_mem _
   | add x y _ _ hx hy =>
     rw [map_add (f := _), Finsupp.add_apply, mul_add]
@@ -542,7 +537,7 @@ theorem latO_nsmul_mem (hΛS : IsSelfDualC S ΛS) (hΛT : IsSelfDualC T ΛT) :
     push_cast
     ring
   rw [hNF, map_mul, map_mul, mul_assoc, mul_assoc]
-  refine hmem i j k _ (intAf_mul (lsd_alg_int q) ?_)
+  refine hmem i j k _ (intAf_mul (Formalism.IndefR.Fin.intAf_int q) ?_)
   rw [lsd_snd]
   exact hint _ (hfin i j) k
 

@@ -38,8 +38,6 @@ theorem cT_blk4 (σ : K →+* K) (a b c d : Matrix (Fin n) (Fin n) K) :
   simp only [cT, blk4, Matrix.transpose_apply, Matrix.map_apply, Matrix.submatrix_apply]
   rcases finSumFinEquiv.symm i with i | i <;> rcases finSumFinEquiv.symm j with j | j <;> rfl
 
-alias block_identity_eq_one := _root_.GlobalTheory.StdUnn.Model.block_matrix_one
-
 theorem lowerLeft_block {R : Type} (a b c d : Matrix (Fin n) (Fin n) R) : lowerC (blk4 a b c d) = c := by
   ext i j
   simp [lowerC, blk4]
@@ -74,11 +72,11 @@ abbrev cellM (b : Matrix (Fin n) (Fin n) K) : Matrix (Fin (n + n)) (Fin (n + n))
 
 theorem cellM_mul (b : Matrix (Fin n) (Fin n) K) : cellM b * blk4 (-b) (-1) 1 0 = 1 := by
   rw [cellM, submatrix_fromBlocks_mul]
-  simp [block_identity_eq_one]
+  simp [GlobalTheory.StdUnn.Model.block_matrix_one]
 
 theorem mul_cellM (b : Matrix (Fin n) (Fin n) K) : blk4 (-b) (-1) 1 0 * cellM b = 1 := by
   rw [cellM, submatrix_fromBlocks_mul]
-  simp [block_identity_eq_one]
+  simp [GlobalTheory.StdUnn.Model.block_matrix_one]
 
 theorem cellM_det (b : Matrix (Fin n) (Fin n) K) : IsUnit (cellM b).det :=
   Matrix.isUnit_det_of_left_inverse (mul_cellM b)
@@ -90,10 +88,10 @@ theorem lower_rel (σ : K →+* K) {A B C Dd : Matrix (Fin n) (Fin n) K}
     (h : IsUnitary σ (blk4 0 1 (-1) 0) (blk4 A B C Dd)) : Dd * cT σ C = C * cT σ Dd := by
   have hJJ : (blk4 0 1 (-1) 0 : Matrix (Fin (n + n)) (Fin (n + n)) K) * blk4 0 (-1) 1 0 = 1 := by
     rw [submatrix_fromBlocks_mul]
-    simp [block_identity_eq_one]
+    simp [GlobalTheory.StdUnn.Model.block_matrix_one]
   have hJJ' : (blk4 0 (-1) 1 0 : Matrix (Fin (n + n)) (Fin (n + n)) K) * blk4 0 1 (-1) 0 = 1 := by
     rw [submatrix_fromBlocks_mul]
-    simp [block_identity_eq_one]
+    simp [GlobalTheory.StdUnn.Model.block_matrix_one]
   have h0 : cT σ (blk4 A B C Dd) * blk4 0 1 (-1) 0 * blk4 A B C Dd = blk4 0 1 (-1) 0 := h
   have h1 : (blk4 0 (-1) 1 0 * cT σ (blk4 A B C Dd) * blk4 0 1 (-1) 0) * blk4 A B C Dd = 1 := by
     rw [mul_assoc (blk4 0 (-1) 1 0), mul_assoc (blk4 0 (-1) 1 0), h0, hJJ']

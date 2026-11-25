@@ -373,7 +373,7 @@ theorem exists_coords_and_series (h5 : 5 ≤ l) {σ : ℂ_[l] →+* ℂ_[l]} (h�
     rw [hD.dual r r']
     split_ifs <;> simp
   obtain ⟨F, hF⟩ := (_root_.Formalism.InvariantFactorPaths.G7.formal_law_exists (MaximalUnramifiedExtension l) l hU.1 hU.2.2.1).1
-  obtain ⟨ζ, hζ⟩ := kurRoots l (l ^ d - 1) (by have := Nat.one_lt_pow (NeZero.ne d) (show 1 < l by omega); omega) (by
+  obtain ⟨ζ, hζ⟩ := Formalism.L2.Th1.D.unramified_completion_roots l (l ^ d - 1) (by have := Nat.one_lt_pow (NeZero.ne d) (show 1 < l by omega); omega) (by
     intro h
     have h1 : l ∣ l ^ d := dvd_pow_self l (NeZero.ne d)
     have h3 := (Nat.dvd_sub h1 h)

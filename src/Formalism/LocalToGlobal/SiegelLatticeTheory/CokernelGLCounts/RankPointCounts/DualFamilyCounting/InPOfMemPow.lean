@@ -18,11 +18,9 @@ open Formalism.HermitianLattices.Ext.L3 Formalism.L2.SG.Pf.Cnt Formalism.Hermiti
 variable {K F V : Type} [Field K] [NumberField K] [StarRing K] [Field F] [NumberField F]
   [Algebra F K] [AddCommGroup V] [Module K V] [Module (𝓞 K) V] [IsScalarTower (𝓞 K) K V]
 
-alias jι_eq' := _root_.Formalism.HermitianLattices.Ext.L3.MeanB.algebraMap_comp
-
 theorem inP_of_mem_pow {𝔭 : Ideal (𝓞 F)} [𝔭.IsPrime] {k : ℕ} {t : 𝓞 F} (ht : t ∈ 𝔭 ^ k) :
     InP 𝔭 k (algebraMap F K (t : F)) := by
-  rw [← jι_eq']
+  rw [← Formalism.HermitianLattices.Ext.L3.MeanB.algebraMap_comp]
   apply inP_jK
   rw [extP, ← Ideal.map_pow]
   exact Ideal.mem_map_of_mem _ ht
@@ -36,8 +34,8 @@ theorem mem_SP_of_inP {𝔭 : Ideal (𝓞 F)} [𝔭.IsPrime] {π s₀ : 𝓞 F} 
     {x : K} (hx : InP 𝔭 k x) : (algebraMap F K (π : F))⁻¹ ^ k * x ∈ SP K 𝔭 := by
   obtain ⟨s, hs, rfl⟩ := (mem_noncompactPart_iff hu k x).1 hx
   have h0 : algebraMap F K (π : F) ≠ 0 := by
-    rw [← jι_eq']; exact jι_ne_zero hu.ne_zero
-  rw [jι_eq', ← mul_assoc, ← mul_pow, inv_mul_cancel₀ h0, one_pow, one_mul]
+    rw [← Formalism.HermitianLattices.Ext.L3.MeanB.algebraMap_comp]; exact jι_ne_zero hu.ne_zero
+  rw [Formalism.HermitianLattices.Ext.L3.MeanB.algebraMap_comp, ← mul_assoc, ← mul_pow, inv_mul_cancel₀ h0, one_pow, one_mul]
   exact hs
 
 alias star_fix := _root_.Formalism.HermitianLattices.Ext.L3.MeanB.star_algebraMap

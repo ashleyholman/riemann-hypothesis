@@ -42,10 +42,10 @@ theorem frame_lastG : frame G (Fin.last D.R.rS) = G.fl.z := by
 
 theorem sF'_last : sF' Zd p (Fin.last D.R.rS) = 1 := by
   unfold sF'
-  rw [frFac_last' Zd p, mul_one]
+  rw [Formalism.L2.SG.Pf.BBTie.bt_frFac_last Zd p, mul_one]
   unfold TermLoc.sgnP'
   split
-  · exact sgnP_last p
+  · exact Formalism.L2.SG.Pf.BBTie.sgnP_last₂ p
   · simp
 
 theorem locF'_last : locF' Zd p G (Fin.last D.R.rS) = baseChange₂ D p G.fl.z := by

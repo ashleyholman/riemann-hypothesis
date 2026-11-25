@@ -201,7 +201,7 @@ theorem span_eq_top_of_injective [Module (𝓞 K) V] [IsScalarTower (𝓞 K) K V
   rw [eq_top_iff]
   intro f _
   have hf : φ f ∈ Submodule.span K (L : Set V) := hsp ▸ Submodule.mem_top
-  obtain ⟨a, ha, hm⟩ := _root_.Formalism.L2.SG.Pf.LatEx.exists_smul_mem_of_mem_span hf
+  obtain ⟨a, ha, hm⟩ := _root_.Bl.SecondBlockLemmaE.goal1 hf
   have h1 : a • f ∈ L' := hL _ (by rwa [LinearMap.map_smul_of_tower])
   have hA : algebraMap (𝓞 K) K a ≠ 0 := fun h => ha (IsFractionRing.injective (𝓞 K) K (h.trans (map_zero _).symm))
   have e : f = (algebraMap (𝓞 K) K a)⁻¹ • (a • f) := by

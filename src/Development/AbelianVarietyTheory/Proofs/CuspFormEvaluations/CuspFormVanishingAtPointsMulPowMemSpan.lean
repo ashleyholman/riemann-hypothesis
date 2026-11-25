@@ -286,12 +286,6 @@ theorem logw_contDiffAt (Xa : ArchInM X) (x0 : Frame X.Ψ r) {z : V (nd X)} (hz 
 end
 
 end GlobalTheory.Up.DivUpPf
-
-namespace GlobalTheory.Up
-
-open DivUpPf
-
-end GlobalTheory.Up
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AbelianVarietyTheory.Proofs.TorusHaarMeasure.SmoothWtContDiffOn =====
@@ -1483,7 +1477,7 @@ theorem division_order_one : ∀ (E : Type) [Field E] [NumberField E] [IsCMField
     ⟨K, gs, fun f hf _ => hgs f hf⟩ _ (hcusp _ hf) hIn
   obtain ⟨H, hH, hFH⟩ := _root_.GlobalTheory.Shares.DivOne.divOne_up E r X Xa Fl G x0 ho bb
     (fun z hz ξ => (mul_le_mul_of_nonneg_right hbm'
-      (OntoB.levi_rh_nonneg RhGradFStatement_holds ho hz ξ)).trans (hmar x0 ho z hz ξ))
+      (OntoB.levi_rh_nonneg ReciprocityTheory.ChartRestriction.G.AR.Up.RGF.rhGradF_holds ho hz ξ)).trans (hmar x0 ho z hz ξ))
     ⟨k0, z0, hz0, hz0'⟩ F hF hFI
   choose Q hQ hQH using fun k => exists_extension hExt ho hLn hbb0 (hH k).1 (hH k).2
   have hPQ := fun k => hPo r X x0 ho hPD _ _ bb hMn hLn hbb (H k) (Q k) (hH k).1 (hH k).2 (hQ k) (hQH k)

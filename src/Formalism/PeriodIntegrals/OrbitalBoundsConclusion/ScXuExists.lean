@@ -1146,10 +1146,6 @@ theorem sigV_sigV (I : AutInst) (v : HeightOneSpectrum (𝓞 I.F)) (r : RV I v) 
     sigV I v (sigV I v r) = r := by
   apply _root_.PI.UnitaryGroupMassFormula.ScXuExists.BrA.sig2 <;> assumption
 
-theorem sigV_alg (I : AutInst) (v : HeightOneSpectrum (𝓞 I.F)) (c : KV I v) :
-    sigV I v (algebraMap (KV I v) (RV I v) c) = algebraMap (KV I v) (RV I v) c := by
-  simp [sigV, Algebra.TensorProduct.algebraMap_apply]
-
 def vecqL (I : AutInst) (v : HeightOneSpectrum (𝓞 I.F)) (q : RV I v →+* KV I v)
     (hq : ∀ c, q (algebraMap (KV I v) (RV I v) c) = c) :
     (Fin I.n → RV I v) →ₗ[OV I v] (Fin I.n → KV I v) where
@@ -1186,7 +1182,7 @@ theorem mem_LL_iff (I : AutInst) (v : HeightOneSpectrum (𝓞 I.F)) (ε : RV I v
     obtain ⟨x1, hx1, e1⟩ := exists_of_mem_span I v p1 hp1 (vec1 p1 x) h1
     have hq2 : ∀ c, (p1.comp (sigV I v)) (algebraMap (KV I v) (RV I v) c) = c := by
       intro c
-      rw [RingHom.comp_apply, sigV_alg, hp1]
+      rw [RingHom.comp_apply, PI.UnitaryGroupMassFormula.ScXuExists.BrA.sig_alg, hp1]
     obtain ⟨x2, hx2, e2⟩ := exists_of_mem_span I v (p1.comp (sigV I v)) hq2 (vec2 p1 x) h2
     have hw : ε • x1 + (x2 - ε • x2) ∈ LL I v :=
       (LL I v).add_mem (hε x1 hx1) ((LL I v).sub_mem hx2 (hε x2 hx2))
@@ -1247,7 +1243,7 @@ theorem split_unitary_projection_compatibility : BridgeB := by
   have : Module.Finite I.F I.E := Module.finite_of_finrank_eq_succ I.cm.deg2
   have hdim : Module.finrank (KV I v) (RV I v) = 2 := by
     rw [Module.finrank_baseChange]; exact I.cm.deg2
-  have hb := piHom_bijective hdim (sigV I v) p1 (sigV_alg I v) (sigV_sigV I v) hp1.1
+  have hb := piHom_bijective hdim (sigV I v) p1 (PI.UnitaryGroupMassFormula.ScXuExists.BrA.sig_alg I v) (sigV_sigV I v) hp1.1
     (PI.FinKW.psiV I v Rf.ew) hp1.2.1 hp1.2.2.1
   set π := piEquiv (sigV I v) p1 hb with hπdef
   have hπ : ∀ r, π (sigV I v r) = (π r).swap := piEquiv_sig _ _ (sigV_sigV I v) hb

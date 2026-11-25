@@ -25,9 +25,9 @@ theorem locF_subset_span {𝔭 : Ideal (𝓞 F)} (hp : 𝔭.IsPrime) (L : Submod
   intro x hx
   obtain ⟨t, ht, htx⟩ := (LocF.mem_locF_iff hp L x).1 hx
   have ht0 : algebraMap F K (t : F) ≠ 0 := by
-    rw [← jι_eq']; exact jι_ne_zero (ne_zero_of_notMem ht)
+    rw [← Formalism.HermitianLattices.Ext.L3.MeanB.algebraMap_comp]; exact jι_ne_zero (ne_zero_of_notMem ht)
   have h1 : algebraMap F K (t : F) • x ∈ Submodule.span K (L : Set V) := by
-    rw [← jι_eq', algebraMap_smul]; exact Submodule.subset_span htx
+    rw [← Formalism.HermitianLattices.Ext.L3.MeanB.algebraMap_comp, algebraMap_smul]; exact Submodule.subset_span htx
   exact (Submodule.smul_mem_iff _ ht0).1 h1
 
 theorem le_span_of_locF {𝔭 : Ideal (𝓞 F)} (hp : 𝔭.IsPrime) {U : Submodule K V}
@@ -70,7 +70,7 @@ theorem family_top_holds : FamTop := by
     · rwa [ite_eq_left hi] at hg'
     · rw [ite_eq_right hi] at hg'
       have h0 : (algebraMap F K (π : F))⁻¹ ^ vF 𝔭 (a i) ≠ 0 := by
-        apply pow_ne_zero; apply inv_ne_zero; rw [← jι_eq']; exact jι_ne_zero hu.ne_zero
+        apply pow_ne_zero; apply inv_ne_zero; rw [← Formalism.HermitianLattices.Ext.L3.MeanB.algebraMap_comp]; exact jι_ne_zero hu.ne_zero
       have h1 := (Submodule.smul_mem_iff _ h0).1 hg'
       have h2 := Submodule.sub_mem _ h1 (hw (τ i))
       rwa [add_sub_cancel_right] at h2

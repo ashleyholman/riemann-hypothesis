@@ -1465,7 +1465,7 @@ theorem LemmaETailLog.of_lemmaETailMass (h : LemmaETailMass.Statement) : LemmaET
   LemmaETailLog.proof h TailLogOfMass.proof
 
 theorem ListTailLog.of_lemmaETailMass (h : LemmaETailMass.Statement) : ListTailLog.Statement :=
-  ListTailLog.of_lemmaE (LemmaETailLog.of_lemmaETailMass h) ListMono.full RegSection.full
+  GroundTheory.Heights₂.Heights.AnalyticLimit.ListTailLog.proof (LemmaETailLog.of_lemmaETailMass h) ListMono.full RegSection.full
     TailShift.full
 
 end GroundTheory.Heights₂.Heights.ForSecondHalf

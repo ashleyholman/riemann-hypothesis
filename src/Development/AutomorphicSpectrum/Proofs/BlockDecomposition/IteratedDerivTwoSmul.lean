@@ -26,10 +26,6 @@ section Ops
 
 variable {V : Type} [NormedAddCommGroup V] [NormedSpace ℂ V]
 
-theorem Epow_smooth {f : Mat n → V} (hf : ContDiffOn ℝ ∞ f (GLs n)) (s : Bool) (m : ℕ) :
-    ∀ a b : Fin n, ContDiffOn ℝ ∞ (Epow s m a b f) (GLs n) := by
-  apply _root_.GlobalTheory.CompanionTheory.WaveK.Uniq.Epow_smooth <;> assumption
-
 theorem Eu_add {f f' : Mat n → V} (hf : ContDiffOn ℝ ∞ f (GLs n)) (hf' : ContDiffOn ℝ ∞ f' (GLs n)) (s : Bool)
     (a b : Fin n) : Set.EqOn (Eu s a b (f + f')) (Eu s a b f + Eu s a b f') (GLs n) := by
   intro x hx
@@ -53,7 +49,7 @@ theorem Epow_add {f f' : Mat n → V} (hf : ContDiffOn ℝ ∞ f (GLs n)) (hf' :
     simp only [Epow, Finset.sum_apply, Pi.add_apply, ← Finset.sum_add_distrib]
     refine Finset.sum_congr rfl fun c _ => ?_
     rw [GlobalTheory.CompanionTheory.WaveAll.Eu_congr GlobalTheory.CompanionTheory.WaveAll.isOpen_GLs (ih c b) s a c hx]
-    exact Eu_add (Epow_smooth hf s m c b) (Epow_smooth hf' s m c b) s a c hx
+    exact Eu_add (GlobalTheory.CompanionTheory.WaveK.Uniq.Epow_smooth hf s m c b) (GlobalTheory.CompanionTheory.WaveK.Uniq.Epow_smooth hf' s m c b) s a c hx
 
 theorem Epow_smul (k : ℂ) {f : Mat n → V} (hf : ContDiffOn ℝ ∞ f (GLs n)) (s : Bool) (m : ℕ) :
     ∀ a b : Fin n, Set.EqOn (Epow s m a b (k • f)) (k • Epow s m a b f) (GLs n) := by
@@ -66,7 +62,7 @@ theorem Epow_smul (k : ℂ) {f : Mat n → V} (hf : ContDiffOn ℝ ∞ f (GLs n)
     simp only [Epow, Finset.sum_apply, Pi.smul_apply, Finset.smul_sum]
     refine Finset.sum_congr rfl fun c _ => ?_
     rw [GlobalTheory.CompanionTheory.WaveAll.Eu_congr GlobalTheory.CompanionTheory.WaveAll.isOpen_GLs (ih c b) s a c hx]
-    exact Eu_smul k (Epow_smooth hf s m c b) s a c hx
+    exact Eu_smul k (GlobalTheory.CompanionTheory.WaveK.Uniq.Epow_smooth hf s m c b) s a c hx
 
 theorem gel_add {f f' : Mat n → V} (hf : ContDiffOn ℝ ∞ f (GLs n)) (hf' : ContDiffOn ℝ ∞ f' (GLs n))
     (s : Bool) (m : ℕ) : Set.EqOn (gel s m (f + f')) (gel s m f + gel s m f') (GLs n) := by

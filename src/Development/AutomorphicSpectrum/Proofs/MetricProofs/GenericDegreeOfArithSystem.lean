@@ -51,9 +51,6 @@ theorem genDeg_of_coord (hPF : PFCoordStatement) (hFD : FibreDimStatement) : Gen
   rw [hPF I hI K ι K' ι' κ v Ω y d L L' hv hP' hP hL hLL', h0,
     coordFibreDeg K ι K' ι' κ v Ω y d G i hv hP' hP hi, Int.cast_natCast]
 
-theorem genDeg : PFCoordStatement → FibreDimStatement → GenDegStatement :=
-  genDeg_of_coord
-
 end PositivityTheory.HtPt.Aig
 end -- clump:auto
 end -- clump:auto

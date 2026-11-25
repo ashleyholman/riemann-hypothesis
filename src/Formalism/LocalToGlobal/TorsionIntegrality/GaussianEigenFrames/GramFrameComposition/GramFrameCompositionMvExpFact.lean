@@ -283,7 +283,7 @@ theorem ShapeLin_proof : ShapeLin := by
       MvPowerSeries.constantCoeff (r • f) = 0 := fun r f hf => by
     rw [MvPowerSeries.smul_eq_C_mul, map_mul, hf, mul_zero]
   have hQ : JetsIntegral (quadForm q) :=
-    (jetsInNorm K _ _).mpr (jetsIn_quadForm (fun x y => (hmem _).mpr (hq x y)))
+    (Formalism.L2.Th1.G.jets_in_norm_holds K _ _).mpr (jetsIn_quadForm (fun x y => (hmem _).mpr (hq x y)))
   have hgram' : linSub Cm (sqSum (fun _ => (1 : K))) =
       MvPowerSeries.C 2 * ∑ a : Fin 4, inBlock a (betaPair H N0 N1 u) + MvPowerSeries.C th * quadForm q := by
     rw [GramSeries_proof]
@@ -294,7 +294,7 @@ theorem ShapeLin_proof : ShapeLin := by
     simp only [map_mul, Finset.mul_sum]
     refine Finset.sum_congr rfl fun x _ => Finset.sum_congr rfl fun y _ => ?_
     ring
-  obtain ⟨J, hJ, hJeq⟩ := shapeOrth K l linv ph d hlog h1 hph hS (Fin 4 × n) (fun _ => (1 : K))
+  obtain ⟨J, hJ, hJeq⟩ := Formalism.L2.Th1.G.shape_orthogonal_holds K l linv ph d hlog h1 hph hS (Fin 4 × n) (fun _ => (1 : K))
     (fun _ => by simp) G hG
   have hS0th : ‖jet l ph 2 * th‖ ≤ 1 := by
     rw [norm_mul]
@@ -302,7 +302,7 @@ theorem ShapeLin_proof : ShapeLin := by
     calc ‖jet l ph 2‖ * ‖th‖ ≤ ‖(d : K)‖ ^ (-(1 / 2 : ℝ)) * ‖(d : K)‖ ^ (1 / 2 : ℝ) :=
           mul_le_mul hS.1 hth (norm_nonneg _) (Real.rpow_nonneg (norm_nonneg _) _)
       _ = 1 := by rw [← Real.rpow_add hdpos]; simp
-  obtain ⟨sg, hsg, hsgeq⟩ := shapeCong K (Fin 4 × n) (Fin 4 × ((Bool × H) × Fin N0 × Fin N1))
+  obtain ⟨sg, hsg, hsgeq⟩ := Formalism.L2.Th1.G.shape_congruence_holds K (Fin 4 × n) (Fin 4 × ((Bool × H) × Fin N0 × Fin N1))
     (jet l ph 2) th (fun _ => (1 : K)) Cm (∑ a : Fin 4, inBlock a (betaPair H N0 N1 u)) (quadForm q)
     h2 hS0th hCm hccbe (cc_quadForm q) hQ hgram' J hJ
   have hdiag : (fun i x => ∑ w, γ i w * Cm w x) = diag4 M := by
@@ -317,15 +317,15 @@ theorem ShapeLin_proof : ShapeLin := by
     rw [Finset.smul_sum]
     simp only [inBlock_smul]
   refine ⟨linSub M T * mvExp (jet l ph 2 • betaPair H N0 N1 u), ?_, ?_⟩
-  · rw [jetsInNorm]
-    refine jetsFourth K _ _ _ ?_ ?_
+  · rw [Formalism.L2.Th1.G.jets_in_norm_holds]
+    refine Formalism.L2.Th1.G.jets_fourth_holds K _ _ _ ?_ ?_
     · intro c hc
       rw [hmem] at hc ⊢
       rw [norm_pow] at hc
       by_contra! hlt
       have : 1 < ‖c‖ ^ 4 := one_lt_pow₀ hlt (by norm_num)
       linarith
-    · rw [← jetsInNorm, tensor_four_mul, htens, gramFrameComposition_mvExp_fact (hccs _ _ hccβ), hsm]
+    · rw [← Formalism.L2.Th1.G.jets_in_norm_holds, tensor_four_mul, htens, gramFrameComposition_mvExp_fact (hccs _ _ hccβ), hsm]
       have e : mvExp ((-(jet l ph 2)) • ∑ a : Fin 4, inBlock a (betaPair H N0 N1 u)) *
           mvExp (jet l ph 2 • ∑ a : Fin 4, inBlock a (betaPair H N0 N1 u)) = 1 := by
         rw [← hadd4 _ _ (hccs _ _ hccbe) (hccs _ _ hccbe), neg_smul, neg_add_cancel, h04]

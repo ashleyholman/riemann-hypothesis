@@ -586,13 +586,6 @@ def XO (X : Submodule (D.s.atP p).Ep (Vp D p)) : Submodule (Z.M p).L.O (Vp D p) 
   zero_mem' := X.zero_mem
   smul_mem' c x hx := by rw [Subring.smul_def]; exact X.smul_mem _ hx
 
-theorem h_bc (x y : (VS D).V) :
-    (locH Z p).h (baseChange₂ D p x) (baseChange₂ D p y) = (D.s.atP p).ιE ((VS D).hT y x) := by
-  have h := hermitian_base_change_smul (Z := Z) (p := p) 1 x y
-  rw [one_smul, one_mul] at h
-  rw [h]
-  rfl
-
 theorem betaL_proj {r : ℕ} (e u : Fin r → (VS D).V) (v : Vp D p) :
     betaL p (LinearMap.id - ∑ a, ((VS D).hT (e a)).smulRight (u a)) v =
       v - ∑ a, (locH Z p).h v (baseChange₂ D p (e a)) • baseChange₂ D p (u a) := by
@@ -614,7 +607,7 @@ theorem betaL_proj {r : ℕ} (e u : Fin r → (VS D).V) (v : Vp D p) :
     rw [baseChangeAt_sum (p := p) Finset.univ]
     congr 1
     refine Finset.sum_congr rfl fun a _ => ?_
-    rw [h_bc]
+    rw [Formalism.L2.SG.Pf.FrameGlobalPatching.FStar.BwdNP.localForm_baseChange]
   exact LinearMap.congr_fun hφ v
 
 theorem loc_gen (Λ : Submodule (𝓞 D.host.E) (VS D).V) (hL : Submodule.IsLattice D.host.E Λ)
@@ -1030,13 +1023,6 @@ theorem identResp_lt (Λ : Submodule (𝓞 D.host.E) (VS D).V) (f g1 g2 : Fin (D
 end ConcreteX
 
 end Formalism.L2.SG.Pf.ScalarFramePf
-
-namespace Formalism.L2.SG.Pf
-
-open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions.S Formalism.MainNotions.S.Lat Formalism.MainNotions.S.LocalSplitGroups Formalism.L2.SG.TermLoc
-  Formalism.L2.SG.Pf.ScalarFramePf
-
-end Formalism.L2.SG.Pf
 end -- clump:auto
 end -- clump:auto
 end -- clump:auto

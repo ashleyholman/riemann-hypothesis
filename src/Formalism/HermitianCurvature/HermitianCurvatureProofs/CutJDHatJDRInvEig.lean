@@ -124,10 +124,6 @@ theorem index_embedding_injective : Function.Injective (e0 k r) := fun a b h => 
 theorem comp_inj {a b c : ℕ} {e : Fin b → Fin c} (he : Function.Injective e) {f g : Fin a → Fin b}
     (h : e ∘ f = e ∘ g) : f = g := funext fun l => he (congrFun h l)
 
-theorem nilpotent_column_anisotropic {m : B.Mat k r} (hm : m ∈ Nset k r) (i j : Fin (2 * r + k + 1)) (hj1 : r ≤ j.val)
-    (hj2 : j.val ≤ r + k) (hi : r ≤ i.val) : m i j = if i = j then 1 else 0 :=
-  hm.2.2 i j hj1 hj2 hi
-
 theorem mw_colX {z' : Fin (2 * r + k + 1) → ℂ} {w m : B.Mat k r} (hw : w ∈ UWset k r z')
     (i q : Fin (2 * r + k + 1)) (hq : q.val < r) : (m * w) i q = m i q := by
   rw [Matrix.mul_apply]
@@ -139,7 +135,7 @@ theorem nilpotent_unitary_fixes_tail {z' : Fin (2 * r + k + 1) → ℂ} {w m : B
   have e : ∀ j, m i j * z' j = (if i = j then 1 else 0) * z' j := by
     intro j
     by_cases hj : r ≤ j.val ∧ j.val ≤ r + k
-    · rw [nilpotent_column_anisotropic hm i j hj.1 hj.2 hi]
+    · rw [Formalism.FourierDecayAlt.P.WeakDominationMajorants.Orb.n_colM hm i j hj.1 hj.2 hi]
     · rw [hz' j (by omega), mul_zero, mul_zero]
   simp only [Matrix.mulVec, dotProduct, e, ite_mul, one_mul, zero_mul, Finset.sum_ite_eq, Finset.mem_univ, ite_true]
 

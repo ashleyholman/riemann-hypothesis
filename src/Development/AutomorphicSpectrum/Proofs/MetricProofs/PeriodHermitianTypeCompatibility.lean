@@ -115,10 +115,6 @@ theorem matrix_eq_zero_of_im {g : ℕ} {La : Type} [AddCommGroup La] (P : La →
   · simpa using a2
   · simpa using a1
 
-theorem trace_mul_sesq (D : Datum H) (a : 𝓞 E) (x y : D.La) :
-    Algebra.trace ℚ E ((a : E) * sesq D x y) = ((D.EF (a • x) y : ℤ) : ℚ) := by
-  apply GlobalTheory.CompanionTheory.Ar.Fl.trace_mul_sesq_eq_form
-
 theorem sesq_smul_left (D : Datum H) (a : 𝓞 E) (x y : D.La) :
     sesq D (a • x) y = (a : E) * sesq D x y := by
   classical
@@ -130,7 +126,7 @@ theorem sesq_smul_left (D : Datum H) (a : 𝓞 E) (x y : D.La) :
     rw [integralBasis_apply]
     push_cast
     ring
-  rw [e1, trace_mul_sesq, Rat.smul_def, mul_smul]
+  rw [e1, GlobalTheory.CompanionTheory.Ar.Fl.trace_mul_sesq_eq_form, Rat.smul_def, mul_smul]
   push_cast
   rfl
 
@@ -232,7 +228,7 @@ theorem component (D : Datum H) {g : ℕ} (ty : Fin g → (E →+* ℂ)) (P : D.
       ring
     have hTr : ((D.EF (a • x) y : ℤ) : ℂ) = ∑ σ : E →+* ℂ, σ (a : E) * σ (sesq D x y) := by
       have := sum_embeddings_eq_trace ((a : E) * sesq D x y)
-      rw [trace_mul_sesq] at this
+      rw [GlobalTheory.CompanionTheory.Ar.Fl.trace_mul_sesq_eq_form] at this
       simp only [map_mul] at this
       rw [this]
       push_cast
@@ -296,7 +292,7 @@ theorem det_ne_zero (D : Datum H) {I : Type} [Fintype I] [DecidableEq I] (e : I 
     rw [← Finset.mul_sum, hvn, mul_zero]
   have h1 : ∀ (a : 𝓞 E) n, D.EF (a • x) (e n) = 0 := by
     intro a n
-    have := trace_mul_sesq D a x (e n)
+    have := GlobalTheory.CompanionTheory.Ar.Fl.trace_mul_sesq_eq_form D a x (e n)
     rw [h0, mul_zero, map_zero] at this
     exact_mod_cast this.symm
   have h2 : ∀ y, sesq D x y = 0 := by
@@ -325,7 +321,7 @@ theorem det_ne_zero (D : Datum H) {I : Type} [Fintype I] [DecidableEq I] (e : I 
     apply D.unimod.1
     rw [map_zero]
     ext y
-    have := trace_mul_sesq D 1 x y
+    have := GlobalTheory.CompanionTheory.Ar.Fl.trace_mul_sesq_eq_form D 1 x y
     rw [h2, mul_zero, map_zero, one_smul] at this
     simp only [LinearMap.zero_apply]
     exact_mod_cast this.symm

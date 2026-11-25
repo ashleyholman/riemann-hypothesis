@@ -170,12 +170,6 @@ end Formalism.FourierDecayAlt.P.JCx2
 
 namespace Formalism.FourierDecayAlt.P
 
-open scoped ComplexOrder
-
-end Formalism.FourierDecayAlt.P
-
-namespace Formalism.FourierDecayAlt.P
-
 open Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt
 
 theorem bessel_function_finite_class : Formalism.FourierDecayAlt.JC.JFInFF := by
@@ -1899,18 +1893,6 @@ theorem sq_rrop (hS : sqGr S) (QQ : ℂ → Wd.M2 (D.Op X)) (hQQ : ∀ Y p q, S 
 
 end sqGraded
 
-section sqLin
-
-variable {k r : ℕ} (Wp Wq : Type) [NormedAddCommGroup Wp] [InnerProductSpace ℂ Wp] [NormedAddCommGroup Wq]
-  [InnerProductSpace ℂ Wq]
-
-variable {Wp Wq}
-
-theorem sq_glev0 (g : Mat k r) : g ∈ Q.Glev k r 0 ↔ g ∈ GV k r := by
-  simp [Q.Glev]
-
-end sqLin
-
 end Formalism.FourierDecayAlt.P.JCx2
 
 end
@@ -1984,14 +1966,6 @@ theorem sq_beta_sesq (D : RealPlaceData k r Wp Wq) {A : ℝ} (hA : AB k r ≤ A)
 end sqBeta
 
 end Formalism.FourierDecayAlt.P.JCx2
-
-namespace Formalism.FourierDecayAlt.P
-
-open Formalism.FourierDecayAlt Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt.B Formalism.FourierDecayAlt.P.JCx2
-
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
-
-end Formalism.FourierDecayAlt.P
 
 end
 
@@ -2720,19 +2694,6 @@ end pdQuant
 
 end Formalism.FourierDecayAlt.P.JCx2
 
-namespace Formalism.FourierDecayAlt.P.JCx2
-
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
-
-section pdOps
-
-variable {k r : ℕ} {Wp Wq : Type} [NormedAddCommGroup Wp] [InnerProductSpace ℂ Wp] [NormedAddCommGroup Wq]
-  [InnerProductSpace ℂ Wq]
-
-end pdOps
-
-end Formalism.FourierDecayAlt.P.JCx2
-
 end
 
 section
@@ -3159,15 +3120,6 @@ end pdMain2
 
 end Formalism.FourierDecayAlt.P.JCx2
 
-namespace Formalism.FourierDecayAlt.P.JCx2
-
-open Formalism.FourierDecayAlt.P.BetaSesquilinearity
-open scoped ComplexOrder ComplexConjugate
-
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
-
-end Formalism.FourierDecayAlt.P.JCx2
-
 end
 
 section
@@ -3225,13 +3177,6 @@ theorem cCCoefM_mono {Bs : B.RealPlaceData k r Wp Wq} {A : ℝ} {mm : ℕ} {ε �
 end classesM
 
 end Formalism.FourierDecayAlt.P.JCx2
-
-namespace Formalism.FourierDecayAlt.P
-
-open Formalism.FourierDecayAlt
-open scoped ComplexOrder
-
-end Formalism.FourierDecayAlt.P
 
 end
 

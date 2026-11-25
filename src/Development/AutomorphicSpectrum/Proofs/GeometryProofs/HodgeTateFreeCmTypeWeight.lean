@@ -642,8 +642,6 @@ theorem latOn_mono {A K : Type} [CommRing A] [Field K] [Algebra A K] {E : Type} 
   rw [← ha]
   exact hB.1 a
 
-alias h_mem_om' := _root_.PositivityTheory.HtPt.Ga.h_mem_om'
-
 theorem chart_pack : ∀ (A K : Type) [CommRing A] [IsDomain A] [IsNoetherianRing A] [Field K] [Algebra A K] [IsFractionRing A K] [CharZero K] (E : Type) [Field E] [NumberField E] (c : E ≃+* E) (hc : ∀ x, c (c x) = x) (p R N : ℕ) [Fact p.Prime] (Li : Type) [AddCommGroup Li] [Module K Li] (D : HTChart A K c p R N (Module.Dual K Li)) (ρ : 𝓞 E →+* Module.End K Li), (∀ (a : 𝓞 E) (w : Module.Dual K Li), D.ρΩ a w = w ∘ₗ ρ (RingOfIntegers.mapRingEquiv c a)) → ∀ (σ : E →+* K) (d : A) (m : ℕ) (i : Module.Dual A (D.omHT (σ.comp c.toRingHom)) →ₗ[A] (Fin N → A)), algebraMap A K d ≠ 0 → D.ExactMod σ m i → D.IsDualMap σ d m i → Module.Projective A (D.omHT σ) → ∃ J : Li →ₗ[K] (Fin N → K), ∀ B : Subring K, HTL.IsLocIn A B → (∀ e ∈ HTL.latOn D (GlobalTheory.CompanionTheory.Ar.HT.eigSp ρ σ) (algebraMap A K d) B, ∀ l, J e l ∈ B) ∧ (∀ e ∈ HTL.latOn D (GlobalTheory.CompanionTheory.Ar.HT.eigSp ρ σ) (algebraMap A K d) B, ∀ j, ∃ z ∈ B, ∑ l, J e l * D.gram σ d l j = algebraMap A K d * D.h (Pi.single j 1) e + (p : K) ^ m * z) ∧ (∃ Rr : (Fin N → K) →ₗ[K] Li, (∀ k, Rr (Pi.single k 1) ∈ HTL.latOn D (GlobalTheory.CompanionTheory.Ar.HT.eigSp ρ σ) (algebraMap A K d) B) ∧ ∀ e ∈ HTL.latOn D (GlobalTheory.CompanionTheory.Ar.HT.eigSp ρ σ) (algebraMap A K d) B, ∃ e' ∈ HTL.latOn D (GlobalTheory.CompanionTheory.Ar.HT.eigSp ρ σ) (algebraMap A K d) B, Rr (J e) = e + ((p : K) ^ m) • e') ∧ (∃ Rr : (Fin N → K) →ₗ[K] Li, (∀ k, Rr (Pi.single k 1) ∈ HTL.latOn D (GlobalTheory.CompanionTheory.Ar.HT.eigSp ρ (σ.comp c.toRingHom)) 1 B) ∧ ∀ e ∈ HTL.latOn D (GlobalTheory.CompanionTheory.Ar.HT.eigSp ρ (σ.comp c.toRingHom)) 1 B, ∃ e' ∈ HTL.latOn D (GlobalTheory.CompanionTheory.Ar.HT.eigSp ρ (σ.comp c.toRingHom)) 1 B, Rr (fun l => D.h (Pi.single l 1) e) = e + ((p : K) ^ m) • e') ∧ ∀ e ∈ HTL.latOn D (GlobalTheory.CompanionTheory.Ar.HT.eigSp ρ σ) (algebraMap A K d) B, ∀ e' ∈ HTL.latOn D (GlobalTheory.CompanionTheory.Ar.HT.eigSp ρ (σ.comp c.toRingHom)) 1 B, ∃ z ∈ B, ∑ l, J e l * D.h (Pi.single l 1) e' = (p : K) ^ m * z := by
   intro A K _ _ _ _ _ _ _ E _ _ c hc p R N _ Li _ _ D ρ hact σ d m i hd hex hdual hproj
   obtain ⟨J, Rr, hJ1, hJ2, hJ3⟩ := _root_.GlobalTheory.CompanionTheory.Ar.Flat.HTL.exists_lift_retract A K E c hc p R N Li D ρ hact σ d m i hd hex
@@ -671,7 +669,7 @@ theorem chart_pack : ∀ (A K : Type) [CommRing A] [IsDomain A] [IsNoetherianRin
   · intro e he j
     obtain ⟨u, hu0, hui, hu⟩ := hloc _ _ e he
     obtain ⟨f, hf1, hf⟩ := hJ1 _ hu
-    let y : D.omHT (σ.comp c.toRingHom) := ⟨eigProj D.ρΩ (σ.comp c.toRingHom) (D.h (Pi.single j 1)), ⟨_, h_mem_om' D _, rfl⟩⟩
+    let y : D.omHT (σ.comp c.toRingHom) := ⟨eigProj D.ρΩ (σ.comp c.toRingHom) (D.h (Pi.single j 1)), ⟨_, PositivityTheory.HtPt.Ga.h_mem_om' D _, rfl⟩⟩
     obtain ⟨z, hz⟩ := hdual f j y rfl
     refine ⟨(algebraMap A K u)⁻¹ * algebraMap A K z, mul_mem hui (hB.1 _), ?_⟩
     have e1 : algebraMap A K (f y) = algebraMap A K d * (algebraMap A K u * D.h (Pi.single j 1) e) := by

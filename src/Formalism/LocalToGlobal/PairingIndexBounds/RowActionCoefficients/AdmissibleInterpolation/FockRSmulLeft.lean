@@ -19,24 +19,24 @@ open Formalism.GradedWeylDivisibility Formalism.L2.G.Model.TS Formalism.MainNoti
 def cN (K : Type) [CommRing K] {n : ℕ} (ν : Fin n → ℕ) : K := fockR (hw K le_rfl ν) (hw K le_rfl ν)
 
 theorem cN_ne (K : Type) [Field K] [CharZero K] {n : ℕ} (ν : Fin n → ℕ) : cN K ν ≠ 0 := by
-  obtain ⟨N, hN, h⟩ := Top.hWNorm n n le_rfl ν
+  obtain ⟨N, hN, h⟩ := Formalism.L2.G.Model.TS.highest_weight_norm n n le_rfl ν
   unfold cN
   rw [h K]
   exact_mod_cast hN.ne'
 
 theorem map_cN (K Kc : Type) [CommRing K] [CommRing Kc] (φ : K →+* Kc) {n : ℕ} (ν : Fin n → ℕ) : φ (cN K ν) = cN Kc ν := by
-  obtain ⟨N, _, h⟩ := Top.hWNorm n n le_rfl ν
+  obtain ⟨N, _, h⟩ := Formalism.L2.G.Model.TS.highest_weight_norm n n le_rfl ν
   unfold cN
   rw [h K, h Kc, map_natCast]
 
 theorem fockR_add_left {σ R : Type} [CommRing R] (f f' g : MvPolynomial σ R) : fockR (f + f') g = fockR f g + fockR f' g :=
-  (Top.fockRBilin σ R f f' g 0).1
+  (Formalism.L2.G.Model.TS.fock_pairing_bilinear σ R f f' g 0).1
 
 theorem fockR_smul_left {σ R : Type} [CommRing R] (a : R) (f g : MvPolynomial σ R) : fockR (a • f) g = a * fockR f g :=
-  (Top.fockRBilin σ R f 0 g a).2.1
+  (Formalism.L2.G.Model.TS.fock_pairing_bilinear σ R f 0 g a).2.1
 
 theorem fockR_comm {σ R : Type} [CommRing R] (f g : MvPolynomial σ R) : fockR f g = fockR g f :=
-  (Top.fockRBilin σ R f 0 g 0).2.2
+  (Formalism.L2.G.Model.TS.fock_pairing_bilinear σ R f 0 g 0).2.2
 
 theorem fockR_zero_left {σ R : Type} [CommRing R] (g : MvPolynomial σ R) : fockR 0 g = 0 := by
   have := fockR_smul_left (0 : R) (0 : MvPolynomial σ R) g
@@ -126,7 +126,7 @@ theorem tgt3 (hFP : FockProd)
   have h4 : ∀ b, fockR (rowAct K (hi b) (e b (i b))) (rowAct K (h b).transpose (e' b (k b))) =
       if i b = k b then cN K (ν b) else 0 := by
     intro b
-    rw [Top.fockRRowAct, rowAct_rowAct, ← Matrix.transpose_mul, hh b, Matrix.transpose_one, rowAct_one]
+    rw [Formalism.L2.G.Model.TS.fock_pairing_row_action, rowAct_rowAct, ← Matrix.transpose_mul, hh b, Matrix.transpose_one, rowAct_one]
     exact hee b (i b) (k b)
   rw [Finset.prod_congr rfl fun b _ => h4 b]
   by_cases hik : i = k

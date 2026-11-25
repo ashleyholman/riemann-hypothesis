@@ -91,7 +91,7 @@ theorem IntersectionWithSection.proof (hE : ResExistsStatement) (hPush : pullbac
   obtain ⟨Ψ, hΨ⟩ := goodProjExists K ι (imageZ v P') n hP
   obtain ⟨hnull, hfin⟩ := hPush K ι K' ι' κ v P' J' n R Ψ hv hP' hP hΨ
   rw [ptsIntegral_eq_mInt' hE resBridge R hP' hL' hA' hs', ptsIntegral_eq_at hE resBridge hP hΨ hL hA hs,
-    pushForward_null R.A _ (fun j => potOf_isPotential R (L' j) (hL' j)) (pullQ R v Ψ) (pullBad R v Ψ) hnull
+    ReciprocityTheory.ChartRestriction.G.Geo.pushForward_null' R.A _ (fun j => potOf_isPotential R (L' j) (hL' j)) (pullQ R v Ψ) (pullBad R v Ψ) hnull
       (fun x hx j hj => by
         by_contra h
         exact hx (Or.inr ⟨j, hj, h⟩)) hfin _ (brIntegrable R L' A' (rename v s) hP' hL' hA' hs'),

@@ -516,11 +516,9 @@ lemma contDiffAt_phiM (μ : Fin n → ℤ) {z : Matrix (Fin n) (Fin n) ℂ} (hz 
   first
   | exact contDiffAt_prod fun i _ => InfKA.contDiffAt_zpow (contDiff_lead _).contDiffAt (hz i) _
 
-alias isOpen_omega' := _root_.ReciprocityTheory.ChartRestriction.DS.S7.isOpen_omega
-
 lemma continuousOn_fderiv_phiM (μ : Fin n → ℤ) : ContinuousOn (fderiv ℂ (PhiM μ)) (OmegaSet n) := by
   exact ContDiffOn.continuousOn_fderiv_of_isOpen
-    (fun z hz => (contDiffAt_phiM μ hz).contDiffWithinAt) isOpen_omega' le_rfl
+    (fun z hz => (contDiffAt_phiM μ hz).contDiffWithinAt) ReciprocityTheory.ChartRestriction.DS.S7.isOpen_omega le_rfl
 
 lemma continuousOn_phiM (μ : Fin n → ℤ) : ContinuousOn (PhiM μ) (OmegaSet n) := by
   exact fun z hz => (contDiffAt_phiM μ hz).continuousAt.continuousWithinAt

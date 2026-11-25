@@ -137,11 +137,3 @@ theorem rhGradF_holds {E : Type} [Field E] [NumberField E] [IsCMField E] : RhGra
   exact RhGradStatement_holds _ _ _ _ hmem _
 
 end ReciprocityTheory.ChartRestriction.G.AR.Up.RGF
-
-namespace ReciprocityTheory.ChartRestriction.G.AR.Up
-
-open NumberField
-
-alias RhGradFStatement_holds := _root_.ReciprocityTheory.ChartRestriction.G.AR.Up.RGF.rhGradF_holds
-
-end ReciprocityTheory.ChartRestriction.G.AR.Up

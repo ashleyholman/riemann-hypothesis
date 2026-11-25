@@ -563,22 +563,10 @@ namespace ReciprocityTheory.ChartRestriction.G.Geo
 
 open MvPolynomial MeasureTheory ReciprocityTheory.AnForm.M
 
-section PushForward
-
-variable {e : ℕ} {X : Type} [TopologicalSpace X]
-
-alias pushForward_null := _root_.ReciprocityTheory.ChartRestriction.G.Geo.pushForward_null'
-
-end PushForward
-
 section Res
 
 variable {K : Type} [Fintype K] {ι : K → Type} [∀ k, Fintype (ι k)]
   {P J : Ideal (MRing ι)} {e : ℕ}
-
-alias psi0_null := _root_.ReciprocityTheory.ChartRestriction.G.Geo.volume_projection_zeroSet_null
-
-alias ram_null := _root_.ReciprocityTheory.ChartRestriction.G.Geo.ram_null'
 
 theorem brBad_null (R : AnLogRes P J e) (Ψ : (((k : K) → ι k) → ℂ) →ₗ[ℂ] (Fin (e + 1) → ℂ))
     (hP : IsArithVar P (e + 1)) (hΨ : IsGoodProj P Ψ) (j : Fin R.A.n) :
@@ -597,8 +585,8 @@ theorem brBad_null (R : AnLogRes P J e) (Ψ : (((k : K) → ι k) → ℂ) →�
         exact hn ⟨analyticAt_brQ R Ψ x k hk h0, hd⟩
   refine measure_mono_null (Set.inter_subset_inter_right _ (Set.preimage_mono h3)) ?_
   simp only [Set.preimage_union, Set.inter_union_distrib_left]
-  exact measure_union_null (measure_union_null (R.null j) (psi0_null R Ψ hP hΨ j))
-    (ram_null R Ψ hP hΨ j)
+  exact measure_union_null (measure_union_null (R.null j) (ReciprocityTheory.ChartRestriction.G.Geo.volume_projection_zeroSet_null R Ψ hP hΨ j))
+    (ReciprocityTheory.ChartRestriction.G.Geo.ram_null' R Ψ hP hΨ j)
 
 theorem potOf_isPotential (R : AnLogRes P J e) (L : HermLine ι) (hL : IsSmoothHerm L) :
     IsPotential R.A (potOf R L) :=

@@ -300,7 +300,7 @@ theorem chi_eq {n : ℕ} {w : Pl E} {ϖ : (w.adicCompletion E)ˣ}
       ordL (((t : GL (Fin n) (w.adicCompletion E)) : Matrix (Fin n) (Fin n) (w.adicCompletion E)) ⟨i, h⟩ ⟨i, h⟩) =
         l i := by
     intro i h
-    rw [ht, tdiag_val, Matrix.diagonal_apply_eq, GlobalTheory.CompanionTheory.KUFactsU.ordL_zpow hv, wexp_lt]
+    rw [ht, tdiag_val, Matrix.diagonal_apply_eq, Formalism.UG.P.fSatake_ord_zpow hv, wexp_lt]
   unfold chiDeltaU pw
   rw [Finset.prod_congr rfl fun i _ => by rw [dite_eq_left (show (i : ℕ) < n by have := i.2; omega), hent],
     Finset.prod_mul_distrib, ← _root_.GlobalTheory.AbelianSumIdentityFirst.main hq0]
@@ -343,8 +343,8 @@ theorem eigInertOf : EigInertOf := by
   have hdiag : PositivityTheory.SphericalProduct.IsDiagM (t : GL (Fin n) (w.adicCompletion E)) := fun i j hij => by
     rw [htm]; exact Matrix.diagonal_apply_ne _ hij
   have hdom : PositivityTheory.SphericalProduct.IsStrictDom (t : GL (Fin n) (w.adicCompletion E)) := fun i j hij => by
-    rw [htm, Matrix.diagonal_apply_eq, Matrix.diagonal_apply_eq, GlobalTheory.CompanionTheory.KUFactsU.ordL_zpow hv,
-      GlobalTheory.CompanionTheory.KUFactsU.ordL_zpow hv]
+    rw [htm, Matrix.diagonal_apply_eq, Matrix.diagonal_apply_eq, Formalism.UG.P.fSatake_ord_zpow hv,
+      Formalism.UG.P.fSatake_ord_zpow hv]
     exact wexp_anti n hl hij
   have ht' : (p.symm t).1 = b * tdiag ϖ (wexp n l) * b⁻¹ := by rw [p_symm_val p hp, htv]
   have ht'p : p (p.symm t) = t := p.apply_symm_apply t

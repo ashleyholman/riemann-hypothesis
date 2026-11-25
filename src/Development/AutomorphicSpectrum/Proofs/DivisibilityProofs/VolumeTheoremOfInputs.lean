@@ -1086,12 +1086,6 @@ open MvPolynomial MeasureTheory Filter Topology ReciprocityTheory.AnForm Recipro
 
 namespace PositivityTheory.Xgp.vert_deg
 
-theorem isNull_zeros {K : Type} [Fintype K] {ι : K → Type} [∀ k, Fintype (ι k)] {P J : Ideal (MRing ι)} {D : ℕ}
-    (R : AnLogRes P J D) (hP : ReciprocityTheory.ChartRestriction.G.Geo.IsArithVar P (D + 1)) {s : MRing ι} {a : K → ℕ} (hs : IsMultiHomog s a)
-    (hsP : s ∉ P) : IsNull R.A {x | eval (R.lift x x) (map (Int.castRingHom ℂ) s) = 0} := by
-  obtain ⟨Ψ, hΨ⟩ := goodProjExists K ι P D hP
-  exact fun j => GlobalTheory.CompanionTheory.Ar.Cmp.OneSlot.zeros_null R Ψ hP hΨ hs hsP j
-
 theorem exists_log {e : ℕ} {X : Type} [TopologicalSpace X] (A : FinHolAtlas e X) {U : Set X} (hU : IsOpen U)
     {F : X → ℂ} (hF : A.HoloOn U F) {x : X} (hx : x ∈ U) (h0 : F x ≠ 0) :
     ∃ V : Set X, IsOpen V ∧ x ∈ V ∧ V ⊆ U ∧ ∃ G : X → ℂ, A.HoloOn V G ∧
@@ -1125,7 +1119,7 @@ theorem exists_samePot {K : Type} [Fintype K] {ι : K → Type} [∀ k, Fintype 
   · refine ⟨{x | eval (R.lift x x) (map (Int.castRingHom ℂ) f) = 0} ∪
       {x | eval (R.lift x x) (map (Int.castRingHom ℂ) g) = 0}, fun j => ?_, fun x hx => ?_⟩
     · rw [Set.preimage_union, Set.inter_union_distrib_left]
-      exact measure_union_null (isNull_zeros R hP hf hfP j) (isNull_zeros R hP hg hgP j)
+      exact measure_union_null (PositivityTheory.Xgp.re_bridge.isNull_zeros R hP hf hfP j) (PositivityTheory.Xgp.re_bridge.isNull_zeros R hP hg hgP j)
     · simp only [Set.mem_compl_iff, Set.mem_union, Set.mem_setOf_eq, not_or] at hx
       obtain ⟨V, hV, hxV, hVU, G, hG, hGe⟩ :=
         exists_log R.A (R.isOpen_U x) (holoOn_eval_lift R x f) (R.mem_U x) hx.1
@@ -1311,10 +1305,6 @@ theorem vertClose_tensor {P : Ideal (MRing ι)} {T : Finset ℕ} {α : ℕ → �
     simp only [HermLine.tensor]
     rw [← mul_assoc, this, mul_assoc]
 
-theorem holoOn_sub_set {e : ℕ} {X : Type} [TopologicalSpace X] {A : FinHolAtlas e X} {U V : Set X} {g : X → ℂ}
-    (h : A.HoloOn U g) (hVU : V ⊆ U) : A.HoloOn V g := fun j =>
-  (h j).mono (Set.inter_subset_inter_right _ (Set.preimage_mono hVU))
-
 theorem samePot_tensor {P J : Ideal (MRing ι)} {D : ℕ} (R : AnLogRes P J D) {Y : Type} [TopologicalSpace Y]
     {π : R.X → Y} (hπ : Continuous π) {A B : HermLine ι} {Q Q' W : LocPot Y}
     (hA : SamePot R.A Set.univ (potOf R A) (Q.pullback π hπ))
@@ -1325,7 +1315,7 @@ theorem samePot_tensor {P J : Ideal (MRing ι)} {D : ℕ} (R : AnLogRes P J D) {
   obtain ⟨V₁, o₁, m₁, G₁, h₁, e₁⟩ := hA x trivial
   obtain ⟨V₂, o₂, m₂, G₂, h₂, e₂⟩ := hB x trivial
   refine ⟨(V₁ ∩ V₂) ∩ R.U x, (o₁.inter o₂).inter (R.isOpen_U x), ⟨⟨m₁, m₂⟩, R.mem_U x⟩, fun z => G₁ z + G₂ z,
-    holoOn_sub_set (holoOn_add R.A h₁ h₂) Set.inter_subset_left, ?_⟩
+    PositivityTheory.Xgp.c_unif.holoOn_mono (holoOn_add R.A h₁ h₂) Set.inter_subset_left, ?_⟩
   rintro y ⟨⟨y1, y2⟩, y3⟩
   have hz := (R.mem x y y3).1
   have a1 := e₁ y y1

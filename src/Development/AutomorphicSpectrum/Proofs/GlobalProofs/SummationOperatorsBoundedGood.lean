@@ -77,8 +77,6 @@ lemma partialSum_periodic {l : ℕ} (i : Fin r) (v : (Fin r → ℕ) → ℚ) (h
     rw [add_single_eq_update, Function.update_self, Function.update_idem]
   rw [h2, add_zero]
 
-alias sum_window := _root_.UpperTheory.Reformulated.B.DYdd7.main
-
 lemma partialSumMean_add_single (l : ℕ) (i : Fin r) (v : (Fin r → ℕ) → ℚ) (m : Fin r → ℕ) (t : ℕ) :
     meanP l i v (m + (Pi.single i t : Fin r → ℕ)) = meanP l i v m := by
   simp only [meanP, update_add_single]
@@ -145,7 +143,7 @@ lemma Aop_goodAt {l : ℕ} (hl : 0 < l) (i : Fin r) (v : (Fin r → ℕ) → ℚ
       rw [h1, hps, ← add_assoc]
     simp only [hterm]
     rw [Finset.sum_sub_distrib,
-      sum_window (fun k => partialSum i v (Function.update m i k))
+      UpperTheory.Reformulated.B.DYdd7.main (fun k => partialSum i v (Function.update m i k))
         (fun k => partialSum_periodic i v hv m k) (m i + 1), ← mul_partialSumMean hl]
     simp
 

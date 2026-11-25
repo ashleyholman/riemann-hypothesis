@@ -142,8 +142,6 @@ noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Flat.GenAgree
 
-alias iotaMulti_rows := _root_.GlobalTheory.CompanionTheory.Ar.Flat.WedgeFrame.wedge_rows
-
 variable {X : Scheme.{0}} {Ω : Type} [Field Ω] {ξ : Spec (CommRingCat.of Ω) ⟶ X}
 
 theorem det_ne_zero_of_li {M : Type} [AddCommGroup M] [Module Ω M] {n : ℕ} {v : Fin n → M}
@@ -328,8 +326,8 @@ theorem hodge_lattice_generic_agree : ∀ (X : Scheme.{0}) (Ω : Type) [Field Ω
     have et : t = y * (P.det / Q.det) := by rw [e, hAd, smul_eq_mul]
     have hy0 := hy.1
     refine ⟨ht, P.det, y⁻¹ * Q.det, hP0, mul_ne_zero (inv_ne_zero hy0) hQ0, ?_, ?_, ?_⟩
-    · rw [Lat.wedge_eq_span_of_isFrameAt X Ω ξ V _ p _ x hP, iotaMulti_rows]
-    · rw [Lat.wedge_eq_span_of_isFrameAt X Ω ξ V _ q _ x hQ, iotaMulti_rows, mul_smul,
+    · rw [Lat.wedge_eq_span_of_isFrameAt X Ω ξ V _ p _ x hP, GlobalTheory.CompanionTheory.Ar.Flat.WedgeFrame.wedge_rows]
+    · rw [Lat.wedge_eq_span_of_isFrameAt X Ω ξ V _ q _ x hQ, GlobalTheory.CompanionTheory.Ar.Flat.WedgeFrame.wedge_rows, mul_smul,
         span_smul_of_unit hy.2.2 (by rw [inv_inv]; exact hy.2.1) (inv_ne_zero hy0)]
     · rw [et]; field_simp
 

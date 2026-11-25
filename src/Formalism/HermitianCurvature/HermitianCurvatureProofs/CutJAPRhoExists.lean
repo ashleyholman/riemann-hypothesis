@@ -457,10 +457,6 @@ theorem frame_move {z e : Fin (2 * r + k + 1) → ℂ} {h : Mx k r} (hh : h ∈ 
     calc herm (Hpk k r) (h *ᵥ F a) v = herm (Hpk k r) (h *ᵥ F a) (h *ᵥ v) := by rw [hv']
       _ = 0 := by rw [PI.StabSplit.UnipW.herm_inv hU]; exact hF.2.2 a v hv
 
-theorem frame_swap {z e : Fin (2 * r + k + 1) → ℂ} {m : ℕ} {F : Fin m → Fin (2 * r + k + 1) → ℂ}
-    (hF : IsFrameOf k r [z, e] F) : IsFrameOf k r [e, z] F :=
-  ⟨hF.1, hF.2.1, fun a v hv => hF.2.2 a v (by simp only [List.mem_cons] at hv ⊢; tauto)⟩
-
 private theorem isUnit_det_of_mem_UWset {h : Mx k r} {z : Fin (2 * r + k + 1) → ℂ} (hh : h ∈ UWset k r z) :
     IsUnit h.det := by
   have hU : hᴴ * Hpk k r * h = Hpk k r := hh.1
@@ -520,7 +516,7 @@ theorem eigenvector_orthogonality_holds : EigOrth := by
   have hstab : ∀ h ∈ UWset k r z, h *ᵥ e = e → ∀ v ∈ Kset k r z e π g, π h v ∈ Kset k r z e π g := by
     intro h hh he v hv Fr hFr w
     have hFr' : IsFrameOf k r [z, e] (fun p => h⁻¹ *ᵥ Fr p) := frame_move (WeylGroupFacts.uw_inv hh) (inv_fix hh he) hFr
-    have key := P.Qx8.capRep_intertwine (frame_swap hFr') hrep.1 hrep.2 hh.1 (π h)
+    have key := P.Qx8.capRep_intertwine (Formalism.FourierDecayAlt.P.CutMP.JA.PRhoCut.Asm.frame_swap hFr') hrep.1 hrep.2 hh.1 (π h)
       (fun h' hh' _ v => by
         rw [← hmul h hh h' hh', ← hmul _ (WeylGroupFacts.uw_mul (WeylGroupFacts.uw_mul hh hh') (WeylGroupFacts.uw_inv hh)) h hh,
           Matrix.mul_assoc (h * h'), Matrix.nonsing_inv_mul _ (WeylGroupFacts.isUnit_of_uh hh.1), Matrix.mul_one]) w v
@@ -546,7 +542,7 @@ theorem eigenvector_orthogonality_holds : EigOrth := by
       (hstabO h hh he _ (Submodule.sub_starProjection_mem_orthogonal v))
   have hcap : ∀ v, S.starProjection (capRep k r π Fr₀ w₀ v) = capRep k r π Fr₀ w₀ (S.starProjection v) := by
     intro v
-    have key := P.Qx8.capRep_intertwine (frame_swap hFr₀) hrep.1 hrep.2 WeylGroupFacts.uh_one
+    have key := P.Qx8.capRep_intertwine (Formalism.FourierDecayAlt.P.CutMP.JA.PRhoCut.Asm.frame_swap hFr₀) hrep.1 hrep.2 WeylGroupFacts.uh_one
       (S.starProjection : Wp →L[ℂ] Wp) (fun h' hh' he' v => by
         rw [inv_one, Matrix.one_mul, Matrix.mul_one]; exact hcomm h' hh' he' v) w₀ v
     simpa only [Matrix.one_mulVec] using key

@@ -1022,7 +1022,7 @@ theorem restLamDeg : RestLamDeg 1088 := by
           have hx1W : X.F.IsW (j1.val : ℤ) (X.F.fr ((j1.val : ℤ) - 1) i0) :=
             TE.fr_le hV ((j1.val : ℤ) - 1) i0 (r - 1) (by omega) (by omega)
           have hx1p : posOf n' (X.F.fr ((j1.val : ℤ) - 1) i0) = posOf n' (X.F.fr (j0.val : ℤ) i0) := by
-            rw [hx1eq, sum_posOf_per]
+            rw [hx1eq, Formalism.MainNotions.SelectionLemmas.Pf.posOf_add_mul]
           have hval : X.bfam p K la e (j1.val : ℤ) (X.F.fr ((j1.val : ℤ) - 1) i0) =
               (X.nz p K la (j0.val : ℤ) (X.F.fr (j0.val : ℤ) i0) - e j0 ⟨i0, hi0⟩) / X.Qc p K (j0.val : ℤ) := by
             rw [bfam_at_w_letter_eq X p K hV la e (j1.val : ℤ) i0 hi0, hx1eq, hj1, lamd_nz_per X p K hV, lamd_eZ_per,

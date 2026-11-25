@@ -199,12 +199,6 @@ theorem vIsoCpt_main : Formalism.FourierDecayAlt.KB.VIsoCpt := by
     exact (JCx2.form_zero_indep μ _ _ 0 (fun _ => 1)).trans (key.trans (JCx2.form_zero_indep μ _ _ (fun _ => 1) 0))
 
 end Formalism.FourierDecayAlt.P.PBFV
-
-namespace Formalism.FourierDecayAlt.P
-
-theorem vector_isomorphism_compact_support : Formalism.FourierDecayAlt.KB.VIsoCpt := Formalism.FourierDecayAlt.P.PBFV.vIsoCpt_main
-
-end Formalism.FourierDecayAlt.P
 end -- clump:auto
 end -- clump:auto
 end -- clump:auto

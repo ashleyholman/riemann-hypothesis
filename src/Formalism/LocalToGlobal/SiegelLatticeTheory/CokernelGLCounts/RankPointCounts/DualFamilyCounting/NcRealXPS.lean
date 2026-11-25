@@ -172,12 +172,12 @@ theorem ProdExact_holds : Formalism.L2.SG.Pf.NcReal.ProdExact := by
   haveI : ∀ v, SigmaFinite (μH' v) := hσH'
   have hU : UnimodLoc := JL.rightInvS_of JL.setCorr_holds (JL.haarCorr_of JL.setCorr_holds)
   have hep : ∀ v a b, hJ (X.B.I.ε v) (eV X v a) (pV X v b) = if a = b then 1 else 0 := fun v a b =>
-    (hJ_X X v _ _).trans (by rw [X.ef]; simp)
+    (Formalism.L2.SG.PoincareInHH.Cut.hJ_crd X v _ _).trans (by rw [X.ef]; simp)
   have hpp : ∀ v a b, hJ (X.B.I.ε v) (pV X v a) (pV X v b) = 0 := fun v a b =>
-    (hJ_X X v _ _).trans (by rw [X.ff]; simp)
+    (Formalism.L2.SG.PoincareInHH.Cut.hJ_crd X v _ _).trans (by rw [X.ff]; simp)
   have hzp : ∀ w v b, hJ (X.B.I.ε v) (zV X w v) (pV X v b) = 0 := fun w v b => by
     have h0 : hJ (X.B.I.ε v) (pV X v b) (zV X w v) = 0 :=
-      (hJ_X X v _ _).trans (by rw [(X.zu_orth w b).2]; simp)
+      (Formalism.L2.SG.PoincareInHH.Cut.hJ_crd X v _ _).trans (by rw [(X.zu_orth w b).2]; simp)
     rw [_root_.Formalism.L2.SG.PoincareInHH.Cut.hJ_conj, h0, map_zero]
   have hSH : ∀ w v, IsHaarS (SLoc (X.B.I.ε v) (eV X v) (zV X w v)) (muSv X w v) := fun w v =>
     NilradicalHermitianFrames.NH.NHLoc_holds _ _ _ _ _ _ _ _ _ _ (frameLoc_X X w u v) (hep v) (hpp v) (hzp w v) _ _
@@ -415,17 +415,17 @@ section Facts
 variable (u : D.what₂.Word) (v : InfinitePlace X.B.I.F)
 
 theorem fX_ee : ∀ a b, hJ (X.B.I.ε v) (eV X v a) (eV X v b) = 0 := fun a b =>
-  (ProductExactness.hJ_X X v (X.eX a) (X.eX b)).trans (by rw [X.ee]; simp)
+  (Formalism.L2.SG.PoincareInHH.Cut.hJ_crd X v (X.eX a) (X.eX b)).trans (by rw [X.ee]; simp)
 theorem fX_ff : ∀ a b, hJ (X.B.I.ε v) (ProductExactness.pV X v a) (ProductExactness.pV X v b) = 0 := fun a b =>
-  (ProductExactness.hJ_X X v (X.fY a) (X.fY b)).trans (by rw [X.ff]; simp)
+  (Formalism.L2.SG.PoincareInHH.Cut.hJ_crd X v (X.fY a) (X.fY b)).trans (by rw [X.ff]; simp)
 theorem fX_ef : ∀ a b, hJ (X.B.I.ε v) (eV X v a) (ProductExactness.pV X v b) = if a = b then 1 else 0 := fun a b =>
-  (ProductExactness.hJ_X X v (X.eX a) (X.fY b)).trans (by rw [X.ef]; split_ifs <;> simp)
+  (Formalism.L2.SG.PoincareInHH.Cut.hJ_crd X v (X.eX a) (X.fY b)).trans (by rw [X.ef]; split_ifs <;> simp)
 theorem fX_ww : ∀ a b, hJ (X.B.I.ε v) (X.wfr u v a) (X.wfr u v b) = if a = b then 1 else 0 := X.wfr_on u v
 theorem fX_ew : ∀ c a, hJ (X.B.I.ε v) (eV X v c) (X.wfr u v a) = 0 := fun c a => ((X.wfr_perp u v a).1 c).1
 theorem fX_fw : ∀ c a, hJ (X.B.I.ε v) (ProductExactness.pV X v c) (X.wfr u v a) = 0 := fun c a => ((X.wfr_perp u v a).1 c).2
 theorem fX_ez : ∀ a, hJ (X.B.I.ε v) (eV X v a) (ProductExactness.zV X u v) = 0 := (ProductExactness.frameLoc_X X u u v).ez
 theorem fX_fz : ∀ a, hJ (X.B.I.ε v) (ProductExactness.pV X v a) (ProductExactness.zV X u v) = 0 := fun a =>
-  (ProductExactness.hJ_X X v (X.fY a) (X.zu u)).trans (by rw [(X.zu_orth u a).2]; simp)
+  (Formalism.L2.SG.PoincareInHH.Cut.hJ_crd X v (X.fY a) (X.zu u)).trans (by rw [(X.zu_orth u a).2]; simp)
 theorem frame_real_z_z_eq_neg : hJ (X.B.I.ε v) (ProductExactness.zV X u v) (ProductExactness.zV X u v) = -((Tw u : ℝ) : ℂ) :=
   (ProductExactness.frameLoc_X X u u v).zz
 theorem fX_zw : ∀ a, hJ (X.B.I.ε v) (ProductExactness.zV X u v) (X.wfr u v a) = 0 := fun a => (X.wfr_perp u v a).2

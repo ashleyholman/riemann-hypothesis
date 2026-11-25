@@ -99,7 +99,7 @@ theorem endoCurve_of_endoZ [CharZero K] [CharZero K'] (W : WeierstrassCurve K) {
   have key : ∀ P, PowerSeries.map φ (wTr W (xP P) (yP P)) +
       PowerSeries.map φ (wTr W (xP (neg P)) (yP (neg P))) = wF P + wF (neg P) := by
     intro P
-    have hc := second_log_derivative_map φ (Formalism.L2.Th1.C.curve_second_log_derivative K W (xP P) (yP P) (hEq P))
+    have hc := second_log_derivative_map φ (Formalism.L2.Th1.C.curve_second_log_derivative_holds K W (xP P) (yP P) (hEq P))
     rw [map_wpShift, ← (hneg P).2] at hc
     have hx : wTr W (xP P) (yP (neg P)) = wTr W (xP (neg P)) (yP (neg P)) := by
       rw [(hneg P).1]
@@ -174,7 +174,7 @@ theorem cdata {dK : ℕ} (L : PeriodPair) (hmod : dK % 4 = 3) (hCM : Formalism.L
     simp [normInt]
   have hd : 0 < dK := by omega
   obtain ⟨S, hS, hcard, -, hs2⟩ := Formalism.L2.Th1.F.hasCMByIsogeny dK L hCM m n hmn hd
-  obtain ⟨hst, hnorm⟩ := Formalism.L2.Th1.F.hasCMByStable dK L hCM m n
+  obtain ⟨hst, hnorm⟩ := Formalism.L2.Th1.F.has_cm_stable dK L hCM m n
   have hprod : ((m : ℂ) + (n : ℂ) * omegaK dK) * ((m : ℂ) + (n : ℂ) * (1 - omegaK dK)) =
       (S.card : ℂ) + 1 := by
     rw [mul_bar]
@@ -195,7 +195,7 @@ theorem cdata {dK : ℕ} (L : PeriodPair) (hmod : dK % 4 = 3) (hCM : Formalism.L
     exact_mod_cast this
   · intro P
     refine ⟨?_, (hS.1 P P.2).2⟩
-    have hbar := (Formalism.L2.Th1.F.hasCMByStable dK L hCM (m + n) (-n)).1
+    have hbar := (Formalism.L2.Th1.F.has_cm_stable dK L hCM (m + n) (-n)).1
     have h1 := hbar _ (hS.1 P P.2).1
     have e : ((S.card + 1 : ℕ) : ℂ) * (P : ℂ) =
         (((m + n : ℤ) : ℂ) + ((-n : ℤ) : ℂ) * omegaK dK) *
@@ -367,9 +367,9 @@ theorem NRDense_of (hSq : SqrtKur) : NRDense := by
       ring
   have hmapE : PowerSeries.map (MaximalUnramifiedExtension l).subtype (wpReg (shortW g2 g3)) =
       PowerSeries.map (ι : ℂ →+* ℂ_[l]) (Formalism.L2.Th1.F.pSeries L') := by
-    rw [CurveNormEndomorphisms.wpReg_eq, Formalism.L2.Th1.F.pOfLattice L',
-      (Formalism.L2.Th1.F.seriesMap _ _ (MaximalUnramifiedExtension l).subtype g2 g3 0 0).2.2.1,
-      (Formalism.L2.Th1.F.seriesMap _ _ (ι : ℂ →+* ℂ_[l]) L'.g₂ L'.g₃ 0 0).2.2.1]
+    rw [CurveNormEndomorphisms.wpReg_eq, Formalism.L2.Th1.F.weierstrass_p_of_lattice L',
+      (Formalism.L2.Th1.F.series_map _ _ (MaximalUnramifiedExtension l).subtype g2 g3 0 0).2.2.1,
+      (Formalism.L2.Th1.F.series_map _ _ (ι : ℂ →+* ℂ_[l]) L'.g₂ L'.g₃ 0 0).2.2.1]
     change Formalism.L2.Th1.F.pOf (g2 : ℂ_[l]) (g3 : ℂ_[l]) = Formalism.L2.Th1.F.pOf (ι L'.g₂) (ι L'.g₃)
     rw [hg2, hg3]
   have hZ : IsEndoZ (PowerSeries.map (MaximalUnramifiedExtension l).subtype (wpReg (shortW g2 g3))) neg

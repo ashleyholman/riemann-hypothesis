@@ -819,26 +819,6 @@ instance kr_instDomGL : IsDomain (GLCoord O n) :=
 
 end Generic
 
-section Primes
-
-variable (O : Type) [CommRing O] [IsDomain O] (n : ℕ)
-
-theorem kr_evOne_det : _root_.Formalism.MainNotions.G.CountingStatementReduction.evOne O n (genMat O n).det = 1 := by
-  unfold _root_.Formalism.MainNotions.G.CountingStatementReduction.evOne
-  rw [aeval_genMat_det, Matrix.det_one]
-
-theorem kr_evOne_X (i j : Fin n) : _root_.Formalism.MainNotions.G.CountingStatementReduction.evOne O n (X (i, j)) = (1 : Matrix (Fin n) (Fin n) O) i j := by
-  unfold _root_.Formalism.MainNotions.G.CountingStatementReduction.evOne
-  rw [aeval_X]
-
-theorem kr_not_dvd_det (q : MvPolynomial (Fin n × Fin n) O) (hq : ¬ IsUnit (_root_.Formalism.MainNotions.G.CountingStatementReduction.evOne O n q)) : ¬ q ∣ (genMat O n).det := by
-  intro h
-  have := map_dvd (_root_.Formalism.MainNotions.G.CountingStatementReduction.evOne O n) h
-  rw [kr_evOne_det] at this
-  exact hq (isUnit_of_dvd_one this)
-
-end Primes
-
 end Formalism.MainNotions.G.Joints.KP
 
 end
@@ -1502,13 +1482,13 @@ theorem kp1Dom : TopRightDivisionDomain := by
 
 theorem top_right_not_dvd_det (R : Type) [CommRing R] [IsDomain R] (r : ℕ) (hr : 1 ≤ r) :
     ¬ (X (0, Fin.last r) : MvPolynomial (Fin (r + 1) × Fin (r + 1)) R) ∣ (genMat R (r + 1)).det := by
-  apply kr_not_dvd_det
+  apply Formalism.MainNotions.G.CountingStatementReduction.not_dvd_det
   have h0 : (0 : Fin (r + 1)) ≠ Fin.last r := by
     intro h
     have := congrArg Fin.val h
     simp at this
     omega
-  rw [kr_evOne_X, Matrix.one_apply_ne h0]
+  rw [Formalism.MainNotions.G.CountingStatementReduction.evOne_X, Matrix.one_apply_ne h0]
   exact not_isUnit_zero
 
 theorem g0rCancel : TopRightCancelConstant := by

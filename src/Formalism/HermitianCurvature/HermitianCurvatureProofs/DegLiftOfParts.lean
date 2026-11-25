@@ -142,7 +142,7 @@ theorem liftDeg_core {k r : ℕ} (T : D.LevTower k r Wp Wq) (F : B.Mat k r → (
   have hloc_h : D.IsLocPt h (D.ptSize h) := Formalism.FourierDecayAlt.P.Dx2.SL.isLocPt_head ⟨ha.1, rfl⟩
   set hh := U.hMat (D.ptPerm h) (D.ptDiag h) with hhdef
   have hdet : hh.det ≠ 0 := Formalism.FourierDecayAlt.P.Ux10.det_hMat_ne _ _
-    (fun q => Formalism.FourierDecayAlt.P.JCTx6.Link2.ptScal_ne h hloc_h.1 q q.2)
+    (fun q => Formalism.FourierDecayAlt.P.Dx1.Rel.scal_ne h hloc_h.1 q q.2)
   have hjr : i0 + s ≤ r := by omega
   have hDl : C3.Dlead i0 s hh τ (i0 + s) ≠ 0 := by
     rw [(Formalism.FourierDecayAlt.P.SignAntidiagonal.derivative_leading_zb i0 s hh τ).2]

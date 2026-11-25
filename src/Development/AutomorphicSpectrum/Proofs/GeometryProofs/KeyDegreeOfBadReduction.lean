@@ -420,8 +420,6 @@ theorem isLieBasis_cast {R : Type} [CommRing R] {G : Over (Sp R)} [GrpObj G] {n 
   subst h
   exact hv
 
-theorem valF_eq_valAt' {X : Scheme.{0}} (x : Sp ℂ ⟶ X) (U : X.Opens) (f : Γ(X, U)) : valF x U f = valAt' x U f := rfl
-
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Host E}
 
 theorem spMap_dualMap_comp {R R' R'' : Type} [CommRing R] [CommRing R'] [CommRing R''] (f : R →+* R') (f' : R' →+* R'') :
@@ -587,7 +585,7 @@ theorem norm_key_of_frame : ∀ κ : GlobalTheory.KeyCl.Rule, GlobalTheory.KeyCl
       exact Set.mem_iInter.1 (Set.mem_iInter.1 (hj hp) PUnit.unit) PUnit.unit
     refine (a.rig (j PUnit.unit PUnit.unit) h₀).trans ?_
     have h₁ : ⊤ ≤ (𝟙 (Sp ℂ)) ⁻¹ᵁ ((D.t.PP.L.pull a.φ).pull (eSec a.A)).U j := hj
-    rw [valF_eq_valAt']
+    rw [GlobalTheory.CompanionTheory.Ar.Sl.FrameFn.valF_eq_valAt']
     refine Eq.trans ?_ (TB.ValAt.valAt'_res (𝟙 (Sp ℂ)) hle h₁ _).symm
     refine Eq.trans ?_ (PullbackSections.valAt'_comp (𝟙 (Sp ℂ)) (emb σ) _ _).symm
     rw [Category.id_comp]
@@ -606,7 +604,7 @@ theorem norm_key_of_frame : ∀ κ : GlobalTheory.KeyCl.Rule, GlobalTheory.KeyCl
       rw [Category.id_comp] at h₂
       exact h₂.symm
     show valAt' (a.u.ex z).left _ (th'.f i) = _
-    rw [e₁, valAt'_appLE _ _ _ _ hle hz, valF_eq_valAt', hss (i PUnit.unit)]
+    rw [e₁, valAt'_appLE _ _ _ _ hle hz, GlobalTheory.CompanionTheory.Ar.Sl.FrameFn.valF_eq_valAt', hss (i PUnit.unit)]
     exact TB.ValAt.valAt'_res _ _ hz' _
   have key := hA x' a.u a.Hm W a.χ θ Fd _ _ a.ah hRig hFn hv'2 hFd rfl rfl
   have hint : (∫ w in Fd, a.nrm 1 θ w ^ 2) =

@@ -198,8 +198,6 @@ section Glob
 
 variable {D : D7} (X : Formalism.L2.SG.HidaSetting.HidaSetting D)
 
-alias hJ_X := _root_.Formalism.L2.SG.PoincareInHH.Cut.hJ_crd
-
 theorem Tw_pos (u : D.what₂.Word) : 0 < Tw (D := D) u := by
   unfold Tw
   exact_mod_cast (D.mem u).A.T_prime.pos
@@ -212,17 +210,17 @@ theorem stepReal_of_witt (W : WittGram) : StepReal := by
       Zhat (X.B.I.ε v) (frm X u sc v) (frm X u' sc v) (uMat g) = Matrix.diagonal (c v) := by
     intro v
     have h0 : ∀ a b, hJ (X.B.I.ε v) (rv X.B.I v (X.eR a)) (rv X.B.I v (X.eR b)) = 0 := fun a b =>
-      (hJ_X X v _ _).trans (by rw [X.ee]; simp)
+      (Formalism.L2.SG.PoincareInHH.Cut.hJ_crd X v _ _).trans (by rw [X.ee]; simp)
     have h1 : ∀ a b, hJ (X.B.I.ε v) (rv X.B.I v (X.fR a)) (rv X.B.I v (X.fR b)) = 0 := fun a b =>
-      (hJ_X X v _ _).trans (by rw [X.ff]; simp)
+      (Formalism.L2.SG.PoincareInHH.Cut.hJ_crd X v _ _).trans (by rw [X.ff]; simp)
     have h2 : ∀ a b, hJ (X.B.I.ε v) (rv X.B.I v (X.eR a)) (rv X.B.I v (X.fR b)) = if a = b then 1 else 0 :=
-      fun a b => (hJ_X X v _ _).trans (by rw [X.ef]; split_ifs <;> simp)
+      fun a b => (Formalism.L2.SG.PoincareInHH.Cut.hJ_crd X v _ _).trans (by rw [X.ef]; split_ifs <;> simp)
     have h3 : ∀ (w : D.what₂.Word) a, hJ (X.B.I.ε v) (rv X.B.I v (X.eR a)) (rv X.B.I v (X.zR w)) = 0 := fun w a =>
-      (hJ_X X v _ _).trans (by rw [(X.zu_orth w a).1]; simp)
+      (Formalism.L2.SG.PoincareInHH.Cut.hJ_crd X v _ _).trans (by rw [(X.zu_orth w a).1]; simp)
     have h4 : ∀ (w : D.what₂.Word) a, hJ (X.B.I.ε v) (rv X.B.I v (X.fR a)) (rv X.B.I v (X.zR w)) = 0 := fun w a =>
-      (hJ_X X v _ _).trans (by rw [(X.zu_orth w a).2]; simp)
+      (Formalism.L2.SG.PoincareInHH.Cut.hJ_crd X v _ _).trans (by rw [(X.zu_orth w a).2]; simp)
     have h5 : ∀ (w : D.what₂.Word), hJ (X.B.I.ε v) (rv X.B.I v (X.zR w)) (rv X.B.I v (X.zR w)) = -(Tw (D := D) w : ℂ) :=
-      fun w => (hJ_X X v _ _).trans (by rw [X.zu_norm w]; simp [Tw])
+      fun w => (Formalism.L2.SG.PoincareInHH.Cut.hJ_crd X v _ _).trans (by rw [X.zu_norm w]; simp [Tw])
     have hw := X.wfr_perp u v ⟨0, hk⟩
     have hww : hJ (X.B.I.ε v) (X.wfr u v ⟨0, hk⟩) (X.wfr u v ⟨0, hk⟩) = 1 := by
       rw [X.wfr_on]; simp

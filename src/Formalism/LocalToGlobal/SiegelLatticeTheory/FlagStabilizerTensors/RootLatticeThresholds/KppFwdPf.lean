@@ -207,7 +207,7 @@ theorem argC_int {x : X.B.I.Gf} (hx : x ∈ X.B.I.Kset) : argC X x ∈ IntAf X.B
 theorem sg_swap (x : X.B.I.Gf) (u v : VA X.B.I) :
     sg X.B.I (hhat X.B.I u (X.B.I.fmat x *ᵥ v)) = hhat X.B.I v (X.B.I.fmat x⁻¹ *ᵥ u) := by
   rw [hhat_conj]
-  have := hhat_fmat X.B.I x v (X.B.I.fmat x⁻¹ *ᵥ u)
+  have := PIW.AdelClassFin.dictTop_hhat_unit X.B.I x v (X.B.I.fmat x⁻¹ *ᵥ u)
   rw [Matrix.mulVec_mulVec, ← fmat_mul, mul_inv_cancel, fmat_one, Matrix.one_mulVec] at this
   exact this
 

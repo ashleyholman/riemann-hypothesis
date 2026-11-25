@@ -343,11 +343,3 @@ theorem second_branch_incl_length_level_zero (Tt : Formalism.L2.Forms.Forms0 D u
   fun w hw hs v hb => ⟨(weight_lattice_inclusions D u Tt w hw hs v).2 hb, hL w hw hs v hb⟩
 
 end Formalism.L2.GlobalTheoryTheory.LocalLatticeBases.S0
-
-namespace Formalism.L2.GlobalTheoryTheory.LocalLatticeBases
-
-variable {D : Formalism.BasicNotions.D7} {u : D.what₂.Word}
-
-alias second_branch_incl_length_level_zero' := _root_.Formalism.L2.GlobalTheoryTheory.LocalLatticeBases.S0.second_branch_incl_length_level_zero
-
-end Formalism.L2.GlobalTheoryTheory.LocalLatticeBases

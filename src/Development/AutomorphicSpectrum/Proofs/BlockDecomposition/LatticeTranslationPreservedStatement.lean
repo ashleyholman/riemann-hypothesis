@@ -209,10 +209,6 @@ theorem zTv_eq {a b c d : Mx D p p} (l4 : adj a ⬝ d - adj c ⬝ b = 1) (x y : 
   simp only [zTv, Matrix.sub_mul, Matrix.mul_sub, Matrix.mul_assoc, e, Matrix.mul_add]
   abel
 
-alias rational_map_sub := _root_.GlobalTheory.MixModel.rat_sub
-
-alias rational_map_add := _root_.GlobalTheory.MixModel.rat_add
-
 theorem transport {D : D7} {n ρ p : ℕ} {hn : ρ + p = n} (M : Maps D hn) (γ : G D p) (hγ : γ ∈ GF D p) :
     ∃ T : (Mx D ρ p × Mx D ρ p) ≃ₜ+ (Mx D ρ p × Mx D ρ p),
       (∀ ξ₁ ξ₂ : Matrix (Fin ρ) (Fin p) D.host.E, ∃ ξ₁' ξ₂' : Matrix (Fin ρ) (Fin p) D.host.E,
@@ -229,12 +225,12 @@ theorem transport {D : D7} {n ρ p : ℕ} {hn : ρ + p = n} (M : Maps D hn) (γ 
     refine ⟨ξ₁ * dᴴ - ξ₂ * cᴴ, ξ₂ * aᴴ - ξ₁ * bᴴ, ?_⟩
     show (rat ξ₁ ⬝ adj (rat d) - rat ξ₂ ⬝ adj (rat c), rat ξ₂ ⬝ adj (rat a) - rat ξ₁ ⬝ adj (rat b)) =
       (rat (ξ₁ * dᴴ - ξ₂ * cᴴ), rat (ξ₂ * aᴴ - ξ₁ * bᴴ))
-    simp only [rational_map_sub, rat_mul, rat_conjTranspose]
+    simp only [GlobalTheory.MixModel.rat_sub, rat_mul, rat_conjTranspose]
   · intro ξ₁ ξ₂
     refine ⟨ξ₁ * a + ξ₂ * c, ξ₁ * b + ξ₂ * d, ?_⟩
     show (rat ξ₁ ⬝ rat a + rat ξ₂ ⬝ rat c, rat ξ₁ ⬝ rat b + rat ξ₂ ⬝ rat d) =
       (rat (ξ₁ * a + ξ₂ * c), rat (ξ₁ * b + ξ₂ * d))
-    simp only [rational_map_add, rat_mul]
+    simp only [GlobalTheory.MixModel.rat_add, rat_mul]
   · intro y x
     refine ⟨⟨zTv (rat a) (rat b) (rat c) (rat d) x y, zTv_herm l2 l3 x y⟩, ?_⟩
     refine emb_conj M γ hm _ x y _ _ ?_ ?_ ?_ ?_ (zTv_eq l4 x y)

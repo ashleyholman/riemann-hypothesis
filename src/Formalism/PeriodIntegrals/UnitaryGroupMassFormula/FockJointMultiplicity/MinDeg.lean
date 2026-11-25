@@ -179,7 +179,7 @@ theorem hc_mem_hwSub2 (μ : Ix r s → ℚ) (P : Pol p q r s) (hP : P ∈ hwSub 
   rw [← homogeneous_component_raise_second (posC_sb hcd), hP.2 c d hcd, map_zero]
 
 theorem span_jset (P : Pol p q r s) (hP : P ∈ Submodule.span ℂ (Jset p q r s)) : P ∈ Jset p q r s := by
-  have key := PI.FJM.jointHarmonicsIffLaplacians p q r s
+  have key := PI.WFJM.jointHarmonicsIffLaplacians p q r s
   induction hP using Submodule.span_induction with
   | mem x hx => exact hx
   | zero =>
@@ -199,7 +199,7 @@ theorem span_jset (P : Pol p q r s) (hP : P ∈ Submodule.span ℂ (Jset p q r s
 
 theorem jset_hc (P : Pol p q r s) (hP : P ∈ Jset p q r s) (e : ℕ) :
     homogeneousComponent e P ∈ Jset p q r s := by
-  have key := PI.FJM.jointHarmonicsIffLaplacians p q r s
+  have key := PI.WFJM.jointHarmonicsIffLaplacians p q r s
   obtain ⟨a1, a2, a3, a4⟩ := (key P).1 hP
   refine (key _).2 ⟨fun i j => ?_, fun i j => ?_, fun k l => ?_, fun k l => ?_⟩
   · exact low_hc _ (by unfold PI.FJM.lapA; exact low_sum _ _ fun _ => PI.WFJM.hc_dd _ _) P (a1 i j) e

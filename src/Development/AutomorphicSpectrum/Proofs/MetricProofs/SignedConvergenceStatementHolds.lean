@@ -257,30 +257,6 @@ open scoped ContDiff
 
 namespace GlobalTheory.CompanionTheory.Ar.Giv.SignedConv
 
-theorem zero_member {e : ℕ} {X : Type} [TopologicalSpace X] (A : FinHolAtlas e X) (Θ L : LocPot X)
-    (s : X → X → ℂ) (C₅ C t₁ : ℝ) (hΘ : IsPotential A Θ) (hΘp : IsPosPot A Θ)
-    (hs : ∀ y, logNormSec L s y ≤ 0) (hC₅ : 0 ≤ C₅) (hC : 0 ≤ C) (ht₁ : 0 < t₁)
-    (hte : t₁ ≤ Real.exp (-Real.exp 1)) :
-    IsSingWeight A L s (LocPot.ofFun 0) 0 C₅ ∧
-      IsRegFamily A Θ L s (LocPot.ofFun 0) 0 (fun _ => 0) C t₁ ∧ IsRegFamilyC2 A s 0 (fun _ => 0) :=
-  _root_.GlobalTheory.CompanionTheory.Ar.Giv.zeroMember_isRegFamily A Θ L s C₅ C t₁ hΘ hΘp hs hC₅ hC ht₁ hte
-
-alias eventually_isPsh := _root_.GlobalTheory.CompanionTheory.Ar.Giv.EvPsh.eventually_isPsh_add_pot
-
-alias isPshOn_add_psh := _root_.GlobalTheory.CompanionTheory.Ar.PshAdd.isPshOn_add_psh
-
-theorem expand_mInt {e : ℕ} {X : Type} [TopologicalSpace X] [CompactSpace X] [T2Space X]
-    (A : FinHolAtlas e X) (U : Set X) (P : Fin e → LocPot X) (f : Fin e → X → ℝ) (Θ : LocPot X)
-    (g : X → ℝ) (hU : IsOpen U) (hnull : ∀ j, volume ((A.chart j).target ∩ (A.chart j).symm ⁻¹' Uᶜ) = 0)
-    (hP : ∀ i, IsPotential A (P i)) (hΘ : IsPotential A Θ) (hf : ∀ i, A.SmoothOn U (f i))
-    (hT : ∀ T : Finset (Fin e), MIntegrable A (fun i => (if i ∈ T then P i else LocPot.ofFun 0) +
-      LocPot.ofFun (if i ∈ T then f i else 0) + Θ) g) :
-    MIntegrable A (fun i => P i + LocPot.ofFun (f i)) g ∧
-      mInt A (fun i => P i + LocPot.ofFun (f i)) g = ∑ T : Finset (Fin e), (-1 : ℝ) ^ (e - T.card) *
-        mInt A (fun i => (if i ∈ T then P i else LocPot.ofFun 0) +
-          LocPot.ofFun (if i ∈ T then f i else 0) + Θ) g :=
-  _root_.GlobalTheory.CompanionTheory.Metric.ExpandMInt.expand_mInt A U P f Θ g hU hnull hP hΘ hf hT
-
 alias isPsh_of_isPosPot := _root_.ReciprocityTheory.AnForm.P.TailBoundAlt.isPsh_of_isPosPot
 
 theorem isPshOn_of_isPsh {e : ℕ} {X : Type} [TopologicalSpace X] (A : FinHolAtlas e X)
@@ -339,7 +315,7 @@ theorem convergenceSigned : ConvergenceSignedStatement := by
     have hz : ∀ i : Fin e, IsSingWeight A L s (LocPot.ofFun 0) 0 |C₅| ∧
         IsRegFamily A Θ L s (LocPot.ofFun 0) 0 (fun _ => 0) |C| (min t₀ (Real.exp (-Real.exp 1))) ∧
         IsRegFamilyC2 A s 0 (fun _ => 0) := fun i =>
-      zero_member A Θ L s |C₅| |C| _ hΘ hΘp hs (abs_nonneg _) (abs_nonneg _)
+      GlobalTheory.CompanionTheory.Ar.Giv.zeroMember_isRegFamily A Θ L s |C₅| |C| _ hΘ hΘp hs (abs_nonneg _) (abs_nonneg _)
         (lt_min (hRF i).1 (Real.exp_pos _)) (min_le_right _ _)
     refine ⟨fun i => ?_, fun i => ?_, fun i => ?_⟩ <;> by_cases hi : i ∈ T <;>
       simp only [hi, ↓reduceIte]
@@ -358,9 +334,9 @@ theorem convergenceSigned : ConvergenceSignedStatement := by
   have hlimT := fun T : Finset (Fin e) => _root_.GlobalTheory.CompanionTheory.Ar.Giv.mInt_eq_integral_maMeasure_off_null A (bdry s)ᶜ
     (fun i => if i ∈ T then th i else LocPot.ofFun 0) (fun i => if i ∈ T then ph i else 0) Θ hUo hnull
     (fun i => ((hmem T).1 i).1) hΘ hΘpsh (fun i => ((hmem T).1 i).2.1)
-    (fun i => isPshOn_add_psh A _ _ _ Θ hUo ((hmem T).1 i).1 hΘ ((hmem T).1 i).2.1
+    (fun i => GlobalTheory.CompanionTheory.Ar.PshAdd.isPshOn_add_psh A _ _ _ Θ hUo ((hmem T).1 i).1 hΘ ((hmem T).1 i).2.1
       ((hmem T).1 i).2.2.1 hΘpsh) g hgcont (hconv T).2.2.1
-  have hexpL := expand_mInt A (bdry s)ᶜ th ph Θ g hUo hnull (fun i => (hSW i).1) hΘ
+  have hexpL := GlobalTheory.CompanionTheory.Metric.ExpandMInt.expand_mInt A (bdry s)ᶜ th ph Θ g hUo hnull (fun i => (hSW i).1) hΘ
     (fun i => (hSW i).2.1) (fun T => (hlimT T).1)
   refine ⟨hexpL.1, ?_⟩
   rw [hexpL.2]
@@ -381,16 +357,16 @@ theorem convergenceSigned : ConvergenceSignedStatement := by
         Integrable (gT t) (maMeasure A (fun i => (if i ∈ T then th i else LocPot.ofFun 0) +
           LocPot.ofFun (if i ∈ T then phT i t else 0) + Θ)) := by
     refine (eventually_all.2 fun i => ?_).and (eventually_all.2 fun T => ?_)
-    · exact (eventually_isPsh A Θ L s (th i) (ph i) (phT i) C t₀ hΘ hΘp (hSW i).1 (hRF i)).mono
+    · exact (GlobalTheory.CompanionTheory.Ar.Giv.EvPsh.eventually_isPsh_add_pot A Θ L s (th i) (ph i) (phT i) C t₀ hΘ hΘp (hSW i).1 (hRF i)).mono
         fun t ht => ht.1
     · refine (eventually_all.2 fun i => ?_).and (hconv T).2.2.2.1
-      exact eventually_isPsh A Θ L s _ _ _ _ _ hΘ hΘp ((hmem T).1 i).1 ((hmem T).2.1 i)
+      exact GlobalTheory.CompanionTheory.Ar.Giv.EvPsh.eventually_isPsh_add_pot A Θ L s _ _ _ _ _ hΘ hΘp ((hmem T).1 i).1 ((hmem T).2.1 i)
   filter_upwards [hev] with t ht
   have hmt := fun T : Finset (Fin e) => _root_.GlobalTheory.CompanionTheory.Ar.Giv.mInt_eq_integral_maMeasure_off_null A (bdry s)ᶜ
     (fun i => if i ∈ T then th i else LocPot.ofFun 0) (fun i => if i ∈ T then phT i t else 0) Θ hUo hnull
     (fun i => ((hmem T).1 i).1) hΘ hΘpsh (fun i => smoothOn_of_smooth A _ _ ((ht.2 T).1 i).1)
     (fun i => isPshOn_of_isPsh A _ _ ((ht.2 T).1 i).2) (gT t) (hgc t) (ht.2 T).2
-  rw [(expand_mInt A (bdry s)ᶜ th (fun i => phT i t) Θ (gT t) hUo hnull (fun i => (hSW i).1) hΘ
+  rw [(GlobalTheory.CompanionTheory.Metric.ExpandMInt.expand_mInt A (bdry s)ᶜ th (fun i => phT i t) Θ (gT t) hUo hnull (fun i => (hSW i).1) hΘ
     (fun i => smoothOn_of_smooth A _ _ (ht.1 i)) (fun T => (hmt T).1)).2]
   refine Finset.sum_congr rfl fun T _ => ?_
   rw [(hmt T).2]

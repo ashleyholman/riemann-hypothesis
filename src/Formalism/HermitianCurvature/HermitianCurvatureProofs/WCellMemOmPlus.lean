@@ -138,10 +138,6 @@ theorem wCell_mem_omPlus {z z' : Fin (2 * r + k + 1) → ℂ} (hz : inWb k r z) 
     unfold GGl at hG'
     nlinarith [mul_pos hP' hG']
 
-theorem GGl_uw {z z' : Fin (2 * r + k + 1) → ℂ} {h h' : Mx k r} (hh : h ∈ UWset k r z) (hh' : h' ∈ UWset k r z')
-    (g : Mx k r) : GGl k r z z' (h * g * h') = GGl k r z z' g := by
-  simp only [GGl, Formalism.FourierDecayAlt.P.Qx5.zeta_inv hh hh']
-
 theorem domR_uw {z z' : Fin (2 * r + k + 1) → ℂ} {x : (Fin r → ℂ) × Mx k r} (hx : x ∈ DomR k r z z')
     {h h' : Mx k r} (hh : h ∈ UWset k r z) (hh' : h' ∈ UWset k r z') :
     (x.1, h * x.2 * h') ∈ DomR k r z z' := by
@@ -149,7 +145,7 @@ theorem domR_uw {z z' : Fin (2 * r + k + 1) → ℂ} {x : (Fin r → ℂ) × Mx 
   refine ⟨h1, ?_, ?_⟩
   · exact Formalism.FourierDecayAlt.P.Qx5.Glev_mul (Formalism.FourierDecayAlt.P.Qx5.Glev_mul (Formalism.FourierDecayAlt.P.Qx5.UW_Glev hh _) h2)
       (Formalism.FourierDecayAlt.P.Qx5.UW_Glev hh' _)
-  · simpa only [GGl_uw hh hh'] using h3
+  · simpa only [Formalism.FourierDecayAlt.P.Qx8.GGl_equiv hh hh'] using h3
 
 theorem sf_resG {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E] {D : Set (Mx k r)} {J : Mx k r → E}
     (hJ : SmoothLev k r 0 D J) :

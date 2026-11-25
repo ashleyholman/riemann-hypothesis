@@ -72,7 +72,7 @@ lemma exists_root_close (r : ℂ_[l]) (h : ‖r ^ (l ^ 2 - 1) - 1‖ < 1) :
       have := (Nat.dvd_sub h1 hd)
       rwa [Nat.sub_sub_self (by omega)] at this
     exact hl.out.one_lt.ne' (Nat.dvd_one.1 h2)
-  obtain ⟨ζ, hζ⟩ := kurRoots l (l ^ 2 - 1) hpos hnd
+  obtain ⟨ζ, hζ⟩ := Formalism.L2.Th1.D.unramified_completion_roots l (l ^ 2 - 1) hpos hnd
   have hζ' : IsPrimitiveRoot ((MaximalUnramifiedExtension l).subtype ζ) (l ^ 2 - 1) :=
     hζ.map_of_injective (MaximalUnramifiedExtension l).subtype.injective
   have hprod := Polynomial.X_pow_sub_one_eq_prod hpos hζ'

@@ -364,24 +364,12 @@ theorem specFirst_map {R S : Type*} [CommSemiring R] [CommSemiring S] (φ : R �
   · simp [specFirstVar]
   · simp [specFirstVar]
 
-theorem gaussNorm_map_eq_one {K : Type*} [Field K] [NumberField K] (v : HeightOneSpectrum (𝓞 K))
-    {σ : Type*} (g : MvPolynomial σ (𝓞 K)) (hg : ∃ m, g.coeff m ∉ v.asIdeal) :
-    gaussNorm v (g.map (algebraMap (𝓞 K) K)) = 1 := by
-  obtain ⟨m, hm⟩ := hg
-  apply le_antisymm
-  · refine gaussNormOf_le _ zero_le_one fun d => ?_
-    rw [coeff_map, ← FinitePlace.norm_embedding]
-    exact FinitePlace.norm_le_one K (v := v) (g.coeff d)
-  · have h1 := le_gaussNormOf (NumberField.HeightOneSpectrum.adicAbv K v) (g.map (algebraMap (𝓞 K) K)) m
-    rw [coeff_map, ← FinitePlace.norm_embedding, (FinitePlace.norm_eq_one_iff_notMem K (v := v) _).mpr hm] at h1
-    exact h1
-
 theorem GaussEq.proof (h1 : OrdEq.Statement) (h2 : GaussDVR.Statement) (h3 : ParDVRIsDVR.Statement) :
     GaussEq.Statement := by
   intro K _ _ n e I g u v hI hf hu hprim
   have := h3 K e n v
   have hord := h1 K n e I g u v hI hf hu hprim
-  refine ⟨?_, gaussNorm_map_eq_one v g hprim⟩
+  refine ⟨?_, GroundTheory.Heights₂.Heights.Vertical.gaussNorm_map_of_coeff_notMem v g hprim⟩
   set h := rename (Sum.inl : Fin e × Fin n → Par e n) (specFirst g u) with hh
   have hne : h ≠ 0 := by
     intro h0
@@ -700,10 +688,6 @@ theorem specComps_finite {K : Type*} [Field K] [NumberField K] {n : ℕ}
     (I : Ideal (MvPolynomial (Fin n) K)) (v : HeightOneSpectrum (𝓞 K)) : (specComps I v).Finite :=
   (Ideal.finite_minimalPrimes_of_isNoetherianRing _ _).subset fun _ hW => hW.1
 
-theorem vertComps_finite' {K : Type*} [Field K] [NumberField K] {n : ℕ}
-    (I : Ideal (MvPolynomial (Fin n) K)) (u : Fin n → 𝓞 K) (v : HeightOneSpectrum (𝓞 K)) :
-    (vertComps I u v).Finite :=
-  (Ideal.finite_minimalPrimes_of_isNoetherianRing _ _).subset fun _ hW => hW.1.1
 
 open Classical in
 theorem OrdEq.proof (hni : NormIdentity.Statement) (hnl : NormLength.Statement)
@@ -751,7 +735,7 @@ theorem OrdEq.proof (hni : NormIdentity.Statement) (hnl : NormLength.Statement)
       hres K n e I f v hI hf (W 𝔫) (hW 𝔫).1]]
 
   have hs := specComps_finite I v
-  have hv := vertComps_finite' I u v
+  have hv := GroundTheory.Heights₂.Heights.Vertical.vertComps_finite I u v
   rw [finsum_mem_eq_finite_toFinset_sum _ hs, vertDeg, Nat.cast_finsum_mem hv,
     finsum_mem_eq_finite_toFinset_sum _ hv]
   have hset : hv.toFinset = hs.toFinset.filter fun W => linForm u ∈ W := by

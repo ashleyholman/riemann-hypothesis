@@ -71,11 +71,11 @@ theorem BeData.exists_of_curveData : ∀ (p : ℕ) [Fact p.Prime] (g2 g3 s2 ε :
     ∃ (om oms : Fin (d / 2) → MaximalUnramifiedExtension p) (ζ : MaximalUnramifiedExtension p), BeData p d σ F (cob F (phFF p g2 g3 s2 ε)) om oms ζ := by
   intro p _ g2 g3 s2 ε σ F hC d _ hd
   obtain ⟨-, hg2, hg3, hε, hth, hσ, hF, hN⟩ := hC
-  have hff := Formalism.L2.Th1.D.FAux.ffs (l := p) Formalism.L2.Th1.D.first_level_on_curve g2 g3 ε hg2 hg3 hε hth σ hσ F hF s2 hN
+  have hff := Formalism.L2.Th1.D.FAux.ffs (l := p) Formalism.L2.Th1.D.first_level_curve_holds g2 g3 ε hg2 hg3 hε hth σ hσ F hF s2 hN
   have hp : p.Prime := Fact.out
   have hd0 : d ≠ 0 := NeZero.ne d
   have h1 : 1 < p ^ d := Nat.one_lt_pow hd0 hp.one_lt
-  obtain ⟨ζ, hζ⟩ := Formalism.L2.Th1.D.kurRoots p (p ^ d - 1) (by omega) (fun hdv => by
+  obtain ⟨ζ, hζ⟩ := Formalism.L2.Th1.D.unramified_completion_roots p (p ^ d - 1) (by omega) (fun hdv => by
     have h2 : p ∣ p ^ d := dvd_pow_self p hd0
     have h3 : p ∣ 1 := by
       have := Nat.dvd_sub h2 hdv

@@ -105,15 +105,9 @@ def Good (D : B.RealPlaceData k r Wp Wq) (A : ℝ) (m : ℕ) (c : ℝ) (H : B.Ma
 
 def EqG (H₁ H₂ : B.Mat k r → (Wq →L[ℂ] Wp)) : Prop := ∀ g ∈ B.GV k r, H₁ g = H₂ g
 
-theorem inCC_mono {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E] {A : ℝ} {m m' : ℕ} (hm : m' ≤ m)
-    {F : B.Mat k r → E} (h : B.InCC A m F) : B.InCC A m' F := by
-  obtain ⟨C, h1, h2⟩ := h
-  exact ⟨C, Formalism.FourierDecayAlt.P.B5.ckOn_mono (by exact_mod_cast hm) h1,
-    fun u v hu hv huv g hg => h2 u v hu hv (huv.trans hm) g hg⟩
-
 theorem good_mono {D : B.RealPlaceData k r Wp Wq} {A : ℝ} {m m' : ℕ} {c : ℝ} (hm : m' ≤ m)
     {H : B.Mat k r → (Wq →L[ℂ] Wp)} (h : Good D A m c H) : Good D A m' c H :=
-  ⟨h.1, inCC_mono hm h.2.1, h.2.2⟩
+  ⟨h.1, Formalism.FourierDecayAlt.P.BetaSesquilinearity.InCC_mono hm h.2.1, h.2.2⟩
 
 theorem op_good (hSm : CVSmooth) (hCC : CVCC) (hSu : CVSupp) {D : B.RealPlaceData k r Wp Wq} {A : ℝ} {m : ℕ}
     {c : ℝ} (s : ℂ) (x : Bool × ℝ) {H : B.Mat k r → (Wq →L[ℂ] Wp)} (h : Good D A (m + (2 * r + k + 1)) c H) :

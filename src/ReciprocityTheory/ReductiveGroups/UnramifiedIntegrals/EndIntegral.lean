@@ -638,7 +638,7 @@ theorem phNorm_int {K : Type} [Field K] [CharZero K] (R : Subring K) (l linv ph 
 
   have hE : ∀ m : ℤ, C.LG R (q (1 + (m : K)) - ph - q (m : K) - (m : K) • B) := by
     intro m
-    have h := C.zLinInt K R l linv ph hF h1 m Unit _ _ hXpt hXpt
+    have h := Formalism.L2.Th1.C.scalarLinearInt' K R l linv ph hF h1 m Unit _ _ hXpt hXpt
     unfold C.Cong at h
     rw [C.be0] at h
     have e : C.fadd l linv (PowerSeries.X : MvPowerSeries Unit K)
@@ -950,7 +950,7 @@ theorem end_card (d : ℕ) (hd : d % 4 = 3) (L : PeriodPair) (hCM : HasCMBy d L)
     (h0 : omegaK d ≠ 0) (hS : Formalism.L2.Th1.F.IsKerReps L (omegaK d) S) :
     S.card + 1 = (d + 1) / 4 := by
   have h1 := Formalism.L2.Th1.F.kerRepsCard L (omegaK d) S h0 hCM hS
-  have h2 := (Formalism.L2.Th1.F.hasCMByStable d L hCM 0 1).2
+  have h2 := (Formalism.L2.Th1.F.has_cm_stable d L hCM 0 1).2
   have h4 : 4 * ((d + 1) / 4) = d + 1 := by omega
   have h4' : (4 : ℝ) * (((d + 1) / 4 : ℕ) : ℝ) = (d : ℝ) + 1 := by exact_mod_cast h4
   have e : ((0 : ℤ) : ℂ) + ((1 : ℤ) : ℂ) * omegaK d = omegaK d := by simp

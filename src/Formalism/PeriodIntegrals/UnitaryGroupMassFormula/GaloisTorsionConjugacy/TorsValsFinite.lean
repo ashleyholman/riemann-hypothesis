@@ -99,8 +99,6 @@ lemma ev_two (L : PeriodPair) {z : ℂ} (h2 : 2 * z ∉ L.lattice) :
     L.isClosed_lattice.isOpen_compl.preimage (continuous_const.mul continuous_id)
   exact ho.mem_nhds h2
 
-alias ev_self := _root_.Formalism.L2.Th1.F.PDeriv.eventually_notMem
-
 lemma derivWeierstrassP_ne_zero (L : PeriodPair) {z : ℂ} (hz : z ∉ L.lattice) (h2 : 2 * z ∉ L.lattice) :
     L.derivWeierstrassP z ≠ 0 := by
   intro h
@@ -126,7 +124,7 @@ lemma zetaDbl (L : PeriodPair) {z : ℂ} (hz : z ∉ L.lattice) (h2 : 2 * z ∉ 
   have hG := (pSecond L z hz).neg.mul ((sigmaLogDeriv L z hz).pow 4)
   have heq : (fun y => -L.derivWeierstrassP y * wSigma L y ^ 4) =ᶠ[𝓝 z]
       (wSigma L ∘ fun y : ℂ => 2 * y) := by
-    filter_upwards [ev_self L hz] with y hy'
+    filter_upwards [GlobalTheory.eventually_notMem_periodLattice L hz] with y hy'
     exact (sigmaDouble L y hy').symm
   have e := (hF.congr_of_eventuallyEq heq).unique hG
   rw [sigmaDouble L z hz] at e
@@ -154,7 +152,7 @@ lemma dblA (L : PeriodPair) {z : ℂ} (hz : z ∉ L.lattice) (h2 : 2 * z ∉ L.l
   have hL := (zetaHasDeriv L (2 * z) h2).comp z (hasDerivAt_two_mul z)
   have hR := ((zetaHasDeriv L z hz).const_mul (2 : ℂ)).add ((hasDerivAt_mu L hz hy).div_const 2)
   have heq : (fun y => 2 * wZeta L y + mu L y / 2) =ᶠ[𝓝 z] (wZeta L ∘ fun y : ℂ => 2 * y) := by
-    filter_upwards [ev_self L hz, ev_two L h2] with y h1 h3
+    filter_upwards [GlobalTheory.eventually_notMem_periodLattice L hz, ev_two L h2] with y h1 h3
     exact (zetaDbl L h1 h3).symm
   have e := (hL.congr_of_eventuallyEq heq).unique hR
   linear_combination (-1 / 2 : ℂ) * e
@@ -182,7 +180,7 @@ theorem dblLaw : DblLaw := by
     ((hasDerivAt_wp L hz).const_mul (2 : ℂ))
   have heq : (fun y => mu L y ^ 2 / 4 - 2 * L.weierstrassP y) =ᶠ[𝓝 z]
       (L.weierstrassP ∘ fun y : ℂ => 2 * y) := by
-    filter_upwards [ev_self L hz, ev_two L h2] with y h1 h3
+    filter_upwards [GlobalTheory.eventually_notMem_periodLattice L hz, ev_two L h2] with y h1 h3
     show mu L y ^ 2 / 4 - 2 * L.weierstrassP y = L.weierstrassP (2 * y)
     rw [dblB L h1 h3]
     rfl

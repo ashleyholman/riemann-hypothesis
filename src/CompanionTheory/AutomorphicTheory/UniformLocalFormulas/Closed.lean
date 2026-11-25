@@ -851,7 +851,7 @@ theorem stepThmBPinnedC_ofN (hB : JointNormBoundRotatedUniform) (hA : AmpUnif) (
   have hClh : h₀ ≤ Cl := le_trans (le_trans (le_trans (le_trans (le_max_right _ _) (le_max_right _ _))
     (le_max_right _ _)) (le_max_right _ _)) hCl
   have hH : Cnt.Hyp0 D large₂ C' Cl Cg cb Cw cT CT C0 := hctx.1
-  have hTT := hypTT_of hctx.2.1
+  have hTT := Formalism.MainNotions.BridgeLemma.d_hypTT hctx.2.1
   obtain ⟨hT, hT'⟩ := tr_pos hctx.2.1
   have hm := cl_le_m hH
   have hs0 : 0 ≤ max Cg₀ 0 := le_max_right _ _
@@ -909,7 +909,7 @@ theorem stepThmBG_ofN (hB : JointNormBoundRotatedUniform) (hA : AmpUnif) (hP : P
   have hClh : h₀ ≤ Cl := le_trans (le_trans (le_trans (le_trans (le_max_right _ _) (le_max_right _ _))
     (le_max_right _ _)) (le_max_right _ _)) hCl
   have hH : Cnt.Hyp0 D large₂ C' Cl Cg cb Cw cT CT C0 := hctx.1
-  have hTT := hypTT_of hctx.2.1
+  have hTT := Formalism.MainNotions.BridgeLemma.d_hypTT hctx.2.1
   obtain ⟨hT, -⟩ := tr_pos hctx.2.1
   have hm := cl_le_m hH
   have hs0 : 0 ≤ max Cg₀ 0 := le_max_right _ _

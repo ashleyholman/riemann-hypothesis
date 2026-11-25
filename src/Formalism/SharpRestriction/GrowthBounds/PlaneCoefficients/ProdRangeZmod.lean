@@ -148,7 +148,7 @@ theorem seg_PsiP (p : ℕ) {n' r K m : ℕ} [NeZero n'] [NeZero r] (O : Type) [C
         rcases hs with rfl | rfl
         · rw [add_zero]
           rfl
-        · rw [Formalism.MainNotions.Proposition5Numerics.DdG.posOf_add_n]
+        · rw [Formalism.MainNotions.G.WittFrameLocaliserOrders.bf_posOf_add]
           rfl
       have e2 : lowP Fr p (⟨j - 1, Sum.inr mm⟩ : TL J Dt.nL r) * p ^ Dt.gP (j - 1) mm =
           p ^ Fr.dist (segZ j) (Fr.fr (segZ j - 1) (r - 1 - mm.val)) := by

@@ -745,7 +745,7 @@ theorem residue_zero_bound : ∃ Cs : ℝ, 0 ≤ Cs ∧ ∀ (Wp Wq : Type) [Norm
   set KK : ℝ := ∑ e, Ka e with hKK
   have hKa' : ∀ e, Ka e ≤ KK := fun e => Finset.single_le_sum (f := Ka) (fun e _ => hKa e) (Finset.mem_univ e)
   have hKK0 : 0 ≤ KK := Finset.sum_nonneg fun e _ => hKa e
-  have hAu : P5.Auser P w.length + 1 ≤ P5.Auser P N + 1 := by linarith [PBE.auser_mono P hw]
+  have hAu : P5.Auser P w.length + 1 ≤ P5.Auser P N + 1 := by linarith [Formalism.FourierDecayAlt.P.JCx2.auser_mono P hw]
   obtain ⟨Cf, hCf0, hCf⟩ := JCx4.formLev_bound_mm P p.T (M.sgn P p.l0) ⟨0, by omega⟩ w (P5.Auser P N + 1 + 1)
     (by linarith)
   have hmm5 : 5 + (2 * (P.r - 0) + P.k + 1) * w.length ≤ P5.mmUser P N := by

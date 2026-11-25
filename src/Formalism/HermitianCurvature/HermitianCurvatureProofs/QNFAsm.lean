@@ -12,7 +12,7 @@ import Formalism.HermitianCurvature.HermitianCurvatureProofs.LevelCoordinatesCom
 namespace Formalism.FourierDecayAlt.P
 
 theorem normalFormFromModule_statement : Formalism.FourierDecayAlt.Q.NormalFormFromModule :=
-  normal_form_from_module theorem_S_ring actual_pre_level actual_hypotheses_of_parts
+  Formalism.FourierDecayAlt.P.NFx3.normalFormFromModuleOfParts theorem_S_ring actual_pre_level Formalism.FourierDecayAlt.P.NFx3.actualSHypOfParts
     level_coordinates_commute types_complete
 
 theorem normal_form_actual : Formalism.FourierDecayAlt.Q.NormalFormActual :=

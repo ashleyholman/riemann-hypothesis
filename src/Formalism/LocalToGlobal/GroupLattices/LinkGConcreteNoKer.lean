@@ -121,10 +121,6 @@ def vecS (k : ℕ) : (Fin k → K) →ₛₗ[φ] (Fin k → K') where
     intro c x; funext i
     simp only [Pi.smul_apply, Algebra.smul_def, map_mul, hφ]
 
-theorem map_smulK {τ : Type} (c : K) (P : MvPolynomial τ K) :
-    MvPolynomial.map φK (c • P) = φK c • MvPolynomial.map φK P := by
-  rw [smul_eq_C_mul, smul_eq_C_mul, map_mul, map_C]
-
 end Maps
 
 theorem bc_dualWeyl {R R' : Type} [CommRing R] [CommRing R'] [IsDomain R'] (φ : R →+* R') (k n : ℕ)
@@ -218,7 +214,7 @@ theorem bc_nablaLTw (m : ℕ) (lam : Fin (m + 1) → ℤ) (g : Matrix (Fin (m + 
   have hg' : IsUnit (g.map φK).det := by rw [det_map]; exact hg.map φK
   rw [nablaLTw_eq_map R K m lam g hg, nablaLTw_eq_map R' K' m lam _ hg']
   refine bc_map (bc_dualWeyl φ (m + 1) (m + 1) _) _ _ fun f => ?_
-  rw [psiL_apply, psiL_apply, map_map_alg φ φK hφ, map_smulK, ldtwist_map_rowAct, map_zpow₀, det_map,
+  rw [psiL_apply, psiL_apply, map_map_alg φ φK hφ, Formalism.UG.P.wlocal_map_smul, ldtwist_map_rowAct, map_zpow₀, det_map,
     inv_map φK g hg]
 
 theorem map_blockEmb {S : Type} {k n : ℕ} (s : S) (F : MvPolynomial (Fin k × Fin n) K) :

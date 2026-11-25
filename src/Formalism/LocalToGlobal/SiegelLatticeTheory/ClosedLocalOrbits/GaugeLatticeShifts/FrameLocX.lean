@@ -28,11 +28,11 @@ theorem frameLoc_X (u u' : D.what₂.Word) (v : InfinitePlace X.B.I.F) :
       k_pos := by have := D.R.m_add_three_le_k; omega
       sig := Formalism.L2.SG.PoincareInHH.Cut.card_eps_false X v
       e_li := ?_
-      ee := fun a b => (hJ_X X v _ _).trans (by rw [X.ee]; simp)
-      ez := fun a => (hJ_X X v _ _).trans (by rw [(X.zu_orth u a).1]; simp)
-      ez' := fun a => (hJ_X X v _ _).trans (by rw [(X.zu_orth u' a).1]; simp)
-      zz := (hJ_X X v _ _).trans (by rw [X.zu_norm u]; simp [Tw])
-      zz' := (hJ_X X v _ _).trans (by rw [X.zu_norm u']; simp [Tw])
+      ee := fun a b => (Formalism.L2.SG.PoincareInHH.Cut.hJ_crd X v _ _).trans (by rw [X.ee]; simp)
+      ez := fun a => (Formalism.L2.SG.PoincareInHH.Cut.hJ_crd X v _ _).trans (by rw [(X.zu_orth u a).1]; simp)
+      ez' := fun a => (Formalism.L2.SG.PoincareInHH.Cut.hJ_crd X v _ _).trans (by rw [(X.zu_orth u' a).1]; simp)
+      zz := (Formalism.L2.SG.PoincareInHH.Cut.hJ_crd X v _ _).trans (by rw [X.zu_norm u]; simp [Tw])
+      zz' := (Formalism.L2.SG.PoincareInHH.Cut.hJ_crd X v _ _).trans (by rw [X.zu_norm u']; simp [Tw])
       T_pos := Tw_pos u
       T'_pos := Tw_pos u' }
   rw [Fintype.linearIndependent_iff]
@@ -40,7 +40,7 @@ theorem frameLoc_X (u u' : D.what₂.Word) (v : InfinitePlace X.B.I.F) :
   have h := congrArg (hJ (X.B.I.ε v) (rv X.B.I v (X.fR j))) hg
   rw [hJ_fsum_r] at h
   have hfe : ∀ i, hJ (X.B.I.ε v) (rv X.B.I v (X.fR j)) (rv X.B.I v (X.eR i)) = if i = j then 1 else 0 :=
-    fun i => (hJ_X X v _ _).trans (by rw [Formalism.L2.SG.PoincareInHH.Cut.hT_f_e X]; split_ifs <;> simp)
+    fun i => (Formalism.L2.SG.PoincareInHH.Cut.hJ_crd X v _ _).trans (by rw [Formalism.L2.SG.PoincareInHH.Cut.hT_f_e X]; split_ifs <;> simp)
   simp only [hfe, mul_ite, mul_one, mul_zero, Finset.sum_ite_eq', Finset.mem_univ, ite_true] at h
   rw [h]
   unfold hJ

@@ -135,29 +135,6 @@ theorem heisenberg_dual_base_vector_formula (k r' : ℕ) (x : HPar k r') :
     exact d_e_e k r'
   rw [h1, h2, zero_smul, sub_zero, one_smul, ← add_assoc]
 
-private theorem liftVec_apply_mk_succ (k r' : ℕ) (w : Fin (2 * r' + k + 1) → ℂ) (q : Fin (2 * r' + k + 1))
-    (h : (q : ℕ) + 1 < 2 * (1 + r') + k + 1) : liftVec k 1 r' w ⟨(q : ℕ) + 1, h⟩ = w q := by
-  unfold liftVec
-  rw [dite_eq_left (by simp only [Fin.val_mk]; omega)]
-  congr 1
-
-private theorem star_liftVec_dotProduct_liftVec (k r' : ℕ) (a b : Fin (2 * r' + k + 1) → ℂ) :
-    star (liftVec k 1 r' a) ⬝ᵥ liftVec k 1 r' b = star a ⬝ᵥ b := by
-  unfold dotProduct
-  symm
-  refine Fintype.sum_of_injective (fun q : Fin (2 * r' + k + 1) => (⟨(q : ℕ) + 1, by omega⟩ : Fin (2 * (1 + r') + k + 1)))
-    (fun q1 q2 h => Fin.ext (by have := congrArg Fin.val h; simp only [Fin.val_mk] at this; omega)) _ _ ?_ ?_
-  · intro p hp
-    have hp' : ¬ (1 ≤ (p : ℕ) ∧ (p : ℕ) < 2 * r' + k + 1 + 1) := by
-      rintro ⟨h1, h2⟩
-      exact hp ⟨⟨(p : ℕ) - 1, by omega⟩, Fin.ext (by simp only [Fin.val_mk]; omega)⟩
-    simp only [Pi.star_apply]
-    unfold liftVec
-    rw [dite_eq_right hp', dite_eq_right hp', star_zero, zero_mul]
-  · intro q
-    simp only [Pi.star_apply]
-    rw [liftVec_apply_mk_succ, liftVec_apply_mk_succ]
-
 private theorem Hpk_one_add_mulVec_liftVec (k r' : ℕ) (w : Fin (2 * r' + k + 1) → ℂ) :
     Hpk k (1 + r') *ᵥ liftVec k 1 r' w = liftVec k 1 r' (Hpk k r' *ᵥ w) := by
   funext p
@@ -216,7 +193,7 @@ theorem heis_lift (k r' : ℕ) (hk : 1 ≤ k) (x : HPar k r') (t : Fin (r' + 1))
     exact d_e_l k r' _
   have hA : herm (Hpk k (1 + r')) (liftVec k 1 r' (phiV k r' t)) (liftVec k 1 r' x.1) =
       star (aF k r' x.1 t) := by
-    rw [herm, Hpk_one_add_mulVec_liftVec, star_liftVec_dotProduct_liftVec, ← herm, herm_symm, herm]
+    rw [herm, Hpk_one_add_mulVec_liftVec, ReciprocityTheory.ChartRestriction.DS.Xi.FormulaFAux.lift_dot, ← herm, herm_symm, herm]
     congr 1
     exact star_phiV_dotProduct_Hpk_mulVec_eq_aF k r' hk x.1 t
   rw [hE, hA, zero_smul, add_zero]

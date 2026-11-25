@@ -120,7 +120,7 @@ theorem position_metric (hML : MetricLocalStatement) (II : IntersectionSystem) (
   have hT : IsSmoothHerm (A.tensor (wtLine hab)) := ContDiffOn.mul hA (wtLine_smooth hab hA hB)
   have mc : II K ι P (D + 1) (Fin.snoc L (A.tensor (wtLine hab))) =
       II K ι P (D + 1) (Fin.snoc L A) - ptsIntegral P (pot L) (ratioWt A B) :=
-    Known.metricChange K ι (II K ι) (hII K ι) P D L A (ratioWt A B) (fun c z hc => ratioWt_smul hab c z hc)
+    ReciprocityTheory.ChartRestriction.G.Geo.metricChange K ι (II K ι) (hII K ι) P D L A (ratioWt A B) (fun c z hc => ratioWt_smul hab c z hc)
       hP hL hA (ratioWt_smooth hA hB)
   rw [← mc]
   refine hML K ι (II K ι) (hII K ι) P (D + 1) _ _ hP (snoc_smooth hL hB) (snoc_smooth hL hT) ?_ ?_

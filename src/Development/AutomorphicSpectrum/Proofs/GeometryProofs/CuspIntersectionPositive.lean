@@ -1791,8 +1791,8 @@ theorem near_all (hG : Top.Given) (Or : CptOrigin Y S₀ Dc Hd) {U : ((Σ k, J k
 
 theorem _root_.GlobalTheory.CompanionTheory.Relay.cusp_intersection_positive : Top.Given → ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] [IsAbelianGalois ℚ E] (H : Host E) (D : Datum H) (Xo : ∀ l : Tor.Level H, Moduli D l) (l : Tor.Level H) (c : Coeff l) (Y : Model (Xo l) c (algebraMap (𝓞 c.F) c.F)) (II : IntersectionSystem) (K : Type) [Fintype K] (J : K → Type) [∀ k, Fintype (J k)] (Ω : Type) [Field Ω] [Algebra ℚ Ω] (W : CMType H → Type) [∀ τ, AddCommGroup (W τ)] [∀ τ, Module Ω (W τ)] (Dc : ComponentData II (CMType H) K J Ω W) (Hd : HodgeData Dc) (S₀ : Finset ℕ) (Or : CptOrigin Y S₀ Dc Hd) (U : ((Σ k, J k) → ℂ) → ℝ), Or.𝔐.IsCuspWeight Or.sm U → ChartPsh Dc (phMu Hd) ∧ ChartCont Dc (phMu Hd) ∧ ChartPsh Dc (corrW Hd U) ∧ ChartCont Dc (corrW Hd U) := by
   intro hG E _ _ _ _ H D Xo l c Y II K _ J _ Ω _ _ W _ _ Dc Hd S₀ Or U hU
-  refine ⟨fun a => _root_.GlobalTheory.CompanionTheory.AnForm.PshLocal.isPsh_of_locally _ _ _ (isOpen_offBd Dc a) fun t ht => ?_, fun a t ht => ?_,
-    fun a => _root_.GlobalTheory.CompanionTheory.AnForm.PshLocal.isPsh_of_locally _ _ _ (isOpen_offBd Dc a) fun t ht => ?_, fun a t ht => ?_⟩
+  refine ⟨fun a => _root_.GlobalTheory.CompanionTheory.AnForm.PshLocal.isPsh_of_locally _ _ _ (GlobalTheory.CompanionTheory.Ar.Cusp.SncPiece.isOpen_offBd Dc a) fun t ht => ?_, fun a t ht => ?_,
+    fun a => _root_.GlobalTheory.CompanionTheory.AnForm.PshLocal.isPsh_of_locally _ _ _ (GlobalTheory.CompanionTheory.Ar.Cusp.SncPiece.isOpen_offBd Dc a) fun t ht => ?_, fun a t ht => ?_⟩
   · obtain ⟨V, h1, h2, h3, -⟩ := (near_all hG Or hU a t ht).1
     exact ⟨V, h1, h2, h3⟩
   · obtain ⟨V, h1, h2, -, h3⟩ := (near_all hG Or hU a t ht).1

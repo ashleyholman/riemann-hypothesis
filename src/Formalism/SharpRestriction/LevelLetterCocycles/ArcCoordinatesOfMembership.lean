@@ -527,7 +527,7 @@ theorem phi_trunc (T : LocLat G Qp LL O) (e R : ℕ) {d : ℕ} (b : Fin d → W.
       ∑ m, (((W.φA ^ e) W.π₀) ^ r * algebraMap O (LetA O n) (y r m)) • ((W.φD T) ^ e) (b m) := by
     intro r _
 
-    rw [Formalism.MainNotions.UnusedSlot80.Relay2.φpow_smul, map_pow, Formalism.MainNotions.LiftingTheory.vecB, map_sum, Finset.smul_sum]
+    rw [Formalism.MainNotions.UnusedSlot80.SatPW.φD_pow_smulA, map_pow, Formalism.MainNotions.LiftingTheory.vecB, map_sum, Finset.smul_sum]
     refine Finset.sum_congr rfl fun m _ => ?_
     rw [map_smul, ← algebraMap_smul (LetA O n) (y r m), smul_smul]
   rw [Finset.sum_congr rfl h1, Finset.sum_comm]
@@ -721,7 +721,7 @@ theorem Pp_repr (T : LocLat G Qp LL O) (c' : ZMod n) (e : ℕ) {d : ℕ} (b : Fi
 
     rw [hxα, map_sum, Finset.smul_sum]
     refine Finset.sum_congr rfl fun m _ => ?_
-    rw [Formalism.MainNotions.UnusedSlot80.Relay2.φpow_smul, smul_smul]
+    rw [Formalism.MainNotions.UnusedSlot80.SatPW.φD_pow_smulA, smul_smul]
 
 theorem frame_inv_poly (hinj : Function.Injective (algebraMap O LL)) {d : ℕ}
     (sol : Fin d → ℕ → Fin d → LL) (hsol0 : ∀ k, sol k 0 = Pi.single k 1) (M κ : ℕ)

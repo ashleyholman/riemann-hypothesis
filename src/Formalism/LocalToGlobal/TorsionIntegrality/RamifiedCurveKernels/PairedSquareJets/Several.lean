@@ -239,7 +239,7 @@ theorem jetsIn1_rest {K : Type} [Field K] [CharZero K] {R : Subring K} {l linv p
     (hj : ∀ i : ℕ, 1 ≤ i → i ≠ 2 → jet l ph i ∈ R) :
     JetsIn1 R (PowerSeries.subst linv ph - PowerSeries.C (jet l ph 2 / 2) * PowerSeries.X ^ 2) := by
   intro k
-  rw [map_sub, mul_sub, ← jetAdditive K l linv ph h k, PowerSeries.coeff_C_mul,
+  rw [map_sub, mul_sub, ← Formalism.L2.Th1.C.jetAdditivity K l linv ph h k, PowerSeries.coeff_C_mul,
     PowerSeries.coeff_X_pow]
   by_cases h2 : k = 2
   · subst h2

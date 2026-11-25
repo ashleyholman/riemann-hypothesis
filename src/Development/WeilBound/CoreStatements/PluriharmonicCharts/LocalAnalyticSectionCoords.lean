@@ -58,10 +58,10 @@ theorem blocks_of_orbit {z z' : (Σ k, ι k) → ℂ} (h : SameOrbit z z') (k : 
   exact ⟨c k, hc k, fun _ => rfl⟩
 
 theorem fst_orbit {k₀ : K} {z z' : (Σ o : Option K, ι (o.getD k₀)) → ℂ} (h : SameOrbit z z') :
-    SameOrbit (fstPt k₀ z) (fstPt k₀ z') := FibreCount.comp_orbit (Pts.isBlockMap_v₀ k₀) h
+    SameOrbit (fstPt k₀ z) (fstPt k₀ z') := GlobalTheory.CompanionTheory.Ar.PB.CovMap.LocImg.comp_orbit (Pts.isBlockMap_v₀ k₀) h
 
 theorem snd_orbit {k₀ : K} {z z' : (Σ o : Option K, ι (o.getD k₀)) → ℂ} (h : SameOrbit z z') :
-    SameOrbit (sndPt k₀ z) (sndPt k₀ z') := FibreCount.comp_orbit (isBlockMap_v₁ k₀) h
+    SameOrbit (sndPt k₀ z) (sndPt k₀ z') := GlobalTheory.CompanionTheory.Ar.PB.CovMap.LocImg.comp_orbit (isBlockMap_v₁ k₀) h
 
 theorem sameOrbit_of_sameOrbit_fstPt_sndPt {k₀ : K} {z z' : (Σ o : Option K, ι (o.getD k₀)) → ℂ} (h₀ : SameOrbit (fstPt k₀ z) (fstPt k₀ z'))
     (h₁ : SameOrbit (sndPt k₀ z) (sndPt k₀ z')) : SameOrbit z z' := by
@@ -147,7 +147,7 @@ theorem Sw.data (S : Sw M τ a b k₀ ca cb) {z : (Σ o : Option K, ι (o.getD k
   have m₀ := mem_mcPts_of_sameOrbit hI (fst_orbit ho) h₀
   have m₁ := mem_mcPts_of_sameOrbit hI (snd_orbit ho) h₁
   have hG' : M.GoodAt F (mCoordIdeal (basePart M.blk (fstPt k₀ z'))) := by
-    rw [FibreCount.mCoordIdeal_eq_of_orbit (FibreCount.basePart_orbit M.blk (fst_orbit ho))]; exact hG
+    rw [GlobalTheory.CompanionTheory.Ar.PB.CovMap.ImgBase.mCoordIdeal_eq (FibreCount.basePart_orbit M.blk (fst_orbit ho))]; exact hG
   have hsnd := Pts.basePart_snd M S.hk z'
   have hc' : ∀ k, basePart M.blk (fstPt k₀ z') ⟨k, F.c k⟩ = 1 := by rw [e']; exact hn
   obtain ⟨h, H⟩ := CPts.flag_fwd M hF m₀ hG' hc'
@@ -161,7 +161,7 @@ theorem Sw.mem (S : Sw M τ a b k₀ ca cb) {z : (Σ o : Option K, ι (o.getD k�
   obtain ⟨z', ho, h, t, H, H'⟩ := S.data h₀ h₁ hF hG
   have m₀ := mem_mcPts_of_sameOrbit (CoordinateConeArithVar.isMultiHomogIdeal y) (fst_orbit ho) h₀
   have hG' : M.GoodAt F (mCoordIdeal (basePart M.blk (fstPt k₀ z'))) := by
-    rw [FibreCount.mCoordIdeal_eq_of_orbit (FibreCount.basePart_orbit M.blk (fst_orbit ho))]; exact hG
+    rw [GlobalTheory.CompanionTheory.Ar.PB.CovMap.ImgBase.mCoordIdeal_eq (FibreCount.basePart_orbit M.blk (fst_orbit ho))]; exact hG
   exact mem_mcPts_of_sameOrbit (CoordinateConeArithVar.isMultiHomogIdeal _) (orbit_symm ho)
     (Pts.back M S.hb S.hab S.hk S.hca S.hcb hF (CPts.base_mem M m₀) hG' H H')
 
@@ -202,18 +202,18 @@ theorem img_blk (Cv : FlagCover M' M) {d : ℕ}
   obtain ⟨F', hF', hg'⟩ := P'.2.1 _ (P'.1 z₁ h₁)
   obtain ⟨a₁, o₁, n₁⟩ := exists_normal_base M'.blk F'.c z₁ fun k => chart_ne (hg'.1 k)
   obtain ⟨a₂, o₂, n₂⟩ := exists_normal_base M'.blk F'.c z₂ fun k =>
-    chart_ne (by rw [← mCoordIdeal_eq_of_orbit hb]; exact hg'.1 k)
+    chart_ne (by rw [← GlobalTheory.CompanionTheory.Ar.PB.CovMap.ImgBase.mCoordIdeal_eq hb]; exact hg'.1 k)
   have ob₁ := basePart_orbit M'.blk o₁
   have ob₂ := basePart_orbit M'.blk o₂
   have eb : basePart M'.blk a₁ = basePart M'.blk a₂ := eq_of_orbit_normal (c := F'.c)
     (Cj.sameOrbit_trans ob₁ (Cj.sameOrbit_trans hb (Cj.sameOrbit_symm ob₂))) n₁ n₂
   have hbm : basePart M'.blk a₁ ∈ mcPts (mCoordIdeal M'.x) :=
     mem_mcPts_of_sameOrbit (CoordinateConeArithVar.isMultiHomogIdeal _) ob₁ (P'.1 z₁ h₁)
-  have hgb : M'.GoodAt F' (mCoordIdeal (basePart M'.blk a₁)) := by rw [mCoordIdeal_eq_of_orbit ob₁]; exact hg'
+  have hgb : M'.GoodAt F' (mCoordIdeal (basePart M'.blk a₁)) := by rw [GlobalTheory.CompanionTheory.Ar.PB.CovMap.ImgBase.mCoordIdeal_eq ob₁]; exact hg'
   have ha₁ := mem_mcPts_of_sameOrbit hy'.2.1.2.1 o₁ h₁
   have ha₂ := mem_mcPts_of_sameOrbit hy'.2.1.2.1 o₂ h₂
   have hbw : SameOrbit (basePart M'.blk a₁ ∘ Cv.v) (basePart M.blk w₁) := Cj.sameOrbit_trans
-    (comp_orbit Cv.block ob₁) (Cj.sameOrbit_symm (_root_.GlobalTheory.CompanionTheory.Ar.PB.CovMap.ImgBase.img_lies_over K ι Φ y Ψ N j M K' ι' Φ' y' M' Cv d hy hy' z₁ h₁ w₁ i₁))
+    (GlobalTheory.CompanionTheory.Ar.PB.CovMap.LocImg.comp_orbit Cv.block ob₁) (Cj.sameOrbit_symm (_root_.GlobalTheory.CompanionTheory.Ar.PB.CovMap.ImgBase.img_lies_over K ι Φ y Ψ N j M K' ι' Φ' y' M' Cv d hy hy' z₁ h₁ w₁ i₁))
   have hbv := mem_mcPts_of_sameOrbit (CoordinateConeArithVar.isMultiHomogIdeal _) hbw (P.1 w₁ hw)
   obtain ⟨F, hF, hg⟩ := P.2.1 _ hbv
   obtain ⟨g₁, fl₁⟩ := (P'.2.2 F' hF' a₁ hbm hgb n₁).1 ha₁
@@ -225,7 +225,7 @@ theorem img_blk (Cv : FlagCover M' M) {d : ℕ}
     eq_of_orbit_normal (c := F.c) (Cj.sameOrbit_trans t₁ (Cj.sameOrbit_symm t₂)) f₁.1 f₂.1
   have hβ : basePart M.blk z₀ ∈ mcPts (mCoordIdeal M.x) :=
     mem_mcPts_of_sameOrbit (CoordinateConeArithVar.isMultiHomogIdeal _) t₁ hbv
-  have hgβ : M.GoodAt F (mCoordIdeal (basePart M.blk z₀)) := by rw [mCoordIdeal_eq_of_orbit t₁]; exact hg
+  have hgβ : M.GoodAt F (mCoordIdeal (basePart M.blk z₀)) := by rw [GlobalTheory.CompanionTheory.Ar.PB.CovMap.ImgBase.mCoordIdeal_eq t₁]; exact hg
   obtain ⟨c₁, hc₁, ez₁⟩ := blocks_of_orbit s₁ k
   obtain ⟨c₂, hc₂, ez₂⟩ := blocks_of_orbit s₂ k
   obtain ⟨c, hc, ez⟩ : ∃ c : ℂ, c ≠ 0 ∧ ∀ m, z₀ ⟨k, m⟩ = c * z₀' ⟨k, m⟩ :=

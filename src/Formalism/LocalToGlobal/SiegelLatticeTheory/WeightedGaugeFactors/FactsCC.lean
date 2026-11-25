@@ -166,10 +166,6 @@ open scoped InnerProductSpace Matrix
 
 alias jm_sq := _root_.Formalism.REAL.Jm_mul_self
 
-theorem jm_inv {n : ℕ} (ε : Fin n → Bool) : (Formalism.REAL.Jm ε)⁻¹ = Formalism.REAL.Jm ε := Matrix.inv_eq_left_inv (jm_sq ε)
-
-theorem jm_isUnit {n : ℕ} (ε : Fin n → Bool) : IsUnit (Formalism.REAL.Jm ε) := ⟨⟨Formalism.REAL.Jm ε, Formalism.REAL.Jm ε, jm_sq ε, jm_sq ε⟩, rfl⟩
-
 theorem mem_UJset_iff {n : ℕ} (ε : Fin n → Bool) (g : Matrix (Fin n) (Fin n) ℂ) :
     g ∈ PI.UpqRep.UJset ε ↔ gᴴ * Formalism.REAL.Jm ε * g = Formalism.REAL.Jm ε := Iff.rfl
 
@@ -184,12 +180,12 @@ theorem exp_mem_UJ {n : ℕ} {ε : Fin n → Bool} {X : Matrix (Fin n) (Fin n) �
       _ = _ := by rw [h0, Matrix.neg_mul]
   have hA : Aᴴ = Formalism.REAL.Jm ε * (-A) * (Formalism.REAL.Jm ε)⁻¹ := by
     have ht : star (t : ℂ) = t := Complex.conj_ofReal t
-    rw [jm_inv, hAdef, Matrix.conjTranspose_smul, hX', ht]
+    rw [Formalism.REAL.signature_matrix_inv_self, hAdef, Matrix.conjTranspose_smul, hX', ht]
     simp only [Matrix.mul_neg, Matrix.neg_mul, Matrix.mul_smul, Matrix.smul_mul, smul_neg]
   have hcomm : NormedSpace.exp (-A) * NormedSpace.exp A = 1 := by
     rw [← Matrix.exp_add_of_commute (-A) A (Commute.neg_left (Commute.refl A)), neg_add_cancel,
       NormedSpace.exp_zero]
-  rw [← Matrix.exp_conjTranspose, hA, Matrix.exp_conj _ _ (jm_isUnit ε), jm_inv]
+  rw [← Matrix.exp_conjTranspose, hA, Matrix.exp_conj _ _ (Formalism.REAL.isUnit_signature_matrix ε), Formalism.REAL.signature_matrix_inv_self]
   calc Formalism.REAL.Jm ε * NormedSpace.exp (-A) * Formalism.REAL.Jm ε * Formalism.REAL.Jm ε * NormedSpace.exp A
       = Formalism.REAL.Jm ε * (NormedSpace.exp (-A) * NormedSpace.exp A) := by
         simp only [Matrix.mul_assoc, Formalism.REAL.f1alg_JJ_left]

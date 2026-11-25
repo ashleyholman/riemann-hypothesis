@@ -57,11 +57,11 @@ theorem frame_of_stableEig : ∀ (E : Type) [Field E] [NumberField E] [IsCMField
     obtain ⟨hl, hE⟩ : e' ∈ Z.M.lat p ∧ e' ∈ eigSp Z.ρ (Z.inc.comp (tauIn c σ)) := he'
     obtain ⟨v, hv⟩ := (Z.M.mem_lat_iff p e').1 hl
     obtain ⟨w, rfl⟩ := MA.onto v hv.1
-    have hw : e' = j w := LieVB.pt_left_inj Z.M (hv.2.trans (hj w).symm)
+    have hw : e' = j w := GlobalTheory.CompanionTheory.Ar.LieFin.pt_left_inj Z.M (hv.2.trans (hj w).symm)
     letI : Algebra c.F (Y.X.presheaf.stalk p.1) := κ.toAlgebra
     letI : Algebra c.F Z.Ω := Z.inc.toAlgebra
     obtain ⟨ft, ⟨hft1, hft2⟩, -⟩ := GlobalTheory.Frames.existsUnique_eigen_sum E H l c (Y.X.presheaf.stalk p.1) F ρA w
-    have hint : ∀ a y, Z.ρ a (j y) = j (ρA a y) := fun a y => LieVB.pt_left_inj Z.M (by
+    have hint : ∀ a y, Z.ρ a (j y) = j (ρA a y) := fun a y => GlobalTheory.CompanionTheory.Ar.LieFin.pt_left_inj Z.M (by
       have h2 := congrArg (fun q => q.left) (Z.act a (j y))
       have h3 := congrArg (fun q => q.left) (hρA a y)
       simp only [Over.comp_left] at h2 h3

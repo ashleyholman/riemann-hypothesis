@@ -33,7 +33,7 @@ theorem levelForm_top_diag (p : KB.Pl P Wp Wq) (H : B.Mat P.k P.r → (Wq →L[�
     rw [dite_eq_left ⟨hg.1, hg.1⟩, dite_eq_right (by omega), ite_eq_left rfl]
     split_ifs with hw
     · subst hw
-      exact (Formalism.FourierDecayAlt.P.top_of_empty Formalism.FourierDecayAlt.P.vector_valued_types Wp Wq P p.l0 p.T p.ν' p.m₀ p.Θ p.TP H a a p.hP p.hF
+      exact (Formalism.FourierDecayAlt.P.top_of_empty Formalism.FourierDecayAlt.P.Topx1.vecw_main Wp Wq P p.l0 p.T p.ν' p.m₀ p.Θ p.TP H a a p.hP p.hF
         hg.1 hg.1 hg.2 hg.2).symm
     · rfl
   · have hV : ∀ F, D.vecV p.T.base p.ν' p.m₀ F a = 0 := fun F => by

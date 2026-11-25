@@ -141,7 +141,7 @@ theorem ffs (hF1 : CurveExponentCoboundaryCocycle) (g2 g3 ε : MaximalUnramified
 
 theorem exists_root2 : ∃ ζ : MaximalUnramifiedExtension l, IsPrimitiveRoot ζ (l ^ 2 - 1) := by
   have h1 : 1 < l ^ 2 := by have := hl.out.two_le; nlinarith
-  refine kurRoots l (l ^ 2 - 1) (by omega) fun hd => ?_
+  refine Formalism.L2.Th1.D.unramified_completion_roots l (l ^ 2 - 1) (by omega) fun hd => ?_
   have h2 : l ∣ l ^ 2 := dvd_pow_self l two_ne_zero
   have h3 : l ∣ 1 := by
     have := (Nat.dvd_sub h2 hd)
@@ -160,7 +160,7 @@ theorem complex_multiplication_field_data : FieldDataCM := by
   have hl2 := hσ.1.two_le
   have hd0 : d ≠ 0 := NeZero.ne d
   have h1 : 1 < l ^ d := Nat.one_lt_pow hd0 hσ.1.one_lt
-  obtain ⟨ζ, hζ⟩ := kurRoots l (l ^ d - 1) (by omega) (fun hdv => by
+  obtain ⟨ζ, hζ⟩ := Formalism.L2.Th1.D.unramified_completion_roots l (l ^ d - 1) (by omega) (fun hdv => by
     have h2 : l ∣ l ^ d := dvd_pow_self l hd0
     have h3 : l ∣ 1 := by
       have := (Nat.dvd_sub h2 hdv)

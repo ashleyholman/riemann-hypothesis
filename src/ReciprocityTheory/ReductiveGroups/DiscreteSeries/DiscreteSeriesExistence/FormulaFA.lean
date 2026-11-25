@@ -23,22 +23,6 @@ variable {n : ℕ} {ε : Fin n → Bool}
 
 section General
 
-section Smooth
-
-open scoped Matrix.Norms.Elementwise
-
-theorem ffa_continuousOn {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E]
-    {f : Matrix (Fin n) (Fin n) ℂ → E} (hf : S7.SmoothOnGV ε f) : ContinuousOn f (UJset ε) := by
-  intro g₀ hg₀
-  obtain ⟨U, F, hU, hg₀U, hF, hfF⟩ := hf g₀ hg₀
-  have hFc : ContinuousAt F g₀ := hF.continuousOn.continuousAt (hU.mem_nhds hg₀U)
-  have heq : f =ᶠ[nhdsWithin g₀ (UJset ε)] F := by
-    filter_upwards [inter_mem_nhdsWithin (UJset ε) (hU.mem_nhds hg₀U)] with g hg
-    exact hfF g hg.2 hg.1
-  exact hFc.continuousWithinAt.congr_of_eventuallyEq heq (hfF g₀ hg₀U hg₀)
-
-end Smooth
-
 theorem ffa_Kset {k : Matrix (Fin n) (Fin n) ℂ} (hk : k ∈ Kset ε) : ∃ k' : S7.KG ε, S7.toMK k' = k := by
   apply ReciprocityTheory.ChartRestriction.DS.S7.exists_toMK <;> assumption
 

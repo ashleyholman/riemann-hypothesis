@@ -1459,8 +1459,6 @@ open PI.FglGram PI.UnitaryGroupMassFormula.PhGram
 
 variable {p : ℕ} [Fact p.Prime] {l ex ph : PowerSeries ℂ_[p]} {σ : Type}
 
-alias cc_l := _root_.PI.UnitaryGroupMassFormula.PhGram.cc_l
-
 theorem ex_l (hd : Data l ex ph) : PowerSeries.subst l ex = PowerSeries.X :=
   (PI.FglPhSplit.Wk.compositionalInverseSymm ℂ_[p] l ex hd.1 hd.2.1).2
 
@@ -1475,7 +1473,7 @@ theorem lg_pt (hd : Data l ex ph) {x : MvPowerSeries σ ℂ_[p]} (hx : MvPowerSe
 theorem pt_lg (hd : Data l ex ph) {a : MvPowerSeries σ ℂ_[p]} (ha : MvPowerSeries.constantCoeff a = 0) :
     pt ex (lg l a) = a := by
   unfold pt lg
-  rw [← PowerSeries.subst_comp_subst_apply (PowerSeries.HasSubst.of_constantCoeff_zero (cc_l hd))
+  rw [← PowerSeries.subst_comp_subst_apply (PowerSeries.HasSubst.of_constantCoeff_zero (PI.UnitaryGroupMassFormula.PhGram.cc_l hd))
     (PowerSeries.HasSubst.of_constantCoeff_zero ha), ex_l hd,
     PowerSeries.subst_X (PowerSeries.HasSubst.of_constantCoeff_zero ha)]
 
@@ -1483,7 +1481,7 @@ theorem pt_zero (hd : Data l ex ph) : pt ex (0 : MvPowerSeries σ ℂ_[p]) = 0 :
   exact PowerSeries.subst_zero_of_constantCoeff_zero hd.1
 
 theorem lg_zero (hd : Data l ex ph) : lg l (0 : MvPowerSeries σ ℂ_[p]) = 0 := by
-  exact PowerSeries.subst_zero_of_constantCoeff_zero (cc_l hd)
+  exact PowerSeries.subst_zero_of_constantCoeff_zero (PI.UnitaryGroupMassFormula.PhGram.cc_l hd)
 
 theorem phAt_zero (hd : Data l ex ph) : phAt ph (0 : MvPowerSeries σ ℂ_[p]) = 0 := by
   exact PowerSeries.subst_zero_of_constantCoeff_zero hd.2.2

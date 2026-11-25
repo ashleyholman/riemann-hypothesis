@@ -562,7 +562,7 @@ theorem Amat_cont (σ : Equiv.Perm (Fin r)) (d : Fin r → ℂ) : Continuous (Am
 theorem Amat_inv_cont (σ : Equiv.Perm (Fin r)) (d : Fin r → ℂ) (hd : ∀ a, d a ≠ 0) :
     Continuous fun x => (Amat σ d x)⁻¹ := by
   have e : (fun x => (Amat σ d x)⁻¹) = fun x => (Amat σ d x).adjugate := by
-    funext x; exact Dx2.SL.inv_adj _ (StabilizerDisintegration.UC.det_UT (conjS_UT hd x))
+    funext x; exact Dx2.SL.inv_adj _ (Formalism.FourierDecayAlt.P.C2x2.ut_det (conjS_UT hd x))
   rw [e]; exact (Amat_cont σ d).matrix_adjugate
 
 theorem norm_psiStar (σ : Equiv.Perm (Fin r)) (z z' : Fin (2 * (r + 0 + 0) + k + 1) → ℂ) (ξ : U.Xi k r 0 0 σ) :

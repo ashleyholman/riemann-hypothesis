@@ -365,7 +365,7 @@ theorem geoTouch : GeoTouch := by
     rw [(hsh (r - 1 - m.val)).1]
     rcases hs with rfl | rfl
     · rw [add_zero]
-    · rw [DdG.posOf_add_n]
+    · rw [Formalism.MainNotions.G.WittFrameLocaliserOrders.bf_posOf_add]
 
 end Formalism.MainNotions.PairMembershipBlocks
 end -- clump:auto
@@ -1455,9 +1455,6 @@ variable {ι : Type*} {n : ℕ}
 theorem multideg_add (a b : ι × Fin n →₀ ℕ) (x : ι) : multideg (a + b) x = multideg a x + multideg b x := by
   simp [multideg, Finset.sum_add_distrib]
 
-theorem multideg_zero (x : ι) : multideg (0 : ι × Fin n →₀ ℕ) x = 0 := by
-  simp [multideg]
-
 theorem multideg_smul (k : ℕ) (a : ι × Fin n →₀ ℕ) (x : ι) : multideg (k • a) x = k * multideg a x := by
   simp [multideg, Finset.mul_sum]
 
@@ -1562,7 +1559,7 @@ theorem PhiJ_monomial (hV : Fr.Valid L₁ N₁) (hnL : ∀ j, Dt.nL j = (Fr.LLse
   induction μ using Finsupp.induction_linear with
   | zero =>
     intro _
-    refine ⟨0, fun c => ?_, fun m' => by rw [multideg_zero, multideg_zero, mul_zero]⟩
+    refine ⟨0, fun c => ?_, fun m' => by rw [Formalism.MainNotions.Proposition5Numerics.multideg_zero, Formalism.MainNotions.Proposition5Numerics.multideg_zero, mul_zero]⟩
     exact MvPolynomial.algHom_C _ c
   | add f g hf hg =>
     intro h
@@ -1583,7 +1580,7 @@ theorem PhiJ_monomial (hV : Fr.Valid L₁ N₁) (hnL : ∀ j, Dt.nL j = (Fr.LLse
     intro h
     by_cases hk0 : k = 0
     · subst hk0
-      refine ⟨0, fun c => ?_, fun m' => by rw [Finsupp.single_zero, multideg_zero, multideg_zero, mul_zero]⟩
+      refine ⟨0, fun c => ?_, fun m' => by rw [Finsupp.single_zero, Formalism.MainNotions.Proposition5Numerics.multideg_zero, Formalism.MainNotions.Proposition5Numerics.multideg_zero, mul_zero]⟩
       rw [Finsupp.single_zero]
       exact MvPolynomial.algHom_C _ c
     · have hv : v.1 ∈ Fr.letters (segZ j) := h v (by rw [Finsupp.mem_support_iff, Finsupp.single_eq_same]; exact hk0)

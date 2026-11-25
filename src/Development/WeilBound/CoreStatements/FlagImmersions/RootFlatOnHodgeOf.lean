@@ -669,8 +669,8 @@ theorem numTriv_of_degZero [CharZero Ω] {E : Type} [Field E] [NumberField E] {L
     refine HodgeDeterminantLattice.isGenAt_mul (HodgeDeterminantLattice.detLat_of_frame hu hN) ?_ hs
     have hco : IsCoeffAt A B p q a b x (c / d * N.det)⁻¹ := by
       refine ⟨P.det * c, Q.det * d, mul_ne_zero hP0 hc0, mul_ne_zero hQ0 hd0, ?_, ?_, ?_⟩
-      · rw [Lat.wedge_eq_span_of_isFrameAt X Ω ξ V _ p _ x hP, iotaMulti_rows, ev, mul_smul]
-      · rw [Lat.wedge_eq_span_of_isFrameAt X Ω ξ V _ q _ x hQ, iotaMulti_rows, ew, mul_smul]
+      · rw [Lat.wedge_eq_span_of_isFrameAt X Ω ξ V _ p _ x hP, GlobalTheory.CompanionTheory.Ar.Flat.WedgeFrame.wedge_rows, ev, mul_smul]
+      · rw [Lat.wedge_eq_span_of_isFrameAt X Ω ξ V _ q _ x hQ, GlobalTheory.CompanionTheory.Ar.Flat.WedgeFrame.wedge_rows, ew, mul_smul]
       · rw [hNd]; field_simp
     simpa only [inv_inv] using lineLat_gen ha hb hco
   intro Γ

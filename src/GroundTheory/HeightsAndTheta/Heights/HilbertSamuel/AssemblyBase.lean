@@ -1754,15 +1754,10 @@ alias ZCombExpand.full := _root_.GroundTheory.Heights₂.Heights.HilbertSamuel.Z
 
 alias ZCombLimit.full := _root_.GroundTheory.Heights₂.Heights.Swarm.ZCombLimit.proof
 
-alias Closed.ReciprocityTheory.ChartRestriction.G.Geo.FibreFinite := _root_.ReciprocityTheory.ChartRestriction.G.Geo.fibreFinite
-
-theorem Closed.FieldNumbers.LocalizedQuotientLength : GroundTheory.Heights₂.Heights.FieldNumbers.LocalizedQuotientLength.Statement :=
-  GroundTheory.Heights₂.Heights.FieldNumbers.LocalizedQuotientLength.proof
-
 alias Closed.Inter.regularityLocalFlat_holds := _root_.GroundTheory.Heights₂.Heights.Inter.regularityLocalFlat_holds.proof
 
 theorem Closed.Inter.regularityDehomogenization_holds : GroundTheory.Heights₂.Heights.Inter.regularityDehomogenization_holds.Statement :=
-  GroundTheory.Heights₂.Heights.Inter.regularityDehomogenization_holds.proof Closed.FieldNumbers.LocalizedQuotientLength Closed.Inter.regularityLocalFlat_holds
+  GroundTheory.Heights₂.Heights.Inter.regularityDehomogenization_holds.proof GroundTheory.Heights₂.Heights.FieldNumbers.LocalizedQuotientLength.proof Closed.Inter.regularityLocalFlat_holds
 
 theorem Closed.Inter.LocRingLocal : GroundTheory.Heights₂.Heights.Inter.LocRingLocal.Statement :=
   GroundTheory.Heights₂.Heights.Inter.LocRingLocal.proof _root_.GroundTheory.Heights₂.Heights.Inter.LocRingFrac.proof

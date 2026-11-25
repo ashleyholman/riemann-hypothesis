@@ -49,8 +49,6 @@ theorem exists_tr {A B : Type} [CommRing A] [CommRing B] (a : Sp A ⟶ X) (b : S
 
 alias spMap_dual_comp := _root_.GlobalTheory.CompanionTheory.Ar.LieFin.spMap_dual_comp
 
-alias pt_left_inj := _root_.GlobalTheory.CompanionTheory.Ar.LieFin.pt_left_inj
-
 theorem exists_lift {R A : Type} [CommRing R] [CommRing A] [IsLocalRing A] (x : Sp R ⟶ X) [IsOpenImmersion x]
     (z : Sp A ⟶ X) (h : z (IsLocalRing.closedPoint A) ∈ x.opensRange) : ∃ a : R →+* A, spMap a ≫ x = z := by
   have hr : Set.range z ⊆ Set.range x := by
@@ -115,13 +113,13 @@ theorem frame_of_basis {R : Type} [CommRing R] (x : Sp R ⟶ X) {F : Type} [AddC
   obtain ⟨β, Bq, hBq, hβ⟩ := basis_tr (A := X.presheaf.stalk q.1) ψ x (X.fromSpecStalk q.1) hψ MR Mq b
   obtain ⟨jq, hjq⟩ := exists_tr (A := X.presheaf.stalk q.1) (X.fromSpecStalk q.1) ξ (genMap ξ q)
     (spec_genMap ξ q) Mq M
-  have hcomp : ∀ e, jq (β e) = j e := fun e => pt_left_inj M (by
+  have hcomp : ∀ e, jq (β e) = j e := fun e => GlobalTheory.CompanionTheory.Ar.LieFin.pt_left_inj M (by
     rw [hjq, hβ, ← Category.assoc, spMap_dual_comp, hg, hj])
   have hcq : (fun k => j (b k)) = fun k => jq (Bq k) := funext fun k => by rw [hBq, hcomp]
   refine le_antisymm (fun e he => ?_) (Submodule.span_le.2 ?_)
   · obtain ⟨v, hv⟩ := (M.mem_lat_iff q e).1 he
     obtain ⟨y, rfl⟩ := Mq.onto v hv.1
-    have hy : e = jq y := pt_left_inj M (hv.2.trans (hjq y).symm)
+    have hy : e = jq y := GlobalTheory.CompanionTheory.Ar.LieFin.pt_left_inj M (hv.2.trans (hjq y).symm)
     rw [hy, hcq]
     exact mem_span_range (genMap ξ q) Bq jq y
   · rintro _ ⟨k, rfl⟩

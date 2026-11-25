@@ -363,7 +363,7 @@ theorem ampAt_record_of_inputs :
     calc (D.R.r : ℝ) ^ (hilbertNinetyConstant * (D.R.m : ℝ)) ≤ large₂.sc.b ^ (hilbertNinetyConstant * (D.R.m : ℝ)) :=
           Real.rpow_le_rpow (Nat.cast_nonneg _) hrb (mul_nonneg hilbertNinetyConstant_pos hm0)
       _ ≤ large₂.sc.b ^ (2 * (D.R.m : ℝ) ^ 2) := Real.rpow_le_rpow_of_exponent_le hb (by nlinarith)
-  have hmr : (D.R.m : ℝ) = 2 * (D.R.rS : ℝ) + 2 := by exact_mod_cast rank_eq_two_mul_add_two D
+  have hmr : (D.R.m : ℝ) = 2 * (D.R.rS : ℝ) + 2 := by exact_mod_cast Formalism.MainNotions.BridgeLemma.m_eq D
   have hr0 : (0 : ℝ) ≤ D.R.rS := Nat.cast_nonneg _
   have hδk : (D.R.rS : ℝ) + 2 ≤ δ * D.R.k := by
     have hmpos : (0 : ℝ) < D.R.m := by rw [hmr]; positivity

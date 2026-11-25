@@ -46,8 +46,6 @@ theorem iwU_le_KU (σ : L →+* L) (n : ℕ) : IwU σ n ≤ KU σ n := by
     exact ⟨fun i j => iwGL_entries hx' i j, fun i j => iwGL_entries hxi i j⟩
   exact hmem
 
-alias ordL_zpow := _root_.Formalism.UG.P.fSatake_ord_zpow
-
 def expo (n : ℕ) (i : Fin n) : ℤ := (n : ℤ) - 1 - 2 * (i.val : ℤ)
 
 def tGL {ϖ : L} (h0 : ϖ ≠ 0) (n : ℕ) : GL (Fin n) L where
@@ -94,7 +92,7 @@ theorem exists_strictDom {ϖ : L} {σ : L →+* L} {q : ℕ} (h : IsUnramInv ϖ 
     exact Matrix.diagonal_apply_ne _ hij
   · show ordL ((Matrix.diagonal fun i => ϖ ^ expo n i) j j) <
       ordL ((Matrix.diagonal fun i => ϖ ^ expo n i) i i)
-    rw [Matrix.diagonal_apply_eq, Matrix.diagonal_apply_eq, ordL_zpow hϖ, ordL_zpow hϖ]
+    rw [Matrix.diagonal_apply_eq, Matrix.diagonal_apply_eq, Formalism.UG.P.fSatake_ord_zpow hϖ, Formalism.UG.P.fSatake_ord_zpow hϖ]
     unfold expo
     have hlt : (i : ℕ) < j := hij
     omega

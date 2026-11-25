@@ -43,7 +43,7 @@ theorem slice_pos_cpt (k r : ℕ) (Wp Wq : Type) [NormedAddCommGroup Wp] [InnerP
   have ht : t ≠ 0 := (hpb (n + 1, t) (by simp)).2
   have hloc : D.IsLocPt (h ++ [(n + 1, t)]) (D.ptSize (h ++ [(n + 1, t)])) := ⟨hpb, rfl⟩
   have hlocH := Formalism.FourierDecayAlt.P.Dx2.SL.isLocPt_head hloc
-  have hd0 : ∀ q, D.ptDiag h q ≠ 0 := fun q => Formalism.FourierDecayAlt.P.JCTx6.Link2.ptScal_ne h hlocH.1 q q.2
+  have hd0 : ∀ q, D.ptDiag h q ≠ 0 := fun q => Formalism.FourierDecayAlt.P.Dx1.Rel.scal_ne h hlocH.1 q q.2
   set ρ := r - D.ptSize (h ++ [(n + 1, t)]) with hρ
   have hsum : ph + (n + 1) + ρ = r := by omega
   have hdP := Formalism.FourierDecayAlt.P.SliceAppend.diag_append_ne_zero (n := n) hd0 ht

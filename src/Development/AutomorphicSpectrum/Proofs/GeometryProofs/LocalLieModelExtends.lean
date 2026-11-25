@@ -89,10 +89,10 @@ theorem exists_germs {R : Type} [CommRing R] {x : Sp R ⟶ X} {F : Type} [AddCom
   obtain ⟨β, Bq, hBq, hβ⟩ := basis_tr (A := X.presheaf.stalk p.1) ψ x (X.fromSpecStalk p.1) hψ MR Mq b
   obtain ⟨jq, hjq⟩ := exists_tr (A := X.presheaf.stalk p.1) (X.fromSpecStalk p.1) ξ (genMap ξ p)
     (spec_genMap ξ p) Mq M
-  have hcomp : ∀ e, jq (β e) = j e := fun e => LieVB.pt_left_inj M (by
+  have hcomp : ∀ e, jq (β e) = j e := fun e => GlobalTheory.CompanionTheory.Ar.LieFin.pt_left_inj M (by
     rw [hjq, hβ, ← Category.assoc, spMap_dual_comp, hg, hj])
   obtain ⟨y, rfl⟩ := Mq.onto v hv.1
-  have hy : c = jq y := pt_left_inj M (hv.2.trans (hjq y).symm)
+  have hy : c = jq y := GlobalTheory.CompanionTheory.Ar.LieFin.pt_left_inj M (hv.2.trans (hjq y).symm)
   refine ⟨fun k => Bq.repr y k, ?_⟩
   rw [hy]
 
@@ -178,7 +178,7 @@ theorem lieLat_germs_eq_sections : ∀ (X : Scheme.{0}) (G : Over X) [GrpObj G] 
   have hφρ : φ.comp ρ = φ₀ := LieSections.ringHom_ext_of_mono x₀ (by
     rw [LieSections.spMap_comp', Category.assoc, hρ, hφ, hφ₀])
   obtain ⟨j, hj⟩ := LieVB.exists_tr x ξ φ hφ MF M
-  have hjβ : ∀ u, j (β u) = j₀ u := fun u => LieVB.pt_left_inj M (by
+  have hjβ : ∀ u, j (β u) = j₀ u := fun u => GlobalTheory.CompanionTheory.Ar.LieFin.pt_left_inj M (by
     rw [hj, hβ, ← Category.assoc, LieVB.spMap_dual_comp, hφρ, hj₀])
   have hjc : j (∑ k, (ρ (r (i, k)) * w) • β (b₀ k)) = c i := by
 

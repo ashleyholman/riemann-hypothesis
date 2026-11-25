@@ -171,13 +171,6 @@ theorem star_mul_self_of_norm {l : ℂ} (h : ‖l‖ = 1) : star l * l = 1 := by
   rw [Complex.star_def, mul_comm, Complex.mul_conj, Complex.normSq_eq_norm_sq, h]
   norm_num
 
-theorem herm_self_real (p : Fin (2 * r + k + 1) → ℂ) :
-    herm (Hpk k r) p p = (((herm (Hpk k r) p p).re : ℝ) : ℂ) := by
-  conv_lhs => rw [Formalism.FourierDecayAlt.P.TwoByOneBlock.herm_self_eq]
-  unfold Tz
-  push_cast
-  ring
-
 theorem PpG_gq {z z' : Fin (2 * r + k + 1) → ℂ} (hz : inWb k r z) (hz' : inWb k r z') {c : Fin r → ℂ}
     (hc : ∀ a, c a ≠ 0) (μsec : ℂ → Matrix (Fin (k + 1)) (Fin (k + 1)) ℂ) (ζ : ℂ)
     (h : (μsec ζ)ᴴ * Hb k * μsec ζ = Hb k) (v : Fin (2 * r + k + 1) → ℂ) :
@@ -201,7 +194,7 @@ theorem u_perp {z' : Fin (2 * r + k + 1) → ℂ} (hz' : C2.StdZ k r z') {w p : 
   · subst hp0; simp [herm]
   have hpos := posV hz' hp.1 hp.2 hp0
   set s := (herm (Hpk k r) p p).re with hs
-  rw [unitH_eq, hm_sub_l, hm_smul_l, hm_smul_l, hm_smul_r, herm_self_real p, ← hs]
+  rw [unitH_eq, hm_sub_l, hm_smul_l, hm_smul_l, hm_smul_r, Formalism.FourierDecayAlt.P.B2x6.herm_self_real p, ← hs]
   simp only [Complex.ofReal_re]
   have hss : (Real.sqrt s)⁻¹ * (Real.sqrt s)⁻¹ * s = 1 := by
     rw [← mul_inv, Real.mul_self_sqrt hpos.le, inv_mul_cancel₀ hpos.ne']

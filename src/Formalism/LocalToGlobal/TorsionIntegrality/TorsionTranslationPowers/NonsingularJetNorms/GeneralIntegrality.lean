@@ -220,7 +220,7 @@ theorem GeneralIntOf_of (hF : FourthPower) (hU : Formalism.L2.Th1.C.UnitaryInv) 
     ((integral_iff hR _).1 h4))
 
 theorem general_integrality : GeneralIntOf :=
-  GeneralIntOf_of fourth_power Formalism.L2.Th1.C.unitaryInv product_integral subst_exp_integral
+  GeneralIntOf_of fourth_power Formalism.L2.Th1.C.unitary_inverse_identity product_integral subst_exp_integral
     congruence_iff_simeq
 
 end Formalism.L2.Th1.E

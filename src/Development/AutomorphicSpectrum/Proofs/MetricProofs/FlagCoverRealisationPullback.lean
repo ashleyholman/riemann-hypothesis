@@ -787,10 +787,6 @@ theorem exists_point (W : Ideal (MRing ι)) (hW : W.IsPrime) :
 
 def monoX (c : ∀ k, ι k) (d : K → ℕ) : MRing ι := ∏ k, X ⟨k, c k⟩ ^ d k
 
-private theorem isMultiHomog_mulZ {K : Type} {ι : K → Type} [∀ k, Fintype (ι k)] {g h : MRing ι} {a b : K → ℕ}
-    (hg : IsMultiHomog g a) (hh : IsMultiHomog h b) : IsMultiHomog (g * h) (a + b) :=
-  GroundTheory.Heights₂.Heights.LowerBoundFree.isMultiHomog_mul hg hh
-
 theorem isMultiHomog_monoX (c : ∀ k, ι k) (d : K → ℕ) : IsMultiHomog (monoX c d) d := by
   rw [← Bridge.isMultiHomog_iff]
   have := IsWeightedHomogeneous.prod (w := NumbersDVR.blockWeight ι) Finset.univ
@@ -829,9 +825,9 @@ theorem exists_rel {w : (Σ k, ι k) → Φ} {z : (Σ k, ι k) → L} (hz : IsPt
   · rw [map_mul]; exact mul_ne_zero h0 (aeval_monoX_ne hc _)
   · rw [map_mul, map_mul, e2, ← chartMono_mul hc he]; ring
   · have hd : IsMultiHomog (m * monoX c dh * g - n * monoX c dg * h) (d + dh + dg) := by
-      refine isMultiHomog_sub (isMultiHomog_mulZ (isMultiHomog_mulZ hm (isMultiHomog_monoX _ _)) hg) ?_
+      refine isMultiHomog_sub (GroundTheory.Heights₂.Heights.HilbertSamuel.SectionLatticeFinite.homog_mul (GroundTheory.Heights₂.Heights.HilbertSamuel.SectionLatticeFinite.homog_mul hm (isMultiHomog_monoX _ _)) hg) ?_
       rw [add_right_comm]
-      exact isMultiHomog_mulZ (isMultiHomog_mulZ hn (isMultiHomog_monoX _ _)) hh
+      exact GroundTheory.Heights₂.Heights.HilbertSamuel.SectionLatticeFinite.homog_mul (GroundTheory.Heights₂.Heights.HilbertSamuel.SectionLatticeFinite.homog_mul hn (isMultiHomog_monoX _ _)) hh
     rw [mem_iff_of_homog hd]
     simp only [map_sub, map_mul, e1, hq, ← chartMono_mul hcw he]
     have := chartMono_ne hcw e
@@ -1033,8 +1029,8 @@ theorem sec_pen (h0 : ∀ k, ∃ i, y ⟨k, i⟩ ≠ 0)
   let dp : Option K → ℕ := fun o => (totDeg k₀ e o).toNat
   let dm : Option K → ℕ := fun o => (-totDeg k₀ e o).toNat
   have hpm : ∀ o, (dp o : ℤ) - dm o = totDeg k₀ e o := fun o => Int.toNat_sub_toNat_neg _
-  have hg := isMultiHomog_mulZ hn (isMultiHomog_monoX c dp)
-  have hh := isMultiHomog_mulZ hm (isMultiHomog_monoX c dm)
+  have hg := GroundTheory.Heights₂.Heights.HilbertSamuel.SectionLatticeFinite.homog_mul hn (isMultiHomog_monoX c dp)
+  have hh := GroundTheory.Heights₂.Heights.HilbertSamuel.SectionLatticeFinite.homog_mul hm (isMultiHomog_monoX c dm)
   have hdeg : ∀ o, ((d + dp) o : ℤ) - (d + dm) o = totDeg k₀ e o := fun o => by
     rw [← hpm]; simp
   have hhδ : aeval δ (m * monoX c dm) ≠ 0 := by rw [map_mul]; exact mul_ne_zero hm0 (aeval_monoX_ne hc _)
@@ -1099,10 +1095,10 @@ theorem sec_pen (h0 : ∀ k, ∃ i, y ⟨k, i⟩ ≠ 0)
       exact mul_ne_zero (mul_ne_zero hm0' (aeval_monoX_ne hc _)) hhδ this
     · have hd : IsMultiHomog (m' * monoX c (d + dp) * h * f - n' * monoX c a * monoX c (d + dm) * g)
           (d' + (d + dp) + (d + dm) + a) := by
-        refine isMultiHomog_sub (isMultiHomog_mulZ (isMultiHomog_mulZ
-          (isMultiHomog_mulZ hm' (isMultiHomog_monoX _ _)) hh) hf) ?_
+        refine isMultiHomog_sub (GroundTheory.Heights₂.Heights.HilbertSamuel.SectionLatticeFinite.homog_mul (GroundTheory.Heights₂.Heights.HilbertSamuel.SectionLatticeFinite.homog_mul
+          (GroundTheory.Heights₂.Heights.HilbertSamuel.SectionLatticeFinite.homog_mul hm' (isMultiHomog_monoX _ _)) hh) hf) ?_
         rw [show d' + (d + dp) + (d + dm) + a = d' + a + (d + dm) + (d + dp) by ring]
-        exact isMultiHomog_mulZ (isMultiHomog_mulZ (isMultiHomog_mulZ hn' (isMultiHomog_monoX _ _))
+        exact GroundTheory.Heights₂.Heights.HilbertSamuel.SectionLatticeFinite.homog_mul (GroundTheory.Heights₂.Heights.HilbertSamuel.SectionLatticeFinite.homog_mul (GroundTheory.Heights₂.Heights.HilbertSamuel.SectionLatticeFinite.homog_mul hn' (isMultiHomog_monoX _ _))
           (isMultiHomog_monoX _ _)) hg
       have hP : m' * monoX c (d + dp) * h * f - n' * monoX c a * monoX c (d + dm) * g ∈ mCoordIdeal w := by
         rw [mem_iff_of_homog hd]
@@ -1260,14 +1256,14 @@ theorem pot_pull (CR : CovReal FA Cv) (hy : IsArithVar (mCoordIdeal y) (d + 2))
     refine ⟨(fun z => z ∘ v) ⁻¹' V, fun z => f (z ∘ v), hV.preimage (continuous_comp_idx v), hzV,
       fun z hz => (hf _ hz).comp (f := fun z => z ∘ v) (analytic_comp_idx v z), fun z' hz' x' hx' => ?_⟩
     exact _root_.GlobalTheory.CompanionTheory.Ar.PB.CovMap.isImg_unique K ι Φ y Ψ N j M K' ι' Φ' y' M' Cv d hy hy' _ (hP _ hz'.2) _ _ (hff _ ⟨hz'.1, hP _ hz'.2⟩).2
-      ((hi x').orbit (FibreCount.comp_orbit hv hx') (Cj.sameOrbit_refl _))
+      ((hi x').orbit (GlobalTheory.CompanionTheory.Ar.PB.CovMap.LocImg.comp_orbit hv hx') (Cj.sameOrbit_refl _))
   have hW : IsOpen (R.U x ∩ g₀ ⁻¹' FA.Re.R.U (g₀ x)) := (R.isOpen_U x).inter ((FA.Re.R.isOpen_U _).preimage hg₀.1)
   have L1 := pot_loc CR hy hy' (A := R.A) hW ⟨R.mem_U x, FA.Re.R.mem_U _⟩ (Z := fun u => R.lift x u ∘ v)
     (fun q => holo_mono (R.holo x (v q)) Set.inter_subset_left) (fun u hu => hP _ (R.mem x u hu.1))
     (Y := fun u => FA.Re.R.lift (g₀ x) (g₀ u))
     (fun q => holo_mono (GlobalTheory.CompanionTheory.Ar.PB.FA.BlockPot.holoOn_comp hg₀ (FA.Re.R.holo (g₀ x) q)) Set.inter_subset_right)
     (fun u hu => (FA.Re.R.mem _ _ hu.2).1)
-    (fun u hu => (hi u).orbit (FibreCount.comp_orbit hv (R.compat x u u ⟨hu.1, R.mem_U u⟩))
+    (fun u hu => (hi u).orbit (GlobalTheory.CompanionTheory.Ar.PB.CovMap.LocImg.comp_orbit hv (R.compat x u u ⟨hu.1, R.mem_U u⟩))
       (FA.Re.R.compat _ _ _ ⟨hu.2, FA.Re.R.mem_U _⟩)) p
   have L2 : LocRe FA.Re.R.A (g₀ x) fun u => Real.log ((fsHerm ι (M.dy p)).h (FA.Re.R.lift (g₀ x) u)) -
       (FA.S.th (some p)).φ (FA.Re.π (g₀ x)) (FA.Re.π u) := by

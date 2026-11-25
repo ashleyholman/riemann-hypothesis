@@ -535,16 +535,14 @@ open PartialDerivEval FirstUnitSeriesIntegrality MulLFrob LiftedCoordinateEvalua
 
 variable {C : Type} [Field C] [CharZero C] {dd : ℕ}
 
-alias aux_statement_9 := _root_.Formalism.L2.FormalSeriesBounds.MulLFrob.constant_zero_first_then_zero
-
 theorem zl_sub (v : Fin dd → C) (F G : PS C 2 dd) : zl v (F - G) = zl v F - zl v G := by
   have hS : MvPowerSeries.HasSubst (fun p : Fin 2 × Fin dd => (![pt C dd 0, 0] : Fin 2 → Pt C 1 dd) p.1 p.2) :=
-    MvPowerSeries.hasSubst_of_constantCoeff_zero (fun p => aux_statement_9 p.1 p.2)
+    MvPowerSeries.hasSubst_of_constantCoeff_zero (fun p => Formalism.L2.FormalSeriesBounds.LogEx.constant_zero_first_zero p.1 p.2)
   simp only [zl, ev, map_sub, MvPowerSeries.subst_sub hS, mul_sub, Finset.sum_sub_distrib]
 
 theorem zl_smul (v : Fin dd → C) (c : C) (F : PS C 2 dd) : zl v (c • F) = c • zl v F := by
   have hS : MvPowerSeries.HasSubst (fun p : Fin 2 × Fin dd => (![pt C dd 0, 0] : Fin 2 → Pt C 1 dd) p.1 p.2) :=
-    MvPowerSeries.hasSubst_of_constantCoeff_zero (fun p => aux_statement_9 p.1 p.2)
+    MvPowerSeries.hasSubst_of_constantCoeff_zero (fun p => Formalism.L2.FormalSeriesBounds.LogEx.constant_zero_first_zero p.1 p.2)
   simp only [zl, ev, Derivation.map_smul, MvPowerSeries.subst_smul hS, Finset.smul_sum,
     mul_smul_comm]
 
@@ -556,8 +554,8 @@ theorem zl_expS (v : Fin dd → C) {f : PS C 2 dd} (hf : constantCoeff f = 0)
       FB.expS C f * pderiv (R := C) ((1 : Fin 2), j) f := by
     unfold FB.expS
     rw [Formalism.G.LogCR.pderiv_psubst hf, PowerSeries.derivative_exp]
-  rw [hd, ev_mul aux_statement_9,
-    FirstUnitSeriesIntegrality.expS_eq, FirstUnitSeriesIntegrality.ev_ex aux_statement_9 f hf,
+  rw [hd, ev_mul Formalism.L2.FormalSeriesBounds.LogEx.constant_zero_first_zero,
+    FirstUnitSeriesIntegrality.expS_eq, FirstUnitSeriesIntegrality.ev_ex Formalism.L2.FormalSeriesBounds.LogEx.constant_zero_first_zero f hf,
     hf0, ex_zero, one_mul]
 
 def PAB (A B : Pt C 1 dd) : Fin 2 → Pt C 2 dd := ![comp1 A (pt C (n := 2) dd 0), comp1 B (pt C (n := 2) dd 1)]
@@ -585,20 +583,20 @@ theorem product_points_at_zero {A B : Pt C 1 dd} (hB : ∀ i, constantCoeff (B i
   funext k i
   fin_cases k
   · show ev (n := 1) ![pt C dd 0, 0] (ev ![pt C (n := 2) dd 0] (A i)) = A i
-    rw [ev_ev (z0_1 _ fun j => z0_pt 0 j) aux_statement_9]
+    rw [ev_ev (z0_1 _ fun j => z0_pt 0 j) Formalism.L2.FormalSeriesBounds.LogEx.constant_zero_first_zero]
     have : (fun (k : Fin 1) (i : Fin dd) => ev (n := 1) ![pt C dd 0, 0] ((![pt C (n := 2) dd 0] : Fin 1 → Pt C 2 dd) k i)) =
         ![pt C (n := 1) dd 0] := by
       funext k i
       fin_cases k
-      exact ev_X aux_statement_9 0 i
+      exact ev_X Formalism.L2.FormalSeriesBounds.LogEx.constant_zero_first_zero 0 i
     rw [this, germEval_oneStandardPoint_self]
   · show ev (n := 1) ![pt C dd 0, 0] (ev ![pt C (n := 2) dd 1] (B i)) = 0
-    rw [ev_ev (z0_1 _ fun j => z0_pt 1 j) aux_statement_9]
+    rw [ev_ev (z0_1 _ fun j => z0_pt 1 j) Formalism.L2.FormalSeriesBounds.LogEx.constant_zero_first_zero]
     have : (fun (k : Fin 1) (i : Fin dd) => ev (n := 1) ![pt C dd 0, 0] ((![pt C (n := 2) dd 1] : Fin 1 → Pt C 2 dd) k i)) =
         ![(0 : Pt C 1 dd)] := by
       funext k i
       fin_cases k
-      exact ev_X aux_statement_9 1 i
+      exact ev_X Formalism.L2.FormalSeriesBounds.LogEx.constant_zero_first_zero 1 i
     rw [this, ev_zero_pt, hB i, map_zero]
 
 theorem d_A (A : Pt C 1 dd) (j k : Fin dd) :
@@ -647,12 +645,12 @@ theorem d_B (B : Pt C 1 dd) (j k : Fin dd) :
 theorem eval_pderiv_constant_linear (B : Pt C 1 dd) (j k : Fin dd) :
     ev (n := 1) ![pt C dd 0, 0] (ev ![pt C (n := 2) dd 1] (pderiv (R := C) ((0 : Fin 1), j) (B k))) =
       MvPowerSeries.C (coeff (Finsupp.single ((0 : Fin 1), j) 1) (B k)) := by
-  rw [ev_ev (z0_1 _ fun j => z0_pt 1 j) aux_statement_9]
+  rw [ev_ev (z0_1 _ fun j => z0_pt 1 j) Formalism.L2.FormalSeriesBounds.LogEx.constant_zero_first_zero]
   have : (fun (k : Fin 1) (i : Fin dd) => ev (n := 1) ![pt C dd 0, 0] ((![pt C (n := 2) dd 1] : Fin 1 → Pt C 2 dd) k i)) =
       ![(0 : Pt C 1 dd)] := by
     funext k i
     fin_cases k
-    exact ev_X aux_statement_9 1 i
+    exact ev_X Formalism.L2.FormalSeriesBounds.LogEx.constant_zero_first_zero 1 i
   rw [this, ev_zero_pt, ← coeff_zero_eq_constantCoeff_apply, coeff_pderiv]
   simp
 
@@ -664,7 +662,7 @@ theorem zl_hAB (Y : FBChart C V O dd) {A B : Pt C 1 dd} (hA : ∀ i, constantCoe
   have hsg : ev (n := 1) ![A] (Y.sgP (linAct B v)) =
       -∑ i, MvPowerSeries.C (linAct B v i) *
         ev (n := 1) ![A, 0] (pderiv (R := C) ((1 : Fin 2), i) Y.h) := by
-    have hZ : Z0 (![pt C dd 0, 0] : Fin 2 → Pt C 1 dd) := aux_statement_9
+    have hZ : Z0 (![pt C dd 0, 0] : Fin 2 → Pt C 1 dd) := Formalism.L2.FormalSeriesBounds.LogEx.constant_zero_first_zero
     have hZA : Z0 (![A] : Fin 1 → Pt C 1 dd) := z0_1 A hA
     unfold FBChart.sgP
     rw [ev_neg hZA, ev_sum hZA]
@@ -697,10 +695,10 @@ theorem zl_hAB (Y : FBChart C V O dd) {A B : Pt C 1 dd} (hA : ∀ i, constantCoe
     have e0 : ∑ k, ev (PAB A B) (pderiv (R := C) ((0 : Fin 2), k) Y.h) * pderiv (R := C) ((1 : Fin 2), j) (PAB A B 0 k) = 0 :=
       Finset.sum_eq_zero fun k _ => by
         rw [show PAB A B 0 k = comp1 A (pt C (n := 2) dd 0) k from rfl, d_A, mul_zero]
-    rw [e0, zero_add, ev_sum aux_statement_9]
+    rw [e0, zero_add, ev_sum Formalism.L2.FormalSeriesBounds.LogEx.constant_zero_first_zero]
     refine Finset.sum_congr rfl fun k _ => ?_
-    rw [show PAB A B 1 k = comp1 B (pt C (n := 2) dd 1) k from rfl, d_B, ev_mul aux_statement_9, eval_pderiv_constant_linear,
-      ev_ev (zPAB hA hB) aux_statement_9, product_points_at_zero hB]
+    rw [show PAB A B 1 k = comp1 B (pt C (n := 2) dd 1) k from rfl, d_B, ev_mul Formalism.L2.FormalSeriesBounds.LogEx.constant_zero_first_zero, eval_pderiv_constant_linear,
+      ev_ev (zPAB hA hB) Formalism.L2.FormalSeriesBounds.LogEx.constant_zero_first_zero, product_points_at_zero hB]
   simp only [h1, Finset.mul_sum]
   rw [Finset.sum_comm]
   refine Finset.sum_congr rfl fun k _ => ?_
@@ -713,9 +711,9 @@ theorem zl_hAB (Y : FBChart C V O dd) {A B : Pt C 1 dd} (hA : ∀ i, constantCoe
 
 theorem height_at_zero_product (Y : FBChart C V O dd) {A B : Pt C 1 dd} (hA : ∀ i, constantCoeff (A i) = 0)
     (hB : ∀ i, constantCoeff (B i) = 0) : ev (n := 1) ![pt C dd 0, 0] (ev (PAB A B) Y.h) = 0 := by
-  rw [ev_ev (zPAB hA hB) aux_statement_9, product_points_at_zero hB]
+  rw [ev_ev (zPAB hA hB) Formalism.L2.FormalSeriesBounds.LogEx.constant_zero_first_zero, product_points_at_zero hB]
   have h := congrArg (ev (n := 1) ![A]) Y.gauge.ax1
-  rw [ev_ev aux_statement_9 (z0_1 A hA), ev_zero (z0_1 A hA)] at h
+  rw [ev_ev Formalism.L2.FormalSeriesBounds.LogEx.constant_zero_first_zero (z0_1 A hA), ev_zero (z0_1 A hA)] at h
   have : (fun (k : Fin 2) (i : Fin dd) => ev (n := 1) ![A] ((![pt C dd 0, 0] : Fin 2 → Pt C 1 dd) k i)) =
       (![A, 0] : Fin 2 → Pt C 1 dd) := by
     funext k i
@@ -778,7 +776,7 @@ theorem linear_part_first_unit {C : Type} [Field C] [CharZero C] {V : VF C} {O :
   rw [e3, SelfAdjointLinearTerm.zl_expS v
       (by rw [map_sub, SelfAdjointLinearTerm.const_hAB Y hM SelfAdjointLinearTerm.zId, MvPowerSeries.smul_eq_C_mul, map_mul, SelfAdjointLinearTerm.const_hAB Y SelfAdjointLinearTerm.zId SelfAdjointLinearTerm.zId, mul_zero,
         sub_zero])
-      (by rw [PartialDerivEval.ev_sub SelfAdjointLinearTerm.aux_statement_9, SelfAdjointLinearTerm.height_at_zero_product Y hM SelfAdjointLinearTerm.zId, MvPowerSeries.smul_eq_C_mul, PartialDerivEval.ev_mul SelfAdjointLinearTerm.aux_statement_9, SelfAdjointLinearTerm.height_at_zero_product Y SelfAdjointLinearTerm.zId SelfAdjointLinearTerm.zId, mul_zero,
+      (by rw [PartialDerivEval.ev_sub Formalism.L2.FormalSeriesBounds.LogEx.constant_zero_first_zero, SelfAdjointLinearTerm.height_at_zero_product Y hM SelfAdjointLinearTerm.zId, MvPowerSeries.smul_eq_C_mul, PartialDerivEval.ev_mul Formalism.L2.FormalSeriesBounds.LogEx.constant_zero_first_zero, SelfAdjointLinearTerm.height_at_zero_product Y SelfAdjointLinearTerm.zId SelfAdjointLinearTerm.zId, mul_zero,
         sub_zero]),
     SelfAdjointLinearTerm.zl_sub, SelfAdjointLinearTerm.zl_smul, SelfAdjointLinearTerm.zl_hAB Y hM SelfAdjointLinearTerm.zId, SelfAdjointLinearTerm.zl_hAB Y SelfAdjointLinearTerm.zId SelfAdjointLinearTerm.zId, SelfAdjointLinearTerm.linAct_id, MulLFrob.germEval_oneStandardPoint_self, smul_neg]
   ring
@@ -798,7 +796,7 @@ theorem constant_zero_first_zero_self {C : Type} [Field C] [CharZero C] {V : VF 
     rw [SelfAdjointLinearTerm.comp1_identity_left]
   rw [e1, e2, SelfAdjointLinearTerm.zl_expS v
       (by rw [map_sub, SelfAdjointLinearTerm.const_hAB Y he0 SelfAdjointLinearTerm.zId, SelfAdjointLinearTerm.const_hAB Y SelfAdjointLinearTerm.zId heb0, sub_zero])
-      (by rw [PartialDerivEval.ev_sub SelfAdjointLinearTerm.aux_statement_9, SelfAdjointLinearTerm.height_at_zero_product Y he0 SelfAdjointLinearTerm.zId, SelfAdjointLinearTerm.height_at_zero_product Y SelfAdjointLinearTerm.zId heb0, sub_zero]),
+      (by rw [PartialDerivEval.ev_sub Formalism.L2.FormalSeriesBounds.LogEx.constant_zero_first_zero, SelfAdjointLinearTerm.height_at_zero_product Y he0 SelfAdjointLinearTerm.zId, SelfAdjointLinearTerm.height_at_zero_product Y SelfAdjointLinearTerm.zId heb0, sub_zero]),
     SelfAdjointLinearTerm.zl_sub, SelfAdjointLinearTerm.zl_hAB Y he0 SelfAdjointLinearTerm.zId, SelfAdjointLinearTerm.zl_hAB Y SelfAdjointLinearTerm.zId heb0, SelfAdjointLinearTerm.linAct_id, MulLFrob.germEval_oneStandardPoint_self]
   ring
 

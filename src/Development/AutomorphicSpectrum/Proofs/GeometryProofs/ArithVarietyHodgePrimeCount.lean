@@ -848,7 +848,7 @@ theorem lat_eq_span [Smooth 𝔐.t.G.hom] (P : ChartPack G O c') (q : Cpt 𝔐.�
     (spec_genMap 𝔐.ξ q) Mq 𝔐.M
   obtain ⟨b₀, hb₀⟩ := exists_tr (A := CR O y c') (B := 𝔐.X.presheaf.stalk q.1) P.x (𝔐.X.fromSpecStalk q.1) ψ h1
     P.M Mq
-  have hcomp : ∀ e, jq (b₀ e) = P.toLi e := fun e => pt_left_inj 𝔐.M (by
+  have hcomp : ∀ e, jq (b₀ e) = P.toLi e := fun e => GlobalTheory.CompanionTheory.Ar.LieFin.pt_left_inj 𝔐.M (by
     rw [hjq, hb₀, ← Category.assoc, spMap_dual_comp, h2, P.toLi_pt])
   letI : Algebra (CR O y c') (𝔐.X.presheaf.stalk q.1) := ψ.toAlgebra
   letI : Module (CR O y c') Fq := Module.compHom Fq ψ
@@ -877,7 +877,7 @@ theorem lat_eq_span [Smooth 𝔐.t.G.hom] (P : ChartPack G O c') (q : Cpt 𝔐.�
   refine le_antisymm (fun e he => ?_) (Submodule.span_le.2 ?_)
   · obtain ⟨v, hv⟩ := (𝔐.M.mem_lat_iff q e).1 he
     obtain ⟨z, rfl⟩ := Mq.onto v hv.1
-    have hy : e = jq z := pt_left_inj 𝔐.M (hv.2.trans (hjq z).symm)
+    have hy : e = jq z := GlobalTheory.CompanionTheory.Ar.LieFin.pt_left_inj 𝔐.M (hv.2.trans (hjq z).symm)
     rw [hy]
     exact hsp z
   · rintro _ ⟨v, rfl⟩

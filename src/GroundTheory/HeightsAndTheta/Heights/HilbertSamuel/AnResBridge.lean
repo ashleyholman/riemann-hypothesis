@@ -219,7 +219,7 @@ theorem bridge {K : Type} [Fintype K] {ι : K → Type} [∀ k, Fintype (ι k)] 
     (hs : IsSectionOn P A s) :
     ptsIntegralAt P Ψ (pot L) (logNorm A s) =
       mInt R.A (fun j => potOf R (L j)) (fun x => logNorm A s (R.lift x x)) := by
-  rw [pushForward_null R.A (fun j => potOf R (L j)) (fun j => potOf_isPotential R (L j) (hL j))
+  rw [ReciprocityTheory.ChartRestriction.G.Geo.pushForward_null' R.A (fun j => potOf R (L j)) (fun j => potOf_isPotential R (L j) (hL j))
     (brQ R Ψ) (brBad R Ψ) (brBad_null R Ψ hP hΨ) (brGood R Ψ) (brFib_finite R Ψ hP hΨ) _
     (brIntegrable R L A s hP hL hA hs)]
   exact integral_congr_ae (brFibreSum_ae R Ψ L A s hP hΨ hL hA hs)

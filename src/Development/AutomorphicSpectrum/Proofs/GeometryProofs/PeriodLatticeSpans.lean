@@ -150,8 +150,6 @@ theorem ofFibre_one {R : Type} [CommRing R] (G : Over (Sp R)) [GrpObj G] (x : Sp
   rw [_root_.mul_one] at this
   exact left_eq_mul.1 this
 
-alias isHolTo_ex_slice := _root_.GlobalTheory.CompanionTheory.Ar.Flat.ExpOnto.isHolTo_ex
-
 alias isHolTo_snd := _root_.GlobalTheory.CompanionTheory.Ar.Flat.ExpOnto.isHolTo_const_param
 
 def famExpAtPoint {R : Type} [CommRing R] {G : Over (Sp R)} [GrpObj G] {g n : ℕ}
@@ -160,7 +158,7 @@ def famExpAtPoint {R : Type} [CommRing R] {G : Over (Sp R)} [GrpObj G] {g n : �
     FamExp G M (Set.univ : Set (Fin 0 → ℂ)) (fun _ => ψ b) where
   ex _ z := e.ex b z
   add _ _ z w := e.add b hb z w
-  hol := isHolTo_snd (V := Fin 0 → ℂ) (X := G.left) (c := fun z => (e.ex b z).left) (isHolTo_ex_slice e hb)
+  hol := isHolTo_snd (V := Fin 0 → ℂ) (X := G.left) (c := fun z => (e.ex b z).left) (GlobalTheory.CompanionTheory.Ar.Flat.ExpOnto.isHolTo_ex e hb)
   diff _ _ a := e.diff b hb a
   log b₀ _ := by
     obtain ⟨V, N, f, L, h1, h2, h3, h4⟩ := e.log b hb
@@ -390,7 +388,7 @@ theorem span_per_eq_top : ∀ (R : Type) [CommRing R] (G : Over (Sp R)) [GrpObj 
     refine (isEmbedding_left _).continuous_iff.2 ?_
     refine (isEmbedding_of_isPullback (C := ℂ) (IsPullback.of_hasPullback G.hom x)).continuous_iff.2 ?_
     refine Continuous.prodMk ?_ ?_
-    · have := isHolTo_ex_slice e hb
+    · have := GlobalTheory.CompanionTheory.Ar.Flat.ExpOnto.isHolTo_ex e hb
       refine (continuous_of_differentiableOn (fun U f => ?_)).congr fun z => (pullback.lift_fst _ _ _).symm
       simpa using this U f
     · exact continuous_const.congr fun z => (pullback.lift_snd _ _ _).symm

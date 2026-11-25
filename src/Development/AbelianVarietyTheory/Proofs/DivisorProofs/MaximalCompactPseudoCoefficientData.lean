@@ -182,7 +182,7 @@ theorem casimirScalar_stableSumSpace : BuildY := by
     have h2 := LinearMap.congr_fun (two_D_sq (eT_isGlRep hE) cpT_cmT_isCAR (eT_commutesCAR E) ε) y
     rw [LinearMap.smul_apply, Module.End.mul_apply] at h2
     have hcas : casimir (eT (n := n) E) y = c • y := by
-      rw [TRGap.casimir_eT]
+      rw [ReciprocityTheory.ChartRestriction.DS.ssh_casimir_eT]
       exact map_eq_smul_of_tensFock (fun v _ => hc v) hy.1
     have hmem : (2 : ℂ) • Dop (Dop y) ∈ Y0 := by
       rw [hDop, h2]
@@ -268,7 +268,7 @@ theorem casimirValue_highestWeightCoordinates : CasCoord := by
     rw [e, casVal, ← hid]
     simp only [Complex.ofReal_sub, Complex.ofReal_mul, Complex.ofReal_ofNat, sub_smul, smul_smul]
   have hcoord := congrArg (tco s) hc
-  rw [TRGap.casimir_eT, tco_map_left] at hcoord
+  rw [ReciprocityTheory.ChartRestriction.DS.ssh_casimir_eT, tco_map_left] at hcoord
   simpa only [tco, map_smul] using hcoord
 
 end GlobalTheory.PsCo.PcEF

@@ -467,10 +467,6 @@ theorem tie_val (C : ChartAt Xo c y) (φ : Fin C.d → MvPowerSeries (Fin 1 × F
   refine Finset.prod_congr rfl fun b _ => ?_
   exact tie_alg (C.B.FK S) C.uvec φ hφ' (colOf m b) _
 
-theorem cc_diagL {d : ℕ} {O : Type} [CommRing O] [StarRing O] (B : FB S d O) (w0 : O) (cc : Fin d → Fin d → S) :
-    MvPowerSeries.constantCoeff (diagL B w0 cc) = 0 := by
-  apply Formalism.MainNotions.ModuliIntegralCharts.H1.CIndFrFix3.const_diagL
-
 end HarmInvPf
 
 
@@ -496,7 +492,7 @@ theorem harmInv_of_kill (hK : HarmKillJetSt) (hA : ExpActOfSt) : HarmInvSt := by
   have hφs : MvPowerSeries.HasSubst (fun p : Fin 1 × Fin C.d => φ p.2) :=
     HarmInvB.hasSubst0 fun p => hφ.const p.2
   have hccd : MvPowerSeries.constantCoeff ((k : S) • diagL C.B H.w0 cc) = 0 := by
-    rw [MvPowerSeries.smul_eq_C_mul, map_mul, cc_diagL, mul_zero]
+    rw [MvPowerSeries.smul_eq_C_mul, map_mul, Formalism.MainNotions.ModuliIntegralCharts.H1.CIndFrFix3.const_diagL, mul_zero]
   set EL := FB.expS S ((k : S) • C.B.hL S C.h H.w0) with hEL
   have hjet : ∀ b, psJet D (compL φ (f' b * EL)) = psJet D (compL φ (f b * EL) *
       PowerSeries.subst ((k : S) • ReciprocityTheory.ChartRestriction.G.TB.quadCol (n := 1) (HarmInvB.qβ cc C.uvec t))

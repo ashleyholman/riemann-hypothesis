@@ -2259,8 +2259,6 @@ theorem connection_raising_gamma_shift (h : SHyp P L0 QQ κ) (hF : SForm P L0 QQ
     show (Y + 1 - 1 / 2 : ℂ) = (Y - 1 / 2) + 1 by ring, add_smul, one_smul]
   abel
 
-theorem connection_diagonal_entry (h : SHyp P L0 QQ κ) (Y : ℂ) : QQ Y 1 1 = L0.GG * xA κ Y := diagonal_entry_hypothesis h Y
-
 theorem upper_left_raising_block (h : SHyp P L0 QQ κ) (hF : SForm P L0 QQ κ b SS) (hR : Raises κ SS)
     (hSS : ∀ l, ∀ g ∈ L0.ops, Commute (SS l) g) {l : ℕ} (hl : l ∈ Icc 1 (P.k - 1)) {ρ ρ' : M.Ty P}
     (hu : M.Up P l ρ ρ') {v : ℂ} (hv : v.im ≠ 0) :
@@ -2304,7 +2302,7 @@ theorem upper_left_raising_block (h : SHyp P L0 QQ κ) (hF : SForm P L0 QQ κ b 
     rw [← Algebra.commutes, mul_assoc, pj_orth κ hne.symm, mul_zero]
   have hL : proj κ ρ' * (QQ v 0 0 * QQ (v + 1) 1 1) * proj κ ρ =
       M.xC P ρ (v + 1) • (proj κ ρ' * QQ v 0 0 * proj κ ρ * L0.GG) := by
-    rw [connection_diagonal_entry h, mul_assoc, mul_assoc, mul_assoc, xA, kap_mul_pj, mul_smul_comm, mul_smul_comm, mul_smul_comm,
+    rw [Formalism.FourierDecayAlt.P.NFx2.diagonal_entry_hypothesis h, mul_assoc, mul_assoc, mul_assoc, xA, kap_mul_pj, mul_smul_comm, mul_smul_comm, mul_smul_comm,
       ← sc_pf h ρ (sc_mGG L0)]
     noncomm_ring
   have hE : M.xC P ρ (v + 1) • (proj κ ρ' * QQ v 0 0 * proj κ ρ * L0.GG) =
@@ -2442,7 +2440,7 @@ theorem sc_keyNs (h : SHyp P L0 QQ κ) (hF : SForm P L0 QQ κ b SS) (hR : Raises
   have hR1 : proj κ ρ' * ((u - v) • (QQ u 0 1 * QQ v 1 0 - QQ v 1 0 * QQ u 0 1)) * proj κ ρ =
       proj κ ρ' * (QQ u 1 1 * QQ v 0 0 - QQ v 1 1 * QQ u 0 0) * proj κ ρ := by rw [H_rtt h u v 0 1 1 0]
   rw [mul_smul_comm, smul_mul_assoc, mul_sub, sub_mul, upper_lower_block_product h hF hR hl hu u v, lower_upper_block_product h hF hR hl hu u v,
-    mul_sub, sub_mul, connection_diagonal_entry h, connection_diagonal_entry h, projection_gamma_coordinate h, projection_gamma_coordinate h, upper_left_raising_block h hF hR hSS hl hu hvim,
+    mul_sub, sub_mul, Formalism.FourierDecayAlt.P.NFx2.diagonal_entry_hypothesis h, Formalism.FourierDecayAlt.P.NFx2.diagonal_entry_hypothesis h, projection_gamma_coordinate h, projection_gamma_coordinate h, upper_left_raising_block h hF hR hSS hl hu hvim,
     upper_left_raising_block h hF hR hSS hl hu huim, ← smul_sub, ← hK, hH u] at hR1
   have c2 : (u - v) • (M.xEx P {l} ρ v • (M.xC P ρ' u • ((sc_LL h hF).m0 u * K) - M.xC P ρ u • (K * (sc_LL h hF).m0 u))) -
       ((M.xC P ρ' u * M.xEx P {l} ρ v) • ((sc_LL h hF).m0 (v + 1) * K) -

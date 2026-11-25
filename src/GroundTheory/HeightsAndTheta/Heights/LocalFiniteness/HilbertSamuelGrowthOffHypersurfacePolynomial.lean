@@ -75,12 +75,6 @@ noncomputable section
 
 section ChartLength
 
-theorem chartLength_localizedModule_quotient {A : Type*} [CommRing A] (K W : Ideal A) [W.IsPrime] :
-    Module.length (Localization.AtPrime W) (LocalizedModule W.primeCompl (A ⧸ K)) =
-      Module.length (Localization.AtPrime W)
-        (Localization.AtPrime W ⧸ K.map (algebraMap A (Localization.AtPrime W))) := by
-  apply _root_.GroundTheory.Heights₂.Heights.ObjectsChow.VerticalPartMultiplicity.length_localizedModule_quotient
-
 theorem chartLength_self_eq_of_ringEquiv {Q Q' : Type*} [CommRing Q] [CommRing Q'] (τ : Q ≃+* Q') :
     Module.length Q Q = Module.length Q' Q' := by
   let _ := RingHomInvPair.of_ringEquiv τ
@@ -227,7 +221,7 @@ theorem BlowUpHorizontalChartLength.full : BlowUpHorizontalChartLength.Statement
     exact hker
   let τ := (Ideal.quotEquivOfEq hker').trans (RingHom.quotientKerEquivOfSurjective hsurj')
   unfold multAt
-  rw [chartLength_localizedModule_quotient, chartLength_localizedModule_quotient,
+  rw [GroundTheory.Heights₂.Heights.NumbersDVR.length_localizedModule_quotient_eq, GroundTheory.Heights₂.Heights.NumbersDVR.length_localizedModule_quotient_eq,
     chartLength_quotient_self, chartLength_quotient_self]
   exact chartLength_self_eq_of_ringEquiv τ
 

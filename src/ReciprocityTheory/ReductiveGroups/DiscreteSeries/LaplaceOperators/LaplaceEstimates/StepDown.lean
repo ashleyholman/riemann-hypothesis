@@ -90,16 +90,11 @@ theorem partial_sum_of_basis_vector (k : ℕ) (a : Fin n) :
     kirrPs k (Pi.single a (1 : ℝ)) = if a.val < k then 1 else 0 := by
   simp [kirrPs, Pi.single_apply, Finset.sum_ite_eq', Finset.mem_filter]
 
-theorem partial_sum_of_root (k : ℕ) (a b : Fin n) :
-    kirrPs k (root a b) = (if a.val < k then 1 else 0) - (if b.val < k then 1 else 0) := by
-  rw [← partial_sum_of_basis_vector, ← partial_sum_of_basis_vector]
-  simp [kirrPs, root, Finset.sum_sub_distrib]
-
 theorem root_cone_partial_sum_natural {β : Fin n → ℝ} (hβ : InRootCone β) (k : ℕ) : ∃ N : ℕ, kirrPs k β = N := by
   have hℓ : ∀ a b : Fin n, a < b → ∃ N : ℕ, weightPowerSumFunctional k (root a b) = N := by
     intro a b hab
     have hv := Fin.lt_def.1 hab
-    rw [k3vdPs_apply, partial_sum_of_root]
+    rw [k3vdPs_apply, ReciprocityTheory.ChartRestriction.DS.Lap.LemK.partialSum_root_eq]
     by_cases ha : a.val < k <;> by_cases hb : b.val < k
     · exact ⟨0, by simp [ha, hb]⟩
     · exact ⟨1, by simp [ha, hb]⟩
@@ -543,7 +538,7 @@ theorem k3Vd (n : ℕ) : QuotientHighestWeightTensorDual n := by
     obtain ⟨N', hN'⟩ := root_cone_height_natural hcone'
     have hbd' : ∀ k, kirrPs k μ' ≤ kirrPs k ν0 := by
       intro k
-      rw [hμ', hps, partial_sum_of_root]
+      rw [hμ', hps, ReciprocityTheory.ChartRestriction.DS.Lap.LemK.partialSum_root_eq]
       have := Fin.lt_def.1 hab
       have hνk := hνbd k
       by_cases h1 : (a : ℕ) < k <;> by_cases h2 : (b : ℕ) < k

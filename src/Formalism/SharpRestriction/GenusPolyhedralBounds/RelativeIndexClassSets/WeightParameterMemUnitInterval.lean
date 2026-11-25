@@ -35,11 +35,6 @@ section Gen
 
 variable {R W W' : Type*} [CommRing R] [AddCommGroup W] [Module R W] [AddCommGroup W'] [Module R W']
 
-theorem locLen_congr (p : Ideal R) [p.IsPrime] {X X' Y Y' : Submodule R W}
-    (hX : localization₂ p X = localization₂ p X') (hY : localization₂ p Y = localization₂ p Y') : locLen p X Y = locLen p X' Y' := by
-  unfold locLen
-  rw [hX, hY]
-
 private theorem mem_localization_iff_exists_smul_mem (p : Ideal R) [p.IsPrime] (L : Submodule R W) (x : W) :
     x ∈ localization₂ p L ↔ ∃ s ∈ p.primeCompl, s • x ∈ L := Iff.rfl
 
@@ -62,7 +57,7 @@ theorem lidx_congr (p : Ideal R) [p.IsPrime] {A A' B B' : Submodule R W}
   unfold lidx
   have hAB : localization₂ p (A ⊓ B) = localization₂ p (A' ⊓ B') := by
     rw [localization_inf', localization_inf', hA, hB]
-  rw [locLen_congr p hA hAB, locLen_congr p hB hAB]
+  rw [Formalism.EigenvalueLevelCeiling.locLen_congr p hA hAB, Formalism.EigenvalueLevelCeiling.locLen_congr p hB hAB]
 
 theorem localization_map₂ (p : Ideal R) [p.IsPrime] (φ : W ≃ₗ[R] W') (L : Submodule R W) :
     localization₂ p (L.map (φ : W →ₗ[R] W')) = (localization₂ p L).map (φ : W →ₗ[R] W') := by

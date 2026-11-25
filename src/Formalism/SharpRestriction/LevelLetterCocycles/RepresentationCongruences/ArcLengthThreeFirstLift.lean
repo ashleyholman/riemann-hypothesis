@@ -779,20 +779,20 @@ theorem exists_pow_smul_eq_pi_pow_smul_of_twist_sub (T : LocLat G Qp LL O) (hC :
         rw [hy]
         refine Formalism.MainNotions.UnusedSlot80.Relay2.InNΔi_sub W T c (Formalism.MainNotions.UnusedSlot80.Relay2.InNΔi_add W T c ?_ ?_)
           (Formalism.MainNotions.UnusedSlot80.Relay2.InNΔi_lsmul W T c _ hx')
-        · exact Formalism.MainNotions.UnusedSlot80.Relay2.InNΔi_lsmul W T c _ (Formalism.MainNotions.UnusedSlot80.Relay2.InNΔi_smul W T c hh hx)
-        · exact Formalism.MainNotions.UnusedSlot80.Relay2.InNΔi_lsmul W T c _ (Formalism.MainNotions.UnusedSlot80.Relay2.InNΔi_smul W T c h1h
-            (Formalism.MainNotions.UnusedSlot80.Relay2.InNΔi_smul W T c (W.AΔ.pow_mem hπ _) hz))
+        · exact Formalism.MainNotions.UnusedSlot80.Relay2.InNΔi_lsmul W T c _ (Formalism.MainNotions.LiftingTheory.frame_smul_mem W T c hh hx)
+        · exact Formalism.MainNotions.UnusedSlot80.Relay2.InNΔi_lsmul W T c _ (Formalism.MainNotions.LiftingTheory.frame_smul_mem W T c h1h
+            (Formalism.MainNotions.LiftingTheory.frame_smul_mem W T c (W.AΔ.pow_mem hπ _) hz))
       obtain ⟨ε, hε⟩ : ∃ ε : LetA O n, ε = algebraMap O (LetA O n) e := ⟨_, rfl⟩
       have he' : ε * a = Formalism.MainNotions.ArcLiftingSetup.lA W ^ (1 + padicValNat PD.p r) := by
         rw [hε, ha, ← map_mul, he, map_pow, map_natCast]; rfl
       refine ⟨k + k₂ + (1 + padicValNat PD.p r), ε • y,
-        Formalism.MainNotions.UnusedSlot80.Relay2.InNΔi_smul W T c (by rw [hε]; exact W.AΔ.algebraMap_mem e) hyN, ?_⟩
+        Formalism.MainNotions.LiftingTheory.frame_smul_mem W T c (by rw [hε]; exact W.AΔ.algebraMap_mem e) hyN, ?_⟩
       rw [pow_add, ← he']
       exact g_fin _ _ _ _ _ _ _ _ _ _ _ hkx h4
   rcases Nat.eq_zero_or_pos R with h0 | hpos
   · subst h0
     obtain ⟨k, E', hE', hk⟩ := hE
-    exact ⟨k, W.π₀ • E', Formalism.MainNotions.UnusedSlot80.Relay2.InNΔi_smul W T c hπ hE', by rw [hk, pow_zero, one_smul]⟩
+    exact ⟨k, W.π₀ • E', Formalism.MainNotions.LiftingTheory.frame_smul_mem W T c hπ hE', by rw [hk, pow_zero, one_smul]⟩
   · exact key R hpos le_rfl
 
 end Formalism.MainNotions.N.FrobeniusPowerSeries.DYCA
@@ -915,7 +915,7 @@ theorem arc_length_three_congruence_lift [NeZero n] [Fintype (K →ₐ[Qp] LL)] 
       exact Formalism.MainNotions.UnusedSlot80.Relay2.InNΔi_osmul W T₂ _ _ hx
     · intro a ha x hx
       rw [smul_comm]
-      exact Formalism.MainNotions.UnusedSlot80.Relay2.InNΔi_smul W T₂ _ ha (hcont x hx)
+      exact Formalism.MainNotions.LiftingTheory.frame_smul_mem W T₂ _ ha (hcont x hx)
 
   have hvecN : ∀ {T : LocLat G Qp LL O} {i : ZMod n} {dd : ℕ} (bq : Fin dd → W.DD T),
       (∀ m, Formalism.MainNotions.LiftingTheory.InNΔi W T i (bq m)) → ∀ y : Fin dd → O,
@@ -927,7 +927,7 @@ theorem arc_length_three_congruence_lift [NeZero n] [Fintype (K →ₐ[Qp] LL)] 
   have hHN : Formalism.MainNotions.LiftingTheory.InNΔi W T₂ c' Hh := by
     rw [hHe]
     exact Formalism.MainNotions.UnusedSlot80.Relay2.InNΔi_sum W T₂ c' _ _ fun r _ =>
-      Formalism.MainNotions.UnusedSlot80.Relay2.InNΔi_smul W T₂ c' (W.AΔ.pow_mem hπ r) (hvecN bb hbb.1.1 (yH r))
+      Formalism.MainNotions.LiftingTheory.frame_smul_mem W T₂ c' (W.AΔ.pow_mem hπ r) (hvecN bb hbb.1.1 (yH r))
   obtain ⟨xH, hxH, hxHe⟩ := (hbb.2 k₀).1 MA κ yH hyH
   rw [← hHe, smul_zero, sub_zero] at hxHe
 
@@ -947,7 +947,7 @@ theorem arc_length_three_congruence_lift [NeZero n] [Fintype (K →ₐ[Qp] LL)] 
   have hX₁'N : Formalism.MainNotions.LiftingTheory.InNΔi W T₁ (c - 1) X₁' := by
     rw [hX₁']
     exact Formalism.MainNotions.UnusedSlot80.Relay2.InNΔi_sum W T₁ (c - 1) _ _ fun r _ =>
-      Formalism.MainNotions.UnusedSlot80.Relay2.InNΔi_smul W T₁ _ (W.AΔ.pow_mem hπ r) (hvecN b₁ hb₁.1.1 _)
+      Formalism.MainNotions.LiftingTheory.frame_smul_mem W T₁ _ (W.AΔ.pow_mem hπ r) (hvecN b₁ hb₁.1.1 _)
   have E1 : W.map F X₁ = W.π₀ • W.map F X₁' + lA W ^ κ₁ • W.map F D₁ := by
     rw [hX₁d, map_add (f := _), Formalism.MainNotions.UnusedSlot80.Relay2.mapA_smul W F, Formalism.MainNotions.UnusedSlot80.Relay2.mapA_smul W F]
   have E2 : W.map F n₁ = W.map F D₁ + W.π₀ • W.map F z₁ := by
@@ -1018,12 +1018,12 @@ theorem arc_length_three_congruence_lift [NeZero n] [Fintype (K →ₐ[Qp] LL)] 
         (lA W ^ (κ' + size (c - 1) + κ) * g₀) • (W.map F X₁' - lA W ^ κ₁ • W.map F z₁) +
         (lA W ^ (κ₁ + E + κ' + σA) * t) • (P2 • ((W.φD T₂) ^ 2) Hh)) := by
     refine Formalism.MainNotions.UnusedSlot80.Relay2.InNΔi_add W T₂ _ (Formalism.MainNotions.UnusedSlot80.Relay2.InNΔi_add W T₂ _ ?_ ?_) ?_
-    · exact Formalism.MainNotions.UnusedSlot80.Relay2.InNΔi_smul W T₂ _ (W.AΔ.mul_mem (W.AΔ.mul_mem (W.AΔ.mul_mem
+    · exact Formalism.MainNotions.LiftingTheory.frame_smul_mem W T₂ _ (W.AΔ.mul_mem (W.AΔ.mul_mem (W.AΔ.mul_mem
         (W.AΔ.pow_mem hlA _) (W.AΔ.pow_mem hlA _)) (W.AΔ.pow_mem (hps 1) _)) haJ) (hcontP y4 hy4)
-    · exact Formalism.MainNotions.UnusedSlot80.Relay2.InNΔi_smul W T₂ _ (W.AΔ.mul_mem (W.AΔ.pow_mem hlA _) hg₀A)
+    · exact Formalism.MainNotions.LiftingTheory.frame_smul_mem W T₂ _ (W.AΔ.mul_mem (W.AΔ.pow_mem hlA _) hg₀A)
         (Formalism.MainNotions.UnusedSlot80.Relay2.InNΔi_sub W T₂ _ (Formalism.MainNotions.UnusedSlot80.Relay2.InNΔi_map W F hW₁.1 hW₂.1 _ hX₁'N)
           (Formalism.MainNotions.UnusedSlot80.Relay2.InNΔi_lsmul W T₂ _ _ (Formalism.MainNotions.UnusedSlot80.Relay2.InNΔi_map W F hW₁.1 hW₂.1 _ hz₁)))
-    · exact Formalism.MainNotions.UnusedSlot80.Relay2.InNΔi_smul W T₂ _ (W.AΔ.mul_mem (W.AΔ.pow_mem hlA _) htA)
+    · exact Formalism.MainNotions.LiftingTheory.frame_smul_mem W T₂ _ (W.AΔ.mul_mem (W.AΔ.pow_mem hlA _) htA)
         (hcont Hh hHN)
 
   obtain ⟨R, hRdef⟩ : ∃ R, R = min R₀ MA := ⟨_, rfl⟩
@@ -1040,7 +1040,7 @@ theorem arc_length_three_congruence_lift [NeZero n] [Fintype (K →ₐ[Qp] LL)] 
     rw [show W.γ T₂ (((W.φD T₂) ^ 2) Hh) = W.γD T₂ W.gam (((W.φD T₂) ^ 2) Hh) from rfl,
       Formalism.MainNotions.UnusedSlot80.Relay2.γ_φpow, ← map_sub,
       show W.γD T₂ W.gam Hh - Hh = W.γ T₂ Hh - Hh from rfl, hxHe,
-      Formalism.MainNotions.UnusedSlot80.Relay2.φpow_smul, map_pow, hT3]
+      Formalism.MainNotions.UnusedSlot80.SatPW.φD_pow_smulA, map_pow, hT3]
   have e1 : W.π₀ ^ R₀ = W.π₀ ^ R * W.π₀ ^ (R₀ - R) := by rw [← pow_add]; congr 1 <;> omega
   have e2 : W.π₀ ^ MA = W.π₀ ^ R * W.π₀ ^ (MA - R) := by rw [← pow_add]; congr 1 <;> omega
   rw [e1] at B1
@@ -1058,9 +1058,9 @@ theorem arc_length_three_congruence_lift [NeZero n] [Fintype (K →ₐ[Qp] LL)] 
           (∏ k ∈ Finset.range 2, Formalism.MainNotions.LiftingTheory.pk W k ^ ((PD.p - 1) * MA)) * qA W ^ size (c - 1)) •
           (P2 • ((W.φD T₂) ^ 2) xH)) := by
     refine Formalism.MainNotions.UnusedSlot80.Relay2.InNΔi_sub W T₂ _ ?_ ?_
-    · exact Formalism.MainNotions.UnusedSlot80.Relay2.InNΔi_smul W T₂ _ (W.AΔ.mul_mem (W.AΔ.mul_mem (W.AΔ.pow_mem hlA _)
+    · exact Formalism.MainNotions.LiftingTheory.frame_smul_mem W T₂ _ (W.AΔ.mul_mem (W.AΔ.mul_mem (W.AΔ.pow_mem hlA _)
         (W.AΔ.pow_mem hπ _)) hg₀A) (Formalism.MainNotions.UnusedSlot80.Relay2.InNΔi_map W F hW₁.1 hW₂.1 _ hx₁)
-    · refine Formalism.MainNotions.UnusedSlot80.Relay2.InNΔi_smul W T₂ _ ?_ (hcont xH hxH)
+    · refine Formalism.MainNotions.LiftingTheory.frame_smul_mem W T₂ _ ?_ (hcont xH hxH)
       exact W.AΔ.mul_mem (W.AΔ.mul_mem (W.AΔ.mul_mem (W.AΔ.mul_mem (W.AΔ.pow_mem hlA _) hu3)
         (W.AΔ.pow_mem hπ _)) (W.AΔ.prod_mem fun k _ => W.AΔ.pow_mem (hpk k) _)) (W.AΔ.pow_mem hqA _)
 
@@ -1086,7 +1086,7 @@ theorem arc_length_three_congruence_lift [NeZero n] [Fintype (K →ₐ[Qp] LL)] 
     ⟨κ', _, hmemA, hEA⟩ ⟨0, _, hmemB, hBeq⟩
 
   have hφs : ∀ (a : LetA O n) (x : W.DD T₂), W.φD T₂ (a • x) = W.φA a • W.φD T₂ x := fun a x => by
-    simpa using Formalism.MainNotions.UnusedSlot80.Relay2.φpow_smul W T₂ 1 a x
+    simpa using Formalism.MainNotions.UnusedSlot80.SatPW.φD_pow_smulA W T₂ 1 a x
   have hφl : ∀ (k : ℕ) (x : W.DD T₂), W.φD T₂ (lA W ^ k • x) = lA W ^ k • W.φD T₂ x := fun k x => by
     rw [hφs, map_pow]; simp [lA]
   have hφU := congrArg (W.φD T₂) hU

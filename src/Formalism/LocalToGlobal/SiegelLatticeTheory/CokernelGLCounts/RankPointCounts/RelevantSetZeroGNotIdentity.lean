@@ -76,7 +76,7 @@ theorem delta_pos_le_height_sq (hPF : PFHost D) (large₂ : SizeData₂ D) {CH C
       ∏ τ : D.what₂.Tau, absReal D.host.rdE (embS D τ) D.R.rS (jT t) (labT t (jT t)) ^ 2 := by
     unfold k2Del
     exact hPF _ _
-  have hrd := pf_rd_pos D
+  have hrd := Formalism.MainNotions.S.rdE_pos D
   have hpos : ∀ τ, 0 < absReal D.host.rdE (embS D τ) D.R.rS (jT t) (labT t (jT t)) := by
     intro τ
     unfold absReal
@@ -121,7 +121,7 @@ theorem localNorm_le_height_sq (hPF : PFHost D) (large₂ : SizeData₂ D) {CH C
   have hH1 : 1 ≤ H1C large₂ CH := by
     unfold H1C
     exact Real.one_le_rpow (by linarith) (by positivity)
-  have hrd := pf_rd_pos D
+  have hrd := Formalism.MainNotions.S.rdE_pos D
   rw [hPF]
   unfold k2S
   rw [← Finset.prod_pow]

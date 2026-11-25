@@ -134,9 +134,6 @@ variable {ε : Fin n → Bool} {H : Type*} [NormedAddCommGroup H] [InnerProductS
 
 theorem isSmoothVecU_iff {v : H} : IsSmoothVecU ε σ v ↔ S7.SmoothOnGV ε (fun g => σ g v) := Iff.rfl
 
-theorem dS_eq_rdV (X : Matrix (Fin n) (Fin n) ℂ) (v : H) : dS σ X v = S7.RdV X (fun g => σ g v) 1 := by
-  simp only [dS, S7.RdV, Matrix.one_mul]
-
 theorem orbit_dS (hσ : IsURepOn (UJset ε) σ) {X : Matrix (Fin n) (Fin n) ℂ} (hX : inG ε X) {v : H}
     (hv : IsSmoothVecU ε σ v) {g : Matrix (Fin n) (Fin n) ℂ} (hg : inUJ ε g) :
     σ g (dS σ X v) = S7.RdV X (fun h => σ h v) g := by

@@ -1064,10 +1064,6 @@ theorem mulZ_tr (c : Fin r → ℂ) (U : RadSp k r z z' π π' →ₗ[ℂ] RadSp
 
 end mul
 
-theorem resG_smul {k r : ℕ} {E : Type*} [NormedAddCommGroup E] [NormedSpace ℂ E] (i : Fin (r + 1)) (κ : ℂ)
-    (J : Mx k r → E) (c : Fin r → ℂ) (g : Mx k r) : resG k r i (κ • J) c g = κ • resG k r i J c g := by
-  unfold resG
-  rw [Pi.smul_apply, smul_comm]
 
 theorem lev_ind_her {Wp Wq : Type} [NormedAddCommGroup Wp] [InnerProductSpace ℂ Wp] [NormedAddCommGroup Wq]
     [InnerProductSpace ℂ Wq] [FiniteDimensional ℂ Wp] [FiniteDimensional ℂ Wq] (P : M.Par)
@@ -1145,7 +1141,7 @@ theorem lev_ind_her {Wp Wq : Type} [NormedAddCommGroup Wp] [InnerProductSpace �
             by_cases hx : (c', g) ∈ DomR P.k P.r T.base.z T.base.z'
             · have h2 := hΦ (c', g) hx
               simp only at h2
-              rw [h2, hκ0 F, resG_smul, hκ, zero_smul]
+              rw [h2, hκ0 F, Formalism.FourierDecayAlt.P.JCx2.rma_resG_smul, hκ, zero_smul]
               try rfl
             · exact Φ.2.1 (c', g) hx
           rw [e]
@@ -1155,7 +1151,7 @@ theorem lev_ind_her {Wp Wq : Type} [NormedAddCommGroup Wp] [InnerProductSpace �
             intro x hx
             rw [hΦ'e]
             show κ0⁻¹ • (Φ : Fn P.k P.r (Wq →L[ℂ] Wp)) x.1 x.2 = _
-            rw [hΦ x hx, hκ0 F, resG_smul, smul_smul, inv_mul_cancel₀ hκ, one_smul]
+            rw [hΦ x hx, hκ0 F, Formalism.FourierDecayAlt.P.JCx2.rma_resG_smul, smul_smul, inv_mul_cancel₀ hκ, one_smul]
             try rfl
           have e : Φ = κ0 • Φ' := by rw [hΦ'e, smul_smul, mul_inv_cancel₀ hκ, one_smul]
           have hmem : Φ' ∈ herKc S (JC.parLev P 0) (T.bs 0).z (T.bs 0).z'
@@ -1291,10 +1287,6 @@ theorem levTransportHer_of (hJ : PTie.JFScale) (hS : PTie.SliceStepHer) : PTie.L
   · exact arel_RRw (fun Y => hqq n hn Y) w
 
 end Formalism.FourierDecayAlt.P.PTieH
-
-namespace Formalism.FourierDecayAlt.P
-
-end Formalism.FourierDecayAlt.P
 end -- clump:auto
 end -- clump:auto
 end -- clump:auto

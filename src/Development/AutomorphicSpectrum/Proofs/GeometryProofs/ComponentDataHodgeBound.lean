@@ -34,8 +34,6 @@ noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Cusp.ChartFree
 
-alias expCover_mem_punct := _root_.GlobalTheory.CompanionTheory.Ar.Flat.Link.expCover_mem_punct
-
 theorem exists_actPeriods_chart_data (hG : Top.Given) {E : Type} [Field E] [NumberField E] [IsCMField E]
     {H : Host E} {D : Datum H} {Xo : ∀ l : Tor.Level H, Moduli D l} {l : Tor.Level H} {c : Coeff l}
     {Y : Model (Xo l) c (algebraMap (𝓞 c.F) c.F)} {II : IntersectionSystem} {K : Type} [Fintype K]
@@ -111,7 +109,7 @@ theorem exists_actPeriods_chart_data (hG : Top.Given) {E : Type} [Field E] [Numb
   have hBhol : ∀ c x, DifferentiableOn ℂ (fun z => Bf ((ρ₂ : ℂ) • z) c x) (Metric.ball 0 1) := fun c x =>
     (hBd c x).comp hsmd hsmρ
   have hpb : ∀ w ∈ GroundTheory.Heights₂.Heights.Regular.logCover L₀.a_le,
-      GroundTheory.Heights₂.Heights.Regular.expCover a₀ w ∈ Flat.punct _ a₀ 1 := fun w hw => expCover_mem_punct L₀.a_le hw
+      GroundTheory.Heights₂.Heights.Regular.expCover a₀ w ∈ Flat.punct _ a₀ 1 := fun w hw => GlobalTheory.CompanionTheory.Ar.Flat.Link.expCover_mem_punct L₀.a_le hw
   have hclosed : ∀ w ∈ GroundTheory.Heights₂.Heights.Regular.logCover L₀.a_le, ∀ c x, ∃ y, L₀.P w y =
       Bf ((ρ₂ : ℂ) • GroundTheory.Heights₂.Heights.Regular.expCover a₀ w) c (L₀.P w x) := by
     intro w hw c x

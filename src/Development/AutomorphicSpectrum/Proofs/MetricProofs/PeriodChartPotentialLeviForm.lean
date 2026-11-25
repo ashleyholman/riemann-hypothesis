@@ -263,9 +263,6 @@ theorem gramHead_of_triangular {N : ℕ} (hd : Fin N → ℝ) (k : ℕ) (b : Mat
     exact Fin.lt_def.2 (by omega))
   simp [this]
 
-theorem sigForm_apply_ne_zero (N j : ℕ) (a : Fin N) : sigForm N j a ≠ 0 := by
-  unfold sigForm; split_ifs <;> norm_num
-
 theorem gramHead_det_ne_zero_of_triangular {N : ℕ} (hd : Fin N → ℝ) (hd0 : ∀ a, hd a ≠ 0) (k : ℕ)
     (b : Matrix (Fin N) (Fin N) ℂ) (hb : b.BlockTriangular id) (hu : IsUnit b.det) :
     (gramHead hd k b).det ≠ 0 := by
@@ -289,7 +286,7 @@ theorem gramHead_det_ne_zero (N j : ℕ) (hj : j ≤ N) (g : Matrix (Fin N) (Fin
     unfold gramHead
     rw [← hug, gramOf_mul_of_preserves _ _ _ hu]
   rw [e]
-  exact gramHead_det_ne_zero_of_triangular _ (sigForm_apply_ne_zero N j) k b hb hbu
+  exact gramHead_det_ne_zero_of_triangular _ (GlobalTheory.CompanionTheory.Ar.PB.sigForm_ne_zero N j) k b hb hbu
 
 theorem flagDomain_open_and_minors : ∀ (N j : ℕ), j ≤ N →
     IsOpen {g : Matrix (Fin N) (Fin N) ℂ | InFlagDomain N j g} ∧

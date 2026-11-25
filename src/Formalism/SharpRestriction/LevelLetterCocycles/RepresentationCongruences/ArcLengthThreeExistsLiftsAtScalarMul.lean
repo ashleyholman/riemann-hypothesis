@@ -169,7 +169,7 @@ theorem arc_length_three_exists_lambda_near_horizontal [NeZero n] [Fintype (K �
     rw [hHh, map_sum]
     refine Finset.sum_congr rfl fun r _ => ?_
 
-    rw [Formalism.MainNotions.UnusedSlot80.Relay2.φpow_smul, map_pow, Formalism.MainNotions.LiftingTheory.vecB, map_sum, Finset.smul_sum]
+    rw [Formalism.MainNotions.UnusedSlot80.SatPW.φD_pow_smulA, map_pow, Formalism.MainNotions.LiftingTheory.vecB, map_sum, Finset.smul_sum]
     refine Finset.sum_congr rfl fun m _ => ?_
     rw [map_smul, ← algebraMap_smul (LetA O n) (y r m), smul_smul]
   have key : lA W ^ κ • lam₀ - lA W ^ σ • ((W.φD T₂) ^ 1) Hh = JJ1 • Z := by
@@ -241,15 +241,15 @@ theorem arc_length_three_exists_lambda_near_horizontal [NeZero n] [Fintype (K �
     · intro z z' hz hz'; rw [map_add (f := _)]; exact (Pp W T₂ c' 2).add_mem hz hz'
     · intro z hz; rw [map_neg]; exact (Pp W T₂ c' 2).neg_mem hz
     · intro f hf z hz
-      rw [Formalism.MainNotions.UnusedSlot80.Relay2.φpow_smul, ← hφ2]
+      rw [Formalism.MainNotions.UnusedSlot80.SatPW.φD_pow_smulA, ← hφ2]
       exact Formalism.MainNotions.UnusedSlot80.Relay2.Pp_gen W T₂ c' 2 (Formalism.MainNotions.UnusedSlot80.PhiPowers.φA_pow_mem_AΔ W hf 1) hz
   refine ⟨((W.φD T₂) ^ 1) lam₀, κ, Hh, ?_, ?_, ⟨y, hy, rfl⟩, 0, ?_⟩
   · exact ⟨_, hφP _ hlam₀, (one_smul _ _).symm⟩
   · refine ⟨((W.φD T₂) ^ 1) Y, hφP _ hY, ?_⟩
-    rw [hγφ, ← map_sub, hYe, Formalism.MainNotions.UnusedSlot80.Relay2.φpow_smul, pow_one W.φA]
+    rw [hγφ, ← map_sub, hYe, Formalism.MainNotions.UnusedSlot80.SatPW.φD_pow_smulA, pow_one W.φA]
   · refine ⟨((W.φD T₂) ^ 1) Z, hφP _ hZ, ?_⟩
     rw [pow_zero, one_smul, hφ2, ← Formalism.MainNotions.UnusedSlot80.Relay2.φpow_lsmul, ← Formalism.MainNotions.UnusedSlot80.Relay2.φpow_lsmul,
-      ← map_sub, key, Formalism.MainNotions.UnusedSlot80.Relay2.φpow_smul, pow_one W.φA]
+      ← map_sub, key, Formalism.MainNotions.UnusedSlot80.SatPW.φD_pow_smulA, pow_one W.φA]
 
 end Formalism.MainNotions.N.FrobeniusPowerSeries
 end -- clump:auto

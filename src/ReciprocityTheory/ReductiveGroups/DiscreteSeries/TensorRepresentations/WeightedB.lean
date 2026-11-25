@@ -129,7 +129,7 @@ theorem wd_psi_memLp (hP : IsPsiFor ε lam T Ψ)
     MemLp (wdF ε (fun g => ((‖Ψ g‖ : ℝ) : ℂ))) 2 (Formalism.REAL.muG ε) := by
   have hI := integrable_muG_of_haar ε (fun g => ‖Ψ g‖ ^ 2 * S7.hs g ^ ((2 : ℝ) / 2)) hΨw
   have hΨm : AEStronglyMeasurable (fun g : Formalism.REAL.UJ ε => Ψ (Formalism.MainNotions.S.umat g)) (Formalism.REAL.muG ε) :=
-    ((ffa_continuousOn hP.2.2.1).comp_continuous (continuous_umatA ε) (fun g => g.2)).aestronglyMeasurable
+    ((ReciprocityTheory.ChartRestriction.DS.dinj_continuousOn_of_smoothOnGV hP.2.2.1).comp_continuous (continuous_umatA ε) (fun g => g.2)).aestronglyMeasurable
   have hm : AEStronglyMeasurable (wdF ε (fun g => ((‖Ψ g‖ : ℝ) : ℂ))) (Formalism.REAL.muG ε) := by
     unfold wdF
     exact ((Complex.continuous_ofReal.comp (Real.continuous_sqrt.comp

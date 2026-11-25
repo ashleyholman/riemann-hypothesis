@@ -504,7 +504,7 @@ theorem fin_small_gen {r : ℕ} (U : ∀ σ : c.F →+* ℂ, Unf Xo c σ r) (Z :
     exact mul_pos (by exact_mod_cast hr) (hρL Q hqG hq hρQ)
   have hvv : (τ : ℤ) * vV T'.V ((Cu : T'.Fr) * φ (ρ A₀)) =
       vV T'.V (φ (ρ Q)) + vV T'.V ((Cu : T'.Fr) ^ τ * φ (ρ Bf)) := by
-    rw [← vV_pow hX, hkey, vV_mul hD0 hY]
+    rw [← GlobalTheory.IntegralFrameCheck.vV_pow hX, hkey, vV_mul hD0 hY]
   rw [hvf, nval_of_ne hX, nval_of_ne hY, show (τ : EReal) = ((τ : ℝ) : EReal) from by simp, ← EReal.coe_mul,
     EReal.coe_le_coe_iff, ← mul_div_assoc] at h4
   have hE : (0 : ℝ) < ((r' * e : ℕ) : ℝ) := by exact_mod_cast ho'.1

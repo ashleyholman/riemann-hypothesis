@@ -213,7 +213,7 @@ theorem poleSolve : MeasInvStatement (E := E) → GlobalTheory.Up.PoleSolve (E :
       by_cases hzS : z ∈ S
       · rw [Set.indicator_of_mem hzS, ← ENNReal.ofReal_mul hK0]
         refine ENNReal.ofReal_le_ofReal ?_
-        have g1 : _ ≤ R * leviRh X x0 z ξ := RhGradFStatement_holds r X x0 h0 z hz ξ
+        have g1 : _ ≤ R * leviRh X x0 z ξ := ReciprocityTheory.ChartRestriction.G.AR.Up.RGF.rhGradF_holds r X x0 h0 z hz ξ
         refine (mul_le_mul (hD _) g1 (Complex.normSq_nonneg _) hD0).trans ?_
         refine le_trans (le_of_eq ?_) (mul_le_mul_of_nonneg_left (hφl z hz ξ) hK0)
         rw [hK]

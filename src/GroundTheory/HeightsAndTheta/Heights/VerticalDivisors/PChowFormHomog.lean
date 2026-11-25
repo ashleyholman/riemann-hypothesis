@@ -49,6 +49,4 @@ theorem ChowFormHomog.proof : ChowFormHomog.Statement := by
   rw [hdeg]
   exact hδ
 
-alias chowFormHomog := _root_.GroundTheory.Heights₂.Heights.Vertical.ChowFormHomog.proof
-
 end GroundTheory.Heights₂.Heights.Vertical

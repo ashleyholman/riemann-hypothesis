@@ -20,8 +20,6 @@ section
 
 variable {A S : Type} [Ring A] [StarRing A] [Algebra ℂ A] [StarModule ℂ A] [Fintype S] [DecidableEq S] {r : ℕ}
 
-theorem fnc (L : LevelData A r) {x y : A} (hx : x ∈ zfns L) (hy : y ∈ zfns L) : x * y = y * x := L.fns_comm x (Set.mem_union_right _ hx) y (Set.mem_union_right _ hy)
-
 theorem kLf {L : LevelData A r} {st : Start A} {n : ℕ} {Lf : ℕ → ℕ → A → Prop} (hS : LiftSys L st n Lf) {a : A}
     (ha : a ∈ kAlg st) : Lf 0 0 a := by
   unfold kAlg at ha
@@ -269,16 +267,16 @@ theorem colLift {L : LevelData A r} {st : Start A} {n : ℕ} {Lf : ℕ → ℕ �
   · exact hS.zero _ _
 
 theorem s1p (L : LevelData A r) : L.ζbi * L.GG * (L.ζb * L.ζi * L.GGi) = L.ζi := by
-  have c1 : L.GG * L.ζb = L.ζb * L.GG := fnc L (by simp [zfns]) (by simp [zfns])
-  have c2 : L.GG * L.ζi = L.ζi * L.GG := fnc L (by simp [zfns]) (by simp [zfns])
+  have c1 : L.GG * L.ζb = L.ζb * L.GG := Formalism.FourierDecayAlt.P.Fr9.zc L (by simp [zfns]) (by simp [zfns])
+  have c2 : L.GG * L.ζi = L.ζi * L.GG := Formalism.FourierDecayAlt.P.Fr9.zc L (by simp [zfns]) (by simp [zfns])
   calc L.ζbi * L.GG * (L.ζb * L.ζi * L.GGi) = L.ζbi * (L.GG * L.ζb) * L.ζi * L.GGi := by simp only [mul_assoc]
     _ = L.ζbi * L.ζb * (L.GG * L.ζi) * L.GGi := by rw [c1]; simp only [mul_assoc]
     _ = L.ζi * (L.GG * L.GGi) := by rw [L.ζbi_ζb, c2, one_mul, mul_assoc]
     _ = L.ζi := by rw [L.GG_GGi, mul_one]
 
 theorem s1m (L : LevelData A r) : L.ζi * L.GG * (L.ζ * L.ζbi * L.GGi) = L.ζbi := by
-  have h1 : L.GG * L.ζ = L.ζ * L.GG := fnc L (by simp [zfns]) (by simp [zfns])
-  have h2 : L.GG * L.ζbi = L.ζbi * L.GG := fnc L (by simp [zfns]) (by simp [zfns])
+  have h1 : L.GG * L.ζ = L.ζ * L.GG := Formalism.FourierDecayAlt.P.Fr9.zc L (by simp [zfns]) (by simp [zfns])
+  have h2 : L.GG * L.ζbi = L.ζbi * L.GG := Formalism.FourierDecayAlt.P.Fr9.zc L (by simp [zfns]) (by simp [zfns])
   calc L.ζi * L.GG * (L.ζ * L.ζbi * L.GGi)
       = L.ζi * (L.GG * L.ζ) * L.ζbi * L.GGi := by simp only [mul_assoc]
     _ = L.ζi * L.ζ * (L.GG * L.ζbi) * L.GGi := by rw [h1]; simp only [mul_assoc]
@@ -354,7 +352,7 @@ theorem letter {L : LevelData A r} {st : Start A} {n : ℕ} {Lf : ℕ → ℕ �
           _ = _ := by rw [← mul_assoc (st.xi l.pt), hxx, one_mul, ← mul_assoc]
       have hz : L.ζbi * L.GG * (L.ζb * L.ζi * L.GGi) * (L.TT • L.ζbi) * L.Ar l.pt =
           (L.TT • L.ζbi) * aP L l.pt := by
-        rw [s1p, aP, smul_mul_assoc, mul_smul_comm, smul_mul_assoc, fnc L mζi mζbi, mul_assoc]
+        rw [s1p, aP, smul_mul_assoc, mul_smul_comm, smul_mul_assoc, Formalism.FourierDecayAlt.P.Fr9.zc L mζi mζbi, mul_assoc]
       have hLz : Lf 0 r (L.TT • L.ζbi) := by
         have e1 : L.Dbi * L.Drb = L.ζbi := by
           rw [LevelData.Dbi, mul_assoc, Drbi_Drb, mul_one]
@@ -403,7 +401,7 @@ theorem letter {L : LevelData A r} {st : Start A} {n : ℕ} {Lf : ℕ → ℕ �
               rw [(xiz _ mζi).left_comm]; congr 1; noncomm_ring
       have hz : L.ζi * L.GG * (L.ζ * L.ζbi * L.GGi) * (L.TT • L.ζi) * L.Avr l.pt =
           (L.TT • L.ζi) * aM L l.pt := by
-        rw [s1m, aM, smul_mul_assoc, mul_smul_comm, smul_mul_assoc, fnc L mζbi mζi, mul_assoc]
+        rw [s1m, aM, smul_mul_assoc, mul_smul_comm, smul_mul_assoc, Formalism.FourierDecayAlt.P.Fr9.zc L mζbi mζi, mul_assoc]
       have hLz : Lf 0 r (L.TT • L.ζi) := by
         have e1 : L.Di * L.Dr = L.ζi := by
           rw [LevelData.Di, mul_assoc, Dri_Dr, mul_one]

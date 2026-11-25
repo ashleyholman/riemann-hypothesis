@@ -62,40 +62,6 @@ theorem map_AAv {A B : Type} [Ring A] [Algebra ℂ A] [Ring B] [Algebra ℂ B] (
   · rw [map_smul, Formalism.FourierDecayAlt.P.PBN.MC.map_qminor]
   · exact map_zero φ
 
-private theorem eventually_level_point_mem_open_lemma {k r j : ℕ} (hj : j + 1 ≤ r) {Z : Matrix (Fin j) (Fin j) ℂ} (hZ : Z.det ≠ 0)
-    {τ : ℂ} (hτ : τ ≠ 0) (γ : B.Mat k (r - (j + 1))) :
-    ContinuousAt (fun τ' => x0 k r j hj Z τ' γ) τ := by
-  have hr : (j + 1) + (r - (j + 1)) = r := by omega
-  have hz : Continuous fun τ' : ℂ => zfull Z τ' := by
-    unfold zfull U.blk2
-    fun_prop
-  have hL : Continuous fun p : Matrix (Fin (j+1)) (Fin (j+1)) ℂ × Matrix (Fin (j+1)) (Fin (j+1)) ℂ =>
-      D.castM hr (U.blk3 (k := k) 0 0 (p.1 * G.wMat (j+1)) 0 γ 0 (G.wMat (j+1) * p.2) 0 0) := by
-    unfold U.blk3
-    have := PBH.castM_cont (k := k) hr
-    fun_prop
-  have hdet : (zfull Z τ)ᴴ.det ≠ 0 := by
-    rw [Matrix.det_conjTranspose, zfull_det]
-    exact star_ne_zero.mpr (mul_ne_zero hZ hτ)
-  have h1 : ContinuousAt (Inv.inv : Matrix (Fin (j+1)) (Fin (j+1)) ℂ → _) (zfull Z τ)ᴴ := by
-    apply continuousAt_matrix_inv
-    rw [Ring.inverse_eq_inv']
-    exact continuousAt_inv₀ hdet
-  have h2 : ContinuousAt (fun N : Matrix (Fin (j+1)) (Fin (j+1)) ℂ => Nᴴ⁻¹) (zfull Z τ) :=
-    ContinuousAt.comp (g := Inv.inv) (f := fun N : Matrix (Fin (j+1)) (Fin (j+1)) ℂ => Nᴴ) h1
-      continuous_id.matrix_conjTranspose.continuousAt
-  have hK : ContinuousAt (fun N : Matrix (Fin (j+1)) (Fin (j+1)) ℂ =>
-      D.castM hr (U.mMap k (j + 1) (r - (j + 1)) N γ)) (zfull Z τ) :=
-    hL.continuousAt.comp (f := fun N : Matrix (Fin (j+1)) (Fin (j+1)) ℂ => (Nᴴ⁻¹, N))
-      (h2.prodMk continuousAt_id)
-  exact hK.comp (f := fun τ' => zfull Z τ') hz.continuousAt
-
-theorem eventually_level_point_mem_open {k r j : ℕ} (hj : j + 1 ≤ r) {Z : Matrix (Fin j) (Fin j) ℂ} (hZ : Z.det ≠ 0) {τ : ℂ}
-    (hτ : τ ≠ 0) (γ : B.Mat k (r - (j + 1))) {Dm : Set (Q.Mx k r)} (hD : IsOpen Dm)
-    (hx : x0 k r j hj Z τ γ ∈ Dm) : ∀ᶠ τ' in 𝓝 τ, τ' ≠ 0 ∧ x0 k r j hj Z τ' γ ∈ Dm := by
-  have hc := eventually_level_point_mem_open_lemma hj hZ hτ γ
-  exact (eventually_ne_nhds hτ).and (hc.preimage_mem_nhds (hD.mem_nhds hx))
-
 end aux
 
 private theorem minus_positive_of_parts_lemma {k r : ℕ} {E : Type} [NormedAddCommGroup E] [NormedSpace ℂ E]
@@ -196,7 +162,7 @@ theorem _root_.Formalism.FourierDecayAlt.P.minus_positive_of_parts : MinusPosOfP
   set Ψ0 : Mx k r → E := ((X (PBG.vK hDo Φ hsm) : VS k r 0 Dm E) : Mx k r → E) with hΨ0
   have hev : (fun τ' => D.vLet k r z z' (m + 1) (by omega) (false, Y) 0 Φ (x0 k r (m + 1) hj Z τ' γ)) =ᶠ[𝓝 τ]
       (fun τ' => W.det⁻¹ • Ψ0 (x0 k r (m + 1) hj Z τ' γ)) := by
-    filter_upwards [eventually_level_point_mem_open hj hZ hτ γ hDo hx] with τ' hτ'
+    filter_upwards [Formalism.FourierDecayAlt.P.LevelPointCoordinates.eventually_level_point_mem_open hj hZ hτ γ hDo hx] with τ' hτ'
     obtain ⟨h1, h2⟩ := hτ'
     obtain ⟨hD1', -⟩ := hDm k r (m + 1) hj z z' Z τ' γ hZ h1 hγ
     rw [hv0, hD1', ← hWdet, ← PBG.La_AAv hDo Φ hsm _ (hG τ' h1 h2),
@@ -458,11 +424,6 @@ open Formalism.REAL Formalism.QuantumDeterminants Formalism.FourierDecayAlt Form
 
 variable {k r : ℕ} {E : Type} [NormedAddCommGroup E] [NormedSpace ℂ E]
 
-theorem dmin_zero (z z' : Fin (2 * r + k + 1) → ℂ) (g : Q.Mx k r) (h : 0 < r + 2) :
-    Dmin k r z z' g ⟨0, h⟩ = 1 := by
-  unfold Dmin
-  exact Matrix.det_isEmpty
-
 theorem qminorOp_zero (a b : Fin 0 → Fin (2 * r + k + 1)) (u : ℂ) (f : Q.Mx k r → E) (g : Q.Mx k r) :
     qminorOp (EabH (Hpk k r)) a b u f g = f g := by
   unfold qminorOp
@@ -525,7 +486,7 @@ theorem plus_zero_of_parts : CutHL.PlusZeroOfParts := by
   rw [Matrix.det_isEmpty, one_mul] at hD1
   have hv0 : ∀ g, D.vLet k r z z' 0 (by omega) (true, Y) 0 Φ g = Φ g := by
     intro g
-    rw [PBG.letter_plus_component_zero, dmin_zero, inv_one, one_smul, AAop_zero]
+    rw [PBG.letter_plus_component_zero, Formalism.FourierDecayAlt.P.CutHLMZ.dmin_zero, inv_one, one_smul, AAop_zero]
   have hv1 : ∀ g, D.vLet k r z z' 0 (by omega) (true, Y) 1 Φ g = 0 := by
     intro g
     unfold D.vLet

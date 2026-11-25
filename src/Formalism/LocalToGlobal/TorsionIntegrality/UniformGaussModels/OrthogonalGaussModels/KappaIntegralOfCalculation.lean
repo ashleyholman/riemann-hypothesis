@@ -28,7 +28,7 @@ open Formalism.G (unitBall)
 theorem kappa_integral_of_calculation (hC : CalcC) : uniformGaussModelConditionReformulated := by
   intro l _ hl g2 g3 ε s2 hg2 hg3 hε hθ σ hU F hF hN n _ _ Θ γ hγ hK
   obtain ⟨hFr, hF1, hall, hbin⟩ := hC l hl g2 g3 ε s2 hg2 hg3 hε hθ σ hU F hF hN
-  have hσ : ∀ a : MaximalUnramifiedExtension l, ‖a‖ ≤ 1 → ‖σ a‖ ≤ 1 := (frobSq (MaximalUnramifiedExtension l) l σ hU).2
+  have hσ : ∀ a : MaximalUnramifiedExtension l, ‖a‖ ≤ 1 → ‖σ a‖ ≤ 1 := (Formalism.L2.Th1.D.frobenius_square (MaximalUnramifiedExtension l) l σ hU).2
   let _ : StarRing (BrC.Osub σ) := BrC.starO hσ
   have hun : (Matrix.of fun a b => (⟨γ a b, BrC.mem_Osub.2 (hγ.1 a b)⟩ : BrC.Osub σ)).conjTranspose *
       (Matrix.of fun a b => (⟨γ a b, BrC.mem_Osub.2 (hγ.1 a b)⟩ : BrC.Osub σ)) = 1 := by
@@ -54,7 +54,7 @@ theorem HypShape_of (hC : CalcC) : HypShape := by
   have hl2 : 2 ≤ l := by omega
   obtain ⟨hFr, hF1, hall, hbin⟩ := hC l hl g2 g3 ε s2 hg2 hg3 hε hθ σ hU F hF hN
   obtain ⟨hf, hf', hG1, hG2, hG3⟩ := hff
-  have hσ : ∀ a : MaximalUnramifiedExtension l, ‖a‖ ≤ 1 → ‖σ a‖ ≤ 1 := (frobSq (MaximalUnramifiedExtension l) l σ hU).2
+  have hσ : ∀ a : MaximalUnramifiedExtension l, ‖a‖ ≤ 1 → ‖σ a‖ ≤ 1 := (Formalism.L2.Th1.D.frobenius_square (MaximalUnramifiedExtension l) l σ hU).2
   let _ : StarRing (BrC.Osub σ) := BrC.starO hσ
   have gram : ∀ (a b : ιr × Fin N0 × Fin N1 → n → MaximalUnramifiedExtension l)
       (ha : ∀ e i, ‖a e i‖ ≤ 1 ∧ σ (σ (a e i)) = a e i) (hb : ∀ e i, ‖b e i‖ ≤ 1 ∧ σ (σ (b e i)) = b e i)

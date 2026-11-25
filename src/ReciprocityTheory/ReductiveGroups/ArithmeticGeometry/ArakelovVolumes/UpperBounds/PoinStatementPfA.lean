@@ -25,8 +25,6 @@ theorem lactDom (X : Data E r) {γ : GL (Fin r) E} (hγ : γ ∈ X.Γ) {x : Fram
 theorem rmulDom (X : Data E r) {b : Frame X.Ψ r} (hb : b ∈ Bor X.Ψ r) {x : Frame X.Ψ r} (hx : x ∈ X.dom) :
     rmul x b ∈ X.dom := OrthogonalFrameDomain.rmul_mem_dom X hx hb
 
-alias isOpenDom := _root_.ReciprocityTheory.ChartRestriction.G.FD.FourierCoefficientDomain.isOpen_dom
-
 theorem lact_mul' {Ψ : Finset (E →+* ℂ)} (γ γ' : GL (Fin r) E) (x : Frame Ψ r) :
     lact (γ * γ') x = lact γ (lact γ' x) := by
   funext τ

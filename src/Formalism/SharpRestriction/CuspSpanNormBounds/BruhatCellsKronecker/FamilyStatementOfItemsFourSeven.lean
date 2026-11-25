@@ -1348,8 +1348,6 @@ theorem numericVolume_bound_ii (k r : ℕ) (C A G T T' g v t la lc pa pc hs dim 
   have hC0 : 0 ≤ C := hA0.le.trans hA
   exact product_le_enlarged_losses la lc pa pc _ hla hlac hpa hpac (by positivity)
 
-alias rank_eq_two_mul_add_two := _root_.Formalism.MainNotions.BridgeLemma.m_eq
-
 theorem rank_lower_bound (D : D7) : 2 * D.R.rS + 6 ≤ D.R.k := by
   obtain ⟨t, ht⟩ := D.R.m_even
   obtain ⟨s, hs⟩ := D.R.k_even
@@ -1361,7 +1359,7 @@ theorem rank_lower_bound (D : D7) : 2 * D.R.rS + 6 ≤ D.R.k := by
 alias one_le_scale_base_local := _root_.Formalism.MainNotions.BridgeLemma.one_le_b
 
 theorem level_rpow_neg_rank_eq (D : D7) (hg : 0 < gg D) : gg D ^ (-(D.R.m : ℝ)) = (gg D)⁻¹ ^ (2 * D.R.rS + 2) := by
-  rw [Real.rpow_neg hg.le, Real.rpow_natCast, rank_eq_two_mul_add_two D, inv_pow]
+  rw [Real.rpow_neg hg.le, Real.rpow_natCast, Formalism.MainNotions.BridgeLemma.m_eq D, inv_pow]
 
 theorem local_volume_eq_weight (D : D7) (w : D.what₂.Word) (G : ℝ) (hg : 0 < gg D) :
     normalizedLocalScale D w * G ^ D.R.k = nv D.R.k D.R.rS G (Tr D w) (gg D) D.host.v := by
@@ -1418,7 +1416,7 @@ theorem lossStatement_of_bounds (D : D7) (large₂ : SizeData₂ D) (C' Cl Cg cb
   have hr : 1 ≤ D.R.rS := hStand.1
   have hk := rank_lower_bound D
   have hb := one_le_scale_base_local large₂
-  have hm := rank_eq_two_mul_add_two D
+  have hm := Formalism.MainNotions.BridgeLemma.m_eq D
   have hm0 : 0 < D.R.m := by omega
   have hk0 : (0 : ℝ) < D.R.k := by exact_mod_cast (by omega : 0 < D.R.k)
   have hT : 0 < Tr D w := by unfold Tr; exact_mod_cast hTT.1.pos
@@ -1521,7 +1519,7 @@ theorem family_side_conditions_large (C δ : ℝ) (hδ : 0 < δ) : ∃ x0 : ℝ,
   have hL : 1 ≤ (Fm.L x i).sc.L := by
     rw [sc_L Fm hx1]
     exact Real.one_le_rpow (one_lt_of Fm hx1).le (eps_pos Fm).le
-  have hmr : ((Fm.D x i).R.m : ℝ) = 2 * ((Fm.D x i).R.rS : ℝ) + 2 := by exact_mod_cast rank_eq_two_mul_add_two (Fm.D x i)
+  have hmr : ((Fm.D x i).R.m : ℝ) = 2 * ((Fm.D x i).R.rS : ℝ) + 2 := by exact_mod_cast Formalism.MainNotions.BridgeLemma.m_eq (Fm.D x i)
   have hr0 : (0 : ℝ) ≤ (Fm.D x i).R.rS := Nat.cast_nonneg _
   have hm0 : (0 : ℝ) < (Fm.D x i).R.m := by rw [hmr]; positivity
   have h1 : 1 ≤ δ * (Fm.D x i).R.m := by
@@ -1539,10 +1537,6 @@ end Fam
 end Formalism.MainNotions.BridgeLemma
 
 end
-
-namespace Formalism.MainNotions.BridgeLemma
-
-end Formalism.MainNotions.BridgeLemma
 
 noncomputable section
 
@@ -1862,7 +1856,7 @@ theorem L2_decay_of_admissible (D : D7) (large₂ : SizeData₂ D) (C' Cl Cg cb 
     (large₂.sc.b ^ (CDl * (D.R.m : ℝ) ^ 2)) _ _ hH1 hd0 (Real.rpow_nonneg (by linarith) _) hBH hZ hL2 (fun l => ?_)
   have hle : (l : ℕ) ≤ D.R.rS + 1 := Nat.le_of_lt_succ l.isLt
   have hlm : ((l : ℕ) : ℝ) ≤ D.R.m := by
-    have := rank_eq_two_mul_add_two D
+    have := Formalism.MainNotions.BridgeLemma.m_eq D
     exact_mod_cast (by omega : (l : ℕ) ≤ D.R.m)
   have hrange : (q : ℝ) * ((l : ℕ) : ℝ) ≤ Cn * D.R.k * (D.R.m : ℝ) ^ 3 := by
     have h1 : (q : ℝ) ≤ Cn * D.R.k * (D.R.m : ℝ) ^ 2 :=
@@ -1940,7 +1934,7 @@ theorem decayProp_of_l2AbsDecay (D : D7) (large₂ : SizeData₂ D) (C' Cl Cg cb
   have hr : 1 ≤ D.R.rS := hStand.1
   have hk := rank_lower_bound D
   have hb := one_le_scale_base_local large₂
-  have hm := rank_eq_two_mul_add_two D
+  have hm := Formalism.MainNotions.BridgeLemma.m_eq D
   have hm0 : 0 < D.R.m := by omega
   have hk0 : (0 : ℝ) < D.R.k := by exact_mod_cast (by omega : 0 < D.R.k)
   have hv0 : 0 < D.host.v := lt_of_lt_of_le one_pos hv
@@ -2318,7 +2312,7 @@ theorem abs_decay_of_all_parameters (D : D7) (large₂ : SizeData₂ D) (C' Cl C
     (hJ (lamD D τ) S (by rw [hl00]; exact hR0) hGS) (fun l => ?_)
   have hle : (l : ℕ) ≤ D.R.rS + 1 := Nat.le_of_lt_succ l.isLt
   have hlmN : (l : ℕ) ≤ D.R.m := by
-    have := rank_eq_two_mul_add_two D
+    have := Formalism.MainNotions.BridgeLemma.m_eq D
     omega
   have hlm : ((l : ℕ) : ℝ) ≤ D.R.m := by exact_mod_cast hlmN
   have hrange : (q : ℝ) * ((l : ℕ) : ℝ) ≤ Cn * D.R.k * (D.R.m : ℝ) ^ 3 := by
@@ -2426,10 +2420,3 @@ end Formalism.MainNotions.BridgeLemma
 
 end
 
-namespace Formalism.MainNotions.BridgeLemma
-
-end Formalism.MainNotions.BridgeLemma
-
-namespace Formalism.MainNotions.BridgeLemma
-
-end Formalism.MainNotions.BridgeLemma

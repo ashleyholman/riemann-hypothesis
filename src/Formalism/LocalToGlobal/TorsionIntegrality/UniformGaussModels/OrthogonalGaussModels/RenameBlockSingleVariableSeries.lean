@@ -20,7 +20,7 @@ open Formalism.L2.Th1.CM (MaximalUnramifiedExtension)
 theorem hyp_of_gram (l : ℕ) [Fact l.Prime] (σ : MaximalUnramifiedExtension l →+* MaximalUnramifiedExtension l) (hU : UnrOK (MaximalUnramifiedExtension l) l σ)
     (hζ : ∃ ζ : MaximalUnramifiedExtension l, IsPrimitiveRoot ζ (l ^ 2 - 1)) (E : Type) [Fintype E] [DecidableEq E] :
     ∃ f f' : E → (Bool × E) → MaximalUnramifiedExtension l, IsHypPair σ f f' := by
-  obtain ⟨c, hc, hG⟩ := gramExists (MaximalUnramifiedExtension l) l σ hU hζ E
+  obtain ⟨c, hc, hG⟩ := Formalism.L2.Th1.D.gram_matrix_exists (MaximalUnramifiedExtension l) l σ hU hζ E
   refine ⟨fun e i => c i (false, e), fun e i => c i (true, e), fun e i => hc _ _, fun e i => hc _ _,
     ?_, ?_, ?_⟩
   · intro e e'
@@ -47,7 +47,7 @@ theorem joint (l : ℕ) [Fact l.Prime] (hl : 5 ≤ l) (ν r0 r1 : ℕ) [NeZero �
       UnrOK (MaximalUnramifiedExtension l) l σ ∧ IsLawOfLog l F ∧ 2 ≤ 2 * ν ∧ Even (2 * ν) ∧ OwOK (2 * ν) σ om oms ∧
       TrDual (2 * ν) σ om oms ∧ (∃ ζ : MaximalUnramifiedExtension l, IsPrimitiveRoot ζ (l ^ (2 * ν) - 1)) ∧ IsHypPair σ f f' := by
   obtain ⟨σ, F, be, om, oms, U0, Φ, ph, hU, _, _, hζ2, hζ, h2, hev, _, hO, hT, hF, _⟩ :=
-    chainNonVacuous l (by omega) ν r0 r1
+    Formalism.L2.Th1.D.chain_nonvacuous l (by omega) ν r0 r1
   obtain ⟨f, f', hff⟩ := hyp_of_gram l σ hU hζ2 (Fin ν × Fin r0 × Fin r1)
   exact ⟨σ, F, om, oms, f, f', hU, hF, h2, hev, hO, hT, hζ, hff⟩
 

@@ -377,7 +377,7 @@ theorem chart_periods {Xo : Moduli D l} {σ : KA l →+* ℂ} {n : ℕ} (C : Bdr
   · obtain ⟨-, -, -, hWz, -⟩ := hr z hz
     have hD : IsDerivAt0 (fun x => (r z x).left) (W a z) (spMap (dualMap (C.ψ z)) ≫ (C.M.pt (x a)).left) := by
       rw [(hl2 z hz).2.2, hW z hz]
-      exact Marking.isDerivAt0_frame e (hsubB hz) (x a)
+      exact GlobalTheory.CompanionTheory.Ar.Flat.FrameDeriv.isDerivAt0_pt e (hsubB hz) (x a)
     haveI := C.j_open
     haveI : IsOpenImmersion C.m₁.φ := MorphismProperty.of_isPullback C.m₁.cart.1.flip ‹IsOpenImmersion C.j›
     obtain ⟨v', hv1, hv2⟩ := Marking.deriv_of_open C.m₁.φ (Wt z) (W a z) _ (by

@@ -611,7 +611,7 @@ theorem horTr_split (hinj : Function.Injective (algebraMap O LL)) (T : LocLat G 
   obtain ⟨M', rfl⟩ : ∃ M', M = M' + 1 := ⟨M - 1, by omega⟩
   refine ⟨∑ r ∈ Finset.range M', W.π₀ ^ r • Formalism.MainNotions.LiftingTheory.vecB W T b (y (r + 1)),
     Formalism.MainNotions.UnusedSlot80.Relay2.InNΔi_sum W T c _ _ fun r _ =>
-      Formalism.MainNotions.UnusedSlot80.Relay2.InNΔi_smul W T c (W.AΔ.pow_mem hπ r)
+      Formalism.MainNotions.LiftingTheory.frame_smul_mem W T c (W.AΔ.pow_mem hπ r)
         (Formalism.MainNotions.UnusedSlot80.Relay2.InNΔi_sum W T c _ _ fun m _ => Formalism.MainNotions.UnusedSlot80.Relay2.InNΔi_osmul W T c _ (hb m)), ?_⟩
   rw [Finset.sum_range_succ', pow_zero, one_smul, add_comm, Finset.smul_sum]
   congr 1
@@ -661,7 +661,7 @@ theorem frame_const (hR : Formalism.MainNotions.UnusedSlot80.ToolsR.RingP W) {T�
   have hbl : ∀ j, (letE c' : LetA O n) • bY j = bY j := fun j =>
     Formalism.MainNotions.UnusedSlot80.Relay2.InNΔi_letter W Y c' (hbY.1 j)
   refine ⟨∑ j, g j • bY j, Formalism.MainNotions.UnusedSlot80.Relay2.InNΔi_sum W Y c' _ _ fun j _ =>
-    Formalism.MainNotions.UnusedSlot80.Relay2.InNΔi_smul W Y c' (hg j) (hbY.1 j), ?_⟩
+    Formalism.MainNotions.LiftingTheory.frame_smul_mem W Y c' (hg j) (hbY.1 j), ?_⟩
   rw [hmx, Finset.smul_sum, ← Finset.sum_sub_distrib]
   refine Finset.sum_congr rfl fun j _ => ?_
   have e1 : o j • bY j = (letE c' * algebraMap O (LetA O n) (o j)) • bY j := by
@@ -732,7 +732,7 @@ theorem hor_diff (C : LevC.Ctx W) {T₂ Y : LocLat G Qp LL O} (ι : LatHom T₂.
     (C.hH C.hCA Y hY c').1 (C.hH C.hCA Y hY c').2.1 (A.M PD.p) D hD1 hD2
   obtain ⟨ν, hν, hνe⟩ := LevC.yM_gen W C.hTr C.hCA hπ C.h5p A hA a e
   refine ⟨K, ν • ((W.φD Y) ^ e) x', Formalism.MainNotions.UnusedSlot80.Relay2.Pp_gen W Y c' e hν hx', ?_⟩
-  rw [← Formalism.MainNotions.UnusedSlot80.Relay2.φpow_lsmul, hK, Formalism.MainNotions.UnusedSlot80.Relay2.φpow_smul, map_pow, hνe, mul_smul]
+  rw [← Formalism.MainNotions.UnusedSlot80.Relay2.φpow_lsmul, hK, Formalism.MainNotions.UnusedSlot80.SatPW.φD_pow_smulA, map_pow, hνe, mul_smul]
 
 theorem inFP_sum (T : LocLat G Qp LL O) (c : ZMod n) (e : ℕ) (f : LetA O n) {ι₀ : Type} (s : Finset ι₀)
     (z : ι₀ → W.DD T) (h : ∀ i ∈ s, InFP W T c e f (z i)) : InFP W T c e f (∑ i ∈ s, z i) := by

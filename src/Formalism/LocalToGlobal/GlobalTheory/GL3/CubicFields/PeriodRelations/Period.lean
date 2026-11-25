@@ -345,25 +345,22 @@ namespace Formalism.L2.GlobalTheoryTheory.IntegralLatticeDensity.B5
 open NumberField Classical
 open scoped Pointwise
 
-theorem liftM_val_ext {M : IntermediateField ℚ ℂ} {x : ℂ} (h : x ∈ M) : ((liftM M x : M) : ℂ) = x := by
-  simp [liftM, h]
-
 theorem liftM_mul_ext {E : Type} [Field E] (M : IntermediateField ℚ ℂ) (σ : E →+* ℂ) (hσ : ∀ y, σ y ∈ M)
     (a b : E) : liftM M (σ (a * b)) = liftM M (σ a) * liftM M (σ b) := by
   apply Subtype.ext
-  rw [liftM_val_ext (hσ (a * b)), IntermediateField.coe_mul, liftM_val_ext (hσ a),
-    liftM_val_ext (hσ b), map_mul]
+  rw [Formalism.L2.GlobalTheoryTheory.IntegralLatticeDensity.B5.coe_lift_intermediate (hσ (a * b)), IntermediateField.coe_mul, Formalism.L2.GlobalTheoryTheory.IntegralLatticeDensity.B5.coe_lift_intermediate (hσ a),
+    Formalism.L2.GlobalTheoryTheory.IntegralLatticeDensity.B5.coe_lift_intermediate (hσ b), map_mul]
 
 theorem liftM_add_ext {E : Type} [Field E] (M : IntermediateField ℚ ℂ) (σ : E →+* ℂ) (hσ : ∀ y, σ y ∈ M)
     (a b : E) : liftM M (σ (a + b)) = liftM M (σ a) + liftM M (σ b) := by
   apply Subtype.ext
-  rw [liftM_val_ext (hσ (a + b)), IntermediateField.coe_add, liftM_val_ext (hσ a),
-    liftM_val_ext (hσ b), map_add]
+  rw [Formalism.L2.GlobalTheoryTheory.IntegralLatticeDensity.B5.coe_lift_intermediate (hσ (a + b)), IntermediateField.coe_add, Formalism.L2.GlobalTheoryTheory.IntegralLatticeDensity.B5.coe_lift_intermediate (hσ a),
+    Formalism.L2.GlobalTheoryTheory.IntegralLatticeDensity.B5.coe_lift_intermediate (hσ b), map_add]
 
 theorem liftM_one_ext {E : Type} [Field E] (M : IntermediateField ℚ ℂ) (σ : E →+* ℂ) :
     liftM M (σ 1) = 1 := by
   apply Subtype.ext
-  rw [map_one, liftM_val_ext (one_mem M), IntermediateField.coe_one]
+  rw [map_one, Formalism.L2.GlobalTheoryTheory.IntegralLatticeDensity.B5.coe_lift_intermediate (one_mem M), IntermediateField.coe_one]
 
 theorem liftM_int_ext {E : Type} [Field E] [NumberField E] (M : IntermediateField ℚ ℂ) [NumberField M]
     (σ : E →+* ℂ) (hσ : ∀ y, σ y ∈ M) (e : 𝓞 E) :
@@ -373,7 +370,7 @@ theorem liftM_int_ext {E : Type} [Field E] [NumberField E] (M : IntermediateFiel
   have hx : IsIntegral ℤ (liftM M (σ (algebraMap (𝓞 E) E e))) := by
     rw [← isIntegral_algHom_iff (algebraMap M ℂ).toIntAlgHom (algebraMap M ℂ).injective]
     change IsIntegral ℤ ((liftM M (σ (algebraMap (𝓞 E) E e)) : M) : ℂ)
-    rwa [liftM_val_ext (hσ _)]
+    rwa [Formalism.L2.GlobalTheoryTheory.IntegralLatticeDensity.B5.coe_lift_intermediate (hσ _)]
   exact ⟨⟨_, hx⟩, rfl⟩
 
 theorem mem_imI_iff {E : Type} [Field E] [NumberField E] (M : IntermediateField ℚ ℂ) [NumberField M]

@@ -1079,7 +1079,7 @@ theorem u2ring_pf : SecondRingHypothesis := by
   have : IsAdicComplete (Ideal.span {((((D.loc l).PD K).p : ℕ) : ↥(OL LL))}) ↥(OL LL) := by
     rw [hpl]; exact Formalism.MainNotions.WachCoordinates.Br.complete_OL LL
   have : IsAdicComplete (IsLocalRing.maximalIdeal ↥(OL LL)) ↥(OL LL) := AdicCompletionMax.isAdicComplete_max hp0 hpm
-  have hs : 1 ≤ sK l K := DescentValuation.u3downPf_sK_pos hl K LL hG
+  have hs : 1 ≤ sK l K := Formalism.MainNotions.N.Ln34.frobpin_sK_pos hl K LL hG
   have hd := DvdPf.dvdCondition l hl K LL hG
   have hes : eK K * sK l K = ((D.loc l).PD K).p - 1 := by rw [hpl]; exact Nat.mul_div_cancel' hd
   obtain ⟨ζL, hζL⟩ := Formalism.MainNotions.N.zeta_of_good (D.loc l) hG

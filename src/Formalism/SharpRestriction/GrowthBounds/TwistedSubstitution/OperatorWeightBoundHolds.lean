@@ -1194,7 +1194,7 @@ theorem theta_mem (K : Type) [Field K] (m : ℕ) (hm : 1 ≤ m) (vec : Bool) (d 
 theorem restRep : RestRep := by
   intro K _ _ m hm vec d P hP h
   apply theta_inj_Hd K m hm vec d P hP
-  apply Formalism.L2.G.Model.TS.Top.nondegK K (m + 1) (m + 1) le_rfl (nuL m d vec) (nuL_anti m d vec) _ (theta_mem K m hm vec d P hP)
+  apply Formalism.L2.G.Model.TS.nondegenerate_over_field K (m + 1) (m + 1) le_rfl (nuL m d vec) (nuL_anti m d vec) _ (theta_mem K m hm vec d P hP)
   intro P' hP'
   rw [← Formalism.L2.G.Model.theta_Hd K m hm d vec] at hP'
   obtain ⟨Q, hQ, rfl⟩ := hP'

@@ -201,7 +201,7 @@ theorem fzero_null (hP' : IsArithVar P' (n + 1)) {f : MRing ι'} {a : K' → ℕ
           LinearMap.det (fderiv ℂ (brQ R Ψ' ∘ (R.A.chart k).symm) (R.A.chart k x) :
             (Fin n → ℂ) →ₗ[ℂ] (Fin n → ℂ)) = 0}) with hNdef
     have hN : volume N = 0 :=
-      measure_union_null (psi0_null R Ψ' hP' hΨ' j) (ram_null R Ψ' hP' hΨ' j)
+      measure_union_null (ReciprocityTheory.ChartRestriction.G.Geo.volume_projection_zeroSet_null R Ψ' hP' hΨ' j) (ReciprocityTheory.ChartRestriction.G.Geo.ram_null' R Ψ' hP' hΨ' j)
     obtain ⟨u1, hu1B, hu1N⟩ : ∃ u1 ∈ Metric.ball u0 r, u1 ∉ N := by
       by_contra h
       push Not at h

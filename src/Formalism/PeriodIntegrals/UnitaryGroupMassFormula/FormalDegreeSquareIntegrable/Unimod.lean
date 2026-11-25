@@ -132,12 +132,6 @@ lemma modChar_herm (h : UJ ε) (hh : (toM h)ᴴ = toM h) : Measure.modularCharac
   · have := (D h).2
     linarith
 
-lemma isCompact_Kset : IsCompact (Kset ε) := by
-  apply CompanionTheory.D.Upq.isCompact_Kset
-
-lemma isCompact_KG : IsCompact ((KG ε : Set (UJ ε))) :=
-  (isClosedEmbeddingMatrix n ε).1.isCompact_preimage (isCompact_Kset ε)
-
 lemma polar (g : UJ ε) : ∃ s : UJ ε, (toM s)ᴴ = toM s ∧ g * s⁻¹ ∈ KG ε := by
   set G := toM g with hG
   set P := Gᴴ * G with hPdef
@@ -205,7 +199,7 @@ lemma polar (g : UJ ε) : ∃ s : UJ ε, (toM s)ᴴ = toM s ∧ g * s⁻¹ ∈ K
 
 theorem modChar_UJ [T2Space (UJ ε)] (g : UJ ε) : Measure.modularCharacter g = 1 := by
   obtain ⟨s, hs, hk⟩ := polar ε g
-  have h1 := modChar_eq_one_of_compact (muG ε) (KG ε) (isCompact_KG ε) _ hk
+  have h1 := modChar_eq_one_of_compact (muG ε) (KG ε) (CompanionTheory.D.Upq.isCompact_KG ε) _ hk
   have h2 := modChar_herm ε s hs
   have e : g = (g * s⁻¹) * s := by group
   rw [e, map_mul, h1, h2, mul_one]

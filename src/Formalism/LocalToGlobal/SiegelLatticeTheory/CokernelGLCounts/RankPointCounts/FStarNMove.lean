@@ -23,8 +23,6 @@ variable {E : Type} [Field E] [NumberField E] [StarRing E] (S : HSpace E)
 
 alias hsw := _root_.PI.PairCorankPos.W.hT_swap
 
-alias hT_smulL := _root_.PI.ScalarPairDr.W.hT_smul_left
-
 theorem spanL {ι : Type*} (x : ι → S.V) (y : S.V) (h : ∀ i, S.hT (x i) y = 0) :
     ∀ u ∈ Submodule.span E (Set.range x), S.hT u y = 0 := by
   intro u hu
@@ -34,7 +32,7 @@ theorem spanL {ι : Type*} (x : ι → S.V) (y : S.V) (h : ∀ i, S.hT (x i) y =
     exact h i
   | zero => simp
   | add a b _ _ ha hb => rw [map_add (f := _), LinearMap.add_apply, ha, hb, add_zero]
-  | smul c a _ ha => rw [hT_smulL, ha, mul_zero]
+  | smul c a _ ha => rw [PI.ScalarPairDr.W.hT_smul_left, ha, mul_zero]
 
 theorem spanR {ι : Type*} (x : ι → S.V) (y : S.V) (h : ∀ i, S.hT y (x i) = 0) :
     ∀ u ∈ Submodule.span E (Set.range x), S.hT y u = 0 := by
@@ -73,7 +71,7 @@ theorem gram_flag {T : E} (P Q : FlagG S r T) (a c : Fin (r + 1)) :
 theorem hermitian_double_sum_expand {ι : Type*} [Fintype ι] (x : ι → S.V) (g g' : ι → E) :
     S.hT (∑ i, g i • x i) (∑ j, g' j • x j) = ∑ i, ∑ j, star (g i) * (g' j * S.hT (x i) (x j)) := by
 
-  simp only [map_sum, LinearMap.sum_apply, hT_smulL, map_smul, smul_eq_mul, Finset.mul_sum]
+  simp only [map_sum, LinearMap.sum_apply, PI.ScalarPairDr.W.hT_smul_left, map_smul, smul_eq_mul, Finset.mul_sum]
   rw [Finset.sum_comm]
   exact Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => by ring
 
@@ -178,7 +176,7 @@ theorem exists_move {T T' : E} (F : FlagG S r T) (P Q : FlagG S r T')
       ℓ (fun b => S.hT (x b) y) = S.hT (∑ b, k b • x b) y := fun x y => by
 
     rw [hℓ, map_sum, LinearMap.sum_apply]
-    exact Finset.sum_congr rfl fun b _ => (hT_smulL S _ _ _).symm
+    exact Finset.sum_congr rfl fun b _ => (PI.ScalarPairDr.W.hT_smul_left S _ _ _).symm
   have hrange : LinearMap.range A = LinearMap.ker ℓ := by
     have hle : LinearMap.range A ≤ LinearMap.ker ℓ := by
       rintro _ ⟨x, rfl⟩

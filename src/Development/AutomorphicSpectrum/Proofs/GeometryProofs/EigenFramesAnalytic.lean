@@ -283,8 +283,8 @@ theorem isEigFrame_of_frames {X : Scheme.{0}} {G : Over X} [GrpObj G] [IsCommMon
   choose g hg using fun i => MA.onto (e' i) (hv i).1
   have hji : Function.Injective j := fun a a' h => MA.inj (tan_ext hinj (MA.tan a) (MA.tan a') (by
     rw [← hj, ← hj, h]))
-  have hjf : ∀ k, j (f k) = b k := fun k => pt_left_inj M (by rw [hj, hf]; exact (hb k).2.symm)
-  have hjg : ∀ i, j (g i) = v i := fun i => pt_left_inj M (by rw [hj, hg]; exact (hv i).2.symm)
+  have hjf : ∀ k, j (f k) = b k := fun k => GlobalTheory.CompanionTheory.Ar.LieFin.pt_left_inj M (by rw [hj, hf]; exact (hb k).2.symm)
+  have hjg : ∀ i, j (g i) = v i := fun i => GlobalTheory.CompanionTheory.Ar.LieFin.pt_left_inj M (by rw [hj, hg]; exact (hv i).2.symm)
   have hfr := ((_root_.GlobalTheory.CompanionTheory.Ar.Fl.Bridge.comb_eig_frame X T G y N My).2 Oe act ρ τ hρ).2
   obtain ⟨hul, hus⟩ := (hfr r _).1 (hu (fun k => My.pt (jy (f k))) fun k => by rw [hjy, hf])
   have hfb : (fun k => j (f k)) = b := funext hjf

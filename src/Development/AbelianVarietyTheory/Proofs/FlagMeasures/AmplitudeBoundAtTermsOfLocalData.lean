@@ -1216,7 +1216,7 @@ theorem prodC_holds : ProdC := by
   intro D large₂ X Y u C CH hS hCH hk4 hk5 t ht hj hj1
   obtain ⟨C', Cl, Cg, cb, Cw, cT, CT, C0, hH⟩ := id hS
   have hPF : PFHost D := PFHost_of_data D hH.1.2.1
-  have hrd := pf_rd_pos D
+  have hrd := Formalism.MainNotions.S.rdE_pos D
   have hb := two_le_scale_b D large₂
   have hH1 : 1 ≤ H1C large₂ CH := by
     unfold H1C

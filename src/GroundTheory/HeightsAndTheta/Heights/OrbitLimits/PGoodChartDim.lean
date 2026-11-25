@@ -55,14 +55,12 @@ theorem projChartSet_eq (P : Ideal (MRing ι)) {m e : ℕ} (σ : Fin m ≃ ((k :
   · rintro ⟨⟨z, hz, rfl⟩, h1⟩
     exact ⟨z, hz, (hl z).symm.trans h1, rfl⟩
 
-alias linForm_single' := _root_.GroundTheory.Heights₂.Heights.linForm_single
-
 
 omit [∀ k, Fintype (ι k)] in
 theorem segreChartSet_eq (P : Ideal (MRing ι)) {m : ℕ} (σ : Fin m ≃ ((k : K) → ι k)) (a : Fin m) :
     segreChartSet P σ (σ a) = {x | x ∈ segreCone P σ ∧ eval x (linForm (Pi.single a (1 : ℂ))) = 1} := by
   ext x
-  simp only [segreChartSet, segreCone, Set.mem_ofPred_eq, linForm_single', eval_X]
+  simp only [segreChartSet, segreCone, Set.mem_ofPred_eq, GroundTheory.Heights₂.Heights.linForm_single, eval_X]
   constructor
   · rintro ⟨z, hz, h1, rfl⟩
     exact ⟨⟨z, hz, rfl⟩, h1⟩
@@ -122,7 +120,7 @@ theorem GoodChartDim.proof (h₁ : ConeVanishingHomog.Statement) (h₂ : ConeSli
   have hHW : H ≤ W := hWcore H hH (hHI.trans hIJ)
   obtain ⟨a, ha⟩ := exists_X_not_mem hℓW
   set u : Fin m → ℂ := Pi.single a 1
-  have huW : linForm u ∉ W := by rw [linForm_single']; exact ha
+  have huW : linForm u ∉ W := by rw [GroundTheory.Heights₂.Heights.linForm_single]; exact ha
   have hT : segreChartSet P σ (σ a) = {x | x ∈ segreCone P σ ∧ eval x (linForm u) = 1} :=
     segreChartSet_eq P σ a
 

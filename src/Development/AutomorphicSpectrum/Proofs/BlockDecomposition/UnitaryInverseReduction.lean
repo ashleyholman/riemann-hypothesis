@@ -1141,10 +1141,6 @@ theorem ordL_monomial_entry {n : ℕ} {t : Equiv.Perm (Fin n)} {Y : GL (Fin n) L
   exact ⟨left_ne_zero_of_mul_eq_one h, P.fIwasawa_ordL_unit _ _ (P.cartan_entries_of_mem _ Y hYK _ _)
     (P.cartan_entries_of_mem _ _ (inv_mem hYK) _ _) (by rw [mul_comm]; exact h)⟩
 
-theorem isBorelU_one (σ : L →+* L) (n : ℕ) : IsBorelU (1 : GU σ n) := by
-  intro i j h
-  simp [ne_of_gt h]
-
 theorem chiDeltaU_one (σ : L →+* L) (n m q : ℕ) (α : Fin m → ℂ) : chiDeltaU q α (1 : GU σ n) = 1 := by
   unfold chiDeltaU
   refine Finset.prod_eq_one fun i _ => ?_
@@ -1222,7 +1218,7 @@ theorem value_point : ∀ (L : Type) [Field L] [Valued L (WithZero (Multiplicati
       exact absurd (hvb.trans hv) (not_le.2 (one_lt_mul'' h h))
     have huK : u ∈ KU σ n := mem_KU_of_int hσ u fun s t => by
       rw [hU, heis_val]; exact v_heisM_le _ _ _ hb1 (hvd ▸ hb1) hv s t
-    have h := hφ 1 1 (y⁻¹ * u) (isBorelU_one σ n) (mul_mem (inv_mem hy) huK)
+    have h := hφ 1 1 (y⁻¹ * u) (GlobalTheory.GKUnitaryRankOne.isBorelU_one σ n) (mul_mem (inv_mem hy) huK)
     rw [one_mul, one_mul] at h
     have h0 : (-ordL c).toNat = 0 := by
       by_cases h0 : c = 0

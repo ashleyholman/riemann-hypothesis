@@ -12,16 +12,6 @@ namespace Formalism.FourierDecayAlt.P.GramProductIdentities
 open Finset Formalism.FourierDecayAlt.FormPairingAction Formalism.FourierDecayAlt.Wd
 open scoped ComplexOrder MatrixOrder Matrix.Norms.L2Operator
 
-section CS
-
-variable {M : Type} [AddCommGroup M] [Module ℂ M]
-
-theorem cs_of_pos (Ξ : F7.Sesq M) (h : ∀ m, 0 ≤ (Ξ m m).re ∧ (Ξ m m).im = 0) (x y : M) :
-    ‖Ξ x y‖ ^ 2 ≤ (Ξ x x).re * (Ξ y y).re := by
-  first | (apply Bl.HermitianSesquilinear.goal1 <;> assumption)
-
-end CS
-
 theorem exp_le_one_add {x : ℝ} (hx : |x| ≤ 1 / 2) : Real.exp (-2 * |x|) ≤ 1 + x := by
   rcases le_or_gt 0 x with h0 | h0
   · have : Real.exp (-2 * |x|) ≤ 1 := Real.exp_le_one_iff.mpr (by nlinarith [abs_nonneg x])

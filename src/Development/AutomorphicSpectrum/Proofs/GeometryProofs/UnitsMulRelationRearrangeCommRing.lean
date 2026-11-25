@@ -354,8 +354,6 @@ noncomputable section
 
 namespace GlobalTheory.CompanionTheory.Ar.Coc.Pf.PeOne
 
-alias homAt_comp' := _root_.GlobalTheory.CompanionTheory.Ar.Coc.Actp.homAt_comp
-
 theorem jetSubstP_mk_X {S : Type} [CommRing S] {κ κ' : Type} (m : ℕ) (φ : κ → MvPolynomial κ' S) (i : κ) :
     jetSubstP m φ (Ideal.Quotient.mk _ (MvPolynomial.X i)) =
       Ideal.Quotient.mk _ (φ i - MvPolynomial.C (MvPolynomial.constantCoeff (φ i))) := by
@@ -407,7 +405,7 @@ theorem peG_act_one : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H 
       simp [hc, h0]
     · simp [jetCopy_mkX]
   have hcomp := congrArg (fun f => (homAt x f).left) hring
-  simp only [homAt_comp', Over.comp_left] at hcomp
+  simp only [GlobalTheory.CompanionTheory.Ar.Coc.Actp.homAt_comp, Over.comp_left] at hcomp
   refine (val_pull hJ _ _ _).trans ?_
   rw [hcomp]
   refine (val_pull hJ _ _ _).symm.trans ?_

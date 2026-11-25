@@ -337,12 +337,6 @@ theorem pb_sizeStdCpt_main : Formalism.FourierDecayAlt.KB.SizeStdCpt := by
 end
 
 end Formalism.FourierDecayAlt.P.PBF
-
-namespace Formalism.FourierDecayAlt.P
-
-theorem size_standard_compact : Formalism.FourierDecayAlt.KB.SizeStdCpt := PBF.pb_sizeStdCpt_main
-
-end Formalism.FourierDecayAlt.P
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.SizeStandardCompact =====

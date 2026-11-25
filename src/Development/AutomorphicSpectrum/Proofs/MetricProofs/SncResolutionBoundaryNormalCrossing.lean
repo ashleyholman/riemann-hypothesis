@@ -47,11 +47,6 @@ theorem algebraMap_locRing_eq_zero_of_mem (I : Ideal (MvPolynomial (Fin m) ℂ))
   rw [halg, Ideal.Quotient.eq_zero_iff_mem]
   exact Ideal.mem_map_of_mem _ ha
 
-theorem map_ptIdeal_eq_maximalIdeal (I : Ideal (MvPolynomial (Fin m) ℂ)) (t : Fin m → ℂ)
-    (hp : ∀ h ∈ I, eval t h = 0) [IsLocalRing (locRing I t)] :
-    Ideal.map (algebraMap _ (locRing I t)) (ptIdeal t) = IsLocalRing.maximalIdeal (locRing I t) := by
-  apply GlobalTheory.CompanionTheory.Ar.Cmp.SncRes.Par.map_ptIdeal_eq_maximalIdeal_ordAff <;> assumption
-
 theorem exists_den_of_mem_map (I D : Ideal (MvPolynomial (Fin m) ℂ)) (t : Fin m → ℂ) (hID : I ≤ D)
     (hp : ∀ h ∈ I, eval t h = 0) {f : MvPolynomial (Fin m) ℂ}
     (hf : algebraMap _ (locRing I t) f ∈ Ideal.map (algebraMap _ (locRing I t)) D) :
@@ -121,7 +116,7 @@ theorem exists_den_prod_params : ∀ (m e : ℕ) (I Dc : Ideal (MvPolynomial (Fi
   set alg : MvPolynomial (Fin m) ℂ →+* locRing I t := algebraMap _ (locRing I t) with halg
   set R : Fin e → locRing I t := fun l => alg (r l) with hR
   have hspan' : Ideal.span (Set.range R) = IsLocalRing.maximalIdeal (locRing I t) := by
-    rw [← map_ptIdeal_eq_maximalIdeal I t hp]
+    rw [← GlobalTheory.CompanionTheory.Ar.Cmp.SncRes.Par.map_ptIdeal_eq_maximalIdeal_ordAff I t hp]
     exact hspan
   have hpr : ∀ i, Prime (R i) := prime_of_regular_params R hspan' hdim.symm
   have hna := (regular_params_spec R hspan' hdim.symm).2

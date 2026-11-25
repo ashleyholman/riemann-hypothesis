@@ -1169,7 +1169,7 @@ theorem u1r2_basis (D : D7) (HW : HWOf D.loc) (F : FonOf D.loc D.locA HW) (Cm : 
   obtain ⟨⟨r, b, hbΔ, hbu, hbe⟩, -⟩ := hm
   have hw := hp9.2.2.1
   obtain ⟨w₁, hw₁⟩ := hw
-  have hs1 : 1 ≤ sK l K := DescentValuation.u3downPf_sK_pos hl K LL hG
+  have hs1 : 1 ≤ sK l K := Formalism.MainNotions.N.Ln34.frobpin_sK_pos hl K LL hG
   have hBL := MQ.basis_L ((HW l).W K 1 LL hG) T π' (sK l K) hs1 w₁ hw₁ hp9.2.1 b hbΔ hbu hbe c
   obtain ⟨bL⟩ := hBL
   have hsurj : ∀ k, ∃ y : ((HW l).W K 1 LL hG).DD T, ∃ hy : y ∈ NcS ((HW l).W K 1 LL hG) T (c - 1),

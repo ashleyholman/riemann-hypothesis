@@ -49,20 +49,11 @@ variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchim
 theorem ePG_true_val (i t : ℕ) (b : Fin t) : ((ePG i t ⟨true, b⟩ : Fin (i + t + 1)) : ℕ) = i + b := by
   simp [ePG]
 
-theorem dEmb_zero (i t : ℕ) : dEmb k i t 0 = 1 := by
-  apply Subtype.ext
-  have : Fin.append (0 : Fin (i + 1) → k) (0 : Fin (t + 1) → k) = 0 := by
-    funext x; refine Fin.addCases ?_ ?_ x <;> simp
-  simp [dEmb, this]
-
 theorem dEmb_add (i t : ℕ) (a b : Fin (t + 1) → k) : dEmb k i t (a + b) = dEmb k i t a * dEmb k i t b := by
   apply Subtype.ext
   have : Fin.append (0 : Fin (i + 1) → k) (a + b) = Fin.append (0 : Fin (i + 1) → k) a + Fin.append (0 : Fin (i + 1) → k) b := by
     funext x; refine Fin.addCases ?_ ?_ x <;> simp
   simp only [dEmb, Subgroup.coe_mul, this, ofAdd_add, map_mul]
-
-theorem continuous_dEmb (i t : ℕ) : Continuous (dEmb k i t) := by
-  apply GlobalTheory.CompanionTheory.BZPhiPG.OntoO.Small.continuous_dEmb
 
 theorem dEmb_mul_entry (i t : ℕ) (d : Fin (t + 1) → k) (g : Mir k ((i + 1) + t + 1)) (b : Fin (t + 1)) :
     (((dEmb k i t d * g : Mir k ((i + 1) + t + 1)) : GL (Fin ((i + 1) + t + 2)) k) :
@@ -105,8 +96,8 @@ theorem fibre_isLocallyConstant_hasCompactSupport (k : Type) [Field k] [Valuativ
     (y : Mir k ((i + 1) + t + 1)) :
     IsLocallyConstant (fun d : Fin (t + 1) → k => evX f (dEmb k i t d * y)) ∧
       HasCompactSupport (fun d : Fin (t + 1) → k => evX f (dEmb k i t d * y)) := by
-  refine ⟨isLocallyConstant_translate (HPG k (i + 1) (t + 1)) (sigX τ σ) f.1 (dEmb k i t) (continuous_dEmb i t)
-    (dEmb_zero i t) (dEmb_add i t) y, ?_⟩
+  refine ⟨isLocallyConstant_translate (HPG k (i + 1) (t + 1)) (sigX τ σ) f.1 (dEmb k i t) (GlobalTheory.CompanionTheory.BZPhiPG.OntoO.Small.continuous_dEmb i t)
+    (GlobalTheory.CompanionTheory.BZPhiPG.OntoO.Small.dEmb_zero i t) (dEmb_add i t) y, ?_⟩
   obtain ⟨C, hC, hf⟩ := f.2
   let φ : Mir k ((i + 1) + t + 1) → Fin (t + 1) → k := fun c b =>
     -(((y * c⁻¹ : Mir k ((i + 1) + t + 1)) : GL (Fin ((i + 1) + t + 2)) k) :

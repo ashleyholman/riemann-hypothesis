@@ -368,19 +368,9 @@ lemma Hb_sq (k : ℕ) : Hb k * Hb k = 1 := by
   funext j
   split_ifs <;> norm_num
 
-private lemma Em_conjTranspose_eq_transpose : (Em k r)ᴴ = (Em k r)ᵀ := by
-  ext i j
-  simp only [Matrix.conjTranspose_apply, Matrix.transpose_apply, Em]
-  split_ifs <;> simp
-
-private lemma Em_transpose_conjTranspose_eq_Em : ((Em k r)ᵀ)ᴴ = Em k r := by
-  ext i j
-  simp only [Matrix.conjTranspose_apply, Matrix.transpose_apply, Em]
-  split_ifs <;> simp
-
 lemma embed_conj_transpose (X : Mb k) : (e0 k r X)ᴴ = e0 k r Xᴴ := by
   unfold Dc.e0
-  rw [Matrix.conjTranspose_mul, Matrix.conjTranspose_mul, Em_conjTranspose_eq_transpose, Em_transpose_conjTranspose_eq_Em]
+  rw [Matrix.conjTranspose_mul, Matrix.conjTranspose_mul, Formalism.FourierDecayAlt.P.B2x3.Em_conjT, Formalism.FourierDecayAlt.P.B2x3.EmT_conjT]
   simp only [Matrix.mul_assoc]
 
 private lemma Hpk_apply_wI_right_eq_ite (i : Fin (2 * r + k + 1)) (m : Fin (k + 1)) :
@@ -1321,10 +1311,6 @@ theorem jfSmoothBuilt_of_chart (hE : ChartEqs) (hR : EllRegW) : JfSmoothBuilt :=
   jfSmoothBuilt_of_rest nilpotent_derivative group_equations_post_holds smooth_of_coefficients_holds hE hR
 
 end Formalism.FourierDecayAlt.P.CutMP.SmoothTransferRegularity
-
-namespace Formalism.FourierDecayAlt.P.CutMP
-
-end Formalism.FourierDecayAlt.P.CutMP
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.ModelPlaceBuilt2OfPublished =====

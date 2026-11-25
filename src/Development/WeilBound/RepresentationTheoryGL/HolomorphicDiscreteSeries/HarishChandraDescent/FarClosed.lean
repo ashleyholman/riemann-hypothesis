@@ -1552,7 +1552,7 @@ theorem dS_conj {ε : Fin n → Bool} {H : Type} [NormedAddCommGroup H] [InnerPr
       rw [mul_smul_comm, smul_mul_assoc]
     rw [Matrix.one_mul, hs, Matrix.exp_conj g _ (ReciprocityTheory.ChartRestriction.DS.Lap.Base.isUnit_of_mem_indefiniteUnitary hg), Matrix.mul_assoc (g * _),
       Matrix.nonsing_inv_mul g hdet, Matrix.mul_one]
-  rw [orbit_dS hσ hX hv hg, dS_eq_rdV,
+  rw [orbit_dS hσ hX hv hg, ReciprocityTheory.ChartRestriction.DS.smBr_dS_eq,
     rdV_congr (f' := fun h => σ (h * g) v) (fun h hh => ?_) h1UJ (ReciprocityTheory.ChartRestriction.DS.Lap.Base.inG_conj_unitary hg hX)]
   · delta ReciprocityTheory.ChartRestriction.DS.S7.RdV
     simp only [key]

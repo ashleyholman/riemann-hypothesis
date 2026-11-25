@@ -77,7 +77,7 @@ theorem slv_congr_group {k r : ℕ} (T : D.LevTower k r Wp Wq) {F F' : B.Mat k r
     (e : Wd.Ix (Fin w.length)) : ∀ g ∈ B.GV k (r - i), KB.slv T F i hi w a ha.2 e g = KB.slv T F' i hi w a ha.2 e g := by
   intro g hg
   have hp : D.ptSize a ≤ r := by rw [ha.2]; exact hi
-  have hd0 : ∀ q, D.ptDiag a q ≠ 0 := fun q => Formalism.FourierDecayAlt.P.JCTx6.Link2.ptScal_ne a ha.1 q q.2
+  have hd0 : ∀ q, D.ptDiag a q ≠ 0 := fun q => Formalism.FourierDecayAlt.P.Dx1.Rel.scal_ne a ha.1 q q.2
   unfold KB.slv
   simp only [D.castF]
   unfold D.sliceAt
@@ -427,7 +427,7 @@ theorem np_top_gram (p : KB.Pl P Wp Wq) {nn : ℝ → ℝ} (hnn : ∀ y, 0 < nn 
   refine ⟨Wd.Ix (Fin w.length) × M.Ty P, inferInstance,
     fun i => √((Top.cW P p.l0 w i.1 i.2).re) * √((Top.cW P p.l0 w i.1 i.2).re), fun i => Fe i.1,
     fun i => GermRateSplit.hsLE (p.TP.E i.2), fun i => mul_self_nonneg _, fun i => hFe i.1, fun a a' ha ha' => ?_⟩
-  rw [np_eq p hnn, PBL.rr_top_eq vector_valued_types p F w _ _ ha ha']
+  rw [np_eq p hnn, PBL.rr_top_eq Formalism.FourierDecayAlt.P.Topx1.vecw_main p F w _ _ ha ha']
   unfold Top.topOf
   rw [Finset.mul_sum, Fintype.sum_prod_type]
   refine Finset.sum_congr rfl fun e _ => ?_
@@ -885,7 +885,7 @@ theorem exists_pd_of_germData {H : Type} (h : H) (U Pm Qm : H × ℂ → H × �
         limsup (fun t : ℂ => (‖U (h, t⁻¹) (h, t⁻¹ + σ)‖₊ : ℝ≥0∞)) (𝓝[≠] 0) := by
   classical
   obtain ⟨Lm, j1, j2, hLm⟩ := exists_lattice_dual ω₁ ω₂ hω
-  obtain ⟨LIM, hL⟩ := invariantMeanExists 1 Lm
+  obtain ⟨LIM, hL⟩ := Formalism.FourierDecayAlt.P.BoxAverageLimits.meanExists 1 Lm
   refine ⟨fun σ => PBC.A0 Lm.toAddSubgroup LIM {h} (fun _ _ => 1) (fun _ => U) (fun _ => Pm) (fun _ => Qm)
     (fun _ => σ), ?_, fun σ => ?_⟩
   · intro S c hS

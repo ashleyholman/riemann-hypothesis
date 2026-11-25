@@ -1244,7 +1244,7 @@ theorem seqHyp_chart : ∀ (o Ω Li : Type) [CommRing o] [Field Ω] [CharZero Ω
     fun e he x => HTL.eigProj_apply D ρ hc hact (σ.comp c.toRingHom) (by rwa [hσσ]) x
   set q := Fintype.linearCombination Ω fun (n : Fin N) (k : Fin s) => D.h (Pi.single n 1) (v' k) with hq
   have hqM : ∀ x : Fin N → R, D.q σ x ∈ D.omHT σ := fun x =>
-    Submodule.sum_mem _ fun i _ => Submodule.smul_mem _ _ ⟨_, HTL.h_mem_om' D _, rfl⟩
+    Submodule.sum_mem _ fun i _ => Submodule.smul_mem _ _ ⟨_, PositivityTheory.HtPt.Ga.h_mem_om' D _, rfl⟩
   have hqc : ∀ (x : Fin N → R) k, D.q σ x (v' k) = q (fun n => (x n : Ω)) k := by
     intro x k
     simp [HTChart.q, hq, Fintype.linearCombination_apply, Finset.sum_apply, hE, Subalgebra.smul_def]
@@ -1378,7 +1378,7 @@ theorem seqHyp_chart : ∀ (o Ω Li : Type) [CommRing o] [Field Ω] [CharZero Ω
   intro a ha j
   obtain ⟨f, hf1, hf2⟩ := hJf a ha
   let y : D.omHT (σ.comp c.toRingHom) :=
-    ⟨GlobalTheory.CompanionTheory.Ar.HT.eigProj D.ρΩ (σ.comp c.toRingHom) (D.h (Pi.single j 1)), ⟨_, HTL.h_mem_om' D _, rfl⟩⟩
+    ⟨GlobalTheory.CompanionTheory.Ar.HT.eigProj D.ρΩ (σ.comp c.toRingHom) (D.h (Pi.single j 1)), ⟨_, PositivityTheory.HtPt.Ga.h_mem_om' D _, rfl⟩⟩
   obtain ⟨z, hz⟩ := hdual f j y rfl
   refine ⟨(z : Ω), z.2, ?_⟩
   have e1 : algebraMap R Ω (f y) = D.h (Pi.single j 1) (∑ k, a k • v k) := by

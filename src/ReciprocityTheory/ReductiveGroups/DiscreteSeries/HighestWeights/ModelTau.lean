@@ -117,15 +117,11 @@ theorem totalDegree_rsub (ε : Fin n → Bool) (k : KG ε) (p : Fin n × Fin n) 
   refine (MvPolynomial.totalDegree_mul _ _).trans ?_
   simp [MvPolynomial.totalDegree_X, MvPolynomial.totalDegree_C]
 
-theorem totalDegree_bind₁_le {σ τ : Type*} (g : σ → MvPolynomial τ ℂ) (hg : ∀ i, (g i).totalDegree ≤ 1)
-    (Q : MvPolynomial σ ℂ) : (MvPolynomial.bind₁ g Q).totalDegree ≤ Q.totalDegree := by
-  apply GlobalTheory.PolyEntryMul.totalDegree_bind₁_le_of_le_one <;> assumption
-
 theorem rtr_polyK (ε : Fin n → Bool) (k : KG ε) (Q : MvPolynomial (Fin n × Fin n) ℂ) :
     rtr ε k (evalK ε Q) ∈ polyK ε Q.totalDegree := by
   rw [rtr_evalK]
   exact Submodule.mem_map_of_mem ((MvPolynomial.mem_restrictTotalDegree ..).mpr
-    (totalDegree_bind₁_le _ (totalDegree_rsub ε k) Q))
+    (GlobalTheory.PolyEntryMul.totalDegree_bind₁_le_of_le_one _ (totalDegree_rsub ε k) Q))
 
 def f0P (ε : Fin n → Bool) (m : Fin n → ℤ) : MvPolynomial (Fin n × Fin n) ℂ :=
   ∏ a, ((Matrix.mvPolynomialX (Fin n) (Fin n) ℂ).submatrix

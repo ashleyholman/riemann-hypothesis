@@ -79,12 +79,8 @@ theorem adj_ip (V : HSp D) (x : Mx D V.rank a) (y : Mx D V.rank b) : adj (ip V x
   unfold ip mm
   rw [adj_mul, adj_mul, adj_adj, adj_gA, Matrix.mul_assoc]
 
-alias adj_add_r := _root_.GlobalTheory.MixModel.adj_add
-
-alias adj_one_r := _root_.GlobalTheory.MixModel.adj_one
-
 theorem adj_rat_inv (b₀ : HermE D r) (hb : b₀.1.det ≠ 0) : adj (rat b₀.1⁻¹) = rat b₀.1⁻¹ := by
-  have h1 : adj (mm (rat b₀.1⁻¹) (rat b₀.1)) = 1 := by rw [rat_inv_mul b₀ hb, adj_one_r]
+  have h1 : adj (mm (rat b₀.1⁻¹) (rat b₀.1)) = 1 := by rw [rat_inv_mul b₀ hb, GlobalTheory.MixModel.adj_one]
   have h2 : mm (rat b₀.1) (adj (rat b₀.1⁻¹)) = 1 := by
     have := h1
     simp only [mm] at this ⊢
@@ -103,7 +99,7 @@ theorem ip_add_right (V : HSp D) (x : Mx D V.rank a) (y y' : Mx D V.rank b) :
 theorem ip_add_left (V : HSp D) (x x' : Mx D V.rank a) (y : Mx D V.rank b) :
     ip V (x + x') y = ip V x y + ip V x' y := by
   unfold ip mm
-  rw [adj_add_r, Matrix.add_mul]
+  rw [GlobalTheory.MixModel.adj_add, Matrix.add_mul]
 
 theorem ip_mul_right (V : HSp D) (x : Mx D V.rank a) (y : Mx D V.rank b) (w : Mx D b c) :
     ip V x (mm y w) = mm (ip V x y) w := by
@@ -155,7 +151,7 @@ theorem qv_smul (V : HSp D) (b₀ : HermE D r) (e : AE D) (z : Mx D V.rank r × 
 theorem pr_add (b₀ : HermE D r) (u u' w w' : Mx D r t) :
     pr b₀ (u + u') (w + w') = pr b₀ u w + pr b₀ u w' + (pr b₀ u' w + pr b₀ u' w') := by
   unfold pr
-  rw [adj_add_r, Matrix.mul_add, Matrix.add_mul, Matrix.mul_add, Matrix.mul_add]
+  rw [GlobalTheory.MixModel.adj_add, Matrix.mul_add, Matrix.add_mul, Matrix.mul_add, Matrix.mul_add]
 
 theorem alg4 {M : Type} [AddCommGroup M] (c p a a' s : M) :
     c + a + (a' + s) - (p + a + (a' + s)) = c - p := by abel

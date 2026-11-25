@@ -95,7 +95,7 @@ theorem dual_col (hg : (g : 𝓞 I.E) ∈ w.asIdeal) {x : I.Gf} {u v : VA I} (hv
     (hS : ∀ s ∈ S, hhat I s v ∈ Wq I w) (hx : InMod I g S ((I.fmat x⁻¹ - 1) *ᵥ u)) :
     hhat I u (I.fmat x *ᵥ v) - hhat I u v ∈ Wq I w := by
   have h1 : hhat I u (I.fmat x *ᵥ v) = hhat I (I.fmat x⁻¹ *ᵥ u) v := by
-    have := hhat_fmat I x (I.fmat x⁻¹ *ᵥ u) v
+    have := PIW.AdelClassFin.dictTop_hhat_unit I x (I.fmat x⁻¹ *ᵥ u) v
     rw [Matrix.mulVec_mulVec, ← fmat_mul, mul_inv_cancel, fmat_one, Matrix.one_mulVec] at this
     exact this
   have := pair_left hg hv hS hx

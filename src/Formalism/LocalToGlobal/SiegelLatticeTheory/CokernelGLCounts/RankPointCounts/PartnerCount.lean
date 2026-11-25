@@ -153,10 +153,6 @@ theorem isLo_inv {L : Matrix (Fin n) (Fin n) K} (h : IsLo L) : IsLo L⁻¹ := by
   rw [← Matrix.transpose_nonsing_inv] at h2
   exact ⟨fun a => h2.1 a, fun a b hab => h2.2 a b hab⟩
 
-alias det_up' := _root_.Formalism.L2.SG.Pf.AtPt.det_up
-
-alias det_lo' := _root_.Formalism.L2.SG.Pf.AtPt.det_lo
-
 end Tri
 
 section Local
@@ -246,8 +242,8 @@ theorem tupZ_eq_x0L_at (hA : ∀ p, Agree δ M p) (u u' : D.what₂.Word) {w : P
   have hY : CntLocal.ZZP (M := M) δ u u' p Z * LsDatumB.sgnP p =
       Matrix.diagonal fr * (Z * Sg D.host.E D.R.rS).map ι * Matrix.diagonal fr :=
     zzp_sgn_ord Zd u u' p hM Z
-  have hLu : IsUnit L.det := by rw [det_lo' hL]; exact isUnit_one
-  have hUu : IsUnit U.det := by rw [det_up' hU]; exact isUnit_one
+  have hLu : IsUnit L.det := by rw [Formalism.L2.SG.Pf.AtPt.det_lo hL]; exact isUnit_one
+  have hUu : IsUnit U.det := by rw [Formalism.L2.SG.Pf.AtPt.det_up hU]; exact isUnit_one
   have hP : ptMat w = L⁻¹ * (Z * Sg D.host.E D.R.rS) * U⁻¹ := by
     rw [hZ, ← Matrix.mul_assoc, ← Matrix.mul_assoc, Matrix.nonsing_inv_mul L hLu, Matrix.one_mul,
       Matrix.mul_assoc, Matrix.mul_nonsing_inv U hUu, Matrix.mul_one]
@@ -649,7 +645,7 @@ theorem clsOf_orb {p : PlF D} {Y Y' l ρ l' ρ' : MatP D p} (hl : TieN.IntLow (M
   have e2 : Y + cornE p s = l' * (Y' + cornE p s) * ρ' := by
     rw [h2, Matrix.mul_add, Matrix.add_mul, cornE_eq, Matrix.mul_smul, Matrix.smul_mul, lo_corner_up hL' hU']
   have hdet : (Y' + cornE p s).det = (Y + cornE p s).det := by
-    rw [e1, Matrix.det_mul, Matrix.det_mul, det_lo' hL, det_up' hU, one_mul, mul_one]
+    rw [e1, Matrix.det_mul, Matrix.det_mul, Formalism.L2.SG.Pf.AtPt.det_lo hL, Formalism.L2.SG.Pf.AtPt.det_up hU, one_mul, mul_one]
   have hint : (∀ a b, (Y' + cornE p s) a b ∈ (M p).R) ↔ (∀ a b, (Y + cornE p s) a b ∈ (M p).R) := by
     constructor
     · intro h; rw [e2]; exact int_of_mem_kkOrb h ⟨l', ρ', hl', hρ', rfl⟩

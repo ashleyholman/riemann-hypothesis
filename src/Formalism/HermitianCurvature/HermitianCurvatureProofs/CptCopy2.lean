@@ -100,7 +100,7 @@ theorem _root_.Formalism.FourierDecayAlt.P.CutBPEq.thmBpAt_eq_limEvTCpt (hA : P5
   have hPm := hPt Wp Wqm (shP P um um') pm (fpmSh pm f Am p₀) Λ A₁ χ nnm Ym K N hΛ hK hKN hχ hnnm hDDm
     (ckOn_fpmSh pm p₀ hf hAm) hdm hth1 hth2 hth3 hWGm hLGm hI5m hDm hBdm
   exact hC₄ P Wp Wq Wqp Wqm up up' um um' p pp pm f _ _ b Λ 1 n₀ p₀ hb hΛ hΛb one_pos (by simp) hT hn₀ hp₀
-    (ttp_eq p pp hzp hzp') (ttp_eq p pm hzm hzm') hNorm hPp hPm hReg
+    (Formalism.FourierDecayAlt.P.CutBP2.ttp_sh p pp hzp hzp') (Formalism.FourierDecayAlt.P.CutBP2.ttp_sh p pm hzm hzm') hNorm hPp hPm hReg
 
 end
 end Formalism.FourierDecayAlt.P.CutBPEq

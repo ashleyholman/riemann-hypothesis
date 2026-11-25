@@ -171,7 +171,7 @@ private theorem regAt_u_bvec (l : Fin BM.q) (q : (k : K) × ι k) (I : Finset (F
   have horb : SameOrbit (FC.bvec BM l b) (BM.Rb.lift b b) :=
     ⟨fun k => (BM.Rb.lift b b ⟨k, (BM.F l).c k⟩)⁻¹, fun k => inv_ne_zero (hne k), by
       funext p; simp [FC.bvec, div_eq_inv_mul]⟩
-  rw [GlobalTheory.CompanionTheory.Ar.PB.FibreCount.mCoordIdeal_eq_of_orbit horb]
+  rw [GlobalTheory.CompanionTheory.Ar.PB.CovMap.ImgBase.mCoordIdeal_eq horb]
   exact (hg.2.1 q I).1
 
 theorem eq_zero_of_still (FA : FlagAn BM d) {σ : FA.S.X → FA.Re.R.X} (hσ : HoloMap FA.S.A FA.Re.R.A σ)

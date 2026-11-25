@@ -1589,8 +1589,6 @@ theorem mramSpan (D : D7) : MramSpan D := by
   rw [e]
   exact Submodule.smul_mem _ _ (Submodule.subset_span hmem)
 
-alias Iu_ne_zero := _root_.Formalism.MainNotions.J.Iu_ne_zero
-
 theorem nuFull_of {D : D7} {L : SizeData₂ D} (hN' : DV.NprimeDef D L) (hc : NuCommens D L) : D.NuFull := by
   intro u
   obtain ⟨hfg, c, hc0, hcM⟩ := hc u
@@ -1619,7 +1617,7 @@ theorem nuFull_of {D : D7} {L : SizeData₂ D} (hN' : DV.NprimeDef D L) (hc : Nu
     rw [Submodule.map_comap_subtype, inf_eq_right.2 hle] at h2
     exact Submodule.fg_of_fg_map_injective f hinj h2
   ·
-    obtain ⟨a0, ha0, ha⟩ := FractionalIdeal.exists_ne_zero_mem_isInteger (Iu_ne_zero D L u)
+    obtain ⟨a0, ha0, ha⟩ := FractionalIdeal.exists_ne_zero_mem_isInteger (Formalism.MainNotions.J.Iu_ne_zero D L u)
     rw [eq_top_iff, ← mramSpan D u, Submodule.span_le]
     intro y hy
     have hmem : (algebraMap (𝓞 D.what₂.LL) D.what₂.LL a0) • (c • y) ∈ (D.div.Nu u).L := by
@@ -1692,10 +1690,6 @@ theorem ioP_le {D : D7} {L : SizeData₂ D} (X : G.Inst D L) (K : G.Consts) (p :
 end Formalism.MainNotions.Lnk
 
 end
-
-namespace Formalism.MainNotions
-
-end Formalism.MainNotions
 
 end -- clump:auto
 end -- clump:auto

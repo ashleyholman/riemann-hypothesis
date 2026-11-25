@@ -1218,9 +1218,6 @@ section Frame
 variable {n r : ℕ} {R : Type} [CommRing R] {s : R →+* R} {Jm : Matrix (Fin n) (Fin n) R}
   {Xm Ym : Matrix (Fin n) (Fin r) R}
 
-theorem pfr_swap (hF : PFr s Jm Xm Ym) : PFr s Jm Ym Xm :=
-  ⟨hF.ss, hF.herm, hF.yy, hF.xx, hF.yx⟩
-
 theorem coef_mul_eq_one (hF : PFr s Jm Xm Ym) {g : Matrix (Fin n) (Fin n) R} (hg : cT s g * Jm * g = Jm)
     {d d' : Fin r → R} (e : g * Xm = Xm * diagonal d) (e' : g * Ym = Ym * diagonal d') (i : Fin r) :
     s (d' i) * d i = 1 := by
@@ -1278,7 +1275,7 @@ theorem inv_mem (h : IsCMExt F E σ) (hJ : IsHermND σ J) (hW : IsWittFrame σ J
   have hinv : (matHom _ σ J m⁻¹).1 * (matHom _ σ J m).1 = 1 := by
     rw [← Units.val_mul, ← map_mul, inv_mul_cancel, map_one, Units.val_one]
   have h2 : ∀ i, d i * Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (AF F) σ (d' i) = 1 := fun i => by rw [mul_comm, h1 i]
-  have h3 : ∀ i, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (AF F) σ (d i) * d' i = 1 := coef_mul_eq_one (pfr_swap hF) hu e' e
+  have h3 : ∀ i, Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (AF F) σ (d i) * d' i = 1 := coef_mul_eq_one (GlobalTheory.CompanionTheory.ParCocompact.LeviComm.pfr_swap hF) hu e' e
   have f := inv_act hinv h1 e
   have f' := inv_act hinv h3 e'
   refine ⟨⟨_, _, f, f'⟩, ?_⟩
@@ -1300,7 +1297,7 @@ theorem leviMin_eq (hF : PFr (Formalism.MainNotions.GlobalTheoryTheory.GenusMass
     have a1 : (fun i => Bm σ J X Y m i i) = d := funext fun i => by
       rw [Bm_eq hF e, Matrix.diagonal_apply_eq]
     have a2 : (fun i => Bm σ J Y X m i i) = d' := funext fun i => by
-      rw [Bm_eq (pfr_swap hF) e', Matrix.diagonal_apply_eq]
+      rw [Bm_eq (GlobalTheory.CompanionTheory.ParCocompact.LeviComm.pfr_swap hF) e', Matrix.diagonal_apply_eq]
     exact ⟨by simpa only [Set.mem_setOf_eq, a1] using e, by simpa only [Set.mem_setOf_eq, a2] using e'⟩
   · rintro ⟨e, e'⟩
     exact ⟨_, _, e, e'⟩

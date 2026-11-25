@@ -218,7 +218,7 @@ theorem ppv_four (large₂ : SizeData₂ D) (C : ℝ) : WeightFamilies.PPv D lar
 theorem ppv_ge (large₂ : SizeData₂ D) {C A : ℝ} (hC : 1000 ≤ C) (hA : 12 ≤ A) :
     1000 * zBase large₂ ^ 12 ≤ WeightFamilies.PPv D large₂ C A := by
   unfold WeightFamilies.PPv
-  have h1 := one_le_Z large₂
+  have h1 := Formalism.MainNotions.WeightFamilies.one_le_zBase large₂
   have h2 : zBase large₂ ^ (12 : ℕ) ≤ zBase large₂ ^ A := by
     rw [← Real.rpow_natCast]
     exact Real.rpow_le_rpow_of_exponent_le h1 (by exact_mod_cast hA)
@@ -238,7 +238,7 @@ alias one_le_size := _root_.Formalism.MainNotions.WeightFamilies.Wt.one_le_size
 
 theorem log_size_le (large₂ : SizeData₂ D) {j : ℕ} (w : WeightFamilies.Wt D j) {CK : ℝ} (hC : CK ≤ zBase large₂)
     (h : w.size ≤ CK * D.R.k * D.R.f * large₂.sc.b) : Real.log w.size ≤ 3 * zBase large₂ := by
-  have hZ := one_le_Z large₂
+  have hZ := Formalism.MainNotions.WeightFamilies.one_le_zBase large₂
   have hb : 0 < large₂.sc.b := Real.exp_pos _
   have hkf : (D.R.k : ℝ) * D.R.f ≤ zBase large₂ := by
     have h1 := fr_le_Z large₂
@@ -275,7 +275,7 @@ theorem obound_of_opo (large₂ : SizeData₂ D) (B : WeightFamilies.Prov D) (h 
 theorem Gc_le {large₂ : SizeData₂ D} (Q : ParameterChoice' D large₂) (B : WeightFamilies.Prov D) (h : OPO large₂ B)
     (hg : ∀ i, Real.log (D.host.g i) ≤ 9 * large₂.sc.L + 1) (po : ℕ) (hp : Real.log po ≤ large₂.sc.L) :
     Gc large₂ B (1009 * Zb D large₂) po ≤ 2000 * zBase large₂ ^ 2 := by
-  have hZ := one_le_Z large₂
+  have hZ := Formalism.MainNotions.WeightFamilies.one_le_zBase large₂
   have hL := L_le_Z large₂
   have h1 := PO_le large₂
   have h2 := lamStar_le Q hg
@@ -314,7 +314,7 @@ theorem runBaseConstant_two_bounds {large₂ : SizeData₂ D} (Q : ParameterChoi
 theorem nbR_le (large₂ : SizeData₂ D) {j : ℕ} (w : WeightFamilies.Wt D j)
     (hg : ∀ i, Real.log (D.host.g i) ≤ 9 * large₂.sc.L + 1) (hn : (w.n : ℝ) ≤ zBase large₂ ^ 5)
     (hs : Real.log w.size ≤ 3 * zBase large₂) : nbR large₂ w ≤ 241 * zBase large₂ ^ 7 := by
-  have hZ := one_le_Z large₂
+  have hZ := Formalism.MainNotions.WeightFamilies.one_le_zBase large₂
   have hL := L_le_Z large₂
   have h1 := PO_le large₂
   have h2 := log_g_sum (L := large₂) hg
@@ -338,7 +338,7 @@ theorem nbR_le (large₂ : SizeData₂ D) {j : ℕ} (w : WeightFamilies.Wt D j)
 
 theorem thetaGeneratorArchLowerConst_le (large₂ : SizeData₂ D) {j : ℕ} (w : WeightFamilies.Wt D j) (hn : (w.n : ℝ) ≤ zBase large₂ ^ 5) :
     p14R w ≤ 35 * zBase large₂ ^ 7 := by
-  have hZ := one_le_Z large₂
+  have hZ := Formalism.MainNotions.WeightFamilies.one_le_zBase large₂
   have hf : I2.PT.f D.host.E = D.R.f := by
     have h : Module.finrank ℚ D.host.E = 2 * D.R.f := by exact_mod_cast finrank_E D
     unfold I2.PT.f; omega
@@ -377,7 +377,7 @@ theorem lamR_le {large₂ : SizeData₂ D} (Q : ParameterChoice' D large₂) {j 
     (h0 : 0 ≤ CL) (hC : CL ≤ zBase large₂)
     (hg : ∀ i, Real.log (D.host.g i) ≤ 9 * large₂.sc.L + 1) (hn : (w.n : ℝ) ≤ zBase large₂ ^ 5)
     (hs : Real.log w.size ≤ 3 * zBase large₂) : lamR large₂ CL w ≤ 2000000 * zBase large₂ ^ 10 := by
-  have hZ := one_le_Z large₂
+  have hZ := Formalism.MainNotions.WeightFamilies.one_le_zBase large₂
   have h1 := PO_le large₂
   have h2 := PO_nonneg large₂
   have h3 := dim_le large₂ hj
@@ -410,7 +410,7 @@ theorem lamR_le {large₂ : SizeData₂ D} (Q : ParameterChoice' D large₂) {j 
 theorem runIndexConstant_le_zBase_sq {large₂ : SizeData₂ D} (Q : ParameterChoice' D large₂) (j : ℕ)
     (hg : ∀ i, Real.log (D.host.g i) ≤ 9 * large₂.sc.L + 1) :
     PI4 D j (1009 * Zb D large₂) (81 * Zb D large₂ ^ 2) ≤ 6000 * zBase large₂ ^ 2 := by
-  have hZ := one_le_Z large₂
+  have hZ := Formalism.MainNotions.WeightFamilies.one_le_zBase large₂
   have hL := L_le_Z large₂
   have h2 := lamStar_le Q hg
   have hz2 : zBase large₂ ≤ zBase large₂ ^ 2 := by nlinarith
@@ -435,7 +435,7 @@ theorem polyDom_of_pageOK : ∀ (CL : ℝ) (Cq : ℝ → ℝ → ℝ), 0 < CL �
   obtain ⟨d1, d2, -, -, -, -, -, -, d9, -⟩ := hDom
   have eZ : Zb D large₂ = zBase large₂ := rfl
   rw [eZ] at d2 d9
-  have hZ := one_le_Z large₂
+  have hZ := Formalism.MainNotions.WeightFamilies.one_le_zBase large₂
   have hLZ := L_le_Z large₂
   have hL1 := one_le_L large₂
   have hC2 : C2 ≤ zBase large₂ := (le_self_pow₀ (by linarith) (by norm_num)).trans d2

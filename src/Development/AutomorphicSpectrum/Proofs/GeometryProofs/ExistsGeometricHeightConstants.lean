@@ -356,7 +356,7 @@ theorem adj_model (t' : SAB H (Sp (𝓞 L))) (tB : SAB H (Sp L)) (m' : SABMap tB
   have hpol : ∃ (t'' : SAB H (Sp ℂ)) (_ : SABMap t'' t' (spMap (eC.comp (algebraMap (𝓞 L) L)) ≫ 𝟙 _)),
       IsProper t''.G.hom ∧ Out.RelAmple t''.G t''.PP.L := by
     rw [Category.comp_id, ← Sl.BaseExt.spMap_comp]
-    obtain ⟨t'', ⟨m⟩⟩ := Sl.BaseExt.exists_pull (spMap eC) tB
+    obtain ⟨t'', ⟨m⟩⟩ := ReciprocityTheory.ChartRestriction.G.Geo.Tor.exists_sab (spMap eC) tB
     obtain ⟨n, -⟩ := sabComp pullCubComp E H _ _ _ t' tB t'' _ _ m' m
     have := (_root_.CoverDenseAlt.isPrincipal_iff_of_base_change E H L ℂ eC tB t'' m).2 hpr
     exact ⟨t'', n, this.1, this.2.1⟩

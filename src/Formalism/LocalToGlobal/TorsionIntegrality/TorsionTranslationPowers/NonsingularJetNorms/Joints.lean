@@ -136,7 +136,7 @@ theorem map_phFF {K K' : Type} [Field K] [CharZero K] [Field K'] [CharZero K'] (
   unfold phFF
   rw [map_sub, map_add (f := _), map_neg, Formalism.L2.Th1.B.Map.map_psubst' φ (Formalism.L2.Th1.D.FAux.cc_arg hl ε),
     Formalism.L2.Th1.B.Map.map_sigS, Formalism.L2.Th1.D.CurveNormEndomorphisms.wpReg_eq,
-    (Formalism.L2.Th1.F.seriesMap _ _ φ g2 g3 0 0).2.2.1, ← Formalism.L2.Th1.D.CurveNormEndomorphisms.wpReg_eq,
+    (Formalism.L2.Th1.F.series_map _ _ φ g2 g3 0 0).2.2.1, ← Formalism.L2.Th1.D.CurveNormEndomorphisms.wpReg_eq,
     map_mul, map_mul, map_pow, map_mul, PowerSeries.map_C, PowerSeries.map_C, map_lgF',
     Formalism.L2.Th1.B.Map.map_fLog' φ (cc_lU hl), Formalism.L2.Th1.B.Map.map_lU, map_lgF', map_div₀, map_ofNat]
 

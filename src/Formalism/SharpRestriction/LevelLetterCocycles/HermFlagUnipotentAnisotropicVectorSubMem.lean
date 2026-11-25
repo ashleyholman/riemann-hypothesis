@@ -155,7 +155,7 @@ theorem ser_unique_of [NeZero n] (hinj : Function.Injective (algebraMap O LL))
     refine Finset.sum_congr rfl fun y _ => ?_
     rw [hterm, smul_comm]
   have hE'N : Formalism.MainNotions.LiftingTheory.InNΔi W T i E' :=
-    InNΔi_sum W T i _ _ fun y _ => InNΔi_osmul W T i _ (InNΔi_smul W T i (W.AΔ.pow_mem hr.1 _) (he y))
+    InNΔi_sum W T i _ _ fun y _ => InNΔi_osmul W T i _ (Formalism.MainNotions.LiftingTheory.frame_smul_mem W T i (W.AΔ.pow_mem hr.1 _) (he y))
 
   have hγE : W.γ T E - E = ∑ y ∈ Finset.range K, ((PD.p : ℕ) : O) ^ ex y •
         (W.γ T (W.π₀ ^ y • c y) - W.π₀ ^ y • c y) -
@@ -385,7 +385,7 @@ theorem red_sum (hR : Formalism.MainNotions.LiftingTheory.lifta_Ring W) (T : Loc
     intro y hy
     have hle : Formalism.MainNotions.CrystallineLiftingInputs.eY PD.p y ≤ N :=
       le_trans (eY_mono (PD := PD) (le_of_lt (Finset.mem_range.1 hy))) (Nat.le_add_right _ _)
-    rw [LinearMap.map_smul_of_tower, φpow_smul, map_pow, lsmul_eq, lsmul_eq, lsmul_eq]
+    rw [LinearMap.map_smul_of_tower, Formalism.MainNotions.UnusedSlot80.SatPW.φD_pow_smulA, map_pow, lsmul_eq, lsmul_eq, lsmul_eq]
     exact term_id L _ _ _ _ _ hle (hrs y).2 (hg y) _
   rw [Finset.smul_sum, Finset.sum_congr rfl e1, Finset.sum_sub_distrib, map_sum, Finset.smul_sum, Finset.smul_sum]
 
@@ -528,7 +528,7 @@ theorem gamma_sub_of_frobenius_power [IsDomain O] (hR : Formalism.MainNotions.Li
     rw [e]
     refine (Formalism.MainNotions.ArcLiftingSetup.Pp W T i j).sub_mem (Pp_osmul W T i j _ _ ?_)
       ((Formalism.MainNotions.ArcLiftingSetup.Pp W T i j).sub_mem (Pp_γ W T i j S hS) hS)
-    rw [φpow_smul]
+    rw [Formalism.MainNotions.UnusedSlot80.SatPW.φD_pow_smulA]
     exact Pp_gen W T i j (Formalism.MainNotions.UnusedSlot80.PhiPowers.φA_pow_mem_AΔ W hR.πΔ j) hz'
   refine sat W hsp hA T hT i j M X hV (Formalism.MainNotions.CrystallineLiftingInputs.eY PD.p K0 + t) ?_
   have e2 : ((PD.p : ℕ) : O) ^ (Formalism.MainNotions.CrystallineLiftingInputs.eY PD.p K0 + t) • (W.γ T z - z) =
@@ -797,7 +797,7 @@ theorem isSeries_first_coefficient (hπ : W.π₀ ∈ W.AΔ) (T : LocLat G Qp LL
         have : y ≠ 1 := by have := Finset.mem_range.1 hy; omega
         simp [c0, this]
       have hx : Formalism.MainNotions.LiftingTheory.InNΔi W T i (W.π₀ ^ (1 - K) • ((PD.p : ℕ) : O) ^ Formalism.MainNotions.CrystallineLiftingInputs.eY PD.p K • z') :=
-        InNΔi_smul W T i (W.AΔ.pow_mem hπ _) (InNΔi_osmul W T i _ hz')
+        Formalism.MainNotions.LiftingTheory.frame_smul_mem W T i (W.AΔ.pow_mem hπ _) (InNΔi_osmul W T i _ hz')
       refine ⟨0, _, hx.1.1, hx.1.2, ?_⟩
       rw [hs, sub_zero, pow_zero, one_smul, hzw, smul_smul, ← pow_add, show K + (1 - K) = 1 by omega,
         pow_one]
@@ -843,7 +843,7 @@ theorem uniformizer_dvd_of_frobenius_power [NeZero n] [IsDomain O] (hinj : Funct
   have hz0f : z0 = Formalism.MainNotions.CrystallineLiftingInputs.fMX W M X •
       ((Formalism.MainNotions.ArcLiftingSetup.lA W ^ σ * g) • ((W.φD T) ^ j) y1) := by
     show ((PD.p : ℕ) : O) ^ σ • ((W.φD T) ^ j) w - _ = _
-    rw [hsum, hwy1, φpow_smul, ((W.φD T) ^ j).map_smul (((PD.p : ℕ) : O) ^ Formalism.MainNotions.CrystallineLiftingInputs.eY PD.p 1) y1,
+    rw [hsum, hwy1, Formalism.MainNotions.UnusedSlot80.SatPW.φD_pow_smulA, ((W.φD T) ^ j).map_smul (((PD.p : ℕ) : O) ^ Formalism.MainNotions.CrystallineLiftingInputs.eY PD.p 1) y1,
       lsmul_eq, lsmul_eq, smul_smul, smul_smul, ← sub_smul, smul_smul]
     congr 1
     have hs := (hrs 1).2

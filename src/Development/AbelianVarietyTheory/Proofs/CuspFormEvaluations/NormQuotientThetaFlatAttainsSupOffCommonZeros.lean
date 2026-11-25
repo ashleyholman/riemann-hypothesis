@@ -188,7 +188,7 @@ theorem sumSq_lower (j : Fin Fl.δ) : ∃ d : ℝ, 0 < d ∧ ∀ᶠ z in 𝓝 (0
     have := (KU.cont_cpt X (Fl.xs j)).tendsto 0
     rwa [VanishPf.cpt_zero] at this
   have hca : ContinuousAt (X.pnorm Xa.L Fl.w0) (Fl.xs j) :=
-    (BigB.pnorm_contOn X _ Fl.weightForm_vanishes.1.1.1).continuousAt ((PoinPf.isOpenDom X).mem_nhds hx)
+    (BigB.pnorm_contOn X _ Fl.weightForm_vanishes.1.1.1).continuousAt ((ReciprocityTheory.ChartRestriction.G.FD.FourierCoefficientDomain.isOpen_dom X).mem_nhds hx)
   have ev1 : ∀ᶠ z in 𝓝 (0 : V (nd X)), a / 2 < X.pnorm Xa.L Fl.w0 (cpt X (Fl.xs j) z) :=
     (hca.tendsto.comp hc0).eventually (Ioi_mem_nhds (by linarith))
   refine ⟨(a / 2 * c) ^ 2, by positivity, ?_⟩
@@ -220,7 +220,7 @@ theorem quot_near (j : Fin Fl.δ)
   have hc0 : Filter.Tendsto (cpt X (Fl.xs j)) (𝓝 0) (𝓝 (Fl.xs j)) := by
     have := (KU.cont_cpt X (Fl.xs j)).tendsto 0
     rwa [VanishPf.cpt_zero] at this
-  have hnb := (PoinPf.isOpenDom X).mem_nhds hx
+  have hnb := (ReciprocityTheory.ChartRestriction.G.FD.FourierCoefficientDomain.isOpen_dom X).mem_nhds hx
   set N := X.nfac (Xa.Fp + Xa.T • Xa.L) (Fl.xs j) + 1 with hN
   have hN0 : 0 < N := by have := BoundedSectionAlgebra.nfac_pos X hx (Xa.Fp + Xa.T • Xa.L); linarith
   have ev3 : ∀ᶠ z in 𝓝 (0 : V (nd X)), X.nfac (Xa.Fp + Xa.T • Xa.L) (cpt X (Fl.xs j) z) < N :=

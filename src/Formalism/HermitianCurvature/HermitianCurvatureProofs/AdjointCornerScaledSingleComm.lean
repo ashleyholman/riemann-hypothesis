@@ -189,8 +189,6 @@ section blk2alg
 
 variable {j : ℕ}
 
-alias castM_mul' := _root_.Formalism.FourierDecayAlt.P.Dx2.Tower.castM_mul
-
 theorem smul_block_two {p s : ℕ} (c : ℂ) (A : Matrix (Fin p) (Fin p) ℂ) (B : Matrix (Fin p) (Fin s) ℂ)
     (C : Matrix (Fin s) (Fin p) ℂ) (D : Matrix (Fin s) (Fin s) ℂ) :
     c • U.blk2 A B C D = U.blk2 (c • A) (c • B) (c • C) (c • D) := by
@@ -374,7 +372,7 @@ theorem level_point_conj_unipotent (hj : j + 1 ≤ r) {Z : Matrix (Fin j) (Fin j
     (γ : B.Mat k (r - (j + 1))) (b : Fin j) (s : ℂ) :
     x0 k r j hj Z τ γ * hM k r j hj (Fin.last j) b.castSucc s =
       nN k r j hj (fun c => s * τ * Z⁻¹ b c) * x0 k r j hj Z τ γ := by
-  rw [level_point_eq_block_three, hM_blk, nN_blk, ← castM_mul', ← castM_mul']
+  rw [level_point_eq_block_three, hM_blk, nN_blk, ← Formalism.FourierDecayAlt.P.Dx2.Tower.castM_mul, ← Formalism.FourierDecayAlt.P.Dx2.Tower.castM_mul]
   congr 1
   rw [Ux3.block3_mul, Ux3.block3_mul]
   simp only [Matrix.mul_zero, Matrix.zero_mul, add_zero, zero_add]

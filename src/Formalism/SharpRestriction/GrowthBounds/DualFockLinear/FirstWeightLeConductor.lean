@@ -160,7 +160,7 @@ theorem formCoreSKX_of (h : FormCoreGX) : FormCoreSKX := by
     exact hbd _ (Or.inl (nuOf_le_ellWt hlam)) Q hQ P hP
 
 theorem formCoreSKX : FormCoreSKX := by
-  exact formCoreSKX_of (formCoreGX_of Top.fockRBilin Top.fockRRowAct Top.hWNorm _root_.Formalism.L2.G.Model.TS.weyl_pairing Top.dualWeylIn Top.nondegK)
+  exact formCoreSKX_of (formCoreGX_of Formalism.L2.G.Model.TS.fock_pairing_bilinear Formalism.L2.G.Model.TS.fock_pairing_row_action Formalism.L2.G.Model.TS.highest_weight_norm _root_.Formalism.L2.G.Model.TS.weyl_pairing Formalism.L2.G.Model.TS.dual_weyl_inclusion Formalism.L2.G.Model.TS.nondegenerate_over_field)
 
 end Formalism.L2.G.Model.TS
 end -- clump:auto

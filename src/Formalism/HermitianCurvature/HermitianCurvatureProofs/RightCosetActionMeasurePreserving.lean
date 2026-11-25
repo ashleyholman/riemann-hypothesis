@@ -82,7 +82,7 @@ theorem unipotent_measure_left_invariant : MuNLeft := by
     obtain ⟨x, q, y⟩ := z
     have hy : IsUnit (Matrix.of y : B.Mat k ρ).det := Formalism.FourierDecayAlt.P.HermitianFormFactor.UH_unit (Formalism.FourierDecayAlt.P.Ux3.hpk_det k ρ) hz.1
     have hu : IsUnit (G.upper q).det := by
-      rw [Formalism.FourierDecayAlt.P.StabilizerDisintegration.UC.det_UT (Formalism.FourierDecayAlt.P.StabilizerDisintegration.UC.upper_mem _)]; exact isUnit_one
+      rw [Formalism.FourierDecayAlt.P.C2x2.ut_det (Formalism.FourierDecayAlt.P.StabilizerDisintegration.UC.upper_mem _)]; exact isUnit_one
     show Matrix.of.symm ((Matrix.of (Matrix.of.symm (U.Rn k p ρ x * U.muP k p ρ (G.upper q) *
         U.embG k p ρ (Matrix.of y))))⁻¹) =
       Matrix.of.symm (U.embG k p ρ (Matrix.of (B2.invM y)) * U.muP k p ρ (G.upper (Formalism.FourierDecayAlt.P.PBM.utInv p q)) *

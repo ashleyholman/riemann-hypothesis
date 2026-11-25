@@ -41,8 +41,6 @@ section Typed
 
 variable {D : D7} (X : HidaSetting D) (hb : AdBridgeIso X.B.I) (p : TypX X)
 
-alias kg_sub_kv := _root_.MassDataIdxSteps.kg_sub
-
 theorem kv_facts : IsOpen (MassDataIdxSteps.KvX X p) ∧ IsCompact (MassDataIdxSteps.KvX X p) ∧
     IsOpen (MassDataIdxSteps.KgX X p) ∧ (1 : MassDataIdxSteps.HAp X p) ∈ MassDataIdxSteps.KgX X p := by
   obtain ⟨K, hK, ho, hc, hg⟩ := stK_holds X p
@@ -58,7 +56,7 @@ theorem kg_sub_kpp : MassDataIdxSteps.KgX X p ⊆ MassDataIdxSteps.KppX X hb p :
   obtain ⟨A, hA, hker, -⟩ := stImA_holds X hb p K hK ρ hs hρ
   have hxK : x ∈ (K : Set (MassDataIdxSteps.HAp X p)) := by
     rw [hK]
-    exact kg_sub_kv X p hx
+    exact MassDataIdxSteps.kg_sub X p hx
   rw [← hA]
   exact ⟨⟨x, hxK⟩, hker (MonoidHom.mem_ker.mpr ((hρ ⟨x, hxK⟩).mpr hx)), rfl⟩
 
@@ -74,7 +72,7 @@ theorem kpp_sub_kv : MassDataIdxSteps.KppX X hb p ⊆ MassDataIdxSteps.KvX X p :
 
 theorem kg_sub_knat (u : D.what₂.Word) : MassDataIdxSteps.KgX X p ⊆ MassDataIdxSteps.KnatX X u p := by
   intro y hy
-  have h1 : (1 : MassDataIdxSteps.HAp X p) ∈ MassDataIdxSteps.KvX X p := kg_sub_kv X p (kv_facts X p).2.2.2
+  have h1 : (1 : MassDataIdxSteps.HAp X p) ∈ MassDataIdxSteps.KvX X p := MassDataIdxSteps.kg_sub X p (kv_facts X p).2.2.2
   exact ⟨hy.1, 1, y, (Ssub _ _ _ _).one_mem, h1, hy, (one_mul y).symm⟩
 
 theorem knat_sub_kv (u : D.what₂.Word) : MassDataIdxSteps.KnatX X u p ⊆ MassDataIdxSteps.KvX X p := fun _ h => h.1
@@ -109,7 +107,7 @@ theorem level_compression_chain (u : D.what₂.Word) :
   have haK' : a ∈ (K : Set (MassDataIdxSteps.HAp X p)) := by rw [hK]; exact haK
   constructor
   · intro k hk
-    have hkK : k ∈ (K : Set (MassDataIdxSteps.HAp X p)) := hK ▸ kg_sub_kv X p hk
+    have hkK : k ∈ (K : Set (MassDataIdxSteps.HAp X p)) := hK ▸ MassDataIdxSteps.kg_sub X p hk
     have h2 := (hker ((⟨a, haK'⟩ : K)⁻¹ * ⟨k, hkK⟩ * ⟨a, haK'⟩)).1
       (by rw [map_mul, map_mul, (hker ⟨k, hkK⟩).2 hk, mul_one, map_inv, inv_mul_cancel])
     have h2' : a⁻¹ * k * a ∈ MassDataIdxSteps.KgX X p := by
@@ -206,11 +204,11 @@ theorem locHaarPosC_holds : LocHaarPosC X hb hK FdN FdN' u u' X0 ψ T sd C Th vR
   have h1K : (1 : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.HA (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.Af X.B.I.F) X.B.I.cm.sig X.B.I.J) ∈ (MassDataMassesW.KX X : Set (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.HA (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.Af X.B.I.F) X.B.I.cm.sig X.B.I.J)) :=
     (MassDataMassesW.KX X).one_mem
   refine ⟨fun p => ⟨?_, ?_, ?_, ?_, ?_, ?_, ?_⟩, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_, ?_⟩
-  · exact gv_pos X p (kg_sub_kv X p) subset_rfl
+  · exact gv_pos X p (MassDataIdxSteps.kg_sub X p) subset_rfl
   · exact gv_pos X p (kg_sub_knat X p u) (knat_sub_kv X p u)
   · exact gv_pos X p (kg_sub_kpp X hb p) (kpp_sub_kv X hb p)
-  · exact sv_pos X u p (kg_sub_kv X p) subset_rfl
-  · exact sv_pos X u' p (kg_sub_kv X p) subset_rfl
+  · exact sv_pos X u p (MassDataIdxSteps.kg_sub X p) subset_rfl
+  · exact sv_pos X u' p (MassDataIdxSteps.kg_sub X p) subset_rfl
   · exact sv_pos X u p (level_compression_chain X hb p u).1 (level_compression_chain X hb p u).2
   · exact sv_pos X u' p (level_compression_chain X hb p u').1 (level_compression_chain X hb p u').2
   · haveI := X.measG_norm.2.2.1

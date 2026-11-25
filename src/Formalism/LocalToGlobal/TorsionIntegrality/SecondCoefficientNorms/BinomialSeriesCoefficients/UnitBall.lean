@@ -51,13 +51,13 @@ theorem curve_endomorphisms_unit_ball : CurveEndoUnitBall := by
       (Formalism.L2.Th1.B.phO s2 (wpReg W) (logSer W)) (-1) (-1) := by
     have h := (hall (-1)).2.1
     simpa only [star_neg, star_one, map_neg, map_one] using h
-  refine ⟨hall, (jetsShape K (Formalism.G.unitBall K) _ _ _ hfr hF1 hm1 h2R).1, ?_⟩
+  refine ⟨hall, (Formalism.L2.Th1.C.jets_shape K (Formalism.G.unitBall K) _ _ _ hfr hF1 hm1 h2R).1, ?_⟩
   intro α hα
   have hne : τ α ≠ τ (star α) := by
     intro h
     rw [h, sub_self, norm_zero] at hα
     exact zero_ne_one hα
-  exact (jetsUnramified K (Formalism.G.unitBall K) _ _ _ (τ α) (τ (star α)) hfr hF1 hm1 h2R
+  exact (Formalism.L2.Th1.C.jets_unramified K (Formalism.G.unitBall K) _ _ _ (τ α) (τ (star α)) hfr hF1 hm1 h2R
     (hall α).2.2.1 (inv_mem_unitBall hα) hne).2
 
 end Formalism.L2.Th1.C

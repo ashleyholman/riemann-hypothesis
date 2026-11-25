@@ -336,15 +336,6 @@ open Formalism.IndefR.TransferLatticeStatement
 
 namespace NormTraceLemmas
 
-section Lin
-
-variable {K : Type} [Field K] {G : Type} [Group G]
-  {T : Type} [AddCommGroup T] [Module K T] [FiniteDimensional K T]
-
-alias exists_strictHenselian_absolutely_closed_local_ring := _root_.Bl.RankOneOrbitForms.goal1
-
-end Lin
-
 section Char
 
 variable {K : Type} [Field K] {G : Type} [Group G] [Fintype G]
@@ -469,7 +460,7 @@ open NormTraceLemmas in
 theorem core_of (hC : CharFacts) (hK : KeyZero) (hS : Schur) (hP : IdemP) : Core := by
   intro K _ _ G _ _ S T _ _ _ τ H₀ χ₀ H χ hgood hM1 s
   obtain ⟨γ, δ, c, hdet, htr, he1, he2⟩ :=
-    exists_strictHenselian_absolutely_closed_local_ring (τ s) (hgood.2.1 s) (epP H₀ χ₀ (τ s)) (epP H χ (τ s)) (hM1 s)
+    Bl.RankOneOrbitForms.goal1 (τ s) (hgood.2.1 s) (epP H₀ χ₀ (τ s)) (epP H χ (τ s)) (hM1 s)
   refine ⟨γ, δ, c, fun i j => ⟨(Fintype.card G : K) ^ 2 * c i j, ?_⟩, hdet, fun i j => rfl, ?_, ?_⟩
   · rw [htr i j]
     exact integral_mem hC (τ s) H₀ H χ₀ χ (δ i) (γ j)

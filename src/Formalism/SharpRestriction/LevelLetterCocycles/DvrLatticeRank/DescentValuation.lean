@@ -141,8 +141,6 @@ end Local
 
 section Record
 
-alias u3downPf_sK_pos := _root_.Formalism.MainNotions.N.Ln34.frobpin_sK_pos
-
 theorem u3downPf_modelK_of_wKill (D : D7) (HW : HWOf D.loc) (hW : wKillR D HW) : modelKR D HW := by
   intro l _ hl K LL hG π' E hp T₁ T₂ F h' _ hc1 hc2 hon hj1 c y hy
   obtain ⟨x, hx, hxy⟩ := hW l hl K LL hG π' E hp T₁ T₂ F h' hc1 hc2 hon hj1 (c - 1) y hy
@@ -210,7 +208,7 @@ theorem u3downPf_link (hW : WStep) : DownSlotOfModels := by
   have hJ2 : ∀ τ, JumpsInV ((D.loc l).PD K) T₂.ρ τ (Set.Icc (-(h' : ℤ)) h') := fun τ =>
     u3downPf_jumps T₂ τ (up τ) (b τ) S η h' (hj2 τ) (hηb τ) (hbS τ)
   have hM : 1 ≤ MK l K h' :=
-    Formalism.MainNotions.N.Ln34.ClassMapPf.classMapPf_MK_pos K h' hh' (u3downPf_sK_pos hl K LL hG)
+    Formalism.MainNotions.N.Ln34.ClassMapPf.classMapPf_MK_pos K h' hh' (Formalism.MainNotions.N.Ln34.frobpin_sK_pos hl K LL hG)
   have hF' := hMF l hl K LL hG π' E hp h' hh' c α β hfr
   have hK' := u3downPf_modelK_of_wKill D HW (hW D HW Fo Cm CA CB CK hA) l hl K LL hG π' E hp
     T₁ T₂ F h' hh' hc1 hc2 hon hJ1 c

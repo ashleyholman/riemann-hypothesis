@@ -62,7 +62,6 @@ open PositivityTheory.RgBcC PositivityTheory.RgBcC.Fc
 open PositivityTheory.RgTw (Mat G)
 attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
 
-alias _root_.GlobalTheory.T.functional_calculus_on_sobolev := _root_.GlobalTheory.CompanionTheory.FcSmooth.phi_keeps_sections
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.FunctionalCalculusOnSobolevStatement =====
@@ -191,7 +190,7 @@ namespace GlobalTheory.CompanionTheory.LapSec
 
 open GlobalTheory.CompanionTheory.FcSmooth (Lap)
 open GlobalTheory.CompanionTheory.SobSecK (Rw_congr Rw_smooth)
-open GlobalTheory.CompanionTheory.SobOpsPf (Rw_add Rw_post sob_congr sob_smul sob_sum sob_bs sob_Om sob_post Om_smooth)
+open GlobalTheory.CompanionTheory.SobOpsPf (Rw_add Rw_post sob_congr sob_smul sob_sum sob_bs sob_Om sob_post)
 
 variable {n : ℕ}
 
@@ -263,12 +262,6 @@ theorem cls_add {F F' : Mat n → V} (h : MemLp (fun y : G n => F y.val) 2 μ)
 
 end Sob
 
-theorem om_mem (hR : RCalc) (E : KMod n) {f : Mat n → E.V} (hf : f ∈ CE E) : Om f ∈ CE E := by
-  have h1 := (hR n).2.1 E f hf true 2
-  have h2 := (hR n).2.1 E f hf false 2
-  refine ⟨Om_smooth hf.1, fun g hg k => ?_⟩
-  simp only [Om, Pi.smul_apply, Pi.add_apply, h1.2 g hg k, h2.2 g hg k, map_add (f := _), map_smul]
-
 theorem strong [MeasurableSpace (G n)] (μ : Measure (G n)) (E : KMod n) (Q : E.V →L[ℂ] E.V) (hR : RCalc)
     (hL : ∀ f ∈ CE E, ∀ g ∈ GLs n, Lap f g = -Om f g + Q (f g)) (j : ℕ) :
     ∃ C : ℝ, 0 ≤ C ∧ ∀ f : Mat n → E.V, Sob μ f → IsSec E f → ∀ B : E.V →L[ℂ] E.V,
@@ -285,7 +278,7 @@ theorem strong [MeasurableSpace (G n)] (μ : Measure (G n)) (E : KMod n) (Q : E.
     refine ⟨C * (1 + ‖Q‖), by positivity, fun f hS hsec B => ?_⟩
     have hCE : f ∈ CE E := ⟨hS.1, hsec⟩
     have hOS := sob_Om hS
-    have hOC := om_mem hR E hCE
+    have hOC := GlobalTheory.CompanionTheory.WaveFc.Asm.CE_Om hR E hCE
     let a : Mat n → E.V := fun y => (-B) (Om f y)
     let b : Mat n → E.V := fun y => (B * Q) (f y)
     have ha : Sob μ a := sob_post _ hOS
@@ -745,7 +738,7 @@ theorem smoothOp : SmoothOp := by
   have hW := word_est μ E hAE hL hU hR hC h hh Ω T F hΩ
   choose Cw hCw using hW
   obtain ⟨S, Cs, hb⟩ := GlobalTheory.CompanionTheory.CurveJ.sup_bound hS n μ
-  have hkeep := (GlobalTheory.T.functional_calculus_on_sobolev) n μ E Ω T F hL hU hR hS hC hΩ h
+  have hkeep := (GlobalTheory.CompanionTheory.FcSmooth.phi_keeps_sections) n μ E Ω T F hL hU hR hS hC hΩ h
   refine ⟨|Cs| * ∑ w ∈ S, |Cw w|, fun x hx => ?_⟩
   obtain ⟨xs, hxs, hlim⟩ := mem_closure_iff_seq_limit.1 hx
   choose fs hfS hfsec hfcl using hxs

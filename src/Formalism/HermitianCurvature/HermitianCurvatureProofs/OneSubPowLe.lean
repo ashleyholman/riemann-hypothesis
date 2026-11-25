@@ -18,7 +18,7 @@ noncomputable section
 
 theorem qU_pos : 0 < qU := by
   unfold qU
-  have hβ : U.betaU ≠ 0 := Formalism.FourierDecayAlt.P.scale_matching.2.1
+  have hβ : U.betaU ≠ 0 := Formalism.FourierDecayAlt.P.Ux7.scaleMatch.2.1
   have hc : 0 < ‖U.betaU‖ / (2 * Real.pi) := div_pos (norm_pos_iff.2 hβ) (by positivity)
   exact_mod_cast Real.toNNReal_pos.2 hc
 
@@ -48,7 +48,7 @@ theorem vec_om {n : ℕ} (vec : C.LPt → V) (Φ0 : G.Mat n → V) (hΦ0 : PBJ.K
         (((qU ^ Fintype.card (G.UT (m + 1 + 1)))⁻¹ : ℝ) : ℂ) •
           G.OmLong U.betaU (m + 1) (U.PhiTop (p := D.ptSize H) (s := m + 1 + 1) U.betaU σh dh Ψ0) z) := by
   subst hn
-  have hβ : U.betaU ≠ 0 := Formalism.FourierDecayAlt.P.scale_matching.2.1
+  have hβ : U.betaU ≠ 0 := Formalism.FourierDecayAlt.P.Ux7.scaleMatch.2.1
   obtain ⟨σh, dh, hdh, hMh⟩ := PBJ.Asm.exists_hMat H hH
   refine ⟨σh, dh, Φ0, hdh, hΦ0, ?_, ?_⟩
   · intro t c ht hc

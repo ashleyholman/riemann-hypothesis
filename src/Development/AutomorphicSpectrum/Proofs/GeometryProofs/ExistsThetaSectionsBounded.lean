@@ -323,11 +323,7 @@ open GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Sl GlobalTh
 
 namespace GlobalTheory.CompanionTheory.Ar.Sl.Transl
 
-alias torsVal_val := _root_.GlobalTheory.CompanionTheory.Ar.Sl.Transl.torsVal_charts
 alias exists_lin := _root_.GlobalTheory.CompanionTheory.Ar.Sl.Transl.exists_lin_gen
-alias exists_sec_of_gen := _root_.GlobalTheory.CompanionTheory.Ar.Sl.Transl.exists_sec_cleared
-alias exists_root_gen := _root_.GlobalTheory.CompanionTheory.Ar.Sl.Transl.exists_gen_normalised
-alias transl_algebra := _root_.GlobalTheory.CompanionTheory.Ar.Sl.Transl.values_identity_units
 
 end GlobalTheory.CompanionTheory.Ar.Sl.Transl
 
@@ -403,7 +399,7 @@ theorem core (D : PPData H L) (th : Out.H0 D.t.PP.L 1) (m : ℕ) (hm : 1 ≤ m)
   have : QuasiSeparatedSpace D'.t.G.left := by
     have := D'.t.semi.separated
     exact quasiSeparatedSpace_of_quasiSeparated D'.t.G.hom
-  obtain ⟨s, t, ht, hs⟩ := exists_sec_of_gen (nonZeroDivisors (𝓞 L')) hY hPw hL hL' th ψ.left (m ^ 2) u hu
+  obtain ⟨s, t, ht, hs⟩ := GlobalTheory.CompanionTheory.Ar.Sl.Transl.exists_sec_cleared (nonZeroDivisors (𝓞 L')) hY hPw hL hL' th ψ.left (m ^ 2) u hu
   refine ⟨s, t, nonZeroDivisors.ne_zero ht, ?_⟩
   intro F _ f y b xF yF N T T' hxF hyF hT hT'
 
@@ -457,8 +453,8 @@ theorem core (D : PPData H L) (th : Out.H0 D.t.PP.L 1) (m : ℕ) (hm : 1 ≤ m)
   choose J' hJ' using fun χ : Sp F ⟶ D'.t.G.left => exists_chart hL' (χ z)
   have hJg : Good D.t.PP.L z J := hJ
   have hJg' : Good D'.t.PP.L z J' := hJ'
-  obtain ⟨wk, hwk, E1⟩ := torsVal_val D.t.PP th (xF * yF ^ m) (N * m) T' hT' z J hJg
-  obtain ⟨wn', hwn', E2⟩ := torsVal_val D'.t.PP s y N T hT z J' hJg'
+  obtain ⟨wk, hwk, E1⟩ := GlobalTheory.CompanionTheory.Ar.Sl.Transl.torsVal_charts D.t.PP th (xF * yF ^ m) (N * m) T' hT' z J hJg
+  obtain ⟨wn', hwn', E2⟩ := GlobalTheory.CompanionTheory.Ar.Sl.Transl.torsVal_charts D'.t.PP s y N T hT z J' hJg'
   obtain ⟨t₁, ht₁, hv₁⟩ := exists_up hPw hL hL' wn' hwn'
   obtain ⟨wm2, hwm2⟩ := exists_mulGen D th (m ^ 2) (Nat.one_le_pow _ _ hm)
   obtain ⟨wn, hwn⟩ := exists_mulGen D th N hN1
@@ -602,7 +598,7 @@ theorem core (D : PPData H L) (th : Out.H0 D.t.PP.L 1) (m : ℕ) (hm : 1 ≤ m)
     rw [Fintype.prod_unique, zpow_one]
     show gw wI _ z (J _) (J' _) = _
     rw [q₁, q₂]
-  have key := transl_algebra m N (toStk z T) (toStk z T') (sval (Z := Sp F) th (xF * yF ^ m).left z J)
+  have key := GlobalTheory.CompanionTheory.Ar.Sl.Transl.values_identity_units m N (toStk z T) (toStk z T') (sval (Z := Sp F) th (xF * yF ^ m).left z J)
     (sval (Z := Sp F) s y.left z J') (toStk z (f (t : L')))
     ((mulFG wk hwk).v o z J) ((mulFG wk hwk).v (xF * yF ^ m).left z J) ((mulFG wk hwk).v xF.left z J) (W.v o z J)
     (W.v xF.left z J) (val t₁ y.left z J) (val t₁ one'.left z J) (u.v p z J) (u.v p₀ z J) (e₀.v (spMap f) z J)
@@ -636,7 +632,7 @@ theorem transl_main : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H 
     apply Additive.ofMul.injective
     simp only [ofMul_mul, ofMul_inv, ofMul_pow]
     abel
-  obtain ⟨K', _, _, _, e₁, he₁, hr⟩ := exists_root_gen hL (m ^ 2) (Nat.one_le_pow _ _ hm) x.left A hA
+  obtain ⟨K', _, _, _, e₁, he₁, hr⟩ := GlobalTheory.CompanionTheory.Ar.Sl.Transl.exists_gen_normalised hL (m ^ 2) (Nat.one_le_pow _ _ hm) x.left A hA
   letI : Algebra L K' := ((algebraMap K K').comp (algebraMap L K)).toAlgebra
   haveI : IsScalarTower L K K' := .of_algebraMap_eq' rfl
   refine ⟨K', inferInstance, inferInstance, inferInstance, inferInstance, inferInstance, ?_⟩

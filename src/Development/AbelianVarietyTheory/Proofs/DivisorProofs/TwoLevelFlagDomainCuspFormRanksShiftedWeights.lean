@@ -172,7 +172,7 @@ theorem quotT_near (j : Fin Fl.δ)
   have hc0 : Filter.Tendsto (cpt X (Fl.xs j)) (𝓝 0) (𝓝 (Fl.xs j)) := by
     have := (KU.cont_cpt X (Fl.xs j)).tendsto 0
     rwa [VanishPf.cpt_zero] at this
-  have hnb := (PoinPf.isOpenDom X).mem_nhds hx
+  have hnb := (ReciprocityTheory.ChartRestriction.G.FD.FourierCoefficientDomain.isOpen_dom X).mem_nhds hx
   set N := X.nfac (Xa.Fp + T • Xa.L) (Fl.xs j) + 1 with hN
   have hN0 : 0 < N := by have := BoundedSectionAlgebra.nfac_pos X hx (Xa.Fp + T • Xa.L); linarith
   have ev3 : ∀ᶠ z in 𝓝 (0 : V (nd X)), X.nfac (Xa.Fp + T • Xa.L) (cpt X (Fl.xs j) z) < N :=

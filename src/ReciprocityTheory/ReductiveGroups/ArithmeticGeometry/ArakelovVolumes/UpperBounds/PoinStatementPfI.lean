@@ -77,7 +77,7 @@ theorem meas_densF' (X : Data E r) (x' : Frame X.Ψ r) :
   unfold densF
   refine Finset.measurable_prod _ fun τ _ => Finset.measurable_prod _ fun i _ => ?_
   have hc : Measurable fun z : V (nd X) => ‖dmin X.Gm (cpt X x' z) τ i.castSucc‖ ^ 2 :=
-    (((_root_.ReciprocityTheory.ChartRestriction.G.AR.Up.ExtFPf.cont_dmin X τ _).comp (cont_cpt' X x')).norm.pow 2).measurable
+    (((_root_.ReciprocityTheory.ChartRestriction.G.AR.Up.ExtFPf.cont_dmin X τ _).comp (ReciprocityTheory.ChartRestriction.G.AR.Up.PairUnfoldPf.cpt_cont X x')).norm.pow 2).measurable
   have e : (fun z : V (nd X) => ‖dmin X.Gm (cpt X x' z) τ i.castSucc‖ ^ (-2 : ℤ)) =
       fun z => (‖dmin X.Gm (cpt X x' z) τ i.castSucc‖ ^ 2)⁻¹ := by
     funext z; rw [zpow_neg, zpow_ofNat]
@@ -196,7 +196,7 @@ theorem sumBall_of_kaSum (X : Data E r) (x0 : Frame X.Ψ r) (la : Wt X.Ψ r) (W 
           mul_le_mul_of_nonneg_left (lintegral_mono_set hsub) zero_le
       _ = A * ∫⁻ w, psiF X x0 bb P W (cpt X x' w) ∂muF X x' := by
           have hm : Measurable fun w => psiF X x0 bb P W (cpt X x' w) :=
-            hψm.comp (cont_cpt' X x').measurable
+            hψm.comp (ReciprocityTheory.ChartRestriction.G.AR.Up.PairUnfoldPf.cpt_cont X x').measurable
           rw [muF, lintegral_withDensity_eq_lintegral_mul _ (meas_densF' X x') hm]
           rfl
       _ = A * Nn := by

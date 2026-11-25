@@ -1454,7 +1454,7 @@ theorem conj_cancel (g : GL (Fin t) (AE D)) (q : Mx D t t) :
   have h1 : g.1 * (g⁻¹).1 = 1 := by rw [← Units.val_mul, mul_inv_cancel, Units.val_one]
   have h2 : (adj (g⁻¹).1 * adj g.1 : Mx D t t) = 1 := by
     have := adj_mul (D := D) g.1 (g⁻¹).1
-    rw [← this, h1, adj_one_r]
+    rw [← this, h1, GlobalTheory.MixModel.adj_one]
   simp only [mm]
   calc _ = (adj (g⁻¹).1 * adj g.1 : Mx D t t) * q * (g.1 * (g⁻¹).1) := by simp only [Matrix.mul_assoc]
     _ = q := by rw [h1, h2, Matrix.one_mul, Matrix.mul_one]

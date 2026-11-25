@@ -119,7 +119,7 @@ theorem expShape_of_integralClass : ∀ (D : D7) (p : ℕ) [Fact p.Prime] (g2 g3
   intro D p _ g2 g3 s2 ε σ F hC h1 N N' ep Th hep hH
   obtain ⟨h5, hg2, hg3, hε, hth, hσ, hF, hN⟩ := hC
   have hl : 2 ≤ p := (Fact.out : p.Prime).two_le
-  obtain ⟨f1, f2, hph⟩ := Formalism.L2.Th1.D.FAux.ffs p Formalism.L2.Th1.D.first_level_on_curve g2 g3 ε hg2 hg3 hε hth σ hσ F hF s2 hN
+  obtain ⟨f1, f2, hph⟩ := Formalism.L2.Th1.D.FAux.ffs p Formalism.L2.Th1.D.first_level_curve_holds g2 g3 ε hg2 hg3 hε hth σ hσ F hF s2 hN
   obtain ⟨ζ, hζ⟩ := Formalism.L2.Th1.D.FAux.exists_root2 p
   set B : MvPowerSeries (ZMod 2) (MaximalUnramifiedExtension p) :=
     Formalism.L2.Th1.D.beMean (d := 2) p σ (cob F (phFF p g2 g3 s2 ε)) (fun _ : Unit => (1 : MaximalUnramifiedExtension p)) (fun _ => 1) ζ with hBdef
@@ -929,11 +929,11 @@ theorem UpperTheory.exists_unit_quotient_of_normOne_unramified_ultrametric :
     ∀ (l : ℕ) [Fact l.Prime], 5 ≤ l → ∀ σ : MaximalUnramifiedExtension l →+* MaximalUnramifiedExtension l, UnrOK (MaximalUnramifiedExtension l) l σ → ∀ (i : ℕ) [NeZero i], Odd i →
     ∃ om : Fin i → MaximalUnramifiedExtension l, OwOK (2 * i) σ om (fun r => σ^[i] (om r)) ∧ TrDual (2 * i) σ om (fun r => σ^[i] (om r)) := by
   intro l _ _ σ hU i _ hi
-  haveI : CompleteSpace (MaximalUnramifiedExtension l) := Formalism.L2.Th1.D.kurComplete l
+  haveI : CompleteSpace (MaximalUnramifiedExtension l) := Formalism.L2.Th1.D.unramified_completion_complete l
   have a1 := UpperTheory.NormSurjectiveFixedIntegers.not_dvd (d := 2) hU.1 two_ne_zero
   have a2 := UpperTheory.NormSurjectiveFixedIntegers.not_dvd (d := 2 * i) hU.1 (NeZero.ne _)
-  obtain ⟨ζ, hζ⟩ := Formalism.L2.Th1.D.kurRoots l _ a1.1 a1.2
-  obtain ⟨ξ, hξ⟩ := Formalism.L2.Th1.D.kurRoots l _ a2.1 a2.2
+  obtain ⟨ζ, hζ⟩ := Formalism.L2.Th1.D.unramified_completion_roots l _ a1.1 a1.2
+  obtain ⟨ξ, hξ⟩ := Formalism.L2.Th1.D.unramified_completion_roots l _ a2.1 a2.2
   have h := _root_.Formalism.L2.Th1.D.trace_dual_exists (MaximalUnramifiedExtension l) l (2 * i) σ hU (even_two_mul i) ξ hξ
   rw [show 2 * i / 2 = i by omega] at h
   obtain ⟨om, oms, h1, h2⟩ := h
@@ -1058,13 +1058,13 @@ private theorem diag (K : Type) [NormedField K] [IsUltrametricDist K] [CharZero 
   have hde : Even (2 * i) := even_two_mul i
   have hIP : ∀ ρ, IP l σ (linEL σ (σ^[i] (om ρ)) L) := fun ρ =>
     (shiftIP K l (2 * i) σ hU hde τ L hS _ (hOw.1 ρ).2 (hOw.2 ρ).2).1
-  choose x hx0 hxI hxL using fun ρ => ipLemma K l σ hU τ _ (hIP ρ)
+  choose x hx0 hxI hxL using fun ρ => Formalism.L2.Th1.D.integral_part_lemma K l σ hU τ _ (hIP ρ)
   refine ⟨x, hx0, hxI, hxL, ?_⟩
   obtain ⟨-, hsymm, htrans, -, -⟩ := Formalism.InvariantFactorPaths.G7.Top.simeqRules K τ
   have hsubU := (Formalism.InvariantFactorPaths.G7.Top.simeqRules K Unit).2.2.2.2 τ
   have hM := meanSimeqL K l (2 * i) σ hU hd2 hde F hF be0 hF1 hF2 (Fin i) om (fun r => σ^[i] (om r))
     hOw hTr ζ hζ τ L hS
-  rw [substTil K l (2 * i) σ hl2 be0 (Fin i) om _ τ L (fun s => (hS s).1)] at hM
+  rw [Formalism.L2.Th1.D.subst_tilde K l (2 * i) σ hl2 be0 (Fin i) om _ τ L (fun s => (hS s).1)] at hM
   have ha : MvPowerSeries.HasSubst (fun _ : Fin 2 => (PowerSeries.X : PowerSeries K)) :=
     MvPowerSeries.hasSubst_of_constantCoeff_zero (fun _ => MvPowerSeries.constantCoeff_X _)
   have hterm : ∀ r : Fin i, Simeq (subst ![linEL σ (σ^[i] (om r)) L, linOL σ (om r) L] (addC l be0))
@@ -1221,7 +1221,7 @@ theorem UpperTheory.integral_mvExp_sum_logS_of_odd_period :
   have hl2 : 2 ≤ p := hU.1.two_le
   have hd2 : 2 ≤ 2 * i := by have := NeZero.ne i; omega
   have hde : Even (2 * i) := even_two_mul i
-  obtain ⟨hF1, hF2, hph⟩ := FAux.ffs p first_level_on_curve g2 g3 ε hg2 hg3 hε hθ σ hU F hF s2 hNR
+  obtain ⟨hF1, hF2, hph⟩ := FAux.ffs p Formalism.L2.Th1.D.first_level_curve_holds g2 g3 ε hg2 hg3 hε hθ σ hU F hF s2 hNR
   have hgt : 1 < p ^ (2 * i) := Nat.one_lt_pow (by omega) (by omega)
   have hpos' : 0 < p ^ (2 * i) - 1 := by omega
   have hndvd : ¬ p ∣ p ^ (2 * i) - 1 := by
@@ -1231,7 +1231,7 @@ theorem UpperTheory.integral_mvExp_sum_logS_of_odd_period :
     rw [Nat.sub_sub_self (by omega)] at h2
     have := Nat.le_of_dvd one_pos h2
     omega
-  obtain ⟨ζ0, hζ0⟩ := kurRoots p (p ^ (2 * i) - 1) hpos' hndvd
+  obtain ⟨ζ0, hζ0⟩ := Formalism.L2.Th1.D.unramified_completion_roots p (p ^ (2 * i) - 1) hpos' hndvd
   set ph := phFF p g2 g3 s2 ε with hphdef
   set be0 := cob F ph with hbe0
   set bM := beMean (d := 2 * i) p σ be0 om (fun r => σ^[i] (om r)) ζ0 with hbM

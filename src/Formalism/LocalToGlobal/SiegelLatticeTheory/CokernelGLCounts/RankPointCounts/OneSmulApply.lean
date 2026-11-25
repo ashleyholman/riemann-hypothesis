@@ -105,8 +105,8 @@ theorem exist_of (hA : ∀ p, Agree δ M p) (hTy : ∀ p, (M p).split ≠ none �
       exact hp (Finset.mem_union_right _ (hBad.mem_toFinset.2 h))
     have hentL : ∀ a b, (D.s.atP p).ιE (L a b) ∈ (D.s.atP p).O := hLO p hp
     have hentU : ∀ a b, (D.s.atP p).ιE (U a b) ∈ (D.s.atP p).O := hUO p hp
-    have hLd : L.det = 1 := det_lo' hLlo
-    have hUd : U.det = 1 := det_up' hUup
+    have hLd : L.det = 1 := Formalism.L2.SG.Pf.AtPt.det_lo hLlo
+    have hUd : U.det = 1 := Formalism.L2.SG.Pf.AtPt.det_up hUup
     have hinv : ∀ (X : PairVal.MatR D), X.det = 1 → (∀ a b, (D.s.atP p).ιE (X a b) ∈ (D.s.atP p).O) →
         ∀ a b, (D.s.atP p).ιE (X⁻¹ a b) ∈ (D.s.atP p).O := by
       intro X hX hXe a b
@@ -146,12 +146,12 @@ variable {K : Type*} [Field K] {n : ℕ}
 
 theorem lam_form {A Δ : Matrix (Fin n) (Fin n) K} (hA : IsLo A) (a : K) :
     (A + a • Δ) * A⁻¹ = 1 + a • (Δ * A⁻¹) := by
-  have hu : IsUnit A.det := by rw [det_lo' hA]; exact isUnit_one
+  have hu : IsUnit A.det := by rw [Formalism.L2.SG.Pf.AtPt.det_lo hA]; exact isUnit_one
   rw [Matrix.add_mul, Matrix.mul_nonsing_inv A hu, Matrix.smul_mul]
 
 theorem mu_form {B Δ : Matrix (Fin n) (Fin n) K} (hB : IsUp B) (a : K) :
     B⁻¹ * (B + a • Δ) = 1 + a • (B⁻¹ * Δ) := by
-  have hu : IsUnit B.det := by rw [det_up' hB]; exact isUnit_one
+  have hu : IsUnit B.det := by rw [Formalism.L2.SG.Pf.AtPt.det_up hB]; exact isUnit_one
   rw [Matrix.mul_add, Matrix.nonsing_inv_mul B hu, Matrix.mul_smul]
 
 theorem one_smul_apply (a : K) (N : Matrix (Fin n) (Fin n) K) (i j : Fin n) :
@@ -219,8 +219,8 @@ theorem locReal_typed (hA : ∀ p, Agree δ M p) (u u' : D.what₂.Word) (p : Pl
       Matrix.mul_one]
 
   obtain ⟨Gl, Gu, hGl, hGu, hM0⟩ := target_fact Zd p sg hR g hM' hge hgq u u' w
-  have hGlu : IsUnit Gl.det := by rw [det_lo' hGl]; exact isUnit_one
-  have hGuu : IsUnit Gu.det := by rw [det_up' hGu]; exact isUnit_one
+  have hGlu : IsUnit Gl.det := by rw [Formalism.L2.SG.Pf.AtPt.det_lo hGl]; exact isUnit_one
+  have hGuu : IsUnit Gu.det := by rw [Formalism.L2.SG.Pf.AtPt.det_up hGu]; exact isUnit_one
   set Λ₀ := Loc.uLow ξ * Gl⁻¹ with hΛ₀
   set V₀ := Gu⁻¹ * Loc.uUp w₀ η with hV₀
   have hΛ₀lo : IsLo Λ₀ := isLo_mul (isLo_uLow ξ) (isLo_inv hGl)
@@ -332,10 +332,10 @@ theorem locReal_typed (hA : ∀ p, Agree δ M p) (u u' : D.what₂.Word) (p : Pl
         rw [show S * (S * Matrix.diagonal cfv * B2 * Matrix.diagonal cfiv * S) * S =
           (S * S) * (Matrix.diagonal cfv * B2 * Matrix.diagonal cfiv) * (S * S) by simp only [Matrix.mul_assoc],
           hSS, Matrix.one_mul, Matrix.mul_one], conj2]
-  have hA1u : IsUnit A1.det := by rw [det_lo' hA1lo]; exact isUnit_one
-  have hA2u : IsUnit A2.det := by rw [det_lo' hA2lo]; exact isUnit_one
-  have hB1u : IsUnit B1.det := by rw [det_up' hB1up]; exact isUnit_one
-  have hB2u : IsUnit B2.det := by rw [det_up' hB2up]; exact isUnit_one
+  have hA1u : IsUnit A1.det := by rw [Formalism.L2.SG.Pf.AtPt.det_lo hA1lo]; exact isUnit_one
+  have hA2u : IsUnit A2.det := by rw [Formalism.L2.SG.Pf.AtPt.det_lo hA2lo]; exact isUnit_one
+  have hB1u : IsUnit B1.det := by rw [Formalism.L2.SG.Pf.AtPt.det_up hB1up]; exact isUnit_one
+  have hB2u : IsUnit B2.det := by rw [Formalism.L2.SG.Pf.AtPt.det_up hB2up]; exact isUnit_one
   set Δ1 := Matrix.diagonal cfv * oL1 * Matrix.diagonal cfiv with hΔ1
   set Δ2 := Matrix.diagonal cfv * (S * oB2.transpose * S) * Matrix.diagonal cfiv with hΔ2
   set E1 := Matrix.diagonal cfiv * oB1 * Matrix.diagonal cfv with hE1
@@ -441,8 +441,8 @@ theorem locReal_typed (hA : ∀ p, Agree δ M p) (u u' : D.what₂.Word) (p : Pl
     rw [hmu, glue, Matrix.of_apply, AlgEquiv.apply_symm_apply, mu_form hB1up, mu_form hB2up, one_smul_apply,
       one_smul_apply]
     ring_nf
-  have hlamu : IsUnit lam.det := by rw [det_lo' ⟨hlamI.1, hlamI.2.1⟩]; exact isUnit_one
-  have hmuu : IsUnit mu.det := by rw [det_up' ⟨hmuI.1, fun a b hab => hmuI.2.1 b a hab⟩]; exact isUnit_one
+  have hlamu : IsUnit lam.det := by rw [Formalism.L2.SG.Pf.AtPt.det_lo ⟨hlamI.1, hlamI.2.1⟩]; exact isUnit_one
+  have hmuu : IsUnit mu.det := by rw [Formalism.L2.SG.Pf.AtPt.det_up ⟨hmuI.1, fun a b hab => hmuI.2.1 b a hab⟩]; exact isUnit_one
   have h2 : Y = lam⁻¹ * (lam * Y * mu) * mu⁻¹ := by
     rw [show lam⁻¹ * (lam * Y * mu) * mu⁻¹ = (lam⁻¹ * lam) * Y * (mu * mu⁻¹) by simp only [Matrix.mul_assoc],
       Matrix.nonsing_inv_mul lam hlamu, Matrix.mul_nonsing_inv mu hmuu, Matrix.one_mul, Matrix.mul_one]

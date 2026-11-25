@@ -1217,8 +1217,6 @@ def Bmat (h1 : X.Ψ → Matrix (Fin r) (Fin r) ℂ) (z0 x0 : Frame X.Ψ r) (τ :
   Matrix.of fun a b => -hermC τ.1 X.Gm (col (h1 τ * mat z0 τ) (Fin.castLE X.p0_le b))
     (col (mat x0 τ) (kap X.p0_le a))
 
-alias mulVec_eq_sum_col := _root_.ReciprocityTheory.ChartRestriction.G.FD.Data.mulVec_eq_sum_col
-
 lemma yvec_eq (h1 : X.Ψ → Matrix (Fin r) (Fin r) ℂ) (z0 : Frame X.Ψ r) (τ : X.Ψ) (u : Fin X.p0 → ℂ) :
     ∑ b, u b • col (h1 τ * mat z0 τ) (Fin.castLE X.p0_le b) =
       h1 τ *ᵥ ∑ b, u b • col (mat z0 τ) (Fin.castLE X.p0_le b) := by
@@ -1256,7 +1254,7 @@ lemma colW_expand (h1 : X.Ψ → Matrix (Fin r) (Fin r) ℂ) (z0 : Frame X.Ψ r)
   set y := col (h1 τ * mat z0 τ) (Fin.castLE X.p0_le b) with hy
   set α := (mat x0 τ)⁻¹ *ᵥ y with hα
   have hyα : y = ∑ c, α c • col (mat x0 τ) c := by
-    rw [← mulVec_eq_sum_col, hα, Matrix.mulVec_mulVec,
+    rw [← ReciprocityTheory.ChartRestriction.G.FD.Data.mulVec_eq_sum_col, hα, Matrix.mulVec_mulVec,
       Matrix.mul_nonsing_inv _ (isUnit_iff_ne_zero.mpr hdet0), Matrix.one_mulVec]
   have hcd : ∀ c d, hermC τ.1 X.Gm (col (mat x0 τ) c) (col (mat x0 τ) d) =
       if c = d then ((sgn X.p0 (c : ℕ) : ℝ) : ℂ) else 0 := by
@@ -1302,7 +1300,7 @@ lemma colZ (x0 : Frame X.Ψ r) (Z : X.Coord) (τ : X.Ψ) (b : Fin X.p0) :
   classical
   have hm : mat (X.xZ x0 Z) τ = mat x0 τ * X.lowBlock Z τ := rfl
   have hc : ∀ c k, col (X.lowBlock Z τ) c k = X.lowBlock Z τ k c := fun _ _ ↦ rfl
-  rw [hm, _root_.ReciprocityTheory.ChartRestriction.G.FD.Data.col_mul, mulVec_eq_sum_col, sum_split X.p0_le]
+  rw [hm, _root_.ReciprocityTheory.ChartRestriction.G.FD.Data.col_mul, ReciprocityTheory.ChartRestriction.G.FD.Data.mulVec_eq_sum_col, sum_split X.p0_le]
   simp only [hc, lowBlock_castLE, lowBlock_kap, ite_smul, one_smul, zero_smul,
     Finset.sum_ite_eq', Finset.mem_univ, ite_true]
 

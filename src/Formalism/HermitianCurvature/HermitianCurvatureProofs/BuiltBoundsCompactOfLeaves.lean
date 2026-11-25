@@ -414,7 +414,7 @@ theorem Formalism.FourierDecayAlt.P.lift_local_compact_support_route : Formalism
     rw [mix_push]
 
 theorem Formalism.FourierDecayAlt.P.lift_local_positive_compact_support : Formalism.FourierDecayAlt.P.PBL.LiftLocBPCpt := fun hA hDL =>
-  Formalism.FourierDecayAlt.P.lift_local_compact_support_route hA Formalism.FourierDecayAlt.P.size_standard_compact hDL Formalism.FourierDecayAlt.P.module_form_pos_compact_support
+  Formalism.FourierDecayAlt.P.lift_local_compact_support_route hA Formalism.FourierDecayAlt.P.PBF.pb_sizeStdCpt_main hDL Formalism.FourierDecayAlt.P.module_form_pos_compact_support
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.LiftLocalPositiveCompactSupport =====
@@ -504,10 +504,6 @@ theorem thrPos : ThresholdsPositive := by
 end
 
 end Formalism.FourierDecayAlt.P.PBASM
-
-namespace Formalism.FourierDecayAlt.P
-
-end Formalism.FourierDecayAlt.P
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.ThresholdsPositive =====
@@ -938,8 +934,8 @@ theorem Formalism.FourierDecayAlt.P.wave_local_compact_support_route : Formalism
       rw [Nat.add_sub_cancel, mix_push]
 
 theorem Formalism.FourierDecayAlt.P.wave_local_positive_compact_support : Formalism.FourierDecayAlt.P.PBL.WaveLocBPCpt := fun hA hPSC =>
-  Formalism.FourierDecayAlt.P.wave_local_compact_support_route hA hPSC Formalism.FourierDecayAlt.P.degree_of_plane_wave Formalism.FourierDecayAlt.P.size_standard_compact
-    Formalism.FourierDecayAlt.P.vector_isomorphism_compact_support Formalism.FourierDecayAlt.P.module_form_pos_compact_support
+  Formalism.FourierDecayAlt.P.wave_local_compact_support_route hA hPSC Formalism.FourierDecayAlt.P.degree_of_plane_wave Formalism.FourierDecayAlt.P.PBF.pb_sizeStdCpt_main
+    Formalism.FourierDecayAlt.P.PBFV.vIsoCpt_main Formalism.FourierDecayAlt.P.module_form_pos_compact_support
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.WaveLocalPositiveCompactSupport =====
@@ -991,14 +987,10 @@ theorem builtBounds2CptOfLeaves : BuiltBounds2CptOfLeaves := by
   have hPSC : P5.ThmPActualCpt → StandardPairingDecay.PStdC := fun hA => StandardPairingDecay.pStdC_of hA hRH hHT
   have hI : P5.ThmPActualCpt → IntB := fun hA => _root_.Formalism.FourierDecayAlt.P.PBASM.intBOfParts (hPSC hA) (hD hA)
   exact builtBounds2CptOfParts (waveLocB_of_cpt hPSC) (liftLocB_of_cpt hDL) hTL (fun _ => hDT)
-    (fun _ => vector_valued_types) (fun _ => hTR) (fun hA => germLocB_of (hI hA) hGP) positivity_bound hI hD
+    (fun _ => Formalism.FourierDecayAlt.P.Topx1.vecw_main) (fun _ => hTR) (fun hA => germLocB_of (hI hA) hGP) positivity_bound hI hD
     (fun _ => thrPos)
 
 end Formalism.FourierDecayAlt.P.PBASM
-
-namespace Formalism.FourierDecayAlt.P
-
-end Formalism.FourierDecayAlt.P
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Formalism.HermitianCurvature.HermitianCurvatureProofs.BuiltBoundsCompactOfLeaves =====

@@ -3,7 +3,8 @@ module
 public import Formalism.LocalToGlobal.TorsionIntegrality.UniformGaussModels.GoodModelAll
 public import Formalism.LocalToGlobal.TorsionIntegrality.GaussSumParity.KummerThetaLogarithms.SecondLogDerivativeUnique
 public import Formalism.LocalToGlobal.TorsionIntegrality.RamifiedCurveKernels.FinalA
-public import Formalism.LocalToGlobal.TorsionIntegrality.RamifiedCurveKernels.FinalD
+public import Formalism.LocalToGlobal.TorsionIntegrality.RamifiedCurveKernels.StatementV
+public import Formalism.LocalToGlobal.TorsionIntegrality.RamifiedCurveKernels.PairedSquareJets.CurveJetsUnramifiedHolds
 public import Formalism.LocalToGlobal.TorsionIntegrality.TorsionTranslationPowers.AnalyticTransOfAdd
 public import Formalism.LocalToGlobal.TorsionIntegrality.TorsionTranslationPowers.NonsingularJetNorms.CmIntegralityOfTorsionPoints
 import Formalism.LocalToGlobal.TorsionIntegrality.WeierstrassTwoTorsion.CubeThreeR
@@ -216,7 +217,7 @@ theorem JetsCM_of (hD : CMDatum) : JetsCM := by
     have h1 := congrArg norm (OrthogonalGaussModelNormLemmas.diff_sq ι dK m)
     rw [norm_pow, norm_neg, Formalism.L2.Th1.E.ScaledModelNorms.norm_nat p hpd] at h1
     exact (pow_eq_one_iff_of_nonneg (norm_nonneg _) two_ne_zero).1 h1
-  exact Formalism.L2.Th1.G.curveJetsUnramThm ℂ_[p] (curveL p L ι) (OrthogonalGaussModelNormLemmas.coeffIn hW)
+  exact Formalism.L2.Th1.G.curve_jets_unramified_holds ℂ_[p] (curveL p L ι) (OrthogonalGaussModelNormLemmas.coeffIn hW)
     (OrthogonalGaussModelNormLemmas.norm_two p hp2) (ι (Formalism.L2.Th1.F.s2 L)) _ _ (2 * m + 1) S neg xP yP hE hx hy hprod
     (OrthogonalGaussModelNormLemmas.norm_al ι hmod m hN) (OrthogonalGaussModelNormLemmas.sum_bar ι dK m) hdiff (by rw [hb2]; simp) hs
 

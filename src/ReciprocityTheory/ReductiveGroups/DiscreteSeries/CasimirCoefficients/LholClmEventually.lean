@@ -86,11 +86,6 @@ theorem hasFDerivAt_integral_K [CompactSpace (KG ε)] {E : Type*} [NormedAddComm
     (integrable_const C)
     (Filter.Eventually.of_forall fun k x hx => hd x (hin x hx) k)
 
-theorem integrable_K [CompactSpace (KG ε)] {E : Type*} [NormedAddCommGroup E]
-    {f : KG ε → E} (hf : Continuous f) : Integrable f (muK ε) := by
-  have : IsFiniteMeasureOnCompacts (muK ε) := by unfold muK; infer_instance
-  exact integrableOn_univ.mp (hf.continuousOn.integrableOn_compact isCompact_univ)
-
 theorem contDiff_lead' (i : ℕ) {m : ℕ∞ω} : ContDiff ℂ m (fun z : 𝕄 => lead i z) := by
   by_cases h : i ≤ n
   · have e : (fun z : 𝕄 => lead i z) = fun z =>
@@ -257,7 +252,7 @@ theorem lhol_lhol_psM (X Y : Matrix (Fin n) (Fin n) ℂ) {z : Matrix (Fin n) (Fi
   rw [show Lhol X (Lhol Y (psM T μ)) z =
       fderiv ℂ (fun x : 𝕄 => Lhol Y (psM T μ) x) z (Matrix.of.symm (X * z)) from rfl,
     (hasFDerivAt_lhol T μ hU hΩ hfd Y hz).fderiv, _root_.smul_apply,
-    ContinuousLinearMap.integral_apply (integrable_K (continuous_FY' T μ hU hΩ hfd Y hz))]
+    ContinuousLinearMap.integral_apply (ReciprocityTheory.ChartRestriction.DS.S7.InfKA.integrable_of_cont (continuous_FY' T μ hU hΩ hfd Y hz))]
 
 end Lhol
 
@@ -379,7 +374,7 @@ theorem casL_psM (T : KType ε Λ) (μ : Fin n → ℤ) (lam : Fin n → ℝ) (h
   refine ⟨U, hUo, hpos, hdiff, fun X => CasPsB.differentiableOn_lhol T μ hUo hΩ hfd X, fun z hz => ?_⟩
   have hint : ∀ a b : Fin n, Integrable (fun k =>
       CasPsB.FY' T μ (Matrix.single b a 1) z k (Matrix.of.symm (Matrix.single a b 1 * z))) (muK ε) := fun a b =>
-    (CasPsB.integrable_K (CasPsB.continuous_FY' T μ hUo hΩ hfd _ hz)).apply_continuousLinearMap _
+    (ReciprocityTheory.ChartRestriction.DS.S7.InfKA.integrable_of_cont (CasPsB.continuous_FY' T μ hUo hΩ hfd _ hz)).apply_continuousLinearMap _
   calc casL (psM T μ) z
       = ∑ a, ∑ b, ((Module.finrank ℂ T.V : ℂ) / ((muK ε Set.univ).toReal : ℂ)) •
           ∫ k, CasPsB.FY' T μ (Matrix.single b a 1) z k (Matrix.of.symm (Matrix.single a b 1 * z)) ∂(muK ε) :=

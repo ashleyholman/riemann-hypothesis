@@ -17,9 +17,6 @@ open NumberField IsLocalRing
 
 namespace ValuationResidueLemmas
 
-theorem wt_add_eq_zero {a b : WithTop ℤ} (ha : 0 ≤ a) (hb : 0 ≤ b) (h : a + b = 0) : a = 0 := by
-  apply ReciprocityTheory.ChartRestriction.G.T0.HNm.wt_add_eq_zero <;> assumption
-
 theorem wt_pos {a b : WithTop ℤ} (ha : 0 ≤ a) (hb : 0 < b) : 0 < a + b := by
   calc (0 : WithTop ℤ) < b := hb
     _ = 0 + b := (zero_add b).symm

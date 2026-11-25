@@ -93,7 +93,7 @@ theorem subMeanLoc_of (hLU : LUStatement (E := E)) : SubMeanLocStatement (E := E
   obtain ⟨hΔx, hzx, hbx⟩ := hinv 0 hx0 (idF X) (idF_mem X)
   rw [rmul_idF, cpt_zero] at hΔx hzx hbx
   have hOo : IsOpen {y | y ∈ X.dom ∧ Δ y ≠ 0} :=
-    (isOpenDom X).inter (isOpen_ne_fun hΔ.continuous continuous_const)
+    (ReciprocityTheory.ChartRestriction.G.FD.FourierCoefficientDomain.isOpen_dom X).inter (isOpen_ne_fun hΔ.continuous continuous_const)
   have hxO : x ∈ {y | y ∈ X.dom ∧ Δ y ≠ 0} := ⟨hx, hΔx⟩
   have hzc : ContinuousAt zOf x := hz.continuousOn.continuousAt (hOo.mem_nhds hxO)
   have hbc : ContinuousAt (fun y => bchar la (bOf y)) x := by

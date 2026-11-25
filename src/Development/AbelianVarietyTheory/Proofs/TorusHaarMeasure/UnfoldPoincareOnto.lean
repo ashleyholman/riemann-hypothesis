@@ -1105,7 +1105,7 @@ theorem unfold_poincare_onto :
       (GlobalTheory.PoinHol.poin_summable_isBddSec GlobalTheory.differentiableOn_tsum_of_norm_le hN)
       (GlobalTheory.poincare_sqIntegrable_fundSet hUnf)
   exact ⟨hUnf, hKa, hPair, hPoin,
-    onto_of hPoin hExt RhGradFStatement_holds exhaustG_holds hKa hPair bigCellStatement_holds
+    onto_of hPoin hExt ReciprocityTheory.ChartRestriction.G.AR.Up.RGF.rhGradF_holds exhaustG_holds hKa hPair bigCellStatement_holds
       OmFConnStatement_holds⟩
 
 end GlobalTheory.PoincareClosed

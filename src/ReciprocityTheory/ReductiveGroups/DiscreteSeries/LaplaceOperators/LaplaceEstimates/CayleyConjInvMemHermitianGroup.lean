@@ -75,7 +75,7 @@ theorem finB_inv_eq {k r : ℕ} {ε : Fin (2 * r + k + 1) → Bool} {g : Mat k r
   apply Matrix.inv_eq_left_inv
   calc Formalism.REAL.Jm ε * gᴴ * Formalism.REAL.Jm ε * g = Formalism.REAL.Jm ε * (gᴴ * Formalism.REAL.Jm ε * g) := by
         simp only [Matrix.mul_assoc]
-    _ = 1 := by rw [h, signature_matrix_sq]
+    _ = 1 := by rw [h, Formalism.REAL.Jm_mul_self]
 
 theorem finB_mul_inv {k r : ℕ} {ε : Fin (2 * r + k + 1) → Bool} {g : Mat k r} (hg : g ∈ UJset ε) :
     g * g⁻¹ = 1 := by
@@ -84,12 +84,12 @@ theorem finB_mul_inv {k r : ℕ} {ε : Fin (2 * r + k + 1) → Bool} {g : Mat k 
     rw [finB_inv_eq hg]
     calc Formalism.REAL.Jm ε * gᴴ * Formalism.REAL.Jm ε * g = Formalism.REAL.Jm ε * (gᴴ * Formalism.REAL.Jm ε * g) := by
           simp only [Matrix.mul_assoc]
-      _ = 1 := by rw [h, signature_matrix_sq]
+      _ = 1 := by rw [h, Formalism.REAL.Jm_mul_self]
   exact mul_eq_one_comm.mp h1
 
 theorem finB_frob_inv {k r : ℕ} {ε : Fin (2 * r + k + 1) → Bool} {g : Mat k r} (hg : g ∈ UJset ε) :
     frob g⁻¹ = frob g := by
-  have hJ : (Formalism.REAL.Jm ε)ᴴ * Formalism.REAL.Jm ε = 1 := by rw [_root_.Formalism.REAL.Jm_conjTranspose, signature_matrix_sq]
+  have hJ : (Formalism.REAL.Jm ε)ᴴ * Formalism.REAL.Jm ε = 1 := by rw [_root_.Formalism.REAL.Jm_conjTranspose, Formalism.REAL.Jm_mul_self]
   rw [finB_frob_eq, finB_frob_eq, finB_inv_eq hg, S0.DecA.gN_right _ hJ, S0.DecA.gN_left _ hJ, S0.DecA.gN_conjT]
 
 theorem finB_frob_mul_le {k r : ℕ} (a b : Mat k r) : frob (a * b) ≤ frob a * frob b := by

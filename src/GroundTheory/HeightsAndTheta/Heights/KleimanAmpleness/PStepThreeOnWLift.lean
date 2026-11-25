@@ -30,12 +30,6 @@ section Forms
 
 variable {k : Type u} [Field k] {Ω : Type w} [Field Ω] [Algebra k Ω] {N : ℕ} {x : Fin (N + 1) → Ω}
 
-theorem homogeneousComponent_mul_of_isHomogeneous {σ R : Type*} [CommRing R] {P : MvPolynomial σ R}
-    {l : ℕ} (hP : P.IsHomogeneous l) (G : MvPolynomial σ R) (d : ℕ) :
-    homogeneousComponent d (P * G) =
-      if l ≤ d then P * homogeneousComponent (d - l) G else 0 := by
-  apply GroundTheory.Heights₂.Heights.Kleiman.StepThree.Away.homogeneousComponent_homog_mul <;> assumption
-
 theorem exists_finset_forms (P : Ideal (Poly k N)) :
     ∃ T : Finset (Poly k N), (∀ h ∈ T, h ∈ P ∧ ∃ e : ℕ, h.IsHomogeneous e) ∧
       ∀ f ∈ P, ∀ e : ℕ, f.IsHomogeneous e → f ∈ Ideal.span (T : Set (Poly k N)) := by
@@ -97,7 +91,7 @@ def idealGraded (P : Ideal (Poly k N)) : FinGradedSub (S := k) (x := x) Ω where
 
     rw [SetLike.mem_coe, hfe, map_sum]
     refine Submodule.sum_mem _ fun h _ => ?_
-    rw [homogeneousComponent_mul_of_isHomogeneous (hdg h.1 h.2)]
+    rw [GroundTheory.Heights₂.Heights.Kleiman.StepThree.Away.homogeneousComponent_homog_mul (hdg h.1 h.2)]
     split_ifs with hle
     · refine Submodule.subset_span ⟨T.equivFin h, homogeneousComponent (e - dg h.1) (a h), e - dg h.1,
         homogeneousComponent_isHomogeneous _ _, ?_, ?_⟩

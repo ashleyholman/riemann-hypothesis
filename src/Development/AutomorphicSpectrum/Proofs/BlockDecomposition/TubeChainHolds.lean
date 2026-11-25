@@ -423,7 +423,7 @@ theorem inv_differentiable_line : ∀ (X : Type) [NormedAddCommGroup X] [NormedS
   have hFn : ∀ τ ∈ Metric.ball τ₀ (ε / (‖v.1‖ + ‖v.2‖ + 1)), ∀ t : ℝ × ℝ,
       ‖Complex.exp (dot (p + τ • v) t) • φ t g‖ ≤ |M| * Real.exp (-ε * (|t.1| + |t.2|)) := by
     intro τ hτ t
-    rw [norm_smul, norm_cexp_dot]
+    rw [norm_smul, GlobalTheory.CompanionTheory.TubeFourier.norm_cexp_dot]
     have h1 := key τ hτ t
     have h2 := Real.exp_pos (rdot ((p + τ • v).1.re, (p + τ • v).2.re) t)
     calc _ ≤ Real.exp (rdot ((p + τ • v).1.re, (p + τ • v).2.re) t) *
