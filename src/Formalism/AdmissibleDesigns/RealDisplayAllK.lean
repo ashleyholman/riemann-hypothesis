@@ -29,7 +29,6 @@ open Formalism.ConjugateSelfDual (IsPlaceOver)
 open ReciprocityTheory.Gal (H1 Ine)
 open ReciprocityTheory.ChartRestriction.T2 (PadicCoeff FracTop IsFGTop cupFG)
 
-
 set_option maxHeartbeats 2000000 in
 set_option synthInstance.maxHeartbeats 400000 in
 def RealDisplayAllK (ℓ : ℕ) [Fact ℓ.Prime] (O : Type) [CommRing O] [IsDomain O] [IsDiscreteValuationRing O]

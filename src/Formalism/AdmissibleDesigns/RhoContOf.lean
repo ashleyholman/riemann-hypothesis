@@ -2,15 +2,13 @@ module
 
 public import Formalism.AdmissibleDesigns.IsDROfWpIso
 public import Formalism.AdmissibleDesigns.KernelLengthHigherColumns
-public import Formalism.AdmissibleDesigns.FgTopContinuousLinearMap
+public import Formalism.AdmissibleDesigns.PiEquiv2
 
 @[expose] public section
 
 variable [hT2Core : Fact ReciprocityTheory.ChartRestriction.T2.Core] [hH0Fin : Fact Formalism.MainNotions.N.K.H0.FinCore]
 
 noncomputable section
-
-
 
 open Classical
 

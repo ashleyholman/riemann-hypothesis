@@ -285,17 +285,14 @@ theorem fZ_pos (hn : K.plOf i dc n ∈ placesOver D.host.E (D.nd.l i)) :
     fZ i dc n ρ = finZ (eK (D.nbr i _ hn)) (Br.PD D.loc D.nbr i _ hn) ρ (Br.iota D.nbr i _ hn) :=
   dite_eq_left hn
 
-
 variable (n) in
 def fPre (φ : M →ₗ[D.nd.O i] V) : Submodule (D.nd.O i) (↥(Γn i dc n) → M) :=
   ((fZ i dc n ρ).restrictScalars (D.nd.O i)).comap (LinearMap.compLeft φ _)
-
 
 variable (n) in
 def finiteClassesCocyclesMap (ρM : Representation (D.nd.O i) ↥(Γn i dc n) M) (φ : M →ₗ[D.nd.O i] V) :
     Submodule (D.nd.O i) (Formalism.NG.H1z ρM) :=
   ((fPre i dc n ρ φ).comap (Formalism.NG.coZ1s ρM).subtype).map (Submodule.mkQ _)
-
 
 variable (n) in
 def finiteClassesContinuousMap [TopologicalSpace M] [IsTopologicalAddGroup M] [ContinuousConstSMul (D.nd.O i) M]

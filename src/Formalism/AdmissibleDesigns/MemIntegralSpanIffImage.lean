@@ -54,7 +54,6 @@ def grepV (ρ : Representation O Γ V) (ι : G →* Γ) (hc : ∀ v : TrV e V, C
 
 variable {OL} (σ : O ≃+* OL) (hσ : ∀ c : O, algebraMap OL LL (σ c) = e (algebraMap O (FractionRing O) c))
 
-
 include hσ in
 theorem smul_OL (c : O) (v : V) :
     @HSMul.hSMul OL (TrV e V) (TrV e V) (@instHSMul _ _ (modOL (V := V) e OL).toSMul) (σ c) (show TrV e V from v) =
@@ -229,7 +228,6 @@ def transportToH1Lattice :
       show iL (c • ((p : coZ1s ρL) : Γ → L) (ι g)) = e.symm (algebraMap OL LL (σ c)) • iL (((p : coZ1s ρL) : Γ → L) (ι g))
       rw [hσ, RingEquiv.symm_apply_apply, algebraMap_smul, map_smul] }
 
-
 include hσ hb hiL in
 theorem finite_FfG (hι : Function.Surjective ι) (hinj : Function.Injective iL)
     (hfin : Module.Finite OL (LatticeCohomology (latV e σ hσ bV bL iL hb (Qp := Qp) ρ ι hc ρL hiL))) :
@@ -357,7 +355,6 @@ theorem finite_H1V (LA : Lattice (O := OL) A.ρ) (hopen : IsOpen (LA.T : Set A.V
   have ha' : algebraMap OL LL a ≠ 0 := fun h0 => ha (hinj (h0.trans (map_zero _).symm))
   have := Submodule.smul_mem _ (algebraMap OL LL a)⁻¹ hmem
   rwa [smul_smul, inv_mul_cancel₀ ha', one_smul] at this
-
 
 omit [CompactSpace G] in
 theorem finDim_H1fV {K₀ Kk B BdR : Type} [Field K₀] [Field Kk]
@@ -695,7 +692,6 @@ theorem coord_iL (m : L) (j : n) : bV.equivFun (iL m) j = algebraMap O (Fraction
     rw [map_smul, hb, algebraMap_smul]
   rw [h, LinearEquiv.apply_symm_apply]
 
-
 include hσ hb in
 theorem mem_integral_span_iff_image (x : TrV e V) :
     x ∈ T0 (grepV e OL (Qp := Qp) ρ ι hc) (bA e (OL := OL) (Qp := Qp) bV ρ ι hc) ↔ ∃ m : L, tr e (iL m) = x := by
@@ -721,7 +717,6 @@ theorem mem_integral_span_iff_image (x : TrV e V) :
 
 variable [IsTopologicalRing LL] [IsFractionRing OL LL]
 
-
 include hb in
 theorem div_L (v : V) : ∃ s : O, s ≠ 0 ∧ ∃ m : L, iL m = s • v := by
   obtain ⟨s, hs⟩ := IsLocalization.exist_integer_multiples (nonZeroDivisors O) Finset.univ
@@ -735,7 +730,6 @@ theorem div_L (v : V) : ∃ s : O, s ≠ 0 ∧ ∃ m : L, iL m = s • v := by
   rw [map_smul, hb, ← algebraMap_smul (FractionRing O) (c j), hc j, smul_assoc]
 
 variable [CompactSpace G]
-
 
 include hσ hb hc hiL in
 theorem bound_fin (hι : Function.Surjective ι) (hO : IsOpen (Set.range (algebraMap OL LL))) (c : ↥(finZ e PD ρ ι)) :
@@ -778,7 +772,6 @@ variable {O : Type} [CommRing O] [IsDomain O] {LL : Type} [Field LL] [Topologica
   (ρ : Representation O Γ V) (ι : G →* Γ) (hc : ∀ v : TrV e V, Continuous fun g => repL e ρ ι g v)
   (ρL : Representation O Γ L) (hiL : ∀ γ m, iL (ρL γ m) = ρ γ (iL m))
   [IsTopologicalRing LL] [IsFractionRing OL LL] [CompactSpace G]
-
 
 include hσ hb hc in
 theorem thet_loc (hι : Function.Bijective ι) (hO : IsOpen (Set.range (algebraMap OL LL)))
@@ -847,7 +840,6 @@ theorem thet_loc (hι : Function.Bijective ι) (hO : IsOpen (Set.range (algebraM
     congr 1
     exact congrFun hv γ
 
-
 include hσ hb hc hiL in
 theorem finrank_Ff (hι : Function.Bijective ι) (hO : IsOpen (Set.range (algebraMap OL LL)))
     (hinj : Function.Injective iL) :
@@ -864,7 +856,6 @@ theorem finrank_Ff (hι : Function.Bijective ι) (hO : IsOpen (Set.range (algebr
     unfold Module.finrank
     rw [KDim.rank_finQuot (e := e) (PD := PD) (ρ := ρ) (hι := hι)]
   rw [h1, ← h2, ← h3, h4]
-
 
 include hσ hb hc hiL in
 theorem finrank_Ff' (hι : Function.Bijective ι) (hO : IsOpen (Set.range (algebraMap OL LL)))
@@ -958,7 +949,6 @@ def DimV (l : K.Col i dc) : Prop :=
     Module.finrank (Br.LL D.nbr i _ (KDim.col_over i dc l))
       (FiniteCohomology (Br.PD D.loc D.nbr i _ (KDim.col_over i dc l))
         (KDim.repW i dc ρ π (K.colIdx i dc l) (KDim.col_over i dc l)))
-
 
 set_option maxHeartbeats 1000000 in
 theorem rankFf_of (hO : Formalism.MainNotions.N.LitGoodO) (l : K.Col i dc) (hOrb : KHf.OrbC i dc (KFin.ρV i dc Dd l))

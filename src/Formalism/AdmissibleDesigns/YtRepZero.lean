@@ -10,22 +10,13 @@ import Mathlib.RingTheory.Etale.Weakly
 import Mathlib.RingTheory.HopfAlgebra.Basic
 import Mathlib.RingTheory.TotallySplit
 
--- This file was produced by scripts/clump.py from the modules listed below.
--- Members: Formalism.AdmissibleDesigns.ContOfInjY, Formalism.AdmissibleDesigns.YtRepZero
-
--- ===== clump member: Formalism.AdmissibleDesigns.ContOfInjY =====
--- clump-header: {"m": "Formalism.AdmissibleDesigns.ContOfInjY", "h": "module\n\npublic import Formalism.AdmissibleDesigns.FiniteClassesContinuousLattice\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.HaveILetI\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\nimport Formalism.AdmissibleDesigns.TrCMemZ1D\n\n"}
-section -- clump:auto
 @[expose] public section
 
-variable [hT2Core : Fact ReciprocityTheory.ChartRestriction.T2.Core]
-
 noncomputable section
-
+variable [hT2Core : Fact ReciprocityTheory.ChartRestriction.T2.Core]
 open Classical
 
 namespace Formalism.MainNotions.N.K.TBa
-
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Module Formalism.WeaklyAdmissibleFiltrations Formalism.NG Formalism.RepresentationBoundsCohomology.BR
 open Formalism.MainNotions Formalism.MainNotions.N Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.MainNotions.N.K.TB Formalism.MainNotions.N.KHf
 
@@ -71,7 +62,6 @@ theorem smul_OwY (heO : ∀ a : O, algebraMap Ow LL (eO a) = e (algebraMap O (Fr
   rw [heO, RingEquiv.symm_apply_apply, algebraMap_smul]
 
 variable {M : Type} [AddCommGroup M] [Module O M]
-
 
 variable (e eO) in
 def latTY (heO : ∀ a : O, algebraMap Ow LL (eO a) = e (algebraMap O (FractionRing O) a)) :
@@ -178,7 +168,6 @@ variable {O : Type} [CommRing O] [IsDomain O] {LL : Type} [Field LL] [Topologica
   {Γ G : Type} [Group Γ] [Group G] (ι : G →* Γ)
   {N : Type} [AddCommGroup N] [Module O N]
 
-
 variable (e) in
 def eLin : TrV e (FractionRing O) →ₗ[LL] LL where
   toFun x := e (show FractionRing O from x)
@@ -186,7 +175,6 @@ def eLin : TrV e (FractionRing O) →ₗ[LL] LL where
   map_smul' c x := by
     show e (e.symm c * (show FractionRing O from x)) = c * e (show FractionRing O from x)
     rw [map_mul, RingEquiv.apply_symm_apply]
-
 
 variable (e N) in
 def pY : TrV e (MK (O := O) (N × O)) →ₗ[LL] LL :=
@@ -221,7 +209,6 @@ theorem pY_zero (m : N × O) (h : pY e N (trY e (mkK (O := O) m)) = 0) : m.2 = 0
     rwa [map_eq_zero_iff e e.injective] at h
   exact (IsFractionRing.injective O (FractionRing O)) (h1.trans (map_zero _).symm)
 
-
 include heO in
 theorem div_quot {V : Type} [AddCommGroup V] [Module LL V] [Module Ow V] [IsScalarTower Ow LL V]
     (T : Submodule Ow V) (a : O) (ha : a ≠ 0) (y : V ⧸ T) : ∃ q : V ⧸ T, eO a • q = y := by
@@ -241,7 +228,6 @@ theorem nzsd_prod [NoZeroSMulDivisors O N] : NoZeroSMulDivisors O (N × O) :=
       have h1 : c • x.1 = 0 := congrArg Prod.fst h
       have h2 : c * x.2 = 0 := congrArg Prod.snd h
       exact Prod.ext ((smul_eq_zero.1 h1).resolve_left hc) ((mul_eq_zero.1 h2).resolve_left hc)⟩
-
 
 include heO in
 theorem ext_of_baer [IsPrincipalIdealRing O] [NoZeroSMulDivisors O N] {Q : Type} [AddCommGroup Q] [Module Ow Q]
@@ -265,32 +251,12 @@ theorem ext_of_baer [IsPrincipalIdealRing O] [NoZeroSMulDivisors O N] {Q : Type}
   rw [RingEquiv.apply_symm_apply]
 
 end Gen2
-
 end Formalism.MainNotions.N.K.TBa
 
-end
-end -- clump:auto
-end -- clump:auto
--- ===== end clump member: Formalism.AdmissibleDesigns.ContOfInjY =====
-
--- ===== clump member: Formalism.AdmissibleDesigns.YtRepZero =====
--- clump-header: {"m": "Formalism.AdmissibleDesigns.YtRepZero", "h": "module\n\npublic import Formalism.AdmissibleDesigns.ContOfInjY\npublic import Formalism.AdmissibleDesigns.TrCMemZ1D\npublic import Formalism.WachLatticeTwists.CoprimeLiftBounds.FirstSummandRepresentation\npublic import Formalism.AdmissibleDesigns.TensSubsingleton\nimport Mathlib.Algebra.Module.Torsion.Prod\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Coalgebra.IsFrobenius\nimport Mathlib.RingTheory.Etale.Weakly\nimport Mathlib.RingTheory.HopfAlgebra.Basic\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.TotallySplit\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.HaveILetI\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Topology.Sheaves.Init\n\n"}
-section -- clump:auto
-@[expose] public section
-
-variable [hT2Core : Fact ReciprocityTheory.ChartRestriction.T2.Core]
-
-noncomputable section
-
-open Classical
-
 namespace Formalism.MainNotions.N.K.TBa
-
 open NumberField IsDedekindDomain Formalism.ConjugateSelfDual ReciprocityTheory.Gal Module Formalism.WeaklyAdmissibleFiltrations Formalism.NG Formalism.RepresentationBoundsCohomology.BR
 open Formalism.MainNotions Formalism.MainNotions.N Formalism.BasicNotions Formalism.BasicNotions.Loc Formalism.MainNotions.N.K.TB Formalism.MainNotions.N.KHf
-
 section Mk
-
 variable {O : Type} [CommRing O] [IsDomain O] {LL : Type} [Field LL] [TopologicalSpace LL] [IsTopologicalRing LL]
   {e : FractionRing O ≃+* LL} {Ow : Type} [CommRing Ow] [Algebra Ow LL] {eO : O ≃+* Ow}
   (heO : ∀ a : O, algebraMap Ow LL (eO a) = e (algebraMap O (FractionRing O) a))
@@ -368,7 +334,6 @@ variable {G : Type} [Group G] [TopologicalSpace G] {Qp K₀ K : Type} [Field Qp]
 abbrev ytVG : Representation LL G (TrV e (MK (O := O) (↥(Ymod r χ E) × O))) :=
   repL e (locRep (resRep (ytRep O r χ E) Dw)) eG.symm.toMonoidHom
 
-
 variable (Qp) in
 def ytG [Module.Finite O A] [NoZeroSMulDivisors O A] (hfd : FiniteDimensional LL (TrV e (MK (O := O) (↥(Ymod r χ E) × O))))
     (hcont : ∀ x, Continuous fun g => ytVG (e := e) r χ E Dw eG g x) : YtLat (G := G) (Qp := Qp) LL Ow :=
@@ -431,10 +396,6 @@ theorem ytG_crys [Module.Finite O A] [NoZeroSMulDivisors O A] (hfd : FiniteDimen
   exact crys_of_inj PD Ms hF hMc hMs Ag xs φ hφ heq
 
 end GenT
-
 end Formalism.MainNotions.N.K.TBa
 
 end
-end -- clump:auto
-end -- clump:auto
--- ===== end clump member: Formalism.AdmissibleDesigns.YtRepZero =====

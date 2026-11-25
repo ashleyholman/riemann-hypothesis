@@ -106,8 +106,6 @@ theorem msW_eq {w : HeightOneSpectrum (𝓞 D.host.E)} (hw : w ∈ placesOver D.
 
 variable (ρ : D.nd.X i → (GE D.nd →* GL (Fin D.R.r) (D.nd.O i)))
 
-
-
 theorem ytPsi_rec (hfin : Module.Finite (D.nd.O i) Dd.R') {w : HeightOneSpectrum (𝓞 D.host.E)}
     {hw : w ∈ placesOver D.host.E (D.nd.l i)} (hemb : YtEmbW i dc r Dd hw) (hc : MsContW i r hw)
     [∀ k, SMulCommClass Dd.R' (D.nd.O i) (blockRestrictedRepresentationType (Formalism.MainNotions.N.RepresentationBoundsCohomology.blk D.R) Dd.ρk k)] (c : Fin (D.R.t + 1))

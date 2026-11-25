@@ -1,7 +1,7 @@
 module
 
 public import Formalism.AdmissibleDesigns.CoboundaryMemFiniteClasses
-public import Formalism.AdmissibleDesigns.LenComapSurj
+public import Formalism.AdmissibleDesigns.LiftMapEquivariant
 
 @[expose] public section
 
