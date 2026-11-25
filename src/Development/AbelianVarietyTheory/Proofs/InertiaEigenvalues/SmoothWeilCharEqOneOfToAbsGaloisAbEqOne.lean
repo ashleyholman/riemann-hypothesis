@@ -103,7 +103,7 @@ theorem mem_of_toAb_eq_one (h : IsPlaceOver A w) (H : Subgroup (Weil h)) (hfin :
   set L := IntermediateField.adjoin Kw (Set.range fun x : K => ι (algebraMap K Ω x)) with hL
 
   have hHN : H ≤ (normGroup Kw L).comap a := fun s hs => by
-    obtain ⟨τ, hτ⟩ := GlobalTheory.T.exists_weil_of_fixes' E K Ω A w W h h' s ((hHK s).1 hs)
+    obtain ⟨τ, hτ⟩ := _root_.GlobalTheory.WeilSurj.exists_weil_of_fixes E K Ω A w W h h' s ((hHK s).1 hs)
     obtain ⟨y, hy⟩ := h1 τ
     rw [Subgroup.mem_comap, hN]
     exact ⟨y, art_inj hart ((key y τ s hτ hy).trans (ha s).symm)⟩

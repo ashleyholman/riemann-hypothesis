@@ -504,7 +504,7 @@ theorem GlobalTheory.TripleAssembly.theta_triple_maps_lie_equivariant : GlobalTh
     have hA := k.choose_spec.1
     have hB := k.choose_spec.2
     have hst : ∀ Φ ∈ algF ψ θ true A B, ∃ Φ' ∈ algF ψ θ true A B, IsDer θ X (fun g => ωA (1, g)) τ Y Φ Φ' :=
-      (GlobalTheory.T.fockAlgebraicThetaVectors_stable_finiteAdeles_lie D ψ θ hψ hθ true W X A B β (β / α) ωA hWA).2.2 τ Y hY
+      (_root_.GlobalTheory.AlgStable.algF_isStable D ψ θ hψ hθ true W X A B β (β / α) ωA hWA).2.2 τ Y hY
     have hon : (algF ψ θ true A B).map (GlobalTheory.TripleAssembly.mapA ψ e Bs Γ R Rf) = ⊤ := (_root_.GlobalTheory.TripleAssembly.Onto.tripleProductAlgebra_weilRep_range_eq_top hHD hPr D ψ θ hψ hθ W W₁ X A A₁ B α β hT ωA ωB hWA hWB e Bs Γ Xc om om' h hTA hTB R Rf hM).1
     have hEq : (H τ Y hY).choose = k.choose := by
       apply LinearMap.ext

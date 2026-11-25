@@ -1390,7 +1390,7 @@ theorem eig_eq_satU_alt : GlobalTheory.Published.AutomorphicFormsFiniteGL → �
       iSup_eq_bot.2 fun P' => iSup_eq_bot.2 fun hP' => absurd ⟨P', hP'⟩ hne
     rw [this] at hf
     exact (Submodule.mem_bot ℂ).1 hf
-  obtain ⟨v₀, Dv₀, hov₀⟩ := GlobalTheory.T.exists_inertLocalDatum_at_inertPlace D hA.hF w hin
+  obtain ⟨v₀, Dv₀, hov₀⟩ := _root_.GlobalTheory.InertDatumAtInert.main D hA.hF w hin
   obtain ⟨α₀, -, hα₀⟩ := _root_.GlobalTheory.EigInert.exists_satAt_of_nonsplit_over hL D P i P₀ v₀ w hov₀ hns Dv₀
   refine ⟨P₀, hP₀, ?_⟩
   rw [hn]

@@ -369,7 +369,7 @@ section -- clump:auto
 open CrystallineSemistableComparison.PAlg
 
 theorem CrystallineSemistableComparison.R.forD (l : ℕ) [Fact l.Prime] : CrystallineSemistableComparison.D.RIn l :=
-  ⟨RL.d_ob l, _root_.GlobalTheory.CompanionTheory.ACrisMod.acr1 l, _root_.GlobalTheory.CompanionTheory.LSeq.racrSeq l, fun A => ⟨(RL.u_tf A).1, fun x => by
+  ⟨RL.d_ob l, _root_.GlobalTheory.CompanionTheory.ACrisMod.acr1 l, _root_.GlobalTheory.CompanionTheory.LSeq.racrSeq l, fun A => ⟨(_root_.GlobalTheory.CompanionTheory.UntiltRegular.untilt_regular A).1, fun x => by
     rw [← (_root_.GlobalTheory.CompanionTheory.Untilt.sharp_map_surjective_ker A).2, RingHom.mem_ker, sharpMap_coeff, Ideal.Quotient.eq_zero_iff_mem, pow_one]⟩, fun A n r => RL.gr A n r⟩
 end -- clump:auto
 end -- clump:auto

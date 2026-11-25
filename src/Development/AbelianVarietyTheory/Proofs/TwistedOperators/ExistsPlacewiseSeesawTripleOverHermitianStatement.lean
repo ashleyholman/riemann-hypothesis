@@ -564,7 +564,7 @@ theorem exists_base_chars : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (W W�
   obtain ⟨v₁, hv₁, hsp, ⟨τ₁⟩⟩ := exists_good_place D S₀
   have hemb : ∀ v : S₀, Nonempty (D.host.E →ₐ[D.host.F] Fv D.host.F v) := fun v => by
     obtain ⟨ε, hε, hns, -, -⟩ := hS v.1 v.2
-    exact GlobalTheory.T.nonempty_algHom_completion_of_split_place D v.1 ε hε hns
+    exact _root_.GlobalTheory.SplitPlaceEmb.nonempty_algHom_of_not_nonSplitAt D v.1 ε hε hns
   let Bs : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.Base D.host.F D.host.E :=
     { ψ := ψ, emb := fun w => ⟨(starRingEnd ℂ).comp (tauE D (τf w)), hτf w⟩, mα := mα, mβ := mβ, P := S₀,
       τ := fun v => (hemb v).some, v₁ := v₁, τ₁ := τ₁ }
@@ -737,18 +737,6 @@ open scoped TensorProduct GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorMode
 
 open GlobalTheory.SquareComm GlobalTheory.SquareAgree
 
-theorem _root_.GlobalTheory.T.exists_placewise_seesaw_triple_over_hermitian : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (θ : InfFam D), IsInfFam θ →
-    ∀ (W W₁ X : HSp D) (A : Fr W) (A₁ : Fr W₁) (B : Fr X) (α β : (AE D)ˣ →* Circle), IsTriple W W₁ X α β →
-    ∀ (ν : Measure (GA D W)) (𝓕 : Set (GA D W)) (ν₁ : Measure (GA D W₁)) (𝓕₁ : Set (GA D W₁)),
-      IsHaarFD W ν 𝓕 → IsHaarFD W₁ ν₁ 𝓕₁ →
-    ∀ (ωA : WRep W X) (ωB : WRep W₁ X), IsWeil ψ true W X β (β / α) ωA → IsWeil ψ false W₁ X α (α / β) ωB →
-    ∃ (e : Fin X.rank ≃ Fin (W.rank + W₁.rank)) (Bs : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.Base D.host.F D.host.E)
-      (Γ : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.Geo D.sp.cm.sig W.rank W₁.rank) (Xc : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.Chars D.host.F D.host.E)
-      (om : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.Rep D.sp.cm.sig Γ.V Γ.W) (om' : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.Rep D.sp.cm.sig Γ.V' Γ.W)
-      (cA : Matrix (Fin W.rank) (Fin (W.rank + W₁.rank)) (AE D) ≃+ WO W X)
-      (cB : Matrix (Fin W₁.rank) (Fin (W.rank + W₁.rank)) (AE D) ≃+ WO W₁ X),
-      IsOver ψ θ A A₁ B α β ν 𝓕 ν₁ 𝓕₁ ωA ωB e Bs Γ Xc om om' cA cB ∧ GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.IsTriple Bs Γ Xc om om' := by
-  first | exact @GlobalTheory.SquareAgree.exists_isOver
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsPlacewiseSeesawTripleOverHermitianStatement =====

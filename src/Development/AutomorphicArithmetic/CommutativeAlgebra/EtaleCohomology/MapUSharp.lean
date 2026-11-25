@@ -208,7 +208,7 @@ theorem UpperTheory.exists_orthogonalIdempotents_lift_through_sharp :
     (testFacts l A.obj A.property).2.2.2.2
   have s1 : A.obj.sharp 1 = 1 := map_one _
   have hsub : ∀ a : A.obj.A, IsIdempotentElem a → A.obj.sharp (1 - a) = 1 - A.obj.sharp a :=
-    (CrystallineSemistableComparison.RL.sharp_cong A.obj).2.2
+    (_root_.GlobalTheory.CompanionTheory.Untilt.sharp_congruences A.obj).2.2
   have s0 : A.obj.sharp 0 = 0 := by
     have := hsub 1 IsIdempotentElem.one
     simpa [s1] using this

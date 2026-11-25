@@ -1778,7 +1778,7 @@ theorem satake_parameter_of_prime_to_level_alt : _root_.GlobalTheory.HeightCount
     show TypesTrue L.ntypes f.P f.W
     rw [← e1, ← e2]
     exact hTT
-  obtain ⟨hGA, hCen⟩ := GlobalTheory.T.heckeGaloisStage_fits_of_same_centre_actions x (nOfLay x L hZ hη) hG hPlG hplGw hcA hcM
+  obtain ⟨hGA, hCen⟩ := _root_.GlobalTheory.Mem.R3.Rw.SwapN.fits_swap x (nOfLay x L hZ hη) hG hPlG hplGw hcA hcM
   obtain ⟨x', hx', hrep⟩ := GlobalTheory.T.exists_transported_state_heckeGaloisStage x (nOfLay x L hZ hη) hG hGA hCen
   obtain ⟨Pq, hPq1, hPq2⟩ := exists_pq_sel B w.I w.ok
   have hEl' := hEl P x'
@@ -1866,7 +1866,7 @@ theorem secondNo_of_sMt_sRat_sCusp_sFinl (hCo : GlobalTheory.Published.DiscreteS
   intro S
   have h3 := GlobalTheory.Mem.R3.Rw.Second.exists_ext_twisted_places hP.greenC hD
   have h4 := (GlobalTheory.T.constructionStartingChoices_of_fine_adelicData GlobalTheory.weilRepresentationUnitaryPair hds hP.hc hP.decay hH).and ((_root_.GlobalTheory.HeightCounting.Up.minimal_ktype_of_local_components_alt hP hds).and ((_root_.GlobalTheory.HeightCounting.Up.satake_parameter_of_prime_to_level_alt hP hc hL).and
-    (hMt.and (hRat.and (hCu.and ((_root_.GlobalTheory.HeightCounting.Up.multiplicity_bound_of_local_components_alt hP hS hL).and ((_root_.GlobalTheory.T.stageCExists_of_casselmanWallach hCo hCW hHM hP hS hL).and (_root_.GlobalTheory.HeightCounting.Up.sFino_of_alt hF))))))))
+    (hMt.and (hRat.and (hCu.and ((_root_.GlobalTheory.HeightCounting.Up.multiplicity_bound_of_local_components_alt hP hS hL).and ((_root_.GlobalTheory.LevCmp.stageCExists_of_harishChandra_serN hCo hCW hHM hP hS hL).and (_root_.GlobalTheory.HeightCounting.Up.sFino_of_alt hF))))))))
   refine pass_of (p := fun _ _ _ _ => True) (Step.of_all fun _ _ _ _ _ _ _ h => h) (Step.and h3 h4)
     (EvG.imp GlobalTheory.Mem.Top.ReW.extend_pinned fun K _ _ _ _ hw2 => ?_)
   intro B f T hO hKP hT _ C W V S' N G c₀ hQ hE A S₂ hS₂

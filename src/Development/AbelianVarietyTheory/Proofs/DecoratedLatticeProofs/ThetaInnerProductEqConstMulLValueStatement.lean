@@ -77,7 +77,7 @@ theorem aFormL : GlobalTheory.Published.DiscreteSeriesCover → GlobalTheory.Pub
   have hHM := GlobalTheory.HarmModule.harmonicModule_of GlobalTheory.FockDecay.harmonicDecay GlobalTheory.CartanInt.coshIntegral
   have hPM := GlobalTheory.PlaceTensor.placeModels D
   exact GlobalTheory.LiftScalarL.aForm R F
-    (GlobalTheory.T.finiteDatum_sourceLevelCharacter_law GlobalTheory.SingleBlock.localIntegralSingleBlock R F hPM)
+    (_root_.GlobalTheory.SourceLaw.sourceLevelLaw GlobalTheory.SingleBlock.localIntegralSingleBlock R F hPM)
     (GlobalTheory.T.twistedThetaLift_innerProductFormula_of_hypotheses hCusp hWS hSE R F hG.params)
     (GlobalTheory.T.fockVector_matrixCoefficient_formula hHM R F hPM)
     (GlobalTheory.T.finiteZetaIntegral_thetaLift_eq_partialLValue hCusp hBZ hUD R F)

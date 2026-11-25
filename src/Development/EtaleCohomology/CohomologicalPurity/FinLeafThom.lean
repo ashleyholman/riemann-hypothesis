@@ -78,59 +78,32 @@ theorem etale_boundary_map_of_thom_isomorphism : LateralTheory.CohomologicalPuri
     etale_boundary_exact_of_thom_isomorphism
     etale_boundary_image_of_thom_isomorphism
 
-theorem etale_thom_geometric_fibers_of_thom_isomorphism : LateralTheory.CohomologicalPurity.Thom.LeafGeo :=
-  LateralTheory.CohomologicalPurity.Thom.LeafGeo_of
-
-theorem etale_thom_group_action_of_thom_isomorphism : LateralTheory.CohomologicalPurity.Thom.LeafAct :=
-  LateralTheory.CohomologicalPurity.Thom.LeafAct_of
-
-theorem etale_thom_pullback_map_of_thom_isomorphism : LateralTheory.CohomologicalPurity.Thom.LeafPBMap :=
-  LateralTheory.CohomologicalPurity.Thom.LeafPBMap_of
-
-theorem etale_affine_bundle_equivalence_of_thom_isomorphism : LateralTheory.CohomologicalPurity.Thom.LeafAffEqv :=
-  LateralTheory.CohomologicalPurity.Thom.LeafAffEqv_of
-
 theorem etale_thom_pullback_of_thom_isomorphism : LateralTheory.CohomologicalPurity.Thom.LeafPB :=
   LateralTheory.CohomologicalPurity.Thom.LeafPB_of
-    etale_thom_geometric_fibers_of_thom_isomorphism
-    etale_thom_pullback_map_of_thom_isomorphism
-    etale_affine_bundle_equivalence_of_thom_isomorphism
+    _root_.LateralTheory.CohomologicalPurity.Thom.LeafGeo_of
+    _root_.LateralTheory.CohomologicalPurity.Thom.LeafPBMap_of
+    _root_.LateralTheory.CohomologicalPurity.Thom.LeafAffEqv_of
 
 theorem etale_affine_line_homotopy_zero_of_thom_isomorphism : LateralTheory.CohomologicalPurity.Thom.LeafHtpyZero :=
   LateralTheory.CohomologicalPurity.Thom.LeafHtpyZero_of
 
-theorem etale_affine_line_homotopy_one_of_thom_isomorphism : LateralTheory.CohomologicalPurity.Thom.LeafHtpyOne :=
-  LateralTheory.CohomologicalPurity.Thom.LeafHtpyOne_of
-
-theorem etale_free_covering_of_thom_isomorphism : LateralTheory.CohomologicalPurity.Thom.LeafFreeCov :=
-  LateralTheory.CohomologicalPurity.FreeCovPf.LeafFreeCov_of
-
 theorem etale_homotopy_mayer_vietoris_of_thom_isomorphism : LateralTheory.CohomologicalPurity.Thom.LeafHtpyMV :=
-  LateralTheory.CohomologicalPurity.Thom.LeafHtpyMV_of etale_free_covering_of_thom_isomorphism
+  LateralTheory.CohomologicalPurity.Thom.LeafHtpyMV_of _root_.LateralTheory.CohomologicalPurity.FreeCovPf.LeafFreeCov_of
 
 theorem etale_affine_homotopy_invariance_of_thom_isomorphism : LateralTheory.CohomologicalPurity.Thom.LeafHtpy :=
   LateralTheory.CohomologicalPurity.Thom.LeafHtpy_of
     etale_affine_line_homotopy_zero_of_thom_isomorphism
-    etale_affine_line_homotopy_one_of_thom_isomorphism
+    _root_.LateralTheory.CohomologicalPurity.Thom.LeafHtpyOne_of
     etale_homotopy_mayer_vietoris_of_thom_isomorphism
-
-theorem etale_nerve_split_of_thom_isomorphism : LateralTheory.CohomologicalPurity.Thom.LeafNerveSplit :=
-  LateralTheory.CohomologicalPurity.Thom.LeafNerveSplit_of
-
-theorem etale_units_representable_of_thom_isomorphism : LateralTheory.CohomologicalPurity.Thom.LeafUnitsRep :=
-  LateralTheory.CohomologicalPurity.Thom.LeafUnitsRep_of
 
 theorem etale_thom_tail_nerve_of_thom_isomorphism : LateralTheory.CohomologicalPurity.Thom.LeafTailNerve :=
   LateralTheory.CohomologicalPurity.Thom.LeafTailNerve_of
-    etale_nerve_split_of_thom_isomorphism
-    etale_units_representable_of_thom_isomorphism
-
-theorem etale_thom_representable_point_of_thom_isomorphism : LateralTheory.CohomologicalPurity.Thom.LeafRepPt :=
-  LateralTheory.CohomologicalPurity.Thom.LeafRepPt_of
+    _root_.LateralTheory.CohomologicalPurity.Thom.LeafNerveSplit_of
+    _root_.LateralTheory.CohomologicalPurity.Thom.LeafUnitsRep_of
 
 theorem etale_thom_tail_representable_degree_zero_of_thom_isomorphism :
     LateralTheory.CohomologicalPurity.Thom.LeafTailRep0 :=
-  LateralTheory.CohomologicalPurity.Thom.LeafTailRep0_of etale_thom_representable_point_of_thom_isomorphism
+  LateralTheory.CohomologicalPurity.Thom.LeafTailRep0_of _root_.LateralTheory.CohomologicalPurity.Thom.LeafRepPt_of
 
 theorem etale_thom_tail_representable_of_thom_isomorphism : LateralTheory.CohomologicalPurity.Thom.LeafTailRep :=
   LateralTheory.CohomologicalPurity.Thom.LeafTailRep_of
@@ -143,28 +116,19 @@ theorem etale_thom_tail_vanishing_of_thom_isomorphism : LateralTheory.Cohomologi
     etale_affine_homotopy_invariance_of_thom_isomorphism
 
 theorem etale_thom_class_unit_of_thom_isomorphism : LateralTheory.CohomologicalPurity.Thom.LeafTauU :=
-  LateralTheory.CohomologicalPurity.Thom.LeafTauU_of etale_thom_geometric_fibers_of_thom_isomorphism
-
-theorem etale_thom_class_top_degree_of_thom_isomorphism : LateralTheory.CohomologicalPurity.Thom.LeafTauTop :=
-  LateralTheory.CohomologicalPurity.Thom.LeafTauTop_of
+  LateralTheory.CohomologicalPurity.Thom.LeafTauU_of _root_.LateralTheory.CohomologicalPurity.Thom.LeafGeo_of
 
 theorem etale_thom_class_of_thom_isomorphism : LateralTheory.CohomologicalPurity.Thom.LeafTau :=
   LateralTheory.CohomologicalPurity.Thom.ThomClassRestriction.LeafTau_of
     etale_boundary_map_of_thom_isomorphism
-    etale_thom_geometric_fibers_of_thom_isomorphism
+    _root_.LateralTheory.CohomologicalPurity.Thom.LeafGeo_of
     etale_thom_pullback_of_thom_isomorphism
     etale_thom_tail_vanishing_of_thom_isomorphism
     etale_thom_class_unit_of_thom_isomorphism
-    etale_thom_class_top_degree_of_thom_isomorphism
+    _root_.LateralTheory.CohomologicalPurity.Thom.tauTop
 
 theorem etale_thom_class_natural_of_thom_isomorphism : LateralTheory.CohomologicalPurity.Thom.LeafTauNat :=
-  LateralTheory.CohomologicalPurity.Thom.LeafTauNat_of etale_thom_geometric_fibers_of_thom_isomorphism
-
-theorem etale_cokernel_isomorphism_of_thom_isomorphism : LateralTheory.CohomologicalPurity.Thom.ExcSp.LeafCokIso :=
-  LateralTheory.CohomologicalPurity.Thom.ExcSp.LeafCokIso_of
-
-theorem etale_double_cokernel_of_thom_isomorphism : LateralTheory.CohomologicalPurity.Thom.ExcSp.LeafDblCok :=
-  LateralTheory.CohomologicalPurity.Thom.ExcSp.leafDblCok_of
+  LateralTheory.CohomologicalPurity.Thom.LeafTauNat_of _root_.LateralTheory.CohomologicalPurity.Thom.LeafGeo_of
 
 theorem etale_mapping_cone_cokernel_of_thom_isomorphism : LateralTheory.CohomologicalPurity.Thom.ExcSp.LeafConeCok :=
   LateralTheory.CohomologicalPurity.Thom.ExcSp.leafConeCok_of
@@ -172,44 +136,30 @@ theorem etale_mapping_cone_cokernel_of_thom_isomorphism : LateralTheory.Cohomolo
 theorem etale_relative_homotopy_sequence_of_thom_isomorphism : LateralTheory.CohomologicalPurity.Thom.ExcSp.LeafHsRel :=
   LateralTheory.CohomologicalPurity.Thom.ExcSp.etale_relative_cohomology_iso_of_cone_and_double_cokernel_isos
     etale_mapping_cone_cokernel_of_thom_isomorphism
-    etale_double_cokernel_of_thom_isomorphism
+    _root_.LateralTheory.CohomologicalPurity.Thom.ExcSp.leafDblCok_of
 
 theorem etale_thom_excision_specialization_of_thom_isomorphism : LateralTheory.CohomologicalPurity.Thom.LeafExcSp :=
   LateralTheory.CohomologicalPurity.Thom.ExcSp.etaleSplitExcision_of_cokernel_relative
-    etale_cokernel_isomorphism_of_thom_isomorphism
+    _root_.LateralTheory.CohomologicalPurity.Thom.ExcSp.LeafCokIso_of
     etale_relative_homotopy_sequence_of_thom_isomorphism
-
-theorem etale_chart_projective_localization_of_thom_isomorphism :
-    LateralTheory.CohomologicalPurity.Thom.ExcP.Chart.LeafPLoc :=
-  LateralTheory.CohomologicalPurity.Thom.ExcP.Chart.LeafPLoc_of
-
-theorem etale_chart_localization_of_thom_isomorphism : LateralTheory.CohomologicalPurity.Thom.ExcP.Chart.LeafWLoc :=
-  LateralTheory.CohomologicalPurity.Thom.ExcP.Chart.LeafWLoc_of
 
 theorem etale_chart_covering_of_thom_isomorphism : LateralTheory.CohomologicalPurity.Thom.ExcP.Chart.LeafWCov :=
   LateralTheory.CohomologicalPurity.Thom.ExcP.Chart.LeafWCov_of'
-    etale_thom_geometric_fibers_of_thom_isomorphism
-    etale_chart_projective_localization_of_thom_isomorphism
-    etale_chart_localization_of_thom_isomorphism
-
-theorem etale_chart_gluing_data_of_thom_isomorphism : LateralTheory.CohomologicalPurity.Thom.ExcP.Chart.LeafWData :=
-  LateralTheory.CohomologicalPurity.Thom.ExcP.Chart.LeafWData_of
+    _root_.LateralTheory.CohomologicalPurity.Thom.LeafGeo_of
+    _root_.LateralTheory.CohomologicalPurity.Thom.ExcP.Chart.LeafPLoc_of
+    _root_.LateralTheory.CohomologicalPurity.Thom.ExcP.Chart.LeafWLoc_of
 
 theorem etale_chart_cech_descent_of_thom_isomorphism : LateralTheory.CohomologicalPurity.Thom.ExcP.Chart.LeafWCech :=
-  LateralTheory.CohomologicalPurity.Thom.ExcP.Chart.LeafWCech_of_data etale_chart_gluing_data_of_thom_isomorphism
+  LateralTheory.CohomologicalPurity.Thom.ExcP.Chart.LeafWCech_of_data _root_.LateralTheory.CohomologicalPurity.Thom.ExcP.Chart.LeafWData_of
 
 theorem etale_chart_right_equivalence_of_thom_isomorphism :
     LateralTheory.CohomologicalPurity.Thom.ExcP.Chart.LeafWEqvR :=
   LateralTheory.CohomologicalPurity.Thom.ExcP.Chart.LeafWEqvR_of etale_chart_cech_descent_of_thom_isomorphism
 
-theorem etale_chart_multiplicative_group_action_of_thom_isomorphism :
-    LateralTheory.CohomologicalPurity.Thom.ExcP.Chart.LeafWGm :=
-  LateralTheory.CohomologicalPurity.Thom.ExcP.Chart.LeafWGm_of
-
 theorem etale_chart_torsor_of_thom_isomorphism : LateralTheory.CohomologicalPurity.Thom.ExcP.Chart.LeafWTors :=
   WeightedBlowupChartPointUnits.Cb.etale_weighted_blowup_exceptional_chart_torsor_of_equivalence
     etale_chart_right_equivalence_of_thom_isomorphism
-    etale_thom_geometric_fibers_of_thom_isomorphism
+    _root_.LateralTheory.CohomologicalPurity.Thom.LeafGeo_of
     etale_boundary_map_of_thom_isomorphism
     etale_thom_excision_specialization_of_thom_isomorphism
     LateralTheory.Fin.LeafExc.intersectionNumber_baseChange
@@ -217,13 +167,13 @@ theorem etale_chart_torsor_of_thom_isomorphism : LateralTheory.CohomologicalPuri
 theorem etale_chart_left_equivalence_of_thom_isomorphism :
     LateralTheory.CohomologicalPurity.Thom.ExcP.Chart.LeafWEqvL :=
   LateralTheory.CohomologicalPurity.Thom.ExcP.Chart.LeafWEqvL_of
-    etale_chart_multiplicative_group_action_of_thom_isomorphism
+    _root_.LateralTheory.CohomologicalPurity.Thom.ExcP.Chart.LeafWGm_of
     etale_chart_torsor_of_thom_isomorphism
 
 theorem etale_thom_chart_factorization_of_thom_isomorphism :
     LateralTheory.CohomologicalPurity.Thom.ExcP.LeafChartFact :=
   LateralTheory.CohomologicalPurity.Thom.ExcP.LeafChartFact_of
-    etale_thom_geometric_fibers_of_thom_isomorphism
+    _root_.LateralTheory.CohomologicalPurity.Thom.LeafGeo_of
     etale_chart_covering_of_thom_isomorphism
     etale_chart_right_equivalence_of_thom_isomorphism
     etale_chart_left_equivalence_of_thom_isomorphism
@@ -236,8 +186,8 @@ theorem etale_thom_excision_projective_of_thom_isomorphism : LateralTheory.Cohom
 
 theorem etale_thom_isomorphism_of_thom_isomorphism : LateralTheory.CohomologicalPurity.LeafThom :=
   LateralTheory.CohomologicalPurity.Thom.goal_of
-    etale_thom_geometric_fibers_of_thom_isomorphism
-    etale_thom_group_action_of_thom_isomorphism
+    _root_.LateralTheory.CohomologicalPurity.Thom.LeafGeo_of
+    _root_.LateralTheory.CohomologicalPurity.Thom.LeafAct_of
     etale_thom_class_of_thom_isomorphism
     etale_thom_class_natural_of_thom_isomorphism
     etale_thom_excision_projective_of_thom_isomorphism

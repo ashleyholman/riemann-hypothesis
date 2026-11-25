@@ -112,7 +112,7 @@ theorem pFlat_not_isUnit : ¬ IsUnit (pFlat l) := fun h => by
   exact (inferInstance : Fact (¬ IsUnit (l : OC l))).out h1
 
 theorem integral_prime_dvd_epsilon_zero_sub_one (ε : Eps l) : pFlat l ∣ ((ε.e 0 : Ob l) - 1) := by
-  have h := ((RL.sharp_cong (base l)).2.1 (ε.e 0 : Ob l) 1).1 (by
+  have h := ((_root_.GlobalTheory.CompanionTheory.Untilt.sharp_congruences (base l)).2.1 (ε.e 0 : Ob l) 1).1 (by
     have h0 : (base l).sharp (ε.e 0 : Ob l) = 1 := ε.sharp_e (base l)
     rw [h0, map_one, sub_self]
     exact zero_mem _)

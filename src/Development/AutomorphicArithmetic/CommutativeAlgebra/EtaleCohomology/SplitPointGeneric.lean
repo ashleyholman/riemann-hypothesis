@@ -767,9 +767,9 @@ private lemma lift_coi (A : PAlg l) {I : Type} [Fintype I] (e : I → A.U)
   classical
   have s1 : A.sharp 1 = 1 := map_one _
   have s0 : A.sharp 0 = 0 := by
-    have := (RL.sharp_cong A).2.2 1 IsIdempotentElem.one
+    have := (_root_.GlobalTheory.CompanionTheory.Untilt.sharp_congruences A).2.2 1 IsIdempotentElem.one
     simpa [s1] using this
-  have hsub : ∀ a : A.A, IsIdempotentElem a → A.sharp (1 - a) = 1 - A.sharp a := (RL.sharp_cong A).2.2
+  have hsub : ∀ a : A.A, IsIdempotentElem a → A.sharp (1 - a) = 1 - A.sharp a := (_root_.GlobalTheory.CompanionTheory.Untilt.sharp_congruences A).2.2
   have h := fun i => (_root_.GlobalTheory.CompanionTheory.Untilt.existsUnique_idempotent_sharp A (e i) (he.toOrthogonalIdempotents.idem i)).exists
   choose e₀ h1 h2 using h
   have hz : ∀ a : A.A, IsIdempotentElem a → A.sharp a = 0 → a = 0 := fun a ha hs =>
@@ -813,17 +813,17 @@ variable {O : Type} [CommRing O] {Y : Scheme.{0}} {q : Y ⟶ Spec (CommRingCat.o
 
 private def gAct (κ : O →+* OC l) (D : WDat l T) (σ : ∀ j, Equiv.Perm (Fin (T j).d)) :
     PX (D.π ≫ q) κ ⟶ PX (D.π ≫ q) κ where
-  app A := TypeCat.ofHom fun w => ⟨act D (RL.u_tf A).1 w.1 σ, by
-    rw [← Category.assoc, (act_spec D (RL.u_tf A).1 w.1 σ).1, Category.assoc]
+  app A := TypeCat.ofHom fun w => ⟨act D (_root_.GlobalTheory.CompanionTheory.UntiltRegular.untilt_regular A).1 w.1 σ, by
+    rw [← Category.assoc, (act_spec D (_root_.GlobalTheory.CompanionTheory.UntiltRegular.untilt_regular A).1 w.1 σ).1, Category.assoc]
     exact w.2⟩
   naturality A B f := by
     ext w
     refine Subtype.ext ?_
-    change act D (RL.u_tf B).1 (Spec.map (CommRingCat.ofHom (PAlg.mapU f)) ≫ w.1) σ =
-      Spec.map (CommRingCat.ofHom (PAlg.mapU f)) ≫ act D (RL.u_tf A).1 w.1 σ
+    change act D (_root_.GlobalTheory.CompanionTheory.UntiltRegular.untilt_regular B).1 (Spec.map (CommRingCat.ofHom (PAlg.mapU f)) ≫ w.1) σ =
+      Spec.map (CommRingCat.ofHom (PAlg.mapU f)) ≫ act D (_root_.GlobalTheory.CompanionTheory.UntiltRegular.untilt_regular A).1 w.1 σ
     refine act_eq D _ _ _ σ ?_ fun j i => ?_
-    · rw [Category.assoc, (act_spec D (RL.u_tf A).1 w.1 σ).1, Category.assoc]
-    · rw [Category.assoc, (act_spec D (RL.u_tf A).1 w.1 σ).2, Category.assoc]
+    · rw [Category.assoc, (act_spec D (_root_.GlobalTheory.CompanionTheory.UntiltRegular.untilt_regular A).1 w.1 σ).1, Category.assoc]
+    · rw [Category.assoc, (act_spec D (_root_.GlobalTheory.CompanionTheory.UntiltRegular.untilt_regular A).1 w.1 σ).2, Category.assoc]
 
 end UpperTheory.Ru.crystallineComparison
 
@@ -835,7 +835,7 @@ theorem UpperTheory.Ru.crystallineComparison.wTrans :
   · intro σ
     ext A w
     refine Subtype.ext ?_
-    exact (act_spec D (RL.u_tf A).1 w.1 σ).1
+    exact (act_spec D (_root_.GlobalTheory.CompanionTheory.UntiltRegular.untilt_regular A).1 w.1 σ).1
   · intro A y
     have hT := testFacts l A.obj A.property
     have hz : ∀ j, ∃ z : Fin (T j).d → (Spec (CommRingCat.of A.obj.U) ⟶ (T j).Z), (∀ i, z i ≫ (T j).p = y.1) ∧
@@ -876,8 +876,8 @@ theorem UpperTheory.Ru.crystallineComparison.wTrans :
         (gAct κ D (τ * σ)).app _ ((PX (D.π ≫ q) κ).map (f τ).hom w) := by
       intro σ
       refine Subtype.ext ?_
-      change act D (RL.u_tf _).1 (Spec.map (CommRingCat.ofHom ρ) ≫ w'.1) σ =
-        act D (RL.u_tf _).1 (Spec.map (CommRingCat.ofHom ρ) ≫ w.1) (τ * σ)
+      change act D (_root_.GlobalTheory.CompanionTheory.UntiltRegular.untilt_regular _).1 (Spec.map (CommRingCat.ofHom ρ) ≫ w'.1) σ =
+        act D (_root_.GlobalTheory.CompanionTheory.UntiltRegular.untilt_regular _).1 (Spec.map (CommRingCat.ofHom ρ) ≫ w.1) (τ * σ)
       refine act_eq D _ _ _ σ ?_ fun j i => ?_
       · rw [(act_spec D _ _ _).1, Category.assoc, Category.assoc, hww]
       · rw [(act_spec D _ _ _).2]

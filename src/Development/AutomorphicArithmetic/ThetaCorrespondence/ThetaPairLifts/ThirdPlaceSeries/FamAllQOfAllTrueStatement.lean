@@ -675,7 +675,7 @@ theorem stepY_thetaFun_isItW_alt : ∀ {D : D7} {L : SizeData₂ D} {hT : GatTie
   refine ⟨fun φ => GlobalTheory.FockTheta.ptStable D _ _ hP'.1.1 hθ _ _ _ _ _ _ _ φ vth, ?_⟩
   have h0 := GlobalTheory.Grid.isItW_of_mem_span hω hθ hP'.1.2.theta (GlobalTheory.Grid.stepVec_mem_span dS dT hY)
     (hC.chain.ItY W.P.A3.A.μ0 j hj)
-  exact GlobalTheory.Grid.isItW_of_mem_span hω hθ vth (GlobalTheory.T.vacuum_mem_span_heisenbergTranslates_of_ne_zero hP'.1 dS dT (GlobalTheory.Grid.stepVec_mem_span dS dT hP') vne) h0
+  exact GlobalTheory.Grid.isItW_of_mem_span hω hθ vth (_root_.GlobalTheory.VacCyclic.vac_mem_span hP'.1 dS dT (GlobalTheory.Grid.stepVec_mem_span dS dT hP') vne) h0
 end GlobalTheory.BaseChain
 end
 end
@@ -895,7 +895,7 @@ theorem top_comb_alt : ∀ {D : D7} {L : SizeData₂ D} {hT : GatTies D} {Gi : F
   have hv0 : v ≠ 0 := (GlobalTheory.Chain.StepVac.stepVec_vac sdY sdX hr hv).2.1
   have hspan := comb_mem_span (_root_.GlobalTheory.Fam.pk_z W).ψ (GlobalTheory.Fam.VacTheta.isFinComb_of_combAt hd₂) (vacT (_root_.GlobalTheory.Fam.pk_z W) j h)
   rw [← e₂] at hspan
-  have hvac := GlobalTheory.T.vacuum_mem_span_heisenbergTranslates_of_ne_zero hv.1 sdY sdX hspan hv0
+  have hvac := _root_.GlobalTheory.VacCyclic.vac_mem_span hv.1 sdY sdX hspan hv0
   obtain ⟨b, hb, hbv⟩ := exists_finComb_of_mem_span _ hvac
   obtain ⟨c, hc, hcc⟩ := isFinComb_comp (_root_.GlobalTheory.Fam.pk_z W).ψ (GlobalTheory.Fam.VacTheta.isFinComb_of_combAt hd₁) hb
   refine ⟨c, hc, ?_⟩

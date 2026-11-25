@@ -1264,7 +1264,7 @@ theorem evalTieT_of_levelMatch : GlobalTheory.Published.DiscreteSeriesClassifica
   refine ⟨c0, Formalism.IndefR.AutomorphicEvaluation.evalTieT_of _ _ _ _ X Gd _ t c0 v₀ hnorm ?_ ?_ ?_⟩
   · intro S hS
     obtain ⟨hmem, hint, -⟩ := hN v₀ hnorm S hS
-    have hHH := GlobalTheory.T.conj_rowEvaluation_translate_mem_rowSpace R F X h hLev hGrp hMod hHost hE t c v₀ ht hA hc hv₀ S hS _ hmem.coeFn_toLp
+    have hHH := _root_.GlobalTheory.RowEvalHH.conj_eval_mem_HH R F X h hLev hGrp hMod hHost hE t c v₀ ht hA hc hv₀ S hS _ hmem.coeFn_toLp
     have h1 := _root_.GlobalTheory.GoodProjEval.goodOp_star_ev R F X h hLev hGrp hMod Gd t v₀ hRow S hS.1 _ hmem.coeFn_toLp
     rw [postOn_eq_of_mem R F hS] at h1
     have hfix : Gd.Rg (star (hmem.toLp _)) = star (hmem.toLp _) :=
@@ -1687,7 +1687,7 @@ theorem rowPlacement_exists : GlobalTheory.Published.DiscreteSeriesClassificatio
       (levChi (Yc D 0) (R.βY 0) (R.dat0 (R.levR F true)))
       ((iotaX X h).toMulEquiv ⁻¹' {x : X.B.I.GA | x.1 = 1 ∧ x.2 ∈ X.K2})
       (fun k => star (X.chi2 ((iotaX X h).toMulEquiv k).2)) ∧ RowLevelMatchAt R F X h t := by
-    obtain ⟨t, ht, hconj, hframe⟩ := GlobalTheory.T.exists_finite_element_conj_rowLevel_character R F X h hlev hgrp hmod
+    obtain ⟨t, ht, hconj, hframe⟩ := _root_.GlobalTheory.SeeConj.exists_conj_level R F X h hlev hgrp hmod
     exact ⟨t, ht, hconj, _root_.GlobalTheory.rowLevelMatchAt_of_conjLevel R F X h hlev hgrp hmod cG t hιE hpin hE0 ht hconj hframe⟩
   obtain ⟨hconjS, hmatchS⟩ := hmove hfirst
   exact ⟨hfirst, _root_.GlobalTheory.SeeEval.evalTieT_of_levelMatch hDS R F X h hlev hgrp hmod hhost hιE Gd tS htS hconjS hmatchS⟩

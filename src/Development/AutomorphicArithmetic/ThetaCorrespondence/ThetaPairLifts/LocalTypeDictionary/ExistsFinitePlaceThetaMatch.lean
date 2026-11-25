@@ -848,7 +848,7 @@ private theorem ram_set {D : D7} {W W₁ X : HSp D} {α β : (AE D)ˣ →* Circl
     obtain ⟨h2, -, h4⟩ := (h.ram v ε hε).resolve_left fun hu => h3 fun x a b c => by
       rw [MonoidHom.div_apply, hu.1 x a b c, hu.2 x a b c, div_one]
     refine ⟨?_, h4⟩
-    obtain ⟨t⟩ := GlobalTheory.T.nonempty_algHom_completion_of_split_place D v ε hε h2
+    obtain ⟨t⟩ := _root_.GlobalTheory.SplitPlaceEmb.nonempty_algHom_of_not_nonSplitAt D v ε hε h2
     obtain ⟨w, hw, hwv⟩ := (hT v).1 hv
     have hmem : w.asIdeal ∈ v.asIdeal.primesOver (𝓞 D.host.E) :=
       ⟨w.isPrime, ⟨by rw [← hwv]; rfl⟩⟩
@@ -1355,8 +1355,8 @@ theorem exists_finite_place_theta_match (hP : _root_.GlobalTheory.FunPr.ThetaLoc
     (by rw [Fin.sum_univ_one]; exact Submodule.subset_span ⟨f', φ', hfP', sb', cof', rfl⟩)
   rw [Fin.sum_univ_one, Fin.sum_univ_one, ← hQ, hfy] at mA
   rw [Fin.sum_univ_one, Fin.sum_univ_one, ← hQ', hfy', ← funext fun v => (im v).1] at mB
-  have sA := GlobalTheory.T.fockAlgebraicThetaVectors_stable_finiteAdeles_lie D ψ θ hψ hθ true A WW FA FW _ _ _ hA
-  have sB := GlobalTheory.T.fockAlgebraicThetaVectors_stable_finiteAdeles_lie D ψ θ hψ hθ false A' WW FA' FW _ _ _ hB
+  have sA := _root_.GlobalTheory.AlgStable.algF_isStable D ψ θ hψ hθ true A WW FA FW _ _ _ hA
+  have sB := _root_.GlobalTheory.AlgStable.algF_isStable D ψ θ hψ hθ false A' WW FA' FW _ _ _ hB
   obtain ⟨oA, oB⟩ := _root_.GlobalTheory.TripleAssembly.Onto.tripleProductAlgebra_weilRep_range_eq_top hH hP D ψ θ hψ hθ A A' WW FA FA' FW _ _ hT _ _ hA hB _ Bs Γ Xc om om' h hTA hTB R Rf hM
   obtain ⟨iA, iB⟩ := _root_.GlobalTheory.TripleAssembly.triple_map_comp_inverse_finite hH hP D ψ θ hψ hθ A A' WW FA FA' FW _ _ hT _ _ hA hB _ Bs Γ Xc om om' h hTA hTB R Rf hM
   obtain ⟨lA, lB⟩ := _root_.GlobalTheory.TripleAssembly.LieInv.theta_triple_maps_lie_action_eq_zero hH hP D ψ θ hψ hθ A A' WW FA FA' FW _ _ hT _ _ hA hB _ Bs Γ Xc om om' h hTA hTB R Rf hM

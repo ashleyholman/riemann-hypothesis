@@ -699,7 +699,7 @@ namespace GlobalTheory.AdForm
 
 theorem exists_twDat_baseStd : ∀ {B : Base} {X : PreX B.toPre} (I : TC B X), I.Ok → TC.Pins B X → ∀ (l : I.Laws) (Z : TC.Later B (I.cols l)), ∀ (u : B.Word) (a : I.ι), ∃ (Ch : ℕ → Type) (_ : ∀ i, Fintype (Ch i)) (A : TwDat I l Z u a Ch), A.Is ∧ Nonempty (Unique (Ch B.R.m)) ∧ (∀ i, Nonempty (Idx I.sel (I.tup a) (I.idx a) i) → Nonempty (Ch i)) ∧ GlobalTheory.QTw.BaseCommon A ∧ (∀ i, i < B.R.m → ∀ β, A.kb i β = TC.kStd X u (B.R.N i)) ∧ ∀ i, i ≤ B.R.m → ∀ β (v : HeightOneSpectrum (𝓞 B.host.F)), ((B.T u : ℕ) : 𝓞 B.host.F) ∉ v.asIdeal → (i < B.R.m ∨ ¬ I.UnderQ a v) → Formalism.UG.bc (Formalism.UG.prV (E := B.host.E) v) (A.kb i β) = 1 ∧ ∀ i, i < B.R.m → ∀ β, A.kb i β = TC.kStd X u (B.R.N i) := by
   intro B X I hI hP l Z u a
-  obtain ⟨Ch, hF, A, hA, hU, hk⟩ := GlobalTheory.T.exists_tupleChain_adelicData I hI hP l Z u a
+  obtain ⟨Ch, hF, A, hA, hU, hk⟩ := _root_.GlobalTheory.AdForm.exists_twDat I hI hP l Z u a
   obtain ⟨A₁, hA₁, hk₁, hm₁⟩ := _root_.GlobalTheory.AdForm.TopMove.exists_twDat_top_trivial I hI hP l Z u a Ch A hA hU
   have hkb : ∀ i, i ≤ B.R.m → ∀ β β', A₁.kb i β = A₁.kb i β' := by
     intro i hi β β'

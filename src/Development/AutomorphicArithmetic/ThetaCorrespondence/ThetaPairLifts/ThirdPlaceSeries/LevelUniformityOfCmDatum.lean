@@ -232,7 +232,7 @@ theorem compAt_baseCharacter_mul_unramified_eq_typeCharacter_alt : GlobalTheory.
     have e : (cf.mu0 j * χ).locK s.w k = (cf.mu0 j).locK s.w k * χ.locK s.w k := rfl
     rw [e, h2, mul_one, ← h61]
     rfl
-  obtain ⟨ξ, hξc, hξr⟩ := GlobalTheory.T.exists_splitPlaceComponent_heckeChar_residue D s φ hφs hφ0 hφa _ c hres
+  obtain ⟨ξ, hξc, hξr⟩ := _root_.GlobalTheory.XiRes.exists_isCompAt_res D s φ hφs hφ0 hφa _ c hres
   refine ⟨ξ, hξc, fun y hy uu huu => ?_⟩
   have hyv : Valued.v (y : s.v.adicCompletion (maximalRealSubfield D.host.E)) = 1 := by
     refine le_antisymm ((HeightOneSpectrum.mem_adicCompletionIntegers _ _ _).1 y.2) (not_lt.1 fun hlt => ?_)

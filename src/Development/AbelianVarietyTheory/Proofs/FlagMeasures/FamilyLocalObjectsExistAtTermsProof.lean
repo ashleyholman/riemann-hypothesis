@@ -113,7 +113,7 @@ theorem base_data_of_global_term : ∀ (D : D7) (Z : LocDat D), ∀ (u u' : D.wh
   have hG0 : Gval F00 F'0 ≠ 0 := by rw [(hB2 F00 F'0 hTa hTb).2, hG1]; exact hG
   obtain ⟨n, hn, hnf⟩ := ((GlobalTheory.FlagChange.flag_change D (lf D F0) hT).2 F00).1 hTa
 
-  have hFP := GlobalTheory.T.localisedBaseFrames_relevantPair D Z u u' w F00 F'0 hpt hG0
+  have hFP := _root_.GlobalTheory.LocBaseRel.atBase_relG D Z u u' w F00 F'0 hpt hG0
   choose FP hFPb using fun p => (hFP p).1
   have hFPr : ∀ p, (FP p).RelG (LocNG.theta (Z.M p)) := fun p => (hFP p).2 _ (hFPb p)
   have hIT := GlobalTheory.LocOver.locU_isTerm D Z u u' F0 Λ hR F' hPD hG
@@ -383,7 +383,7 @@ theorem same : ∀ (D : D7) (X : HidaSetting D) (Y : Full X) (u u' : D.what₂.W
   have s1 := (_root_.GlobalTheory.LocOver.RepIndep.rep_indep D (⟨Y.δ, Y.M, Y.agree⟩ : LocDat D) u u' (X.Fu u) t.lam hΛ
     (Quot.out t.toTerm.cls).1 t.frame (Quot.out t.toTerm.cls).2 t.rep.2.2.2.2 hR0 hrel p P hP d).1 hO
   have hpd' : PD D t.lam (lf D (X.Fu u)) u' t'.frame := by rw [hl]; exact t'.rep.2.2.2.2
-  have s2 := GlobalTheory.T.global_terms_same_doubleCoset_same_local_data D (⟨Y.δ, Y.M, Y.agree⟩ : LocDat D) u u' (X.Fu u) t.lam hΛ t.frame t'.frame
+  have s2 := _root_.GlobalTheory.LocSame.over_same D (⟨Y.δ, Y.M, Y.agree⟩ : LocDat D) u u' (X.Fu u) t.lam hΛ t.frame t'.frame
     t.rep.2.2.2.2 hpd' hGt n hn _ hmN hgm hfr hI p P hP d s1
   have s3 : Over P d (locU (⟨Y.δ, Y.M, Y.agree⟩ : LocDat D) p t'.lam (lf D (X.Fu u)) t'.frame (Tu D u) (Tu D u')) := by
     rw [← hl]; exact s2

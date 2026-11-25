@@ -212,7 +212,7 @@ theorem exists_ram_set {D : D7} {W W₁ X : HSp D} {α β : (AE D)ˣ →* Circle
     · exact hw (GlobalTheory.BasePairChar.unrAt_of_unramAt hε hu.2 rfl)
   refine ⟨hfin.toFinset.image (fun w => w.under (𝓞 D.host.F)), fun v hv => ?_, fun w hw hu => ?_, fun w hw => ?_⟩
   · obtain ⟨ε, h1, h2, -, h4⟩ := key v hv
-    exact ⟨GlobalTheory.T.nonempty_algHom_completion_of_split_place D v ε h1 h2, h4⟩
+    exact ⟨_root_.GlobalTheory.SplitPlaceEmb.nonempty_algHom_of_not_nonSplitAt D v ε h1 h2, h4⟩
   · obtain ⟨ε, h1, -, h3, -⟩ := key _ hw
     exact h3 (_root_.GlobalTheory.UnramFromOnePrime.unramAt_of_unrAt_one D _ hν hr _ ε h1 w rfl hu)
   · by_contra hn

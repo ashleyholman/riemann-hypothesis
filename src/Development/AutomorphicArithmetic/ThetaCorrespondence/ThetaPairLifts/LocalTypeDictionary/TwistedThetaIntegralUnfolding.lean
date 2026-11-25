@@ -1309,7 +1309,7 @@ open GlobalTheory.RowClaim GlobalTheory.RowVal GlobalTheory.RowReal
 namespace GlobalTheory.RowUnfLast
 theorem twisted_theta_integral_unfolding : _root_.GlobalTheory.FunPr.ThetaLocalInputs → GlobalTheory.IndefiniteRowSideFullHecke.CuspAlongSmoothLifts.LiftsCuspidal → SumOKK → StepUnfold := fun p c s =>
   have rel := _root_.GlobalTheory.RowRealInt.unfold_of_steps
-  have hcv := GlobalTheory.T.cellSumRelationsPassToIntegrals_proof
+  have hcv := _root_.GlobalTheory.RowVal.cellVan_holds
   have grp := _root_.GlobalTheory.RowGrpSplit.grpAt_big
   have it := _root_.GlobalTheory.RowChain.twisted_iterate_eq_linear
   have inv := GlobalTheory.T.unfolded_integrand_biInvariant_large_depth

@@ -277,7 +277,7 @@ theorem rcoef_of_fun {D : D7} {V : HSp D} (c : CoefA V) (hc : c.Is) (m : Measure
     intro u hu x x'
     rw [hB, hB, ← hshift u hu, ← hshift u hu]
     exact GlobalTheory.Cusp.petersson_rTr (hφ2 x) (hφ2 x') u
-  obtain ⟨z, hz⟩ := GlobalTheory.T.real_invariant_sesquilinear_form_eq_smul_inner D V c hc B hinv
+  obtain ⟨z, hz⟩ := _root_.GlobalTheory.CoefRealSchur.form_eq_smul_inner D V c hc B hinv
   refine ⟨z, fun w b hb => ?_, fun hY hz0 => ?_⟩
   · show GlobalTheory.Cusp.petersson V m (rTr V b (φ w)) (φ w) = _
     rw [hshift b hb, ← hB]
@@ -395,7 +395,7 @@ theorem wcoef_pure_eq_smul_inner : ∀ (D : D7) (G : Type) [Group G] [Fintype G]
     rw [hB, hB, ← hom u hu x, ← hom u hu y]
     exact GlobalTheory.Mem.LiftPolar.scalar_eq D R.ψ hW.std _ _ ν 𝓕 hν.1 hν.2.1 (R.ωP i t (u, 1))
       (fun f hf => hW.om_pres _ f hf) (fun f hf => hW.om_unit ν 𝓕 hν.1 hν.2.1 _ f hf) (J y) (J x) (hth y) (hth x)
-  obtain ⟨z, hz⟩ := GlobalTheory.T.real_invariant_sesquilinear_form_eq_smul_inner D (Vc D i) (R.cV i) hc B hinv
+  obtain ⟨z, hz⟩ := _root_.GlobalTheory.CoefRealSchur.form_eq_smul_inner D (Vc D i) (R.cV i) hc B hinv
   refine ⟨z, fun w b hb => ?_, fun w hw hz0 => ?_⟩
   · rw [hJ, ← hz, hB, GlobalTheory.Core.Rk.IP.wcoef, GlobalTheory.IndefiniteRowSideFullHecke.SphericalZero.ip, hom b hb w]
   · rw [hJ] at hw

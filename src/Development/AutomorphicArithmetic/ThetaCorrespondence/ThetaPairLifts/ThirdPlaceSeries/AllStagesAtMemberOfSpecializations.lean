@@ -232,7 +232,7 @@ theorem sa_of_prN_alt_alt : _root_.GlobalTheory.HeightCounting.Up.PublishedInput
     show TypesTrue L.ntypes f.P f.W
     rw [← e1, ← e2]
     exact hTT
-  obtain ⟨hGA, hCen⟩ := GlobalTheory.T.heckeGaloisStage_fits_of_same_centre_actions x (nOfLay x L hZ hη) hG hPlG hplGw hcA hcM
+  obtain ⟨hGA, hCen⟩ := _root_.GlobalTheory.Mem.R3.Rw.SwapN.fits_swap x (nOfLay x L hZ hη) hG hPlG hplGw hcA hcM
   obtain ⟨x', hx', hrep⟩ := GlobalTheory.T.exists_transported_state_heckeGaloisStage x (nOfLay x L hZ hη) hG hGA hCen
   obtain ⟨Pq, hPq1, hPq2⟩ := exists_pq_sel B w.I w.ok
   have hEl' := hEl P x'

@@ -115,7 +115,7 @@ theorem GlobalTheory.FinPl.PutIn.isPlaceModel_tensHalf : ∀ (D : D7) (ψ : AddC
   intro D ψ S T a b Λ f₀ Tm hab hb hΛ hT
   have hba : b * a = 0 := by rw [mul_comm, hab]
   have hsb : ∀ Φ, IsSBHalf a Λ Φ → IsSBHalf (a + b) Λ (tens b Φ (halfInd b Λ)) := fun Φ hΦ =>
-    GlobalTheory.T.schwartzBruhat_half_tensor_orthogonal_idempotents D S T a b Λ Φ (halfInd b Λ) hab hb hΛ hΦ (GlobalTheory.isSBHalf_halfInd b Λ)
+    _root_.GlobalTheory.FinPl.PutIn.isSBHalf_tens D S T a b Λ Φ (halfInd b Λ) hab hb hΛ hΦ (GlobalTheory.isSBHalf_halfInd b Λ)
   refine ⟨fun Φ hΦ x hx => ?_, fun Φ hΦ y hy => ?_, ?_⟩
   · rw [LinearMap.comp_apply, tensL_apply, tens_trans hab Φ _ hx]
     have hx' : IsHalf (a + b) x := by

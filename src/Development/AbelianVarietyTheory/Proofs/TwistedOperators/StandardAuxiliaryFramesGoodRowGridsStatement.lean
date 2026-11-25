@@ -1455,7 +1455,7 @@ theorem std_good : GlobalTheory.SepRows.DepFixed → All fun {_} _ _ _ {G} W _ =
     obtain ⟨hloc, hvac⟩ := loc_cls (F.dB ρ h) (F.dJ ρ h) s (xZero (F.dJ ρ h)) (F.dJ ρ h).e hx (yBF F ρ h) (pcBF W F ρ h)
       (latRow G (2 * ρ + 1)) (lev G (.grid (2 * ρ + 1) 0)) hψ hbase.1 hpIs hspl g0.1.1 g0.1.2.1 g0.1.2.2
       (fun f hf k hk => by rw [hs]; exact (cj (2 * ρ + 1) (by omega)).2.2.2.2.2.2 f hf k hk) hsupp
-    exact ⟨_, _, hloc, hvac, GlobalTheory.T.boxDepthData_mul_lineVacua_besselLevel D hQ T L μ0 hL sc G W M hM F hF ρ h⟩
+    exact ⟨_, _, hloc, hvac, _root_.GlobalTheory.AscFin.BoxBF.main D hQ T L μ0 hL sc G W M hM F hF ρ h⟩
   · intro σ h h' s hs
     obtain ⟨x₀, hli, hx⟩ := xLast_rat (F.dB σ h') (F.oB σ h') (F.ζ (σ + 1)) (F.line (σ + 1))
     obtain ⟨hpIs, hspl⟩ := _root_.GlobalTheory.AscFin.piecesFB_is_and_splits D hQ T L μ0 hL sc G W M hM F hF σ h h'

@@ -1339,7 +1339,7 @@ theorem GlobalTheory.AdForm.realOf_is : ∀ {B : GlobalTheory.Mem.Base} {X : Pre
     · exact one_ne_zero
     · exact div_ne_zero h (hstd.2.2.2.1 τ)
   · intro i hi τ
-    obtain ⟨Ch, _, A, hA, -⟩ := GlobalTheory.T.exists_tupleChain_adelicData I hOk hPins l Z u I.mu0
+    obtain ⟨Ch, _, A, hA, -⟩ := _root_.GlobalTheory.AdForm.exists_twDat I hOk hPins l Z u I.mu0
     obtain ⟨e, -, he⟩ := _root_.GlobalTheory.AdForm.TwDat.chr_exp_shifts I hOk hPins l Z u I.mu0 Ch A hA i hi
     exact Int.toNat_of_nonneg (he τ).2.2
   · intro v

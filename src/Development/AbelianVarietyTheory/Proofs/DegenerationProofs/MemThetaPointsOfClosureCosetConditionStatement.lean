@@ -1158,7 +1158,7 @@ theorem exists_full_of_closure_of_cosets :
     rw [hv' x] at h0
     exact hx (i.injective (by rw [h0, map_zero]))
   have hprop : IsProper M.t.G.hom :=
-    GlobalTheory.T.isProper_of_theta_unit_in_every_coset h1 h2 h3 h4 h5 h6 h7 E H D C o M n j hn hodd (hnorm n hn.pos) hj
+    _root_.GlobalTheory.CosetGood.isProper_of_unit_in_cosets h1 h2 h3 h4 h5 h6 h7 E H D C o M n j hn hodd (hnorm n hn.pos) hj
       (fun x => v' x) hth (fun x => (hS _).1 (v' x).2)
       (fun x => (hcos x).imp fun h hh => hunit _ hh)
   obtain ⟨o', hρ', hζ', hth'⟩ := GlobalTheory.T.exists_specialisation_with_thetaPoint h1 h2 h3 h4 h5 h6 h7 E H D C hnorm o M hprop S hS κ res

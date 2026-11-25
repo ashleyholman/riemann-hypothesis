@@ -596,7 +596,7 @@ theorem transport_J_bijective_onto :
       ring
     exact sub_eq_zero.1 (inner_self_eq_zero.1 h0)
   refine ⟨hinj, ?_⟩
-  obtain ⟨J₀, -, hJ₀⟩ := GlobalTheory.T.exists_equivariant_unitary_coefficientMap_onto D X u F Tr.wt ⟨Tr.wt_isom, Tr.wt_e, Tr.wt_f, Tr.weight_z⟩
+  obtain ⟨J₀, -, hJ₀⟩ := _root_.GlobalTheory.St.coefficient_map_exists_onto D X u F Tr.wt ⟨Tr.wt_isom, Tr.wt_e, Tr.wt_f, Tr.weight_z⟩
   exact GlobalTheory.conjLinear_onto_of_injective_of_le_range (X.Vpi u) _ _ J₀ Tr.J hJ₀ hinj Tr.J_val
 
 end GlobalTheory
@@ -623,7 +623,7 @@ theorem colDict_bij_of_levelMatch : ∀ (D : D7) (X : HidaSetting D) (u : D.what
   constructor
   · rw [← LinearMap.ker_eq_bot, LinearMap.ker_eq_bot']
     intro T hT
-    have hcls := (GlobalTheory.T.transport_represents_classes_weight_one D X u F Tr hK hσ hL).1
+    have hcls := (_root_.GlobalTheory.ColClass.classes_and_weight D X u F Tr hK hσ hL).1
     have h1 : ∀ c, shP X u T.1 (Tr.hc c) = 0 := by
       intro c
       apply hJinj
@@ -784,7 +784,7 @@ namespace GlobalTheory.St
 theorem colDict_isometric_of_reps :
     ∀ (D : D7) (X : HidaSetting D) (u : D.what₂.Word) (F : Formalism.L2.Forms.Forms0 D u) (Tr : Transport X u F) (hK : X.LevelSubgroupCharacter), (∀ a, Tr.ιA (sigA X.B.I a) = Formalism.UG.sigR (Formalism.L2.Forms.sigD D) (FiniteAdeleRing (𝓞 D.host.F) D.host.F) (Tr.ιA a)) → LevelMatch X Tr hK → Formalism.L2.SG.ColsDim.StabTriv (iotaF X u) (Ku X u hK) → ∀ (what₂ : Finset (Submodule (𝓞 D.host.E) (VS D).V)) (cs : Formalism.L2.SG.TermOp.ColSys X u what₂) (hinj : Function.Injective (Formalism.L2.SG.TermOp.sharp hK cs)), Formalism.L2.SG.TermOp.ColReps hK cs → ColDictIsom X Tr hK cs hinj := by
   intro D X u F Tr hK hsig hL hS what₂ cs hinj hreps T T'
-  obtain ⟨hcls, hwt⟩ := GlobalTheory.T.transport_represents_classes_weight_one D X u F Tr hK hsig hL
+  obtain ⟨hcls, hwt⟩ := _root_.GlobalTheory.ColClass.classes_and_weight D X u F Tr hK hsig hL
   have hwt1 := hwt hS
   obtain ⟨hψ, hπ, heq, -, -⟩ := GlobalTheory.St.cols_sharp_dictionary D X u hK
   have key := GlobalTheory.sum_inner_classReps_indep (Gam X u) (Hinf X u) (Hfin X u) (iotaI X u) (iotaF X u)
@@ -828,7 +828,7 @@ theorem colDictCore_holds : ∀ D : D7, ColDictCore D := by
   have hConj : ∀ a, Tr.ιA (sigA X.B.I a) = Formalism.UG.sigR (Formalism.L2.Forms.sigD D)
       (FiniteAdeleRing (𝓞 D.host.F) D.host.F) (Tr.ιA a) :=
     GlobalTheory.St.G.IotaSigmaCompatibility.iotaA_sigA D X Tr.ιA ⟨Tr.ιA_rat, Tr.ιA_int⟩
-  refine ⟨(GlobalTheory.T.transport_represents_classes_weight_one D X u F Tr hK hConj hLev).1, _root_.GlobalTheory.St.colDictInto_of_levelMatch D X u F Tr hK hConj hLev,
+  refine ⟨(_root_.GlobalTheory.ColClass.classes_and_weight D X u F Tr hK hConj hLev).1, _root_.GlobalTheory.St.colDictInto_of_levelMatch D X u F Tr hK hConj hLev,
     _root_.GlobalTheory.St.colDict_bij_of_levelMatch D X u F Tr hK hConj hLev, ?_⟩
   intro what₂ cs hinj hReps
   exact _root_.GlobalTheory.St.colDict_isometric_of_reps D X u F Tr hK hConj hLev hStab what₂ cs hinj hReps
@@ -1096,13 +1096,13 @@ open Formalism.BasicNotions.TH Formalism.L2.Theta GlobalTheory.Mem.Th
 namespace GlobalTheory.Mem.Top.Closing
 theorem memberE_closing_alt_alt : GlobalTheory.NT.RayField → GlobalTheory.Published.PrincipalIdealSt → GlobalTheory.Published.CMCurveGoodOutsidePrimeSt → GlobalTheory.Dec.DSInfChar → GlobalTheory.Published.HarishChandraFinite → GlobalTheory.Published.CuspRapidDecay → GlobalTheory.Published.DiscreteSeriesUpqUnique → Formalism.L2.SG.RowsDef.RowsFinDim → HeckeCharacterZeroLocus.SiegelWeilU.SiegelWeilUnitaryConvergent → Vol.DiscreteSeriesExist → Vol.FormalDegreeFormula₂ → StandardLattice.SiegelMassRatioCM → GlobalTheory.Published.WeilRepresentationUnitaryPair → GlobalTheory.Published.CuspRapidDecay → GlobalTheory.Published.CasselmanWallach → GlobalTheory.Published.HarishChandraModules → (∀ (n : ℕ) (ε : Fin n → Bool) (lam : Fin n → ℝ), Formalism.QuantumDeterminants.IsHCParam lam → ∃ (H : Type) (_ : NormedAddCommGroup H) (_ : InnerProductSpace ℂ H) (σ : Matrix (Fin n) (Fin n) ℂ → (H →L[ℂ] H)), Formalism.MainNotions.S.IsDS ε lam σ) → (∀ (n : ℕ) (ε : Fin n → Bool) (lam : Fin n → ℝ), Formalism.QuantumDeterminants.IsHCParam lam → ∀ (H H' : Type) [NormedAddCommGroup H] [InnerProductSpace ℂ H] [NormedAddCommGroup H'] [InnerProductSpace ℂ H'] (σ : Matrix (Fin n) (Fin n) ℂ → (H →L[ℂ] H)) (σ' : Matrix (Fin n) (Fin n) ℂ → (H' →L[ℂ] H')), Formalism.MainNotions.S.IsDS ε lam σ → Formalism.MainNotions.S.IsDS ε lam σ' → ∃ U : H ≃ₗᵢ[ℂ] H', ∀ g ∈ Formalism.MainNotions.S.UJset ε, ∀ v, U (σ g v) = σ' g (U v)) → (∀ (p q : ℕ) (T : GrpData p q) (lam : Ix p q → ℚ), IsParam lam → ∃ R : DSRep T, HasParam R lam) → ∀ (hL : _root_.UpperTheory.Zero.LLC.RecTExists) (N Ng : _root_.GlobalTheory.Mem.Top.Bl.NormChoiceExtension hL), StepW Start (Has3 (_root_.GlobalTheory.Mem.Top.Bl.parametersOfExtension N SExt.none).s) → LevelThreeCondition (_root_.GlobalTheory.Mem.Top.Bl.parametersOfExtension N SExt.none).s → LevelThreeCondition (_root_.GlobalTheory.Mem.Top.Bl.parametersOfExtension Ng SExt.none).s → ExportF KPx (IsBuiltE (_root_.GlobalTheory.Mem.Top.Bl.parametersOfExtension N SExt.none).s) → Pass KPx (IsBuiltE (_root_.GlobalTheory.Mem.Top.Bl.parametersOfExtension N SExt.none).s) (fun K B f T => ∃ w : ColW B f T, Start K B f T w ∧ Has3 (_root_.GlobalTheory.Mem.Top.Bl.parametersOfExtension Ng SExt.none).s K B f T w) → (∀ K B f T w Z Wt p0 t nch n xd c, Ng K B f T w Z Wt p0 t nch n xd c → Nonempty (N K B f T w Z Wt p0 t nch n xd c) ∧ GoodO (w.D Z) nch xd) → MemberE (_root_.GlobalTheory.Mem.Top.Bl.parametersOfExtension N SExt.none).s := by
   intro p1 p2 p3 s1 s2 s3 s4 s5 s6 s8 s9 pv t1 t2 t3 t4 t5 t6 t7 hL N Ng h3 mv mv' ex ps hN
-  exact GlobalTheory.T.exists_member_of_construction_steps_secondPass p1 p2 p3 pv (_root_.GlobalTheory.Mem.Top.Bl.parametersOfExtension N SExt.none).s (_root_.GlobalTheory.Mem.Top.Bl.parametersOfExtension Ng SExt.none).s h3
+  exact _root_.GlobalTheory.Mem.Top.Bl.memberE_of_steps2 p1 p2 p3 pv (_root_.GlobalTheory.Mem.Top.Bl.parametersOfExtension N SExt.none).s (_root_.GlobalTheory.Mem.Top.Bl.parametersOfExtension Ng SExt.none).s h3
     (_root_.GlobalTheory.Mem.SRe.UpS.has4_of_has3_of_sExt_none s1 s2 s3 s4 s5 s6 s8 s9 pv hL (_root_.GlobalTheory.Mem.Top.Bl.parametersOfExtension N SExt.none) rfl mv)
     (GlobalTheory.AmbCrd.ambEx_of_rx _ rfl) (divEx_ox p1 p2 p3 _ _ _)
-    (GlobalTheory.T.exists_thetaData_trueRowsColumns_allCompatible t1 t2 t3 t4 t5 t6 t7 _ (io_zero _ rfl)) ex ps
+    (_root_.GlobalTheory.ThetaRecordTrue.thEx_main t1 t2 t3 t4 t5 t6 t7 _ (io_zero _ rfl)) ex ps
     (_root_.GlobalTheory.Mem.SRe.UpS.has4_of_has3_of_sExt_none s1 s2 s3 s4 s5 s6 s8 s9 pv hL (_root_.GlobalTheory.Mem.Top.Bl.parametersOfExtension Ng SExt.none) rfl mv')
     (GlobalTheory.AmbCrd.ambEx_of_rx _ rfl) (divEx_ox p1 p2 p3 _ _ _)
-    (GlobalTheory.T.exists_thetaData_trueRowsColumns_allCompatible t1 t2 t3 t4 t5 t6 t7 _ (io_zero _ rfl))
+    (_root_.GlobalTheory.ThetaRecordTrue.thEx_main t1 t2 t3 t4 t5 t6 t7 _ (io_zero _ rfl))
     (_root_.GlobalTheory.Mem.Top.Closing.goodE_of_builtE_alt hL N Ng SExt.none hN)
 end GlobalTheory.Mem.Top.Closing
 end

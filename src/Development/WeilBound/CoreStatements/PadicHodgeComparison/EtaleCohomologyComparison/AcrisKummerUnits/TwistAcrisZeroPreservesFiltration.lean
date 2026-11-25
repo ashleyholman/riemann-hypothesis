@@ -22,8 +22,8 @@ def base : PAlg l where
   A := Ob l
   s := RingHom.id _
   perf := inferInstance
-  compl := RL.base_ex.1
-  tf := RL.base_ex.2
+  compl := _root_.GlobalTheory.CompanionTheory.TiltCompl.complete_tf.1
+  tf := _root_.GlobalTheory.CompanionTheory.TiltCompl.complete_tf.2
 
 theorem isBase_base : IsBase l (base l) := Function.bijective_id
 
@@ -139,9 +139,9 @@ theorem dpP_galBase (σ : Gal(PadicAlgCl l/K)) (n : ℕ) :
 def cont (Γ : Type) [TopologicalSpace Γ] : PAlg l where
   A := A.contR Γ
   s := (A.contC Γ).comp A.s
-  perf := (RL.cont_ex A Γ).1
-  compl := (RL.cont_ex A Γ).2.1
-  tf := (RL.cont_ex A Γ).2.2.1
+  perf := (_root_.GlobalTheory.CompanionTheory.ContFn.main A Γ).1
+  compl := (_root_.GlobalTheory.CompanionTheory.ContFn.main A Γ).2.1
+  tf := (_root_.GlobalTheory.CompanionTheory.ContFn.main A Γ).2.2.1
 
 def toCont (Γ : Type) [TopologicalSpace Γ] : A ⟶ A.cont Γ := ⟨A.contC Γ, rfl⟩
 

@@ -1667,7 +1667,7 @@ theorem tie_of (hX : StX) (hAlg : StAlg) (hHt : StHt) (hSing : StSing) (hBase : 
   obtain ⟨FA, hFAc⟩ := _root_.GlobalTheory.CompanionTheory.Ar.PB.ConjOf.flagAn_exists_conj hIn K ι Φ y (CMType H) (D.p + D.q) D.p M _ d BM hv' (by rw [hsub, hd, hN])
     hcj.1 hcj.2
   have hU := _root_.GlobalTheory.CompanionTheory.Relay.flag_analytic_data_uniformised K ι Φ y (CMType H) (D.p + D.q) D.p M _ d BM FA (by rw [hsub]) hd
-  obtain ⟨Cv, CR, hCv, -, hCRl⟩ := _root_.GlobalTheory.CompanionTheory.Ar.PB.identity_cover K ι Φ y (CMType H) (D.p + D.q) D.p M _ d BM FA
+  obtain ⟨Cv, CR, hCv, -, hCRl⟩ := _root_.PositivityTheory.Xgp.t_c_cov_self K ι Φ y (CMType H) (D.p + D.q) D.p M _ d BM FA
   have FS : Nonempty (PB.FlagSys CR.Re D.p) := ⟨⟨M.j_le, hd, hU, fun τ a b hab hb =>
     (_root_.PositivityTheory.Xgp.t_c_sqsys hIn K ι Φ y (CMType H) (D.p + D.q) D.p M _ d BM FA K ι Φ y M Cv CR hv' τ a b hab hb).some⟩⟩
   obtain ⟨⟨pr, j', hov', hR', -⟩, hroots, hdy, -⟩ := id htot

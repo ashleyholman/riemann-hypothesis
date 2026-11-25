@@ -1516,7 +1516,7 @@ theorem adelC_of_siegelWeil_of_doubling_alt : GlobalTheory.Published.CuspRapidDe
     GlobalTheory.HarmModule.harmonicModule_of GlobalTheory.FockDecay.harmonicDecay GlobalTheory.CartanInt.coshIntegral
   have hLoc : GlobalTheory.IndefiniteRowSideFullHecke.LocalIntegralGL.LocalIntegralSingleBlock := GlobalTheory.SingleBlock.localIntegralSingleBlock
   have hPM : GlobalTheory.IndefiniteRowSideFullHecke.RestrictedTensorSplitting.PlaceModels D := GlobalTheory.PlaceTensor.placeModels D
-  exact GlobalTheory.T.adelicLift_scalar_of_innerProductFormula R F (_root_.GlobalTheory.LowRow.CuspLift.liftIsCuspC hCusp R F) (GlobalTheory.T.finiteDatum_sourceLevelCharacter_law hLoc R F hPM)
+  exact GlobalTheory.T.adelicLift_scalar_of_innerProductFormula R F (_root_.GlobalTheory.LowRow.CuspLift.liftIsCuspC hCusp R F) (_root_.GlobalTheory.SourceLaw.sourceLevelLaw hLoc R F hPM)
     (GlobalTheory.T.twistedThetaLift_innerProductFormula_of_hypotheses hCusp hWS (_root_.ResidueKilled.sec_of_dm hDbl) R F hL)
     (GlobalTheory.T.fockVector_matrixCoefficient_formula hHM R F hPM) (deltaNorm_all D)
     (GlobalTheory.T.finiteZetaIntegral_eulerProduct_of_partialL R F (GlobalTheory.T.finiteZetaIntegral_thetaLift_eq_partialLValue hCusp hBZ hUnr R F)) (GlobalTheory.T.thetaLevelIndex_mul_schwartzNorm_formula hLoc R F hPM)

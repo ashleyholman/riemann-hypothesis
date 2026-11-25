@@ -919,7 +919,7 @@ theorem irreducible [CompleteSpace H] (hπ : IsIrrUnitary π) (hD : HasDSComp M 
     exact inner_eq_bePi (fun τ => isIrrUnitary_dsRep M τ) hunit (Φ : homDS M π ⊤).2 (Φ' : homDS M π ⊤).2 y y'
 
   have hne : ∃ w : smoothPart (finPartDS M hU), w ≠ 0 := by
-    obtain ⟨T, -, -, hTd⟩ := GlobalTheory.T.irreducibleUnitaryRep_eq_finiteSmoothPart_tensor_discreteSeries D V S M H π hπ hD hU
+    obtain ⟨T, -, -, hTd⟩ := _root_.GlobalTheory.TrCopy.isCopyFinDS_finPartDSSm D V S M H π hπ hD hU
     by_contra! hc
     have h0 : Submodule.span ℂ {v | ∃ w y, v = T w y} = ⊥ := by
       rw [Submodule.span_eq_bot]

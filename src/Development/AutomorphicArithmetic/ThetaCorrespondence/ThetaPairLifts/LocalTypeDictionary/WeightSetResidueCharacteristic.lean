@@ -856,7 +856,7 @@ theorem pos_scal_base : GlobalTheory.Published.DiscreteSeriesCover → GlobalThe
   have hcore := GlobalTheory.CoreOfWeak.core_of_weak R F hCh hEx
   have hfix := GlobalTheory.FixAllGood.fixAll_of_good R F hCh hEx
   obtain ⟨hScal, hMatch, hUp, -⟩ :=
-    GlobalTheory.T.thetaLift_scalarIdentity_matching_adjointInjective hDS hHCF hHCM hCW hCusp hHowe hWS hSWc hSEC hUD hBZ R.toRealDat F.lv2 hGiven hcc hCh.allPl hfix R.SF hcore.2.1 hTR
+    _root_.GlobalTheory.ScalAll.scal_matchUp_upInj hDS hHCF hHCM hCW hCusp hHowe hWS hSWc hSEC hUD hBZ R.toRealDat F.lv2 hGiven hcc hCh.allPl hfix R.SF hcore.2.1 hTR
   have hCar := GlobalTheory.CarriesOne.parts_eq_of_carries hHowe hCusp R F hOk hCh hEx hHk hUp
   have hNe := GlobalTheory.RowsPartNe.exists_rowPart_ne_bot_positiveDimension hHowe hCusp R F hOk hCh hEx hHk hPG hPos
   exact GlobalTheory.PosAtBase.pos_at_base R F hCh hScal hMatch hCar hNe

@@ -61,7 +61,7 @@ theorem exists_pi : ∃ π : A.A →+* A.Acr n ⧸ A.PFil n,
   · rw [hs, sharp_pi, map_natCast, ← map_natCast (Ideal.Quotient.mk (A.PFil n))]
     exact Ideal.Quotient.eq_zero_iff_mem.2 (l_mem_pfil A n)
   · ext a
-    have h := (RL.sharp_cong A).2.1 a 0
+    have h := (_root_.GlobalTheory.CompanionTheory.Untilt.sharp_congruences A).2.1 a 0
     rw [_root_.GlobalTheory.CompanionTheory.RootsLC.sharp_zero, sub_zero, sub_zero] at h
     rw [RingHom.mem_ker, hs, ← RingHom.mem_ker, (RL.uToQ A n).2.2.2 hn, h]
 

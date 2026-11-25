@@ -947,7 +947,7 @@ theorem heisO_rest_eq : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (θ : InfF
   set R := (1 - e) • Y with hRdef
   have hYR : Y - e • Y = R := by rw [hRdef, sub_smul, one_smul]
   have hR : R ∈ Λ := by
-    have h := GlobalTheory.T.halfA_components_mem_completedLattice_offPrimes D ψ θ S T δ sc hP e SS hE h2qd N N' hSd hTd c hc hcP x' hx
+    have h := _root_.GlobalTheory.HalfAComp.zmem D ψ θ S T δ sc hP e SS hE h2qd N N' hSd hTd c hc hcP x' hx
     rw [← hXdef, ← hY, hXt, hYR] at h
     exact h
   have he2 : e * e = e := GlobalTheory.PlaceDatum.idemSum_mul_self hE

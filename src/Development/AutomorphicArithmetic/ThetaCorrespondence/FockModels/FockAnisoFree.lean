@@ -970,7 +970,7 @@ theorem siegelDeg : PositivityTheory.GramSchwartzFunctions.BC.SiegelDeg := by
   have hH' := _root_.GlobalTheory.CompanionTheory.WeilSiegel.Deg.hyp_pull D r V ψ θ μ lam ν φ a ha hH
   by_cases hx : ∃ x : Matrix (Fin V.rank) (Fin r) D.host.E, x.rank = r ∧ gramQ V x = γ.1
   · exact GlobalTheory.T.siegel_weil_rank_coefficient D r V ψ θ μ lam ν (pull a φ) hH' t γ hγ hx
-  · exact GlobalTheory.T.frame_integral_eq_coefficient_nonrepresented D r V ψ θ μ lam ν (pull a φ) hH' t γ hγ hx
+  · exact _root_.GlobalTheory.CompanionTheory.WeilSiegel.NoFrame.noFrame D r V ψ θ μ lam ν (pull a φ) hH' t γ hγ hx
 
 end GlobalTheory.CompanionTheory.WeilSiegel.Deg
 end -- clump:auto

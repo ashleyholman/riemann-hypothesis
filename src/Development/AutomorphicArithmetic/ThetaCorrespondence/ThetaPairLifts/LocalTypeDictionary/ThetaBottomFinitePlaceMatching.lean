@@ -398,7 +398,7 @@ theorem bottomLevel_unique_of_triple (hH : GlobalTheory.Published.HoweDualityRea
     ∃ (E : Pi₀ ≃ₗ[ℂ] Pi) (c : ℂ), c ≠ 0 ∧ (∀ Φ ∈ algF W.ψ W.θ true FA FW, p Φ = c • E (p₀ Φ)) ∧
       ∀ Φ' ∈ algF W.ψ W.θ false FA' FW, p' Φ' = E (p₀' Φ') := by
   have hθ : IsInfFam W.θ := hX.is.isVac.2.inf
-  obtain ⟨e, Bs, Γ, Xc, om, om', cA, cB, hO, hTD⟩ := GlobalTheory.T.exists_placewise_seesaw_triple_over_hermitian D W.ψ W.θ hθ A A' WW FA FA' FW _ _ hT X.m X.fd X.m' X.fd'
+  obtain ⟨e, Bs, Γ, Xc, om, om', cA, cB, hO, hTD⟩ := _root_.GlobalTheory.SquareAgree.exists_isOver D W.ψ W.θ hθ A A' WW FA FA' FW _ _ hT X.m X.fd X.m' X.fd'
     hX.is.meas hX.is.meas' (X.ω t) (X.ω' t) hm.weilA hm.weilB
   obtain ⟨R, Rf, hR⟩ := hL D.host.F D.host.E D.sp.cm.sig Bs A.rank A'.rank Γ Xc om om' hTD
   have kA : ∀ Φ ∈ algF W.ψ W.θ true FA FW, p₀ Φ = 0 ↔ p Φ = 0 := fun Φ hΦ => by

@@ -146,7 +146,7 @@ theorem UpperTheory.WildA.toStd :
     refine ⟨γ⁻¹, inv_mem hγ, ?_⟩
     rw [map_inv, hγr, Subgroup.coe_inv, map_inv]
   obtain ⟨U, hU⟩ := GlobalTheory.RatMoveJets.exists_unitary_ratCoord S X hX r⁻¹ hr'
-  refine ⟨r⁻¹, U, hU, GlobalTheory.T.vertexLatticeCoords_rationalPoint_mul_eq_coordMatrix S X _ U hU x, ?_⟩
+  refine ⟨r⁻¹, U, hU, _root_.GlobalTheory.RatMoveLat.latAt_rat S X _ U hU x, ?_⟩
   have hx : r⁻¹ * x = s * (k * (S.N.u X)⁻¹) := by
     rw [inv_mul_eq_iff_eq_mul, ← mul_assoc, ← mul_assoc, ← e, mul_inv_cancel_right]
   rw [hx]

@@ -835,7 +835,7 @@ theorem rowE_part_ties_alt : GlobalTheory.NT.RayField → ∀ (hL : _root_.Upper
   have ht : TiesB β.D β.O c b.pt := H.1 β hq c b.pt hl'
   have hs : FieldSmall β.D β.O.L := ((H.2 β).2 _ ht.1.tied.field).2.2
   have hw : SingleIndexPlacesAreTwisted b.pt := fun w hw => ((b.muDef 0 0).2.2.2 w).2 hw
-  exact ⟨ht, ⟨hs, (GlobalTheory.T.pathCoreConditions_of_intrinsicConditions β.D β.O c b.pt ht hs).2.2.1⟩, GlobalTheory.PlugPt.more_of_tiesB β.D β.O c b.pt ht hs hw⟩
+  exact ⟨ht, ⟨hs, (_root_.GlobalTheory.PlugPt.ties_core_of_tiesB β.D β.O c b.pt ht hs).2.2.1⟩, GlobalTheory.PlugPt.more_of_tiesB β.D β.O c b.pt ht hs hw⟩
 end GlobalTheory.PlugPt
 end
 end -- clump:auto
@@ -976,7 +976,7 @@ namespace GlobalTheory.PlugPt
 theorem ties_of_tiesB_alt : ∀ (D : D7) (O : GlobalTheory.EX.OB.Obj D) (c : ℝ) (b : BdPt D O c), TiesB D O c b →
     GlobalTheory.FinalJoin2.FieldSmall D O.L → b.RealisedCondition → GlobalTheory.EX.DQ.TwAllAt D O.ex.nch O.ex.xd → b.CompatibilityConditions := by
   intro D O c b h hF hR htw
-  obtain ⟨hc, hpb, -, -, hD⟩ := GlobalTheory.T.pathCoreConditions_of_intrinsicConditions D O c b h hF
+  obtain ⟨hc, hpb, -, -, hD⟩ := _root_.GlobalTheory.PlugPt.ties_core_of_tiesB D O c b h hF
   obtain ⟨hT, -⟩ := h
   exact
     { real := hR, core := hc, pb := hpb, types := hT.types, data := hD,

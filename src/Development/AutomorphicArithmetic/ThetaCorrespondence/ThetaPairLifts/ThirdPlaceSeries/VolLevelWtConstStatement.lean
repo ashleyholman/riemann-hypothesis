@@ -873,7 +873,7 @@ theorem GlobalTheory.TopVol.main_alt_alt : ∀ {B : GlobalTheory.Mem.Base} {X : 
     rw [e]
     exact ho.inter (isOpen_iInter_of_finite fun i =>
       ((J.E i).openT).preimage ((GlobalTheory.LevIdx.continuous_locHom (J.G i).q S (J.G i).FT).comp continuous_subtype_val))
-  have hvol := GlobalTheory.T.archimedeanLevelVolume_mul_relIndex (I.rec7 l Z) S a.g.volT U' U hle' hle hc hU'o
+  have hvol := _root_.GlobalTheory.LevVol.volLev_mul_relIndex (I.rec7 l Z) S a.g.volT U' U hle' hle hc hU'o
   refine ⟨U', fun h => _root_.GlobalTheory.TopVol.mem_level_twist_iff_conj_mem_levS_datXP h, fun β => ?_⟩
   have hw : ∀ i, (J.E i).wt B.R.m (β i) = (((Jf i).relIndex (GlobalTheory.SplitWeil.KO (J.G i).k _) : ℕ) : ℂ) := by
     intro i
@@ -1222,7 +1222,7 @@ theorem GlobalTheory.PenVol.pen_vol_alt : ∀ {B : GlobalTheory.Mem.Base} {X : P
     intro t J hR α
     obtain ⟨hle, hidx⟩ := hU0 t J hR α
     have hrep := (GlobalTheory.T.chartLevels_reps_represent_unitaryDoubleCosets I hI hP l Z u (W.P.I.tup t) J.Ch₀ J.A hR.is j hjm (J.ι j α)).1
-    refine ⟨GlobalTheory.T.archimedeanLevelVolume_mul_relIndex (I.rec7 l Z) ((I.rec7 l Z).sp.X j) (a.g.x j).vol _ _ hle hU0le hU0c hrep.opn, ?_,
+    refine ⟨_root_.GlobalTheory.LevVol.volLev_mul_relIndex (I.rec7 l Z) ((I.rec7 l Z).sp.X j) (a.g.x j).vol _ _ hle hU0le hU0c hrep.opn, ?_,
       GlobalTheory.AdForm.PinInhab.volLev_ne_zero hI haT.pinX.inf j (a.g.x j).vol (J.ι j α) hrep,
       GlobalTheory.PenVol.relIndex_ne_zero_of_open (GfC _) _ _ hU0le hU0c hrep.opn⟩
     rw [hidx, Nat.cast_prod, _root_.GlobalTheory.Fam.QuadraticExtensionData.wt]
@@ -1426,7 +1426,7 @@ theorem volLev_mul_wt_mid_alt : ∀ {B : GlobalTheory.Mem.Base} {X : PreX B.toPr
     obtain ⟨H, φ, hH, hφK, hφs, hU⟩ := hK t J hJ α
     have hidx := relIndex_eq_prod_of_pi φ Up (J.A.U j (J.ι j α)) (fun i => KO (J.G i).k _) H hφK hφs hU
     have hreps := (GlobalTheory.T.chartLevels_reps_represent_unitaryDoubleCosets I hW.tr.ok hW.tr.pins.some l Z u (W.P.I.tup t) J.Ch₀ J.A hJ.is j (by omega) (J.ι j α)).1
-    have hvol := GlobalTheory.T.archimedeanLevelVolume_mul_relIndex (I.rec7 l Z) _ (a.g.x j).vol (J.A.U j (J.ι j α)) Up (fun g hg => ((hU g).1 hg).1) hUpf hUpc
+    have hvol := _root_.GlobalTheory.LevVol.volLev_mul_relIndex (I.rec7 l Z) _ (a.g.x j).vol (J.A.U j (J.ι j α)) Up (fun g hg => ((hU g).1 hg).1) hUpf hUpc
       hreps.opn
     have hwt : J.wt j α = ((J.A.U j (J.ι j α)).relIndex Up : ℂ) := by
       rw [hidx, _root_.GlobalTheory.Fam.QuadraticExtensionData.wt]

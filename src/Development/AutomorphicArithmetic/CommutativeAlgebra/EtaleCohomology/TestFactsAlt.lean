@@ -44,7 +44,7 @@ theorem UpperTheory.Ru.crystallineComparison.testFacts :
     UpperTheory.Ru.crystallineComparison.TestFacts := by
   intro l _ A hA
   obtain ⟨ϖ, hϖ, h0, ha⟩ := _root_.GlobalTheory.CompanionTheory.Untilt.untilt_mod_varpi_sq A hA
-  have hl : (l : A.U) ∈ nonZeroDivisors A.U := (RL.u_tf A).1
+  have hl : (l : A.U) ∈ nonZeroDivisors A.U := (_root_.GlobalTheory.CompanionTheory.UntiltRegular.untilt_regular A).1
   have hl0 : l ≠ 0 := (Fact.out : l.Prime).ne_zero
   haveI : IsAdicComplete (Ideal.span {ϖ}) A.U :=
     (RL.val_pow ϖ l hl0).2 (by rw [hϖ]; exact _root_.GlobalTheory.CompanionTheory.Untilt.isAdicComplete_U A)

@@ -520,8 +520,8 @@ theorem rational_vacuum_eq_smul_algebraic_combination : ∀ {D : D7} {T : Type} 
     show (GlobalTheory.Grid.ofSgn true A) ((GlobalTheory.Grid.ofSgn true A).symm (γ * a)) ∈ GfC A
     rw [MulEquiv.apply_symm_apply]
     exact hfa
-  obtain ⟨κ₁, F, hF, hκ₁⟩ := GlobalTheory.T.weilDatum_finite_pair_vacuum_algebraic_combination hI.isVac hsdS hI.rigW.1 cS cT hom _ hx _ hfa'
-  obtain ⟨C, -, hC⟩ := GlobalTheory.T.realPoint_acts_on_vacuum_by_algebraicScalar hX t γ hγ a ha γ' hγ' a' ha' hfa hfa'
+  obtain ⟨κ₁, F, hF, hκ₁⟩ := _root_.GlobalTheory.FinWeilAlg.om_vac_algComb hI.isVac hsdS hI.rigW.1 cS cT hom _ hx _ hfa'
+  obtain ⟨C, -, hC⟩ := _root_.GlobalTheory.RealScalarAlg.realScalar hX t γ hγ a ha γ' hγ' a' ha' hfa hfa'
   have e1 : X.ω t (γ * a, γ' * a') X.vac = κ₁ • F := hκ₁
   have e2 : X.ω t (γ * a, γ' * a') X.vac = C • X.ω t (γ, γ') X.vac := by
     rw [show ((γ * a, γ' * a') : GA D A × GA D WW) = (γ, γ') * (a, a') from rfl, map_mul, Module.End.mul_apply, hC,
@@ -642,7 +642,7 @@ theorem rat_real_algebraic_combination_of_moved : ∀ {D : D7} {T : Type} [Finit
         (∀ p, (w p).map (infPart D) = 0) ∧
         X.ω t (γ * a, γ' * a') X.vac = ∑ p, c p • heisO W.ψ (GlobalTheory.Grid.neg A) WW (w p) X.vac := by
   intro D T _ L μ₀ sc G W i j A A' WW X hP hI hL hX t γ hγ a ha γ' hγ' a' ha' hfin hfin'
-  obtain ⟨C, hC, hCe⟩ := GlobalTheory.T.realPoint_acts_on_vacuum_by_algebraicScalar hX t γ hγ a ha γ' hγ' a' ha' hfin hfin'
+  obtain ⟨C, hC, hCe⟩ := _root_.GlobalTheory.RealScalarAlg.realScalar hX t γ hγ a ha γ' hγ' a' ha' hfin hfin'
   have hR : GlobalTheory.MovedAlg.IsAlgComb W.ψ (GlobalTheory.Grid.neg A) WW X.vac (X.ω t (γ, γ') X.vac) :=
     _root_.GlobalTheory.RatMovedAlg.rational_translate_algebraic_combination hP hI hL hX t γ hγ a ha γ' hγ' a' ha' hfin hfin'
   have e : X.ω t (γ * a, γ' * a') X.vac = C • X.ω t (γ, γ') X.vac := by
@@ -1345,11 +1345,6 @@ open Formalism.L2.Host (HChar)
 open GlobalTheory.IndefiniteRowSideFullHecke.UnitCharTriangle (Tri)
 open GlobalTheory.RowEx MeasureTheory
 
-theorem _root_.GlobalTheory.T.isAlgebraic_splitCharacter_twist : ∀ {D : D7} {T : Type} [Finite T] {L : LevCh D T} {μ₀ : T} {sc : Consts} {G : GridData L sc} {W : G.Weil}
-    {i j : Fin D.R.m} {A A' WW : HSp D} {X : Tri T A A' WW}, _root_.GlobalTheory.FunPr.ThetaLocalInputs → (∀ D, GlobalTheory.NormSum.Inp D) → L.Is μ₀ →
-    IsBottomTri W i j X → ∀ e : AE D, IsSplitIdem D e → ∀ x : (AE D)ˣ, (x : AE D) = e * x + (1 - e) →
-      IsAlgebraic ℚ (((G.ch.chi (D.R.m - i) * L.eta ^ (rankV D i j % 2)) x : Circle) : ℂ) := by
-  first | exact @_root_.GlobalTheory.SplitCharAlg.splitCharacter_value_isAlgebraic
 end
 end -- clump:auto
 end -- clump:auto
@@ -1378,8 +1373,8 @@ theorem split_vacuum_algebraic_combination : ∀ {D : D7} {T : Type} [Finite T] 
   classical
   have hψ : ∀ u v : WO (GlobalTheory.Grid.neg A) WW, u.map (infPart D) = 0 → v.map (infPart D) = 0 →
       IsAlgebraic ℚ (W.ψ (symplOH (GlobalTheory.Grid.neg A) WW u v)) :=
-    fun u v hu hv => GlobalTheory.T.isAlgebraic_stdChar_halfSymplectic_realPart_zero hX.is.isVac.1 (GlobalTheory.Grid.neg A) WW u v hu hv
-  have hchr := _root_.GlobalTheory.T.isAlgebraic_splitCharacter_twist hPr hInp hLμ hX
+    fun u v hu hv => _root_.GlobalTheory.PsiFinAlgebraic.isAlgebraic_psi_symplOH hX.is.isVac.1 (GlobalTheory.Grid.neg A) WW u v hu hv
+  have hchr := _root_.GlobalTheory.SplitCharAlg.splitCharacter_value_isAlgebraic hPr hInp hLμ hX
   have vac : IsAlgComb W.ψ (GlobalTheory.Grid.neg A) WW X.vac X.vac := GlobalTheory.BotExpand.alg_self
   have detAlg : ∀ (e' : AE D) (he' : IsSplitIdem D e') (g : GA D WW),
       IsAlgebraic ℚ (((G.ch.chi (D.R.m - i) * L.eta ^ (rankV D i j % 2)) (GlobalTheory.VecInv.detAt e' he'.1 WW g) : Circle) : ℂ) :=
@@ -1449,7 +1444,7 @@ theorem support_split_algebraic_combination : ∀ {D : D7} {T : Type} [Finite T]
   intro D T _ L μ₀ sc G W i j A A' WW X hP hI hL hX t N hN g hg g' hg' hs hs'
   have hψ : ∀ u v : WO (GlobalTheory.Grid.neg A) WW, u.map (infPart D) = 0 → v.map (infPart D) = 0 →
       IsAlgebraic ℚ (W.ψ (symplOH (GlobalTheory.Grid.neg A) WW u v)) := fun u v hu hv =>
-    GlobalTheory.T.isAlgebraic_stdChar_halfSymplectic_realPart_zero hX.is.isVac.1 _ _ u v hu hv
+    _root_.GlobalTheory.PsiFinAlgebraic.isAlgebraic_psi_symplOH hX.is.isVac.1 _ _ u v hu hv
   have hmul : ∀ p q : GA D A × GA D WW, IsAlgComb W.ψ (GlobalTheory.Grid.neg A) WW X.vac (X.ω t p X.vac) →
       IsAlgComb W.ψ (GlobalTheory.Grid.neg A) WW X.vac (X.ω t q X.vac) →
       IsAlgComb W.ψ (GlobalTheory.Grid.neg A) WW X.vac (X.ω t (p * q) X.vac) := by
@@ -1536,7 +1531,7 @@ theorem moved_translate_eq_algebraic_combination : ∀ {D : D7} {T : Type} [Fini
   intro D T _ L μ₀ sc G W i j A A' WW X hP hI hL hX t x hx h hh u hu
   have hψ : ∀ u v : WO (GlobalTheory.Grid.neg A) WW, u.map (infPart D) = 0 → v.map (infPart D) = 0 →
       IsAlgebraic ℚ (W.ψ (symplOH (GlobalTheory.Grid.neg A) WW u v)) := fun u v hu hv =>
-    GlobalTheory.T.isAlgebraic_stdChar_halfSymplectic_realPart_zero hX.is.isVac.1 _ _ u v hu hv
+    _root_.GlobalTheory.PsiFinAlgebraic.isAlgebraic_psi_symplOH hX.is.isVac.1 _ _ u v hu hv
   obtain ⟨N, hN, hlev⟩ := _root_.GlobalTheory.LevelVac.level_vacuum_vector_algebraic hP hI hL hX t
   obtain ⟨γ, hγ, a, ha, s, hs, k, hk, hx', hkc, hss⟩ := GlobalTheory.UnRep.Space.exists_rep_suppSplit D A N hN x
   obtain ⟨γ', hγ', a', ha', s', hs', k', hk', hh', hkc', hss'⟩ := GlobalTheory.UnRep.Space.exists_rep_suppSplit D WW N hN h

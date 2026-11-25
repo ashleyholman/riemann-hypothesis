@@ -598,7 +598,7 @@ theorem test_cover : ∀ {l : ℕ} [Fact l.Prime] (A : PAlg l), A.IsTest → ∀
   have hex : ∀ k, ∃ e₀ : A.A, IsIdempotentElem e₀ ∧ A.sharp e₀ = u k := fun k =>
     (_root_.GlobalTheory.CompanionTheory.Untilt.existsUnique_idempotent_sharp A (u k) (hi k)).exists
   choose e he hsh using hex
-  have hc := (RL.sharp_cong A).2.2
+  have hc := (_root_.GlobalTheory.CompanionTheory.Untilt.sharp_congruences A).2.2
   have hzero : A.sharp 0 = 0 := by
     have := hc 1 IsIdempotentElem.one
     rwa [sub_self, map_one, sub_self] at this

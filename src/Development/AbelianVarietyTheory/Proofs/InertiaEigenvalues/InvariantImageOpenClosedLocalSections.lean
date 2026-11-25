@@ -319,9 +319,7 @@ noncomputable section
 
 namespace GlobalTheory.JR.ImgSec
 
-theorem exists_compact_open_nhd : ∀ (F E : Type) [NontriviallyNormedField F] [NontriviallyNormedField E] [NormedAlgebra F E] [StarRing E] [Unram F E] (r : ℕ) (U : Set (Inv r F)) (a₀ : Inv r F), IsOpen U → a₀ ∈ U → ∃ Ω : Set (Inv r F), IsCompact Ω ∧ IsOpen Ω ∧ a₀ ∈ Ω ∧ Ω ⊆ U := _root_.GlobalTheory.InverseCompactOpen.inv_exists_compact_open
 theorem isCompact_orbit : ∀ (F E : Type) [NontriviallyNormedField F] [NontriviallyNormedField E] [NormedAlgebra F E] [StarRing E] [Unram F E] (r : ℕ) (Ω : Set (Inv r F)) (s : Inv r F → Hn r F E) (h : Inv r F → Matrix (Fin r) (Fin r) E), IsCompact Ω → ContinuousOn s Ω → ContinuousOn h Ω → (∀ a ∈ Ω, IsUnit (h a).det ∧ Bm (s a).toGl = h a) → ∀ C : Set (Hn r F E), IsCompact C → IsCompact {p : Matrix.unitaryGroup (Fin r) E × Inv r F | p.2 ∈ Ω ∧ actU p.1 (s p.2) ∈ C} := _root_.GlobalTheory.JR.orbit_proper_of_columns
-theorem continuousOn_mkX : ∀ (F E : Type) [NontriviallyNormedField F] [NontriviallyNormedField E] [NormedAlgebra F E] [StarRing E] [Unram F E] (r : ℕ) (Ω : Set (Inv r F)) (h : Inv r F → Matrix (Fin r) (Fin r) E), ContinuousOn h Ω → (∀ a ∈ Ω, IsUnit (h a).det) → ContinuousOn (fun a => GlobalTheory.JR.ImgSec.mkX a (h a)) Ω := _root_.GlobalTheory.JR.ImgSec.continuousOn_mkX_of_isUnit_det
 
 variable {F E : Type} [NontriviallyNormedField F] [NontriviallyNormedField E] [NormedAlgebra F E] [StarRing E]
   [Unram F E] {r : ℕ}
@@ -391,7 +389,7 @@ theorem GlobalTheory.JR.image_openClosed_section : ∀ (F E : Type) [Nontriviall
       have := congrArg Matrix.det hh₀
       rw [det_mul, h0, mul_zero, hdm] at this
       exact hΔ ((map_eq_zero_iff φ φ.injective).1 this.symm)
-    obtain ⟨Ω, hΩc, hΩo, ha₀Ω, hΩU⟩ := exists_compact_open_nhd F E r U a₀ hU ha₀
+    obtain ⟨Ω, hΩc, hΩo, ha₀Ω, hΩU⟩ := _root_.GlobalTheory.InverseCompactOpen.inv_exists_compact_open F E r U a₀ hU ha₀
     let hf : Inv r F → Matrix (Fin r) (Fin r) E := fun a => h₀ * (κ (hankel a)).map φ
     have hhf : ∀ a ∈ U, (hf a)ᴴ * hf a = (hankel a).map φ := by
       intro a ha
@@ -404,7 +402,7 @@ theorem GlobalTheory.JR.image_openClosed_section : ∀ (F E : Type) [Nontriviall
         hκ.comp continuous_hankel.continuousOn fun a ha => (hΩU ha).2
       exact continuousOn_const.mul ((continuous_id.matrix_map (continuous_algebraMap F E)).comp_continuousOn h1)
     have hcs : ContinuousOn (fun a => mkX a (hf a)) Ω :=
-      continuousOn_mkX F E r Ω hf hcf fun a ha => hdf a (hΩU ha)
+      _root_.GlobalTheory.JR.ImgSec.continuousOn_mkX_of_isUnit_det F E r Ω hf hcf fun a ha => hdf a (hΩU ha)
     refine ⟨Ω, fun a => mkX a (hf a), hΩc, hΩo, ha₀Ω, hcs,
       fun a ha => ⟨(hΩU ha).1, hasInv_mkX (hhf a (hΩU ha)) (hdf a (hΩU ha))⟩, ?_⟩
     intro C hC

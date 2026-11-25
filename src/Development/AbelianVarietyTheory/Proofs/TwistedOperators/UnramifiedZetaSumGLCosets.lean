@@ -141,8 +141,8 @@ theorem zeta_sum_GL : GlobalTheory.Published.UnramifiedDoublingGL → ∀ (E : T
     · linarith [neg_abs_le (d.1 i)]
     · linarith [le_abs_self (d.1 i)]
 
-  obtain ⟨δ₁, hδ₁, hs₁⟩ := GlobalTheory.T.satake_vector_hecke_eigenvalue H E w r V ρ x B hx z ϖ hϖ T hTv c (fun d => (hc d).1)
-  obtain ⟨B₀, hB₀, δ₂, hδ₂, hs₂⟩ := GlobalTheory.T.hasSum_card_cosets_diagonalDoubleCoset_GL H E w r ϖ hϖ T hTv
+  obtain ⟨δ₁, hδ₁, hs₁⟩ := _root_.GlobalTheory.FinZeta.GLTwist.hasSum_twisted_hecke_eigenvalues H E w r V ρ x B hx z ϖ hϖ T hTv c (fun d => (hc d).1)
+  obtain ⟨B₀, hB₀, δ₂, hδ₂, hs₂⟩ := _root_.GlobalTheory.FinZeta.TrivCount.hasSum_card_cosets_diag H E w r ϖ hϖ T hTv
   let a : {d : Fin r → ℤ // Antitone d} → ℂ := fun d => (z : ℂ) ^ (∑ i, d.1 i) * c d.1 * ℓ x
   let b : {d : Fin r → ℤ // Antitone d} → ℝ := fun d => (Nat.card (S d.1) : ℝ)
   let P : ℂ → ℂ := fun X => eulerFac (B.map (z * ·)) (cq * X) * eulerFac (B.map fun β => (z * β)⁻¹) (cq * X) *

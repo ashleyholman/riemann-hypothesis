@@ -772,7 +772,7 @@ theorem GlobalTheory.MiTop.botRel_of_pin_of_mem_center : GlobalTheory.Published.
   obtain ⟨ξ, hξspan, hξ⟩ := _root_.GlobalTheory.Core.Mi.colDict_rd_eq_colForm D W.S.X W.Q.instEq u W.Q.Rl.ψ d.B (_root_.GlobalTheory.MiTop.formsAtZero W u) (W.S.tr u) W.S.Y.hK W.Q.Rl.θ d.a₀
     hθ hB.idE hP.adapted hP.h0 (hB.hyp.2.1 u)
   have hRS := GlobalTheory.Core.Mi.SeeReal.realSplit_of_idE D W.S.X W.Q.instEq W.Q.Rl.θ hθ hB.idE
-  obtain ⟨c, hc⟩ := GlobalTheory.T.conjugateRow_pairing_poincareSeries_besselPeriods D W.S.X W.Q.instEq u W.Q.Rl.ψ (D.sp.X 0) d.B W.S.Y hψ (hB.fin.inHH u)
+  obtain ⟨c, hc⟩ := _root_.GlobalTheory.Core.Mi.perLaw_holds D W.S.X W.Q.instEq u W.Q.Rl.ψ (D.sp.X 0) d.B W.S.Y hψ (hB.fin.inHH u)
   have hMt := hMatch z hzf hzc
   have hf1 : (iotaX W.S.X W.Q.instEq (z * (show GA D (D.sp.Y 0) from W.Q.tS))).1 = 1 := (hRS.1 _).1 hMt.1
   have hcont : ∀ (C : Cu W.S.X u W.S.Y.hK) ξ', IsContAut (D.sp.X 0) (d.B.colForm C.1 ξ') := fun C =>

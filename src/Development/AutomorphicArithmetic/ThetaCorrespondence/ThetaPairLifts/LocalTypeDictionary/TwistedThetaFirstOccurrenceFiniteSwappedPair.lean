@@ -104,7 +104,7 @@ theorem givenFn_eq_extDat : ∀ {D : D7} {T : Type} {L : LevCh D T} {sc : Consts
     rcases Finset.mem_union.1 hw with h | h
     · exact Finset.mem_union_left _ (hPg h)
     · exact Finset.mem_union_right _ h
-  obtain ⟨he₁, -⟩ := GlobalTheory.T.isIdemSum_sub_of_subset_and_orthogonal he he' hsub
+  obtain ⟨he₁, -⟩ := _root_.GlobalTheory.IdemSubDiff.isIdemSum_sdiff he he' hsub
   have h1 := GlobalTheory.PlaceDatum.idemSum_mul_self he'
   have h2 := GlobalTheory.PlaceDatum.idemSum_mul_self he₁
   obtain ⟨-, c1, c0⟩ := GlobalTheory.FunObj.Comparison₂.cpt_idemSum he'
@@ -788,7 +788,7 @@ theorem givenFn_right_eq_extFn {D : D7} {T : Type} {L : LevCh D T} {sc : Consts}
       (latO (G.pS (.chi (i : ℕ) 0)) (G.pT (.chi (i : ℕ) 0)) (G.latS (.chi (i : ℕ) 0) : Set _)
         (G.latT (.chi (i : ℕ) 0) : Set _) fun _ => True) (cosInd e₀ (Φ i)) := by
   have hsub : G.pl.W0 ⊆ locPl G t := Finset.subset_union_left
-  obtain ⟨he₁, h01⟩ := GlobalTheory.T.isIdemSum_sub_of_subset_and_orthogonal he he₀ hsub
+  obtain ⟨he₁, h01⟩ := _root_.GlobalTheory.IdemSubDiff.isIdemSum_sdiff he he₀ hsub
   have hee : e₀ + (e - e₀) = e := add_sub_cancel e₀ e
   have h0 := GlobalTheory.PlaceDatum.idemSum_mul_self he₀
   have h1 := GlobalTheory.PlaceDatum.idemSum_mul_self he₁
@@ -971,7 +971,7 @@ theorem isThetaAt_extFn : ∀ {D : D7} {m n : ℕ} {ψ : AddChar (AF D.host.F) �
   intro D m n ψ B hs Λ e₀ e₁ f₀ Φ f h00 h11 h01 hΛ0 hΛ1 hB hex h
   have h10 : e₁ * e₀ = 0 := by rw [mul_comm]; exact h01
   have hsb : ∀ Ψ, IsSBHalf e₀ Λ Ψ → IsSBHalf (e₀ + e₁) Λ (extFn e₀ e₁ Λ Ψ) := fun Ψ hΨ =>
-    GlobalTheory.T.isSBHalf_halfExtensionLatticeIndicatorFn h00 h11 h01 hΛ0 hΛ1 hΨ
+    _root_.GlobalTheory.CosetRow.ExtSB.isSBHalf_extFn h00 h11 h01 hΛ0 hΛ1 hΨ
   refine ⟨hex, fun T hT => ?_⟩
   have hT₀ : IsPlaceModel ψ B hs e₀ Λ 1 f₀ (T ∘ₗ extLin e₀ e₁ Λ) := by
     refine ⟨fun Ψ hΨ x hx => ?_, fun Ψ hΨ y hy => ?_, ?_⟩
@@ -1019,7 +1019,7 @@ theorem GlobalTheory.CosetRow.coset_function_isLocalVector : _root_.GlobalTheory
   classical
   have hL := s.core.lev
   obtain ⟨e₀, he₀, hcv⟩ := ch.W.cosVec_is
-  obtain ⟨he₁, h01⟩ := GlobalTheory.T.isIdemSum_sub_of_subset_and_orthogonal he he₀ Finset.subset_union_left
+  obtain ⟨he₁, h01⟩ := _root_.GlobalTheory.IdemSubDiff.isIdemSum_sdiff he he₀ Finset.subset_union_left
   have hee : e₀ + (e - e₀) = e := add_sub_cancel e₀ e
   have hAA : ∀ w ∈ R.toLevCh.Q t, w ∉ ch.G.pl.W0 → ((∀ a ∈ D.host.AA, Valued.v (algebraMap D.host.E (Kw w) a) ≤ 1) ∧ ∃ a ∈ D.host.AA, Valued.v (algebraMap D.host.E (Kw w) a) = 1) := by
     intro w hw _
@@ -1037,7 +1037,7 @@ theorem GlobalTheory.CosetRow.coset_function_isLocalVector : _root_.GlobalTheory
   have key : IsLocVec ch.W (.chi i 0) (e₀ + (e - e₀)) (ch.W.vac i)
       (extFn e₀ (e - e₀) (latO (ch.G.pS (.chi (i : ℕ) 0)) (ch.G.pT (.chi (i : ℕ) 0)) (ch.G.latS (.chi (i : ℕ) 0) : Set _)
         (ch.G.latT (.chi (i : ℕ) 0) : Set _) fun _ => True) (cosInd e₀ (Φ i))) (ch.W.cosVec i (Φ i)) :=
-    ⟨GlobalTheory.T.isSBHalf_halfExtensionLatticeIndicatorFn h0 h1 h01 (fun _ hu => smul_mem_latO_idem _ _ h0 hu) (fun _ hu => smul_mem_latO_idem _ _ h1 hu) hSB,
+    ⟨_root_.GlobalTheory.CosetRow.ExtSB.isSBHalf_extFn h0 h1 h01 (fun _ hu => smul_mem_latO_idem _ _ h0 hu) (fun _ hu => smul_mem_latO_idem _ _ h1 hu) hSB,
       _root_.GlobalTheory.CosetRow.isThetaAt_extFn h0 h1 h01 (fun _ hu => smul_mem_latO_idem _ _ h0 hu) (fun _ hu => smul_mem_latO_idem _ _ h1 hu)
         (fun t y ht hy => symplO_eq_of_half h01 t y ht hy) hex (hcv i i.2 (Φ i))⟩
   rwa [hee] at key
@@ -1071,7 +1071,7 @@ theorem prodHalf_topFn_eq_givenFn : ∀ {D : D7} {T : Type} {L : LevCh D T} {sc 
     rcases Finset.mem_union.1 hw with h | h
     · exact Finset.mem_union_left _ (levelChainTypePlaces_subset_chosenPlaces G hL t h)
     · exact Finset.mem_union_right _ h
-  obtain ⟨he₁, -⟩ := GlobalTheory.T.isIdemSum_sub_of_subset_and_orthogonal he he' hsub
+  obtain ⟨he₁, -⟩ := _root_.GlobalTheory.IdemSubDiff.isIdemSum_sdiff he he' hsub
   have h1 := GlobalTheory.PlaceDatum.idemSum_mul_self he'
   have h2 := GlobalTheory.PlaceDatum.idemSum_mul_self he₁
   obtain ⟨-, c1, c0⟩ := GlobalTheory.FunObj.Comparison₂.cpt_idemSum he'

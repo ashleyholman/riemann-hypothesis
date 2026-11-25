@@ -192,7 +192,7 @@ theorem exists_splitPt_cpt : ∀ (D : D7) (w : Formalism.L2.DIV.Pl D.host.E) (e 
   obtain ⟨s, hsw⟩ := GlobalTheory.OffBad.splitPlace_of_isSplitPl D w
     (GlobalTheory.OffBad.isSplitPl_of_isSplit D w (GlobalTheory.DivPtLocal.isSplit_of_isIdemAt D w e he))
   subst hsw
-  obtain ⟨p, c, hpl, hc, hci, hπ⟩ := GlobalTheory.T.exists_splitLocalPlaceData_at_splitPlace D s hF
+  obtain ⟨p, c, hpl, hc, hci, hπ⟩ := _root_.GlobalTheory.SplitLocPlace.exists_place D s hF
   obtain ⟨q, hq⟩ := GlobalTheory.PlaceSplitPt.exists_splitPt p
   have hqe : q.e = p.e := by rw [← hq]; rfl
   have hqpr : ∀ a, q.pr a = p.π a := fun a => by rw [← hq]; rfl

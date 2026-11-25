@@ -163,7 +163,7 @@ namespace GlobalTheory
 
 theorem jExists_all : ∀ (D : D7) (F : ∀ u, Formalism.L2.Forms.Forms0 D u), JExists D F := by
   intro D F X u wt hw
-  obtain ⟨J, hJ, -⟩ := GlobalTheory.T.exists_equivariant_unitary_coefficientMap_onto D X u (F u) wt hw
+  obtain ⟨J, hJ, -⟩ := _root_.GlobalTheory.St.coefficient_map_exists_onto D X u (F u) wt hw
   exact ⟨J, hJ⟩
 
 end GlobalTheory

@@ -1573,7 +1573,7 @@ theorem degFl_vand (hIn : PB.Inputs) (II : IntersectionSystem) (hII : IsFullInte
     simpa [antisymDegree] using hd
   obtain ⟨FA, -⟩ := PositivityTheory.Xgp.t_c_fl_an _ _ _ (yFl Ψ N) Ψ N N M 0 d BM harith hdim hbd
     (fun p => (hhom p).trans (hfs p).symm)
-  obtain ⟨Cv, CR, hdeg, href, -⟩ := _root_.GlobalTheory.CompanionTheory.Ar.PB.identity_cover _ _ _ (yFl Ψ N) Ψ N N M 0 d BM FA
+  obtain ⟨Cv, CR, hdeg, href, -⟩ := _root_.PositivityTheory.Xgp.t_c_cov_self _ _ _ (yFl Ψ N) Ψ N N M 0 d BM FA
   have hU := _root_.GlobalTheory.CompanionTheory.Relay.flag_analytic_data_uniformised _ _ _ (yFl Ψ N) Ψ N N M 0 d BM FA (by simp) hd
   have hdeg1 : CR.Re.deg = 1 := by rw [CR.deg_eq, hdeg]
   have href1 : ∀ p, CR.Re.ref p = yLineFl Ψ N p := fun p => by rw [href, FA.ref_some, hfs]

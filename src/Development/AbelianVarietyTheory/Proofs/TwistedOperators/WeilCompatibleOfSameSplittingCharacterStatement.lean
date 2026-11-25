@@ -250,7 +250,7 @@ theorem avgForm_ne_zero : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ), IsStdCh
     rw [(hR.1 f₁ hf₁).2.2.1 s]; exact hℓs
   refine ⟨ℓ', fun u hu f hf => hℓ' u hu f hf, ?_⟩
   by_contra! hall
-  obtain ⟨L, Kc, hL, hKc, hz, hloc⟩ := GlobalTheory.T.thetaRestriction_complement_translates_locallyConstant D ψ hψ V V' W r C B hs μ 𝓨 hμ K hKC hKB e he _ hf₂
+  obtain ⟨L, Kc, hL, hKc, hz, hloc⟩ := _root_.GlobalTheory.HalfSupport.supp_locConst D ψ hψ V V' W r C B hs μ 𝓨 hμ K hKC hKB e he _ hf₂
   obtain ⟨L', hL', hL'L, hsep⟩ := GlobalTheory.T.exists_open_subgroup_half_characters_separate D ψ hψ W r e he L hL
   have hφ := _root_.GlobalTheory.fourier_uniqueness_of_openSubgroup (haarHalf (cA D e) W.rank r)
     (fun (a : halfMx e W.rank r) (t : halfMx (cA D e) W.rank r) => ψ (halfSympl W (a : Mx D W.rank r) (t : Mx D W.rank r)))
@@ -575,7 +575,7 @@ theorem charTwist_eq_one_at_split : ∀ (D : D7) (V V' W : HSp D) (r : ℕ) (C :
   have hint : ∀ f, IsThetaFunO ψ V W f → Integrable (fun t : halfMx (cA D e) W.rank r =>
       ℓ' (res V V' W C B μ 𝓨 (heisO ψ V W (restEmb V W K t) f))) (haarHalf (cA D e) W.rank r) := by
     intro f hf
-    obtain ⟨L, Kc, hL, hKc, h0, hloc⟩ := GlobalTheory.T.thetaRestriction_complement_translates_locallyConstant D ψ hψ V V' W r C B hs μ 𝓨 hμ K hKC hKB e he f hf
+    obtain ⟨L, Kc, hL, hKc, h0, hloc⟩ := _root_.GlobalTheory.HalfSupport.supp_locConst D ψ hψ V V' W r C B hs μ 𝓨 hμ K hKC hKB e he f hf
     refine Continuous.integrable_of_hasCompactSupport ?_
       (HasCompactSupport.intro hKc fun t ht => by rw [h0 t ht, map_zero])
     refine IsLocallyConstant.continuous ?_

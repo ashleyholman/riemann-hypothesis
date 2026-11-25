@@ -33,16 +33,16 @@ theorem ev_toCont (A : PAlg l) (z : ℤ_[l]) (a : A.A) :
 
 theorem mem_span_pi_pow (A : PAlg l) (k : ℕ) (f : (A.cont ℤ_[l]).A) :
     f ∈ Ideal.span {(A.cont ℤ_[l]).pi ^ k} ↔ ∀ z, Hom.f (A.evCont z) f ∈ Ideal.span {A.pi ^ k} :=
-  (RL.cont_ex A ℤ_[l]).2.2.2 k f
+  (_root_.GlobalTheory.CompanionTheory.ContFn.main A ℤ_[l]).2.2.2 k f
 
 theorem sharp_add (A : PAlg l) {e f : A.A} (he : IsIdempotentElem e) (hf : IsIdempotentElem f)
     (h : e * f = 0) : A.sharp (e + f) = A.sharp e + A.sharp f := by
   have hs : IsIdempotentElem (e + f) := by
     have h' : f * e = 0 := by rw [mul_comm, h]
     simp only [IsIdempotentElem, add_mul, mul_add, h, h', he.eq, hf.eq, add_zero, zero_add]
-  have h1 := (RL.sharp_cong A).2.2 _ hs
-  have h2 := (RL.sharp_cong A).2.2 _ he
-  have h3 := (RL.sharp_cong A).2.2 _ hf
+  have h1 := (_root_.GlobalTheory.CompanionTheory.Untilt.sharp_congruences A).2.2 _ hs
+  have h2 := (_root_.GlobalTheory.CompanionTheory.Untilt.sharp_congruences A).2.2 _ he
+  have h3 := (_root_.GlobalTheory.CompanionTheory.Untilt.sharp_congruences A).2.2 _ hf
   have h4 : (1 - (e + f)) = (1 - e) * (1 - f) := by
     have : (1 - e) * (1 - f) = 1 - e - f + e * f := by ring
     rw [this, h]; ring

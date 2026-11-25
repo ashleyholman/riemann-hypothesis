@@ -363,7 +363,7 @@ theorem GlobalTheory.KerVal.prTC_val : ∀ {B : Base} {X : PreX B.toPre} (I : TC
   obtain ⟨b, hb⟩ := GlobalTheory.KerVal.onMin_canInv_mem Pl w _ _
     (GlobalTheory.KerVal.colLen_le_of_fits (nuFits_tgt (I.rec7 l Z) u i hi))
     (tgtFun Pl Bs u μ w i c' (secC O u μ (i + 1) v'))
-    (canT_of Pl Bs (GlobalTheory.T.toy_entPl_canOnto _ Pl) u μ w i hi c' (secC O u μ (i + 1) v'))
+    (canT_of Pl Bs (_root_.GlobalTheory.Mem.CanonicalSurjection.canOnto_all _ Pl) u μ w i hi c' (secC O u μ (i + 1) v'))
     (GlobalTheory.KerVal.tgtFun_rat Pl Bs u μ w i c' (hEnt u μ w hw (i + 1) hi c') (secC O u μ (i + 1) v')) J
   exact ⟨b, congrArg norm hb⟩
 end -- clump:auto
@@ -1283,7 +1283,7 @@ theorem GlobalTheory.Pdv.kerEntC_true : ∀ {B : Base} {X : PreX B.toPre} (I : T
   have hU := GlobalTheory.Mem.Col2.TC.AdaptedBases.dgenUnitAd Pl O
   have hB : BasOk Pl O (fun u μ w i c τ => (Pm w u μ i c τ).map (Formalism.MainNotions.TaylorLogMetric.tauEmb _ (Pl.lam w) τ)) :=
     fun u μ w i hi c τ => h1 w u μ i hi c τ
-  have hC := GlobalTheory.T.toy_entPl_canOnto _ Pl
+  have hC := _root_.GlobalTheory.Mem.CanonicalSurjection.canOnto_all _ Pl
   have hR : ∀ u μ, GL3Columns.RhoAlg (O u μ) := fun u μ => KerEntTrue.rhoAlg_std I hok hp l Z hs u μ
   have h0 := GlobalTheory.T.kernelEntryHyp_of_trueColumnChoices I hok hp l Z l0 Y O Pl _ hq hs hB
     (fun u a w _ i _ c τ j k => GlobalTheory.KerRescale.tauEmb_mem Pl w τ (Pm w u a i c τ j k)) hu hj

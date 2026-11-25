@@ -718,7 +718,7 @@ theorem tied_mass_law : ∀ (Cg cb Cw cT CT C0 C' Cl : ℝ) (D : D7) (large₂ :
     obtain ⟨p, hp⟩ := Infinite.exists_notMem_finset Fm.P
     exact gval_ne_of_primeTo D (zOf Y) Fm.FP (Tu D u) (Tu D u') F F' hBased p (hgood p hp)
   have hRel : ∀ p, (Fm.FP p).RelG (LocNG.theta ((zOf Y).M p)) := fun p =>
-    (GlobalTheory.T.localisedBaseFrames_relevantPair D (zOf Y) u u' w F00 F'0 hZ hG p).2 _ (hbase p)
+    (_root_.GlobalTheory.LocBaseRel.atBase_relG D (zOf Y) u u' w F00 F'0 hZ hG p).2 _ (hbase p)
   have hTot : TotPos (Gval F F') := fun τ =>
     (Formalism.MainNotions.LatticeGluingRadicals.b_G_pos (Formalism.MainNotions.LatticeGluingRadicals.p_starConj D) (Formalism.MainNotions.BridgeLemma.tie_Tu_pos D u) F F' rfl rfl hG
       (Formalism.MainNotions.LatticeGluingRadicals.p_posX D _ (Formalism.MainNotions.BridgeLemma.tie_Tu_pos D u) F) _).1

@@ -1392,7 +1392,7 @@ include hcS hcT hW
 
 theorem root_closed {x : GA D S} (hx : x ∈ GfC S) {h : GA D T} (hh : h ∈ GfC T) {m : ℕ} (hm : 0 < m)
     (hp : IsAlgComb ψ S T v (om ((x, h) ^ m) v)) : IsAlgComb ψ S T v (om (x, h) v) := by
-  obtain ⟨κ, F, hF, e⟩ := GlobalTheory.T.weilDatum_finite_pair_vacuum_algebraic_combination hv hS hT hcS hcT hW x hx h hh
+  obtain ⟨κ, F, hF, e⟩ := _root_.GlobalTheory.FinWeilAlg.om_vac_algComb hv hS hT hcS hcT hW x hx h hh
   have key : ∀ k : ℕ, ∃ F₁, IsAlgComb ψ S T v F₁ ∧ om ((x, h) ^ k) v = κ ^ k • F₁ := by
     intro k
     induction k with
@@ -1412,7 +1412,7 @@ def algGroup : Subgroup (GA D S × GA D T) where
   mul_mem' := fun {p q} hp hq => ⟨mul_mem hp.1 hq.1, mul_mem hp.2.1 hq.2.1, by
     rw [map_mul]; exact om_alg hv hS hT hW hp.2.2 hq.2.2⟩
   inv_mem' := fun {p} hp => ⟨inv_mem hp.1, inv_mem hp.2.1, by
-    obtain ⟨κ, F, hF, e⟩ := GlobalTheory.T.weilDatum_finite_pair_vacuum_algebraic_combination hv hS hT hcS hcT hW _ (inv_mem hp.1) _ (inv_mem hp.2.1)
+    obtain ⟨κ, F, hF, e⟩ := _root_.GlobalTheory.FinWeilAlg.om_vac_algComb hv hS hT hcS hcT hW _ (inv_mem hp.1) _ (inv_mem hp.2.1)
     have e' : om p⁻¹ v = κ • F := e
     have h1 : v = κ • om p F := by
       rw [← map_smul, ← e', ← Module.End.mul_apply, ← map_mul, mul_inv_cancel, map_one, Module.End.one_apply]
@@ -1427,7 +1427,7 @@ theorem mem_GfC_of_suppAt {e : Formalism.L2.Theta.AE D} (he : IsSplitIdem D e) {
 
 theorem split_alg {e : Formalism.L2.Theta.AE D} (he : IsSplitIdem D e) {g : GA D S} {h : GA D T}
     (hg : Formalism.L2.Theta.SuppAt e S g) (hh : Formalism.L2.Theta.SuppAt e T h) : IsAlgComb ψ S T v (om (g, h) v) := by
-  obtain ⟨κ, F, hF, eF⟩ := GlobalTheory.T.weilDatum_finite_pair_vacuum_algebraic_combination hv hS hT hcS hcT hW g (mem_GfC_of_suppAt he hg) h (mem_GfC_of_suppAt he hh)
+  obtain ⟨κ, F, hF, eF⟩ := _root_.GlobalTheory.FinWeilAlg.om_vac_algComb hv hS hT hcS hcT hW g (mem_GfC_of_suppAt he hg) h (mem_GfC_of_suppAt he hh)
   obtain ⟨x, hx⟩ := GlobalTheory.WeilDetermined.exists_isDetAt he.1 S g
   obtain ⟨y, hy⟩ := GlobalTheory.WeilDetermined.exists_isDetAt he.1 T h
   obtain ⟨r, hr, hℓ⟩ := hW.om_split e he g h hg hh x y hx hy

@@ -392,10 +392,10 @@ theorem bund : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host 
     rw [← heig]
     exact h1
   have hagree : ∀ q ∈ (Set.univ : Set (Cpt A'.ξ)), La q = Lb q := by
-    refine _root_.GlobalTheory.CompanionTheory.Ar.lat_agree_of_height_one A'.X Ω A'.ξ A'.tie.gen Set.univ (fun _ _ _ _ => trivial)
+    refine _root_.PositivityTheory.UnitarySelfGeneration.lattices_agree_of_height_one A'.X Ω A'.ξ A'.tie.gen Set.univ (fun _ _ _ _ => trivial)
       (fun p _ => (A'.normal p.1).2) A.Li La Lb (labelRk D s) (eigSp A.ρ (A.emb s)) hvbA hvbB ?_
     intro q _ hq1
-    have hdvr := _root_.GlobalTheory.CompanionTheory.Ar.stalk_isDiscreteValuationRing_of_dim_one A'.X A'.normal q.1 hq1
+    have hdvr := _root_.PositivityTheory.UnitarySelfGeneration.normal_scheme_height_one_stalk_dvr A'.X A'.normal q.1 hq1
     rw [hLb]
     simp only [La, Lat.patch]
     split_ifs with hF

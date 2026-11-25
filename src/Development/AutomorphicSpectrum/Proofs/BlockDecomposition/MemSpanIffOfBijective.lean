@@ -637,7 +637,7 @@ theorem tower_ex {O : Type} [CommRing O] {F : Fn O} (κ : O →+* OC l) {d : ℕ
   have hP := GlobalTheory.CompanionTheory.RootPerf.root_perf l hl L.i L.t L.et pf_ob X
   obtain ⟨S, _, g, hc⟩ := GlobalTheory.CompanionTheory.AdicCompl.exists_isCompl X.E (algebraMap L.D X.E (L.i (pFlat l)))
   have hS : CrystallineSemistableComparison.D.Pf l S := GlobalTheory.CompanionTheory.PerfectRing.pf_of_isCompl l X.E S _ g hc hP.1
-  have hnz := GlobalTheory.CompanionTheory.ComplReg.isCompl_nonZeroDivisor X.E S _ g hc (hP.2 _ RL.base_ex.2)
+  have hnz := GlobalTheory.CompanionTheory.ComplReg.isCompl_nonZeroDivisor X.E S _ g hc (hP.2 _ _root_.GlobalTheory.CompanionTheory.TiltCompl.complete_tf.2)
   let A : PAlg l :=
     { A := S, s := (g.comp (algebraMap L.D X.E)).comp L.i, perf := ⟨hS.bij⟩, compl := hc.compl, tf := hnz }
   have hJ : EtLift (Ideal.span {(l : A.U) ^ 1}) :=

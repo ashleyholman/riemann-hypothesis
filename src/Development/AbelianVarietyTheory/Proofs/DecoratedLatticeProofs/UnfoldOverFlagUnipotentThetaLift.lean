@@ -1618,7 +1618,7 @@ theorem unfold_over_N_lift : ∀ (D : D7), Descent D → ∀ (ψ : AddChar (AF D
   haveI : SFinite vW.μ := inferInstance
   obtain ⟨act, y₀, hy₀, hrel, htrans, hstab1, hstab2⟩ := _root_.GlobalTheory.OrbAct.action_transitive_stabiliser D V V₀ W ρ d x₀ hx
   letI := act
-  obtain ⟨𝓐, h𝓐, hlay⟩ := GlobalTheory.T.flagUnipotent_fundamentalDomain_layers_integral D V V₀ ρ d vN vb vU
+  obtain ⟨𝓐, h𝓐, hlay⟩ := _root_.GlobalTheory.Unf.layers_integral D V V₀ ρ d vN vb vU
   haveI : Countable D.host.E := (Module.finBasis ℚ D.host.E).equivFun.injective.countable
   haveI : Countable (Matrix (Fin W.rank) (Fin ρ) D.host.E) := inferInstanceAs (Countable (Fin _ → Fin _ → _))
   haveI hΓc : Countable ((NFlagQ V d.e).prod (GQ W)) := Function.Injective.countable

@@ -429,7 +429,7 @@ theorem splitAt_places_alt : ∀ {D : D7} {L : SizeData₂ D} {hT : GatTies D} {
       (sc PP hP j) ((l PP hP).FX j hj) hs0).1
     have hIntM := hcore PP hP j ρ h hj F₀ hF₀
     have hA : IsSelfDualC (D.sp.X j) (a.x j).L := (hIs.x j (by omega)).sd
-    refine GlobalTheory.T.exists_selfDualLineLattice_splitting_sum D (l PP hP).k (l PP hP).q (y.bes j ρ h).V₀ (D.sp.X j) (y.bes j ρ h).L (y.bes j ρ h).o (M₁ j ρ h)
+    refine _root_.GlobalTheory.LineSplit.exists_lineLat D (l PP hP).k (l PP hP).q (y.bes j ρ h).V₀ (D.sp.X j) (y.bes j ρ h).L (y.bes j ρ h).o (M₁ j ρ h)
       (a.x j).L _ ((l PP hP).FX j hj) F₀ _ (hM₁ j ρ h) hA ⟨_, GlobalTheory.LineSelfDual.isSelfDualC_selfDualLatticeCoordsInFrame D _⟩ hF₀.1 (fun r => ?_)
       hIntM ((l PP hP).latX j hj)
     rw [hF₀.2 r]
@@ -450,7 +450,7 @@ theorem splitAt_places_alt : ∀ {D : D7} {L : SizeData₂ D} {hT : GatTies D} {
     subst hjs
     obtain ⟨LL, hLL, hO, hLLw⟩ := key _ 0 h
     obtain ⟨LZ₀, hLZ₀, -⟩ := hLZ _ h (l PP hP).q.v (hq ▸ hx)
-    obtain ⟨LZ, hLZsd, hLZO, hLZw⟩ := GlobalTheory.T.exists_selfDualLineLattice_splitting_sum D (l PP hP).k (l PP hP).q (D.sp.X ((l PP hP).s + 1 + 1)) D.sp.X' a.Lz
+    obtain ⟨LZ, hLZsd, hLZO, hLZw⟩ := _root_.GlobalTheory.LineSplit.exists_lineLat D (l PP hP).k (l PP hP).q (D.sp.X ((l PP hP).s + 1 + 1)) D.sp.X' a.Lz
       (a.oT _ h) (a.x ((l PP hP).s + 1 + 1)).L a.LT _ (l PP hP).FT (l PP hP).FM
       (fun i => (ofSplit (l PP hP).q).pr (a.ζ₀ i)) (hIs.x _ (by omega)).sd hsdT ⟨LZ₀, hLZ₀⟩
       (fun r b => by rw [(l PP hP).last]; rfl) (fun r => by rw [(l PP hP).last]; rfl) (l PP hP).latM (l PP hP).latT
@@ -524,7 +524,7 @@ theorem exists_shape_integral_in_normal_frames_alt : ∀ {D : D7} {L : SizeData�
     intro j
     by_cases hj : j < D.R.m
     · obtain ⟨L₀, hL₀⟩ := _root_.GlobalTheory.SDLatY.exists_selfDual_latY_alt W hP j hj
-      obtain ⟨N', hsd, hint⟩ := GlobalTheory.T.exists_move_selfDual_lattice_split_frames D (Yc D j) L₀ hL₀ I (fun i => (l i.1 i.2).k) (fun i => (l i.1 i.2).q)
+      obtain ⟨N', hsd, hint⟩ := _root_.GlobalTheory.SplitLat.exists_selfDual_frames D (Yc D j) L₀ hL₀ I (fun i => (l i.1 i.2).k) (fun i => (l i.1 i.2).q)
         (fun _ => XIx (Fin D.R.k) (Fin D.R.t) j ⊕ Fin (D.R.m - 1 - j))
         (fun i => FY i.1 i.2 j (D.R.m - 1 - j) (by have := (l i.1 i.2).hs; omega)) hinj
       refine ⟨N', fun _ => hsd, fun PP h c hc => ?_⟩
@@ -549,7 +549,7 @@ theorem exists_shape_integral_in_normal_frames_alt : ∀ {D : D7} {L : SizeData�
       exact ((@GlobalTheory.LocMod.normalFrames_and_basePoint_exist D (l i.1 i.2).k _ _ _ _ (ofSplit (l i.1 i.2).q)
         (hxi i.1 i.2)).1 _ ρ _ _ _ (hsc i.1 i.2 j)).1
     choose F hF using hex
-    obtain ⟨M', hsd, hint⟩ := GlobalTheory.T.exists_move_selfDual_lattice_split_frames D (y.bes j ρ h).V₀ L₀ hL₀ I (fun i => (l i.1 i.2).k) (fun i => (l i.1 i.2).q)
+    obtain ⟨M', hsd, hint⟩ := _root_.GlobalTheory.SplitLat.exists_selfDual_frames D (y.bes j ρ h).V₀ L₀ hL₀ I (fun i => (l i.1 i.2).k) (fun i => (l i.1 i.2).q)
       (fun _ => XIx (Fin D.R.k) (Fin D.R.t) j ⊕ Unit) F hinj
     refine ⟨M', hsd, fun PP hP hj' F₀ hF₀ => ?_⟩
     have e := coreFrame_beta_eq _ _ _ _ (hF ⟨PP, hP⟩) hF₀
@@ -810,7 +810,7 @@ theorem lattices_frames_basePoints_exist_alt : ∀ {D : D7} {L : SizeData₂ D} 
     exact hPg PP hPP ((htP _).1 hp')
   have hU := _root_.GlobalTheory.levelPrime_not_mem_places_alt W u hW hPg
   have hA : ∀ PP h, ∃ (FY : FYFam (l PP h)) (sc : ℕ → (l PP h).k), IsNormalFr (l PP h) y FY sc :=
-    fun PP h => GlobalTheory.T.exists_normalFrames_rationalDecompositions_over_local a y (l PP h) _ hTau hT0 (hU PP h)
+    fun PP h => _root_.GlobalTheory.Fam.FramesY.normalFrames_exist a y (l PP h) _ hTau hT0 (hU PP h)
   choose FY sc hFY using hA
   obtain ⟨N, dT, M, β₀, hShape, hdT, hSD, hInt⟩ :=
     _root_.GlobalTheory.Fam.LatShape.exists_shape_integral_in_normal_frames_alt W u hW a y m b₀ k ι v o l bas hIs hTau hT0 hτ hNT hζ hLT hgP htP hdisj hPre hLZ hbas FY sc hFY

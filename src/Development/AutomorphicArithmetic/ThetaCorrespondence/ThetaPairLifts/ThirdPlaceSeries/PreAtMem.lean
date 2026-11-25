@@ -1222,7 +1222,7 @@ attribute [local instance] GlobalTheory.TypeRec.factG
 theorem exists_inputs_pinAt_jumpsCard_at_mem : _root_.GlobalTheory.HeightCounting.Up.PublishedInputsThirdLayerAlt → _root_.GlobalTheory.NRows.GeometricGaloisRepCompatibility → ∀ hL : _root_.UpperTheory.Zero.LLC.RecTExists,
     _root_.GlobalTheory.HeightCounting.Up.MemberAtLayerPoint hL fun _ _ _ _ w Z _ _ _ _ _ c => ∃ I : _root_.GlobalTheory.NRows.LinkedInputs hL (w.D Z), _root_.GlobalTheory.HeightCounting.Up.PinnedAtCharacterChoice c.a I.P ∧ JumpsCard (w.D Z).nd (w.D Z).naut := by
   intro prn prx hL
-  have hA := _root_.GlobalTheory.HeightCounting.Up.Model.AtMem.and_z (_root_.GlobalTheory.HeightCounting.Up.Model.AtMem.and_z (_root_.GlobalTheory.T.exists_linked_data_pinned_at_layer prn hL) (_root_.GlobalTheory.T.serLoc_at_member_of_published_inputs prn hL)) (_root_.GlobalTheory.HeightCounting.JumpsAt.jumpsCard_at_members_of_htCard prx.ht hL)
+  have hA := _root_.GlobalTheory.HeightCounting.Up.Model.AtMem.and_z (_root_.GlobalTheory.HeightCounting.Up.Model.AtMem.and_z (_root_.GlobalTheory.HeightCounting.Up.isTied_of_layer_member_alt prn hL) (_root_.GlobalTheory.T.serLoc_at_member_of_published_inputs prn hL)) (_root_.GlobalTheory.HeightCounting.JumpsAt.jumpsCard_at_members_of_htCard prx.ht hL)
   refine _root_.GlobalTheory.NRows.AtLayer.atMem_mono_of_colPin (EvG.imp (EvG.inter GlobalTheory.T.eventually_sizes_congruences_hostFacts_columnChoices (_root_.GlobalTheory.T.adm8_and_lamUsed_of_readL_of_parameters prn prx)) fun _ _ _ _ _ hK => large₂.inter hK.1 hK.2) hA ?_
   rintro K B f T ⟨hS, hR⟩ kp w Z Wt p0 t nch n xd c ⟨ne⟩ _ cp ⟨⟨⟨X, hpin, -⟩, ser⟩, jumps⟩
   obtain ⟨-, -, -, -, -, hdef, -⟩ := hS kp T w Z

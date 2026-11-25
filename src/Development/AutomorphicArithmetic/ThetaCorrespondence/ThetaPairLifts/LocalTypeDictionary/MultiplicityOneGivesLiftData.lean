@@ -422,7 +422,7 @@ theorem base_of_ties_alt : _root_.GlobalTheory.PrimIn.PublishedThetaConditionThe
     _root_.GlobalTheory.TrLevMult.trLev_of_multEq R.toRealDat F.lv2 1 hT.ok.ok2 hCore.1 hSch hStab hCD hM R.SF hCore.2.1
   have hFix : ∀ t P, GlobalTheory.Hk3.Good R.toRealDat t P → Formalism.DivisionValues.conjPl P = P → GlobalTheory.Hk3.FixAll R.toRealDat t P :=
     GlobalTheory.FixAllGood.fixAll_of_good R F hT.char hT.ex
-  have hU := GlobalTheory.T.thetaLift_scalarIdentity_matching_adjointInjective hP.q5 hP.q3 hP.q4 hP.q6 hP.q2 hP.q1 hP.q7 hP.q8
+  have hU := _root_.GlobalTheory.ScalAll.scal_matchUp_upInj hP.q5 hP.q3 hP.q4 hP.q6 hP.q2 hP.q1 hP.q7 hP.q8
     (_root_.ResidueKilled.sec_of_dm hP.q9) hP.q10 hP.q11 R.toRealDat F.lv2 hGiv hT.ccK
     hT.char.allPl hFix R.SF hCore.2.1 hTR
   exact ⟨hGiv, hStab, hCD, hLI, hTR, hU.2.2.1, hU.2.2.2⟩

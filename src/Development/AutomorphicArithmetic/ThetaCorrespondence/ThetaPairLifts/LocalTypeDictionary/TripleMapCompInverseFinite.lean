@@ -308,7 +308,7 @@ theorem GlobalTheory.PlaceProd.pure_of_finSupp : ∀ {F E : Type} [Field F] [Num
     rfl
   | @insert v S' hv ih =>
     intro gS hgS f φ hSB hvac
-    obtain ⟨g1, k, hgk, h2, h3, -, -⟩ := GlobalTheory.T.exists_adelicUnitary_factor_finiteSetOfPlaces σ X gS {v}
+    obtain ⟨g1, k, hgk, h2, h3, -, -⟩ := _root_.GlobalTheory.PlaceCut.exists_cut σ X gS {v}
     have hg1 : g1 ∈ UAt σ X (evFin F v) := fun u hu =>
       h2 u (fun w hw => by rw [Finset.mem_singleton.1 hw]; exact hu)
     have hk : ∀ u : AF F, (∀ w ∈ S', evFin F w u = 0) → u • (mat k - 1) = 0 := by
@@ -552,7 +552,7 @@ theorem finite_adele_acts_placewise : _root_.GlobalTheory.FunPr.ThetaLocalInputs
     obtain ⟨S₁, hS₁⟩ := GlobalTheory.LatAlmostAll.exists_finset_keeps σ Y hP.herm.lat g
     have hfin := Filter.eventually_cofinite.1 hvac
     set S : Finset (GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels.Pl (F := F)) := S₀ ∪ S₁ ∪ hfin.toFinset with hSdef
-    obtain ⟨gS, k, hgk, hgS, hkS, hkI, hkL⟩ := GlobalTheory.T.exists_adelicUnitary_factor_finiteSetOfPlaces σ Y g S
+    obtain ⟨gS, k, hgk, hgS, hkS, hkI, hkL⟩ := _root_.GlobalTheory.PlaceCut.exists_cut σ Y g S
     obtain ⟨φ', hφ'SB, hφ'off, hφ'aug, hφ'eq⟩ := _root_.GlobalTheory.PlaceProd.pure_of_finSupp σ B Y G.W M χX χW ω r s r' s' hP S gS hgS f φ hφ hvac
     have hk : ω (k, 1) (pure f φ) = pure f φ := by
       refine _root_.GlobalTheory.SphGlobX.fixes_pure_left σ B Y G.W M χX χW ω r s r' s' hP S (fun v hv => hsph v (fun h => hv (by simp [hSdef, h])))

@@ -1515,7 +1515,7 @@ theorem placeSys {N : ℕ} (hN : 0 < N) :
     subst this
     simpa using hvw
   · intro v g
-    obtain ⟨x, y, hx, hy, e⟩ := GlobalTheory.T.finiteAdelicUnitary_eq_mul_trivOutside_place_and_at_place L n v g
+    obtain ⟨x, y, hx, hy, e⟩ := _root_.GlobalTheory.PlaceDecomp.decomp L n v g
     exact ⟨x, hx, y, hy, e⟩
   · intro v k hk
     obtain ⟨x, y, hx, hy, cx, cy, e⟩ := _root_.GlobalTheory.CongSplitBoth.split_cong_at_place L n N v k hk

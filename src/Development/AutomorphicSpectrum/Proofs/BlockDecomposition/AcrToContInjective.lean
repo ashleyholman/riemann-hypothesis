@@ -420,7 +420,7 @@ theorem sharp_roots_core (A : PAlg l) {u ρ : ℕ → (A.cont ℤ_[l]).A} (hu : 
       ∑ c : ZMod (l ^ m), (A.cont ℤ_[l]).sharp (ind A m c) * (A.cont ℤ_[l]).sharp (u m) ^ c.val ∈
       Ideal.span {(l : (A.cont ℤ_[l]).U) ^ (k + 1)} := by
     intro k
-    have h := (RL.sharp_cong (A.cont ℤ_[l])).1 _ _ k (sub_powSum_mem A hu hρ h0 (m + k))
+    have h := (_root_.GlobalTheory.CompanionTheory.Untilt.sharp_congruences (A.cont ℤ_[l])).1 _ _ k (sub_powSum_mem A hu hρ h0 (m + k))
     rwa [root_pow hρ, sharp_powSum A hu m k hv] at h
   refine sub_eq_zero.1 (IsHausdorff.haus
     (inferInstance : IsHausdorff (Ideal.span {(l : (A.cont ℤ_[l]).U)}) (A.cont ℤ_[l]).U) _ fun k => ?_)
@@ -699,7 +699,7 @@ theorem main : ∀ {l : ℕ} [Fact l.Prime] (ε : Eps l),
           PAlg.Hom.f ψ (PAlg.Hom.f (contMap A.fromBase ℤ_[l]) η) = u := by
   intro l _ ε
   have hx : (base l).s (ε.e 0) - 1 ∈ Ideal.span {(base l).pi} :=
-    ((RL.sharp_cong (base l)).2.1 _ 1).1 (by
+    ((_root_.GlobalTheory.CompanionTheory.Untilt.sharp_congruences (base l)).2.1 _ 1).1 (by
       rw [ε.sharp_e (base l), map_one, sub_self]
       exact zero_mem _)
   obtain ⟨η, hη, hshift⟩ := EtaFn.exists_fn (base l) _ hx
@@ -991,7 +991,7 @@ theorem ind_loc (h : A.contR Γ) (z : Γ) :
   have hl := h.2 1
   let V : Clopens Γ := ⟨_, hl.isClopen_fiber (Ideal.Quotient.mk _ (h.1 z))⟩
   refine ⟨V, rfl, ?_⟩
-  have key := ((RL.cont_ex A Γ).2.2.2 1 (ind A V * (h - A.contC Γ (h.1 z)))).2
+  have key := ((_root_.GlobalTheory.CompanionTheory.ContFn.main A Γ).2.2.2 1 (ind A V * (h - A.contC Γ (h.1 z)))).2
   rw [show A.contC Γ A.pi ^ 1 = A.contC Γ A.pi from pow_one _] at key
   refine key fun γ => ?_
   change (ind A V).1 γ * (h.1 γ - h.1 z) ∈ _

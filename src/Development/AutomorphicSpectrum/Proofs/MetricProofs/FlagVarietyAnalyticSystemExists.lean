@@ -49,7 +49,7 @@ theorem flagVarieties_flagSys : Inputs → ∀ (Ψ : Type) [Fintype Ψ] [Decidab
     exact hd1
   have hhom' : ∀ p : Ψ × Fin N, BM.hom p = fsHerm (FlIdx Ψ N) (M.dy p) := fun p => (hhom p).trans (hdy p).symm
   obtain ⟨FA, hFAline⟩ := _root_.PositivityTheory.Xgp.t_c_fl_an _ _ _ _ Ψ N N M 0 d BM hAr hdeg hbd hhom'
-  obtain ⟨Cv, CR, hCv, hCRref, hCRline⟩ := _root_.GlobalTheory.CompanionTheory.Ar.PB.identity_cover _ _ _ _ Ψ N N M 0 d BM FA
+  obtain ⟨Cv, CR, hCv, hCRref, hCRline⟩ := _root_.PositivityTheory.Xgp.t_c_cov_self _ _ _ _ Ψ N N M 0 d BM FA
   have hunif := _root_.GlobalTheory.CompanionTheory.Relay.flag_analytic_data_uniformised _ _ _ _ Ψ N N M 0 d BM FA (by simp) hd1
   refine ⟨d, FA.S.comap some, CR.Re, hd1, ?_, ?_, ?_, ?_⟩
   · rw [CR.deg_eq, hCv]

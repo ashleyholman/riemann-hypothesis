@@ -705,7 +705,7 @@ theorem facAt_sgnAt_mul_sgnAt (hW : _root_.GlobalTheory.Fam.AllFamilyConditions 
     ((J.E i).dL_mid j d H (α i) (γ i)) _ fun z => ?_
   obtain ⟨e', he'⟩ := exists_xOrd B.R j
   obtain ⟨e, he⟩ := exists_xOrd B.R (j + 1)
-  have h1 := (GlobalTheory.T.finiteDatum_factors_over_twistPrimes_local I hW.tr.ok hW.tr.tw l Z u _ J.Ch₀ J.A hJ.is).2 _ rfl _ _ _ (J.G i) _ (J.E i) (J.hψ i) (J.sg i) (J.π i) (J.P i)
+  have h1 := (_root_.GlobalTheory.QTw.Join.xi_factor_and_entry I hW.tr.ok hW.tr.tw l Z u _ J.Ch₀ J.A hJ.is).2 _ rfl _ _ _ (J.G i) _ (J.E i) (J.hψ i) (J.sg i) (J.π i) (J.P i)
     hm.toReadsAt j d H hj hj' (J.ι j α) (J.ι (j + 1) γ) e' e he' he (homOf I l Z j hj z)
   rw [hJ.sec j (Nat.le_of_succ_le hj), hJ.sec (j + 1) hj] at h1
   have h2 := toLoc_frames ((J.G i).q.pr.comp (incA (I.rec7 l Z))) (rankN (I.rec7 l Z) j (Nat.le_of_succ_le hj))
@@ -944,7 +944,7 @@ theorem ratDatum_add_twist_places_alt : ∀ {B : GlobalTheory.Mem.Base} {X : Pre
   · intro e₀ he₀ j hj α γ Ξ f hf
     have hv := _root_.GlobalTheory.Fam.VacTheta.main_alt_alt W hW u a ha haT j hj
     obtain ⟨Q, hQ, hdis, hsum⟩ := _root_.GlobalTheory.TwPlaces.exists_disjoint_places_isIdemSum hW ha haT hJ he₀
-    have key := GlobalTheory.T.rationalDatum_foldr_local_combinations (I.rec7 l Z) (_root_.GlobalTheory.Fam.pk_z W).ψ haT.pinX.std _ _ _ Q J.r J.pl hJ.inj hQ hdis
+    have key := _root_.GlobalTheory.LocComb.ratDatum_foldr_comb (I.rec7 l Z) (_root_.GlobalTheory.Fam.pk_z W).ψ haT.pinX.std _ _ _ Q J.r J.pl hJ.inj hQ hdis
       (fun i => (J.E i).dL j (α i) (γ i)) _ (fun i => (hloc i j hj α γ).1) (a.g.x j).L (a.g.x (j + 1)).L
       (ha.x j (Nat.le_of_succ_le hj)).sd (ha.x (j + 1) hj).sd (Set.ext (haT.pinX.xs j (Nat.le_of_succ_le hj)).2.2)
       (Set.ext (haT.pinX.xs (j + 1) hj).2.2) Ξ (a.g.vac j) f hv.1 hv.2.1
@@ -984,7 +984,7 @@ open scoped TensorProduct Classical
 namespace GlobalTheory.Fam
 theorem xi_eq_xiOff_mul_join_alt : ∀ {B : GlobalTheory.Mem.Base} {X : PreX B.toPre} {I : TC B X} {l : I.Laws} {Z : TC.Later B (I.cols l)} {L : SizeData₂ (I.rec7 l Z)} {hT : GatTies (I.rec7 l Z)} {Gi : Formalism.MainNotions.G.Inst (I.rec7 l Z) L} {Gl : Formalism.MainNotions.G.LatInst (I.rec7 l Z)} {Kc : Formalism.MainNotions.G.Consts} {Yd : DivX (I.rec7 l Z)} {cX : ExtraC} {ex : Extra (I.rec7 l Z) L hT Gi Gl Kc Yd cX} (W : _root_.GlobalTheory.MiS.RealPackAlt ex), _root_.GlobalTheory.Fam.AllFamilyConditions W → ∀ (u : B.Word) (a : _root_.GlobalTheory.Fam.GeometricFamily W u), a.Is → a.True → ∀ t (J : _root_.GlobalTheory.Fam.QuadraticExtensionData a t), J.Reads → ∀ j (hj : j + 1 ≤ B.R.m) α γ z, J.A.xi j hj (J.ι j α) (J.ι (j + 1) γ) z = xiOff J.A j hj (J.ι j α) (J.ι (j + 1) γ) z * ∏ i, B.embLL (locXi J.A j (J.ι j α) (J.ι (j + 1) γ) (J.P i) (homOf I l Z j hj z)) := by
   intro B X I l Z L hT Gi Gl Kc Yd cX ex W hW u a _ _ t J hJ j hj α γ z
-  rw [(GlobalTheory.T.finiteDatum_factors_over_twistPrimes_local I hW.tr.ok hW.tr.tw l Z u (W.P.I.tup t) J.Ch₀ J.A hJ.is).1 j hj (J.ι j α) (J.ι (j + 1) γ) z]
+  rw [(_root_.GlobalTheory.QTw.Join.xi_factor_and_entry I hW.tr.ok hW.tr.tw l Z u (W.P.I.tup t) J.Ch₀ J.A hJ.is).1 j hj (J.ι j α) (J.ι (j + 1) γ) z]
   congr 1
   symm
   refine Finset.prod_bij (fun i _ => J.P i) ?_ ?_ ?_ ?_

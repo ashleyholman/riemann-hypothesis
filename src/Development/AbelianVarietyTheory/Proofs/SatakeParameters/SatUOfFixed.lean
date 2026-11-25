@@ -125,7 +125,7 @@ theorem satU_of_fixed : ∀ (L : Type) [Field L] [NumberField L] [IsCMField L] (
   have hdec : ∀ g : GAf L n, ∃ x ∈ {x : GAf L n | TrivOutside {v} x}, ∃ b ∈ {b : GAf L n | TrivOutside {v}ᶜ b},
       g = x * b := by
     intro g
-    obtain ⟨x, b, hx, hb, e⟩ := GlobalTheory.T.finiteAdelicUnitary_eq_mul_trivOutside_place_and_at_place L n v g
+    obtain ⟨x, b, hx, hb, e⟩ := _root_.GlobalTheory.PlaceDecomp.decomp L n v g
     exact ⟨x, hx, b, hb, e⟩
   have hirr : ∀ S' : Submodule ℂ (GAf L n → a.W), S' ≤ S → (∀ g, ∀ x ∈ S', ρ g x ∈ S') → S' = ⊥ ∨ S' = S :=
     fun S' hle hst => hS.2.2 S' ⟨hle.trans hS.1.le, fun g x hx => hst g x hx⟩ hle

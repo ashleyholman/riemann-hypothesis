@@ -1030,7 +1030,7 @@ theorem GlobalTheory.Mem.SymFrame.conj_symLevel : ∀ (D : D7) (G' : Type) [Grou
   intro D G' _ _ Pl0 T A Ks _ _ _ R X h eR plg iso hpin hIs hplg hDiv heG ψ0 hψ0 π hπ red b hred hfix hw
   classical
   obtain ⟨P, hP⟩ := _root_.GlobalTheory.Mem.SymFrameRed.symVec_red D X h hpin b (fun kv => (hfix kv).1) hw π
-  obtain ⟨ψ', a, hψ'1, hchi⟩ := GlobalTheory.T.star_character_eq_prod_additive_characters_root_alt D X h hpin hw
+  obtain ⟨ψ', a, hψ'1, hchi⟩ := _root_.GlobalTheory.Mem.SymChar.star_character_eq_prod_additive_characters_root D X h hpin hw
   have hsc : ∀ kv : (Σ k : Fin 2, D.nd.PlG k), ∃ d : Fin D.R.r → (ZMod (D.host.g kv.1))ˣ,
       ∀ u : GL (Fin D.R.r) (ZMod (D.host.g kv.1)), u ∈ unipSym (ZMod (D.host.g kv.1)) D.R.r D.R.rS D.R.k →
         ψ' kv (∑ i, ∑ j, if symEdge D.R.rS D.R.k i j then (a kv i j : ZMod (D.host.g kv.1)) * u.val i j else 0) =

@@ -140,7 +140,7 @@ theorem cuspParameter_at_member_alt : _root_.GlobalTheory.HeightCounting.Up.Publ
     ∀ Rw : RowSide (w.D Z), HEq Rw.locR c.a.nt.A.row.locR → GlobalTheory.IndefiniteRowSideFullHecke.CMTypeEmbeddings.GoodRowCuspParam (w.D Z) Rw) := by
   intro hN hL
   have hlift := _root_.GlobalTheory.LiftRef.baseChange_local_compatible_all_places_alt hN hL
-  have hloc := _root_.GlobalTheory.T.local_component_of_par_in_third_layer hN hL
+  have hloc := _root_.GlobalTheory.RowSphSmall.spherical_localComponent_of_small_prime_alt hN hL
   have hsz := GlobalTheory.T.eventually_sizes_congruences_hostFacts_columnChoices
   refine EvG.imp ((hlift.inter hloc).inter hsz) fun K _ _ _ _ H => ?_
   refine large₂.imp ((H.1.1.inter H.1.2).inter H.2) fun B f T _ h => ?_

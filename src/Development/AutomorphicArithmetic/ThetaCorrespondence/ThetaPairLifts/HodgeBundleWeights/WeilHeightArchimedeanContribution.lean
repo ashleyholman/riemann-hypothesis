@@ -873,7 +873,7 @@ theorem _root_.GlobalTheory.T.toroidal_flag_smooth_projective : ∀ (E : Type) [
   obtain ⟨A⟩ := GlobalTheory.CompanionTheory.FlagSmooth.nonempty_atlas_of_cover T.Y p
     (GlobalTheory.CompanionTheory.FlagSmooth.exists_gChart_of_flagCover T.X)
   obtain ⟨M, g, κ, hκ, hZ⟩ := GlobalTheory.CompanionTheory.FlagSmooth.exists_cellModel T.Y p A
-  obtain ⟨d, hsm, hpr⟩ := _root_.GlobalTheory.CompanionTheory.FlagMod.cells_smooth_proj E H D l Xo c T.Y p A M.YY M.π g κ hκ hZ T.smooth
+  obtain ⟨d, hsm, hpr⟩ := _root_.DifferentiableLines.flag_embedding_atlas_projective E H D l Xo c T.Y p A M.YY M.π g κ hκ hZ T.smooth
   obtain ⟨h, hh, hπ⟩ := _root_.DifferentiableLines.flag_model_projective_embedding_alt E H D l Xo c T.Y p A M g κ hκ hZ T.smooth T.flag
   have e : flagStr T.X = h ≫ M.π ≫ T.Y.s := by
     rw [← Category.assoc, hπ]

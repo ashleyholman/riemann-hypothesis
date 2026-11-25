@@ -111,11 +111,11 @@ theorem finUnit_det_of_carries : ∀ (D : D7) (V : HSp D) (n : ℕ) (hn : V.rank
     Formalism.L2.Herm.Carries k (Formalism.L2.Col.stdLat D.host.E n) (Formalism.L2.Col.stdLat D.host.E n) →
     ∃ d : (Formalism.L2.Theta.AE D)ˣ, (d : Formalism.L2.Theta.AE D) = (Formalism.L2.Theta.mt V g).det ∧ Formalism.L2.Pj.FinUnit d := by
   intro D V n hn g k hg hk hc
-  obtain ⟨h1, h2⟩ := GlobalTheory.T.integral_entries_of_carries_standardLattice D.host.F D.host.E n k hc
+  obtain ⟨h1, h2⟩ := _root_.GlobalTheory.KJStdInt.carries_std_integral D.host.F D.host.E n k hc
   have hu : IsUnit (Formalism.L2.Theta.mt V g).det := by
     unfold Formalism.L2.Theta.mt
     exact (Matrix.isUnit_iff_isUnit_det _).1 (Units.isUnit _)
-  obtain ⟨f1, f2⟩ := GlobalTheory.T.det_integralUnitIdele_of_integral_finitePart D V n hn g k hk h1 h2 hu.unit hu.unit_spec
+  obtain ⟨f1, f2⟩ := _root_.GlobalTheory.DetIntUnit.det_int_unit D V n hn g k hk h1 h2 hu.unit hu.unit_spec
   refine ⟨hu.unit, hu.unit_spec, ?_, f1, f2⟩
   rw [hu.unit_spec]
   exact infPart_det_of_mem_GfC D V g hg

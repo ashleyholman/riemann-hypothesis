@@ -19,7 +19,7 @@ theorem dict_invariant : ∀ (D : D7) (H : ReciprocityTheory.ChartRestriction.G.
   have last : ∀ g k γ, C.Mark g k γ → ∃ δ ∈ (C.M.X k).Γ, dict g = ⟨k, lact δ (C.fr (γ * g) k)⟩ := by
     intro g k γ hm
     obtain ⟨γ₀, hm₀, hf⟩ := hd.1 g
-    have hu := GlobalTheory.T.marking_component_unique_frame_unique_arithmeticGroup D H Dw l Xo c σ V r C hC g
+    have hu := _root_.GlobalTheory.MarkUniq.mark_unique D H Dw l Xo c σ V r C hC g
     have hk : (dict g).1 = k := hu.1 _ _ _ _ hm₀ hm
     subst hk
     obtain ⟨δ, hδ, he⟩ := hu.2 _ γ γ₀ hm hm₀

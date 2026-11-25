@@ -694,7 +694,7 @@ theorem lbIso_of_same_descent : ∀ {Z P Q : Scheme.{0}} (g : Z ⟶ P) (f : P �
     show gm (𝟙 Z) x _ (T.s fun _ => i) * (gm (𝟙 Z) x _ (τ.s fun _ => k))⁻¹ =
       _ * (gm (𝟙 Z) x _ (T.s fun _ => i') * (gm (𝟙 Z) x _ (τ.s fun _ => k'))⁻¹)
     rw [eT, eτ, mul_inv, _root_.mul_mul_mul_comm]
-  refine GlobalTheory.T.line_bundle_trivial_of_descended_generator g hfl hlf hsu _ hD ω hω ?_
+  refine _root_.GlobalTheory.CompanionTheory.FnDesc.triv_of_invariant_gen g hfl hlf hsu _ hD ω hω ?_
   intro W a b hab w i hi
   have hpt : g (a w) = g (b w) := by
     have := congrArg (fun q : W ⟶ P => q w) hab
@@ -1044,7 +1044,7 @@ theorem triv_of_triv_of_flat_cover : ∀ (S : Scheme.{0}) (A X Y : Over S) [GrpO
     LocallyOfFinitePresentation q.left → Surjective q.left →
     ∀ N : LB (A ⊗ Y).left, N.IsLB → Triv (ev N (1 : Y ⟶ A) (𝟙 Y)) → Triv (ev N (fst A X) (snd A X ≫ q)) → Triv N := by
   rintro S A X Y _ hA q hfl hlfp hsj N hN ⟨r, hr⟩ ⟨t₀, ht₀⟩
-  obtain ⟨f₁, f₂, f₃⟩ := GlobalTheory.T.flat_cover_base_change_product S A X Y hA q hfl hlfp hsj
+  obtain ⟨f₁, f₂, f₃⟩ := _root_.GlobalTheory.CompanionTheory.RigDesc.lift_fst_snd_comp_flat_lfp_surjective S A X Y hA q hfl hlfp hsj
   have he : (lift (1 : X ⟶ A) (𝟙 X)).left ≫ (snd A X).left = 𝟙 _ := by
     rw [← Over.comp_left, lift_snd]; rfl
   have hef : (lift (1 : X ⟶ A) (𝟙 X)).left ≫ (lift (fst A X) (snd A X ≫ q)).left =
@@ -1052,10 +1052,10 @@ theorem triv_of_triv_of_flat_cover : ∀ (S : Scheme.{0}) (A X Y : Over S) [GrpO
     rw [← Over.comp_left, ← Over.comp_left]
     congr 1
     ext <;> simp
-  obtain ⟨t, ht, hn⟩ := GlobalTheory.T.linear_combination_generator_section_exists hN (fun _ => (lift (fst A X) (snd A X ≫ q)).left) (fun _ => 1)
+  obtain ⟨t, ht, hn⟩ := _root_.GlobalTheory.CompanionTheory.SecNorm.exists_gen_normalised_along hN (fun _ => (lift (fst A X) (snd A X ≫ q)).left) (fun _ => 1)
     (fun _ => q.left ≫ (lift (1 : Y ⟶ A) (𝟙 Y)).left) (fun _ => 1) (snd A X).left (lift (1 : X ⟶ A) (𝟙 X)).left he
     (fun U _ k => by simp only [hef]) t₀ ht₀ (LB.pullGen N _ _ r q.left) (DVR.pullGen_isGen _ _ _ _ hr _)
-  refine GlobalTheory.T.line_bundle_trivial_of_descended_generator _ f₁ f₂ f₃ N hN t ht ?_
+  refine _root_.GlobalTheory.CompanionTheory.FnDesc.triv_of_invariant_gen _ f₁ f₂ f₃ N hN t ht ?_
   intro W a b hab w i hi
   have hw : a ≫ (A ⊗ X).hom = b ≫ (A ⊗ X).hom := by
     have e := congrArg (· ≫ (A ⊗ Y).hom) hab
@@ -1144,7 +1144,7 @@ theorem exists_normed (hM : M.IsLB) (hR : R.IsGen) {T : Over S} (x x' : T ⟶ X)
     rw [← hc]; simp)
   have e₁ : ∀ y : T ⟶ X, (zS A T).left ≫ (aH A y).left = y.left ≫ (zS A X).left := fun y => by
     rw [← Over.comp_left, ← Over.comp_left, zS_aH]
-  obtain ⟨t', ht', hv⟩ := GlobalTheory.T.linear_combination_generator_section_exists hM ![(aH A x).left, (aH A x').left] ![-1, 1]
+  obtain ⟨t', ht', hv⟩ := _root_.GlobalTheory.CompanionTheory.SecNorm.exists_gen_normalised_along hM ![(aH A x).left, (aH A x').left] ![-1, 1]
     (Sum.elim (fun _ : PUnit => x.left ≫ (zS A X).left) (fun _ : PUnit => x'.left ≫ (zS A X).left))
     (Sum.elim (fun _ => -1) (fun _ => 1)) (snd A T).left (zS A T).left (zS_left_snd T)
     (fun U _ k => by
@@ -1322,16 +1322,6 @@ open CategoryTheory CategoryTheory.Limits AlgebraicGeometry MonoidalCategory Car
 open scoped CategoryTheory.Obj
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor GlobalTheory.AbLaw GlobalTheory.CechPic GlobalTheory.AbDual CompanionTheory.ObstructionTrivialLocus
 
-theorem _root_.GlobalTheory.T.theorem_of_cube_generator_exists : ∀ (S : Scheme.{0}) (A X Y : Over S) [GrpObj A], IsAbelianScheme A → ∀ (q : X ⟶ Y) (M : LB (A ⊗ X).left), M.IsLB →
-    Triv (ev M (1 : X ⟶ A) (𝟙 X)) →
-    (∀ (T : Over S) (x x' : T ⟶ X), x ≫ q = x' ≫ q →
-        LBIso (ev M (fst A T) (snd A T ≫ x)) (ev M (fst A T) (snd A T ≫ x'))) →
-    ∃ c : LB.Gen (LB.LinComb M (K := Fin 2) ![pullback.fst (lift (fst A X) (snd A X ≫ q)).left (lift (fst A X) (snd A X ≫ q)).left,
-        pullback.snd (lift (fst A X) (snd A X ≫ q)).left (lift (fst A X) (snd A X ≫ q)).left] ![-1, 1]), c.IsGen ∧
-      ∀ (W : Scheme.{0}) (a b d : W ⟶ (A ⊗ X).left) (hab : a ≫ (lift (fst A X) (snd A X ≫ q)).left = b ≫ (lift (fst A X) (snd A X ≫ q)).left)
-        (hbd : b ≫ (lift (fst A X) (snd A X ≫ q)).left = d ≫ (lift (fst A X) (snd A X ≫ q)).left) (w : W) (J : (W ⟶ (A ⊗ X).left) → M.ι), Good M w J →
-        val c (pullback.lift a b hab) w J * val c (pullback.lift b d hbd) w J = val c (pullback.lift a d (hab.trans hbd)) w J := by
-  first | exact @GlobalTheory.CompanionTheory.RigDescLink.descent_datum
 end -- clump:auto
 end -- clump:auto
 
@@ -1403,8 +1393,8 @@ theorem lbDescent (hH : H90) {P Q : Scheme.{0}} (f : P ⟶ Q) (hf : Flat f) (hl 
 theorem rigDescent : H90 → RigDescent := by
   intro hH S A X Y _ hA q hq hl hs
   refine ⟨GlobalTheory.T.seesaw_triviality_abelian_scheme S A X Y hA q hq hl hs, fun M hM hr hinv => ?_⟩
-  obtain ⟨hf, hfl, hfs⟩ := GlobalTheory.T.flat_cover_base_change_product S A X Y hA q hq hl hs
-  obtain ⟨c, hc, coc⟩ := GlobalTheory.T.theorem_of_cube_generator_exists S A X Y hA q M hM hr hinv
+  obtain ⟨hf, hfl, hfs⟩ := _root_.GlobalTheory.CompanionTheory.RigDesc.lift_fst_snd_comp_flat_lfp_surjective S A X Y hA q hq hl hs
+  obtain ⟨c, hc, coc⟩ := _root_.GlobalTheory.CompanionTheory.RigDescLink.descent_datum S A X Y hA q M hM hr hinv
   obtain ⟨N₀, hN₀, iso⟩ := lbDescent hH _ hf hfl hfs M hM c hc coc
   let eY := (lift (1 : Y ⟶ A) (𝟙 Y)).left
   let eX := (lift (1 : X ⟶ A) (𝟙 X)).left

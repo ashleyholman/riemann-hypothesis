@@ -1070,7 +1070,7 @@ theorem tied_pair_scalar_match (hP : _root_.GlobalTheory.FunPr.ThetaLocalInputs)
     (h₀ : IsMatch ψ θ A A₁ B α β ωA ωB Pi₀ rf₀ rl₀ p₀ p₀') (hM : IsMatch ψ θ A A₁ B α β ωA ωB Pi rf rl p p') :
     ∃ s : ℂ, s ≠ 0 ∧ ∀ Φ ∈ algF ψ θ true A B, ∀ Φ' ∈ algF ψ θ false A₁ B, p₀ Φ = p₀' Φ' → p' Φ' = s • p Φ := by
   obtain ⟨e, Bs, Γ, Xc, om, om', cA, cB, hO, hTD⟩ :=
-    GlobalTheory.T.exists_placewise_seesaw_triple_over_hermitian D ψ θ hθ W W₁ X A A₁ B α β hT ν 𝓕 ν₁ 𝓕₁ hν hν₁ ωA ωB hM.weilA hM.weilB
+    _root_.GlobalTheory.SquareAgree.exists_isOver D ψ θ hθ W W₁ X A A₁ B α β hT ν 𝓕 ν₁ 𝓕₁ hν hν₁ ωA ωB hM.weilA hM.weilB
   obtain ⟨R, Rf, hR⟩ := hL D.host.F D.host.E D.sp.cm.sig Bs W.rank W₁.rank Γ Xc om om' hTD
   have hRe := hP.howeDualityReal
   have kA : ∀ Φ ∈ algF ψ θ true A B, p Φ = 0 ↔ p₀ Φ = 0 := fun Φ hΦ => by

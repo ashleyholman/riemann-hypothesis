@@ -570,9 +570,9 @@ theorem exists_levelB2_twisted_state_of_thetaTie : ∀ (hL : _root_.UpperTheory.
   let N := thTw (Dof x) th
   obtain ⟨m, hm, hc, hh⟩ := GlobalTheory.T.exists_movedData_laterStagesWithNewTwist x N
   obtain ⟨r, hp, hrep, hj, he⟩ :=
-    GlobalTheory.T.exists_normalisedReading_transported_newTwist x N m hm hc hh
+    _root_.GlobalTheory.HeightCounting.Up.readTw x N m hm hc hh
   obtain ⟨l', h1, h2, h3, h4, h5, h6, h7⟩ :=
-    _root_.GlobalTheory.T.read_package_twist_heq_alt hL x l.toLI N m hm hc hh r hp hrep hj he
+    _root_.GlobalTheory.HeightCounting.Up.LiTw.li_copy_alt hL x l.toLI N m hm hc hh r hp hrep hj he
   obtain ⟨mt, hPV⟩ := _root_.GlobalTheory.HeightCounting.Up.exists_in_mt_theta_twist_pv_eq x l.toLI th m hm hc hh r hp hj
   refine ⟨stTw x N m hc hh r hp, ?_, rfl, ?_⟩
   · have hser := _root_.GlobalTheory.T.series_at_theta_twist_ys_exp hL x l th

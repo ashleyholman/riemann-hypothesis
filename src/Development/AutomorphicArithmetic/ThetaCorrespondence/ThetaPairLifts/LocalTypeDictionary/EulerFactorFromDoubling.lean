@@ -1408,7 +1408,7 @@ theorem downNe_of_core : ResidueKilled.DM → PositivityTheory.Rg.Rsw.ResCore �
     _root_.GlobalTheory.Core.Rk.Small.exists_small_vac_vec D ψ θ A H χA omH (fun _ => 1) sH hDef.inf hη homH hDef.one hsH hAH β Z hPl
   have hfb := _root_.GlobalTheory.VacuumSplitReal.vacuum_fixed D ψ θ A H t χA omH sH hDef.inf hη homH hDef.one hsH hSigH hHr hHsig f hf hfvac
   obtain ⟨sB, LB, hsB, hLB, hbF, hbS⟩ :=
-    GlobalTheory.T.boxProducts_orthogonalSum_target_cartan_fock D ψ θ A B W H o (fun _ => 1) sW sH hstd hDef.inf hOcc.cart hsH
+    _root_.GlobalTheory.Core.Rk.SumBox.box_sum_target D ψ θ A B W H o (fun _ => 1) sW sH hstd hDef.inf hOcc.cart hsH
   have hFs : IsFockVec ψ θ A B (fun _ => 1) sB (o.boxT A Φ f) := hbF Φ f hOcc.fock (fockVec_of_vac_nc hf hfvac)
   have hSs : IsSphOff ψ A B (frameLat A) LB (under Z) (o.boxT A Φ f) :=
     hbS (frameLat A) (under Z) Φ f hOcc.sph hfsph
@@ -1438,7 +1438,7 @@ theorem downNe_of_core : ResidueKilled.DM → PositivityTheory.Rg.Rsw.ResCore �
   have hcoef := _root_.GlobalTheory.CompanionTheory.Eis.coeffAt_neg_one_zeta D A χW⁻¹ hμ m hm _ hEC hAn hReg _ _ hRD hRD hZF
     (sZero A B) E₁ hE₁
   rw [hE₁0] at hcoef
-  obtain ⟨C, hC0, hC⟩ := GlobalTheory.T.levelPlaces_integral_nonzero_constant D ψ θ A cA a hDef B W H o χA χW omB om omH homB hom homH β Z hPl m hm u hu
+  obtain ⟨C, hC0, hC⟩ := _root_.GlobalTheory.Core.Rk.Exh.LocalConst.integral_const D ψ θ A cA a hDef B W H o χA χW omB om omH homB hom homH β Z hPl m hm u hu
     hForm.fix sW Φ hOcc f hf hf0 hfκ hfb hfoff ν 𝓕 hν
   have hsph : SphFun A (frameLat A) (under Z) u := sphFun_of_param_nc hForm.param
   have hUn : Unram ψ A B χW (frameLat A) LB (under Z) (o.boxT A Φ f) (o.boxT A Φ f) :=

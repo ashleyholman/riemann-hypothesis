@@ -1328,9 +1328,9 @@ theorem six_rows_at_member_alt : ∀ (𝒮 : Slots) (Lk : LkT _root_.GlobalTheor
   have hC : OverCols (sAnd (IsGoodE 𝒮) fun _ _ _ _ _ => True) :=
     (_root_.GlobalTheory.Fc.Cv.overCols_goodE 𝒮 (fun _ _ _ _ _ => True)).2
   have hT : LargeBaseCondition KPx (IsBuiltE 𝒮) fun _ _ _ _ _ => True := largeBaseProperty_true
-  exact ⟨⟨_, hT, _root_.GlobalTheory.Fc.PeriodEntriesOverColumns.referenceChainEvaluation_bundlePoints_overColumns _ hC _ Lk⟩, ⟨_, hT, GlobalTheory.T.twistedChainEvaluation_rational_integral_bundlePoints _ hC _ Lk⟩,
+  exact ⟨⟨_, hT, _root_.GlobalTheory.Fc.PeriodEntriesOverColumns.referenceChainEvaluation_bundlePoints_overColumns _ hC _ Lk⟩, ⟨_, hT, _root_.GlobalTheory.Fc.PeriodEntriesOverColumns.row_aPtTw_of_overCols _ hC _ Lk⟩,
     ⟨_, hT, _root_.GlobalTheory.Fc.PeriodEntriesOverColumns.row_aPer0_of_overCols _ hC _ Lk⟩, ⟨_, hT, _root_.GlobalTheory.Fc.PeriodEntriesOverColumns.row_aPerTw_of_overCols _ hC _ Lk⟩,
-    ⟨_, hT, _root_.GlobalTheory.Fc.PeriodEntriesOverColumns.row_tie_of_overCols _ hC _ Lk⟩, ⟨_, hT, GlobalTheory.T.levelPrimeColumnValuations_bundlePoints_overColumns _ hC _ Lk⟩⟩
+    ⟨_, hT, _root_.GlobalTheory.Fc.PeriodEntriesOverColumns.row_tie_of_overCols _ hC _ Lk⟩, ⟨_, hT, _root_.GlobalTheory.Fc.Cv.row_level_valuations _ hC _ Lk⟩⟩
 end GlobalTheory.Fc
 end
 end -- clump:auto

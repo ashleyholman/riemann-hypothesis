@@ -545,7 +545,7 @@ theorem exists_common_vacua_alt : ∀ {D : D7} {L : SizeData₂ D} {hT : GatTies
     · obtain ⟨M, hM, hMv⟩ := _root_.GlobalTheory.MovedLat.movedLat_alt W hpk j (by omega) (b j)
       obtain ⟨M', hM', hM'v⟩ := _root_.GlobalTheory.MovedLat.movedLat_alt W hpk (j + 1) hj (b (j + 1))
       obtain ⟨hvac, hnz⟩ := _root_.GlobalTheory.StepMove.fock_vac_moved_alt W hpk j hj (b j) (b (j + 1)) (hb j) (hb (j + 1)) M M' hM hM' hMv hM'v
-      obtain ⟨o, ho, hoV⟩ := GlobalTheory.T.exists_combination_rebase_vacuumLattices_injective D (_root_.GlobalTheory.Fam.pk_z W).ψ hc.std (Yc D j) (Yc D (j + 1)) M (v.N j) M' (v.N (j + 1)) v.gP hM
+      obtain ⟨o, ho, hoV⟩ := _root_.GlobalTheory.VacRebase.rebase_vac D (_root_.GlobalTheory.Fam.pk_z W).ψ hc.std (Yc D j) (Yc D (j + 1)) M (v.N j) M' (v.N (j + 1)) v.gP hM
         (hN j (by omega)).1 hM' (hN (j + 1) hj).1 hQ (fun p hp =>
           ⟨latV_eq_of_moves (hMv (· = p)) ((hN j (by omega)).2 (· = p) (fun p' hp' => hp' ▸ hp)),
             latV_eq_of_moves (hM'v (· = p)) ((hN (j + 1) hj).2 (· = p) (fun p' hp' => hp' ▸ hp))⟩)
@@ -563,7 +563,7 @@ theorem exists_common_vacua_alt : ∀ {D : D7} {L : SizeData₂ D} {hT : GatTies
     obtain ⟨M', hM', hM'v⟩ := _root_.GlobalTheory.MovedLat.movedLat_alt W hpk (j + 1) hj (b (j + 1))
     obtain ⟨hvac, hnz⟩ := _root_.GlobalTheory.TopMove.fock_vac_moved_top_alt W hpk j h (b (j + 1)) a.bT (hb (j + 1)) hbT M' a.LT hM' hLT hM'v hmT
     have hNT' : IsSelfDualC D.sp.X' v.NT := hNT ▸ hLT
-    obtain ⟨o, ho, hoV⟩ := GlobalTheory.T.exists_combination_rebase_vacuumLattices_injective D (_root_.GlobalTheory.Fam.pk_z W).ψ hc.std (Yc D (j + 1)) D.sp.X' M' (v.N (j + 1)) a.LT v.NT v.gP hM'
+    obtain ⟨o, ho, hoV⟩ := _root_.GlobalTheory.VacRebase.rebase_vac D (_root_.GlobalTheory.Fam.pk_z W).ψ hc.std (Yc D (j + 1)) D.sp.X' M' (v.N (j + 1)) a.LT v.NT v.gP hM'
       (hN (j + 1) hj).1 hLT hNT' hQ (fun p hp =>
         ⟨latV_eq_of_moves (hM'v (· = p)) ((hN (j + 1) hj).2 (· = p) (fun p' hp' => hp' ▸ hp)), by rw [hNT]⟩)
     exact ⟨o, ho, fun P => (hoV _ (hvac P)).1, (hoV _ (hvac 1)).2 hnz⟩
@@ -816,7 +816,7 @@ theorem exists_yRat_alt : ∀ {D : D7} {L : SizeData₂ D} {hT : GatTies D} {Gi 
   have hz1 : ∀ k, (B.d.i₀ *ᵥ vecB B.o B.ζ) k = W.S.X.ιE (W.S.X.zR u (Fin.cast (GlobalTheory.Core.Mi.rank_eq W.S.X W.Q.instEq) k)) :=
     fun k => by rw [hz k, one_mul]
   have hB0 := sbes_norm B hP.bot.idE hz1
-  have hI := GlobalTheory.T.exists_thetaLiftSpaces_positiveIndex_with_lineNorms D u (fun j hj => D.X_posDef j hj)
+  have hI := _root_.GlobalTheory.SeeSaw.YRat.spaces_of_index D u (fun j hj => D.X_posDef j hj)
   have hbes : ∀ j ρ (h : j + 2 * ρ + 2 = D.R.m), ∃ b : BesAt (Yc D j) (D.sp.X j) ρ,
       star b.ζ ⬝ᵥ b.L.gram *ᵥ b.ζ * (D.host.xi0 * star D.host.xi0) ^ (j / 2) = -(((D.mem u).A.T : ℕ) : D.host.E) := by
     intro j ρ h
@@ -994,11 +994,11 @@ theorem measures_common_alt : ∀ {D : D7} {L : SizeData₂ D} {hT : GatTies D} 
   haveI : ∀ V : HSp D, SecondCountableTopology (GA D V) := fun V =>
     (GlobalTheory.Mem.AdelicGroupTop.adelic_unitary_topology D V).2.1
   have hf : ∀ j, ∃ μ : Measure (GfC (Yc D j)), μ.IsHaarMeasure := fun j =>
-    (GlobalTheory.T.exists_haar_finitePoints_fourierJacobi_bessel D (Yc D j)).1
+    (_root_.GlobalTheory.HaarExist.haar_exists D (Yc D j)).1
   choose μf hμf using hf
-  obtain ⟨μT, hμT⟩ := (GlobalTheory.T.exists_haar_finitePoints_fourierJacobi_bessel D D.sp.X').1
-  choose ρJ hρJ using fun j ρ h => ((GlobalTheory.T.exists_haar_finitePoints_fourierJacobi_bessel D (Yc D (j + 1))).2 _ _ (y.jac j ρ h).d).1
-  choose ρB hρB using fun j ρ h => ((GlobalTheory.T.exists_haar_finitePoints_fourierJacobi_bessel D (Yc D j)).2 _ _ (y.bes j ρ h).d).2 _ _ (y.bes j ρ h).o
+  obtain ⟨μT, hμT⟩ := (_root_.GlobalTheory.HaarExist.haar_exists D D.sp.X').1
+  choose ρJ hρJ using fun j ρ h => ((_root_.GlobalTheory.HaarExist.haar_exists D (Yc D (j + 1))).2 _ _ (y.jac j ρ h).d).1
+  choose ρB hρB using fun j ρ h => ((_root_.GlobalTheory.HaarExist.haar_exists D (Yc D j)).2 _ _ (y.bes j ρ h).d).2 _ _ (y.bes j ρ h).o
   have hc : ∀ k, ∃ ν₀ : Measure (GA D (Yc D k)), ν₀.IsHaarMeasure ∧ (k < D.R.m → ∀ t,
       μf k {g | Lev.finE (Yc D k) g.1 ∈ Formalism.L2.DIV.lev D.sp.cm (Yc D k).gram ((_root_.GlobalTheory.Fam.pk_z W).βY k) ((_root_.GlobalTheory.Fam.pk_z W).datYt t k (_root_.GlobalTheory.Fam.pk_z W).triv)} ≠ 0 ∧
       μf k {g | Lev.finE (Yc D k) g.1 ∈ Formalism.L2.DIV.lev D.sp.cm (Yc D k).gram ((_root_.GlobalTheory.Fam.pk_z W).βY k) ((_root_.GlobalTheory.Fam.pk_z W).datYt t k (_root_.GlobalTheory.Fam.pk_z W).triv)} ≠ ⊤ ∧
@@ -1023,7 +1023,7 @@ theorem measures_common_alt : ∀ {D : D7} {L : SizeData₂ D} {hT : GatTies D} 
     (fun _ m => m.IsHaarMeasure ∧ IsProbabilityMeasure m) (fun _ _ h => h.1) μT hμT (fun t => (_root_.GlobalTheory.Fam.pk_z W).νX t)
     (fun t => (hM.νX t).1)
   have hLH : ∀ j (h : j + 2 * 0 + 2 = D.R.m), (Measure.map (y.jac j 0 h).d.emb0 (a.x (j + 1)).vol.μ).IsHaarMeasure :=
-    fun j h => GlobalTheory.T.isHaarMeasure_map_emb0_of_rank_zero_decomposition D _ _ _ _ (a.x (j + 1)).vol.haar
+    fun j h => _root_.GlobalTheory.HaarEmb.map_wittEmbedding_zero_rank_isHaarMeasure D _ _ _ _ (a.x (j + 1)).vol.haar
   let vS : ∀ j, Vol (Yc D (j + 1)) := fun j => if h : j + 2 * 0 + 2 = D.R.m then volOf _ (hLH j h)
     else volOf (ν₀ (j + 1)) (hν₀H (j + 1))
   have hvS1 : ∀ j (h : j + 2 * 0 + 2 = D.R.m), (vS j).μ = Measure.map (y.jac j 0 h).d.emb0 (a.x (j + 1)).vol.μ := by

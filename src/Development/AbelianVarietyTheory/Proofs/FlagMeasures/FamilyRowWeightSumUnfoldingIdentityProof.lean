@@ -141,7 +141,7 @@ theorem unfold_tied : ∀ (D : D7) (X : HidaSetting D) (Y : Full X) (u u' : D.wh
     exact zero_ne_one hy
   have hLC' := hLC F00 F'0 w hZ hG Fm.FP hBased
   have hRel : ∀ p, (Fm.FP p).RelG (LocNG.theta ((zOf Y).M p)) := fun p =>
-    (GlobalTheory.T.localisedBaseFrames_relevantPair D (zOf Y) u u' w F00 F'0 hZ hG p).2 _ (hBased p)
+    (_root_.GlobalTheory.LocBaseRel.atBase_relG D (zOf Y) u u' w F00 F'0 hZ hG p).2 _ (hBased p)
   obtain ⟨Λ₀, hΛl, hΛ₀⟩ := hΛ
   have hterm0 : ∀ p, ∃ τ, LocNG.IsTermOver (Fm.FP p) (Fm.d0 p) τ := by
     intro p
@@ -214,7 +214,7 @@ theorem setQ_locClosed {D : D7} {X : HidaSetting D} (Y : Full X) (u u' : D.what�
     (hB : GlobalTheory.Unfold.Based (zOf Y) FP (Tu D u) (Tu D u') F F') :
     GlobalTheory.Unfold.LocClosed F F' (zOf Y) FP (setQ Y u u' S) := by
   have hRel : ∀ p, (FP p).RelG (LocNG.theta ((zOf Y).M p)) := fun p =>
-    (GlobalTheory.T.localisedBaseFrames_relevantPair D (zOf Y) u u' w F F' hw hG p).2 (FP p) (hB p)
+    (_root_.GlobalTheory.LocBaseRel.atBase_relG D (zOf Y) u u' w F F' hw hG p).2 (FP p) (hB p)
   obtain ⟨hng, hgen, -, -⟩ := _root_.GlobalTheory.LocOrbit.closed_ng_gen D X Y u u' F F' w hw hG (zOf Y) FP hB hRel
   intro t t' Λ Λ' hΛ hΛ' hloc ht
   have hGt : ∀ s : TauC Y u u', s.G ≠ 0 → (Y.tO u u').G s ≠ 0 := fun s hs => by

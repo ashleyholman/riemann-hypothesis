@@ -48,7 +48,7 @@ namespace CrystallineSemistableComparison.PAlg
 
 variable {l : ℕ} [Fact l.Prime] (A : PAlg l)
 
-theorem l_mem_nzd_U : (l : A.U) ∈ nonZeroDivisors A.U := (RL.u_tf A).1
+theorem l_mem_nzd_U : (l : A.U) ∈ nonZeroDivisors A.U := (_root_.GlobalTheory.CompanionTheory.UntiltRegular.untilt_regular A).1
 
 instance completeU : IsAdicComplete (Ideal.span {(l : A.U)}) A.U := _root_.GlobalTheory.CompanionTheory.Untilt.isAdicComplete_U A
 

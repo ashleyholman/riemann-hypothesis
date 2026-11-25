@@ -306,7 +306,7 @@ theorem regulariser_isGood : _root_.GlobalTheory.FunPr.ThetaLocalInputs → Glob
   obtain ⟨A⟩ := GlobalTheory.ChainFr.Model.nonempty_fr W
   obtain ⟨ν, 𝓕, hν⟩ := GlobalTheory.Ker.HypModel.exists_haar_fundDom D W
   obtain ⟨e, Bs, Γ, Xc, om, om', cA, cB, hO, hTD⟩ :=
-    GlobalTheory.T.exists_placewise_seesaw_triple_over_hermitian D ψ θ hθ W W₁ X A A₁ B α β hT ν 𝓕 ν₁ 𝓕₁ hν hν₁ ωA ωB hωA hωB
+    _root_.GlobalTheory.SquareAgree.exists_isOver D ψ θ hθ W W₁ X A A₁ B α β hT ν 𝓕 ν₁ 𝓕₁ hν hν₁ ωA ωB hωA hωB
   obtain ⟨Pa, hPa⟩ := _root_.GlobalTheory.RegSo.exists_combination_mem_regular_subspace hP D ψ θ hθ W W₁ X A A₁ B α β hT ν 𝓕 ν₁ 𝓕₁ ωA ωB e Bs Γ Xc om om' cA cB hO hTD n Ψ hΨ
   obtain ⟨Pb, hPb⟩ := _root_.GlobalTheory.GoodComm.comm_at_good_place D ψ θ hθ W₁ X A₁ B α β ωB hωB n Ψ u hΨ hu
   classical

@@ -1420,10 +1420,8 @@ theorem CorankPosG_holds : PI.PairCorankPos.CorankPosG := pair_corank_pos
 theorem ScalarEquivG_holds : Formalism.L2.SG.Corank.ScalarEquivG := _root_.PI.UnitaryGroupMassFormula.ScalEquivGen.scalarEquivG_holds
 
 theorem GelfandGraevMultOne_holds : Formalism.L2.SG.GGMirabolic.GelfandGraevMultOne := _root_.PI.WhitFunctDualWork.whitFunctDual_main Formalism.IrreducibleCountingLemmas.GaloisIrreducibility.gelfand_graev_multiplicity_one
-theorem MirabolicBound_holds : Formalism.L2.SG.GGMirabolic.MirabolicBound := _root_.PI.GGMirBoundW.mirabolicBound
-theorem GGMatrixBoundOfLit_holds : Formalism.L2.SG.GGMirabolic.GGMatrixBoundOfLit := gg_matrix_bound
 theorem GGMatrixBound_holds : Formalism.L2.SG.GGMirabolic.GGMatrixBound :=
-  GGMatrixBoundOfLit_holds GelfandGraevMultOne_holds MirabolicBound_holds
+  _root_.gg_matrix_bound GelfandGraevMultOne_holds _root_.PI.GGMirBoundW.mirabolicBound
 theorem TermsGGBound_holds : Formalism.L2.SG.GGMirabolic.TermsGGBound :=
   Formalism.L2.SG.GGMirabolic.termsGGBound_of_matrix GGMatrixBound_holds
 

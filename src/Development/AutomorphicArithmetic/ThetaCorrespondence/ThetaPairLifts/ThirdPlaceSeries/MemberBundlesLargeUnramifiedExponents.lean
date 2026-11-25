@@ -1090,7 +1090,7 @@ theorem holdsL_of_ties_alt (P : _root_.GlobalTheory.PrimIn.PublishedThetaConditi
   have hRows : RowsNe R.toRealDat F.lv2 := GlobalTheory.RowsNeProof.rowsNe R.toRealDat F.lv2 1 hT.ok.ok2 hcore.1 hSch R.SF hcore.2.1 hTR
     (hx₀ D L pV hLe hLx hSz R.toRealDat F.lv2 hGiven)
   have hCar := carries_of_upInj P.q2 P.q1 R F hT.ok hT.char hT.ex hT.junk hGE hUp
-  obtain ⟨hScal, hMatch, -, -⟩ := GlobalTheory.T.thetaLift_scalarIdentity_matching_adjointInjective P.q5 P.q3 P.q4 P.q6 P.q2 P.q1 P.q7 P.q8
+  obtain ⟨hScal, hMatch, -, -⟩ := _root_.GlobalTheory.ScalAll.scal_matchUp_upInj P.q5 P.q3 P.q4 P.q6 P.q2 P.q1 P.q7 P.q8
     (_root_.ResidueKilled.sec_of_dm P.q9) P.q10 P.q11 R.toRealDat F.lv2 hGiven hT.ccK hT.char.allPl
     (GlobalTheory.FixAllGood.fixAll_of_good R F hT.char hT.ex) R.SF hcore.2.1 hTR
   have hK := GlobalTheory.PosAtBase.pos_at_base R F hT.char hScal hMatch

@@ -1187,7 +1187,7 @@ theorem std_elt_label : ∀ {D : D7} (hF : D.host.F = maximalRealSubfield D.host
   obtain ⟨emb, hembT, hembL⟩ := GlobalTheory.SplitEmb.exists_hom_trivOutside_loc D.host.E V.rank sp
   have hx₀ : emb g0 ∈ Formalism.AUTREP.tSet D.host.E V.rank sp ϖ k :=
     ⟨hembT g0, 1, one_mem _, 1, one_mem _, by rw [hembL]; simp [g0]⟩
-  obtain ⟨p, c, hpl, -, -, hπ⟩ := GlobalTheory.T.exists_splitLocalPlaceData_at_splitPlace D sp hF
+  obtain ⟨p, c, hpl, -, -, hπ⟩ := _root_.GlobalTheory.SplitLocPlace.exists_place D sp hF
   have hidem : Formalism.L2.NTheta.IsIdemAt p.e sp.w := ⟨p.split, hpl.2.2⟩
   have hprime : Formalism.IndefR.Mult.IsPrimeIdem sp.w p.e (p.e + Formalism.L2.Theta.cA D p.e) := Or.inl ⟨hidem, rfl⟩
   obtain ⟨y, hy1, hy2, hyu⟩ := _root_.GlobalTheory.realUnif_split sp

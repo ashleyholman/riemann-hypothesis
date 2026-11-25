@@ -884,7 +884,7 @@ theorem datJ_SB (p : ι → SplitPt D k) {S T : HSp D} (α : ∀ i, Frame (p i) 
     rw [List.nodup_cons] at hJ
     have hort : ∀ j ∈ J, (p i).e * (p j).e = 0 := fun j hj => horth i j fun h => hJ.1 (h ▸ hj)
     rw [_root_.GlobalTheory.FinPl.PutIn.datJ_cons D k ι p n n' S T α β Ψ i J hJ.1 hort, eSum_cons, add_comm]
-    refine GlobalTheory.T.schwartzBruhat_half_tensor_orthogonal_idempotents D S T _ _ _ _ _ (eSum_mul p _ J fun j hj => by rw [mul_comm]; exact hort j hj) (p i).split.1
+    refine _root_.GlobalTheory.FinPl.PutIn.isSBHalf_tens D S T _ _ _ _ _ (eSum_mul p _ J fun j hj => by rw [mul_comm]; exact hort j hj) (p i).split.1
       (fun u hu => GlobalTheory.PlaceModelSum.idem_smul_latO (p i).split.1 hu) (ih hJ.2 fun j hj => hSB j (List.mem_cons_of_mem _ hj)) ?_
     exact isSBHalf_of_half_iff _ _ _ _ (fun t ht => mem_latO_at_iff (p i) _ _ t ht)
       (SBHalfAt.isSBHalf_extFun_latO D k (p i) S T n n' (α i) (β i) LS LT hSD hTD (Ψ i) (hSB i List.mem_cons_self))
@@ -1105,7 +1105,7 @@ theorem ratDatum_xiOff_common_alt : ∀ {B : GlobalTheory.Mem.Base} {X : PreX B.
   have hL : ∀ i, i ≤ B.R.m → IsSelfDualC _ (a.g.x i).L ∧
       ((a.g.x i).L : Set (Fin ((I.rec7 l Z).sp.X i).rank → (I.rec7 l Z).host.E)) = intVec _ _ :=
     fun i hi => ⟨(ha.x i hi).sd, Set.ext (haT.pinX.xs i hi).2.2⟩
-  have key := GlobalTheory.T.rationalDatum_foldr_local_combinations (I.rec7 l Z) (_root_.GlobalTheory.Fam.pk_z W).ψ haT.pinX.std _ _ ((B.primes X).vT u) (B.primes X).vGs a.n _ hinj hmem
+  have key := _root_.GlobalTheory.LocComb.ratDatum_foldr_comb (I.rec7 l Z) (_root_.GlobalTheory.Fam.pk_z W).ψ haT.pinX.std _ _ ((B.primes X).vT u) (B.primes X).vGs a.n _ hinj hmem
     (_root_.GlobalTheory.Mem.Col2.DisjProof.vT_disjoint_vGs_alt W hAll u) (fun n => (a.G n).cg j) Ξl hΞl (a.g.x j).L (a.g.x (j + 1)).L
     (hL j (by omega)).1 (hL (j + 1) hj).1 (hL j (by omega)).2 (hL (j + 1) hj).2 _ (a.g.vac j) _ hv0 hvl
     (fun e₀ he₀ => _root_.GlobalTheory.Fam.ratDatum_dT_levelPrime_alt W hAll u a ha haT t J hJ e₀ he₀ j hj (J.ι j α) (J.ι (j + 1) γ)) e he

@@ -453,7 +453,7 @@ theorem hasNormGroups_of_isLocalArtin : GlobalTheory.Published.GlobalArtinRecipr
   rw [← hH σ g hg, hN]
   constructor
   · intro hσ
-    obtain ⟨τ, hτ⟩ := GlobalTheory.T.exists_weil_of_fixes' E K Ω A w W h h' σ ((hHK σ).1 hσ)
+    obtain ⟨τ, hτ⟩ := _root_.GlobalTheory.WeilSurj.exists_weil_of_fixes E K Ω A w W h h' σ ((hHK σ).1 hσ)
     obtain ⟨y, hy⟩ := h1 τ
     exact ⟨y, key' y τ σ hτ hy⟩
   · rintro ⟨y, hy⟩

@@ -851,7 +851,7 @@ theorem aeval_arcTx_eq_zero_of_vanishC : HV → Laws6 → GlobalTheory.LN.UDvrSt
   obtain ⟨⟨hL, hL2, -⟩, -⟩ := hHV'
   have hGt := GlobalTheory.Ex.GtValues.points_correspond
   have hWp := GlobalTheory.WeilValues.weil_eq_values hGt (GlobalTheory.Ex.brFam hL hL2)
-  have hC4400 := GlobalTheory.T.exists_thetaPoint_complexDegeneration_small hHV h6 hU hE hT hEnd hTU
+  have hC4400 := _root_.GlobalTheory.Ex.Arch.exists_full_of_small hHV h6 hU hE hT hEnd hTU
   have hdown := GlobalTheory.FieldPull.exists_countable_model hL hGt hWp
   have hup := GlobalTheory.ArcExt.exists_arcF_over hL hGt hWp
   unfold AllD at hC4400 hdown hup ⊢

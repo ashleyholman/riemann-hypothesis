@@ -962,7 +962,7 @@ theorem kernelSite_seriesData_below_lastStep : AllSites (fun {D L hT Gi Gl Kc Dx
     exact (hP j hj L0 La' (repOf_lat _ _ j L0 hL0) hLa').1
   · obtain ⟨hpos, hS⟩ := _root_.GlobalTheory.TwV.sNum_lev_site t std J
     exact ⟨hpos, fun hd => _root_.GlobalTheory.TwV.SitePrime.resChar_not_mem_S t std J (hS _ Fact.out hd)⟩
-  · exact ⟨(t.O u μ).S, _root_.GlobalTheory.TwV.SitePrime.resChar_not_mem_S t std J, fun j _ L0 _ La' _ y => GlobalTheory.T.intOff_xi0_of_joint t std J S j L0 La' y⟩
+  · exact ⟨(t.O u μ).S, _root_.GlobalTheory.TwV.SitePrime.resChar_not_mem_S t std J, fun j _ L0 _ La' _ y => _root_.GlobalTheory.TwV.Joint.site_base_datum_integral_off_bad_primes t std J S j L0 La' y⟩
   · exact GlobalTheory.TwU.lamPosG_of_lamPos _ S.E D _ _ _ hPos
   · exact fun j La v => GlobalTheory.isUnit_det_frameMatrix_ofCharts _ _ _ j La v
   · refine _root_.GlobalTheory.TwV.frameLatMapLt_of_ties _ S.hfin D (J.fd std) (J.rho std) (halfDiffInv_integral_at_split D _ _ hg) ?_

@@ -1165,8 +1165,8 @@ namespace GlobalTheory.OrbitCount
 
 theorem orbit_count : ∀ (D : D7) (X : HidaSetting D) (Y : Full X) (u u' : D.what₂.Word), ∀ (F : LFlag (D.sp.Y 0) D.R.rS (((D.mem u).A.T : ℕ) : D.host.E)) (F' : LFlag (D.sp.Y 0) D.R.rS (((D.mem u').A.T : ℕ) : D.host.E)) (w : Point D.host.E (D.R.rS + 1)), ZhatOM (ZhatL F F') = ptMat w → Gval F F' ≠ 0 → ∀ (t₀ : TauC Y u u') (Λ₀ : LV D), TG F F' t₀ Λ₀ → ∀ K, K = {κ | ∃ (t : TauC Y u u') (Λ₁ : LV D), TG F F' t Λ₁ ∧ LRel F F' Λ₀ Λ₁ ∧ key t = κ} → K.Finite ∧ (∀ κ ∈ K, ∃ t : TauC Y u u', TG F F' t Λ₀ ∧ key t = κ) ∧ (∀ (t : TauC Y u u') (Λ₁ : LV D), TG F F' t Λ₁ → LRel F F' Λ₀ Λ₁ → wt t = wt t₀) ∧ (K.encard : ℝ≥0∞) * ENNReal.ofReal (wt t₀ ^ 2) = (((stabL F F' Λ₀).encard : ℝ≥0∞))⁻¹ := by
   intro D X Y u u' F F' w hw hG t₀ Λ₀ h₀ K hK
-  obtain ⟨A, N, hA, hN, hNA, hNn, hiA, hcA⟩ := GlobalTheory.T.rowLattice_automorphisms_eq_adapted_mod_unipotent D X Y u u' t₀.lam t₀.mem
-  obtain ⟨A', N', hA', hN', hNA', hNn', hiA', hcA'⟩ := GlobalTheory.T.rowLattice_automorphisms_eq_adapted_mod_unipotent D X Y u' u t₀.lam' t₀.mem'
+  obtain ⟨A, N, hA, hN, hNA, hNn, hiA, hcA⟩ := _root_.GlobalTheory.AutQuot.autQuot D X Y u u' t₀.lam t₀.mem
+  obtain ⟨A', N', hA', hN', hNA', hNn', hiA', hcA'⟩ := _root_.GlobalTheory.AutQuot.autQuot D X Y u' u t₀.lam' t₀.mem'
   obtain ⟨B, hB, hNB, hBiff⟩ := _root_.GlobalTheory.KeyGroup.keyStab_subgroup D X Y u u' t₀
   have hS := _root_.GlobalTheory.StabCnt.stab_card D X Y u u' F F' w hw hG t₀ Λ₀ h₀ B N N' hB hN hN'
   have mA : ∀ a, a ∈ A ↔ a ∈ Aut0 (lf D (X.Fu u)) t₀.lam := fun a => SetLike.mem_coe.symm.trans (Set.ext_iff.mp hA a)

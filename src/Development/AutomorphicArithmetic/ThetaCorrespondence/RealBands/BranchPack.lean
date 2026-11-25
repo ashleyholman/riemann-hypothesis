@@ -1461,7 +1461,7 @@ theorem locOK_of_eigen : RealInputE → ∃ C : ℝ, 0 ≤ C ∧ Ev fun {D} _ _ 
       _ ≤ (lam * c₁) * Real.exp (6 * C * ((D.R.r : ℝ) + 1) ^ 4 * Real.log large₂.sc.b) :=
         mul_le_mul_of_nonneg_left hbig (mul_pos hlam hc₁).le
       _ = _ := by ring
-  have hL := GlobalTheory.T.smooth_vector_matrixCoeff_integrable (Yc D 0).rank (G.V (.core 0)).rank e' (MP.ε τ) ((GlobalTheory.ConjDS.conjModel M₀).ε τ)
+  have hL := _root_.GlobalTheory.PackLip.lip_core (Yc D 0).rank (G.V (.core 0)).rank e' (MP.ε τ) ((GlobalTheory.ConjDS.conjModel M₀).ε τ)
     (MP.H τ) (MP.σ τ) v (c₁ * GlobalTheory.SepReal.big C D.R.r (large₂.sc.b ^ 2)) (MP.ds τ).2.2.1 hs0 hs1 hsmv
     (fun g hg => (hb g hg).1) hc
   obtain ⟨Cd, hCd⟩ := _root_.GlobalTheory.FrameDecay.coef_frame_decay D.R.r (G.V (.core 0)).rank hN (MP.ε τ) (MP.H τ) (MP.σ τ) v₀ g₀' (MP.fr τ)

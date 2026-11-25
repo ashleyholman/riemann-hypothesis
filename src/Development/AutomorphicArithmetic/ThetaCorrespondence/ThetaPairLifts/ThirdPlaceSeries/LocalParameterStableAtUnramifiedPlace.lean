@@ -21,7 +21,7 @@ namespace GlobalTheory.HeightCounting.Up
 theorem conjDualParam_stable_of_prime_not_dividing_level_alt : _root_.GlobalTheory.HeightCounting.Up.PublishedInputsThirdLayerAlt → SMt → ∀ hL : _root_.UpperTheory.Zero.LLC.RecTExists, _root_.GlobalTheory.HeightCounting.Up.ParameterStatement hL := by
   intro hN hM hL
   have hlift := _root_.GlobalTheory.LiftRef.baseChange_local_compatible_all_places_alt hN hL
-  have hloc := _root_.GlobalTheory.T.local_component_of_par_in_third_layer hN hL
+  have hloc := _root_.GlobalTheory.RowSphSmall.spherical_localComponent_of_small_prime_alt hN hL
   have hsz := GlobalTheory.T.eventually_sizes_congruences_hostFacts_columnChoices
   refine Step.trans (Step.and (Step.and (Step.and (Step.of_evLgG (KP := KPx) (p := fun _ _ _ _ => True) hlift)
     (Step.of_evLgG hloc)) (Step.of_evLgG hsz)) hM) (Step.of_all ?_)
