@@ -398,7 +398,7 @@ theorem om_reads_projA : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (θ : Inf
     rfl
   have hSv := (hlat 1 S hS1).2
   obtain ⟨v, hv, -⟩ := (hgood S hSv).vac hs
-  obtain ⟨κ, -, hκ⟩ := GlobalTheory.T.adelicVacuum_reads_multiple_classicalVacuum D ψ θ V W r g hr X bas idx hP.weil.std hP.inf hP.std hP.even hX hs H hH ΛV ΛW S L
+  obtain ⟨κ, -, hκ⟩ := _root_.GlobalTheory.AdTh.VacLine.vac_reads D ψ θ V W r g hr X bas idx hP.weil.std hP.inf hP.std hP.even hX hs H hH ΛV ΛW S L
     hP.sigV hP.sigW hV hW (hV1 ▸ hS1) hL x s hx hinv f hf v hv
   obtain rfl : φ = κ • v := (reads_linear_injective D ψ θ V W r g hr X bas idx hP.weil.std hP.inf hP.std hP.even hX hs
     x hx f f _ _ hφ hκ).2.1 rfl

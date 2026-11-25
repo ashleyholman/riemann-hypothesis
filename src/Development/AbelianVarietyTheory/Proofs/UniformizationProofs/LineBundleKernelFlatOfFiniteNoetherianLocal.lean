@@ -301,7 +301,7 @@ theorem flat_of_isFinite : GlobalFnsSt → ∀ (V : Type) [CommRing V] [IsNoethe
   obtain ⟨hO, hu, hK⟩ := GlobalTheory.UU.TrivTwist.inK_iff_trivial_twist _ B L hL
   obtain ⟨g, hg⟩ := GlobalTheory.AbelianDim.exists_relDim V B hB
   rw [← Over.w j]
-  refine GlobalTheory.T.flat_closedSubscheme_finite_over_localRing V B.left H.left B.hom j.left hj (by rw [Over.w j]; exact hf) fun h σ hσ hn => ?_
+  refine _root_.GlobalTheory.StabFlat.flat_of_isFinite_of_ideals V B.left H.left B.hom j.left hj (by rw [Over.w j]; exact hf) fun h σ hσ hn => ?_
   have cl : ∀ (z : H.left) (p : Spec (B.left.presheaf.stalk (j.left h))),
       (IsLocalRing.maximalIdeal V).map σ ≤ p.asIdeal →
       j.left z = B.left.fromSpecStalk (j.left h) p → IsClosed ({j.left z} : Set B.left) := by

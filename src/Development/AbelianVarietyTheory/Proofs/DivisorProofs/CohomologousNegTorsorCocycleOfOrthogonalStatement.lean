@@ -585,7 +585,7 @@ theorem sndPull_cohom_zero_of_hodgeDeRham : GlobalTheory.Published.AbelianHodgeD
   have hAB := ReciprocityTheory.ChartRestriction.G.Geo.Tor.AbelianSchemeGerms.isAbelianScheme_tensor A B hA hB
   have hgAB : SmoothOfRelativeDimension (g + g) (A ⊗ B).hom := AbDual.smooth_prod hgA hgB
   obtain ⟨u', hu', hExt⟩ :=
-    GlobalTheory.T.pointwise_cocycle_on_cover_extends_up_to_coboundary R (A ⊗ B) P.ι P.U hP.cover u hu
+    _root_.GlobalTheory.PtExt.CocExt.cocycle_extends R (A ⊗ B) P.ι P.U hP.cover u hu
   have hSurj := GlobalTheory.PtExt.toH1O_surjective_of_abelian hHDR R (A ⊗ B) (g + g) hAB hgAB
   obtain ⟨f, hLift⟩ := GlobalTheory.PtExt.cohom_fv_of_toH1O_surjective R (A ⊗ B) hSurj u' hu'
   have hprim : CatCoh.H1.mk _ f ∈ primDR (A ⊗ B) := by

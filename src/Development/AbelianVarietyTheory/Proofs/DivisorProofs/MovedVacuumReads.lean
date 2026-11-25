@@ -214,7 +214,7 @@ theorem moved_vacuum_reads : ∀ {D : D7} (ψ : AddChar (AF D.host.F) ℂ) (θ :
   ∃ c : ℂ, Reads ψ θ hS hT cc δ r (c • W.Om x y e0) (om (g, h) f₀) := by
   intro D ψ θ S T a d hS hT cc δ r hset e0 W χS χT om hom _ t0 _ _ he _ _ f₀ hf₀ x y g h hg hh
   have hθ := hset.inf
-  have hv0 := GlobalTheory.T.isFockVacuum_of_readsGaussianEntire ψ θ S T hS hT cc δ r hset e0 f₀ he.1.1 hf₀
+  have hv0 := _root_.GlobalTheory.NormExact.reads_isFockVacAt ψ θ S T hS hT cc δ r hset e0 f₀ he.1.1 hf₀
   have e : ∀ τ z, Formalism.IndefR.Datum.dRho (heisO ψ S T) θ τ z (om (g, h) f₀) =
       om (g, h) (Formalism.IndefR.Datum.dRho (heisO ψ S T) θ τ z f₀) := by
     intro τ z

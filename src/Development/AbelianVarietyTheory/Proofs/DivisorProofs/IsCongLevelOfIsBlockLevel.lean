@@ -1572,7 +1572,7 @@ theorem classFun_A (hX : IsDictWt P X) (h : GA D X.B) (T : Tup D P.a P.d P.n) :
     rwa [one_mul] at this
   · simp only [Pi.one_apply, mul_one]
     unfold thetaKO
-    rw [show h = h * 1 from (mul_one h).symm, om_apply_mul, GlobalTheory.T.weilRep_real_fixes_fock_maximal_minors P X hX.1 hX.2 k hk T, mul_one]
+    rw [show h = h * 1 from (mul_one h).symm, om_apply_mul, _root_.GlobalTheory.NormDict.om_real_fock_eq P X hX.1 hX.2 k hk T, mul_one]
   · simp only [Pi.one_apply, mul_one]
     obtain ⟨hk1, hk2⟩ := hk
     rw [← hX.1.1.rangeA] at hk1
@@ -1587,7 +1587,7 @@ theorem lift_classSum (hX : IsDictWt P X) (h : GA D X.B) (T : Tup D P.a P.d P.n)
     X.lift T h = ∑ᶠ x : Cls D P.a (intG D P.a), ((gam D (intG D P.a) x.out : ℂ))⁻¹ *
       thetaKO X.om (X.ιA x.out) h (X.fock T) := by
   obtain ⟨𝓕, h𝓕⟩ := hX.1.1.measA
-  have := GlobalTheory.T.integral_definiteUnitaryQuotient_eq_classSum X.A P.a X.ιA (intG D P.a) X.KA X.m 𝓕 hX.1.1.defA hX.1.1.injA hX.1.1.rangeA hX.1.1.ratA hX.1.1.levA
+  have := _root_.GlobalTheory.NormDictClassSum.integral_eq_classSum X.A P.a X.ιA (intG D P.a) X.KA X.m 𝓕 hX.1.1.defA hX.1.1.injA hX.1.1.rangeA hX.1.1.ratA hX.1.1.levA
     hX.1.1.levA_iff h𝓕 _ (classFun_A hX h T)
   refine ⟨this.2.1, ?_⟩
   unfold Data.lift GlobalTheory.Core.Rk.IP.up
@@ -1596,7 +1596,7 @@ theorem lift_classSum (hX : IsDictWt P X) (h : GA D X.B) (T : Tup D P.a P.d P.n)
 
 theorem finite_cls_A (hX : IsDictWt P X) (T : Tup D P.a P.d P.n) : Finite (Cls D P.a (intG D P.a)) := by
   obtain ⟨𝓕, h𝓕⟩ := hX.1.1.measA
-  exact (GlobalTheory.T.integral_definiteUnitaryQuotient_eq_classSum X.A P.a X.ιA (intG D P.a) X.KA X.m 𝓕 hX.1.1.defA hX.1.1.injA hX.1.1.rangeA hX.1.1.ratA hX.1.1.levA
+  exact (_root_.GlobalTheory.NormDictClassSum.integral_eq_classSum X.A P.a X.ιA (intG D P.a) X.KA X.m 𝓕 hX.1.1.defA hX.1.1.injA hX.1.1.rangeA hX.1.1.ratA hX.1.1.levA
     hX.1.1.levA_iff h𝓕 _ (classFun_A hX 1 T)).1
 
 theorem continuous_lift (hX : IsDictWt P X) (T : Tup D P.a P.d P.n) : Continuous (X.lift T) := by
@@ -1687,7 +1687,7 @@ theorem norm_mul_eq (hX : IsDictWt P X) :
     (P.norm : ℂ) * ((‖X.c₁‖ ^ 2 : ℝ) : ℂ) =
       ∑ T, GlobalTheory.Cusp.petersson X.B X.mH (X.lift T) (X.lift T) := by
   obtain ⟨𝓕, h𝓕⟩ := hX.1.1.measB
-  have hc := GlobalTheory.T.integral_definiteUnitaryQuotient_eq_classSum X.B P.d X.ιB P.J X.KB X.mH 𝓕 hX.1.1.defB hX.1.1.injB hX.1.1.rangeB hX.1.1.ratB hX.1.1.levB
+  have hc := _root_.GlobalTheory.NormDictClassSum.integral_eq_classSum X.B P.d X.ιB P.J X.KB X.mH 𝓕 hX.1.1.defB hX.1.1.injB hX.1.1.rangeB hX.1.1.ratB hX.1.1.levB
     hX.1.1.levB_iff h𝓕 _ (classFun_B hX)
   have hint : ∀ T, Integrable (fun q => GlobalTheory.AutomorphicL2Unitary.descend (GQ X.B) (X.lift T) q *
       (starRingEnd ℂ) (GlobalTheory.AutomorphicL2Unitary.descend (GQ X.B) (X.lift T) q)) (GlobalTheory.AutomorphicL2Unitary.autMeasure X.B X.mH) := by
@@ -1767,7 +1767,7 @@ theorem IsExact.isDictWt (hI : GlobalTheory.NormSum.Inp D) (h : IsExact P X r) :
     convert h1 using 1
     linarith
   refine ⟨⟨h.std.frame, h.inf, h.weil, h.read.1,
-    GlobalTheory.T.isFockVacuum_of_readsGaussianEntire X.ψ X.θ X.A X.B X.rkA X.rkB cc δ r h.setup _ _ hF.1 h.read, fun h0 => ?_, fun x y T => ?_,
+    _root_.GlobalTheory.NormExact.reads_isFockVacAt X.ψ X.θ X.A X.B X.rkA X.rkB cc δ r h.setup _ _ hF.1 h.read, fun h0 => ?_, fun x y T => ?_,
     fun k hk T => ?_, fun j hj => ?_, hb⟩, hb⟩
   · have := h.norm_const
     rw [h0] at this
@@ -1838,8 +1838,8 @@ theorem exists_isExact (P : Pair D cc δ t0 Q) (hJ : IsCongLevel P.J) :
   obtain ⟨ψ, hψ⟩ := GlobalTheory.StdAdelicChar.exists_isStdChar D
   obtain ⟨θ, hθ⟩ := GlobalTheory.AdelicU.exists_isInfFam D
   obtain ⟨r, hr⟩ := GlobalTheory.T.exists_normScale_curveIdeal D cc P.crv.1
-  obtain ⟨χA, a1, a2, a3⟩ := GlobalTheory.T.exists_heckeCharacter_of_thetaModelCharacter P.W.chV P.W.ep P.W.ep_pm.1
-  obtain ⟨χB, b1, b2, b3⟩ := GlobalTheory.T.exists_heckeCharacter_of_thetaModelCharacter P.W.chV' (-P.W.ep') (by rcases P.W.ep_pm.2 with h | h <;> simp [h])
+  obtain ⟨χA, a1, a2, a3⟩ := _root_.GlobalTheory.HeckeUChar.exists_hecke_of_heckeU P.W.chV P.W.ep P.W.ep_pm.1
+  obtain ⟨χB, b1, b2, b3⟩ := _root_.GlobalTheory.HeckeUChar.exists_hecke_of_heckeU P.W.chV' (-P.W.ep') (by rcases P.W.ep_pm.2 with h | h <;> simp [h])
   obtain ⟨om, hom⟩ := GlobalTheory.Unf.Inhab.exists_weil hψ Y.A Y.B a1 b1 (Y.rkA.symm ▸ a2) (Y.rkB.symm ▸ b2)
   obtain ⟨f, hf⟩ := GlobalTheory.T.exists_adelicTheta_reads_curveThetaFunction ψ θ Y.A Y.B Y.rkA Y.rkB cc δ r ⟨hψ, hθ, hY.frame.gramA, hY.frame.gramB, P.crv, hr⟩ P.F (test_TT P)
   exact ⟨⟨Y, ψ, θ, χA, χB, om, f, ∏ τ, period D δ r τ ^ (P.a * P.n τ)⟩, r, K₀, μ₀, ⟨hY, hθ, hom, a3, b3, hr, hf, rfl⟩, hm⟩

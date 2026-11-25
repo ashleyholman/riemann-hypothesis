@@ -397,7 +397,7 @@ theorem orbInt_descent : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E],
     ring
   have hγ := blk_mem_parP E n a (n - a) (Nat.add_sub_cancel' ha) w m 0
   have hKG := GlobalTheory.LFun.SatCompare.isOpen_isCompact_KGL w n
-  rw [h1, h2, ← GlobalTheory.T.twistedOrbitalIntegral_parabolic_unfold_levi E n a ha w f hf' m hsep hγ,
+  rw [h1, h2, ← _root_.GlobalTheory.LeviDesc.twistedOrbitalIntegral_parabolic_unfolding E n a ha w f hf' m hsep hγ,
     ← _root_.GlobalTheory.IwRed.twOrb_sub (GLw n w) (GlobalTheory.LFun.KGL w (n := n)) (parP a n w) hKG.1 hKG.2 (isClosed_parP E a n w) (_root_.GlobalTheory.LeviDesc.exists_parabolic_mul_maximalCompact E a n w) _ hγ
       (_root_.GlobalTheory.LeviDesc.twCent_blk_le_parP E n a (n - a) _ w m hsep) f hf']
 

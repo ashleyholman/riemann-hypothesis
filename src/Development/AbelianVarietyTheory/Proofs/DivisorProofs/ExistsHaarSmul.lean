@@ -268,7 +268,7 @@ theorem reg_const (hK : GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels
   classical
   have k2 := exists_reg_at hK hL W B ρ t i j hst M hM Θ Θ' hΘ g g₁
   obtain ⟨Λ, S, hfg, hsp, hright⟩ := kerSmall_inv hL W B ρ t i j Θ Θ' hΘ g g₁
-  choose b' Pb hPb hKb using fun b => GlobalTheory.T.exists_finiteSupport_mul_latticeStabilizer (G.V (.grid i j)) Λ hfg hsp S b
+  choose b' Pb hPb hKb using fun b => _root_.GlobalTheory.TruncAway.exists_trunc_mul_inK (G.V (.grid i j)) Λ hfg hsp S b
   have hinv := kerSmall_rat_mid W B ρ t i j Θ Θ' hΘ g g₁
   set f := kerSmall W Θ' g g₁ with hf
   have kb : ∀ b u, f (u * b' b) = f (u * b) := fun b u => by

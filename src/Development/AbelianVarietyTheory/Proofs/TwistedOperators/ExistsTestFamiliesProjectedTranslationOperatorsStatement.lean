@@ -599,7 +599,7 @@ theorem exists_idemFam : ∀ (D : D7) (V : HSp D) (T : TypeDataG V) (U : Auxilia
       | insert a A ha ih =>
         intro hsub P hP
         have haS : a ∈ T.S := hsub (Finset.mem_insert_self a A)
-        obtain ⟨H, K, -, -, -, hHB⟩ := GlobalTheory.T.pureTensorOperator_eq_offPlace_mul_atPlace D V a μf hH h1 ν hν W σ hσ (fam T U μf A)
+        obtain ⟨H, K, -, -, -, hHB⟩ := _root_.GlobalTheory.OffOp.exists_offOp D V a μf hH h1 ν hν W σ hσ (fam T U μf A)
           (_root_.GlobalTheory.TrIdem.isFinFamily_fam D V T U μf hH h1 hu A)
         have hloc := isSmooth_comp_locFin hσ a
         have hfin := (_root_.GlobalTheory.TrIdem.isFinFamily_fam D V T U μf hH h1 hu A).1

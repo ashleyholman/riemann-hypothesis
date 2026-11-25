@@ -224,7 +224,7 @@ theorem translates_kerSmall_le_theta_at : ∀ {D : D7} {T : Type} {L : LevCh D T
       ∀ b ∈ z.support, b ∈ Set.range (emb D.sp.cm.sig (G.V (.grid i j)).gram Bs.v₁) := by
   intro D T L sc G μ₀ hL W B ρ t i j M hM Θ Θ' hΘ g₁ e Bs Γ X om om' h hTr hv
   obtain ⟨ΦB, hB, z, hz, hS, hsupp⟩ := exists_datum_comb_mem_So_at hL W B ρ t i j M hM Θ Θ' hΘ g₁ e Bs Γ X om om' h hTr hv
-  obtain ⟨ξ, hξ, hk⟩ := GlobalTheory.T.small_route_kernel_eq_unit_norm_mul_theta hL W B ρ t i j M hM Θ Θ' hΘ g₁ e Bs Γ X om om' h hTr hv ΦB hB
+  obtain ⟨ξ, hξ, hk⟩ := _root_.GlobalTheory.SmallKernel.kerSmall_eq_theta hL W B ρ t i j M hM Θ Θ' hΘ g₁ e Bs Γ X om om' h hTr hv ΦB hB
   refine ⟨z, _, GlobalTheory.IndefiniteRowSideFullHecke.UnitaryConjugation.conjU _ (-1) h.JW₁, 1, hz, hS, fun g u => le_of_eq ?_, hsupp⟩
   have hW := GlobalTheory.WeilM.IsUWeilPair.isUSplitting hTr.weil'
   have hpres : ∀ p φ, φ ∈ schA D.host.F _ → om' p φ ∈ schA D.host.F _ := fun p φ hφ => hW.pres p φ hφ

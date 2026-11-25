@@ -753,7 +753,7 @@ theorem transferOn_inert : GlobalTheory.Hk3.HoweUnram → ∀ D : D7, TransferOn
   obtain ⟨eT, heT⟩ := hch c heS.1
   have hf0 : (f : WO S T → ℂ) ≠ 0 := fun h0 => hbne (by rw [show f = 0 from Subtype.ext h0]; simp)
   obtain ⟨δ, ψ', M, ρ0, ω, s, hstd, hsf, hωom, hcT, hcS⟩ :=
-    GlobalTheory.T.weilDatum_inertPlace_standard_cayley_pair D ψ S T χS χT om hW v w h hin hS hT c ϖ eS eT hUI heS heT f hf hf0
+    _root_.GlobalTheory.ChainOnto.std_cayley_of_inert D ψ S T χS χT om hW v w h hin hS hT c ϖ eS eT hUI heS heT f hf hf0
   have hq0 : (qV D.host.F v : ℂ) ≠ 0 := by exact_mod_cast hodd.pos.ne'
   obtain ⟨hvS, hsegS⟩ := _root_.GlobalTheory.ChainOnto.val_seg_of_isInertAt D χS S.rank hW.hecS hW.resS v w h hin hS
   obtain ⟨hvT, -⟩ := _root_.GlobalTheory.ChainOnto.val_seg_of_isInertAt D χT T.rank hW.hecT hW.resT v w h hin hT

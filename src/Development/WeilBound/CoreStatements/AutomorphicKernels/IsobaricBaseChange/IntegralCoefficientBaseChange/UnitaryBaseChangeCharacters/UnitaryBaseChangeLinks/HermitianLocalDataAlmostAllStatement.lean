@@ -412,7 +412,7 @@ theorem factor_alt (hU : Unr E) {S : Set (Pl E)} (hS : IsSection S) {n : ℕ} {�
     · simp
     · exact sgnOn_mul_self _ _ _ _
   have hBfin : (S ∩ Function.mulSupport Bf).Finite :=
-    (Lem.finite_ref_sign E hU n γ₀ H₀ h1 h2 hpos Q.1).subset fun w hw => by
+    (_root_.GlobalTheory.CompanionTheory.FinSign.main E hU n γ₀ H₀ h1 h2 hpos Q.1).subset fun w hw => by
       obtain ⟨-, hw⟩ := hw
       simp only [Function.mem_mulSupport, hBf] at hw
       split_ifs at hw with hs
@@ -532,7 +532,7 @@ theorem PositivityTheory.BCUSide.L.hermitian_form_local_global : ∀ (E : Type) 
       invol Q (AdjoinRoot.mk Q.1 m : Fld Q) = (AdjoinRoot.mk Q.1 m : Fld Q) := fun r Q hQ => by
     rw [hmQ r Q hQ]
     exact GlobalTheory.TraceClasses.invol_coe Q _
-  refine ⟨H₀ * aeval γ₀.val m, Lem.herm_of_plus E n γ₀ hP H₀ h1 h2 h3 m hplus, ?_, ?_, ?_⟩
+  refine ⟨H₀ * aeval γ₀.val m, _root_.GlobalTheory.CompanionTheory.HermFixed.main E n γ₀ hP H₀ h1 h2 h3 m hplus, ?_, ?_, ?_⟩
   ·
     have hc : aeval γ₀.val m * γ₀.val = γ₀.val * aeval γ₀.val m := by
       have := congrArg (aeval γ₀.val) (mul_comm m X)
@@ -542,7 +542,7 @@ theorem PositivityTheory.BCUSide.L.hermitian_form_local_global : ∀ (E : Type) 
       _ = cT (IsCMField.complexConj E).toRingEquiv.toRingHom γ₀.val * H₀ * γ₀.val * aeval γ₀.val m := by rw [hc]; simp only [Matrix.mul_assoc]
       _ = H₀ * aeval γ₀.val m := by rw [h3]
   ·
-    refine Lem.posDef_of_inf E n γ₀ hP H₀ h1 h2 h3 hpos m hplus fun r Q hQ u => ?_
+    refine _root_.GlobalTheory.CompanionTheory.PosDefNorm.main E n γ₀ hP H₀ h1 h2 h3 hpos m hplus fun r Q hQ u => ?_
     obtain ⟨z, hz⟩ := htt2 r Q hQ u
     exact ⟨z, by rw [hmQ r Q hQ]; exact hz⟩
   ·

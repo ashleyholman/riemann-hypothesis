@@ -1810,7 +1810,7 @@ open GlobalTheory.PRep (IsAdmissible)
 open GlobalTheory.TrMult
 
 theorem GlobalTheory.PsCo.Plug.ellipticSideDirect : GlobalTheory.Published.CuspTraceClass → EllTraceX := fun tc =>
-  GlobalTheory.PsCo.Plug.ellTrace_of_middleX MainStatements.WeightKernel.regClassInt_holds (GlobalTheory.T.siegel_implies_regular_class_finite CompanionTheory.Prw.siegelCore_holds) (GlobalTheory.T.cuspidalOperators_vanishingRadicalIntegrals_unitaryGroup tc)
+  GlobalTheory.PsCo.Plug.ellTrace_of_middleX MainStatements.WeightKernel.regClassInt_holds (_root_.GlobalTheory.CompanionTheory.CFin.regClassFin CompanionTheory.Prw.siegelCore_holds) (GlobalTheory.T.cuspidalOperators_vanishingRadicalIntegrals_unitaryGroup tc)
     _root_.GlobalTheory.Proof.parabolic_and_constant_term.parabolicAndConstTermX GlobalTheory.IwahoriEigen.iwahoriEigenvalues _root_.GlobalTheory.RegSSObj.regularSemisimple _root_.GlobalTheory.NonFieldType.nonFieldTypeVanishingX
     (GlobalTheory.PsCo.Plug.hyperZero_of_intX MainStatements.WeightKernel.regClassInt_holds _root_.GlobalTheory.RegSSObj.regularSemisimple)
 

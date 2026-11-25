@@ -631,7 +631,7 @@ private theorem tr_dec {E : Type} [Field E] [NumberField E] [IsCMField E] (hU : 
   rw [hsup] at h1
   rw [h1, Finset.mul_sum]
   exact Finset.sum_congr rfl fun i _ =>
-    GlobalTheory.T.trace_hecke_levelVectors_eq_dim_mul_local_traces E hU n hn (σ i) (hσ i).1 S hS lam (hσ i).2.1 K' hLev (σ₀ i) (hc i) F hF
+    _root_.GlobalTheory.BCT.trOn_hop_eq_dimW_mul_finprod_twTr E hU n hn (σ i) (hσ i).1 S hS lam (hσ i).2.1 K' hLev (σ₀ i) (hc i) F hF
 
 theorem evalD : EvalD := by
   intro E _ _ _ hU n hn S hS lam Z hZ K' hLev hKL ι _ σ hdec
@@ -877,7 +877,7 @@ theorem UpperTheory.V.Z.Mult.geomTr :
     split_ifs with hc
     · exact congrArg (_ * ·) (GlobalTheory.T.twistedOrbitalIntegral_product_eq_finprod E hU n hn S hS K' hK' f hf c.rep hc)
     · rfl
-  rw [GlobalTheory.T.heckeTrace_weightForms_eq_dim_mul_rationalClasses E hU n hn S hS lam K' hK' f hf hsep, hOrb,
+  rw [_root_.GlobalTheory.BCT.trOn_forms_hop_eq_geom E hU n hn S hS lam K' hK' f hf hsep, hOrb,
     GlobalTheory.PreStabU.geomURat_eq_geomU E hU n hn S hS lam K' hK' f hf hsep]
 end -- clump:auto
 end -- clump:auto

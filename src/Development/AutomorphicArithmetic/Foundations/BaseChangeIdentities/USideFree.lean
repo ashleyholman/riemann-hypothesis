@@ -44,7 +44,7 @@ theorem _root_.UpperTheory.BaseChangeIdentities.uSide : USide := by
     have h1 := GlobalTheory.T.traceOnInvariantSubmodule_iSup_eq_sum _ ι (fun i => π i ⊓ fixed (RF E n) (globLev S K')) (hop S K' f) hind hM
       (fun i => L5 E n S hS K' hK' f hf (π i) (hπ i).1)
     rw [hsup] at h1
-    have h2 := GlobalTheory.T.heckeTrace_weightForms_eq_dim_mul_rationalClasses E hU n hn S hS lam K' hK' f hf hsep
+    have h2 := _root_.GlobalTheory.BCT.trOn_forms_hop_eq_geom E hU n hn S hS lam K' hK' f hf hsep
     have h3 := GlobalTheory.PreStabU.geomURat_eq_geomU E hU n hn S hS lam K' hK' f hf hsep
     have h4 : geomURat lam (fun γ => twOrb (MonoidHom.id _) (globLev S (KL n)) (finPt γ) (globFn S f)) =
         geomURat lam (fun γ => ∏ᶠ w ∈ S, twOrb (MonoidHom.id _) (KL n w) (locPt w γ) (f w)) := by
@@ -55,7 +55,7 @@ theorem _root_.UpperTheory.BaseChangeIdentities.uSide : USide := by
       · rfl
     have h5 : ∀ i, trOn (π i ⊓ fixed (RF E n) (globLev S K')) (hop S K' f) =
         dimW lam * ∏ᶠ w ∈ S, twTr (σ i w).ρ (KL n w) (K' w) (f w) LinearMap.id := fun i =>
-      GlobalTheory.T.trace_hecke_levelVectors_eq_dim_mul_local_traces E hU n hn (π i) (hπ i).1 S hS lam (hπ i).2.1 K' hK' (σ i) (hσc i) f hf
+      _root_.GlobalTheory.BCT.trOn_hop_eq_dimW_mul_finprod_twTr E hU n hn (π i) (hπ i).1 S hS lam (hπ i).2.1 K' hK' (σ i) (hσc i) f hf
     have key : ∑ i, trOn (π i ⊓ fixed (RF E n) (globLev S K')) (hop S K' f) = dimW lam * geomU S lam f := by
       rw [← h1, h2, h4, h3]
     simp_rw [h5, ← Finset.mul_sum] at key

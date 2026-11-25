@@ -95,7 +95,7 @@ theorem _root_.GlobalTheory.T.abelianVariety_degreePolynomial_map_eq_charpoly_ra
           rw [hdeg, Nat.cast_zero, norm_zero, eq_comm, norm_eq_zero]
           by_contra hdet
           apply hg
-          rw [(GlobalTheory.T.isFinite_iff_tateModuleMap_injective_and_isogeny_iff K l hl A A g).2]
+          rw [(_root_.GlobalTheory.AV.AbVar.isFinite_iff_tmap_injective_and_isIsogeny_iff_vmap_bijective K l hl A A g).2]
           have hu : IsUnit (LinearMap.det (vmap l g)) := by
             rw [vmap, LinearMap.det_baseChange]
             exact (isUnit_iff_ne_zero).2

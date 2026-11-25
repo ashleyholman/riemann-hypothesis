@@ -201,7 +201,7 @@ theorem hecke_down (hH : GlobalTheory.Hk3.HoweUnram) {ψ : AddChar (AF D.host.F)
       heckeVec RS (KU c S.rank) hS f = heckeVec RT (KU c T.rank) hT f := by
     intro f hf hf0
     obtain ⟨δ, ψ', M, ρ0, ω, s, hstd, hsf, hωom, hcT', hcS'⟩ :=
-      GlobalTheory.T.weilDatum_inertPlace_standard_cayley_pair D ψ S T χS χT om hW v w h hin uS uT c ϖ eS eT hU heS heT f hf hf0
+      _root_.GlobalTheory.ChainOnto.std_cayley_of_inert D ψ S T χS χT om hW v w h hin uS uT c ϖ eS eT hU heS heT f hf hf0
     obtain ⟨hT, hhT, e1, e2⟩ := howe_down hH hstd hcT' hcS' hle hq hh
     have m1 := map_heckeVec hcS hh M.subtype (ρ := ω.comp (MonoidHom.inl _ _)) (ρ' := RS)
       (fun g m => by simp only [Submodule.subtype_apply, MonoidHom.comp_apply, MonoidHom.inl_apply, hωom]; simp [RS]) s
@@ -339,7 +339,7 @@ theorem param_down (hH : GlobalTheory.Hk3.HoweUnram) {ψ : AddChar (AF D.host.F)
     by_cases h0 : (f j : WO S T → ℂ) = 0
     · rw [show f j = 0 from Subtype.ext h0]; exact zero_mem _
     obtain ⟨δ, ψ', M, ρ0, ω, s, hstd, hsf, hωom, -, -⟩ :=
-      GlobalTheory.T.weilDatum_inertPlace_standard_cayley_pair D ψ S T χS χT om hW v w h hin uS uT c ϖ eS eT hUI heS heT (f j) (hf j) h0
+      _root_.GlobalTheory.ChainOnto.std_cayley_of_inert D ψ S T χS χT om hW v w h hin uS uT c ϖ eS eT hUI heS heT (f j) (hf j) h0
     refine GlobalTheory.LGrp.mem_fixed.2 fun k hk => Subtype.ext ?_
     have a4 := hstd.1.fix k 1 (Subgroup.mem_inf.1 (Subgroup.mem_subgroupOf.1 hk)).2 (one_mem _) s hstd.2.2.1
     have e3 := hωom k 1 s

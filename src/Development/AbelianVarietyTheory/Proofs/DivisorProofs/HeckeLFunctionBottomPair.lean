@@ -1335,7 +1335,7 @@ theorem volQ_eq_mass (V : HSp D) (n : ℕ) (ι : Formalism.MainNotions.StandardL
     (h4 : ∀ x, (∃ γ ∈ GQ V, finHom V γ = finHom V (ι x)) ↔ x ∈ ratG D n)
     (h5 : GlobalTheory.IndefiniteRowSideFullHecke.ClassFunctionSumIntegral.IsOpenCompactLevel V K) (h6 : ∀ x, Lev.finE V (ι x) ∈ K ↔ x ∈ intG D n)
     (h7 : Links.IsMeasDef V K μ 𝓕) : (volQ V μ : ℂ) = mass D n := by
-  have h := (GlobalTheory.T.integral_definiteUnitaryQuotient_eq_classSum V n ι (intG D n) K μ 𝓕 h1 h2 h3 h4 h5 h6 h7 (fun _ => 1)
+  have h := (_root_.GlobalTheory.NormDictClassSum.integral_eq_classSum V n ι (intG D n) K μ 𝓕 h1 h2 h3 h4 h5 h6 h7 (fun _ => 1)
     ⟨fun _ _ _ => rfl, fun _ _ _ => rfl, fun _ _ _ => rfl⟩).2.2
   simpa [GlobalTheory.AutomorphicL2Unitary.descend, volQ, mass] using h
 
@@ -1535,7 +1535,7 @@ theorem isFockVec_fock (hX : IsDict P X) (T : Tup D P.a P.d P.n) :
 theorem wcoef_fock (hX : IsDict P X) (ν : Measure (WO X.A X.B)) (𝓕 : Set (WO X.A X.B)) (T : Tup D P.a P.d P.n)
     (g : GA D X.A) {k : GA D X.A} (hk : k ∈ GinfC X.A) : wcoef X.om ν 𝓕 (X.fock T) (X.fock T) (g * k) =
       ip X.A X.B ν 𝓕 (X.om (g, 1) (X.fock T)) (X.fock T) := by
-  rw [wcoef, om_mul_one, GlobalTheory.T.weilRep_real_fixes_fock_maximal_minors P X hX hX.2.infB k hk T]
+  rw [wcoef, om_mul_one, _root_.GlobalTheory.NormDict.om_real_fock_eq P X hX hX.2.infB k hk T]
 
 end Fock
 

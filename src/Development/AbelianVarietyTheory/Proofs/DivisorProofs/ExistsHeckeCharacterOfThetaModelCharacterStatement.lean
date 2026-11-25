@@ -318,9 +318,6 @@ open GlobalTheory.NormDict GlobalTheory.NormExact
 open GlobalTheory.BotFormula (IsFinPt)
 open GlobalTheory.IndefiniteRowSideFullHecke.ClassFunctionSumIntegral (IsDefiniteSpace IsOpenCompactLevel)
 
-theorem _root_.GlobalTheory.T.exists_heckeCharacter_of_thetaModelCharacter : ∀ {D : D7} {N : ℕ} (c : HeckeU D N) (e : ℤ), (e = 1 ∨ e = -1) →
-  ∃ χ : (AE D)ˣ →* Circle, IsHeckeChar D χ ∧ ResEta D χ N ∧ HasFinPart χ c e := by
-  first | exact @GlobalTheory.HeckeUChar.exists_hecke_of_heckeU
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsHeckeCharacterOfThetaModelCharacterStatement =====

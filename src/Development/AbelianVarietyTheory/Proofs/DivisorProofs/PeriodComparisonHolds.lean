@@ -16,7 +16,7 @@ section -- clump:auto
 theorem GlobalTheory.PeriodFamily.periodComparison_holds : GlobalTheory.Published.PeriodComparison :=
   ⟨-1, fun A _ g hA hg L hL u ↦ by
     obtain ⟨P, hP⟩ := GlobalTheory.AnPer.pHom A g hA L u
-    have hS := GlobalTheory.T.periods_span_deRhamHomology_rank_two_g A g hA hg L u P hP
+    have hS := _root_.GlobalTheory.PeriodSpan.main A g hA hg L u P hP
     exact ⟨P, hS.1, hS.2, GlobalTheory.T.integrationOverCycles_lifts_lieLattice A g hA hg L u P hP,
       fun α _ M ↦ GlobalTheory.T.periodHom_push_end' A g hA L u P hP α M,
       fun H χ ψ ↦ GlobalTheory.T.pChern_neg_one A g hA L u P hP L u hL rfl H χ ψ⟩⟩

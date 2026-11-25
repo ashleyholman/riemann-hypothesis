@@ -674,11 +674,11 @@ theorem ext_values : ∀ (D : D7) (G : Type) [Group G] [Fintype G] (Pl0 T0 : Typ
       have key : dRep (M.σ ρ) (M.fr ρ * X * (M.fr ρ)⁻¹) (v ρ : M.H ρ) +
           Complex.I • dRep (M.σ ρ) (M.fr ρ * Y * (M.fr ρ)⁻¹) (v ρ : M.H ρ) = 0 := by
         rcases hab with h | h | h
-        · exact GlobalTheory.T.extremal_lowestKType_killed_compact_roots _ _ _ _ _
+        · exact _root_.GlobalTheory.HolRead.KCpt.extremal_killed_compact _ _ _ _ _
             (M.ds ρ).2.2.1 _ hlow' hs' hwt a b (Or.inl h) _ hX' _ hY' hE
-        · exact GlobalTheory.T.extremal_lowestKType_killed_compact_roots _ _ _ _ _
+        · exact _root_.GlobalTheory.HolRead.KCpt.extremal_killed_compact _ _ _ _ _
             (M.ds ρ).2.2.1 _ hlow' hs' hwt a b (Or.inr h) _ hX' _ hY' hE
-        · exact GlobalTheory.T.lowestKType_killed_by_negative_noncompact_roots _ _ _ _ _ p true
+        · exact _root_.GlobalTheory.LowestKilled.lowK_killed _ _ _ _ _ p true
             (hε ρ) (M.enum ρ).1 (M.ds ρ) _ hlow' hs' a b h.1 h.2 _ hX' _ hY' hE
       have h0 : z + Complex.I • z' = 0 := by
         apply Subtype.ext

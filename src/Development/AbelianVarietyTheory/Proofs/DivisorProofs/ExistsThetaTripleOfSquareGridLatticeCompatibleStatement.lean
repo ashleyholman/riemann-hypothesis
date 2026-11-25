@@ -310,7 +310,7 @@ theorem squareTriple_tied : ∀ {D : D7} {T : Type} {L : LevCh D T} {sc : Consts
   obtain ⟨basW, hW⟩ := isSkew_conjLat hL W i j e B τf hemb
   obtain ⟨co, vac, dom, hMo⟩ := _root_.GlobalTheory.SquareModel.exists_isGood_model_conj t i j M hM B hB _ _ rfl _ _ _ _ hV hW
   obtain ⟨co', vac', dom', hMo'⟩ := GlobalTheory.T.squareModel_negSpace_goodSchroedinger t i j M hM B hB _ _ rfl _ _ _ _ hV' hW
-  obtain ⟨om, hom⟩ := GlobalTheory.T.exists_weilRep_dualPair_characters_beta_quotient hL t i j hst B hB _ _ _ _ _ _ hV hW _ hMo
+  obtain ⟨om, hom⟩ := _root_.GlobalTheory.WeilTripleW.exists_isWeil hL t i j hst B hB _ _ _ _ _ _ hV hW _ hMo
   obtain ⟨om', hom'⟩ := GlobalTheory.FunObj.squareWeil₁ hL t i j hst B hB _ _ _ _ _ _ hV' hW _ hMo'
   obtain ⟨h1, h2, h3, h4⟩ := GlobalTheory.T.thetaGridSquare_rank_inequalities (G := G) hL i j
   have hgood := hX B subset_rfl hv₁P hv₁s hα hβ

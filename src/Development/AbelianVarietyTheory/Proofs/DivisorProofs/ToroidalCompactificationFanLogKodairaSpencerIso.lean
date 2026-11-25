@@ -735,7 +735,7 @@ theorem exists_isKS_regular : ∀ (E : Type) [Field E] [NumberField E] [IsCMFiel
   rw [GlobalTheory.LogKSLoc.spMap_res_chart U W hWU] at hv' hb'
   obtain ⟨ΘW, hΘW⟩ := GlobalTheory.T.exists_kodairaSpencer_interior_affine_open E H Dw l Xo c Y W (hW.le.trans inf_le_right) n _ hv' hb' DW
   have key := fun (m : Ideal Γ(Y.X, U.1)) (hm : m.IsMaximal) hx =>
-    GlobalTheory.T.kodairaSpencer_regular_near_rigid_boundary_point E H Dw l Xo c Y hpq hsm hsnc hrig U W hW n v hv hb D DW ΘW hDW hΘW m hm hx
+    _root_.GlobalTheory.LocRegRig.isKS_regular_at_boundary E H Dw l Xo c Y hpq hsm hsnc hrig U W hW n v hv hb D DW ΘW hDW hΘW m hm hx
   choose Θ hΘ using fun a b => exists_res_eq U W (interior Y) hW (ΘW a b) fun m hm hx =>
     (key m hm hx).imp fun g hg => ⟨hg.1, hg.2 a b⟩
   refine ⟨Θ, GlobalTheory.LogKSUp.isKS_of_inf E H Y.X Y.t (interior Y) U W hW n v D.1 DW Θ hDW ?_⟩

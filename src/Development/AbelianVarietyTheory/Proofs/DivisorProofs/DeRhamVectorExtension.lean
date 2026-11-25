@@ -180,7 +180,7 @@ theorem exists_smoothOfRelativeDimension_of_hodgeDeRham : GlobalTheory.Published
   obtain ⟨L, hL⟩ := GlobalTheory.PtExt.exists_canMap k ((Over.pullback (spMap (algebraMap R k))).obj A) p
     (G.baseChange k) tk hAk
   have hbij : Function.Bijective L :=
-    GlobalTheory.T.deRham_to_rigidified_extension_bijective_p_nilpotent hH p k hk _ gk hAk hgk (G.baseChange k) tk L fun c ↦ (hL c (L c)).2 rfl
+    _root_.GlobalTheory.PtExt.bijective_of_isCan_of_isNilpotent_of_hodgeDeRham hH p k hk _ gk hAk hgk (G.baseChange k) tk L fun c ↦ (hL c (L c)).2 rfl
   obtain ⟨hfin, hprj, hrk⟩ := hF.prim hAk hgk
   have h1 : Module.finrank k (primDR ((Over.pullback (spMap (algebraMap R k))).obj A)) = 2 * gk := by
     have := hrk ⊥
@@ -289,7 +289,7 @@ theorem canMap_bijective (hP : GlobalTheory.Published.AbelianHodgeDeRham) (p : �
     [CommRing R] (hR : IsNilpotent (p : R)) {A : Over (Sp R)} [GrpObj A] (hA : IsAbelianScheme A)
     {G : PDivGroup p R} (t : G.TorsionTower A) : Function.Bijective (canMap p hA t) := by
   obtain ⟨g, hg⟩ := _root_.GlobalTheory.TowerDim.exists_smoothOfRelativeDimension_of_hodgeDeRham hP p R hR A hA G t
-  exact GlobalTheory.T.deRham_to_rigidified_extension_bijective_p_nilpotent hP p R hR A g hA hg G t _ (isCan_canMap p hA t)
+  exact _root_.GlobalTheory.PtExt.bijective_of_isCan_of_isNilpotent_of_hodgeDeRham hP p R hR A g hA hg G t _ (isCan_canMap p hA t)
 
 def canFamily (hP : GlobalTheory.Published.AbelianHodgeDeRham) (p : ℕ) [Fact p.Prime] :
     GlobalTheory.Published.DeRhamVectorExtension.Family p :=

@@ -686,7 +686,7 @@ theorem isConstAlong_of_ks_zero : ∀ (E : Type) [Field E] [NumberField E] [IsCM
     letI : Algebra ℤ (ChartRing k m d) := Ring.toIntAlgebra _
     let D' : Derivation ℤ (ChartRing k m d) (ChartRing k m d) :=
       { toFun := f, map_add' := f1, map_smul' := fun z x => f2 z x, map_one_eq_zero' := f3, leibniz' := f4 }
-    exact GlobalTheory.T.exists_torusInvariant_heatOperator_commuting_periods (ChartRing k m d) P.D (𝓞 E) P.oD Y n' v' dd hdd m (bdParam k m d) gam hmon hne D'
+    exact _root_.GlobalTheory.heat_commuting_periods_exists (ChartRing k m d) P.D (𝓞 E) P.oD Y n' v' dd hdd m (bdParam k m d) gam hmon hne D'
       (fun i => by
         show f (bdParam k m d i) ∈ _
         rw [hq i]; exact Ideal.mul_mem_left _ _ (Ideal.mem_span_singleton_self _))

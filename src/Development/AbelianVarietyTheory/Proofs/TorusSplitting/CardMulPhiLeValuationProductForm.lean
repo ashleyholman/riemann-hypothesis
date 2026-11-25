@@ -87,7 +87,7 @@ theorem card_mul_phiC_le_valuation : ∀ (E : Type) [Field E] [NumberField E] [I
     (GlobalTheory.EtaForm.etaValAt_existsUnique_natural hL E H Dw l Xo c R hR J n cf xs).2 _ F ψ y z hz _ _ hval hz'
   obtain ⟨Φ, w₀, hN, hact, hint⟩ := _root_.GlobalTheory.EtaVal.exists_fib_intTh E H Dw l Xo c V y G S P
   obtain ⟨th, hth⟩ := _root_.GlobalTheory.EtaVal.exists_secA_secTie E H Dw l Xo V y.x P.A Φ F z.x hzx z.s
-  obtain ⟨ϑ, hϑ, hν⟩ := GlobalTheory.T.exists_expandsF_nuGe_zero_of_intTh V hcpl ϖ hϖ P.D Q hQ F v hv P.A G.G G.semi P.U w₀ hN.1 th
+  obtain ⟨ϑ, hϑ, hν⟩ := _root_.GlobalTheory.EtaVal.exists_expansion_nonneg V hcpl ϖ hϖ P.D Q hQ F v hv P.A G.G G.semi P.U w₀ hN.1 th
     (hint F ψ z th hψ hz hth)
   obtain ⟨tr, htr, htra⟩ := _root_.GlobalTheory.EtaVal.fib_points_mulEquiv E H Dw l Xo V y.x P.A Φ F z.x hzx
   obtain ⟨pt, hpt, hspan⟩ := _root_.GlobalTheory.EtaVal.exists_qkPt_span E H V G P htors F ((R ^ 2) ^ 2) (pow_pos (pow_pos hR0 2) 2)

@@ -1083,7 +1083,7 @@ theorem heat_values_of_isKS : ∀ (E : Type) [Field E] [NumberField E] [IsCMFiel
   have hc : (∏ i, tt i) ≠ 0 := Finset.prod_ne_zero_iff.2 fun i _ => htt i
   obtain ⟨iota, hiota⟩ := _root_.GlobalTheory.HeatV.fracIotaBasicOpen E H R t (∏ i, tt i) hc Ω φ x' hx' hinj
   obtain ⟨J, W, j, d, u, pf, pf', hW, hcov, hle, hfld, hlift, hglue⟩ :=
-    GlobalTheory.T.exists_local_heatOperators_abelianLocus E H R t P m tt gam hmon htt hab _ rfl n v' D dd' hinv Θ₁ DV hDV hKS
+    _root_.GlobalTheory.HeatV.exists_heat_abLocus E H R t P m tt gam hmon htt hab _ rfl n v' D dd' hinv Θ₁ DV hDV hKS
   obtain ⟨dt, u', p, p', hdt, hval⟩ := _root_.GlobalTheory.HeatVal.value_opV_ringOp E H R t _ hc n v' D Ω φ x' δ dd' hcomp hx' hinv hδ hdd hinj g hg δL hδL Θ₁ DV hDV
     iota hiota J W j d u pf pf' hW hcov hle hfld hlift hglue
   refine ⟨iota, dt, u', p, p', hiota, hdt, ?_⟩

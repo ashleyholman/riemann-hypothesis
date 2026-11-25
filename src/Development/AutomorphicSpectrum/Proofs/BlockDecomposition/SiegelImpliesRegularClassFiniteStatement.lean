@@ -1702,8 +1702,6 @@ open GlobalTheory.PRep (IsAdmissible)
 open GlobalTheory.TrMult
 open GlobalTheory.Chamber GlobalTheory.TruncKer GlobalTheory.Cusp
 
-theorem _root_.GlobalTheory.T.siegel_implies_regular_class_finite : PositivityTheory.ThKR.SiegelCore → MainStatements.RegularCuspidalTrace.RegClassFin := by
-  first | exact @GlobalTheory.CompanionTheory.CFin.regClassFin
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AutomorphicSpectrum.Proofs.BlockDecomposition.SiegelImpliesRegularClassFiniteStatement =====
