@@ -14,7 +14,7 @@ open GlobalTheory.CompanionTheory.Ar.BT
 theorem PositivityTheory.HtPt.Htat.SubgroupHopfOrder.btOrder_isHopfOrder_of_finOpenSub :
     ∀ (R : Type) [CommRing R] [IsDomain R] [IsIntegrallyClosed R] (T : Type) [CommGroup T] [Finite T] (Γ : QFGroup R T) (U : Γ.G.left.Opens), Γ.IsFinOpenSub U → IsHopfOrder (Γ.btOrder U) := by
   intro R _ _ _ T _ _ Γ U hU
-  obtain ⟨H, A, hH, hA, hAf⟩ := PositivityTheory.HtPt.Twhopf.sub_order R T Γ U hU
+  obtain ⟨H, A, hH, hA, hAf⟩ := GlobalTheory.CompanionTheory.Ar.BT.SubOrder.hopfOrder_of_finOpenSub R T Γ U hU
   have key : Γ.btOrder U = indOrder H.subtype A := by
     ext f
     rw [PositivityTheory.HtPt.Twhopf.mem_order R T Γ U f]

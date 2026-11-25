@@ -230,9 +230,6 @@ end GlobalTheory.HeightCounting.Up.ThirdIdx
 end
 end
 
-theorem GlobalTheory.T.eigen_index_divisibility_of_cmDatum_alt :
-    type_of% @GlobalTheory.HeightCounting.Up.ThirdIdx.exists_divisor_eigen_index_third_component_alt :=
-  @GlobalTheory.HeightCounting.Up.ThirdIdx.exists_divisor_eigen_index_third_component_alt
 end -- clump:auto
 end -- clump:auto
 end -- clump:auto
@@ -738,7 +735,7 @@ theorem third_place_linked_data_exists : ∀ hL : _root_.UpperTheory.Zero.LLC.Re
   have readingInputs := StepW.and
     (ThirdTied.third_component_hecke_character_tuple_alt hL hP hX)
     (StepW.and (GlobalTheory.HeightCounting.Fin.finite_types_with_local_conditions_alt hL hP hX)
-      (StepW.and (GlobalTheory.T.eigen_index_divisibility_of_cmDatum_alt hL hP hX) agreement))
+      (StepW.and (GlobalTheory.HeightCounting.Up.ThirdIdx.exists_divisor_eigen_index_third_component_alt hL hP hX) agreement))
   have fitsAndGap := StepW.and
     (ThirdFits.third_component_fits_integral_lattice_alt hL hP hX) GapAllStates.gapR_allSt
   have inputs := StepW.and fitsAndGap (StepW.and SizePar.exists_params_alt.2 readingInputs)

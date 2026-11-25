@@ -145,8 +145,6 @@ variable {l : ℕ} [Fact l.Prime] {O : Type} [CommRing O] [IsDomain O] [IsDiscre
 omit [Module.Finite ℤ_[l] O] [IsAdicComplete (maximalIdeal O) O] [CharZero O] in
 alias push_base := _root_.GlobalTheory.OrdLoc.OrdinaryEmbeddings.push_base
 
-alias cont_push := _root_.GlobalTheory.OrdLoc.OrdinaryEmbeddings.cont_push
-
 omit [IsDomain O] in
 theorem qcont_dual {X E : Type} [TopologicalSpace X] [Field E] [Algebra ℚ_[l] E]
     [TopologicalSpace E] [IsModuleTopology ℚ_[l] E] (f : X → DualNumber E) (h1 : Continuous fun x => (f x).fst)
@@ -172,7 +170,7 @@ theorem GlobalTheory.OrdLoc.rtTangent :
   obtain ⟨x, hx, -⟩ := univEx D U
   have hc : Continuous fun g => (D.rz E g).mat := by
     refine continuous_matrix fun a b => ?_
-    have h := cont_push D U E ((Algebra.ofId O E).comp x) a b
+    have h := GlobalTheory.OrdLoc.OrdinaryEmbeddings.cont_push D U E ((Algebra.ofId O E).comp x) a b
     rw [push_base D U E hx] at h
     unfold QCont at h
     rwa [← eq_moduleTopology ℚ_[l] E] at h

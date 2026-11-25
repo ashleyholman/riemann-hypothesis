@@ -645,11 +645,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-namespace GlobalTheory.CompanionTheory.Ar.HT
-
-alias hodge_tate_cokernel_sharp := _root_.PositivityTheory.HtPt.Farsharp.hodgeTateCokerSharp
-
-end GlobalTheory.CompanionTheory.Ar.HT
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AutomorphicSpectrum.Proofs.GeometryProofs.HodgeTateCokernelSharp =====
@@ -664,7 +659,7 @@ open GlobalTheory.CompanionTheory.Ar GlobalTheory.CompanionTheory.Ar.Rec
 
 theorem PositivityTheory.Xgn.farguesHodgeTate_of_farguesExact : HT.FarguesExact → HT.FarguesHodgeTate := by
   intro hE p _ C _ _ _ v O _ _ _ hv hp hc G
-  refine ⟨fun κ hκ w => HT.hodge_tate_cokernel_sharp p C v O hv hp hc G κ ?_ w, hE p C v O hv hp hc G⟩
+  refine ⟨fun κ hκ w => PositivityTheory.HtPt.Farsharp.hodgeTateCokerSharp p C v O hv hp hc G κ ?_ w, hE p C v O hv hp hc G⟩
   split_ifs at hκ with h2
   · subst h2
     have h4 : (4 : C) = ((2 : ℕ) : C) * ((2 : ℕ) : C) := by norm_num
@@ -1188,13 +1183,9 @@ open GlobalTheory.FlatNorm (nm nm_of_isPushout isUnit_of_nm exists_preimage_le)
 
 variable {X Y : Scheme.{0}} (π : Y ⟶ X) [IsFinite π] [Flat π] [LocallyOfFinitePresentation π]
 
-theorem exists_finFree_app_of_finitePresentation {x : X} {U : X.Opens} (hx : x ∈ U) :
-    ∃ V : X.Opens, IsAffineOpen V ∧ x ∈ V ∧ V ≤ U ∧ FinFree (π.app V).hom := by
-  apply GlobalTheory.FiniteAmpleFP.exists_finFree_app_fp <;> assumption
-
 theorem le_iSup_freeOpen (V : X.Opens) : V ≤ ⨆ W : _root_.GlobalTheory.FlatNorm.FreeOpen π V, W.1 := by
   intro x hx
-  obtain ⟨W, hW, hxW, hWV, hF⟩ := exists_finFree_app_of_finitePresentation π hx
+  obtain ⟨W, hW, hxW, hWV, hF⟩ := GlobalTheory.FiniteAmpleFP.exists_finFree_app_fp π hx
   exact Opens.mem_iSup.mpr ⟨⟨W, hW, hWV, hF⟩, hxW⟩
 
 theorem ext_freeOpen {V : X.Opens} {a b : Γ(X, V)}
@@ -1240,14 +1231,9 @@ private theorem basicOpen_resG_eq_inf_basicOpen {Z : Scheme.{0}} {U V : Z.Opens}
     Z.basicOpen (resG Z h f) = V ⊓ Z.basicOpen f :=
   Z.basicOpen_res f (homOfLE h).op
 
-private theorem isUnit_resG_of_le_basicOpen' {Z : Scheme.{0}} {U V : Z.Opens} (h : V ≤ U) (f : Γ(Z, U))
-    (hV : V ≤ Z.basicOpen f) : IsUnit (resG Z h f) := by
-  rw [← resG_resG (Z.basicOpen_le f) hV f]
-  exact (RingedSpace.isUnit_res_basicOpen _ f).map (resG Z hV)
-
 theorem mem_basicOpen_normFun {V : X.Opens} (b : Γ(Y, π ⁻¹ᵁ V)) {x : X} (hx : x ∈ V) :
     x ∈ X.basicOpen (normFun π V b) ↔ ∀ y, π y = x → y ∈ Y.basicOpen b := by
-  obtain ⟨W, hW, hxW, hWV, hF⟩ := exists_finFree_app_of_finitePresentation π hx
+  obtain ⟨W, hW, hxW, hWV, hF⟩ := GlobalTheory.FiniteAmpleFP.exists_finFree_app_fp π hx
   have e0 := resG_normFun_free π b ⟨W, hW, hWV, hF⟩
   have key : x ∈ X.basicOpen (normFun π V b) ↔
       x ∈ X.basicOpen (nm (π.app W).hom (resG Y (π.preimage_mono hWV) b)) := by
@@ -1256,9 +1242,9 @@ theorem mem_basicOpen_normFun {V : X.Opens} (b : Γ(Y, π ⁻¹ᵁ V)) {x : X} (
   rw [key]
   constructor
   · intro hx' y hy
-    obtain ⟨W'', hW'', hxW'', hle, hF''⟩ := exists_finFree_app_of_finitePresentation π hx'
+    obtain ⟨W'', hW'', hxW'', hle, hF''⟩ := GlobalTheory.FiniteAmpleFP.exists_finFree_app_fp π hx'
     have hW''W : W'' ≤ W := hle.trans (X.basicOpen_le _)
-    have hu := isUnit_resG_of_le_basicOpen' hW''W _ hle
+    have hu := GlobalTheory.ZH.CrdIso.isUnit_res hW''W _ hle
     rw [_root_.GlobalTheory.FlatNorm.resG_nm π hW hW'' hW''W hF, resG_resG] at hu
     have hu' := isUnit_of_nm hF'' hu
     have hy'' : y ∈ Y.basicOpen (resG Y (π.preimage_mono (hW''W.trans hWV)) b) := by
@@ -1278,9 +1264,9 @@ theorem mem_basicOpen_normFun {V : X.Opens} (b : Γ(Y, π ⁻¹ᵁ V)) {x : X} (
       exact hxW
     obtain ⟨V', hxV', hV'⟩ := exists_preimage_le π hall'
     obtain ⟨W'', hW'', hxW'', hle, hF''⟩ :=
-      exists_finFree_app_of_finitePresentation π (U := W ⊓ V') ⟨hxW, hxV'⟩
+      GlobalTheory.FiniteAmpleFP.exists_finFree_app_fp π (U := W ⊓ V') ⟨hxW, hxV'⟩
     have hW''W : W'' ≤ W := hle.trans inf_le_left
-    have hu := isUnit_resG_of_le_basicOpen' (π.preimage_mono hW''W) (resG Y (π.preimage_mono hWV) b)
+    have hu := GlobalTheory.ZH.CrdIso.isUnit_res (π.preimage_mono hW''W) (resG Y (π.preimage_mono hWV) b)
       ((π.preimage_mono (hle.trans inf_le_right)).trans hV')
     have hu2 := hu.map (nm (π.app W'').hom)
     rw [← _root_.GlobalTheory.FlatNorm.resG_nm π hW hW'' hW''W hF] at hu2

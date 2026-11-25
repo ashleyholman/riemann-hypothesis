@@ -116,7 +116,7 @@ private theorem Pr_of_mem (h : Hyp τ Z) {x} (hx : x ∈ Bz Z) : Pr τ Z x = x :
 
 private theorem tau_conj (h : Hyp τ Z) {g : GL (Fin n) k} (hg : g ∈ Gz Z) {y} (hy : y ∈ Bz Z) :
     τ (g.val * y * g⁻¹.val) = τ y := by
-  rw [h.symm _ (mul_mem_Bz Z hg hy) _ (PositivityTheory.RgUd.T.Nil.Four.Phi2.inv_mem_Gz hg),
+  rw [h.symm _ (mul_mem_Bz Z hg hy) _ (PositivityTheory.RgUd.T.Gz_inv_mem hg),
     ← mul_assoc, Units.inv_mul, one_mul]
 
 private def adL {g : GL (Fin n) k} (hg : g ∈ Gz Z) : (Fin (dd Z) → k) →ₗ[k] (Fin (dd Z) → k) where

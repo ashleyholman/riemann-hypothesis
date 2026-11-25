@@ -227,8 +227,6 @@ section Ord
 
 variable {L : Type} [Field L] [Valued L (WithZero (Multiplicative ℤ))]
 
-alias ordL_mul' := _root_.Formalism.UG.P.fSatake_ord_mul
-
 theorem ordL_zero' : ordL (0 : L) = 0 := by
   unfold ordL
   simp
@@ -239,7 +237,7 @@ theorem ordL_prod' {ι : Type} (T : Finset ι) (g : ι → L) (hg : ∀ j ∈ T,
   | empty => simp [_root_.Formalism.UG.P.fSatake_ord_one]
   | @insert a T ha ih =>
     rw [Finset.prod_insert ha, Finset.sum_insert ha,
-      ordL_mul' (hg a (Finset.mem_insert_self a T))
+      Formalism.UG.P.fSatake_ord_mul (hg a (Finset.mem_insert_self a T))
         (Finset.prod_ne_zero_iff.2 fun j hj => hg j (Finset.mem_insert_of_mem hj)),
       ih fun j hj => hg j (Finset.mem_insert_of_mem hj)]
 
@@ -333,7 +331,7 @@ theorem kapSign_eq_one_of_vals (hU : Unr E) (w : Pl E) (n : ℕ) (γ : GLw n w) 
       exact mul_right_cancel₀ hne h2
     apply hj
     apply hrev
-    have h2 := ordL_mul' ((map_ne_zero (cj w)).2 (hu i).1) (hu j).1
+    have h2 := Formalism.UG.P.fSatake_ord_mul ((map_ne_zero (cj w)).2 (hu i).1) (hu j).1
     rw [h1, _root_.Formalism.UG.P.fSatake_ord_one, _root_.Formalism.UG.P.fSatake_ord_of_v (hcj (u i)), (hu i).2, (hu j).2] at h2
     omega
 
@@ -359,7 +357,7 @@ theorem kapSign_eq_one_of_vals (hU : Unr E) (w : Pl E) (n : ℕ) (γ : GLw n w) 
   have htot : Even (∑ j ∈ (Finset.univ : Finset (Fin n)), f j) := by
     have e : ordL H.det = ∑ j, f j := by
       rw [det_rev H hsupp, ordL_sign_mul, ordL_prod' _ _ (fun j _ => hg0 j)]
-    rw [hHdet, ordL_mul' ((map_ne_zero (cj w)).2 hPdet) hPdet, _root_.Formalism.UG.P.fSatake_ord_of_v (hcj _)] at e
+    rw [hHdet, Formalism.UG.P.fSatake_ord_mul ((map_ne_zero (cj w)).2 hPdet) hPdet, _root_.Formalism.UG.P.fSatake_ord_of_v (hcj _)] at e
     exact ⟨ordL (P : Matrix (Fin n) (Fin n) (w.adicCompletion E)).det, by rw [← e]⟩
   have hevenS : ∀ (S : Finset (Fin n)) (hS : ∀ i ∈ S, Fin.rev i ∈ S), Even (∑ j ∈ S, f j) := by
     intro S hS
@@ -416,8 +414,8 @@ theorem kapSign_eq_one_of_vals (hU : Unr E) (w : Pl E) (n : ℕ) (γ : GLw n w) 
       rw [det_submatrix_rev H hsupp S hS]
       exact mul_ne_zero (by rcases Int.units_eq_one_or (Equiv.Perm.sign (revOn S hS)) with h | h <;> simp [h])
         (Finset.prod_ne_zero_iff.2 fun j _ => hg0 j.1)
-    rw [ordL_mul' (mul_ne_zero ((map_ne_zero (cj w)).2 hd0) hd0) hne,
-      ordL_mul' ((map_ne_zero (cj w)).2 hd0) hd0, _root_.Formalism.UG.P.fSatake_ord_of_v (hcj d), hordS S hS]
+    rw [Formalism.UG.P.fSatake_ord_mul (mul_ne_zero ((map_ne_zero (cj w)).2 hd0) hd0) hne,
+      Formalism.UG.P.fSatake_ord_mul ((map_ne_zero (cj w)).2 hd0) hd0, _root_.Formalism.UG.P.fSatake_ord_of_v (hcj d), hordS S hS]
     obtain ⟨r, hr⟩ := hevenS S hS
     exact Even.neg_one_zpow ⟨ordL d + r, by rw [hr]; ring⟩
   · push Not at hS

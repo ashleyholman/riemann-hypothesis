@@ -296,7 +296,7 @@ theorem dom_boundE (c : ℝ) (hc : 0 < c) (H : Matrix (Fin n) (Fin n) ℂ) (P : 
   have hg : ‖gs c z‖ ≤ Real.exp (-(c * ‖z‖ ^ 2)) := by
     rw [gs, Complex.norm_exp]
     simp only [Complex.neg_re, Complex.ofReal_re]
-    exact Real.exp_le_exp.mpr (neg_le_neg (mul_le_mul_of_nonneg_left (PositivityTheory.Rg.Sw.AbsSt.DF.sq_norm_le_sum z) hc.le))
+    exact Real.exp_le_exp.mpr (neg_le_neg (mul_le_mul_of_nonneg_left (UpperTheory.Reformulated.B.Yhb3.main z) hc.le))
   have hz0 : 0 ≤ ‖z‖ := norm_nonneg _
   have hmain : ‖evX P z * gs c z‖ ≤ Cp * Cd * (1 + ‖z‖) ^ (-r) := by
     rw [norm_mul]
@@ -541,7 +541,7 @@ theorem integrable_poly_gs (P : PX m n) {c : ℝ} (hc : 0 < c) :
   have hx0 : 0 ≤ ‖x‖ := norm_nonneg _
   have hg : ‖gs c x‖ ≤ Real.exp (-(c * ‖x‖ ^ 2)) := by
     rw [gs_norm]
-    exact Real.exp_le_exp.mpr (neg_le_neg (mul_le_mul_of_nonneg_left (sq_norm_le_sum x) hc.le))
+    exact Real.exp_le_exp.mpr (neg_le_neg (mul_le_mul_of_nonneg_left (UpperTheory.Reformulated.B.Yhb3.main x) hc.le))
   rw [Real.norm_of_nonneg (by positivity)]
   calc ‖evX P x‖ * ‖gs c x‖ ≤ (Cp * (1 + ‖x‖) ^ k) * Real.exp (-(c * ‖x‖ ^ 2)) :=
         mul_le_mul (hP x) hg (norm_nonneg _) (by positivity)

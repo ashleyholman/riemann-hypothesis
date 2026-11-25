@@ -11,5 +11,3 @@ import Development.AutomorphicArithmetic.IntegralCasts.IsOpenStabOfMemNhds
 
 open NumberField Matrix GlobalTheory.CuspRep GlobalTheory.GKCoh UpperTheory.V.AlgRepEndIrreducible
 open scoped TensorProduct
-
-alias UpperTheory.V.AlgRepEndIrreducible.msetSep := _root_.UpperTheory.Reformulated.B.MultisetSeparation.msetSep

@@ -637,7 +637,7 @@ private theorem local_step (hLit : _root_.GlobalTheory.Mem.LiteralAutomorphy.Lit
     · exact honto ⟨j, by have := List.mem_range.1 hj; omega⟩
   have hinv : ∀ p : M →ₗ[ℂ] σ.V, (∀ g, ∀ y ∈ Y, p (ρ g y) = σ.ρ g (p y)) → ∀ F ∈ E, p F ∈ invPart σ.ρ e φ :=
     fun p hp F hF => into_inv (glIwa k n) ρ σ.ρ hEY e φ (fun F hF => ⟨hN hF, hNm hF, fun t => hφ t F hF⟩) hzo p hp hF
-  obtain ⟨p₀, hp₀, hp₀'⟩ := isoSep hσ (hEY hF₀) hF₀'
+  obtain ⟨p₀, hp₀, hp₀'⟩ := UpperTheory.Reformulated.B.IsoSeparation.isoSep hσ (hEY hF₀) hF₀'
   obtain ⟨ω, h1, h2, h3, -, h4⟩ := _root_.UpperTheory.V.Hi.exists_principal_series_of_distinct_inv_ne_bot hLit k n _ σ.ρ σ.smooth σ.irred e φ
     (fun i y hy => Units.ext (by rw [hval, htriv i y hy, Units.val_one]))
     (fun i j hij => by
@@ -646,7 +646,7 @@ private theorem local_step (hLit : _root_.GlobalTheory.Mem.LiteralAutomorphy.Lit
     ((Submodule.ne_bot_iff _).2 ⟨_, hinv p₀ hp₀ F₀ hF₀, hp₀'⟩)
   refine ⟨ω, h1, h3, fun i y => by rw [← hval, h2 i y, Units.mul_inv], fun j hj F hF => ?_⟩
   by_contra hc
-  obtain ⟨p, hp, hp'⟩ := isoSep hσ (sub_mem (uOp_stable _ _ hY (al_mem k n j) (hEY hF) (hN hF))
+  obtain ⟨p, hp, hp'⟩ := UpperTheory.Reformulated.B.IsoSeparation.isoSep hσ (sub_mem (uOp_stable _ _ hY (al_mem k n j) (hEY hF) (hN hF))
     (Y.smul_mem (psEig ω j) (hEY hF))) (sub_ne_zero.2 hc)
   refine hp' ?_
   rw [map_sub, map_smul, ← h4 _ (hinv p hp F hF) j hj, sub_eq_zero]

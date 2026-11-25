@@ -324,7 +324,7 @@ theorem UpperTheory.one_tmul_mem_completedLattice_iff :
   simp only [key]
   constructor
   · intro h
-    choose k a hka using fun i => T.exists_primePow_mul_eq_int_of_integral_finiteAdeleAway p (bQ.repr z i) (h i)
+    choose k a hka using fun i => GlobalTheory.ratDen_pow_of_intAfP p (bQ.repr z i) (h i)
     let r := ∑ i, k i
     let c : _ → ℤ := fun i => (p : ℤ) ^ (r - k i) * a i
     have hc : ∀ i, ((p ^ r : ℕ) : ℚ) * bQ.repr z i = (c i : ℚ) := by

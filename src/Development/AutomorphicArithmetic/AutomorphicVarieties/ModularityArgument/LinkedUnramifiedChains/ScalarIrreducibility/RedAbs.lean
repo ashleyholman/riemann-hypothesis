@@ -338,7 +338,7 @@ theorem UpperTheory.V.J.scale :
   haveI := hco
   obtain ⟨hcone, -⟩ := Fr.cone_u hF hn S
   obtain ⟨hint, hgm, hgr0, -, -, -, hrgr⟩ := Fr.gr_A hF hn S
-  obtain ⟨-, hy1, hy2⟩ := coPt l c S.B (ξ.comp S.inc)
+  obtain ⟨-, hy1, hy2⟩ := UpperTheory.Reformulated.B.CoPoint.coPt l c S.B (ξ.comp S.inc)
   haveI : Nonempty F.G0 := ⟨F.g0⟩
   have hx : 1 < ‖(((l : ℚ_[l])⁻¹ : ℚ_[l]) : Qbar l)‖ := by
     rw [PadicAlgCl.norm_extends, norm_inv, Padic.norm_p, inv_inv]
@@ -1400,7 +1400,7 @@ private theorem dim_fin {O Y : Type} [CommRing O] [IsDomain O] [IsDiscreteValuat
 
 private theorem dim_pt {l : ℕ} [Fact l.Prime] (c : Coef l) [Fr.IsCoef l c.O] (R : Type) [CommRing R] [Algebra c.O R]
     [IsCO c.O R] (y : R →ₐ[c.O] Qbar l) : ringKrullDim (R ⧸ RingHom.ker y) ≤ 1 := by
-  haveI : Module.Finite c.O y.range := (coPt l c R y).1
+  haveI : Module.Finite c.O y.range := (UpperTheory.Reformulated.B.CoPoint.coPt l c R y).1
   have hker : RingHom.ker (y.rangeRestrict : R →+* y.range) = RingHom.ker y := by
     ext a
     rw [RingHom.mem_ker, RingHom.mem_ker]

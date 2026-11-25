@@ -18,7 +18,7 @@ import Development.WeilBound.RepresentationTheoryGL.GenericUnitaryGL.Complementa
 namespace UpperTheory.Gal.TypesAndIwahori
 
 theorem loc_holds : Loc := by
-  have geo := UpperTheory.Lit.Mix.geometricLemma
+  have geo := PositivityTheory.Exh.geometricLemmaGL
   have bz := GlobalTheory.bernsteinZelevinskyFiniteness_holds
   have zel := UpperTheory.Lit.Mix.polynomialRing
   have seg := PositivityTheory.RgGu.segmentRepresentation

@@ -71,8 +71,6 @@ theorem absE_rIdU [IsTotallyReal F] (h2 : Module.finrank F E = 2) (c : ℝ) :
   congr 1
   ring
 
-alias pos_hom' := _root_.GlobalTheory.Doubling.hom_pos
-
 variable (σ) in
 theorem sigRA_sigRA (h : IsCMExt F E σ) (x : AF F ⊗[F] E) : Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (AF F) σ (Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes.sigR (AF F) σ x) = x := by
   induction x using TensorProduct.induction_on with
@@ -284,7 +282,7 @@ theorem exists_torus_section (h : IsCMExt F E σ) (hJ : IsHermND σ J) (hW : IsW
   haveI := h.1
   have hF := pfrA h hJ hW
   have m1 : ∀ p : P, p.1 ∈ minPar σ J X := fun p => (hP _).1 p.2
-  have hpos : ∀ x : (AF F ⊗[F] E)ˣ, (0 : ℝ) < GlobalTheory.Doubling.absE F E x := fun x => NNReal.coe_pos.2 (pos_hom' _ x)
+  have hpos : ∀ x : (AF F ⊗[F] E)ˣ, (0 : ℝ) < GlobalTheory.Doubling.absE F E x := fun x => NNReal.coe_pos.2 (GlobalTheory.Doubling.hom_pos _ x)
   have h0 : 0 < Module.finrank ℚ F := Module.finrank_pos
   have hd : (0 : ℝ) < 2 * (Module.finrank ℚ F : ℝ) := mul_pos two_pos (Nat.cast_pos.2 h0)
   have hu_mul : ∀ p q : P, ∀ i, uP σ J X Y h hJ hW P hP (p * q) i = uP σ J X Y h hJ hW P hP p i * uP σ J X Y h hJ hW P hP q i :=

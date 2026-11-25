@@ -19,9 +19,6 @@ variable {E : Type} [Field E] [NumberField E] [_root_.NumberField.IsTotallyCompl
 
 def twS (χ : HChar E) (p : Σ a, CG E a) : Σ a, CG E a := ⟨p.1, p.2.twist χ⟩
 
-omit [_root_.NumberField.IsTotallyComplex E] in
-alias unrAt_inv := _root_.Formalism.L2.Host.HChar.UnrAt.inv
-
 theorem exists_fin {d : ℕ} (B : Multiset ℂˣ) (hB : Multiset.card B = d) :
     ∃ f : Fin d → ℂˣ, Finset.univ.val.map f = B := by
   obtain ⟨l, rfl⟩ : ∃ l : List ℂˣ, (l : Multiset ℂˣ) = B := Quot.exists_rep B
@@ -64,12 +61,12 @@ theorem jacquet_shalika_rigidity_of_bound : AbsRig → UnitEx → SatTw → DetO
   choose B B' hB hB' hsum using hP
   have hsat0 : ∀ (w : Off E S) (i : ι), (π0 i).HasSat w.1 ((B w i).map (· * ((ν (t i))⁻¹).val w.1)) := by
     intro w i
-    have h := hST E (m i) (π i) ((ν (t i))⁻¹) w.1 (B w i) (unrAt_inv ((hν (t i)).1 w.1)) (hB w i)
+    have h := hST E (m i) (π i) ((ν (t i))⁻¹) w.1 (B w i) (Formalism.L2.Host.HChar.UnrAt.inv ((hν (t i)).1 w.1)) (hB w i)
     rw [hπ0 i, ← CG.twist_mul, mul_inv_cancel, CG.twist_one] at h
     exact h
   have hsat0' : ∀ (w : Off E S) (j : κ), (π0' j).HasSat w.1 ((B' w j).map (· * ((ν (t' j))⁻¹).val w.1)) := by
     intro w j
-    have h := hST E (m' j) (π' j) ((ν (t' j))⁻¹) w.1 (B' w j) (unrAt_inv ((hν (t' j)).1 w.1)) (hB' w j)
+    have h := hST E (m' j) (π' j) ((ν (t' j))⁻¹) w.1 (B' w j) (Formalism.L2.Host.HChar.UnrAt.inv ((hν (t' j)).1 w.1)) (hB' w j)
     rw [hπ0' j, ← CG.twist_mul, mul_inv_cancel, CG.twist_one] at h
     exact h
   have hex : ∀ (x : X) (w : Off E S), ∃ f : Fin x.1.1 → ℂˣ, x.1.2.HasSat w.1 (Finset.univ.val.map f) := by

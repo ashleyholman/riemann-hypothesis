@@ -399,15 +399,13 @@ private theorem rd_congr (τ : K →+* ℂ) (a b : Fin n) (c : ℂ) (y : Lie K n
     (fun z => rd τ a b G z + c * G z) =ᶠ[nhds y] fun z => rd τ a b H z + c * H z :=
   ((h.fderiv (𝕜 := ℝ)).and h).mono fun z hz => by simp only [rd_eq, hz.1, hz.2]
 
-private alias exists_smooth_eq := _root_.UpperTheory.Reformulated.B.LocalSmoothExtension.exists_smooth_eq
-
 end UpperTheory.V.Z.Inf.WeylGroupAction
 
 open UpperTheory.V.Z.Inf UpperTheory.V.Z.Inf.WeylGroupAction in
 theorem UpperTheory.V.Z.Inf.weyl :
     UpperTheory.V.Z.Inf.Weyl := by
   intro K _ _ _ n τ U hU F hF x hx
-  obtain ⟨G, hG, hGF⟩ := exists_smooth_eq hU hF hx
+  obtain ⟨G, hG, hGF⟩ := UpperTheory.Reformulated.B.LocalSmoothExtension.exists_smooth_eq hU hF hx
   have e1 : detD τ G x = detD τ F x := by
     unfold detD
     refine Finset.sum_congr rfl fun p _ => ?_

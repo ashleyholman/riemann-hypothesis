@@ -698,18 +698,13 @@ namespace GlobalTheory.CompanionTheory.RgEisSide
 variable {G : Type} [Group G] [TopologicalSpace G]
   {k : Type} [Field k] [NumberField k] {ι : Type} [Fintype ι] [DecidableEq ι]
 
-private theorem one_toIdele_lemma (y : IdeleGroup k) :
-    (((1 : HeckeCharacter k).toIdele y : Circle) : ℂ) = 1 := by
-  first
-  | rfl
-
 theorem side_one {π : G →* GL ι 𝔸[k]} {Γ K P : Subgroup G} {i : ι} {ω : HeckeCharacter k}
     {d : ι → IdeleGroup k} {c : G → ℂ} {η : G → ℝ} (hs : Side π Γ K P i ω d c η) :
     Side π Γ K P i (1 : HeckeCharacter k) d (1 : G → ℂ) η := by
   refine ⟨hs.two, mul_one 1, hs.cont, hs.piK, hs.piΓ, hs.trans, hs.mem,
     ⟨hs.par.closed, hs.par.iwa, ⟨fun _ _ _ _ => by simp, fun _ _ => by simp, fun _ _ _ => rfl,
       continuous_one.continuousOn⟩⟩, hs.ht, fun p hp => ⟨?_, (hs.val p hp).2⟩⟩
-  exact (one_toIdele_lemma _).symm
+  exact (GlobalTheory.CompanionTheory.CMMirror.one_toIdele _).symm
 
 theorem norm_globalZeta_le (F : 𝔸[k] → ℂ) (x : ℝ) :
     ‖globalZeta F (1 : HeckeCharacter k) x‖ ≤
@@ -718,7 +713,7 @@ theorem norm_globalZeta_le (F : 𝔸[k] → ℂ) (x : ℝ) :
   refine (norm_integral_le_integral_norm _).trans (le_of_eq ?_)
   congr 1
   funext t
-  rw [norm_mul, norm_mul, one_toIdele_lemma, norm_one, mul_one,
+  rw [norm_mul, norm_mul, GlobalTheory.CompanionTheory.CMMirror.one_toIdele, norm_one, mul_one,
     Complex.norm_cpow_eq_rpow_re_of_pos (IdeleGroup.ideleModule k t).2, Complex.ofReal_re]
 
 private theorem stab_lemma {R : Type} [CommRing R] (h : GL ι R) (i : ι) (a b : R)
@@ -790,7 +785,7 @@ theorem sideConv : EpConv → TestSph → Lines → Term → SideConv := by
       have h1 : η κ = η 1 := by simpa using hs.ht.right 1 κ hκ
       rw [h1, hs.ht.rat 1 (one_mem Γ) (one_mem P), add_zero]
     rw [hpk, hline p hp κ hκ, hzt κ hκ, hη, norm_mul, norm_mul, norm_mul, norm_mul,
-      one_toIdele_lemma, Pi.one_apply, norm_one, one_mul, one_mul, ← Complex.ofReal_mul,
+      GlobalTheory.CompanionTheory.CMMirror.one_toIdele, Pi.one_apply, norm_one, one_mul, one_mul, ← Complex.ofReal_mul,
       Complex.norm_exp_ofReal]
   have hApos : 0 < ‖modPow (d i) (x : ℂ)‖ *
       ‖globalZeta (fun t => Ψ₁ fun _ => t) (1 : HeckeCharacter k) (x : ℂ)‖ := by

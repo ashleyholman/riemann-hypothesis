@@ -1117,18 +1117,12 @@ namespace PositivityTheory.RgJS
 
 namespace JacobiTrudiPadding
 
-theorem hZ_zero {m : ℕ} (α : Fin m → ℂ) : hZ 0 α = 1 := by
-  simp [hZ, hN, Finset.Nat.antidiagonalTuple_zero_right]
-
-theorem hZ_neg {m : ℕ} (α : Fin m → ℂ) {z : ℤ} (hz : z < 0) : hZ z α = 0 := by
-  simp [hZ, hz]
-
 theorem det_unitri {m d : ℕ} (α : Fin m → ℂ) : (Matrix.of fun i j : Fin d => hZ ((i : ℤ) - j) α).det = 1 := by
   rw [Matrix.det_of_isLowerTriangular]
-  · simp [hZ_zero]
+  · simp [PositivityTheory.RgJS.SkewJacobiTrudiStaircase.hZ_zero]
   · intro i j hij
     simp only [Matrix.of_apply]
-    apply hZ_neg
+    apply PositivityTheory.RgJS.SkewJacobiTrudiStaircase.hZ_neg
     have : (i : ℕ) < j := hij
     omega
 
@@ -1152,7 +1146,7 @@ theorem jt_pad_add (m' d : ℕ) (α : Fin (m' + d) → ℂ) (l : Fin m' → ℕ)
     rw [h11, h22, det_unitri, mul_one]
   · ext i j
     simp [Matrix.toBlocks₁₂, padN]
-    apply hZ_neg
+    apply PositivityTheory.RgJS.SkewJacobiTrudiStaircase.hZ_neg
     have := i.isLt
     omega
 

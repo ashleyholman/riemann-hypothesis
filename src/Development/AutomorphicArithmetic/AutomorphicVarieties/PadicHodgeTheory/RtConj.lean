@@ -395,8 +395,6 @@ private theorem exists_conjLift {O : Type} [CommRing O] [IsLocalRing O] {Γ : Ty
       split_ifs <;> simp
     rw [map_conj, e, map_one, one_mul, inv_one, mul_one, r.red]
 
-private alias eta_lc := _root_.UpperTheory.V.Loc.OrdinaryDeformation.eta_lc
-
 private theorem exists_univMat (R : Type) [CommRing R] :
     ∃ h : GL (Fin 3) (MvPowerSeries (Fin 3 × Fin 3) R), ∀ a b,
       h.val a b = (1 : Matrix (Fin 3) (Fin 3) (MvPowerSeries (Fin 3 × Fin 3) R)) a b + MvPowerSeries.X (a, b) := by
@@ -455,7 +453,7 @@ theorem GlobalTheory.OrdLoc.rtConj :
     intro hx
     have := MvPowerSeries.isUnit_constantCoeff _ hx
     simp at this
-  obtain ⟨r', hr'⟩ := exists_conjLift (eta_lc D) (U.r.map i) u hu1
+  obtain ⟨r', hr'⟩ := exists_conjLift (UpperTheory.V.Loc.OrdinaryDeformation.eta_lc D) (U.r.map i) u hu1
   obtain ⟨α, hα, -⟩ := (U.rep S).2 r' trivial
   have hα' : push α U.r.hom = conjBy u (push i U.r.hom) := (congrArg GLift.hom hα).trans hr'
   have hcomp : ∀ {T : Type} [CommRing T] [Algebra O T] (y : S →ₐ[O] T), push (y.comp α) U.r.hom =

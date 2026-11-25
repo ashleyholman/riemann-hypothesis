@@ -66,19 +66,6 @@ noncomputable section
 open Matrix
 namespace GlobalTheory.StdPar.UnipArch
 
-section Lin
-
-variable {A : Type} [CommRing A] {n r : ℕ}
-
-alias mem_span_cols_iff := _root_.GlobalTheory.ColumnSumLemma.main
-
-variable (P : Fin r → Fin r → Prop) (hPt : ∀ i l j, P i l → P l j → P i j) (hPlt : ∀ i l, P i l → i < l)
-include hPt
-
-
-
-end Lin
-
 section Glue
 
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E]

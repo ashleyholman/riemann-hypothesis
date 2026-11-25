@@ -598,12 +598,6 @@ namespace PositivityTheory.HtPt.Pfib
 
 open GlobalTheory.LocalFlat
 
-theorem lTensor_map_injective {R A M : Type*} [CommRing R] [CommRing A] [Algebra R A]
-    [AddCommGroup M] [Module R M] [Module A M] [IsScalarTower R A M] [Module.Flat R M]
-    (p : Ideal R) :
-    Function.Injective ((p.map (algebraMap R A)).subtype.lTensor M) := by
-  apply GlobalTheory.FiniteFibreFlat.lTensor_map_injective
-
 section Devissage
 
 variable {A : Type} [CommRing A] {M : Type} [AddCommGroup M] [Module A M]
@@ -751,7 +745,7 @@ end Devissage
 theorem fibre_crit_ring : ∀ (R A B : Type) [CommRing R] [CommRing A] [CommRing B] [IsLocalRing R] [IsLocalRing A] [IsLocalRing B] [IsNoetherianRing R] [IsNoetherianRing A] [IsNoetherianRing B] [Algebra R A] [Algebra A B] [Algebra R B] [IsScalarTower R A B] [IsLocalHom (algebraMap R A)] [IsLocalHom (algebraMap A B)], Module.Flat R B → (Algebra.TensorProduct.map (AlgHom.id R (IsLocalRing.ResidueField R)) (IsScalarTower.toAlgHom R A B)).toRingHom.Flat → Module.Flat A B := by
   intro R A B _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ hB h
   refine flat_of_relationsLift_of_injective B (I := (maximalIdeal R).map (algebraMap R A)) ?_ ?_
-    (lTensor_map_injective _)
+    (GlobalTheory.FiniteFibreFlat.lTensor_map_injective _)
   · exact ((Ideal.map_mono (map_maximalIdeal_le _)).trans (map_maximalIdeal_le _)).trans
       (maximalIdeal_le_jacobson _)
   · refine relationsLift_of_square
@@ -1097,10 +1091,6 @@ theorem main (R : Type) [CommRing R] [IsLocalRing R] [IsNoetherianRing R] (C A B
   · have : IsIso u.left := inferInstanceAs (IsIso ((Over.forget _).map u))
     rw [← hu1, Over.comp_left]; infer_instance
   · exact IsPullback.of_iso hK (asIso u).symm (Iso.refl _) (Iso.refl _) (Iso.refl _) (by simp [hu1]) (by simp) (by simp) (by simp)
-
-theorem exact_of_closedFibre : ∀ (R : Type) [CommRing R] [IsLocalRing R] [IsNoetherianRing R] (C A B : Over (Spec (CommRingCat.of R))) [IsFinite C.hom] [IsFinite A.hom] [IsFinite B.hom] [Flat C.hom] [Flat A.hom] [Flat B.hom] (a : C ⟶ A) (b : A ⟶ B) (e : 𝟙_ (Over (Spec (CommRingCat.of R))) ⟶ B), a ≫ b = toUnit C ≫ e → IsPullback ((Over.pullback (thick R (IsLocalRing.maximalIdeal R) 0)).map a) ((Over.pullback (thick R (IsLocalRing.maximalIdeal R) 0)).map (toUnit C)) ((Over.pullback (thick R (IsLocalRing.maximalIdeal R) 0)).map b) ((Over.pullback (thick R (IsLocalRing.maximalIdeal R) 0)).map e) → Flat ((Over.pullback (thick R (IsLocalRing.maximalIdeal R) 0)).map b).left → Surjective ((Over.pullback (thick R (IsLocalRing.maximalIdeal R) 0)).map b).left → IsClosedImmersion a.left ∧ Flat b.left ∧ Surjective b.left ∧ IsPullback a (toUnit C) b e := by
-  intro R _ _ _ C A B _ _ _ _ _ _ a b e hab h₀ hf hs
-  exact main R C A B a b e hab h₀ hf hs
 
 end GlobalTheory.CompanionTheory.Ar.BT.FinFlat
 end -- clump:auto
@@ -1752,7 +1742,7 @@ theorem finitePart_extension_core : ∀ (R : Type) [CommRing R] [IsDomain R] [Is
     congr 1
     rw [← cancel_mono (Functor.Monoidal.εIso (Over.pullback (thick R (IsLocalRing.maximalIdeal R) e))).inv]
     exact toUnit_unique _ _
-  obtain ⟨hcl', hfb', hsb', hpb'⟩ := GlobalTheory.CompanionTheory.Ar.BT.FinFlat.exact_of_closedFibre R AT Γf.G AB a b η[AB] hab (isPullback_map_unit _ hpk) hf hs
+  obtain ⟨hcl', hfb', hsb', hpb'⟩ := GlobalTheory.CompanionTheory.Ar.BT.FinFlat.main R AT Γf.G AB a b η[AB] hab (isPullback_map_unit _ hpk) hf hs
   obtain ⟨C, _, ΓB, φB, _, htB⟩ := _root_.GlobalTheory.CompanionTheory.Ar.BT.Tors.exists_qfGroup_kernel R B hBs N hN AB jB hpB (fun g hg => by
     obtain ⟨w, rfl⟩ := hsb'.surj g
     have hw : (Γf.G.hom w).asIdeal = ⊥ := by

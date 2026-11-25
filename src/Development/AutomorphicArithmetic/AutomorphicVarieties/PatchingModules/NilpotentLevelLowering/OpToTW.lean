@@ -708,12 +708,6 @@ private theorem spLoc_le {R : Type} [CommRing R] [IsLocalRing R] {q n : ℕ}
   have h2 := m'.add_mem hr.2 (hR r hrR)
   simpa using h2
 
-private theorem spLoc_co (R : Type) [CommRing R] [IsLocalRing R] [IsNoetherianRing R]
-    [IsAdicComplete (maximalIdeal R) R] : IsCO R R := by
-  refine { complete := inferInstance, isLocalHom := ?_, res_surj := fun x => ⟨x, by simp⟩ }
-  rw [Algebra.algebraMap_self]
-  infer_instance
-
 private theorem spLoc_alg (R : Type) [CommRing R] [IsLocalRing R] [IsNoetherianRing R]
     [IsAdicComplete (maximalIdeal R) R] (q n : ℕ) (P : Fin q → Polynomial R) (ut : Fin q → Fin n → R)
     [Module.Finite R (MSplitAlg P n)] (ψ : MSplitAlg P n →ₐ[R] Sp P ut)
@@ -724,7 +718,7 @@ private theorem spLoc_alg (R : Type) [CommRing R] [IsLocalRing R] [IsNoetherianR
   classical
   let t : Fin q × Fin n → MSplitAlg P n :=
     fun p => MSplitAlg.root P n p.1 p.2 - algebraMap R _ (ut p.1 p.2)
-  haveI hRco : IsCO R R := spLoc_co R
+  haveI hRco : IsCO R R := UpperTheory.V.Alg.IsCO.self R
   haveI hMco : IsCO R (MvPowerSeries (Fin q × Fin n) R) := co_mvps R R (Fin q × Fin n)
   have hmk : Function.Surjective (Sp.mk P ut) := Ideal.Quotient.mkₐ_surjective R _
   have hψt : ∀ p, ψ (t p) = Sp.mk P ut (MvPowerSeries.X p) := by

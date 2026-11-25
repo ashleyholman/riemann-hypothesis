@@ -854,8 +854,6 @@ theorem val_mem_mul {y : Mat n} (hy : y ∈ GLs n) (h : G n) : y * h.val ∈ GLs
   simp only [GLs, Set.mem_setOf_eq, Matrix.det_mul] at *
   exact mul_ne_zero hy hm
 
-theorem sob_memLp {f : Mat n → V} (h : Sob μ f) : MemLp (fun y : G n => f y.val) 2 μ := h.2 []
-
 omit [MeasurableSpace (G n)] [BorelSpace (G n)] in
 theorem rd_congr {f f' : Mat n → V} (h : ∀ g ∈ GLs n, f g = f' g) (X : Mat n) :
     ∀ g ∈ GLs n, Rd X f g = Rd X f' g := by
@@ -953,20 +951,20 @@ theorem msob_rep (hLg : LgFacts) (hU : Unimod) (hR : RCalc) (hOps : SobOps) (hCp
     obtain ⟨f, hf, rfl⟩ := hx
     obtain ⟨f', hf', rfl⟩ := hy
     refine ⟨(1 : ℂ) • f + f', ((hOps n μ V hLg hU hR f hf).2.2.2.1 1 f' hf').1, ?_⟩
-    rw [cls_add_smul μ 1 (sob_memLp hf) (sob_memLp hf'), one_smul]
+    rw [cls_add_smul μ 1 (GlobalTheory.CompanionTheory.WaveFc.Asm.sob_memLp hf) (GlobalTheory.CompanionTheory.WaveFc.Asm.sob_memLp hf'), one_smul]
   | smul a x _ hx =>
     obtain ⟨f, hf, rfl⟩ := hx
     have h0 := sob_zero (μ := μ) (V := V) (n := n) hLg hR hCpt
     refine ⟨a • f + 0, ((hOps n μ V hLg hU hR f hf).2.2.2.1 a 0 h0).1, ?_⟩
-    rw [cls_add_smul μ a (sob_memLp hf) (sob_memLp h0), cls_zero', add_zero]
+    rw [cls_add_smul μ a (GlobalTheory.CompanionTheory.WaveFc.Asm.sob_memLp hf) (GlobalTheory.CompanionTheory.WaveFc.Asm.sob_memLp h0), cls_zero', add_zero]
 
 theorem cls_om_comb (hLg : LgFacts) (hU : Unimod) (hR : RCalc) (hOps : SobOps) (a : ℂ)
     {f f' : Mat n → V} (hf : Sob μ f) (hf' : Sob μ f') :
     cls μ (Om (a • f + f')) = a • cls μ (Om f) + cls μ (Om f') := by
   have e : cls μ (Om (a • f + f')) = cls μ (a • Om f + Om f') :=
     cls_congr μ ((hOps n μ V hLg hU hR f hf).2.2.2.1 a f' hf').2
-  rw [e, cls_add_smul μ a (sob_memLp (hOps n μ V hLg hU hR f hf).1)
-    (sob_memLp (hOps n μ V hLg hU hR f' hf').1)]
+  rw [e, cls_add_smul μ a (GlobalTheory.CompanionTheory.WaveFc.Asm.sob_memLp (hOps n μ V hLg hU hR f hf).1)
+    (GlobalTheory.CompanionTheory.WaveFc.Asm.sob_memLp (hOps n μ V hLg hU hR f' hf').1)]
 
 theorem exists_Om (hLg : LgFacts) (hU : Unimod) (hR : RCalc) (hOps : SobOps) (hCpt : CptSob)
     (hOm : OmFormula) :
@@ -981,7 +979,7 @@ theorem exists_Om (hLg : LgFacts) (hU : Unimod) (hR : RCalc) (hOps : SobOps) (hC
       cls μ (Om (r x)) = cls μ (Om f) := by
     intro x f hf e
     refine cls_congr μ (om_congr hOm (hr x).1 hf.1 ?_)
-    exact cls_unique μ (hr x).1.continuousOn hf.1.continuousOn (sob_memLp (hr x)) (sob_memLp hf)
+    exact cls_unique μ (hr x).1.continuousOn hf.1.continuousOn (GlobalTheory.CompanionTheory.WaveFc.Asm.sob_memLp (hr x)) (GlobalTheory.CompanionTheory.WaveFc.Asm.sob_memLp hf)
       ((hc x).trans e.symm)
   have omS : ∀ f : Mat n → V, Sob μ f → Sob μ (Om f) :=
     fun f hf => (hOps n μ V hLg hU hR f hf).1
@@ -997,7 +995,7 @@ theorem exists_Om (hLg : LgFacts) (hU : Unimod) (hR : RCalc) (hOps : SobOps) (hC
     apply Subtype.ext
     change cls μ (Om (r (x + y))) = cls μ (Om (r x)) + cls μ (Om (r y))
     have e : cls μ ((1 : ℂ) • r x + r y) = ((x + y : Msob μ V) : Lp V 2 μ) := by
-      rw [cls_add_smul μ 1 (sob_memLp (hr x)) (sob_memLp (hr y)), hc, hc, one_smul]
+      rw [cls_add_smul μ 1 (GlobalTheory.CompanionTheory.WaveFc.Asm.sob_memLp (hr x)) (GlobalTheory.CompanionTheory.WaveFc.Asm.sob_memLp (hr y)), hc, hc, one_smul]
       rfl
     rw [key (x + y) _ (comb _ _ _ (hr x) (hr y)) e, cls_om_comb hLg hU hR hOps 1 (hr x) (hr y),
       one_smul]
@@ -1005,7 +1003,7 @@ theorem exists_Om (hLg : LgFacts) (hU : Unimod) (hR : RCalc) (hOps : SobOps) (hC
     apply Subtype.ext
     change cls μ (Om (r (a • x))) = a • cls μ (Om (r x))
     have e : cls μ (a • r x + 0) = ((a • x : Msob μ V) : Lp V 2 μ) := by
-      rw [cls_add_smul μ a (sob_memLp (hr x)) (sob_memLp h0), hc, cls_zero', add_zero]
+      rw [cls_add_smul μ a (GlobalTheory.CompanionTheory.WaveFc.Asm.sob_memLp (hr x)) (GlobalTheory.CompanionTheory.WaveFc.Asm.sob_memLp h0), hc, cls_zero', add_zero]
       rfl
     rw [key (a • x) _ (comb _ _ _ (hr x) h0) e, cls_om_comb hLg hU hR hOps a (hr x) h0, hz,
       add_zero]
@@ -1035,12 +1033,12 @@ theorem exists_Dm (hLg : LgFacts) (hU : Unimod) (hR : RCalc) (hOps : SobOps) (hC
     have hf' := sob f' hc' hp'
     refine ⟨(1 : ℂ) • f + f', ((hOps n μ V hLg hU hR f hf).2.2.2.1 1 f' hf').1.1,
       cpt_comb 1 hp hp', ?_⟩
-    rw [cls_add_smul μ 1 (sob_memLp hf) (sob_memLp hf'), one_smul]
+    rw [cls_add_smul μ 1 (GlobalTheory.CompanionTheory.WaveFc.Asm.sob_memLp hf) (GlobalTheory.CompanionTheory.WaveFc.Asm.sob_memLp hf'), one_smul]
   · rintro a _ ⟨f, hc, hp, rfl⟩
     have hf := sob f hc hp
     have h0 := sob 0 contDiffOn_const z
     refine ⟨a • f + 0, ((hOps n μ V hLg hU hR f hf).2.2.2.1 a 0 h0).1.1, cpt_comb a hp z, ?_⟩
-    rw [cls_add_smul μ a (sob_memLp hf) (sob_memLp h0), cls_zero', add_zero]
+    rw [cls_add_smul μ a (GlobalTheory.CompanionTheory.WaveFc.Asm.sob_memLp hf) (GlobalTheory.CompanionTheory.WaveFc.Asm.sob_memLp h0), cls_zero', add_zero]
 
 theorem cpt_transl (hLg : LgFacts) (h : G n) {f : Mat n → V} (hp : Cpt f) :
     Cpt (fun y => f (y * h.val)) := by
@@ -1088,7 +1086,7 @@ theorem rR_mul_inv (hLg : LgFacts) (hU : Unimod) (hR : RCalc) (hOps : SobOps) (h
     have hf : Sob μ f := (hCpt n μ V hLg hR f hc hp).1
     have hf' := (sob_transl hLg hU hR hOps h⁻¹ hf).1
     change rR μ V h (rR μ V h⁻¹ (cls μ f)) = cls μ f
-    rw [rR_cls μ hU h⁻¹ (sob_memLp hf), rR_cls μ hU h (sob_memLp hf')]
+    rw [rR_cls μ hU h⁻¹ (GlobalTheory.CompanionTheory.WaveFc.Asm.sob_memLp hf), rR_cls μ hU h (GlobalTheory.CompanionTheory.WaveFc.Asm.sob_memLp hf')]
     exact cls_congr μ fun g _ => congrArg f (Units.mul_inv_cancel_right g h)
   exact congrFun hfun x
 
@@ -1127,8 +1125,8 @@ theorem concT : ConcT := by
     intro h x
     obtain ⟨f, hf, hm, rfl⟩ := rep x
     obtain ⟨hs, ho⟩ := sob_transl hLg hU hR hOps h hf
-    refine ⟨⟨cls μ (fun y => f (y * h.val)), inM _ hs⟩, (rR_cls μ hU h (sob_memLp hf)).symm, ?_⟩
-    rw [hΩ _ _ hs, hΩ f hm hf, rR_cls μ hU h (sob_memLp (hOps n μ V hLg hU hR f hf).1)]
+    refine ⟨⟨cls μ (fun y => f (y * h.val)), inM _ hs⟩, (rR_cls μ hU h (GlobalTheory.CompanionTheory.WaveFc.Asm.sob_memLp hf)).symm, ?_⟩
+    rw [hΩ _ _ hs, hΩ f hm hf, rR_cls μ hU h (GlobalTheory.CompanionTheory.WaveFc.Asm.sob_memLp (hOps n μ V hLg hU hR f hf).1)]
     exact cls_congr μ ho
   let A : D →ₗ[ℂ] Lp V 2 μ :=
     (Msob μ V).subtype ∘ₗ (LinearMap.id + Ω ∘ₗ Ω) ∘ₗ Submodule.inclusion hDM
@@ -1151,7 +1149,7 @@ theorem concT : ConcT := by
     have hy : rR μ V h x ∈ D := by
       refine (hD _).2 ⟨fun y => f (y * h.val), (sob_transl hLg hU hR hOps h hf).1.1,
         cpt_transl hLg h hp, ?_⟩
-      rw [← e, rR_cls μ hU h (sob_memLp hf)]
+      rw [← e, rR_cls μ hU h (GlobalTheory.CompanionTheory.WaveFc.Asm.sob_memLp hf)]
     obtain ⟨v, hv, hv2⟩ := twice (Msob μ V) Ω (rR μ V h) (hRΩ h) ⟨x, hDM x.2⟩
     refine ⟨⟨rR μ V h x, hy⟩, rfl, ?_⟩
     have hvv : (⟨rR μ V h x, hDM hy⟩ : Msob μ V) = v := Subtype.ext hv.symm

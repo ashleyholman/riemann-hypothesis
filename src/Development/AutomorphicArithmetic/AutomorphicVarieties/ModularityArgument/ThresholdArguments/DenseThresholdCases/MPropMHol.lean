@@ -630,8 +630,8 @@ private theorem step [IsTotallyReal F] (S : Subring ℂ) (ω : HChar F) (hS : �
         simp [hv, hc]
       · simp [hw]
     rw [he] at k1
-    obtain ⟨-, -, l1, -, l2⟩ := holLin F 1 (fun w => if w ∈ insert v T then 1 else c w) ω
-    obtain ⟨-, -, -, l3, l4⟩ := holLin F 1 (fun w => if w ∈ T then 1 else c w) ω
+    obtain ⟨-, -, l1, -, l2⟩ := UpperTheory.Reformulated.B.Gr32.holLin F 1 (fun w => if w ∈ insert v T then 1 else c w) ω
+    obtain ⟨-, -, -, l3, l4⟩ := UpperTheory.Reformulated.B.Gr32.holLin F 1 (fun w => if w ∈ T then 1 else c w) ω
     have g1' : IsHol 1 (fun w => if w ∈ insert v T then 1 else c w) ω φ := by
       refine l4 φ _ (fun w => ?_) g1
       by_cases hw : w = v
@@ -1248,7 +1248,7 @@ theorem UpperTheory.V.Br.holFin0 :
   obtain ⟨⟨M, hM, hlev⟩, hfin⟩ := UpperTheory.V.Br.holCuspFin F k c hc ω hω
   obtain ⟨S, hS, hgen⟩ := UpperTheory.V.Br.cuspSet F M hM
   obtain ⟨_, _, μ, _, D, hD, hone⟩ := UpperTheory.V.Br.ctOne F
-  obtain ⟨h0, -, hadd, -⟩ := UpperTheory.V.Sd.holLin F k c ω
+  obtain ⟨h0, -, hadd, -⟩ := UpperTheory.Reformulated.B.Gr32.holLin F k c ω
   have hint : ∀ φ : TR.Sm F 2, IsHol k c ω φ → ∀ g, IntegrableOn (fun x : NA F => φ.1 (unip x * g)) D μ := fun φ hφ =>
     (UpperTheory.eisenstein_constantTerm_of_periodMean_of_upperBlock UpperTheory.periodic_integral_fundamentalDomain_invariant UpperTheory.eisenstein_constantTerm_upperBlock F μ D hD φ.1 (UpperTheory.eisenstein_smooth_continuous F 2 φ hφ.aut.level) hφ.aut.left).1
   haveI : Finite S := hS
@@ -1333,17 +1333,17 @@ private theorem fT_apply {K : Type} [Field K] (w : Pl F) (e : K) (v : Idx F → 
 variable [IsTotallyReal F]
 private def SS (k : ℕ) (c : Pl F → ℕ) (ω : HChar F) : Submodule ℂ (TR.Sm F 2) where
   carrier := {φ | IsHol k c ω φ ∧ ∃ c₀ a, HasExp φ.1 k c₀ a}
-  zero_mem' := ⟨(holLin F k c ω).1, _, _, (holLin F k c ω).2.1⟩
+  zero_mem' := ⟨(UpperTheory.Reformulated.B.Gr32.holLin F k c ω).1, _, _, (UpperTheory.Reformulated.B.Gr32.holLin F k c ω).2.1⟩
   add_mem' := by
     rintro φ ψ ⟨h1, c₀, a, h2⟩ ⟨h3, d₀, b, h4⟩
-    have e1 := (holLin F k c ω).2.2.1 φ ψ 1 h1 h3
-    have e2 := (holLin F k c ω).2.2.2.1 φ.1 ψ.1 1 _ _ _ _ h2 h4
+    have e1 := (UpperTheory.Reformulated.B.Gr32.holLin F k c ω).2.2.1 φ ψ 1 h1 h3
+    have e2 := (UpperTheory.Reformulated.B.Gr32.holLin F k c ω).2.2.2.1 φ.1 ψ.1 1 _ _ _ _ h2 h4
     rw [one_smul] at e1 e2
     exact ⟨e1, _, _, e2⟩
   smul_mem' := by
     rintro z ψ ⟨h3, d₀, b, h4⟩
-    have e1 := (holLin F k c ω).2.2.1 0 ψ z (holLin F k c ω).1 h3
-    have e2 := (holLin F k c ω).2.2.2.1 0 ψ.1 z _ _ _ _ (holLin F k c ω).2.1 h4
+    have e1 := (UpperTheory.Reformulated.B.Gr32.holLin F k c ω).2.2.1 0 ψ z (UpperTheory.Reformulated.B.Gr32.holLin F k c ω).1 h3
+    have e2 := (UpperTheory.Reformulated.B.Gr32.holLin F k c ω).2.2.2.1 0 ψ.1 z _ _ _ _ (UpperTheory.Reformulated.B.Gr32.holLin F k c ω).2.1 h4
     rw [zero_add] at e1 e2
     exact ⟨e1, _, _, e2⟩
 private def cf {k : ℕ} {c : Pl F → ℕ} {ω : HChar F} (φ : SS k c ω) : Ideal (𝓞 F) → ℂ := φ.2.2.choose_spec.choose
@@ -1360,14 +1360,14 @@ private def Phi {l : ℕ} [Fact l.Prime] (ι : Qbar l ≃+* ℂ) (k : ℕ) (c : 
     funext 𝔪
     obtain ⟨_, h2⟩ := cf_spec φ
     obtain ⟨_, h4⟩ := cf_spec ψ
-    have e2 := (holLin F k c ω).2.2.2.1 _ _ 1 _ _ _ _ h2 h4
+    have e2 := (UpperTheory.Reformulated.B.Gr32.holLin F k c ω).2.2.2.1 _ _ 1 _ _ _ _ h2 h4
     simp only [one_smul] at e2
     rw [cf_eq (φ + ψ) e2]
     simp
   map_smul' z ψ := by
     funext 𝔪
     obtain ⟨_, h4⟩ := cf_spec ψ
-    have e2 := (holLin F k c ω).2.2.2.1 0 _ z _ _ _ _ (holLin F k c ω).2.1 h4
+    have e2 := (UpperTheory.Reformulated.B.Gr32.holLin F k c ω).2.2.2.1 0 _ z _ _ _ _ (UpperTheory.Reformulated.B.Gr32.holLin F k c ω).2.1 h4
     simp only [zero_add] at e2
     rw [cf_eq (z • ψ) e2]
     simp

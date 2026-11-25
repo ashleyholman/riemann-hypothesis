@@ -156,7 +156,7 @@ theorem seesaw_big : ∀ {D : D7} {T : Type} {L : LevCh D T} {sc : Consts} {G : 
     rw [pV, mul_div_mul_right_eq_div, ← div_eq_mul_inv, div_div_div_cancel_right]
   obtain ⟨ωA, hA⟩ := GlobalTheory.WeilExist.exists_isWeilDatumO D W.ψ W.ψ_std (negSp (spW G i j))
     (GlobalTheory.Doubling.hsum (spV G i j) (spV₁ G i j)) X.β (G.chrT (.chi i (j + 1)) * (G.chrS (.mu t (i + 1) j))⁻¹)
-    (GlobalTheory.WeilParts.exists_isEtaTilde_unramified D) hω.hecT (hecke_mul' h1.hecT hω₂.hecT) hω.resT
+    (GlobalTheory.WeilParts.exists_isEtaTilde_unramified D) hω.hecT (GlobalTheory.WeilChange.hecke_mul h1.hecT hω₂.hecT) hω.resT
     (resEta_mul h1.resT hω₂.resT)
   obtain ⟨x, hx⟩ := GlobalTheory.RecDict.exists_isDetRoot D _ g
   obtain ⟨y, hy⟩ := GlobalTheory.RecDict.exists_isDetRoot D _ g₁

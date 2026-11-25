@@ -395,8 +395,6 @@ alias cc_one := _root_.ReciprocityTheory.ChartRestriction.G.FD.HermitianTraceFor
 
 alias cc_zero := _root_.ReciprocityTheory.ChartRestriction.G.FD.HermitianTraceFormVanishing.cc_zero
 
-alias cc_neg := _root_.ReciprocityTheory.ChartRestriction.G.FD.HermitianTraceFormVanishing.cc_neg
-
 theorem cc_div_two (t : E) : FD.cc (t / 2) = FD.cc t / 2 := by
   show IsCMField.complexConj E (t / 2) = _
   rw [map_div₀, map_ofNat]
@@ -431,7 +429,7 @@ theorem exists_pair {n : Type} [Fintype n] [DecidableEq n] {G : Matrix n n E} (h
   · rw [hf_add_right, hf_smul_right, hz, hw0]; ring
   · have hzw : hf G w0 z = 1 := by rw [hf_symm hG, hw0, cc_one]
     rw [hf_add_left, hf_add_right, hf_add_right, hf_smul_left, hf_smul_left, hf_smul_right, hf_smul_right, hz, hw0, hzw,
-      cc_neg, cc_div_two, haa, ← ha]
+      ReciprocityTheory.ChartRestriction.G.FD.HermitianTraceFormVanishing.cc_neg, cc_div_two, haa, ← ha]
     ring
 
 theorem split {n : Type} [Fintype n] [DecidableEq n] {G : Matrix n n E} (hG : ∀ a b, FD.cc (G a b) = G b a)

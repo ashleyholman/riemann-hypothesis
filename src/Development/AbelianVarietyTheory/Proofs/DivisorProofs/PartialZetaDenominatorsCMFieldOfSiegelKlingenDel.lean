@@ -695,15 +695,6 @@ theorem cE_le_of_inZl {F : Type} [Field F] [NumberField F] (z : ClassGroup (𝓞
     cE z l ≤ finrank ℚ F * padicValNat l 2 + padicValNat l (a ^ n - 1) :=
   _root_.GlobalTheory.DenomBound.cE_le_of_inZl z l a n ha hn h
 
-theorem mMin_eq_mE (hmin : Formalism.PairingDivisionLocalBalance.MinVal) (l n : ℕ) (hl : l.Prime) (hn : 2 ≤ n) (he : Even n) :
-    mMin l n = Formalism.PairingDivisionLocalBalance.mE l n :=
-  _root_.GlobalTheory.MinValClosed.mMin_eq_mE hmin l n hl hn he
-
-theorem sumBound_of_local {F : Type} [Field F] [NumberField F] (hsum : Formalism.PairingDivisionLocalBalance.CESum) (k : ℕ)
-    (z : ClassGroup (𝓞 F) → ℚ) (hk : 2 ≤ k) (h16 : 16 ≤ finrank ℚ F * k)
-    (h : ∀ l : ℕ, l.Prime → cE z l ≤ finrank ℚ F * padicValNat l 2 + Formalism.PairingDivisionLocalBalance.mE l (finrank ℚ F * k)) : SumBound k z :=
-  _root_.GlobalTheory.Proof.partialZetaDenomSumBound_of_local_bounds.sumBound_of_local hsum k z hk h16 h
-
 theorem isRayL_of_coprime_iff {F : Type} [Field F] [NumberField F] {𝔣 𝔤 : Ideal (𝓞 F)}
     (h : ∀ I, CoprimeTo F 𝔣 I ↔ CoprimeTo F 𝔤 I) {ε : Ideal (𝓞 F) → ℚ} {L : ℂ → ℂ} (hL : IsRayL 𝔣 ε L) : IsRayL 𝔤 ε L :=
   ⟨hL.1, fun s hs => (Equiv.subtypeEquivRight fun I => (h I).symm).hasSum_iff
@@ -806,13 +797,13 @@ theorem zetaDenominators (h : GlobalTheory.Published.SiegelKlingenDeligneRibet) 
   have hloc : ∀ z : ClassGroup (𝓞 F) → ℚ, IsZetaValues (2 * s) z → ∀ l : ℕ, l.Prime → LocalBound (2 * s) z l := by
     intro z hz l hl
     haveI := Fact.mk hl
-    have hm := mMin_eq_mE _root_.GlobalTheory.cmValues_minPadicVal_bound l _ hl hn2 hev
+    have hm := GlobalTheory.MinValClosed.mMin_eq_mE _root_.GlobalTheory.cmValues_minPadicVal_bound l _ hl hn2 hev
     obtain ⟨a, ha2, hac, hv⟩ := _root_.GlobalTheory.cmValues_minPadicVal_bound l _ hl hn2 hev
     have hc := cE_le_of_inZl (F := F) z l a _ ha2 (by omega) (inZl_mul_zeta h.2 F l a (2 * s) ha2 hac (by omega) z hz)
     rw [hv] at hc
     refine ⟨by rw [hm]; exact hc, fun h2 hd => ?_, fun h2 hd => ?_, fun h2 => ?_⟩ <;> rw [hm] <;> simp [Formalism.PairingDivisionLocalBalance.mE, *]
   refine ⟨exists_isZetaValues h.1 F (2 * s) (by omega), fun z hz => ⟨hloc z hz, fun h16 =>
-    sumBound_of_local _root_.GlobalTheory.dividedPowerValuations_cESum (2 * s) z (by omega) h16 fun l hl => ?_⟩⟩
+    GlobalTheory.Proof.partialZetaDenomSumBound_of_local_bounds.sumBound_of_local _root_.GlobalTheory.dividedPowerValuations_cESum (2 * s) z (by omega) h16 fun l hl => ?_⟩⟩
   have h1 := hloc z hz l hl
   have h2 := h1.1
   rwa [h1.mMin_eq] at h2

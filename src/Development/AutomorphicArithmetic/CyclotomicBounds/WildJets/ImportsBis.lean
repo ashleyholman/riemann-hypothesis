@@ -264,8 +264,8 @@ theorem UpperTheory.WildA.realTop :
   have hp : DefPair D.R.m (Pair.top t j) := hj
   have hj' : j < D.R.m := hj
   have hJ := (wtOK_of_defPair G _ hp).2
-  have hr0 : Even (G.V (.top j)).rank := by rw [rank_top G (j := j) (by omega)]; exact rankX_even D j
-  have hr1 : Even (G.V (.top (j + 1))).rank := by rw [rank_top G (j := j + 1) (by omega)]; exact rankX_even D (j + 1)
+  have hr0 : Even (G.V (.top j)).rank := by rw [rank_top G (j := j) (by omega)]; exact GlobalTheory.ChiGrid.even_rankX D j
+  have hr1 : Even (G.V (.top (j + 1))).rank := by rw [rank_top G (j := j + 1) (by omega)]; exact GlobalTheory.ChiGrid.even_rankX D (j + 1)
   have hS : G.chrS (.top t j) = L.mu t (j + 1) := by
     simp only [GridData.chrS, Formalism.IndefR.Lift.attChr, GridData.chr, GridData.pS, Nat.not_odd_iff_even.2 hr0, ite_false]
   have hT : G.chrT (.top t j) = L.mu t (j + 1) := by

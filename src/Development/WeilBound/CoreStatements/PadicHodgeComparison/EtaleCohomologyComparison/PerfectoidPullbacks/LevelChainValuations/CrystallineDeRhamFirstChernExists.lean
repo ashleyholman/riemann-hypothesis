@@ -1284,7 +1284,7 @@ theorem chK_good (M : Model l K) (hM : M.Sm) (m : ℕ) :
     ∃ s₁, ∀ s, s₁ ≤ s → (chK S hS hC M m s).Good := by
   obtain ⟨U⟩ := cov_sm_pf M hM
   refine ⟨Finset.univ.sup U.d + (m + 1), fun s hs => ?_⟩
-  refine chain_good (hS.lev m) M s hM U (fun α => ?_) (by omega) _ (rHof_tr_gen _ _ M s)
+  refine CrystallineSemistableComparison.Pb.Kap.level_system_good (hS.lev m) M s hM U (fun α => ?_) (by omega) _ (rHof_tr_gen _ _ M s)
   have := Finset.le_sup (f := U.d) (Finset.mem_univ α)
   omega
 

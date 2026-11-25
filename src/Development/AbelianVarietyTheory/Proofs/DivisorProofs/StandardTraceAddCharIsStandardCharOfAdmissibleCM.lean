@@ -27,16 +27,10 @@ section Char
 
 variable {F : Type} [Field F] [NumberField F]
 
-theorem at_pairA (x : Ainf F) : At (evI F) (pairA F x 0) := by
-  intro u hu
-  have h1 : u.1 = 0 := (InfiniteAdeleRing.ringEquiv_mixedSpace F).injective (by rw [map_zero]; exact hu)
-  show (u.1 * x, u.2 * 0) = ((0 : Ainf F), (0 : Af F))
-  rw [h1, zero_mul, mul_zero]
-
 theorem psi_pairA {ψ : AddChar (AF F) ℂ} (hψ : IsStd ψ) (x : Ainf F) :
     ψ (pairA F x 0) = Complex.exp (-(2 * Real.pi * Complex.I) *
       (Algebra.trace ℝ (mixedEmbedding.mixedSpace F) (InfiniteAdeleRing.ringEquiv_mixedSpace F x) : ℝ)) :=
-  hψ.2.2 _ (at_pairA x)
+  hψ.2.2 _ (PositivityTheory.ThKEst.W.at_pairA x)
 
 theorem norm_psi_inf {ψ : AddChar (AF F) ℂ} (hψ : IsStd ψ) (x : Ainf F) : ‖ψ (pairA F x 0)‖ = 1 := by
   rw [psi_pairA hψ]; exact PositivityTheory.ThKEst.W.norm_exp_real _

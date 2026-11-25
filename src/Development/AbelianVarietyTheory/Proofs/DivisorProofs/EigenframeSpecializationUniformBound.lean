@@ -1235,10 +1235,6 @@ namespace GlobalTheory.ShFam.PerPoly
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E]
 
-theorem exists_nat_smul_mem {N : ℕ} (X : Data E N) (v : Fin N → E) :
-    ∃ n : ℕ, 0 < n ∧ (n : E) • v ∈ X.Λ :=
-  _root_.UpperTheory.Reformulated.B.Ga5b.exists_nat_smul_mem X v
-
 theorem perFr_natCast_smul {N : ℕ} (X : Data E N) (x : Frame X.Ψ N) (v : Fin N → E) (n : ℕ) (τ : E →+* ℂ) (i : ℕ) :
     perFr X x ((n : E) • v) τ i = (n : ℂ) * perFr X x v τ i := by
   have he : ∀ τ : E →+* ℂ, Data.emb τ ((n : E) • v) = (n : ℂ) • Data.emb τ v := fun τ => funext fun a => by
@@ -1252,7 +1248,7 @@ namespace GlobalTheory.ShFam.PerPoly
 
 theorem periods_le_pow : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E) (Dw : Datum H) (l : Level H) (Xo : Moduli Dw l) (c : Coeff l) (O : Type) [CommRing O] (β : O →+* c.F) (Z : Model Xo c β) (σ : c.F →+* ℂ) (N : ℕ) (U : Unf Xo c σ N) (A : Type) [CommRing A] (φ : c.F →+* A) (x : Sp A ⟶ gen Z) (fr : EigFrame Z φ (x ≫ genι Z)) (ψ : ℂ → (A →+* ℂ)) (r : ℝ) (y : ℂ → FrPt Xo c (CAt σ)) (k : U.Comp) (T : ℝ) (M : ℕ) (γ : GL (Fin N) E) (xx : ℂ → Frame (U.X k).Ψ N), GoodEmb c σ → IsUnf U → IsArc Z σ φ x ψ r → (∀ u ∈ Metric.ball (0 : ℂ) r, u ≠ 0 → Matches fr (ψ u) (y u)) → IsOrbit (U.X k) T M γ xx → IsLift U k y T xx → ∀ (v : Fin N → E) (R : ℝ), ∃ (C : ℝ) (B : ℕ), ∀ᶠ w in imTop, |w.re| ≤ R → ∀ (ρ : E →+* ℂ) (i : ℕ), ‖perFr (U.X k) (xx w) v ρ i‖ ≤ C * w.im ^ B := by
   intro E _ _ _ H Dw l Xo c O _ β Z σ N U A _ φ x fr ψ r y k T M γ xx hσ hU harc hm horb hlift v R
-  obtain ⟨n, hn, hnv⟩ := exists_nat_smul_mem (U.X k) v
+  obtain ⟨n, hn, hnv⟩ := UpperTheory.Reformulated.B.Ga5b.exists_nat_smul_mem (U.X k) v
   obtain ⟨C₁, B, h₁⟩ := _root_.GlobalTheory.ShFam.PerPoly.periods_le_of_mem_lattice E H Dw l Xo c O β Z σ N U A φ x fr ψ r y k T M γ xx hσ hU harc hm horb hlift
     _ hnv R
   obtain ⟨C₃, h₃⟩ : ∃ C₃ : ℝ, ∀ᶠ w in imTop, (U.X k).p0 = 0 → ∀ (τ : E →+* ℂ) (i : ℕ), τ ∉ (U.X k).Ψ →

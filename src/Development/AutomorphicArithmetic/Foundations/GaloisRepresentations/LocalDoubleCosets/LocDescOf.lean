@@ -20,9 +20,9 @@ theorem jFacts : JFacts := by
   intro E _ _ _ _ n V _ _ π hi ω hω h
   have hs : IsSmooth π := h.isSmooth (isSmooth_parInd _ _)
   have hsupp := GlobalTheory.CompanionTheory.SphSupp.hasSupport_prinSeries n ω hω ⟨V, π, hs, hi⟩ h
-  obtain ⟨hf, -, hm⟩ := UpperTheory.V.AlgebraTools.jqMult UpperTheory.Lit.Mix.geometricLemma GlobalTheory.bernsteinZelevinskyFiniteness_holds
+  obtain ⟨hf, -, hm⟩ := UpperTheory.V.AlgebraTools.jqMult PositivityTheory.Exh.geometricLemmaGL GlobalTheory.bernsteinZelevinskyFiniteness_holds
     E n V π ω hs hω h
-  refine ⟨hs, UpperTheory.jacquet_borel_nontrivial_of_character_support UpperTheory.Lit.Mix.geometricLemma UpperTheory.Lit.Mix.polynomialRing E n V π _ hsupp fun y hy => ?_,
+  refine ⟨hs, UpperTheory.jacquet_borel_nontrivial_of_character_support PositivityTheory.Exh.geometricLemmaGL UpperTheory.Lit.Mix.polynomialRing E n V π _ hsupp fun y hy => ?_,
     hf, fun μ hμ => ?_⟩
   · obtain ⟨i, -, rfl⟩ := Multiset.mem_map.1 hy
     rfl

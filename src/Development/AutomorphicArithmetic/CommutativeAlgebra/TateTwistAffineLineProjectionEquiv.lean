@@ -25,8 +25,6 @@ private alias res_id := _root_.GlobalTheory.EtC.ClsSpec.res_id
 
 private alias map_res := _root_.GlobalTheory.EtC.exactIff_map_res
 
-private alias res_zero := _root_.GlobalTheory.TwSec.res_zero
-
 private alias res_add := _root_.GlobalTheory.TwSec.res_add
 
 private theorem ev_pull {Y X : Scheme.{0}} (π : Y ⟶ X) (I : Cx R) (n : ℤ) (α : Cochain ((chains R).obj (sch.obj X)) I n) :
@@ -163,11 +161,11 @@ theorem UpperTheory.tateTwist_affineLine_projection_equiv :
       refine loc_affine T _ ?_ ?_
       · rintro W V h f ⟨a, c, ha, hac⟩
         refine ⟨Sec.res f a, Sec.res (prod.map (𝟙 Pbf.A1) f) c, ?_, ?_⟩
-        · rw [map_res, ha, res_zero]
+        · rw [map_res, ha, GlobalTheory.EtC.KummerSplit.res_zero']
         · rw [← res_psi, hac, map_res, res_prod, res_add]
       · intro W _ h
         obtain ⟨a, c, ha, hac⟩ := sec_surj (prod.snd : Pbf.A1 ⨯ W ⟶ W) (tw q i) (eqv_aff q W (hZ h hT) i) n
-          (Sec.res (prod.map (𝟙 Pbf.A1) h) b) (by rw [map_res, hb, res_zero])
+          (Sec.res (prod.map (𝟙 Pbf.A1) h) b) (by rw [map_res, hb, GlobalTheory.EtC.KummerSplit.res_zero'])
         exact ⟨a, c, ha, hac⟩)
     (by
       intro T hT n a ha hc
@@ -178,7 +176,7 @@ theorem UpperTheory.tateTwist_affineLine_projection_equiv :
       · intro W _ h
         obtain ⟨c, hc⟩ := hc
         exact sec_inj (prod.snd : Pbf.A1 ⨯ W ⟶ W) (tw q i) (eqv_aff q W (hZ h hT) i) n (Sec.res h a)
-          (by rw [map_res, ha, res_zero])
+          (by rw [map_res, ha, GlobalTheory.EtC.KummerSplit.res_zero'])
           ⟨Sec.res (prod.map (𝟙 Pbf.A1) h) c, by
             rw [map_res, ← hc]
             exact (res_psi h a).symm⟩)

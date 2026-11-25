@@ -353,7 +353,7 @@ theorem model_uniformised : ∀ (p : ℕ) [Fact p.Prime] (D : Datum p) (R : Type
   exact GlobalTheory.PELU.nonempty_unif D.O D.inv D.g ρ R σ D.La (M.univ.fam h hL) N (D.Cls N) (D.a * (D.n - 1)) hN
     (fun a => M.univ.eta_pow a) M.smooth (quasiCompact_of_qProj M.qproj)
     (fun D' t hc => Datum.Cls.fullMark D N (by omega) hp D' t hc)
-    (GlobalTheory.T.complexPoints_classify_markedPeriods p D R b N σ ρ M h hL (by omega) hp hty)
+    (GlobalTheory.UPel.HT.Model.fineAt_univ p D R b N σ ρ M h hL (by omega) hp hty)
 
 end GlobalTheory.UPel.HT
 end -- clump:auto

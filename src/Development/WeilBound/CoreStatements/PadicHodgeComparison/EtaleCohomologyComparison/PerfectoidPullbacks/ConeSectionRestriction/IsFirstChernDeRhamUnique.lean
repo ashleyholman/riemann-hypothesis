@@ -604,7 +604,7 @@ theorem test_factor (D : E.LineData X) (S : ℕ) (x : HdR q 2)
     (hz : CH.d _ 2 (zK Λ s) = 0) :
     (CH.cx ((g' ⋙ (KS q S (𝒱D D)).ι) ⋙ O (smFun X q))).cls (zK Λ s) hz =
       (CH.Mor.restrict (O (smFun X q)) (g' ⋙ (KS q S (𝒱D D)).ι)).pull 2 x := by
-  let ΛS := (lift_exists q D S).some
+  let ΛS := (GlobalTheory.CompanionTheory.ConeLiftEx.nonempty_cLiftK q D S).some
   have hz1 : CH.d _ 2 (zK (ΛS.precomp g') S) = 0 :=
     _root_.GlobalTheory.CompanionTheory.ConeZcoc.main (ΛS.precomp g') S (fun c => (g'.obj c).property.1.1)
   have hz2 : CH.d _ 2 (zK (ΛS.precomp g') s) = 0 := _root_.GlobalTheory.CompanionTheory.ConeZcoc.main (ΛS.precomp g') s hs
@@ -618,7 +618,7 @@ theorem test_factor (D : E.LineData X) (S : ℕ) (x : HdR q 2)
 theorem isFirstChernDeRham_exists_of (d : ℕ) [SmoothOfRelativeDimension d q] (D : E.LineData X) (hD : IsTautologicalLine q D) :
     ∃ c : HdR q 2, IsFirstChernDeRham q D c := by
   have hk := restriction_bijective_above_dimension q d D hD
-  let Λ₀ := (lift_exists q D (d + 1)).some
+  let Λ₀ := (GlobalTheory.CompanionTheory.ConeLiftEx.nonempty_cLiftK q D (d + 1)).some
   let x := Function.surjInv (hk (d + 1) (by omega)).2 (clsK q D (d + 1) Λ₀)
   have hx : resK q (KS q (d + 1) (𝒱D D)) 2 x = clsK q D (d + 1) Λ₀ := Function.surjInv_eq _ _
   have hA : ∀ S, d + 1 ≤ S → ∀ ΛS : CLiftK (KS q S (𝒱D D)).ι D,
@@ -661,8 +661,6 @@ theorem isO1_exists {R : Type} [CommRing R] {X : Scheme.{0}} (p : X ⟶ Sp R) (h
   obtain ⟨N, i, hi, hip⟩ := hp
   obtain ⟨D, hD⟩ := _root_.GlobalTheory.CompanionTheory.ConeTwistingSheafMap.main N i
   exact ⟨D, N, i, hi, hip, hD⟩
-
-alias isFirstChernDeRham_exists := _root_.CrystallineSemistableComparison.Pb.isFirstChernDeRham_exists_of
 
 theorem isO1_etale {R : Type} [CommRing R] {X : Scheme.{0}} {p : X ⟶ Sp R} {D : E.LineData X} (hD : IsTautologicalLine p D) :
     Etale D.f := by

@@ -406,21 +406,10 @@ theorem exists_irreducible_GL_zero : ∃ t : IrrGL (k := k), t.1 = 0 ∧ IsL (0 
   ⟨IrrGL.of (detRep (Fin 0) (1 : kˣ →* ℂˣ)) ((isSmooth_ofChar_iff _).2 isSmoothChar_one.detChar)
     (isIrreducible_ofChar _), rfl, (Tests.empty_spec (k := k)).2.of_equiv (IrrGL.equivOf _ _ _)⟩
 
-theorem sum_fst_of_lFactors' {𝔪 : Multiset (Segment k)} {c : ℕ} {x : Fin c → IrrGL (k := k)} (hx : LFactors 𝔪 x) :
-    ∑ a, (x a).1 = (𝔪.map Segment.deg).sum := by
-  obtain ⟨Δ, ⟨rfl, -⟩, hΔ⟩ := hx
-  rw [Multiset.map_map, ← Finset.sum_eq_multiset_sum]
-  exact Finset.sum_congr rfl fun a _ => (hΔ a).deg_eq.symm
-
-theorem deg_of_isL' {V : Type} [AddCommGroup V] [Module ℂ V] {N : ℕ} {𝔪 : Multiset (Segment k)}
-    {π : Representation ℂ (GL (Fin N) k) V} (h : IsL 𝔪 π) : (𝔪.map Segment.deg).sum = N := by
-  obtain ⟨_, x, hd, hx, -⟩ := h
-  exact (sum_fst_of_lFactors' hx).symm.trans hd
-
 theorem eq_of_isL (hM : LanglandsMultisegments) [CharZero k] (𝔪 : Multiset (Segment k)) (x y : IrrGL (k := k))
     (hx : IsL 𝔪 x.rep) (hy : IsL 𝔪 y.rep) : x = y := by
   obtain ⟨t, ht0, ht⟩ := exists_irreducible_GL_zero (k := k)
-  have hdeg : x.1 = y.1 := (deg_of_isL' hx).symm.trans (deg_of_isL' hy)
+  have hdeg : x.1 = y.1 := (GlobalTheory.LocGL.SumProd.deg_of_isL hx).symm.trans (GlobalTheory.LocGL.SumProd.deg_of_isL hy)
   obtain ⟨nx, cx⟩ := x
   obtain ⟨ny, cy⟩ := y
   obtain rfl : nx = ny := hdeg
@@ -937,10 +926,6 @@ theorem lpChar_lpSum (x a b : WD h) : x.lpChar (a.lpSum b) = (x.lpChar a).lpSum 
       simp
     | add p q hp hq => simp only [map_add (f := _), hp, hq]
 
-theorem charPol_lpZero (σ : Weil h) : (WD.lpZero (h := h)).charPol σ = 1 :=
-  Polynomial.eq_one_of_monic_natDegree_zero (WD.charPol_monic _ σ)
-    ((WD.charPol_natDegree _ σ).trans (WD.lpDim_zero h))
-
 end GlobalTheory.WDListLaws
 
 
@@ -975,7 +960,7 @@ theorem GlobalTheory.sumList_laws : ∀ (E Ω : Type) [Field E] [NumberField E] 
       show (WD.lpSum y (sumList l)).lpDim = _
       rw [WD.lpDim_sum, ih, List.map_cons, List.sum_cons]
   · induction l with
-    | nil => exact charPol_lpZero σ
+    | nil => exact GlobalTheory.LocLanglands.CuspExt.charPol_lpZero σ
     | cons y l ih =>
       show (WD.lpSum y (sumList l)).charPol σ = _
       rw [WD.charPol_lpSum, ih, List.map_cons, List.prod_cons]

@@ -343,10 +343,6 @@ theorem exists_integralOp_of_admissible {G : Type} [Group G] [TopologicalSpace G
       l (A v) = ∫ g, φ g * l (ρ g v) ∂m) ∧ FiniteDimensional ℂ (LinearMap.range A) :=
   PositivityTheory.TfC.OccursIff.Trace.exists_integralOp m ρ hρ φ hφ hφc
 
-alias admissible_and_equiv_of_pairing := _root_.PositivityTheory.TfC.OccursIff.Pair.admissible_and_equiv
-
-alias exists_localComponent_family := _root_.PositivityTheory.TfC.CuspProjectionOrthogonality.occ_loccomp
-
 end Items
 
 theorem isSmooth_of_smIrr {G : Type} [Group G] [TopologicalSpace G] (σ : GlobalTheory.CuspRep.SmIrr G) :
@@ -384,7 +380,7 @@ open PositivityTheory.TfC.OccursIff in
 theorem PositivityTheory.TfC.OccursBasics_holds : UpperTheory.ConvolutionTheory.C.OccursBasics := by
   intro K _ _ n μ _ V w _ _ m _ hV
   obtain ⟨W, _, _, π, hπ, hπi, F, hF, hdense⟩ :=
-    exists_localComponent_family K n μ V hV.le hV.closed hV.inv hV.ne_bot hV.irred w
+    PositivityTheory.TfC.CuspProjectionOrthogonality.occ_loccomp K n μ V hV.le hV.closed hV.inv hV.ne_bot hV.irred w
 
   have key : ∀ σ : GlobalTheory.CuspRep.SmIrr (Gw n w), Occurs μ V w σ →
       GroundTheory.Automorphic.IsAdmissible σ.ρ ∧ Nonempty (σ.ρ.Equiv π) := by
@@ -394,7 +390,7 @@ theorem PositivityTheory.TfC.OccursBasics_holds : UpperTheory.ConvolutionTheory.
       exact hf'0 (LinearMap.ext fun x => not_not.1 fun hx => h ⟨x, hx⟩)
     obtain ⟨f, hfF, z, hz⟩ := hdense (f' x₀) (hf'V x₀) hx₀
     have hfz : f z ≠ 0 := fun h => hz (by rw [h, inner_zero_left])
-    refine admissible_and_equiv_of_pairing σ.ρ π (isSmooth_of_smIrr σ) σ.irred hπ hπi (pairL f' f) ?_ ?_
+    refine PositivityTheory.TfC.OccursIff.Pair.admissible_and_equiv σ.ρ π (isSmooth_of_smIrr σ) σ.irred hπ hπi (pairL f' f) ?_ ?_
       (pairL f f) ?_ ?_
     · exact pairL_invariant (rightRegularRep (rationalGLOne (K := K) (n := n)) μ)
         (fun g => MultiplicityOne.finProj K n (AdelicGLn.localEmbedding w g)) σ.ρ π f' f

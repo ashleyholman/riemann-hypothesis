@@ -593,19 +593,11 @@ theorem inclClosed_holds : InclClosed := inclClosed _root_.UpperTheory.V.Z.Tf.Or
 
 theorem geoOfMatch_holds : GeoOfMatch := geoOfMatch _root_.UpperTheory.V.Z.Tf.Orb.gLTop _root_.UpperTheory.V.Z.Tf.Orb.extCont _root_.UpperTheory.V.Z.Tf.Orb.centComm twCentImg_holds quotAlong_holds inclClosed_holds
 
-alias unitSB_holds := _root_.UpperTheory.V.Z.Tf.Orb.unitSB
-
-theorem unitMatch_holds : UnitMatch := unitMatch _root_.UpperTheory.V.Z.Tf.Orb.gLTop _root_.UpperTheory.V.Z.Tf.Orb.extCont _root_.UpperTheory.V.Z.Tf.Orb.centComm twCent_of _root_.UpperTheory.V.Z.Tf.Orb.haarComm _root_.UpperTheory.V.Z.Tf.Orb.quotReal unitSB_holds
-
-alias placeData_holds := _root_.UpperTheory.V.Z.Tf.Orb.placeData
+theorem unitMatch_holds : UnitMatch := unitMatch _root_.UpperTheory.V.Z.Tf.Orb.gLTop _root_.UpperTheory.V.Z.Tf.Orb.extCont _root_.UpperTheory.V.Z.Tf.Orb.centComm twCent_of _root_.UpperTheory.V.Z.Tf.Orb.haarComm _root_.UpperTheory.V.Z.Tf.Orb.quotReal UpperTheory.V.Z.Tf.Orb.unitSB
 
 theorem placeOfLocal_holds : PlaceOfLocal := placeOfLocal _root_.UpperTheory.V.Z.Tf.Orb.gLTop _root_.UpperTheory.V.Z.Tf.Orb.extCont _root_.UpperTheory.V.Z.Tf.Orb.centComm _root_.UpperTheory.V.Z.Tf.Orb.haarComm twCentImg_holds geoOfMatch_holds _root_.UpperTheory.V.Z.Tf.Orb.geoTransport _root_.UpperTheory.V.Z.Tf.Orb.alongIndep
 
-alias placeUniq_holds := _root_.UpperTheory.V.Z.Tf.Orb.placeUniq
-
-alias placeInt_holds := _root_.UpperTheory.V.Z.Tf.Orb.placeInt
-
-theorem placeUnit_holds : PlaceUnit := placeUnit unitMatch_holds unitSB_holds placeData_holds placeOfLocal_holds placeInt_holds
+theorem placeUnit_holds : PlaceUnit := placeUnit unitMatch_holds UpperTheory.V.Z.Tf.Orb.unitSB UpperTheory.V.Z.Tf.Orb.placeData placeOfLocal_holds UpperTheory.V.Z.Tf.Orb.placeInt
 
 end UpperTheory.V.Z.Tf.Orb
 end -- clump:auto

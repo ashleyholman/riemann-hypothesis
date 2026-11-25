@@ -72,8 +72,6 @@ open scoped TensorProduct InnerProductSpace
 attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.Hk3 (Core Good IsSF SchurAll TwoSided FixAll EEc Wcc eH IsLab HoweUnram)
 
-theorem _root_.GlobalTheory.T.eigensystem_goodForms_thetaTarget_occurs_on_rows : ∀ {D : D7} {G : Type} [Group G] [Fintype G] {Pl0 T : Type} {A : FamIn D.what₂.LL G Pl0 T D.R.m} {Ks : Type} [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL] (R : RealDat D A Ks) (F : Face D A) {s : ℕ}, A.fam.Ok s → Core R F → SchurAll R → GoodStable A.X → GlobalTheory.CuspMult.CuspDecomp D → GlobalTheory.CuspMult.MultEq R → ∀ SF, IsSF R SF → ∀ i c, Wcc R SF i c ≠ ⊥ → EEc R SF c ≠ ⊥ := by
-  exact @GlobalTheory.Hk3.eec_ne_bot_of_wcc_ne_bot
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.EigensystemGoodFormsThetaTargetOccursOnRowsStatement =====
@@ -105,7 +103,7 @@ theorem iSup_wp3_eq_range_eH : ∀ {D : D7} {G : Type} [Group G] [Fintype G] {Pl
     by_cases h0 : Wcc R.toRealDat R.SF i c = ⊥
     · rw [h0]; exact bot_le
     · have hE0 : EEc R.toRealDat R.SF c ≠ ⊥ :=
-        GlobalTheory.T.eigensystem_goodForms_thetaTarget_occurs_on_rows R.toRealDat F.lv2 hOk2 hCore hS hGS hCD hME R.SF hSF i c h0
+        GlobalTheory.Hk3.eec_ne_bot_of_wcc_ne_bot R.toRealDat F.lv2 hOk2 hCore hS hGS hCD hME R.SF hSF i c h0
       obtain ⟨p, hp⟩ := hcar c (by rw [hE]; exact hE0)
       rw [← hWc]
       exact le_trans (le_iSup₂ (f := fun c (_ : R.Carries p c) => R.Wc' i c) c hp) (le_iSup (fun p => R.Wp3 i p) p)

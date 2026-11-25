@@ -101,7 +101,7 @@ theorem aUnit_locPl : GBig fun {D} T _ _ G _ _ _ _ => ∀ (t : T) (v : HeightOne
   haveI := (splitPrime τ).isPrime
   obtain ⟨z, hz, hzP⟩ := Set.not_subset.1 (UpperTheory.Ram.half_not_le D.host _ h1)
   have hB : ((D.host.𝔟 : Ideal (𝓞 D.host.E)) : FractionalIdeal (nonZeroDivisors (𝓞 D.host.E)) D.host.E) ≠ 0 :=
-    FractionalIdeal.coeIdeal_ne_zero.2 (UpperTheory.Ram.half_ne_bot D.host)
+    FractionalIdeal.coeIdeal_ne_zero.2 (Formalism.BasicNotions.Host.half_ne_bot D.host)
   have hA : D.host.AA = ((D.host.𝔟 : Ideal (𝓞 D.host.E)) : FractionalIdeal (nonZeroDivisors (𝓞 D.host.E)) D.host.E)⁻¹ := by
     unfold Host.AA Host.ccE Host.AA0
     rw [hcc, Ideal.map_top, FractionalIdeal.coeIdeal_top, one_mul]

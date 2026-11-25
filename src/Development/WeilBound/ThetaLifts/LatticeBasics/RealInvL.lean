@@ -397,11 +397,6 @@ theorem pureA_splitE (f : (κ → mixedEmbedding.mixedSpace F) → ℂ) (g : (κ
     GlobalTheory.WeilM.pureA F f g (PositivityTheory.ThKF0.Split.splitE F κ p) = f p.1 * g p.2 := by
   simp only [GlobalTheory.WeilM.pureA, splitE_apply, RingEquiv.apply_symm_apply]
 
-open scoped Classical in
-theorem volume_isAddHaar [Fintype κ] : (volume : Measure (κ → mixedEmbedding.mixedSpace F)).IsAddHaarMeasure := by
-  haveI : MeasurableAdd (mixedEmbedding.mixedSpace F) := ContinuousAdd.measurableAdd
-  exact Measure.pi.isAddHaarMeasure _
-
 variable {F κ} [Fintype κ]
 
 open scoped Classical in
@@ -410,7 +405,7 @@ theorem lintegral_eq {S : ((κ → AF F) → ℂ) → (κ → AF F) → ℂ}
       ∀ φ ∈ schA F κ, ∫⁻ x, ‖S φ x‖ₑ ^ 2 ∂μ = ∫⁻ x, ‖φ x‖ₑ ^ 2 ∂μ) {f f' : SInf F κ}
     (h : ∀ g ∈ SB (κ → Af F), S (pureA F f g) = pureA F f' g) : ∫⁻ x, ‖f' x‖ₑ ^ 2 = ∫⁻ x, ‖f x‖ₑ ^ 2 := by
   obtain ⟨g, hg, h₁⟩ := exists_sb_one (F := F) (κ := κ)
-  haveI := volume_isAddHaar F κ
+  haveI := PositivityTheory.ThKF0.Split.volume_isAddHaar F κ
   haveI : OpensMeasurableSpace (κ → mixedEmbedding.mixedSpace F) := inferInstance
   haveI : LocallyCompactSpace (FiniteAdeleRing (𝓞 F) F) := GlobalTheory.AdelicUnitaryTop.locallyCompact_finiteAdele F
   haveI : SecondCountableTopology (FiniteAdeleRing (𝓞 F) F) := GlobalTheory.AdelicUnitaryTop.secondCountable_finiteAdele F

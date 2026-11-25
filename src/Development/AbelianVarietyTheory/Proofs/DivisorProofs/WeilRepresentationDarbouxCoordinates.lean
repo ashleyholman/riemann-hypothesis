@@ -20,11 +20,6 @@ section Mixed
 
 variable (F : Type) [Field F] [NumberField F]
 
-theorem continuous_toMixed : Continuous (InfiniteAdeleRing.ringEquiv_mixedSpace F) := by
-  first
-  | exact _root_.PositivityTheory.ThKF0.Split.continuous_toMixed
-  | (apply _root_.PositivityTheory.ThKF0.Split.continuous_toMixed <;> assumption)
-
 def eInf : AF F := (1, 0)
 
 def rInf (t : ℝ) : AF F := ((InfiniteAdeleRing.ringEquiv_mixedSpace F).symm (algebraMap ℝ _ t), 0)
@@ -92,8 +87,8 @@ theorem archPair_archParts {y : (κ → AF F) × (κ → AF F)} (hy : eInf F •
 
 theorem continuous_archParts : Continuous (archParts (F := F) (κ := κ)) := by
   refine Continuous.prodMk (continuous_pi fun i => ?_) (continuous_pi fun i => ?_)
-  · exact (continuous_toMixed F).comp (continuous_fst.comp ((continuous_apply i).comp continuous_fst))
-  · exact (continuous_toMixed F).comp (continuous_fst.comp ((continuous_apply i).comp continuous_snd))
+  · exact (PositivityTheory.ThKF0.Split.continuous_toMixed F).comp (continuous_fst.comp ((continuous_apply i).comp continuous_fst))
+  · exact (PositivityTheory.ThKF0.Split.continuous_toMixed F).comp (continuous_fst.comp ((continuous_apply i).comp continuous_snd))
 
 end Mixed
 

@@ -44,8 +44,6 @@ namespace UpperTheory.Gal.Int.Geo.Pl.Tj.TorusKilling
 
 variable {E : Type} [Field E] [NumberField E]
 
-private alias alg_int := _root_.Formalism.UG.P.levelaf_int_mem_v
-
 private theorem exS (w : HeightOneSpectrum (𝓞 E)) (c : 𝓞 E) (hc : c ≠ 0) :
     ∃ s : 𝓞 E, s ∉ w.asIdeal ∧ ∀ u : HeightOneSpectrum (𝓞 E), u ≠ w →
       Valued.v (algebraMap (𝓞 E) (u.adicCompletion E) s) ≤ Valued.v (algebraMap (𝓞 E) (u.adicCompletion E) c) := by
@@ -100,7 +98,7 @@ private theorem diag_int {n : ℕ} (u : HeightOneSpectrum (𝓞 E)) (ϖ : u.adic
       have := (HeightOneSpectrum.intValuation_le_pow_iff_mem u y 1).2 (by rwa [pow_one])
       exact this
     exact mul_inv_le_one_of_le₀ h3 zero_le'
-  · rw [mul_one]; exact alg_int u y
+  · rw [mul_one]; exact Formalism.UG.P.levelaf_int_mem_v u y
   · rw [mul_zero]; exact zero_mem _
 
 end UpperTheory.Gal.Int.Geo.Pl.Tj.TorusKilling
@@ -142,7 +140,7 @@ theorem UpperTheory.Gal.Int.Geo.Pl.Tj.tKill :
           calc (comp u g⁻¹).val = (comp u g⁻¹).val * ((comp u g).val * _) := by rw [h2, Matrix.mul_one]
             _ = _ := by rw [← Matrix.mul_assoc, h1, Matrix.one_mul]
         rw [map_mul, mul_assoc]
-        refine mul_mem (alg_int u s) (conj_int u _ _ ha _ (fun a b => ?_) a b)
+        refine mul_mem (Formalism.UG.P.levelaf_int_mem_v u s) (conj_int u _ _ ha _ (fun a b => ?_) a b)
         rw [hinv]
         exact diag_int u ϖ hϖ i y hy a b
       · have h1 := conj_int u (F.a u) (comp u g⁻¹) ha ((Ideal.absNorm w.asIdeal ^ i : ℕ) : u.adicCompletion E) (hg.back u) a b
@@ -150,7 +148,7 @@ theorem UpperTheory.Gal.Int.Geo.Pl.Tj.tKill :
         rw [map_mul, map_mul, map_mul, mul_comm (Valued.v (algebraMap (𝓞 E) (u.adicCompletion E) s)), mul_assoc]
         have h2 := hs u huw
         rw [map_natCast] at h2
-        have h3 : Valued.v (algebraMap (𝓞 E) (u.adicCompletion E) y) ≤ 1 := (HeightOneSpectrum.mem_adicCompletionIntegers _ _ _).1 (alg_int u y)
+        have h3 : Valued.v (algebraMap (𝓞 E) (u.adicCompletion E) y) ≤ 1 := (HeightOneSpectrum.mem_adicCompletionIntegers _ _ _).1 (Formalism.UG.P.levelaf_int_mem_v u y)
         rw [map_mul] at h1
         calc _ ≤ 1 * (Valued.v (((Ideal.absNorm w.asIdeal ^ i : ℕ) : u.adicCompletion E)) * Valued.v (F.cmp u g⁻¹ a b)) :=
               mul_le_mul' h3 (mul_le_mul' h2 le_rfl)
@@ -161,7 +159,7 @@ theorem UpperTheory.Gal.Int.Geo.Pl.Tj.tKill :
           simp [Frame.cmp, map_inv, hoff]
         rw [h1, Matrix.one_apply]
         split_ifs
-        · rw [mul_one]; exact alg_int u _
+        · rw [mul_one]; exact Formalism.UG.P.levelaf_int_mem_v u _
         · rw [mul_zero]; exact zero_mem _
       · have hq' : ((σ.q : ℕ) : 𝓞 E) ∈ (cj u).asIdeal := (hK _ (by simp)).2 hqw
         have e : (cj u).asIdeal = _ := (GlobalTheory.Mem.Chr.conjPl_iff_comap _ _ _).1 (GlobalTheory.CuspRep.conjPl_conjSrc (GlobalTheory.SplitPts.conjE E) u)

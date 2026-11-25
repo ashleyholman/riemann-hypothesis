@@ -16,8 +16,6 @@ open GlobalTheory.PRep GlobalTheory.SmGL
 
 namespace UpperTheory.Lit.Mix
 
-alias geometricLemma := _root_.GlobalTheory.CompanionTheory.GeoLink.geometricLemma
-
 theorem polynomialRing : GlobalTheory.Published.ZelevinskyPolynomialRing :=
   GlobalTheory.zelevinskyPolynomialRing_of_parts GlobalTheory.bernsteinZelevinskyFiniteness_holds PositivityTheory.RgGu.segmentRepresentation
     (PositivityTheory.Groth.grothendieckRingPolynomial_of_seg PositivityTheory.RgGu.segmentRepresentation)

@@ -261,10 +261,6 @@ theorem stdH_smul_right (r : w.adicCompletion E) (a b : Fin n → w.adicCompleti
   simp only [stdH, Pi.smul_apply, smul_eq_mul, map_mul, Finset.mul_sum]
   exact Finset.sum_congr rfl fun k _ => by ring
 
-theorem stdH_single (a : Fin n → w.adicCompletion E) (k : Fin n) :
-    stdH w a (Pi.single k 1) = a k := by
-  simp [stdH, Pi.single_apply, apply_ite (cj w)]
-
 theorem cj_cj {K : GlobalTheory.UnitLemma.UQ} {e : K.E ≃+* w.adicCompletion E} (hB : Bridge w K e)
     (z : w.adicCompletion E) : cj w (cj w z) = z := by
   obtain ⟨x, rfl⟩ := e.surjective z
@@ -512,7 +508,7 @@ theorem exists_isModel : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] 
       funext k
       obtain ⟨z, hz⟩ := ψ.surjective (Pi.single k 1)
       have := hform a z
-      rw [hz, stdH_single] at this
+      rw [hz, GlobalTheory.KapTorus.stdH_single] at this
       rw [this, GlobalTheory.UnitLemma.InvAlg.herm, ha, zero_mul, map_zero, map_zero]
       rfl
     exact ψ.injective (h0.trans (map_zero ψ).symm)

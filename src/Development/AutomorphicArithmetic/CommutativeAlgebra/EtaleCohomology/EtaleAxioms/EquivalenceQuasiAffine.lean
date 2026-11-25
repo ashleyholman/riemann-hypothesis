@@ -1351,14 +1351,6 @@ variable {S : Type} [CommRing S]
 theorem isUnit_f_fg (f g : S) : IsUnit (algebraMap S (Localization.Away (f * g)) f) :=
   isUnit_of_dvd_unit (map_dvd _ (dvd_mul_right f g)) (IsLocalization.Away.algebraMap_isUnit (f * g))
 
-theorem rL_alg (f g : S) (a : S) :
-    rL f g (algebraMap S _ a) = algebraMap S (Localization.Away (f * g)) a :=
-  IsLocalization.Away.awayToAwayRight_eq f g a
-
-theorem rR_alg (f g : S) (a : S) :
-    rR f g (algebraMap S _ a) = algebraMap S (Localization.Away (f * g)) a :=
-  IsLocalization.Away.awayToAwayLeft_eq g f a
-
 theorem rL_surj {ι : Type} [Finite ι] (f g : S) (w : ι → Localization.Away (f * g)) :
     ∃ (n : ℕ) (x : ι → Localization.Away f), ∀ k, rL f g (x k) = algebraMap S _ (g ^ n) * w k := by
   obtain ⟨⟨b, hb'⟩, hb⟩ := IsLocalization.exist_integer_multiples_of_finite (Submonoid.powers (f * g)) w
@@ -1370,15 +1362,15 @@ theorem rL_surj {ι : Type} [Finite ι] (f g : S) (w : ι → Localization.Away 
   apply hu.mul_left_cancel
   have hs := IsLocalization.mk'_spec' (Localization.Away f) (a k) (⟨f ^ n, n, rfl⟩ : Submonoid.powers f)
   change algebraMap S _ (f ^ n) * _ = _ at hs
-  rw [← rL_alg, ← map_mul, hs, rL_alg, ha k, Algebra.smul_def]
+  rw [← LateralTheory.E.ProjFPf.rL_alg, ← map_mul, hs, LateralTheory.E.ProjFPf.rL_alg, ha k, Algebra.smul_def]
   change algebraMap S _ ((f * g) ^ n) * w k = _
-  rw [mul_pow, map_mul, mul_assoc, rL_alg]
+  rw [mul_pow, map_mul, mul_assoc, LateralTheory.E.ProjFPf.rL_alg]
 
 theorem rL_ker (f g : S) (x : Localization.Away f) (hx : rL f g x = 0) :
     ∃ n : ℕ, algebraMap S _ (g ^ n) * x = 0 := by
   obtain ⟨⟨a, s⟩, hs⟩ := IsLocalization.surj (Submonoid.powers f) x
   have h0 : algebraMap S (Localization.Away (f * g)) a = 0 := by
-    rw [← rL_alg, ← hs, map_mul, hx, zero_mul]
+    rw [← LateralTheory.E.ProjFPf.rL_alg, ← hs, map_mul, hx, zero_mul]
   obtain ⟨⟨m, n, rfl⟩, hm⟩ := (IsLocalization.map_eq_zero_iff (Submonoid.powers (f * g)) _ a).mp h0
   refine ⟨n, ?_⟩
   have hu : IsUnit (algebraMap S (Localization.Away f) (f ^ n * s)) :=
@@ -1419,7 +1411,7 @@ theorem ProjG_of : ProjG := by
       funext k
       change rL f g (x k) = ∑ c, ε c * rR f g (algebraMap S _ (g ^ n) * y (k + c))
       rw [hx k, twist_apply]
-      simp only [map_mul, rR_alg]
+      simp only [map_mul, LateralTheory.E.ProjFPf.rR_alg]
       rw [Finset.mul_sum]
       exact Finset.sum_congr rfl fun c _ => by ring
     refine ⟨(⟨_, hmem⟩, ⟨algebraMap S _ g ^ n, n, rfl⟩), ?_⟩
@@ -1686,12 +1678,6 @@ theorem descR_alg {T : Type} [CommRing T] (a : Localization.Away f →+* T) (b :
     descR f g a b h (algebraMap S _ s) = a (algebraMap S _ s) :=
   IsLocalization.lift_eq _ _
 
-theorem rL_alg (s : S) : LateralTheory.E.t_E1Cut.rL f g (algebraMap S _ s) = algebraMap S _ s :=
-  IsLocalization.Away.awayToAwayRight_eq f g s
-
-theorem rR_alg (s : S) : LateralTheory.E.t_E1Cut.rR f g (algebraMap S _ s) = algebraMap S _ s :=
-  IsLocalization.Away.awayToAwayLeft_eq g f s
-
 theorem isPushout_away :
     IsPushout (CommRingCat.ofHom (algebraMap S (Localization.Away f)))
       (CommRingCat.ofHom (algebraMap S (Localization.Away g)))
@@ -1699,7 +1685,7 @@ theorem isPushout_away :
   have hw : CommRingCat.ofHom (algebraMap S (Localization.Away f)) ≫ CommRingCat.ofHom (LateralTheory.E.t_E1Cut.rL f g)
       = CommRingCat.ofHom (algebraMap S (Localization.Away g)) ≫ CommRingCat.ofHom (LateralTheory.E.t_E1Cut.rR f g) := by
     ext x
-    simp [rL_alg, rR_alg]
+    simp [LateralTheory.E.ProjFPf.rL_alg, LateralTheory.E.ProjFPf.rR_alg]
   refine IsPushout.of_isColimit (c := PushoutCocone.mk _ _ hw) ?_
   have hc : ∀ s : PushoutCocone (CommRingCat.ofHom (algebraMap S (Localization.Away f)))
       (CommRingCat.ofHom (algebraMap S (Localization.Away g))),
@@ -1712,20 +1698,20 @@ theorem isPushout_away :
     ext1
     apply IsLocalization.ringHom_ext (Submonoid.powers f)
     ext x
-    simp [rL_alg, descR_alg]
+    simp [LateralTheory.E.ProjFPf.rL_alg, descR_alg]
   · intro s
     ext1
     apply IsLocalization.ringHom_ext (Submonoid.powers g)
     ext x
     have := congrArg (fun φ => φ x) (hc s)
     simp only [RingHom.comp_apply] at this
-    simp [rR_alg, descR_alg, this]
+    simp [LateralTheory.E.ProjFPf.rR_alg, descR_alg, this]
   · intro s m h1 _
     ext1
     apply IsLocalization.ringHom_ext (Submonoid.powers (f * g))
     ext x
     have := congrArg (fun φ => (CommRingCat.Hom.hom φ) (algebraMap S (Localization.Away f) x)) h1
-    simp only [CommRingCat.hom_comp, CommRingCat.hom_ofHom, RingHom.comp_apply, rL_alg] at this
+    simp only [CommRingCat.hom_comp, CommRingCat.hom_ofHom, RingHom.comp_apply, LateralTheory.E.ProjFPf.rL_alg] at this
     simp [descR_alg, this]
 
 instance constPreserves (J : Type) [SmallCategory J] :

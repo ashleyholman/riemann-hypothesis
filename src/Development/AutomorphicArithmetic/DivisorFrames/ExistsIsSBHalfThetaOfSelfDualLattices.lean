@@ -160,8 +160,6 @@ private theorem isHalf_iff_ptO {m k d : ℕ} (G : Matrix (Fin m) (Fin m) D.host.
     ⟨fun h => Matrix.ext h, fun h i j => congrFun (congrFun h i) j⟩
   rw [h, h, ← ptO_smul, (ptO_bij G hG e).1.eq_iff]
 
-private alias sb_zero := _root_.GlobalTheory.SymmetricBilinearHalf.sb_zero
-
 private theorem sb_smul {m n : ℕ} {a : AE D} {Λ : AddSubgroup (Mx D m n)} {φ : Mx D m n → ℂ} (h : IsSBHalf a Λ φ) (c : ℂ) :
     IsSBHalf a Λ (c • φ) := by
   obtain ⟨h1, k, hk, h2, h3⟩ := h
@@ -221,7 +219,7 @@ theorem UpperTheory.exists_isSBHalf_theta_of_selfDual_lattices :
   let R : Submodule ℂ ((Matrix (Fin S.rank) (Fin d) (AE D) → ℂ) × ((Fin S.rank × Fin d → AF D.host.F) → ℂ)) :=
     { carrier := {p | p.2 ∈ GlobalTheory.WeilM.schA D.host.F _ ∧ IsSBHalf eh Λ (fun x => p.1 (ptO (sgn ε S).gram e x)) ∧
         T (fun x => p.1 (ptO (sgn ε S).gram e x)) = thO M Bs.ψ (sgn ε S).gram e p.2}
-      zero_mem' := ⟨zero_mem _, sb_zero _ _, by
+      zero_mem' := ⟨zero_mem _, GlobalTheory.SymmetricBilinearHalf.sb_zero _ _, by
         have := lsmul 0 0
         rw [zero_smul, zero_smul] at this
         exact (map_zero T).trans this.symm⟩

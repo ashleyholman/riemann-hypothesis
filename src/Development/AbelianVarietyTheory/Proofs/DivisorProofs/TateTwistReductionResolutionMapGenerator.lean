@@ -128,7 +128,7 @@ theorem redMap_exists (Q q : ℕ) [NeZero Q] [NeZero q] (hq : q ∣ Q) (i : ℤ)
   obtain ⟨α, hα⟩ := ext_map Q q hq (tw Q i) (tw q i) f hf
   obtain ⟨hKI, -, hGE, -, hι, -⟩ := _root_.GlobalTheory.EtC.ResBasic.res_basic (ZMod q) (tw q i)
   have hQ := _root_.GlobalTheory.EtC.ExtQis.quasiIso_extAug Q q hq i
-  obtain ⟨m, hm⟩ := (GlobalTheory.T.extend_chainMap_along_quasiIso_kInjective (ZMod q) ((extSh (ZMod.castHom hq (ZMod q))).obj (tw Q i))
+  obtain ⟨m, hm⟩ := (GlobalTheory.EtC.extHom_of_quasiIso (ZMod q) ((extSh (ZMod.castHom hq (ZMod q))).obj (tw Q i))
     (extCx (ZMod.castHom hq (ZMod q)) (res _ (tw Q i))) (res _ (tw q i))
     (extAug (ZMod.castHom hq (ZMod q)) (tw Q i))).1
     ((CochainComplex.singleFunctor (Shv (ZMod q)) 0).map α ≫ resAug (tw q i))

@@ -924,7 +924,7 @@ namespace PositivityTheory.KB
 
 open BlockInvariants BlockEvaluationBounds in
 theorem sWtOdd_of : SChain → SEv → SPsi → SStokes → SWtOdd := fun _ hE _ hS =>
-  swtOdd hE hS (fft_of cplx sw1 sw2) aGood wPad weylTwoBlockMatrix wInv wCyc tStab tBlk pStab blockSum_preserves_cone wOneOdd wRot
+  swtOdd hE hS (fft_of cplx sw1 sw2) PositivityTheory.KB.TwAG.aGood wPad weylTwoBlockMatrix wInv wCyc tStab tBlk pStab blockSum_preserves_cone wOneOdd wRot
 
 end PositivityTheory.KB
 end -- clump:auto
@@ -1008,7 +1008,7 @@ section -- clump:auto
 namespace PositivityTheory.KB
 
 theorem sInv_of : SChain → SEv → SPsi → SStokes → SInv := fun hC hE hP hS =>
-  BlockInvariants.sinv_of_swt hC hP hS BlockInvariants.aGood (BlockInvariants.swt_all hE hS)
+  BlockInvariants.sinv_of_swt hC hP hS PositivityTheory.KB.TwAG.aGood (BlockInvariants.swt_all hE hS)
 
 end PositivityTheory.KB
 end -- clump:auto

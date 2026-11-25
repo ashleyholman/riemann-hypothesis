@@ -465,7 +465,7 @@ theorem pmap [FiniteDimensional ℚ_[l] K] : Nonempty (PMap Model.Sm (dat (l := 
     have hK : IsTautologicalLine M.q (lineK a.1) := _root_.GlobalTheory.CompanionTheory.ConeTwistingSheaf.isTwistingSheaf_pullback (OK l K).subtype M.p a.1 a.2
     obtain ⟨N, i, -, -, hi⟩ := a.2
     obtain ⟨x, hx⟩ := _root_.GlobalTheory.CompanionTheory.FirstChernClassFactorial.exists_C1H M a.1 (sSup_𝒱D a.1 N i hi)
-    obtain ⟨c, hc⟩ := isFirstChernDeRham_exists M.q d _ hK
+    obtain ⟨c, hc⟩ := CrystallineSemistableComparison.Pb.isFirstChernDeRham_exists_of M.q d _ hK
     obtain ⟨z, hz⟩ := pow_ex a x d
     obtain ⟨φ, hφ⟩ := Module.Projective.exists_dual_eq_one K (powK_ne_zero M.q d _ hK c hc)
     refine ⟨x, z, φ, hx, hz, ?_⟩

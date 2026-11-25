@@ -894,7 +894,7 @@ theorem dlog_class_exists_unique : DlogClassExistsUnique := by
 
 theorem kTop : KTop := by
   intro K _ _ X q _ d _ D hD c hc h0
-  obtain ⟨c', hc'⟩ := isFirstChernDeRham_exists q d D hD
+  obtain ⟨c', hc'⟩ := CrystallineSemistableComparison.Pb.isFirstChernDeRham_exists_of q d D hD
   refine powK_ne_zero q d D hD c' hc' ?_
   obtain ⟨N, i, hi, hip, hO⟩ := hD
   have hP : IsProper q := GlobalTheory.CommonModel.isProper_of_isProjOver ⟨N, i, hi, hip⟩
@@ -902,7 +902,7 @@ theorem kTop : KTop := by
   have hcov : sSup (𝒱D D) = ⊤ := sSup_𝒱D D N i hO
   have hk := (k_iso_pf q U (d + 1) (fun α => by rw [hUd]; omega) (𝒱D D) hcov (2 * d)).1
   let g := (KS q (d + 1) (𝒱D D)).ι
-  obtain ⟨Λ⟩ := lift_exists q D (d + 1)
+  obtain ⟨Λ⟩ := GlobalTheory.CompanionTheory.ConeLiftEx.nonempty_cLiftK q D (d + 1)
   obtain ⟨z, hz, hzf, hzc⟩ := hc' (d + 1) _ g (fun c => c.property.1.1) (fun c => by
     obtain ⟨-, V, ⟨σ, hσ⟩, hV⟩ := c.property
     exact ⟨V, σ, hσ, hV⟩) Λ
@@ -913,7 +913,7 @@ theorem kTop : KTop := by
       rw [← hzf s] at this
       exact this) r1
   have r3 := (pow_rep q g c z (fun s => by
-      have := mem1 (g.obj (s.obj (Fin.last 2))).δ (plogK_mem (g.obj (s.obj (Fin.last 2))).δ (d + 1) (r_sub_one_mem Λ s))
+      have := mem1 (g.obj (s.obj (Fin.last 2))).δ (GlobalTheory.CompanionTheory.RepLifts.plogK_mem (g.obj (s.obj (Fin.last 2))).δ (d + 1) (r_sub_one_mem Λ s))
       rw [← hzf s] at this
       exact this) r2 d).2
   rw [h0, map_zero] at r3

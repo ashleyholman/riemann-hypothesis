@@ -19,12 +19,6 @@ noncomputable section
 
 namespace GlobalTheory.PsiInfLinear
 
-theorem continuous_ringEquiv_mixedSpace_symm (E : Type) [Field E] [NumberField E] :
-    Continuous (InfiniteAdeleRing.ringEquiv_mixedSpace E).symm := by
-  first
-  | exact _root_.PositivityTheory.ThKF0.Split.continuous_ofMixed
-  | (apply _root_.PositivityTheory.ThKF0.Split.continuous_ofMixed <;> assumption)
-
 theorem psiInf_eq_exp_linear : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ), IsStdChar D ψ (-1) →
     ∃ Λ : mixedEmbedding.mixedSpace D.host.F →L[ℝ] ℂ, ∀ x : InfiniteAdeleRing D.host.F,
       psiInf D.host.F ψ x = Complex.exp (Λ (InfiniteAdeleRing.ringEquiv_mixedSpace D.host.F x)) := by
@@ -42,7 +36,7 @@ theorem psiInf_eq_exp_linear : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ), Is
   have hg : Continuous g := by
     show Continuous fun m => c * ∑ ρ, θ ρ (e.symm m ⊗ₜ[D.host.F] (1 : D.host.E))
     refine continuous_const.mul (continuous_finsetSum _ fun ρ _ => ?_)
-    exact (hθ ρ).2.comp (continuous_ringEquiv_mixedSpace_symm D.host.F)
+    exact (hθ ρ).2.comp (PositivityTheory.ThKF0.Split.continuous_ofMixed D.host.F)
   refine ⟨AddMonoidHom.toRealLinearMap g hg, fun x => ?_⟩
   rw [hform x]
   congr 1

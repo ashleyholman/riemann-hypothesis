@@ -297,7 +297,7 @@ theorem step_point (q : ℕ) [NeZero q] (i j : ℤ) (V : Scheme.{0}) [Nonempty V
 theorem step_swap (q : ℕ) [NeZero q] (i j : ℤ) (V : Scheme.{0}) (ζ : Prim q Γ(V, ⊤)) (c : ℕ)
     (h : c • (twGen i ζ ⊗ₜ[ULift.{1} (ZMod q)] pgen q j ζ) = 0) : Loc V fun W _ => Nonempty W → q ∣ c := by
   have hφ := toSheafify_loc_bij_lift (ZMod q) (Scheme.Γ ⋙ twF q i)
-  have key := (tensor_loc_bij (ZMod q) (Scheme.Γ ⋙ twF q j) (Scheme.Γ ⋙ twF q i) _
+  have key := (GlobalTheory.EtC.TensLocBij.main (ZMod q) (Scheme.Γ ⋙ twF q j) (Scheme.Γ ⋙ twF q i) _
     (toSheafify Scheme.etaleTopology (Scheme.Γ ⋙ twF q i)) hφ.1 hφ.2.1 V).2
     (c • (pgen q j ζ ⊗ₜ pgen q i ζ)) (by
       rw [map_nsmul, LinearMap.lTensor_tmul, twGen_eq]
@@ -312,7 +312,7 @@ theorem tw_mul_order : ∀ (q : ℕ) [NeZero q] (i j : ℤ) (W : Scheme.{0}) (ζ
     c • (twGen i ζ ⊗ₜ[ULift.{1} (ZMod q)] twGen j ζ) = 0 → Loc W fun V _ => Nonempty V → q ∣ c := by
   intro q _ i j W ζ c h
   have hφ := toSheafify_loc_bij_lift (ZMod q) (Scheme.Γ ⋙ twF q j)
-  have key := (tensor_loc_bij (ZMod q) (tw q i).obj (Scheme.Γ ⋙ twF q j) _
+  have key := (GlobalTheory.EtC.TensLocBij.main (ZMod q) (tw q i).obj (Scheme.Γ ⋙ twF q j) _
     (toSheafify Scheme.etaleTopology (Scheme.Γ ⋙ twF q j)) hφ.1 hφ.2.1 W).2
     (c • (twGen i ζ ⊗ₜ pgen q j ζ)) (by rw [map_nsmul, LinearMap.lTensor_tmul, twGen_eq]; exact h)
   refine loc_bind key fun V g hg => step_swap q i j V (ζ.map g.appTop.hom) c ?_

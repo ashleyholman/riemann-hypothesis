@@ -552,15 +552,10 @@ private theorem val_succAbove_eq_ite_lt {n : ℕ} (q : Fin (n + 1)) (j : Fin n) 
   · rw [Fin.succAbove_of_le_castSucc _ _ (by simp [Fin.le_def]; omega)]
     simp [h]
 
-private theorem ev_eq_linearCombination {G H Y : Type} [Group G] [Group H] [MulAction H Y] (ρ : G →* H) {m : ℕ}
-    (F : (Fin (m + 1) → Y) → ℝ) (y : Y) (z : Chn G m) :
-    ev ρ F y z = Finsupp.linearCombination ℝ (fun g : Fin m → G ↦ F fun j ↦ ρ (Fin.partialProd g j) • y) z := by
-  simp [ev, Finsupp.linearCombination_apply, smul_eq_mul]
-
 private theorem ev_bd_eq_ev_dC_of_inv {G H Y : Type} [Group G] [Group H] [MulAction H Y] (ρ : G →* H) {m : ℕ}
     (F : (Fin (m + 1) → Y) → ℝ) (hF : Inv ρ F) (y : Y) (w : Chn G (m + 1)) :
     ev ρ F y (bd G m w) = ev ρ (dC F) y w := by
-  rw [ev_eq_linearCombination, ev_eq_linearCombination, ← LinearMap.comp_apply]
+  rw [PositivityTheory.KB.AffineStabilizerVanishing.ev_eq, PositivityTheory.KB.AffineStabilizerVanishing.ev_eq, ← LinearMap.comp_apply]
   congr 1
   ext g
   simp [bd, dC, Fin.sum_univ_succ (n := m + 1), Fin.partialProd_contractNth]

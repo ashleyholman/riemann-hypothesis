@@ -468,14 +468,12 @@ open NumberField IsDedekindDomain
 
 namespace PositivityTheory.PfSWUS.KFinMatch
 
-alias adj_one_k := _root_.GlobalTheory.MixModel.adj_one
-
 theorem finite_places_match : PositivityTheory.PfSWUS.SwMatch.FinMatch := by
   intro D n M a d bs g gv hP lam L hlam hL hstd
   have ha1 : a.1 * (a⁻¹).1 = 1 := a.mul_inv
   have ha2 : (a⁻¹).1 * a.1 = 1 := a.inv_mul
-  have hadj1 : adj (D := D) a.1 * adj (D := D) (a⁻¹).1 = 1 := by rw [← adj_mul, ha2, adj_one_k]
-  have hadj2 : adj (D := D) (a⁻¹).1 * adj (D := D) a.1 = 1 := by rw [← adj_mul, ha1, adj_one_k]
+  have hadj1 : adj (D := D) a.1 * adj (D := D) (a⁻¹).1 = 1 := by rw [← adj_mul, ha2, GlobalTheory.MixModel.adj_one]
+  have hadj2 : adj (D := D) (a⁻¹).1 * adj (D := D) a.1 = 1 := by rw [← adj_mul, ha1, GlobalTheory.MixModel.adj_one]
   obtain ⟨L₁, L₂, Φf, Φv, h1, h2, h3, h4, h5⟩ := GlobalTheory.CompanionTheory.SwFinM.finMatchGen (F := D.host.F) (E := D.host.E) (M := M)
     a.1 (a⁻¹).1 (adj (D := D) a.1) (adj (D := D) (a⁻¹).1) ha1 ha2 hadj1 hadj2 bs g gv hP lam L hlam hL hstd
   exact ⟨L₁, L₂, Φf, Φv, h1, h2, h3, fun x => h4 x, fun v b => h5 v b.1⟩

@@ -303,10 +303,8 @@ section -- clump:auto
 
 namespace PositivityTheory.KB.BlockInvariants
 
-alias aGood := _root_.PositivityTheory.KB.TwAG.aGood
-
 theorem swt_all (hE : SEv) (hS : SStokes) : SWt :=
-  swt hE hS (fft_of cplx sw1 sw2) aGood wPad weylTwoBlockMatrix wInv wOne wCyc tStab tBlk pStab blockSum_preserves_cone
+  swt hE hS (fft_of cplx sw1 sw2) PositivityTheory.KB.TwAG.aGood wPad weylTwoBlockMatrix wInv wOne wCyc tStab tBlk pStab blockSum_preserves_cone
 
 end PositivityTheory.KB.BlockInvariants
 end -- clump:auto

@@ -300,12 +300,6 @@ theorem exists_sub_mem (v : Pl (F := F)) (t : Fv F v) {k : F} (hk : k ≠ 0) :
   rw [inv_mul_le_iff₀ (zero_lt_iff.2 hkv), mul_one]
   exact hs'.le
 
-theorem incM_single {n d : ℕ} (i : Fin n) (j : Fin d) (y : E) :
-    incM F (Matrix.single i j y) = Matrix.single i j ((1 : AF F) ⊗ₜ[F] y) := by
-  ext a b
-  simp only [incM, Matrix.map_apply, Matrix.single_apply]
-  split_ifs <;> simp [inclR]
-
 theorem single_sub {A : Type} [AddGroup A] {n d : ℕ} (i : Fin n) (j : Fin d) (a b : A) :
     Matrix.single i j a - Matrix.single i j b = Matrix.single i j (a - b) := by
   ext k l; simp only [Matrix.sub_apply, Matrix.single_apply]; split_ifs <;> simp
@@ -340,7 +334,7 @@ theorem core {n d : ℕ} (X : Spc F E n) (Y : Spc F E d) (hX : X.L.IsFullLattice
     have hev : ∀ c : F, evFin F v (c • (1 : AF F)) = algebraMap F (Fv F v) c := fun c => by
       rw [map_smul, map_one, Algebra.algebraMap_eq_smul_one]
     have hK' : algebraMap F (Fv F v) ((N * N' : ℤ) : F) ≠ 0 := (map_ne_zero _).2 hK
-    rw [hv, incM_single, incM_single, Matrix.smul_single, Matrix.smul_single, single_sub]
+    rw [hv, GlobalTheory.LatOpenCpt.incM_single, GlobalTheory.LatOpenCpt.incM_single, Matrix.smul_single, Matrix.smul_single, single_sub]
     congr 1
     rw [← Algebra.smul_def, ← TensorProduct.smul_tmul, ← TensorProduct.smul_tmul, atPlace_one_smul_tmul,
       TensorProduct.smul_tmul', smul_eq_mul, GlobalTheory.EmbChart.atPlace_mul_right, ← TensorProduct.sub_tmul, ← map_sub,

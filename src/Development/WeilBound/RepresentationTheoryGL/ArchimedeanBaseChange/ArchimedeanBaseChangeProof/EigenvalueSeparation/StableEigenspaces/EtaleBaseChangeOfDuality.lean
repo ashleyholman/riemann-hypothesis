@@ -162,7 +162,7 @@ theorem integral_ctn_le (hSize : SizeT) {φ : GA E N → ℂ} (hφ : Continuous 
     linarith
   have h3 := hCM _ hS n R hR0 hmult hlog
   have h2 := l2glue.swap μ φ hφ r t hD hD0 hQ
-  have h1 := l2glue.integral_le_toReal (μ.restrict Q) (fun g => An.ctn r φ (An.aR E N r t * g))
+  have h1 := GlobalTheory.CompanionTheory.Dblock.integral_norm_sq_le_toReal_lintegral_enorm_sq (μ.restrict Q) (fun g => An.ctn r φ (An.aR E N r t * g))
   have hP : 0 ≤ (1 + R) ^ M := by positivity
   have he1 : 1 ≤ e := Real.one_le_exp (by positivity)
   have hnle : (n : ℝ) ≤ (max C₁ 0 + 1) * e := by

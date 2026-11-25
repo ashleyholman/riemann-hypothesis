@@ -17,12 +17,6 @@ open scoped Classical
 
 namespace GlobalTheory.RealDirCoord
 
-theorem continuous_ringEquiv_mixed (F : Type) [Field F] [NumberField F] :
-    Continuous (InfiniteAdeleRing.ringEquiv_mixedSpace F) := by
-  first
-  | exact _root_.PositivityTheory.ThKF0.Split.continuous_toMixed
-  | (apply _root_.PositivityTheory.ThKF0.Split.continuous_toMixed <;> assumption)
-
 theorem eps_smul_gen {F E : Type} [Field F] [NumberField F] [Field E] [Algebra F E]
     (z : AF F ⊗[F] E) :
     (pairA F 0 1) • z = LinearMap.rTensor E (LinearMap.inr F (Ainf F) (Af F))
@@ -85,7 +79,7 @@ theorem darboux_real_coords : ∀ (D : D7) (S T : HSp D) (κ : Type) [Fintype κ
           exact map_add (InfiniteAdeleRing.ringEquiv_mixedSpace D.host.F) _ _ }
     have hf : Continuous f := by
       refine continuous_pi fun i => ?_
-      exact (continuous_ringEquiv_mixed D.host.F).comp
+      exact (PositivityTheory.ThKF0.Split.continuous_toMixed D.host.F).comp
         (continuous_fst.comp ((continuous_apply i).comp (hp.comp (he.comp hL))))
     exact ⟨f.toRealLinearMap hf, fun t i => rfl⟩
   obtain ⟨P, hP⟩ := hc Prod.fst continuous_fst (fun _ _ => rfl)

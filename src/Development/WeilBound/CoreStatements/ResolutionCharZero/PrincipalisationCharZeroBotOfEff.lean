@@ -248,10 +248,8 @@ namespace PositivityTheory.ResPlug.WeightsCompactStabilizer
 
 open GlobalTheory.CompanionTheory.Hypotheses₂ GlobalTheory.CompanionTheory.Hypotheses₂.SncBlowup FunctorialResolution
 
-theorem gCentre : _root_.PositivityTheory.ResPlug.BlowupCentre.GCentre := PositivityTheory.ResPlug.BlowupCentre.gCentre
-
 theorem principalisationCharZero' (hB : GBoundary) (hE : GEnd) : PrincipalisationCharZero :=
-  principalisationCharZero hB gCentre hE
+  principalisationCharZero hB PositivityTheory.ResPlug.BlowupCentre.gCentre hE
 
 end PositivityTheory.ResPlug.WeightsCompactStabilizer
 
@@ -320,7 +318,7 @@ theorem principalisationCharZero_bot_of_eff (hc : GEff) :
           IsSncBlowupSeq g ⊥ s E' ∧ Smooth (s ≫ g) ∧
           FinalTheorems.EffCartier (I.comap s) ∧ FinalTheorems.Snc (Scheme.IdealSheafData.vanishingIdeal (I.comap s).support) ∧
           IsIso (s ∣_ I.support.compl) :=
-  principalisationCharZero_bot gCentre (gEnd_of gIso gSnc hc)
+  principalisationCharZero_bot PositivityTheory.ResPlug.BlowupCentre.gCentre (gEnd_of gIso gSnc hc)
 
 end PositivityTheory.ResPlug.WeightsCompactStabilizer
 end -- clump:auto

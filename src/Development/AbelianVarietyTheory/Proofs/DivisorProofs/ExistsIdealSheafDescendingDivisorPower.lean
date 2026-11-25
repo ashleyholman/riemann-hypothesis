@@ -1327,8 +1327,6 @@ theorem sc_evalZ_eq_of_equiv {O : Type} [CommRing O] [IsDedekindDomain O] [CharZ
   rw [← h1, ← evalR_toReal φ (pull _ _), hform, hP.homog _ hmem _ (div_nonneg hs0 hs'.le), evalR_toReal]
   field_simp
 
-alias posW_one := _root_.GlobalTheory.UPoinc.posW_one_one
-
 end GlobalTheory.UPoinc.GApprox
 
 namespace GlobalTheory.UPoinc.GApprox
@@ -1372,7 +1370,7 @@ theorem GlobalTheory.UPoinc.exists_uApproxAt : ∀ (E : Type) [Field E] [NumberF
   haveI := X₁.M.lft
   haveI : IsLocallyNoetherian X₁.M.Z := LocallyOfFiniteType.isLocallyNoetherian X₁.M.s
   have hA := approx_of_fpre (𝓞 E) H.bar (bddAct_int_and_cm.2 E H) (min Dw.p Dw.q) φ hpol d₀ hsup 0
-    !![(1 : ℤ)] posW_one (X₁.S.r * X₁.S.N) p hN _ Φ hL hF
+    !![(1 : ℤ)] GlobalTheory.UPoinc.posW_one_one (X₁.S.r * X₁.S.N) p hN _ Φ hL hF
   set d := ((!![(1 : ℤ)] : Matrix (Fin 1) (Fin 1) ℤ) 0 0).toNat * d₀ with hd
   obtain ⟨y₀, hev₀, e₀, he₀⟩ := hM t₀
   obtain ⟨f, hf1, hf2⟩ := hA y₀ e

@@ -988,7 +988,7 @@ theorem par_data (h : IsCMExt F E σ) (hJ : IsHermND σ J) (hW : IsWittFrame σ 
       cT (sigR (AF F) σ) (adMat F X) * JR (F := F) (AF F) J * (matHom _ σ J p).1 =
         L * (cT (sigR (AF F) σ) (adMat F X) * JR (F := F) (AF F) J) ∧ ∀ i j : Fin r, i < j → L i j = 0 := by
   obtain ⟨B, hB, e⟩ := hp
-  obtain ⟨B', hB', e'⟩ := inv_mem_minPar h hJ hW ⟨B, hB, e⟩
+  obtain ⟨B', hB', e'⟩ := PositivityTheory.ThKR.inv_mem_minimal_parabolic h hJ hW ⟨B, hB, e⟩
   refine ⟨B, cT (sigR (AF F) σ) B', e, hB, ?_, fun i j hij => ?_⟩
   · have h1 : (matHom _ σ J p⁻¹).1 * (matHom _ σ J p).1 = 1 := by
       rw [← Units.val_mul, ← map_mul, inv_mul_cancel, map_one, Units.val_one]
@@ -1106,7 +1106,7 @@ theorem conj_compact : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Num
   refine ⟨mem p (Or.inl hp) hpP, ?_⟩
   have e : ((a s)⁻¹ * p * a s)⁻¹ = (a s)⁻¹ * p⁻¹ * a s := by group
   rw [e]
-  exact mem p⁻¹ (Or.inr (by simpa using hp)) (inv_mem_minPar h hJ hW hpP)
+  exact mem p⁻¹ (Or.inr (by simpa using hp)) (PositivityTheory.ThKR.inv_mem_minimal_parabolic h hJ hW hpP)
 
 end GlobalTheory.CompanionTheory.SiegelConj
 

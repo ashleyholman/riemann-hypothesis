@@ -228,8 +228,6 @@ theorem coef_smul {g : GtPtF D F} {w : Frm D F k g.b} (hw : w.IsGen) (s : Fam D 
   have := coef_lin hw s 0 c χ
   rwa [add_zero, coef_zero hw, add_zero] at this
 
-alias coef_scale := _root_.GlobalTheory.UT.TorsionValue.coef_scale
-
 variable {E : Type} [Field E] [Algebra (FractionRing R) E] [Algebra E F] [IsScalarTower (FractionRing R) E F]
 
 theorem coef_ext (hG : GlobalFnsSt) {g : GtPtF D E} {w : Frm D E k g.b} (hw : w.IsGen) {g₁ : GtPtF D F}
@@ -492,7 +490,7 @@ theorem exists_point (hG : GlobalFnsSt) (hI : I.map φ ≤ I') (hF : Compat φ F
     rw [isZero_iff_eq] at o₂
     refine ⟨0, (isNsmul_iff_eq _ _ _).2 ?_, (isZero_iff_eq _).2 rfl⟩
     rw [← map_nsmul, ← o₁, o₂, map_zero]
-  · rw [coef_scale hw₁ vw', coef_pull hF hκ hg hw vw₁ hs, mul_right_comm, Units.inv_mul, _root_.one_mul]
+  · rw [GlobalTheory.UT.TorsionValue.coef_scale hw₁ vw', coef_pull hF hκ hg hw vw₁ hs, mul_right_comm, Units.inv_mul, _root_.one_mul]
   obtain ⟨wk, genk, hwk⟩ := SecValue.exists_pow k (SecValue.line_exp k) w hw
   obtain ⟨wk₁, gen₁, vk₁⟩ := FamPull.exists_lineDown hD hF hg.1 wk genk
   have p₁ : ∀ (z : Sp F) J', Good D'.toPre.P.L z J' → vS wk₁ z J' = vS w₁ z J' ^ k := fun z J' hJ' => by
@@ -511,7 +509,7 @@ theorem exists_point (hG : GlobalFnsSt) (hI : I.map φ ≤ I') (hF : Compat φ F
   have S := sumF_lin (sumF_equiv hD.xe.toEquiv (sumF_map φ hI (RingHom.id F) hF
     (H k hk wk (fun z J _ => hwk _ _ z J) genk t s c E hc))) sumF_zero (ρ⁻¹ ^ k).val
   rw [valAt_unique hV (valAt_pull h₁ h₂ ht hx he hc),
-    show coef s' _ wk' = _ from funext fun α => (coef_scale gen₁ p₂ s' α).trans
+    show coef s' _ wk' = _ from funext fun α => (GlobalTheory.UT.TorsionValue.coef_scale gen₁ p₂ s' α).trans
       (congrArg _ (coef_pull hF hκ hg genk vk₁ hs α)), mul_comm c]
   simp only [add_zero] at S
   exact S

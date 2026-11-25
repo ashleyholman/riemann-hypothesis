@@ -640,8 +640,6 @@ open IsLocalRing Polynomial
 
 namespace GlobalTheory.KeyOriginRetract
 
-alias mem_originIdeal := _root_.GlobalTheory.VertUnitsNoeth.mem_originIdeal_iff'
-
 theorem sub_coeff_zero_mem {R B : Type} [CommRing R] [CommRing B] [Algebra R B] [Algebra (Polynomial R) B]
     [IsScalarTower R (Polynomial R) B] (p : Polynomial R) :
     algebraMap (Polynomial R) B p - algebraMap R B (p.coeff 0) ∈
@@ -744,12 +742,12 @@ theorem enlarge_retract : ∀ (T O : Type) [CommRing T] [IsDomain T] [IsLocalRin
     refine ⟨fun t ht => ?_⟩
     by_contra hu
     have hm : Polynomial.C t ∈ P := by
-      rw [hP, mem_originIdeal]; simpa using hu
+      rw [hP, GlobalTheory.VertUnitsNoeth.mem_originIdeal_iff']; simpa using hu
     rw [IsScalarTower.algebraMap_apply T (Polynomial T) O, Polynomial.algebraMap_eq] at ht
     exact (mem_maximalIdeal _).1 ((hPmax _).2 hm) ht
   haveI := hTO
   have hX : algebraMap (Polynomial T) O Polynomial.X ∈ maximalIdeal O :=
-    (hPmax _).2 (by rw [hP, mem_originIdeal]; simp)
+    (hPmax _).2 (by rw [hP, GlobalTheory.VertUnitsNoeth.mem_originIdeal_iff']; simp)
   let I : Ideal O := Ideal.span {algebraMap (Polynomial T) O Polynomial.X}
   have hIm : I ≤ maximalIdeal O := (Ideal.span_singleton_le_iff_mem _).2 hX
   have hj : (jA.comp (algebraMap EA (Localization.AtPrime QA))).comp (algebraMap (Polynomial A) EA) =

@@ -40,8 +40,6 @@ variable {Y : Scheme.{0}} [IsIntegral Y] [IsLocallyNoetherian Y]
 noncomputable def multHom (z : Y) : CartierDiv Y →+ ℤ :=
   AddMonoidHom.mk' (fun D => D.mult z) (fun D E => CartierDiv.mult_add D E z)
 
-alias mult_neg' := _root_.GlobalTheory.Cartier.MultEff.mult_neg
-
 theorem mult_sub' (D E : CartierDiv Y) (z : Y) : (D - E).mult z = D.mult z - E.mult z :=
   map_sub (multHom z) D E
 
@@ -76,7 +74,7 @@ theorem GlobalTheory.Discrepancy.inMultAt_iff_regularAt_logRes : ∀ (k : Type) 
   · intro hu y hy
     rw [eu, _root_.GlobalTheory.RegCodimOne.regularAt_iff_forall_specializes Y (-F) y (fnPull s u)]
     intro z hz
-    rw [mult_neg', hF z]
+    rw [GlobalTheory.Cartier.MultEff.mult_neg, hF z]
     by_cases hc : Order.coheight z = 1
     · obtain ⟨E', hE'⟩ : ∃ E' : DivOver (s ≫ p), E'.IsAt z :=
         DivOver.exists_isAt_of_coheight_eq_one hc

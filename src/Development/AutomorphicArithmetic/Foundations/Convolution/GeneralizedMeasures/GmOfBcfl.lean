@@ -59,7 +59,7 @@ theorem locUnit_of (hU : PositivityTheory.Rg.Tf.Loc.BCFLUnit) (hS : UnitSplit) :
   intro F E _ _ _ _ _ _ σ hσ hp n hn v hu
   by_cases h : Split E v
   · exact hS F E σ hσ hp n hn v h
-  · obtain ⟨w, hw⟩ := placeUniq_holds F E hp v h
+  · obtain ⟨w, hw⟩ := UpperTheory.V.Z.Tf.Orb.placeUniq F E hp v h
     exact placeUnit_holds hU F E σ hσ v w hw (hu w) n
 
 end UpperTheory.V.Z.Tf.Orb

@@ -334,8 +334,6 @@ theorem valAt_congr {x y : Spec (CommRingCat.of B) ⟶ X} (e : x = y) (U : X.Ope
     (h' : ⊤ ≤ y ⁻¹ᵁ U) (s : Γ(X, U)) : valAt x U h s = valAt y U h' s := by
   subst e; rfl
 
-alias valAt_res := _root_.PositivityTheory.HtPt.Unc.valAt_restrict
-
 theorem valAt_mul (x : Spec (CommRingCat.of B) ⟶ X) (U : X.Opens) (h : ⊤ ≤ x ⁻¹ᵁ U) (a b : Γ(X, U)) :
     valAt x U h (a * b) = valAt x U h a * valAt x U h b := by
   simp [valAt]
@@ -450,7 +448,7 @@ theorem regularAt_of_baseChange : ∀ (R : Type) [CommRing R] [IsDomain R] (T : 
     have h₄ : ⊤ ≤ (Γ.pt t).left ⁻¹ᵁ U := top_le_of_spec_comp κ _ U h₃
     have hw' : (Γ'.pt t).left ≫ Γ'.G.hom =
         Spec.map (CommRingCat.ofHom (algebraMap R' (FractionRing R'))) := Over.w (Γ'.pt t)
-    rw [valAt_sub, valAt_mul, valAt_res _ i₁ h h₁, valAt_res _ i₂ h h₂, hs' t h₂,
+    rw [valAt_sub, valAt_mul, PositivityTheory.HtPt.Unc.valAt_restrict _ i₁ h h₁, PositivityTheory.HtPt.Unc.valAt_restrict _ i₂ h h₂, hs' t h₂,
       valAt_const _ _ (algebraMap R' (FractionRing R')) hw', ← valAt_comp _ F U h₁,
       valAt_congr hpt U h₁ h₃, valAt_spec κ _ U h₄ h₃, hs t h₄, map_mul]
     have : κ (algebraMap R _ d) = algebraMap R' _ (algebraMap R R' d) := congrArg (fun ψ => ψ d) hκ
@@ -487,9 +485,9 @@ theorem regularAt_of_baseChange : ∀ (R : Type) [CommRing R] [IsDomain R] (T : 
     simpa using hd0
   refine mul_left_cancel₀ hK ?_
   have e₁ := congrArg (valAt (Γ.pt t).left V h) hres
-  rw [valAt_res _ iU h hU, hs t hU, valAt_res _ iP h hPt, valAt_mul, valAt_const _ _ _ hw,
-    valAt_res _ j₂ hPt hWt] at e₁
-  rw [valAt_res _ (iP ≫ j₂) h hWt]
+  rw [PositivityTheory.HtPt.Unc.valAt_restrict _ iU h hU, hs t hU, PositivityTheory.HtPt.Unc.valAt_restrict _ iP h hPt, valAt_mul, valAt_const _ _ _ hw,
+    PositivityTheory.HtPt.Unc.valAt_restrict _ j₂ hPt hWt] at e₁
+  rw [PositivityTheory.HtPt.Unc.valAt_restrict _ (iP ≫ j₂) h hWt]
   exact e₁.symm
 
 end PositivityTheory.HtPt.Htat.StalkDivisibility
@@ -535,9 +533,9 @@ theorem btOrder_eq_top (hHenselian : type_of% @_root_.GlobalTheory.CompanionTheo
   haveI := Γ'.separated
   haveI := Γ'.quasiCompact
   obtain ⟨U', hU'fin, hU'cl⟩ := PositivityTheory.HtPt.Twhopf.finite_part R' Γ'.G.left Γ'.G.hom
-  have hU' := PositivityTheory.HtPt.Twhopf.finite_sub R' T Γ' U' hU'fin hU'cl
+  have hU' := GlobalTheory.CompanionTheory.Ar.BT.QFGroup.isFinOpenSub_of_closedFibre R' T Γ' U' hU'fin hU'cl
   have hFU := _root_.GlobalTheory.CompanionTheory.Ar.BT.isFinOpenSub_preimage_baseChange R T Γ R' Γ' F hF U hU
-  have hle : F ⁻¹ᵁ U ≤ U' := PositivityTheory.HtPt.Twhopf.finite_le R' _ Γ'.G.hom _ _ hFU.finite hU'cl
+  have hle : F ⁻¹ᵁ U ≤ U' := PositivityTheory.HtPt.Unc.finite_le R' _ Γ'.G.hom _ _ hFU.finite hU'cl
   have h1 : (fun h => algebraMap R R' (f h)) ∈ Γ'.btSet (F ⁻¹ᵁ U) := by
     intro s x hx
     have := hRegular R T Γ R' Γ' F hF κ hκ _ x (hf s (F x) hx)

@@ -96,7 +96,7 @@ private theorem dom_bound_lemma_3 (X : Fin n → ℝ) (h : ℝ) (hh : |h| < 1) (
   calc Real.exp (-(∑ i, |X i|)) ^ 2 * ‖y‖ ^ 2
         ≤ Real.exp (-(∑ i, |X i|)) ^ 2 * ∑ a, ∑ j, ‖y a j‖ ^ 2 := by
           gcongr
-          exact sq_norm_le_sum y
+          exact UpperTheory.Reformulated.B.Yhb3.main y
     _ = ∑ a, ∑ j, Real.exp (-(∑ i, |X i|)) ^ 2 * ‖y a j‖ ^ 2 := by
           simp only [Finset.mul_sum]
     _ ≤ ∑ a, ∑ j, ‖scal (aH X h) y a j‖ ^ 2 := by

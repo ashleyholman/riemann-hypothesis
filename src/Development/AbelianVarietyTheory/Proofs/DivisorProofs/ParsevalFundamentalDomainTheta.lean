@@ -25,12 +25,6 @@ namespace GlobalTheory.ThetaUnfold
 open GlobalTheory.WeilM
 open scoped Classical
 
-theorem continuous_infToMixed (F : Type) [Field F] [NumberField F] :
-    Continuous (InfiniteAdeleRing.ringEquiv_mixedSpace F) := by
-  first
-  | exact _root_.PositivityTheory.ThKF0.Split.continuous_toMixed
-  | (apply _root_.PositivityTheory.ThKF0.Split.continuous_toMixed <;> assumption)
-
 theorem adele_nontrivial (F : Type) [Field F] [NumberField F] : Nontrivial (AdeleRing (𝓞 F) F) :=
   inferInstanceAs (Nontrivial (InfiniteAdeleRing F × FiniteAdeleRing (𝓞 F) F))
 
@@ -41,7 +35,7 @@ theorem schA_continuous (F : Type) [Field F] [NumberField F] {κ : Type} [Fintyp
     obtain ⟨f, g, hg, rfl⟩ := h
     refine (f.continuous.comp ?_).mul (hg.1.continuous.comp ?_)
     · exact continuous_pi fun i =>
-        (continuous_infToMixed F).comp (continuous_fst.comp (continuous_apply i))
+        (PositivityTheory.ThKF0.Split.continuous_toMixed F).comp (continuous_fst.comp (continuous_apply i))
     · exact continuous_pi fun i => continuous_snd.comp (continuous_apply i)
   | zero => exact continuous_const
   | add Φ Ψ _ _ h1 h2 => exact h1.add h2

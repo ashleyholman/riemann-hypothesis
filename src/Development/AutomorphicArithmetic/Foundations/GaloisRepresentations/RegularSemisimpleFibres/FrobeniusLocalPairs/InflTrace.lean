@@ -397,7 +397,7 @@ open UpperTheory.Gal.InertialTypesAlt.L in
 theorem UpperTheory.Gal.InertialTypesAlt.L.cptCpt :
     UpperTheory.Gal.InertialTypesAlt.L.CptCpt := by
   intro k _ _ _ _ n A T hA hT hcomm
-  obtain ⟨-, -, hT2, -, hprop⟩ := UpperTheory.V.Z.Tf.Orb.gLTop_holds k n
+  obtain ⟨-, -, hT2, -, hprop⟩ := UpperTheory.V.Z.Tf.Orb.gLTop k n
   haveI := hT2
   obtain ⟨c, hc⟩ := bounded_adjoin (A : Matrix (Fin n) (Fin n) k) hA
   have hΩ := isCompact_entries (k := k) n c
@@ -594,11 +594,11 @@ theorem UpperTheory.Gal.InertialTypesAlt.L.oneCoset :
   intro G _ _ _ _ _ _ _ _ μ hμ K hKo hKc hK1 T hTc hTcomm ν hν F hF hFT q
   haveI := hμ
   haveI := hν
-  obtain ⟨hsf, hinv, hright⟩ := haarComm_holds G T hTc hTcomm ν hν
+  obtain ⟨hsf, hinv, hright⟩ := UpperTheory.V.Z.Tf.Orb.haarComm G T hTc hTcomm ν hν
   haveI := hsf
   haveI := hinv
   haveI := hright
-  obtain ⟨ρ, hρ, -⟩ := normEx_holds G ⟨K, hKo, hKc⟩ T hTc ν hν hright
+  obtain ⟨ρ, hρ, -⟩ := UpperTheory.V.Z.Tf.Orb.normEx G ⟨K, hKo, hKc⟩ T hTc ν hν hright
   set D : Set G := {g | ∃ t ∈ T, ∃ y ∈ K, g = t * q * y} with hD
   set Hs : Set T := {t : T | q⁻¹ * (t : G) * q ∈ K} with hHs
   set qK : Set G := {g | q⁻¹ * g ∈ K} with hqK
@@ -682,7 +682,7 @@ theorem UpperTheory.Gal.InertialTypesAlt.L.oneCoset :
     by_cases hg : g ∈ D
     · rw [Set.indicator_of_mem hg, Set.indicator_of_mem ((hDT h hh g).2 hg), hFT h hh]
     · rw [Set.indicator_of_notMem hg, Set.indicator_of_notMem (fun c => hg ((hDT h hh g).1 c))]
-  rw [quotIndep_holds G μ hμ T ν hsf hinv _ hFm hFinv ρ' hρ']
+  rw [UpperTheory.V.Z.Tf.Orb.quotIndep G μ hμ T ν hsf hinv _ hFm hFinv ρ' hρ']
   have hpt : ∀ g, D.indicator F g * ((ρ' g).toReal : ℂ) =
       qK.indicator (fun g => ((v.toReal : ℝ) : ℂ)⁻¹ * F g) g := by
     intro g
@@ -731,9 +731,9 @@ private lemma UpperTheory.Gal.InertialTypesAlt.L.mem_iff_mk {G : Type} [Group G]
 theorem UpperTheory.Gal.InertialTypesAlt.L.sumCoset :
     UpperTheory.Gal.InertialTypesAlt.L.SumCoset := by
   intro G _ _ _ _ _ _ _ _ μ hμ K hKo hKc hK1 T hTc hcomm ν hν F hF hFT hFC
-  obtain ⟨hsf, hinv, hrinv⟩ := haarComm_holds G T hTc hcomm ν hν
-  obtain ⟨ρ, hρ, -⟩ := normEx_holds G ⟨K, hKo, hKc⟩ T hTc ν hν hrinv
-  have hInt := quotInt_holds G μ hμ T hTc ν hν hinv F hF hFT hFC ρ hρ
+  obtain ⟨hsf, hinv, hrinv⟩ := UpperTheory.V.Z.Tf.Orb.haarComm G T hTc hcomm ν hν
+  obtain ⟨ρ, hρ, -⟩ := UpperTheory.V.Z.Tf.Orb.normEx G ⟨K, hKo, hKc⟩ T hTc ν hν hrinv
+  have hInt := UpperTheory.V.Z.Tf.Orb.quotInt_of G μ hμ T hTc ν hν hinv F hF hFT hFC ρ hρ
   obtain ⟨C, hC, hFC'⟩ := hFC
   have hFm : Measurable F := hF.measurable
   have hmk : ∀ h ∈ T, ∀ g : G, DoubleCoset.mk T K (h * g) = DoubleCoset.mk T K g :=
@@ -789,7 +789,7 @@ theorem UpperTheory.Gal.InertialTypesAlt.L.sumCoset :
         ∫ g, {g | DoubleCoset.mk T K g = q}.indicator
           (fun g => F g * ((ρ g).toReal : ℂ)) g ∂μ := by
     intro q
-    rw [quotIndep_holds G μ hμ T ν hsf hinv _ (hFm.indicator (hSo q).measurableSet) (hSinv q) ρ hρ]
+    rw [UpperTheory.V.Z.Tf.Orb.quotIndep G μ hμ T ν hsf hinv _ (hFm.indicator (hSo q).measurableSet) (hSinv q) ρ hρ]
     congr 1
     funext g
     simp [Set.indicator_apply]
@@ -810,7 +810,7 @@ theorem UpperTheory.Gal.InertialTypesAlt.L.sumCoset :
     show quotIntegral μ T ν ({g | DoubleCoset.mk T K g = q}.indicator F) = 0
     rw [h0]
     simp [quotIntegral]
-  rw [quotIndep_holds G μ hμ T ν hsf hinv F hFm hFT ρ hρ, finsum_eq_sum_of_support_subset _ hsupp,
+  rw [UpperTheory.V.Z.Tf.Orb.quotIndep G μ hμ T ν hsf hinv F hFm hFT ρ hρ, finsum_eq_sum_of_support_subset _ hsupp,
     Finset.sum_congr rfl (fun q _ => hq_eq q),
     ← integral_finsetSum _ (fun q _ => hInt.indicator (hSo q).measurableSet)]
   congr 1
@@ -981,13 +981,13 @@ private theorem kSide (k : Type) [Field k] [CharZero k] [ValuativeRel k] [Topolo
       ((μγ.real {t : Subgroup.centralizer {γ} |
         (t : GL (Fin n) k) ∈ GlobalTheory.BCT.cptPart (Subgroup.centralizer {γ})} : ℝ) : ℂ)⁻¹ *
         GlobalTheory.BCT.twOrb (MonoidHom.id _) (unitGL k) γ f := by
-  obtain ⟨hLC, hSC, hT2, -, -⟩ := gLTop_holds k n
+  obtain ⟨hLC, hSC, hT2, -, -⟩ := UpperTheory.V.Z.Tf.Orb.gLTop k n
   haveI := hLC
   haveI := hSC
   haveI := hT2
-  obtain ⟨hKo, hKc, -⟩ := unitSB_holds k n
+  obtain ⟨hKo, hKc, -⟩ := UpperTheory.V.Z.Tf.Orb.unitSB k n
   haveI : ValuativeExtension k k := ⟨by simp⟩
-  obtain ⟨hgen, hσ1, hTw, -⟩ := untwist_holds k n μk γ
+  obtain ⟨hgen, hσ1, hTw, -⟩ := UpperTheory.V.Z.Tf.Orb.untwist k n μk γ
   have hT : Subgroup.centralizer {γ} = GlobalTheory.BCT.twCent (MonoidHom.id (GL (Fin n) k)) γ := by
     ext g
     rw [Subgroup.mem_centralizer_singleton_iff]
@@ -1006,7 +1006,7 @@ private theorem kSide (k : Type) [Field k] [CharZero k] [ValuativeRel k] [Topolo
       have h := Subgroup.mem_centralizer_singleton_iff.1 ht
       show (t : Matrix (Fin n) (Fin n) k) * γ = γ * t
       rw [← Units.val_mul, ← Units.val_mul, h]
-    have h := centComm_holds k n (γ : Matrix (Fin n) (Fin n) k) a b hγ (hm a ha) (hm b hb)
+    have h := UpperTheory.V.Z.Tf.Orb.centComm k n (γ : Matrix (Fin n) (Fin n) k) a b hγ (hm a ha) (hm b hb)
     show a * b = b * a
     exact Units.ext (by rw [Units.val_mul, Units.val_mul]; exact h.eq)
   have hC := cptCpt k n γ _ hγ hTcl hcommA
@@ -1036,16 +1036,16 @@ theorem matchOfSum : MatchOfSum := by
   intro k E _ _ _ _ _ _ _ _ _ _ _ _ _ σ hgen n _ _ _ _ μE μk hμE hμk hE1 hk1 UE Uk φ f hLE hLk hHE hHk
     hmatch hsurj
   obtain ⟨hgal, hnorm, htw, -, hpair, hnormOf⟩ := dict k E σ hgen n
-  obtain ⟨hLCE, hSCE, hT2E, -, -⟩ := gLTop_holds E n
+  obtain ⟨hLCE, hSCE, hT2E, -, -⟩ := UpperTheory.V.Z.Tf.Orb.gLTop E n
   haveI := hLCE
   haveI := hSCE
   haveI := hT2E
-  obtain ⟨hLCk, hSCk, hT2k, -, -⟩ := gLTop_holds k n
+  obtain ⟨hLCk, hSCk, hT2k, -, -⟩ := UpperTheory.V.Z.Tf.Orb.gLTop k n
   haveI := hLCk
   haveI := hSCk
   haveI := hT2k
-  obtain ⟨hKo, hKc, -⟩ := unitSB_holds E n
-  obtain ⟨-, -, hcontE⟩ := extCont_holds k E
+  obtain ⟨hKo, hKc, -⟩ := UpperTheory.V.Z.Tf.Orb.unitSB E n
+  obtain ⟨-, -, hcontE⟩ := UpperTheory.V.Z.Tf.Orb.extCont k E
   have hgalg : ∀ g : GL (Fin n) E, (GlobalTheory.LBC.galAct σ n) g = (sigmaGL σ) g :=
     fun g => DFunLike.congr_fun hgal g
   have hθc : Continuous (GlobalTheory.LBC.galAct σ n) := by
@@ -1059,7 +1059,7 @@ theorem matchOfSum : MatchOfSum := by
   · intro δ γ h μδ μγ hTw hnh hδ hγh hmap
     obtain ⟨hγ, hchar, hmem⟩ := hpair δ h γ hTw hnh
     obtain ⟨hCk, -, heqk⟩ := kSide k n μk hμk hk1 Uk f hLk hHk γ hγ μγ hγh
-    obtain ⟨hTcl, hcomm⟩ := twCent_holds k E σ hgen n δ hTw
+    obtain ⟨hTcl, hcomm⟩ := UpperTheory.V.Z.Tf.Orb.twCent_of k E σ hgen n δ hTw
     have hT : PositivityTheory.Rg.Tf.Loc.twCent (sigmaGL σ) δ = GlobalTheory.BCT.twCent (GlobalTheory.LBC.galAct σ n) δ := by
       rw [hgal]
       exact htw δ
@@ -1416,8 +1416,8 @@ theorem UpperTheory.Gal.InertialTypesAlt.L.inflTrace :
   letI : MeasurableSpace (GL (Fin n) (w.1.adicCompletion E)) := borel _
   haveI : BorelSpace (GL (Fin n) (w.1.adicCompletion E)) := ⟨rfl⟩
   obtain ⟨hH, hP⟩ := @UpperTheory.V.Z.Tf.Orb.placeOfLocal_holds F E _ _ _ _ _ _ σ hσg v w hw _ _ _ _ s hgen hdeg hcm hσs n _ _ _ _ mE mF hE hF _ _
-  have hUS := UpperTheory.V.Z.Tf.Orb.unitSB_holds
-  have hPI := UpperTheory.V.Z.Tf.Orb.placeInt_holds
+  have hUS := UpperTheory.V.Z.Tf.Orb.unitSB
+  have hPI := UpperTheory.V.Z.Tf.Orb.placeInt
   have hcmp : Continuous (mapGL n (Pi.evalRingHom (fun w : PlacesOver E v => w.1.adicCompletion E) w)) :=
     Continuous.units_map _ (continuous_id.matrix_map (continuous_apply w))
   have hE1 : (mE.map (mapGL n (Pi.evalRingHom (fun w : PlacesOver E v => w.1.adicCompletion E) w)))

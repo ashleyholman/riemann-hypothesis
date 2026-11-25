@@ -1542,8 +1542,6 @@ theorem unitAt_functionFieldMap (q : Y ⟶ X) [IsDominant q] (y : Y) {f : X.func
   obtain ⟨a, ha, rfl⟩ := h
   exact ⟨q.stalkMap y a, ha.map _, (functionFieldMap_algebraMap q y a).symm⟩
 
-alias supp_nsmul_le := _root_.GlobalTheory.AmpleUpstairs.supp_nsmul_le
-
 theorem functionFieldMap_mem_sections (q : Y ⟶ X) [IsDominant q] {A : CartierDiv X}
     {f : X.functionField} (h : f ∈ A.sections) : functionFieldMap q f ∈ (pullCart q A).sections := by
   refine CartierDiv.mem_sections.2 fun y => ?_
@@ -1625,8 +1623,8 @@ theorem GlobalTheory.PairStep.kltAt_add_general_member : GlobalTheory.Published.
     module
   have hsupp : (pullCart π G' - m'' • K).supp ≤ B := by
     rw [hΘ]
-    refine (CartierDiv.supp_add_le _ _).trans (sup_le ((supp_nsmul_le _ _).trans hres.supp)
-      ((supp_nsmul_le _ _).trans fun w hw => hB w ((_root_.GlobalTheory.Discrepancy.pullCart_supp_and_eff X Y π D₀).1 w hw)))
+    refine (CartierDiv.supp_add_le _ _).trans (sup_le ((GlobalTheory.AmpleUpstairs.supp_nsmul_le _ _).trans hres.supp)
+      ((GlobalTheory.AmpleUpstairs.supp_nsmul_le _ _).trans fun w hw => hB w ((_root_.GlobalTheory.Discrepancy.pullCart_supp_and_eff X Y π D₀).1 w hw)))
   have hres' : IsLogRes p n η m'' G' π K B := { hres with supp := hsupp }
 
   obtain ⟨g'', hg''⟩ := G'.exists_isEqn y

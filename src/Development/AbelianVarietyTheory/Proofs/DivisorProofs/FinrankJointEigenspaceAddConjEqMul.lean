@@ -339,7 +339,7 @@ theorem _root_.GlobalTheory.UPel.HT.LieType.finrank_eigSp_add_conj_eq (p : ℕ) 
     have hA : ∀ x, Q (A x) = φ c *ᵥ Q x := fun x => hlin _ x
     have h1 := trace_int_eq_of_period Q (φ c) A hinj hdisc hspan hA
     have h2 := _root_.GlobalTheory.LatticeTrace.trace_lattice_eq D.F D.O D'.La (D.m * D.n) hrank c
-    have h3 := GlobalTheory.T.trace_ringOfIntegers_action_sum_embeddings_eigenspace D.F D.g φ c
+    have h3 := GlobalTheory.UPel.HT.LieType.trace_eq_sum_finrank_eigSp D.F D.g φ c
     have hconj : (starRingEnd ℂ) (φ c).trace = ∑ σ : D.F →+* ℂ, (d (cj σ) : ℂ) * σ (c : D.F) := by
 
       rw [h3, map_sum]

@@ -174,9 +174,6 @@ theorem mem_commSub_of_inv {φ : E →+* R'} {Z : Matrix n n R'} {A : Matrix n n
 
 variable (σ : E →+* E)
 
-theorem cT_add' (A B : Matrix n n E) : cT σ (A + B) = cT σ A + cT σ B := by ext i j; simp [cT]
-theorem cT_sub' (A B : Matrix n n E) : cT σ (A - B) = cT σ A - cT σ B := by ext i j; simp [cT]
-theorem cT_smul' (c : E) (A : Matrix n n E) : cT σ (c • A) = σ c • cT σ A := by ext i j; simp [cT]
 theorem det_cT' (A : Matrix n n E) : (cT σ A).det = σ A.det := by
   rw [cT, Matrix.det_transpose, RingHom.map_det]; rfl
 
@@ -192,9 +189,9 @@ theorem cayley_mem (hZ : ∀ g ∈ UJ σ J, (g : Matrix n n E) ∈ commSub φ Z)
   obtain ⟨A, rfl⟩ : ∃ A : Matrix n n E, A = 1 - Y := ⟨_, rfl⟩
   have hAB : (1 - Y) * (1 + Y) = (1 + Y) * (1 - Y) := by noncomm_ring
   have hcA : cT σ (1 - Y) * J = J * (1 + Y) := by
-    rw [cT_sub', cT_one, Matrix.sub_mul, hY, Matrix.one_mul, Matrix.mul_add, Matrix.mul_one, sub_neg_eq_add]
+    rw [GlobalTheory.CenterScalar.cT_sub, cT_one, Matrix.sub_mul, hY, Matrix.one_mul, Matrix.mul_add, Matrix.mul_one, sub_neg_eq_add]
   have hcB : cT σ (1 + Y) * J = J * (1 - Y) := by
-    rw [cT_add', cT_one, Matrix.add_mul, hY, Matrix.one_mul, Matrix.mul_sub, Matrix.mul_one, ← sub_eq_add_neg]
+    rw [GlobalTheory.CenterScalar.cT_add, cT_one, Matrix.add_mul, hY, Matrix.one_mul, Matrix.mul_sub, Matrix.mul_one, ← sub_eq_add_neg]
   have hB : IsUnit (1 + Y).det := by
     have h1 := congrArg Matrix.det hcA
     rw [Matrix.det_mul, Matrix.det_mul, det_cT'] at h1
@@ -266,7 +263,7 @@ theorem lie_mem (hZ : ∀ g ∈ UJ σ J, (g : Matrix n n E) ∈ commSub φ Z) (h
       rw [isUnit_iff_ne_zero, not_not] at this
       rw [this, mul_zero]
   have hY : cT σ ((t : E) • X) * J = -(J * ((t : E) • X)) := by
-    rw [cT_smul', map_natCast, Matrix.smul_mul, hX, Matrix.mul_smul, smul_neg]
+    rw [GlobalTheory.CenterScalar.cT_smul, map_natCast, Matrix.smul_mul, hX, Matrix.mul_smul, smul_neg]
   have h1 := cayley_mem σ J φ Z hZ hJ hY htp
   have e : X = (t : E)⁻¹ • ((t : E) • X) := by rw [smul_smul, inv_mul_cancel₀ ht0, one_smul]
   rw [e]
@@ -292,9 +289,9 @@ theorem all_mem (hσσ : ∀ x, σ (σ x) = x) {δ : E} (hδ0 : δ ≠ 0) (hδ :
   set K₁ := (2 : E)⁻¹ • (N - cT σ N) with hK₁
   set K₂ := ((2 : E)⁻¹ * δ⁻¹) • (N + cT σ N) with hK₂
   have c₁ : cT σ K₁ = -K₁ := by
-    rw [hK₁, cT_smul', h2, cT_sub', cT_cT' σ hσσ, ← smul_neg, neg_sub]
+    rw [hK₁, GlobalTheory.CenterScalar.cT_smul, h2, GlobalTheory.CenterScalar.cT_sub, cT_cT' σ hσσ, ← smul_neg, neg_sub]
   have c₂ : cT σ K₂ = -K₂ := by
-    rw [hK₂, cT_smul', cT_add', cT_cT' σ hσσ, map_mul, h2, map_inv₀, hδ, ← smul_neg, add_comm (cT σ N),
+    rw [hK₂, GlobalTheory.CenterScalar.cT_smul, GlobalTheory.CenterScalar.cT_add, cT_cT' σ hσσ, map_mul, h2, map_inv₀, hδ, ← smul_neg, add_comm (cT σ N),
       inv_neg, mul_neg, neg_smul, smul_neg]
   have hsum : N = K₁ + δ • K₂ := by
     rw [hK₁, hK₂, smul_smul, mul_comm δ, mul_assoc, inv_mul_cancel₀ hδ0, mul_one, ← smul_add]

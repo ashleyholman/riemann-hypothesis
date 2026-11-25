@@ -515,10 +515,6 @@ theorem scalC_commute (a : IdeleGroup k) (A : GL ι 𝔸[k]) :
   simp only [Units.val_mul, scalC, Units.coe_map, MonoidHom.coe_coe, RingHom.toMonoidHom_eq_coe]
   exact (Matrix.scalar_commute _ (fun r ↦ Commute.all _ r) _)
 
-theorem thetaC_ltr (A h : GL ι 𝔸[k]) (F : (ι → 𝔸[k]) → ℂ) :
-    thetaC (ltr A F) h = thetaC F (A * h) := by
-  simp only [thetaC, ltr, Units.val_mul, Matrix.mulVec_mulVec]
-
 theorem ltr_apply_zero (A : GL ι 𝔸[k]) (F : (ι → 𝔸[k]) → ℂ) : ltr A F 0 = F 0 := by
   simp [ltr]
 
@@ -545,7 +541,7 @@ theorem integrableOn_thetaCIntegrand {F : (ι → 𝔸[k]) → ℂ} (hF : F ∈ 
   have h1 : ContinuousOn (fun u : normOneSubgroup k ↦
       thetaC (ltr A F) (scalC (s * (u : IdeleGroup k))))
       (closure (normOneFundamentalDomain k)) := by
-    simp only [thetaC_ltr]
+    simp only [GlobalTheory.CompanionTheory.EpsteinThetaC.thetaC_ltr]
     exact (continuousOn_thetaC hF (hE.image hφ)).comp hφ.continuousOn (Set.mapsTo_image _ _)
   exact ((h1.mul (continuous_char ω).continuousOn).integrableOn_compact hE).mono_set subset_closure
 
@@ -582,7 +578,7 @@ theorem exists_norm_thetaCInt_sub_le (w : InfinitePlace k) {Ψ : (ι → 𝔸[k]
   have hc : A * (scalC (moduleSection w t * (u : IdeleGroup k)) : GL ι 𝔸[k]) =
       scalC (moduleSection w t) * (A * scalC (u : IdeleGroup k)) := by
     rw [GlobalTheory.CompanionTheory.EpsteinUnfold.Hd.scalC_mul, ← mul_assoc, ← mul_assoc, scalC_commute]
-  rw [norm_mul, Circle.norm_coe, mul_one, thetaC_ltr, ltr_apply_zero, hc]
+  rw [norm_mul, Circle.norm_coe, mul_one, GlobalTheory.CompanionTheory.EpsteinThetaC.thetaC_ltr, ltr_apply_zero, hc]
   exact hM _ ⟨(u, A), ⟨subset_closure hu, hA⟩, rfl⟩ t ht
 
 end GlobalTheory.CompanionTheory.AdelicThetaSeries

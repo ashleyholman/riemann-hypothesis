@@ -1051,7 +1051,6 @@ open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalC
 open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 open GlobalTheory.UPel.Sm GlobalTheory.Cris GlobalTheory.DeRham
 
-alias _root_.GlobalTheory.T.harrisTaylor_exists_lift_squareZero_artinian := _root_.GlobalTheory.UPel.HT.exists_sqZero_lift
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HarrisTaylorExistsLiftSquareZeroArtinianStatement =====
@@ -1073,7 +1072,7 @@ theorem GlobalTheory.UPel.HT.obj_lift_sqZero : ∀ (p : ℕ) [Fact p.Prime] (D :
   rw [hc]
   intro o
   first
-  | exact GlobalTheory.T.harrisTaylor_exists_lift_squareZero_artinian p D R b N hN A₁ A₀ π hπ hk2 (spMap β) o
+  | exact GlobalTheory.UPel.HT.exists_sqZero_lift p D R b N hN A₁ A₀ π hπ hk2 (spMap β) o
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.HarrisTaylorFormallySmoothSquareZeroLift =====
@@ -1636,7 +1635,7 @@ theorem RepFam.smoothOfRelativeDimension : ∀ (p : ℕ) [Fact p.Prime] (D : Glo
     refine ⟨x, ?_, hxs⟩
     exact (F.rep (Sp C₀) (spMap (π.comp β)) o₀).unique
       ⟨by rw [Category.assoc, hxs, hcomp], ⟨mc⟩⟩ ⟨hs₀, ⟨m₀⟩⟩
-  exact _root_.GlobalTheory.SmoothDimTangent.smoothOfRelativeDimension_of_universal_tangent R F.X F.s _ hsm (GlobalTheory.T.exists_universal_tangent_harrisTaylor_representingFamily p D R b N hN hNp F hq hsm)
+  exact _root_.GlobalTheory.SmoothDimTangent.smoothOfRelativeDimension_of_universal_tangent R F.X F.s _ hsm (GlobalTheory.UPel.HT.RepTangent.exists_univ_tangent p D R b N hN hNp F hq hsm)
 
 end GlobalTheory.UPel.HT
 end -- clump:auto

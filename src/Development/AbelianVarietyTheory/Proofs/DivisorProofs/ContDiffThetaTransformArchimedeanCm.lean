@@ -40,7 +40,7 @@ theorem psiInf_eq_exp_linearF {F E : Type} [Field F] [NumberField F] [Field E] [
   have hg : Continuous g := by
     show Continuous fun m => c * ∑ ρ, θ ρ (e.symm m ⊗ₜ[F] (1 : E))
     refine continuous_const.mul (continuous_finsetSum _ fun ρ _ => ?_)
-    exact (hθ ρ).2.comp (GlobalTheory.PsiInfLinear.continuous_ringEquiv_mixedSpace_symm F)
+    exact (hθ ρ).2.comp (PositivityTheory.ThKF0.Split.continuous_ofMixed F)
   refine ⟨AddMonoidHom.toRealLinearMap g hg, fun x => ?_⟩
   rw [hform x]
   congr 1
@@ -91,7 +91,7 @@ theorem darboux_real_coordsF {F E : Type} [Field F] [NumberField F] [Field E] [N
           exact map_add (InfiniteAdeleRing.ringEquiv_mixedSpace F) _ _ }
     have hf : Continuous f := by
       refine continuous_pi fun i => ?_
-      exact (GlobalTheory.RealDirCoord.continuous_ringEquiv_mixed F).comp
+      exact (PositivityTheory.ThKF0.Split.continuous_toMixed F).comp
         (continuous_fst.comp ((continuous_apply i).comp (hp.comp (he.comp hL))))
     exact ⟨f.toRealLinearMap hf, fun t i => rfl⟩
   obtain ⟨P, hP⟩ := hc Prod.fst continuous_fst (fun _ _ => rfl)

@@ -234,7 +234,7 @@ private theorem mvx_of_se {R : Type} [CommRing R] {P A B E I : Cx R} {p : P ⟶ 
 
 private theorem mvx (R : Type) [CommRing R] (F : Shv R) {U V E : Spc} (f : U ⟶ E) (g : V ⟶ E) (h : Cover2 R f g) :
     MVX (res R F) ((chains R).map (pullback.fst f g)) ((chains R).map (pullback.snd f g)) ((chains R).map f) ((chains R).map g) := by
-  obtain ⟨w, hS⟩ := GlobalTheory.T.etaleSpaceChains_mayerVietoris_shortExact R f g h
+  obtain ⟨w, hS⟩ := GlobalTheory.EtC.mv_shortExact R f g h
   exact mvx_of_se (by rw [← Functor.map_comp, ← Functor.map_comp, pullback.condition]) w hS (_root_.GlobalTheory.EtC.ResBasic.res_basic R F).2.1
 
 end UpperTheory.MVd

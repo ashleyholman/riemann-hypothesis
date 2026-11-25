@@ -68,8 +68,6 @@ private theorem rp_compact {ι : Type*} {R : ι → Type*} [∀ i, TopologicalSp
   · rintro ⟨y, hy, rfl⟩ i
     exact hy i trivial
 
-private alias isLC_prod := _root_.UpperTheory.Reformulated.B.Qf48.isLC_prod
-
 private theorem continuous_mapGL' {m : ℕ} {R S : Type*} [CommRing R] [CommRing S] [TopologicalSpace R]
     [TopologicalSpace S] (f : R →+* S) (hf : Continuous f) : Continuous (mapGL m f) :=
   Continuous.units_map _ (Continuous.matrix_map continuous_id hf)
@@ -233,7 +231,7 @@ theorem UpperTheory.ConvolutionTheory.GM.avgE :
     fun x => e_formula S φ hoff x
   have hlc : IsLocallyConstant e₀ := by
     have h1 : IsLocallyConstant fun x : AdelicGLn.FiniteAdelicGL E n => ∏ v ∈ S, φ v (pv v x) :=
-      isLC_prod S (fun v x => φ v (pv v x)) fun v hv => (hS v hv).1.comp_continuous (continuous_pv v)
+      UpperTheory.Reformulated.B.Qf48.isLC_prod S (fun v x => φ v (pv v x)) fun v hv => (hS v hv).1.comp_continuous (continuous_pv v)
     have h2 : IsLocallyConstant ((U (E := E) (n := n) S).indicator (1 : AdelicGLn.FiniteAdelicGL E n → ℂ)) := by
       rw [← LocallyConstant.coe_charFn ℂ (isClopen_U S)]
       exact LocallyConstant.isLocallyConstant _

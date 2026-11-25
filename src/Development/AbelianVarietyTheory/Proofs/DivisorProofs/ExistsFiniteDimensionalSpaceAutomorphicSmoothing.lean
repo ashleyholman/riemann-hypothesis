@@ -275,8 +275,6 @@ theorem killed_mem {z : Module.End ℂ (Sm E a)} (hz : z ∈ Zalg E a) (h0 : z �
 
 variable (ν : Measure (Lie E a)) [ν.IsAddHaarMeasure] {α : Lie E a → ℂ}
 
-alias smoothing_add := _root_.GlobalTheory.CentreSmooth.smoothing_add
-
 theorem smoothing_smul (c : ℂ) (φ : Sm E a) :
     smoothing ν α (c • φ).1 = c • smoothing ν α φ.1 := by
   funext x
@@ -286,7 +284,7 @@ theorem smoothing_smul (c : ℂ) (φ : Sm E a) :
 
 def smoothMap (hα : IsTest (invSet E a) α) (W : Submodule ℂ (Sm E a)) : W →ₗ[ℂ] Sm E a where
   toFun w := ⟨smoothing ν α w.1.1, _root_.GlobalTheory.AutGrowth.smoothing_mem_Sm E a ν α hα w.1.1 w.1.2⟩
-  map_add' w w' := Subtype.ext (smoothing_add ν hα w.1 w'.1)
+  map_add' w w' := Subtype.ext (GlobalTheory.CentreSmooth.smoothing_add ν hα w.1 w'.1)
   map_smul' c w := Subtype.ext (smoothing_smul ν c w.1)
 
 theorem smoothMap_mem (hα : IsTest (invSet E a) α) (hK : KInv α) (hφ : IsAutForm φ) :

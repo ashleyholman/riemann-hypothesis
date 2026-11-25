@@ -155,12 +155,6 @@ theorem one_le_gap_of_strictAnti {N : ℕ} {v : Fin N → ℤ} (hv : StrictAnti 
   have := hv (show (⟨k, by omega⟩ : Fin N) < ⟨k + 1, hk⟩ from Fin.mk_lt_mk.2 (Nat.lt_succ_self k))
   omega
 
-theorem gap_add {N : ℕ} (v w : Fin N → ℤ) (k : ℕ) : gap (v + w) k = gap v k + gap w k := by
-  unfold gap
-  split_ifs
-  · simp only [Pi.add_apply]; ring
-  · simp
-
 theorem antitone_of_gap_nonneg {N : ℕ} {v : Fin N → ℤ} (h : ∀ k, k + 1 < N → 0 ≤ gap v k) : Antitone v := by
   have key : ∀ d (a b : Fin N), (b : ℕ) = a + d → v b ≤ v a := by
     intro d
@@ -299,7 +293,7 @@ theorem bergman_frames_of_short_range_alt : _root_.GlobalTheory.CovTop.Published
   have hgap2 : ∀ τ k, k + 1 < (dat p i).p + (dat p i).q → 1 ≤ gap (P.u₂ τ) k := by
     intro τ k hk
     have e : P.u₂ τ = P.u₁ τ + P.rem τ := rfl
-    rw [e, gap_add]
+    rw [e, GlobalTheory.HSApp.gap_add]
     have := one_le_gap_of_strictAnti (hanti τ).1 hk
     have := (P.gap_rem τ k).1
     omega

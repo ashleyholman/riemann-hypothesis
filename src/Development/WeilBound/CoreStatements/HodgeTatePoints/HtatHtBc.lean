@@ -20,8 +20,6 @@ theorem valAt_comp_top {B : Type} [CommRing B] {X Y : Scheme.{0}} (x : Spec (Com
   unfold valAt
   congr 1
 
-alias valAt_spec_map := _root_.PositivityTheory.HtPt.Htat.QuotientDualMap.valAt_spec_comp
-
 abbrev qmap {R R' : Type} [CommRing R] [CommRing R'] [Algebra R R'] (N : ℕ) :
     R ⧸ Ideal.span {(N : R)} →+* R' ⧸ Ideal.span {(N : R')} :=
   Ideal.quotientMap (Ideal.span {(N : R')}) (algebraMap R R')
@@ -45,9 +43,9 @@ theorem PositivityTheory.HtPt.Htat.ht_bc : ∀ (R : Type) [CommRing R] [IsDomain
     intro t
     have hb : valAt (σ t) ⊤ le_top s = ib (χ t) := by
       apply hj
-      rw [← PositivityTheory.HtPt.Htat.HTBaseChange.valAt_spec_map, hσj, hs t, ← RingHom.comp_apply, hji]
+      rw [← PositivityTheory.HtPt.Htat.QuotientDualMap.valAt_spec_comp, hσj, hs t, ← RingHom.comp_apply, hji]
     show valAt (Γ'.pt t).left ⊤ le_top (F.appTop.hom s) = _
-    rw [← PositivityTheory.HtPt.Htat.HTBaseChange.valAt_comp_top, ← hσj', PositivityTheory.HtPt.Htat.HTBaseChange.valAt_spec_map, hb, ← RingHom.comp_apply, hj'i]
+    rw [← PositivityTheory.HtPt.Htat.HTBaseChange.valAt_comp_top, ← hσj', PositivityTheory.HtPt.Htat.QuotientDualMap.valAt_spec_comp, hb, ← RingHom.comp_apply, hj'i]
     simp
   obtain ⟨l', hl'⟩ := _root_.PositivityTheory.HtPt.Htat.QuotientDualMap.char_on_tangent_linear R' T Γ' S G (Spec.map (CommRingCat.ofHom (algebraMap R R')) ≫ x) N (F ≫ i) hi'
     L' M' ((Units.map (algebraMap R R' : R →* R')).comp χ) (F.appTop.hom s) hs'
@@ -74,7 +72,7 @@ theorem PositivityTheory.HtPt.Htat.ht_bc : ∀ (R : Type) [CommRing R] [IsDomain
       ext a
       all_goals simp [GlobalTheory.CompanionTheory.Ar.dualMap, PositivityTheory.HtPt.Htat.HTBaseChange.qmap, Ideal.quotientMap_mk, TrivSqZeroExt.algebraMap_eq_inl]
     have h4 := hl' (β e) v'' ⟨h2, h3⟩
-    rw [← PositivityTheory.HtPt.Htat.HTBaseChange.valAt_comp_top, h1, PositivityTheory.HtPt.Htat.HTBaseChange.valAt_spec_map, hv3] at h4
+    rw [← PositivityTheory.HtPt.Htat.HTBaseChange.valAt_comp_top, h1, PositivityTheory.HtPt.Htat.QuotientDualMap.valAt_spec_comp, hv3] at h4
     have h5 := congrArg TrivSqZeroExt.snd h4
     simp only [GlobalTheory.CompanionTheory.Ar.dualMap, PositivityTheory.HtPt.Htat.HTBaseChange.qmap, RingHom.coe_mk, MonoidHom.coe_mk, OneHom.coe_mk, TrivSqZeroExt.snd_add,
       TrivSqZeroExt.snd_inl, TrivSqZeroExt.snd_inr, TrivSqZeroExt.fst_add, TrivSqZeroExt.fst_inl,

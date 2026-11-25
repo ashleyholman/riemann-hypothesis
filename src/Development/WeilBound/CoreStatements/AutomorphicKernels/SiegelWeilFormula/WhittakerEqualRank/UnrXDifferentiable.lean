@@ -41,10 +41,6 @@ theorem one_sub_eSp_ne (v : HeightOneSpectrum (𝓞 F)) :
   have : (1 : ℝ) / Ideal.absNorm v.asIdeal < 1 := by rw [div_lt_one (by linarith)]; exact hq
   linarith
 
-theorem hasProd_split' {α : Type} (f : α → ℂ) (S : Finset α) (D : ℂ)
-    (h : HasProd (fun v : {v // v ∉ S} => f v) D) : HasProd f ((∏ v ∈ S, f v) * D) :=
-  hasProd_split f S D h
-
 theorem fix_point (Z H : ℂ → ℂ) (j : ℂ) (hZ : MeromorphicOn Z Set.univ) (hH : AnalyticAt ℂ H j)
     (he : ∀ᶠ s in 𝓝[≠] j, H s = Z s) :
     MeromorphicOn (Function.update Z j (H j)) Set.univ ∧ AnalyticAt ℂ (Function.update Z j (H j)) j ∧

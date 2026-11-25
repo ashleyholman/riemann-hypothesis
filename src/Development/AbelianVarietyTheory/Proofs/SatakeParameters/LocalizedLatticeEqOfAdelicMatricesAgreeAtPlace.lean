@@ -175,7 +175,7 @@ theorem GlobalTheory.AwayScale.main : ∀ {F E : Type} [Field F] [NumberField F]
         ((k : Matrix (Fin N) (Fin N) (E ⊗[F] FiniteAdeleRing (𝓞 F) F)) *ᵥ z) ∈ Formalism.L2.Herm.hatL (F := F) Lb := by
   intro F E _ _ _ _ _ N Lb hfg hsp v k hk
   classical
-  obtain ⟨n, hn0, hn1, hn2⟩ := GlobalTheory.LatAdelicBasis.exists_level Lb hfg hsp
+  obtain ⟨n, hn0, hn1, hn2⟩ := GlobalTheory.CoordinateBasisBounds.main Lb hfg hsp
   let ι := Formalism.UG.inclE (F := F) (E := E) (FiniteAdeleRing (𝓞 F) F)
   let K : Matrix (Fin N) (Fin N) (E ⊗[F] FiniteAdeleRing (𝓞 F) F) := (k : Matrix _ _ _)
   let m : Fin N × Fin N → E ⊗[F] FiniteAdeleRing (𝓞 F) F := fun p => (K - 1) p.1 p.2

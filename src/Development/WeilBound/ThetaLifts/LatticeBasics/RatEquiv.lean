@@ -53,18 +53,13 @@ theorem actB_mul {α : Type} {J : Matrix β β A} (g h : UG c J) (w : Matrix α 
 
 end Emb
 
-theorem det_ne_of_sig {n r s : ℕ} {M : Matrix (Fin n) (Fin n) ℂ} (h : HasSig M r s) : M.det ≠ 0 := by
-  first
-  | exact _root_.PositivityTheory.ThKG.Tow.Pln.det_ne_zero_of_hasSig
-  | (apply _root_.PositivityTheory.ThKG.Tow.Pln.det_ne_zero_of_hasSig <;> assumption)
-
 theorem herm_det {B : Base F E} {n r s : ℕ} {X : Spc F E n} (h : X.IsHerm σ B r s) : X.J.det ≠ 0 := fun h0 => by
   obtain ⟨w⟩ := (inferInstance : Nonempty (InfinitePlace F))
-  exact det_ne_of_sig (h.sig w) (by rw [← RingHom.mapMatrix_apply, ← RingHom.map_det, h0, map_zero])
+  exact PositivityTheory.ThKG.Tow.Pln.det_ne_zero_of_hasSig (h.sig w) (by rw [← RingHom.mapMatrix_apply, ← RingHom.map_det, h0, map_zero])
 
 theorem skew_det {B : Base F E} {n r s : ℕ} {X : Spc F E n} (h : X.IsSkew σ B r s) : X.J.det ≠ 0 := fun h0 => by
   obtain ⟨w⟩ := (inferInstance : Nonempty (InfinitePlace F))
-  exact det_ne_of_sig (h.sig w) (by rw [Matrix.det_smul, ← RingHom.mapMatrix_apply, ← RingHom.map_det, h0, map_zero, mul_zero])
+  exact PositivityTheory.ThKG.Tow.Pln.det_ne_zero_of_hasSig (h.sig w) (by rw [Matrix.det_smul, ← RingHom.mapMatrix_apply, ← RingHom.map_det, h0, map_zero, mul_zero])
 
 theorem modu_det {n : ℕ} {J : Matrix (Fin n) (Fin n) E} (hJ : J.det ≠ 0) (f : (AF F)ˣ →* ℝ≥0) (g : UA σ J) :
     f (Units.map (Algebra.norm (AF F) : AE F E →* AF F) (Matrix.GeneralLinearGroup.det g.1)) = 1 := by

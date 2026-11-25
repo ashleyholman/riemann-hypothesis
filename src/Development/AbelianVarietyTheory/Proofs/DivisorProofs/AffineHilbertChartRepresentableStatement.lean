@@ -732,10 +732,10 @@ theorem _root_.GlobalTheory.T.ker_affineHilbertTensor_pullback_eq_map :
     ((xI A B C J).comap (bc A B f h)) ⟨W, hW⟩
   rw [ker_kappa_eq]
   erw [hk]
-  rw [GlobalTheory.T.idealSheaf_comap_ideal_affineOpen_of_isAffine,
-    GlobalTheory.T.affineHilbertIdealSheafOfQuotient_ideal_top, Ideal.map_map, hTensor,
+  rw [GlobalTheory.IdealSheafData.ideal_comap_affineOpen_of_isAffine,
+    GlobalTheory.HilbAff.xI_ideal_top, Ideal.map_map, hTensor,
     ← Ideal.map_map, Ideal.comap_map_of_bijective _
-      (GlobalTheory.T.sectionTensorPullbackRingHom_bijective A B _ U)]
+      (GlobalTheory.HilbAff.theta_bijective A B _ U)]
   rfl
 end -- clump:auto
 end -- clump:auto

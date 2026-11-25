@@ -181,8 +181,6 @@ theorem isProjPrime (hE : Emb p s) (z : Z) : IsProjPrime (ptIdeal p s z) := by
   rw [h.ptIdeal_eq hE.isLB hk]
   exact isProjPrime_pr (h.one hE.isLB) _
 
-private alias linForm_isHomogeneous_one_minimal_prime_dimensions := _root_.ChowFormHeightComparison₂.CF.A.isHomog_linForm
-
 theorem Ch.germ_comb (h : Ch p s k t) {u : Fin m → R} {su : B.Sec} (hu : IsComb p s u su) {z : Z}
     (hz : z ∈ nonzeroLocus (s k)) {i : B.ι} (hi : z ∈ B.U i) :
     (Z.presheaf.germ _ z hi).hom (su.f i) =
@@ -193,7 +191,7 @@ theorem Ch.germ_comb (h : Ch p s k t) {u : Fin m → R} {su : B.Sec} (hu : IsCom
     rw [hu i]
 
     simp [GroundTheory.Heights₂.Heights.linForm, map_sum]
-  rw [heq, h.germ_eval hz hi (linForm_isHomogeneous_one_minimal_prime_dimensions u), pow_one]
+  rw [heq, h.germ_eval hz hi (ChowFormHeightComparison₂.CF.A.isHomog_linForm u), pow_one]
 
 theorem mem_iff (hE : Emb p s) {u : Fin m → R} {su : B.Sec} (hu : IsComb p s u su) (z : Z) :
     z ∈ nonzeroLocus su ↔ GroundTheory.Heights₂.Heights.linForm u ∉ ptIdeal p s z := by
@@ -325,7 +323,7 @@ theorem stDiv : StDiv := by
       IsLocallyNoetherian.component_noetherian ⟨_, h.aff⟩
     have hf0 : eval₂Hom (algX p (nonzeroLocus (s k))) t (GroundTheory.Heights₂.Heights.linForm u) ≠ 0 := by
       have hnm := (P.mem_iff hE hsu (genericPoint Z)).mp hu
-      rw [h.ptIdeal_eq hB hη, qOf_generic, ChowFormHeightComparison₂.CF.A.mem_pr_homog (linForm_isHomogeneous_one_minimal_prime_dimensions u)] at hnm
+      rw [h.ptIdeal_eq hB hη, qOf_generic, ChowFormHeightComparison₂.CF.A.mem_pr_homog (ChowFormHeightComparison₂.CF.A.isHomog_linForm u)] at hnm
       intro h0
       exact hnm (by rw [Ideal.mem_bot]; exact h0)
     rw [h.ptIdeal_eq hB hz, h.ptIdeal_eq hB hη, qOf_generic]

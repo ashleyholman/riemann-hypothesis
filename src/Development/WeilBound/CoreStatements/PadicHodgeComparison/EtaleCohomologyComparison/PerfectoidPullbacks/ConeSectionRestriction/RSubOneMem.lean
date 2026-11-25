@@ -83,10 +83,6 @@ theorem plogK_congr {B : Type} [CommRing B] {J : Ideal B} (δ : DividedPowers J)
   rw [hs, Ideal.mem_bot] at hm
   rw [hm, mul_zero]
 
-theorem plogK_mem {B : Type} [CommRing B] {J : Ideal B} (δ : DividedPowers J) (s : ℕ) {x : B} (hx : x ∈ J) :
-    plogK δ s x ∈ J :=
-  Ideal.sum_mem _ fun k _ => Ideal.mul_mem_left _ _ (δ.dpow_mem (Nat.succ_ne_zero k) hx)
-
 section K
 variable {K : Type} [Field K] [CharZero K] {X : Scheme.{0}} {q : X ⟶ Spec (CommRingCat.of K)}
 
@@ -102,9 +98,6 @@ theorem zK_precomp {C C' : Type 1} [Category.{0} C] [Category.{0} C'] {g : C ⥤
   rfl
 
 end K
-
-theorem lift_exists {K : Type} [CommRing K] {X : Scheme.{0}} (q : X ⟶ Spec (CommRingCat.of K)) (D : E.LineData X)
-    (s : ℕ) : Nonempty (CLiftK (KS q s (𝒱D D)).ι D) := _root_.GlobalTheory.CompanionTheory.ConeLiftEx.nonempty_cLiftK q D s
 
 theorem sSup_𝒱D {R : Type} [CommRing R] {X : Scheme.{0}} (D : E.LineData X) (N : ℕ)
     (i : X ⟶ ReciprocityTheory.ChartRestriction.G.Geo.Tor.PSpace R N) (h : IsTautologicalLineAt D N i) : sSup (𝒱D D) = ⊤ := _root_.GlobalTheory.CompanionTheory.ConeCover.main D N i h

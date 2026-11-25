@@ -58,13 +58,6 @@ theorem Hf_zero_left (τ : X.Ψ) (w : Fin r → ℂ) : X.Hf x τ 0 w = 0 := by
   have := Hf_smul_left X x τ 0 0 w
   rwa [zero_smul, zero_mul] at this
 
-theorem Hf_conj {x : Frame X.Ψ r} (hx : x ∈ X.dom) (τ : X.Ψ) (u w : Fin r → ℂ) :
-    starRingEnd ℂ (X.Hf x τ u w) = X.Hf x τ w u := by
-  have h1 := X.hermC_ppos_left hx τ u w
-  have h2 := X.hermC_ppos_left hx τ w u
-  rw [Data.Hf_eq_two_ppos, Data.Hf_eq_two_ppos, h1, h2, map_sub, map_mul,
-    hermC_conj τ.1 X.Gm_herm, hermC_conj τ.1 X.Gm_herm, map_ofNat]
-
 theorem re_Hf_self_nonneg {x : Frame X.Ψ r} (hx : x ∈ X.dom) (τ : X.Ψ) (v : Fin r → ℂ) :
     0 ≤ (X.Hf x τ v v).re := by
   by_cases h : v = 0
@@ -77,7 +70,7 @@ def majCore {x : Frame X.Ψ r} (hx : x ∈ X.dom) : InnerProductSpace.Core ℝ (
   conj_inner_symm u w := by
     simp only [conj_trivial, majIp]
     refine Finset.sum_congr rfl fun τ _ => ?_
-    rw [← Hf_conj X hx τ (u τ) (w τ), Complex.conj_re]
+    rw [← ReciprocityTheory.ChartRestriction.G.FD.MajorantConjugateTransfer.Hf_conj X hx τ (u τ) (w τ), Complex.conj_re]
   re_inner_nonneg u := by
     simp only [RCLike.re_to_real, majIp]
     exact Finset.sum_nonneg fun τ _ => re_Hf_self_nonneg X hx τ (u τ)

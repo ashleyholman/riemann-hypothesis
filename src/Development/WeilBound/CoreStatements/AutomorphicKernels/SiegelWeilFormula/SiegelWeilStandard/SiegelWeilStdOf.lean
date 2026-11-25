@@ -274,7 +274,7 @@ theorem lam_tendsto (S : Finset (HeightOneSpectrum (𝓞 F))) (Z H : ℂ → ℂ
   refine (hfin.mul hH1).congr' ?_
   filter_upwards [self_mem_nhdsWithin, hofR.eventually he] with s hs hs'
   have hs1 : 1 < ((s : ℂ)).re := by simpa using hs
-  rw [((hasProd_split' (fun v => 1 - eSp E v * (Ideal.absNorm v.asIdeal : ℂ) ^ (-(s : ℂ))) S _
+  rw [((PositivityTheory.SiegelWeilFormula.Gen.WL.hasProd_split' (fun v => 1 - eSp E v * (Ideal.absNorm v.asIdeal : ℂ) ^ (-(s : ℂ))) S _
     (hp s hs1)).tprod_eq), hs']
 
 end PositivityTheory.SiegelWeilFormula.Gen.WQ
@@ -515,7 +515,7 @@ theorem whitGenEqOf : WhitGenEqOf := by
         (1 - eSp E v.1 / (Ideal.absNorm v.1.asIdeal : ℂ))) P0 := by
       convert hP0 using 2 with v
       rw [hgv v.1 v.2]
-    have hp := hasProd_split' (fun v => gv v (hermOf (Fv F v) σ T hT) /
+    have hp := PositivityTheory.SiegelWeilFormula.Gen.WL.hasProd_split' (fun v => gv v (hermOf (Fv F v) σ T hT) /
         (1 - eSp E v / (Ideal.absNorm v.asIdeal : ℂ))) S P0 hP0'
     rw [hmean lam0 hlam, hp.tprod_eq]
     show Wi _ * ((∏ v ∈ S, Wv v _) * K _) = _
@@ -546,7 +546,7 @@ theorem whitGenEqOf : WhitGenEqOf := by
       · exact (hPv v hv z ztu).1
     have hF := hFac F E σ M M d J T bs ψ ι θ l ε fr g P lam L₁ L₂ Φ Φf Φv μ ν hD μi νi μv νv hμi hνi hμv hνv z
       (ht z zt) (hti z zti).1 hint
-    have hp := hasProd_split' (fun v => ∫ b, whI (Fv F v) σ J (psiV F ψ v) (μv v) (Φv v) (nu2 (lam v) (L₁ v) (L₂ v))
+    have hp := PositivityTheory.SiegelWeilFormula.Gen.WL.hasProd_split' (fun v => ∫ b, whI (Fv F v) σ J (psiV F ψ v) (μv v) (Φv v) (nu2 (lam v) (L₁ v) (L₂ v))
         (T.map (inclR (Fv F v))) z b ∂(νv v)) S (K z) (by
       convert hKp z z0 using 2 with v
       exact (hPv v.1 v.2 z ztu).2)

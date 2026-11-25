@@ -703,7 +703,7 @@ theorem gUnif_of : ModelEx → GenCmp → GenPts → BaseC → GFine → GUnif :
   obtain ⟨j, hjo, hjc, hjs, hjG⟩ := hC p D ℂ b ℂ (RingHom.id ℂ) gb hbρ hbt N hN hNp M X
   have hpts := hP p D ℂ b (RingHom.id ℂ) gb hbρ hbt N hN hNp M X j hjo hjc hjs hjG
   obtain ⟨h, hL, -⟩ := model_uniformised p D ℂ b N (RingHom.id ℂ) ρ M hN hNp hbT
-  have hfine := T.complexPoints_classify_markedPeriods p D ℂ b N (RingHom.id ℂ) ρ M h hL (by omega) hNp hbT
+  have hfine := GlobalTheory.UPel.HT.Model.fineAt_univ p D ℂ b N (RingHom.id ℂ) ρ M h hL (by omega) hNp hbT
   have hid : spMap (RingHom.id ℂ) = 𝟙 _ := by
     simp [spMap]
   have hsq : (j ≫ pullback.fst M.s (spMap (RingHom.id ℂ))) ≫ M.s = X.s := by

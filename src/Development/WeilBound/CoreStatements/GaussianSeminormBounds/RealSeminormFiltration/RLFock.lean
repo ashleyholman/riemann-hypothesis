@@ -634,10 +634,6 @@ theorem piInf_cA {σ : E →ₐ[F] E} (h : IsCMExt F E σ) {w : InfinitePlace F}
     congr 1
     exact (Complex.conj_eq_iff_im.2 (im_extension h.1 w _)).symm
 
-theorem eq_zero_of_piInf {σ : E →ₐ[F] E} (h : IsCMExt F E σ) (τ : ∀ w : InfinitePlace F, EmbOver E w) (x : AE F E)
-    (hx : At (evI F) x) (hinf : ∀ w, piInf (τ w) x = 0) : x = 0 := by
-  apply PositivityTheory.RL.eq_zero_of_piInf <;> assumption
-
 def ofInf (c : ∀ w : InfinitePlace F, w.Completion) : AF F := ((c : Ainf F), (0 : Af F))
 
 theorem continuous_ofInf : Continuous (ofInf (F := F)) := continuous_id.prodMk continuous_const
@@ -649,10 +645,6 @@ theorem mul_ofInf (u : AF F) (hu : evI F u = 0) (c : ∀ w : InfinitePlace F, w.
     rw [h1, zero_mul]
   · change u.2 * 0 = 0
     rw [mul_zero]
-
-theorem exists_section {σ : E →ₐ[F] E} (h : IsCMExt F E σ) (τ : ∀ w : InfinitePlace F, EmbOver E w) :
-    ∃ s : (InfinitePlace F → ℂ) → AE F E, Continuous s ∧ ∀ z, At (evI F) (s z) ∧ ∀ w, piInf (τ w) (s z) = z w := by
-  apply PositivityTheory.RL.exists_section <;> assumption
 
 end Adele
 
@@ -843,7 +835,7 @@ theorem exists_lift (h : IsCMExt F E σ) (τ : ∀ w : InfinitePlace F, EmbOver 
     ∃ U : (InfinitePlace F × Ln P Q R S → ℂ) → Matrix α β (AE F E), (∀ z, At (evI F) (U z)) ∧
       (∀ z w, (U z).map (piInf (τ w)) = A w * untw z w * (C w)ᵀ) ∧
       ∀ u z, At (evI F) u → (∀ w, u.map (piInf (τ w)) = A w * untw z w * (C w)ᵀ) → U z = u := by
-  obtain ⟨s, -, hs⟩ := exists_section h τ
+  obtain ⟨s, -, hs⟩ := PositivityTheory.RL.exists_section h τ
   let U : (InfinitePlace F × Ln P Q R S → ℂ) → Matrix α β (AE F E) := fun z =>
     Matrix.of fun i j => s fun w => (A w * untw z w * (C w)ᵀ) i j
   have h1 : ∀ z, At (evI F) (U z) := fun z a ha => by
@@ -854,7 +846,7 @@ theorem exists_lift (h : IsCMExt F E σ) (τ : ∀ w : InfinitePlace F, EmbOver 
     exact (hs _).2 w
   refine ⟨U, h1, h2, fun u z hu hc => ?_⟩
   ext i j
-  refine sub_eq_zero.1 (eq_zero_of_piInf h τ _ (fun a ha => ?_) fun w => ?_)
+  refine sub_eq_zero.1 (PositivityTheory.RL.eq_zero_of_piInf h τ _ (fun a ha => ?_) fun w => ?_)
   · rw [smul_sub, sub_eq_zero]
     exact (congrFun (congrFun (h1 z a ha) i) j).trans (congrFun (congrFun (hu a ha) i) j).symm
   · rw [map_sub, sub_eq_zero]

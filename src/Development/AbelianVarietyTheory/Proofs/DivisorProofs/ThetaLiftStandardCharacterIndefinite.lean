@@ -21,18 +21,6 @@ namespace GlobalTheory.WeilContF
 
 open Formalism.IndefR.DatumF
 
-theorem continuous_mixed (K : Type) [Field K] [NumberField K] :
-    Continuous (InfiniteAdeleRing.ringEquiv_mixedSpace K) := by
-  first
-  | exact _root_.PositivityTheory.ThKF0.Split.continuous_toMixed
-  | (apply _root_.PositivityTheory.ThKF0.Split.continuous_toMixed <;> assumption)
-
-theorem continuous_mixed_symm (K : Type) [Field K] [NumberField K] :
-    Continuous (InfiniteAdeleRing.ringEquiv_mixedSpace K).symm := by
-  first
-  | exact _root_.PositivityTheory.ThKF0.Split.continuous_ofMixed
-  | (apply _root_.PositivityTheory.ThKF0.Split.continuous_ofMixed <;> assumption)
-
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E]
 
 theorem modTop : IsModuleTopology (AF F) (AEF F E) := ⟨rfl⟩
@@ -146,11 +134,11 @@ theorem continuous_realCh (nS nT : ℕ) : Continuous (realCh F E nS nT) := by
   refine continuous_pi fun i => continuous_pi fun j => continuous_crd_symm.comp (continuous_pi fun l => ?_)
   show Continuous fun t : Fin nT × Fin nS × Fin (Module.finrank F E) → mixedEmbedding.mixedSpace F =>
     (((InfiniteAdeleRing.ringEquiv_mixedSpace F).symm (t (i, j, l)), (0 : Af F)) : Ainf F × Af F)
-  exact ((continuous_mixed_symm F).comp (continuous_apply (i, j, l))).prodMk continuous_const
+  exact ((PositivityTheory.ThKF0.Split.continuous_ofMixed F).comp (continuous_apply (i, j, l))).prodMk continuous_const
 
 theorem continuous_realCo (nS nT : ℕ) : Continuous (realCo F E nS nT) := by
   refine continuous_pi fun p => ?_
-  exact (continuous_mixed F).comp (continuous_fst.comp ((continuous_apply p.2.2).comp
+  exact (PositivityTheory.ThKF0.Split.continuous_toMixed F).comp (continuous_fst.comp ((continuous_apply p.2.2).comp
     (continuous_crd.comp ((continuous_apply p.2.1).comp (continuous_apply p.1)))))
 
 theorem realCh_fin (nS nT : ℕ) (t) (i j) : finPartF F E (realCh F E nS nT t i j) = 0 := by

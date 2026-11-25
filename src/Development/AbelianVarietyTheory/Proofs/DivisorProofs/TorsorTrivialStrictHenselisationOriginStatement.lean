@@ -797,23 +797,6 @@ open IsLocalRing Polynomial
 
 namespace GlobalTheory.KeyOriginNoeth
 
-theorem norm_finiteType {T : Type} [CommRing T] [IsDomain T] [IsIntegrallyClosed T] (S : Finset T) :
-    Algebra.FiniteType ℤ (GlobalTheory.NormalApprox.norm S) := by
-  haveI := GlobalTheory.finite_integralClosure_of_essFiniteType_int (GlobalTheory.NormalApprox.gen S)
-  haveI : Algebra.FiniteType ℤ
-      (integralClosure (GlobalTheory.NormalApprox.gen S) (FractionRing (GlobalTheory.NormalApprox.gen S))) :=
-    Algebra.FiniteType.trans (S := GlobalTheory.NormalApprox.gen S) inferInstance inferInstance
-  exact Algebra.FiniteType.equiv this
-    (AlgEquiv.ofRingEquiv (f := (GlobalTheory.NormalApprox.normEquiv S).symm) (fun n => by simp))
-
-theorem loc_essFiniteType {T : Type} [CommRing T] [IsDomain T] [IsIntegrallyClosed T] (S : Finset T) :
-    Algebra.EssFiniteType ℤ (GlobalTheory.NormalApprox.loc S) := by
-  haveI := norm_finiteType S
-  haveI := GlobalTheory.NormalApprox.loc_isLocalization S
-  haveI : Algebra.EssFiniteType (GlobalTheory.NormalApprox.norm S) (GlobalTheory.NormalApprox.loc S) :=
-    Algebra.EssFiniteType.of_isLocalization _ (GlobalTheory.NormalApprox.unitsIn S)
-  exact Algebra.EssFiniteType.comp ℤ (GlobalTheory.NormalApprox.norm S) (GlobalTheory.NormalApprox.loc S)
-
 theorem exists_noetherian_model : ∀ (T O : Type) [CommRing T] [IsDomain T] [IsLocalRing T] [CommRing O] [IsLocalRing O] [Algebra T O]
     [Algebra (Polynomial T) O] [IsScalarTower T (Polynomial T) O], GlobalTheory.LocAcyc.AbsIntClosed T →
     ∀ (q : ℕ), 0 < q → IsUnit (q : T) →
@@ -860,7 +843,7 @@ theorem exists_noetherian_model : ∀ (T O : Type) [CommRing T] [IsDomain T] [Is
     exact ⟨IsLocalization.isNoetherianRing (GlobalTheory.NormalApprox.unitsIn S) _ (GlobalTheory.NormalApprox.norm_isNoetherianRing S),
       isIntegrallyClosed_of_isLocalization (GlobalTheory.NormalApprox.loc S) (GlobalTheory.NormalApprox.unitsIn S)
         (GlobalTheory.NormalApprox.unitsIn_le S),
-      GlobalTheory.NormalApprox.loc_isLocalRing S, GlobalTheory.NormalApprox.isUnit_of_isUnit_coe S, loc_essFiniteType S⟩
+      GlobalTheory.NormalApprox.loc_isLocalRing S, GlobalTheory.NormalApprox.isUnit_of_isUnit_coe S, GlobalTheory.VertUnitsNoeth.essFiniteType_loc S⟩
   obtain ⟨S, EA, _, _, _, _, _, e, he, β, hβ, D, _, _, actA, htorA, hlast⟩ :=
     _root_.GlobalTheory.TorsorUnionDescent.exists_stage_torsor T (Finset T) 𝒜 hmono (fun x => ⟨{x}, hcov {x} x (Finset.mem_singleton_self x)⟩) q hq E Q D₁ act₁ htor
   obtain ⟨hN, hIC, hL, hU, hEF⟩ := hprop S

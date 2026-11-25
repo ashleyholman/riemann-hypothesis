@@ -51,8 +51,6 @@ theorem σD_alg (g : GQ l) (b : BdRp l) :
     σD g (algebraMap (BdRp l) (BdR l) b) = algebraMap (BdRp l) (BdR l) (toBot g • b) :=
   galBdRField_algebraMap _ _
 
-alias tQ_alg := _root_.DeRhamTwist.Twist.tQ_eq
-
 end BaseB
 
 open BaseB
@@ -92,10 +90,10 @@ theorem base_th_zero : ∀ x ∈ Plus l, (th l x = 0 ↔ ∃ y ∈ Plus l, x = t
   rw [hk, maximalIdeal_eq_span_tBdR, Ideal.mem_span_singleton']
   constructor
   · rintro ⟨c, hc⟩
-    exact ⟨_, ⟨c, rfl⟩, by rw [← hc, tQ_alg, ← map_mul, mul_comm]⟩
+    exact ⟨_, ⟨c, rfl⟩, by rw [← hc, DeRhamTwist.Twist.tQ_eq, ← map_mul, mul_comm]⟩
   · rintro ⟨_, ⟨c, rfl⟩, h⟩
     refine ⟨c, IsFractionRing.injective (BdRp l) (BdR l) ?_⟩
-    rw [h, tQ_alg, ← map_mul, mul_comm]
+    rw [h, DeRhamTwist.Twist.tQ_eq, ← map_mul, mul_comm]
 
 end period_ring_base
 end -- clump:auto

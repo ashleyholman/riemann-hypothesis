@@ -106,15 +106,10 @@ theorem uat_closure {R : Type} [Zero R] {ev : AF F → R} {g : UA σ W.J} (h : g
   | mul x y _ _ hx hy => exact uat_mul hx hy
   | inv x _ hx => exact uat_inv hx
 
-theorem det_of_sig {n r s : ℕ} {M : Matrix (Fin n) (Fin n) ℂ} (h : HasSig M r s) : M.det ≠ 0 := by
-  first
-  | exact _root_.PositivityTheory.ThKG.Tow.Pln.det_ne_zero_of_hasSig
-  | (apply _root_.PositivityTheory.ThKG.Tow.Pln.det_ne_zero_of_hasSig <;> assumption)
-
 theorem det_skew {B : Base F E} {r s : ℕ} (h : W.IsSkew σ B r s) : W.J.det ≠ 0 := by
   obtain ⟨w⟩ : Nonempty (InfinitePlace F) := inferInstance
   intro h0
-  apply det_of_sig (h.sig w)
+  apply PositivityTheory.ThKG.Tow.Pln.det_ne_zero_of_hasSig (h.sig w)
   rw [Matrix.det_smul]
   have : (W.J.map (B.emb w).1).det = (B.emb w).1 W.J.det := ((B.emb w).1.map_det W.J).symm
   rw [this, h0, map_zero, mul_zero]

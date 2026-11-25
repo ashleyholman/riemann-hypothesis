@@ -21,8 +21,6 @@ section Hom
 
 variable {G H : Over S} [GrpObj G] [GrpObj H]
 
-alias isMonHom_of_mulComp := _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.isMonHom_of_mul
-
 alias isMonHom_one := _root_.GlobalTheory.Serre.isMonHom_one
 
 end Hom
@@ -61,7 +59,7 @@ instance isMonHom_pb (j : Fin 4) : IsMonHom (pb A B j) := by
 
 theorem isMonHom_mkZ {T : Over S} [GrpObj T] (u : Fin 4 → (T ⟶ A)) (v : Fin 4 → (T ⟶ B))
     (hu : ∀ i, IsMonHom (u i)) (hv : ∀ j, IsMonHom (v j)) : IsMonHom (mkZ A B u v) :=
-  isMonHom_of_mulComp _ fun T' x y ↦ by
+  GlobalTheory.DivisibleHom.isMonHom_of_mul_points _ fun T' x y ↦ by
     apply zob_ext
     · intro i
       haveI := hu i

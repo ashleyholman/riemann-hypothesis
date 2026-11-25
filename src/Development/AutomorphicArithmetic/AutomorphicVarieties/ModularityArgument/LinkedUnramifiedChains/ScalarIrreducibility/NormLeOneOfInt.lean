@@ -478,7 +478,6 @@ namespace UpperTheory.V.J
 
 end UpperTheory.V.J
 
-alias UpperTheory.V.J.coPt := _root_.UpperTheory.Reformulated.B.CoPoint.coPt
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AutomorphicArithmetic.AutomorphicVarieties.ModularityArgument.LinkedUnramifiedChains.ScalarIrreducibility.NormLeOneOfInt =====

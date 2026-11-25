@@ -43,18 +43,6 @@ theorem bb_ne_bot {D : D7} : D.host.𝔟 ≠ ⊥ := by
   simp only [Submodule.bot_mul] at h1
   exact differentIdeal_ne_bot h1
 
-theorem conj_bb_ne_bot {D : D7} : D.host.conj • D.host.𝔟 ≠ ⊥ := by
-  intro h
-  apply bb_ne_bot (D := D)
-  have := congrArg (fun I : Ideal (𝓞 D.host.E) => D.host.conj⁻¹ • I) h
-  simpa using this
-
-theorem conj_inv_smul {D : D7} (x : 𝓞 D.host.E) : D.host.conj⁻¹ • x = D.host.conj • x := by
-  have h : D.host.conj⁻¹ = D.host.conj := by
-    rw [inv_eq_iff_mul_eq_one]
-    exact AlgEquiv.ext fun y => conj_conj D y
-  rw [h]
-
 end StarAAbar
 
 
@@ -65,7 +53,7 @@ theorem star_mem_AA_of_mem_AAbar : ∀ {D : D7} {c : D.host.E}, c ∈ D.host.AAb
   have hJ : ((D.host.𝔟 : Ideal (𝓞 D.host.E)) : FractionalIdeal (nonZeroDivisors (𝓞 D.host.E)) D.host.E) ≠ 0 :=
     FractionalIdeal.coeIdeal_ne_zero.2 StarAAbar.bb_ne_bot
   have hJc : ((D.host.conj • D.host.𝔟 : Ideal (𝓞 D.host.E)) : FractionalIdeal (nonZeroDivisors (𝓞 D.host.E)) D.host.E) ≠ 0 :=
-    FractionalIdeal.coeIdeal_ne_zero.2 StarAAbar.conj_bb_ne_bot
+    FractionalIdeal.coeIdeal_ne_zero.2 Formalism.IndefR.Fin.conj_bb_ne_bot
 
   have h1 : ∀ y ∈ D.host.conj • D.host.𝔟, c * (y : D.host.E) ∈
       ((D.host.conj • D.host.ccE : Ideal (𝓞 D.host.E)) : FractionalIdeal (nonZeroDivisors (𝓞 D.host.E)) D.host.E) := by
@@ -87,7 +75,7 @@ theorem star_mem_AA_of_mem_AAbar : ∀ {D : D7} {c : D.host.E}, c ∈ D.host.AAb
     obtain ⟨x, hx, hxe⟩ := (FractionalIdeal.mem_coeIdeal _).1 (h1 _ hy)
     have hxs : D.host.conj • x ∈ D.host.ccE := by
       have := (Ideal.mem_pointwise_smul_iff_inv_smul_mem).1 hx
-      rwa [StarAAbar.conj_inv_smul] at this
+      rwa [Formalism.IndefR.Fin.conj_inv_smul] at this
     have key : star c * algebraMap (𝓞 D.host.E) D.host.E j' = algebraMap (𝓞 D.host.E) D.host.E (D.host.conj • x) := by
       show star c * (j' : D.host.E) = ((D.host.conj • x : 𝓞 D.host.E) : D.host.E)
       rw [StarAAbar.coe_smul, show ((x : 𝓞 D.host.E) : D.host.E) = algebraMap (𝓞 D.host.E) D.host.E x from rfl, hxe,

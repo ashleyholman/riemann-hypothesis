@@ -210,8 +210,6 @@ theorem pnorm_nonneg' {r : ℕ} (X : Data E r) (la : Wt X.Ψ r) (P : Frame X.Ψ 
     0 ≤ X.pnorm la P y := by
   unfold Data.pnorm; positivity
 
-alias pnorm_lact' := _root_.GlobalTheory.PeterssonCompare.pnorm_lact
-
 theorem pnorm_piecewise {r : ℕ} (X : Data E r) (la : Wt X.Ψ r) (P : Frame X.Ψ r → ℂ) {y : Frame X.Ψ r}
     (hy : y ∈ X.dom) : X.pnorm la (X.dom.piecewise P 0) y = X.pnorm la P y := by
   classical
@@ -296,7 +294,7 @@ theorem GlobalTheory.supLoc_component : ∀ (E : Type) [Field E] [NumberField E]
     have hu' := GlobalTheory.MajInv.lact_mem_dom X.toData (X.Γ_stab γ hγ) hu
     show ENNReal.ofReal (X.pnorm la P' (lact γ u) ^ 2) = ENNReal.ofReal (X.pnorm la P' u ^ 2)
     rw [hP'def, pnorm_piecewise X.toData la P hu, pnorm_piecewise X.toData la P hu',
-      pnorm_lact' X.toData hsec hγ hu]
+      GlobalTheory.PeterssonCompare.pnorm_lact X.toData hsec hγ hu]
   have hΦB : ∀ c ∈ Bor X.Ψ r, ∀ u ∈ X.dom, Φ (rmul u c) = Φ u := by
     intro c hc u hu
     have hu' := OrthogonalFrameDomain.rmul_mem_dom X.toData hu hc

@@ -158,8 +158,6 @@ theorem finRep_irr (π : Formalism.L2.NG.FinTyp L n) :
 
 end FinRep
 
-alias mult_lev := _root_.Formalism.IndefR.principalLevelFrame.mult_lev
-
 theorem lev_triv {D : D7} {T : Type} (Lc : LevCh D T) (β : GL (Fin (Yc D 0).rank) (Lev.EAf D)) (P : LevelP Lc.Pg D.R.r ℂ)
     {x : GA D (Yc D 0)} (hx : x ∈ levS (Yc D 0) β (Lc.dat0 Lc.triv)) :
     x ∈ levS (Yc D 0) β (Lc.dat0 P) ∧ levChi (Yc D 0) β (Lc.dat0 P) x = 1 := by
@@ -226,7 +224,7 @@ theorem exists_vec_of_occRows : ∀ {D : D7} {G : Type} [Group G] [Fintype G] {P
       apply MultilinearMap.ext
       intro w
       funext x
-      rw [principalLevelFrame.actM_apply, mult_lev hMult w _ hl.1 x, hl.2, one_mul]
+      rw [principalLevelFrame.actM_apply, Formalism.IndefR.principalLevelFrame.mult_lev hMult w _ hl.1 x, hl.2, one_mul]
     have h1 := hv (MonoidAlgebra.of ℂ _ κ - 1) (by
       rw [map_sub, asAlgebraHom_of, map_one, LinearMap.sub_apply, hU1, Module.End.one_apply, sub_self])
     rw [map_sub, asAlgebraHom_of, map_one, LinearMap.sub_apply, Module.End.one_apply, sub_eq_zero] at h1
@@ -238,7 +236,7 @@ theorem exists_vec_of_occRows : ∀ {D : D7} {G : Type} [Group G] [Fintype G] {P
       have hl := lev_triv R.toLevCh (R.βY 0) (R.levR F b) (x := k) hk
       have hl0 := lev_triv R.toLevCh (R.βY 0) R.triv (x := k) hk
       show U w (h * k) = levChi (Yc D 0) (R.βY 0) (R.dat0 R.triv) k * U w h
-      rw [mult_lev hMult w _ hl.1 h, hl.2, hl0.2]
+      rw [Formalism.IndefR.principalLevelFrame.mult_lev hMult w _ hl.1 h, hl.2, hl0.2]
     have hchi : ∀ g, levChi (Yc D 0) (R.βY 0) (flagL (R.dat0 R.triv)) (PY.ψ (κ g)) = 1 := by
       intro g
       exact levChi_flag_triv R.toLevCh _ _

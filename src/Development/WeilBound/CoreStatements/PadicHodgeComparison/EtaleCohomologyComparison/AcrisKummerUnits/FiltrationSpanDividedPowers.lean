@@ -647,10 +647,6 @@ section Teich
 
 variable {l : ℕ} [Fact l.Prime] (A : PAlg l)
 
-theorem eq_of_idem {a b : A.W} (ha : IsIdempotentElem a) (hb : IsIdempotentElem b)
-    (h : a.coeff 0 = b.coeff 0) : a = b := by
-  apply GlobalTheory.CompanionTheory.LcLogProof.eq_of_idem <;> assumption
-
 theorem teich_sum {ι : Type*} [Fintype ι] {e : ι → A.A} (he : OrthogonalIdempotents e) :
     WittVector.teichmuller l (∑ i, e i) = ∑ i, WittVector.teichmuller l (e i) := by
   have ho : OrthogonalIdempotents fun i => WittVector.teichmuller l (e i) :=
@@ -660,7 +656,7 @@ theorem teich_sum {ι : Type*} [Fintype ι] {e : ι → A.A} (he : OrthogonalIde
      fun i j hij => by
       show _ * _ = _
       rw [← map_mul, he.ortho hij, WittVector.teichmuller_zero]⟩
-  refine eq_of_idem A ?_ (ho.isIdempotentElem_sum) ?_
+  refine GlobalTheory.CompanionTheory.LcLogProof.eq_of_idem A ?_ (ho.isIdempotentElem_sum) ?_
   · have := he.isIdempotentElem_sum (s := Finset.univ)
     show _ * _ = _
     rw [← map_mul, this.eq]
@@ -1322,8 +1318,6 @@ theorem CrystallineSemistableComparison.RL.filtration_multiplicative : ∀ {l : 
 theorem CrystallineSemistableComparison.RL.gr : ∀ {l : ℕ} [Fact l.Prime] (A : PAlg l) (n r : ℕ), (∀ z ∈ A.Fil n r, ∃ w : A.W, z - A.toAcr n w * A.dxi n r ∈ A.Fil n (r + 1)) ∧ ∀ w : A.W, A.toAcr n w * A.dxi n r ∈ A.Fil n (r + 1) ↔ A.th w ∈ Ideal.span {(l : A.U) ^ n} := _root_.GlobalTheory.CompanionTheory.PerfFil.graded_mod_pow
 
 theorem CrystallineSemistableComparison.RL.uToQ : ∀ {l : ℕ} [Fact l.Prime] (A : PAlg l) (n : ℕ), Function.Surjective (A.uToQ n) ∧ RingHom.ker (A.uToQ n) = Ideal.span {(l : A.U) ^ n} ∧ Function.Surjective (A.uToPQ n) ∧ (n ≠ 0 → RingHom.ker (A.uToPQ n) = Ideal.span {(l : A.U)}) := _root_.GlobalTheory.CompanionTheory.Untilt.uToQ_main
-
-theorem CrystallineSemistableComparison.RL.expand_nat : ∀ {l : ℕ} [Fact l.Prime] (A : PAlg l) (B : PAlg l) (f : A ⟶ B), (∀ a, mapAcr f 1 (A.aTo1 a) = B.aTo1 (Hom.f f a)) ∧ (∀ c : ℕ →₀ A.A, mapAcr f 1 (A.expand c) = B.expand (c.mapRange (Hom.f f) (map_zero _))) ∧ (∀ a, mapU f (A.sharp a) = B.sharp (Hom.f f a)) ∧ (∀ a, mapUn f 1 (A.aToU1 a) = B.aToU1 (Hom.f f a)) ∧ (∀ n x, Ideal.Quotient.mk (B.Fil n 1) (mapAcr f n (A.toAcr n x)) = B.uToQ n (mapU f (A.th x))) ∧ ∀ x : Ainf l, algebraMap (Ainf l) (A.Acr 1) x = A.aTo1 (A.s (x.coeff 0)) := _root_.GlobalTheory.CompanionTheory.PAlgNat.expand_nat
 
 theorem CrystallineSemistableComparison.RL.pdi : ∀ {l : ℕ} [Fact l.Prime] (A : PAlg l), R.PdI (A.Fil0 1) ∧ R.PdI A.PFil0 ∧ ∀ x ∈ A.Fil0 1, ∀ (k : ℕ) (y : A.Acr0), (k.factorial : A.Acr0) * y = x ^ k → y ∈ A.Fil0 k := _root_.GlobalTheory.CompanionTheory.PerfFil.pdI_main
 

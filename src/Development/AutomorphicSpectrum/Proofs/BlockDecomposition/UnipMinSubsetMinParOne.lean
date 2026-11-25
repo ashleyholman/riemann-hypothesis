@@ -59,7 +59,7 @@ theorem minParOne_props (h : IsCMExt F E σ) (hJ : IsHermND σ J) (hW : IsWittFr
     have := h1 p
     rwa [hp, ha0, inv_one, mul_one] at this
   constructor
-  · have hcl : IsClosed (minPar σ J X) := isClosed_minPar h hJ hW
+  · have hcl : IsClosed (minPar σ J X) := PositivityTheory.ThKR.isClosed_minimal_parabolic h hJ hW
     have e : minParOne σ J X = Subtype.val '' (τ ⁻¹' {0}) := by
       ext p
       constructor

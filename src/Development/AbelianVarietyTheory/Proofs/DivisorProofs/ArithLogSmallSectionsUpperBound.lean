@@ -1244,8 +1244,6 @@ namespace GlobalTheory.HSNef.FsTop
 
 variable {X : Scheme.{0}} [IsIntegral X]
 
-alias regAt_mul' := _root_.GlobalTheory.Cartier.RegAt.mul
-
 theorem regAt_inv_of_unitAt {x : X} {a : X.functionField} (ha : UnitAt x a) : RegAt x a⁻¹ := by
   obtain ⟨u, hu, rfl⟩ := ha
   refine ⟨(hu.unit⁻¹ : (X.presheaf.stalk x)ˣ), ?_⟩
@@ -1269,7 +1267,7 @@ theorem GlobalTheory.HSNef.le_shift_of_isFS : ∀ (k : Type) [CommRing k] (X : S
     have e : (β c : X.functionField) / (ρ d) = (f l * β c) * (f l * ρ d)⁻¹ := by
       field_simp
     rw [e]
-    exact regAt_mul' (hbreg x c hc l) (regAt_inv_of_unitAt hl)
+    exact GlobalTheory.Cartier.RegAt.mul (hbreg x c hc l) (regAt_inv_of_unitAt hl)
   refine (_root_.GlobalTheory.HSNef.le_iff_local k X p _ M).2 ⟨β, ρ, hβ, hρ, fun x i j hi hj => key x i j hi hj, ?_⟩
   intro σ y i j hi hj
   have hxi : under y ∈ B.B.U i := mem_ptsIn.1 hi

@@ -335,7 +335,7 @@ theorem rep_add {x y : H ℤ (sp A) Gm 1} {c d : CommRing.Pic A} (hx : Rep x c) 
 
 theorem rep_exists (x : H ℤ (sp A) Gm 1) : ∃ c, Rep x c := by
   obtain ⟨Y, f, hf, hs, hx⟩ := _root_.GlobalTheory.EtC.classes_die_on_etale_cover ℤ (Spec (CommRingCat.of A)) Gm 1 one_pos x
-  obtain ⟨B, g, h, hg, hh⟩ := GlobalTheory.T.exists_etaleFaithfullyFlat_refining_etale_surjection (CommRingCat.of A) Y f hf hs
+  obtain ⟨B, g, h, hg, hh⟩ := GlobalTheory.EtC.exists_etFF_refine_of_etale_surjective (CommRingCat.of A) Y f hf hs
   letI : Algebra A B := g.hom.toAlgebra
   haveI : Algebra.Etale A B := hg.1
   haveI : Module.FaithfullyFlat A B := hg.2

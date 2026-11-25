@@ -1243,10 +1243,8 @@ namespace PositivityTheory.RgBcC.RealD
 
 alias countG_holds := _root_.GlobalTheory.CompanionTheory.RealCountG.countG
 
-theorem dirac_inequality_k_types : DiracInequalityWithoutSplitComponent := GlobalTheory.CompanionTheory.DiracKType0.dirac_inequality_k_types
-
 theorem adm_least_zero_holds : AdmLeast0 :=
-  adm_least_zero_of_dirac GlobalTheory.CompanionTheory.MultOne.WeightSumTopTypes.n2T dirac_inequality_k_types GlobalTheory.CompanionTheory.SpinBound.lemmaHT
+  adm_least_zero_of_dirac GlobalTheory.CompanionTheory.MultOne.WeightSumTopTypes.n2T GlobalTheory.CompanionTheory.DiracKType0.dirac_inequality_k_types GlobalTheory.CompanionTheory.SpinBound.lemmaHT
 
 theorem adm_least_holds : AdmLeast := adm_least_of_zero_module adm_least_zero_holds
 

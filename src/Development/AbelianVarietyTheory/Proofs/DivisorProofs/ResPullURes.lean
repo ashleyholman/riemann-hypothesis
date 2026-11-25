@@ -14,12 +14,10 @@ noncomputable section
 
 namespace GlobalTheory.LBObs
 
-private alias res_res_eq_res_trans := _root_.ReciprocityTheory.ChartRestriction.G.DVR.res_res'
-
 private lemma res_pullU_res_eq_res_pullU' {X Y : Scheme.{0}} (f : Y ⟶ X) {U W : X.Opens} (h : W ≤ U) {Z : Y.Opens}
     (k : Z ≤ f ⁻¹ᵁ W) (x : Γ(X, U)ˣ) :
     res k (pullU f W (res h x)) = res (k.trans fun _ hy ↦ h hy) (pullU f U x) := by
-  rw [_root_.ReciprocityTheory.ChartRestriction.G.DVR.pullU_res, res_res_eq_res_trans]
+  rw [_root_.ReciprocityTheory.ChartRestriction.G.DVR.pullU_res, ReciprocityTheory.ChartRestriction.G.DVR.res_res']
 
 theorem isFrame_pull (X : Scheme.{0}) (C : Type) [Category.{0} C] (V : C → X.Opens)
     (hV : ∀ ⦃T T' : C⦄, (T ⟶ T') → V T' ≤ V T) (L : LB X) (u : ∀ (T T' : C) (_ : T ⟶ T'), Γ(X, V T')ˣ)
@@ -37,9 +35,9 @@ theorem isFrame_pull (X : Scheme.{0}) (C : Type) [Category.{0} C] (V : C → X.O
     simp only [map_mul] at e
     erw [res_pullU_res_eq_res_pullU', res_pullU_res_eq_res_pullU', res_pullU_res_eq_res_pullU'] at e
     simp only [LB.pull, LB.LinComb, Fintype.prod_unique, zpow_one]
-    erw [res_res_eq_res_trans, res_res_eq_res_trans, res_res_eq_res_trans]
+    erw [ReciprocityTheory.ChartRestriction.G.DVR.res_res', ReciprocityTheory.ChartRestriction.G.DVR.res_res', ReciprocityTheory.ChartRestriction.G.DVR.res_res']
     exact e
   · have e := congrArg (fun x ↦ res (hle T' j) (pullU φ _ x)) (hcomp (H.obj T) (H.obj T') (H.map a) (j PUnit.unit))
     simp only [map_mul, res_pullU_res_eq_res_pullU'] at e
-    simp only [res_res_eq_res_trans]
+    simp only [ReciprocityTheory.ChartRestriction.G.DVR.res_res']
     exact e

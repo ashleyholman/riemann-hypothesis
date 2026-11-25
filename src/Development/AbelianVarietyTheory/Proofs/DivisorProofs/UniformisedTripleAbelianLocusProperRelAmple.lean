@@ -211,8 +211,6 @@ theorem isIso_spMap {R R' : Type} [CommRing R] [CommRing R'] (f : R →+* R') (h
   unfold spMap
   infer_instance
 
-alias exists_pull := _root_.ReciprocityTheory.ChartRestriction.G.Geo.Tor.exists_sab
-
 theorem isProper_of_map {S S' : Scheme.{0}} {t : SAB H S} {t' : SAB H S'} {f : S' ⟶ S} (m : SABMap t' t f)
     (hp : IsProper t.G.hom) : IsProper t'.G.hom :=
   MorphismProperty.of_isPullback m.cart.1 hp
@@ -599,18 +597,18 @@ theorem relAmple_local {O : Type} [CommRing O] [IsDomain O] [IsLocalRing O] [IsN
     (t : SAB H (Sp O)) (hprop : IsProper t.G.hom) (hpol : GlobalTheory.LN.PolAt t (Out.jK O)) :
     Out.RelAmple t.G t.PP.L := by
   by_cases hf : _root_.IsField O
-  · obtain ⟨u, ⟨mu⟩⟩ := GlobalTheory.PolLocal.exists_pull (Out.jK O) t
+  · obtain ⟨u, ⟨mu⟩⟩ := ReciprocityTheory.ChartRestriction.G.Geo.Tor.exists_sab (Out.jK O) t
     obtain ⟨hA, hK⟩ := GlobalTheory.LocM.PolFibre.ample_kTriv_of_polAt mu hpol
     haveI : IsIso (Out.jK O) := GlobalTheory.PolLocal.isIso_spMap _ (GlobalTheory.PolLocal.algebraMap_fractionRing_bijective O hf)
     exact (GlobalTheory.PolLocal.ample_kTriv_of_iso mu hA hK).1
   obtain ⟨V, _, _, _, ρ, hρ, hloc⟩ := GlobalTheory.KTrivSpread.exists_dvr O hf
-  obtain ⟨tV, ⟨mV⟩⟩ := GlobalTheory.PolLocal.exists_pull (spMap ρ) t
-  obtain ⟨tK, ⟨mK⟩⟩ := GlobalTheory.PolLocal.exists_pull (spMap (algebraMap V (FractionRing V))) tV
+  obtain ⟨tV, ⟨mV⟩⟩ := ReciprocityTheory.ChartRestriction.G.Geo.Tor.exists_sab (spMap ρ) t
+  obtain ⟨tK, ⟨mK⟩⟩ := ReciprocityTheory.ChartRestriction.G.Geo.Tor.exists_sab (spMap (algebraMap V (FractionRing V))) tV
   have hpV : GlobalTheory.LN.PolAt tV (Out.jK V) := GlobalTheory.PolNormal.polAt_generic_pull ρ hρ mV hpol
   obtain ⟨hAK, hKK⟩ := GlobalTheory.LocM.PolFibre.ample_kTriv_of_polAt mK hpV
   obtain ⟨hAV, hKV⟩ := GlobalTheory.PolDvr.relAmple_kTriv_of_generic_fibre GlobalTheory.HomExtExamples.homExtSt_holds GlobalTheory.allSixLaws.1
     GlobalTheory.allSixLaws.2.1 E H V (FractionRing V) tV tK mK (GlobalTheory.PolLocal.isProper_of_map mV hprop) hAK hKK
-  obtain ⟨uk, ⟨mk⟩⟩ := GlobalTheory.PolLocal.exists_pull (spMap (IsLocalRing.residue V)) tV
+  obtain ⟨uk, ⟨mk⟩⟩ := ReciprocityTheory.ChartRestriction.G.Geo.Tor.exists_sab (spMap (IsLocalRing.residue V)) tV
   obtain ⟨hAk, hKk⟩ := GlobalTheory.PolLocal.pull_ample_kTriv mk hAV hKV
   obtain ⟨n, -⟩ := GlobalTheory.ObjMaps.exists_sab_comp mV mk
   let β : O →+* IsLocalRing.ResidueField V := (IsLocalRing.residue V).comp ρ
@@ -633,7 +631,7 @@ theorem relAmple_kTriv_of_generic {S : Type} [CommRing S] [IsDomain S] [CharZero
     refine GlobalTheory.AmpleLocal.relAmple_of_locally (Sp S) t.G t.PP.L t.PP.isLB inferInstance inferInstance fun q => ?_
     have : q.asIdeal.IsPrime := q.isPrime
     let O := Localization.AtPrime q.asIdeal
-    obtain ⟨tO, ⟨m⟩⟩ := GlobalTheory.PolLocal.exists_pull (spMap (algebraMap S O)) t
+    obtain ⟨tO, ⟨m⟩⟩ := ReciprocityTheory.ChartRestriction.G.Geo.Tor.exists_sab (spMap (algebraMap S O)) t
     have hi : Function.Injective (algebraMap S O) :=
       IsLocalization.injective O q.asIdeal.primeCompl_le_nonZeroDivisors
     have : CharZero O := charZero_of_injective_algebraMap hi
@@ -653,7 +651,7 @@ theorem isProper_relAmple_kTriv_of_abLocus : ∀ (E : Type) [Field E] [NumberFie
   have hi : Function.Injective (algebraMap R Rf) := IsLocalization.injective Rf hle
   have : IsDomain Rf := IsLocalization.isDomain_localization hle
   have : CharZero Rf := charZero_of_injective_algebraMap hi
-  obtain ⟨tf, ⟨mf⟩⟩ := GlobalTheory.PolLocal.exists_pull (spMap (algebraMap R Rf)) t
+  obtain ⟨tf, ⟨mf⟩⟩ := ReciprocityTheory.ChartRestriction.G.Geo.Tor.exists_sab (spMap (algebraMap R Rf)) t
   have hrange : Set.range (spMap (algebraMap R Rf)) = (PrimeSpectrum.basicOpen f : Set (PrimeSpectrum R)) :=
     PrimeSpectrum.localization_away_comap_range Rf f
   have habf : abLocus tf.G = Set.univ := Set.eq_univ_of_forall fun z =>

@@ -549,18 +549,6 @@ theorem single_eq_smul {α : Type} (a : α) (r : ℤ) :
     Finsupp.single a r = r • Finsupp.single a (1 : ℤ) := by
   rw [Finsupp.smul_single, smul_eq_mul, mul_one]
 
-theorem hbd_single (V W : Type) (z : List V × List W) :
-    hbd V W (Finsupp.single z 1) =
-      ∑ i ∈ Finset.range z.1.length, (-1 : ℤ) ^ i • Finsupp.single (z.1.eraseIdx i, z.2) (1 : ℤ) := by
-  simp only [hbd, bd, Finsupp.linearCombination_single, Finsupp.mapDomain_finsetSum,
-    Finsupp.mapDomain_smul, Finsupp.mapDomain_single, one_smul]
-
-theorem vbd_single (V W : Type) (z : List V × List W) :
-    vbd V W (Finsupp.single z 1) =
-      ∑ j ∈ Finset.range z.2.length, (-1 : ℤ) ^ j • Finsupp.single (z.1, z.2.eraseIdx j) (1 : ℤ) := by
-  simp only [vbd, bd, Finsupp.linearCombination_single, Finsupp.mapDomain_finsetSum,
-    Finsupp.mapDomain_smul, Finsupp.mapDomain_single, one_smul]
-
 theorem hbd_mapDomain (V W : Type) (w : List W) (c : List V →₀ ℤ) :
     hbd V W (Finsupp.mapDomain (fun x => (x, w)) c) = Finsupp.mapDomain (fun x => (x, w)) (bd V c) := by
   induction c using Finsupp.induction_linear with
@@ -613,8 +601,8 @@ theorem hbd_vbd (V W : Type) (x : List V × List W →₀ ℤ) : hbd V W (vbd V 
     rw [single_eq_smul, map_zsmul, map_zsmul, map_zsmul, map_zsmul]
     congr 1
 
-    rw [vbd_single, hbd_single, map_sum, map_sum]
-    simp only [map_zsmul, hbd_single, vbd_single, Finset.smul_sum, smul_smul]
+    rw [GlobalTheory.SeqCx.vbd_single, GlobalTheory.SeqCx.hbd_single, map_sum, map_sum]
+    simp only [map_zsmul, GlobalTheory.SeqCx.hbd_single, GlobalTheory.SeqCx.vbd_single, Finset.smul_sum, smul_smul]
     rw [Finset.sum_comm]
     refine Finset.sum_congr rfl fun j _ => Finset.sum_congr rfl fun i _ => ?_
     rw [mul_comm]

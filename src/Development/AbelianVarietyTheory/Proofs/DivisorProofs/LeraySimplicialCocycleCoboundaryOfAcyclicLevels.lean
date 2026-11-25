@@ -22,7 +22,7 @@ theorem peel (R : Type) [CommRing R] (F : Shv R) (E : Spc) (n : ℕ)
     (β₀ : Cochain ((chains R).obj E) (res R F) n) (h₀ : δ n N β₀ = c) :
     ∀ k : ℕ, k ≤ n → ∃ β : Cochain ((chains R).obj E) (res R F) n, δ n N β = c ∧
       ∀ (p q : ℤ) (hpq : p + n = q), -(k : ℤ) < p → β.v p q hpq = 0 := by
-  obtain ⟨cl, -, hcl, hcl0, -⟩ := GlobalTheory.T.etaleSpaceCohomology_presheaf_classes_as_cocycles R F
+  obtain ⟨cl, -, hcl, hcl0, -⟩ := GlobalTheory.EtC.disc_elt_cls R F
   obtain ⟨-, -, -, -, -, hpos⟩ := _root_.GlobalTheory.EtC.res_basic R F
   intro k
   induction k with

@@ -88,12 +88,10 @@ private def twoU (K : Type) [Field K] [NumberField K] : (A K)ˣ :=
 private theorem coe_twoU (K : Type) [Field K] [NumberField K] : ((twoU K : (A K)ˣ) : A K) = 2 := by
   simp [twoU, map_ofNat]
 
-private alias gl_mul := _root_.UpperTheory.ConvolutionTheory.R2.gl_mul
-
 private theorem hom_nU {K G : Type} [Field K] [NumberField K] [CommGroup G] (f : GL (Fin 2) (A K) →* G) (b : A K) :
     f (gl (nU b)) = 1 := by
   have h1 := congrArg f (_root_.UpperTheory.ConvolutionTheory.R2.aE_mul_nU (twoU K) b)
-  rw [map_mul, map_mul, mul_comm, coe_twoU, two_mul, _root_.UpperTheory.ConvolutionTheory.R2.nU_add, gl_mul, map_mul] at h1
+  rw [map_mul, map_mul, mul_comm, coe_twoU, two_mul, _root_.UpperTheory.ConvolutionTheory.R2.nU_add, UpperTheory.ConvolutionTheory.R2.gl_mul, map_mul] at h1
   have h2 := mul_right_cancel h1
   exact (mul_eq_left.mp h2.symm)
 

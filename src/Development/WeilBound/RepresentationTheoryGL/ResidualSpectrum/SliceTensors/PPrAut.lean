@@ -43,7 +43,7 @@ theorem isAutForm_act (hF : GlobalTheory.Published.AutomorphicFormsFiniteGL) (o 
       refine Submodule.finiteDimensional_of_le (S₂ := (Submodule.span ℂ (Set.range fun c => cptRep E N c φ)).map
         (finRep E N k)) (Submodule.span_le.2 ?_)
       rintro _ ⟨c, rfl⟩
-      exact ⟨_, Submodule.subset_span ⟨c, rfl⟩, (LinearMap.congr_fun (fin_cpt_comm k c) φ)⟩
+      exact ⟨_, Submodule.subset_span ⟨c, rfl⟩, (LinearMap.congr_fun (GlobalTheory.AutGrowth.SmoothFinite.fin_cpt_comm k c) φ)⟩
     · exact zfin_of_comm _ (fun z hz => zalg_comm_fin k hz) h.zfin
     · obtain ⟨C, M, h1⟩ := h.growth (g * finGL E N k)
       refine ⟨C, M, fun y => ?_⟩
@@ -56,7 +56,7 @@ theorem isAutForm_act (hF : GlobalTheory.Published.AutomorphicFormsFiniteGL) (o 
       rw [mul_assoc, h.left]
     · exact level_of_le h.level fun k hk => by
         change finRep E N k (cptRep E N c φ) = cptRep E N c φ
-        rw [← Module.End.mul_apply, fin_cpt_comm, Module.End.mul_apply, hk]
+        rw [← Module.End.mul_apply, GlobalTheory.AutGrowth.SmoothFinite.fin_cpt_comm, Module.End.mul_apply, hk]
     · have := h.kfin
       refine Submodule.finiteDimensional_of_le (S₂ := Submodule.span ℂ (Set.range fun c => cptRep E N c φ))
         (Submodule.span_le.2 ?_)

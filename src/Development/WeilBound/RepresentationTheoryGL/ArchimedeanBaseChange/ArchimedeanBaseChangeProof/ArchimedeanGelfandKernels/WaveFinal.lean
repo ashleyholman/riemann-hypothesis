@@ -421,9 +421,6 @@ theorem isOpen_gls (n : ℕ) : IsOpen (GLs n) := by
 def lmul (x : Mat n) : Mat n →L[ℝ] Mat n :=
   LinearMap.toContinuousLinearMap (LinearMap.mulLeft ℝ x)
 
-def rmul (x : Mat n) : Mat n →L[ℝ] Mat n :=
-  LinearMap.toContinuousLinearMap (LinearMap.mulRight ℝ x)
-
 theorem lmul_apply (x y : Mat n) : lmul x y = x * y := rfl
 
 theorem mul_mem_gls {x y : Mat n} (hx : x ∈ GLs n) (hy : y ∈ GLs n) : x * y ∈ GLs n := by
@@ -431,23 +428,6 @@ theorem mul_mem_gls {x y : Mat n} (hx : x ∈ GLs n) (hy : y ∈ GLs n) : x * y 
   exact mul_ne_zero hx hy
 
 variable {V : Type} [NormedAddCommGroup V] [NormedSpace ℂ V]
-
-theorem contDiffOn_along {E F : Type*} [NormedAddCommGroup E] [NormedSpace ℝ E]
-    [NormedAddCommGroup F] [NormedSpace ℝ F] {U : Set E} (hU : IsOpen U) {f : E → F}
-    (hf : ContDiffOn ℝ ∞ f U) (A : E →L[ℝ] E) :
-    ContDiffOn ℝ ∞ (fun g => fderiv ℝ f g (A g)) U := by
-  have h1 : ContDiffOn ℝ ∞ (fderiv ℝ f) U := hf.fderiv_of_isOpen hU (by simp)
-  exact h1.clm_apply A.contDiff.contDiffOn
-
-theorem contDiffOn_Rd {f : Mat n → V} (hf : ContDiffOn ℝ ∞ f (GLs n)) (X : Mat n) :
-    ContDiffOn ℝ ∞ (Rd X f) (GLs n) :=
-  contDiffOn_along (isOpen_gls n) hf (rmul X)
-
-theorem contDiffOn_Rw {f : Mat n → V} (hf : ContDiffOn ℝ ∞ f (GLs n))
-    (w : List (Idx n)) : ContDiffOn ℝ ∞ (Rw w f) (GLs n) := by
-  induction w with
-  | nil => exact hf
-  | cons p w ih => exact contDiffOn_Rd ih (bs p)
 
 theorem Rw_left (n : ℕ) (V : Type) [NormedAddCommGroup V] [NormedSpace ℂ V] (f : Mat n → V)
     (hf : ContDiffOn ℝ ∞ f (GLs n)) (x : Mat n) (hx : x ∈ GLs n) :
@@ -463,7 +443,7 @@ theorem Rw_left (n : ℕ) (V : Type) [NormedAddCommGroup V] [NormedSpace ℂ V] 
     have hev : Rw w (fun y => f (x * y)) =ᶠ[nhds y] (Rw w f) ∘ (lmul x) :=
       Filter.eventually_of_mem ((isOpen_gls n).mem_nhds hy) ih
     have hd : DifferentiableAt ℝ (Rw w f) (lmul x y) :=
-      ((contDiffOn_Rw hf w).contDiffAt ((isOpen_gls n).mem_nhds (mul_mem_gls hx hy))).differentiableAt
+      ((GlobalTheory.CompanionTheory.SobGL.Expand.Rw_smooth hf w).contDiffAt ((isOpen_gls n).mem_nhds (mul_mem_gls hx hy))).differentiableAt
         (by simp)
     have hc : HasFDerivAt ((Rw w f) ∘ (lmul x))
         ((fderiv ℝ (Rw w f) (lmul x y)).comp (lmul x)) y :=

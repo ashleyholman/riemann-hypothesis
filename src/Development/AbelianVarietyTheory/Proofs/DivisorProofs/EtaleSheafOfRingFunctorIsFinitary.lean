@@ -224,8 +224,6 @@ namespace GlobalTheory.EtC.FinitaryOfLocBij
 
 variable {R : Type} [CommRing R]
 
-alias cover_inr := _root_.GlobalTheory.EtC.FilteredSections.cover_of_isPushout
-
 lemma map_comp_apply (N : CommRingCat.{0} ⥤ ModuleCat.{1} (ULift.{1} R)) {A B C : CommRingCat.{0}}
     (f : A ⟶ B) (g : B ⟶ C) (x : N.obj A) :
     (N.map (f ≫ g)).hom x = (N.map g).hom ((N.map f).hom x) := by
@@ -397,7 +395,7 @@ theorem surj (M : CommRingCat.{0} ⥤ ModuleCat.{1} (ULift.{1} R)) (F : Shv R) (
   let e' : ∀ i, D.obj Lc.right ⟶ (D' i).obj (Kp Lc) := fun i => (u i).app (Kp Lc)
   obtain ⟨y, hy⟩ := glue F e'
     (fun i => _root_.GlobalTheory.EtC.FilteredSections.etale_of_isPushout (hpush i (Kp Lc)).1 (hsq i).1)
-    (cover_inr g' (D.map (Kp Lc).hom) (fun i => (v i).app (Kp Lc)) e'
+    (GlobalTheory.EtC.FilteredSections.cover_of_isPushout g' (D.map (Kp Lc).hom) (fun i => (v i).app (Kp Lc)) e'
       (fun i => (hpush i _).1) hcov')
     (s' Lc) (fun a b => hL0 a b Lc (ψ a b))
   refine ⟨Lc.right, y, ?_⟩

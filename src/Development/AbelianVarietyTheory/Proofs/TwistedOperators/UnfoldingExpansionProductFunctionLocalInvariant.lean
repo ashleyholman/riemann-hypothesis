@@ -636,12 +636,12 @@ theorem offPart_fixes_vac : ∀ {D : D7} {T : Type} {L : LevCh D T} {sc : Consts
     rw [Nat.not_odd_iff_even]
     change Even (G.V (.top (j + 1))).rank
     rw [hr1]
-    exact rankX_even D _
+    exact GlobalTheory.ChiGrid.even_rankX D _
   have hnodd' : ¬ Odd (G.pT (Pair.top t (j + 1))).rank := by
     rw [Nat.not_odd_iff_even]
     change Even (G.V (.top (j + 1 + 1))).rank
     rw [hr2]
-    exact rankX_even D _
+    exact GlobalTheory.ChiGrid.even_rankX D _
   have hmu : Formalism.IndefR.Fin.UnrOff e (L.mu t (j + 1 + 1)) := unrOff_mu_locPl G hL t ⟨j + 1, hj⟩ he
   have hchS : G.chrS (Pair.top t (j + 1)) = L.mu t (j + 1 + 1) := by
     simp only [GridData.chrS, Formalism.IndefR.Lift.attChr, hnodd, ite_false]
@@ -674,7 +674,7 @@ theorem offPart_fixes_vac : ∀ {D : D7} {T : Type} {L : LevCh D T} {sc : Consts
   · left
     change Even (G.V (.top (j + 1))).rank
     rw [hr1]
-    exact rankX_even D _
+    exact GlobalTheory.ChiGrid.even_rankX D _
   · obtain ⟨⟨μ, 𝓕⟩, hμ⟩ := hcov
     exact ⟨μ, 𝓕, hμ, hnrm ⟨μ, 𝓕⟩ hμ⟩
   · change cutPart (1 - (e + cA D e)) V g ∈ GfC V
@@ -758,9 +758,9 @@ theorem vac_high_law (hA : ∀ {D : D7} {T : Type} {L : LevCh D T} {sc : Consts}
     have := hTm.vac
     rwa [one_smul] at this
   have hr1 : Even (G.V (.top (j + 1 + 1))).rank := by
-    rw [GlobalTheory.FunObj.rank_top G (j := j + 1 + 1) (by omega)]; exact GlobalTheory.FunObj.rankX_even D (j + 1 + 1)
+    rw [GlobalTheory.FunObj.rank_top G (j := j + 1 + 1) (by omega)]; exact GlobalTheory.ChiGrid.even_rankX D (j + 1 + 1)
   have hr0 : Even (G.V (.top (j + 1))).rank := by
-    rw [GlobalTheory.FunObj.rank_top G (j := j + 1) (by omega)]; exact GlobalTheory.FunObj.rankX_even D (j + 1)
+    rw [GlobalTheory.FunObj.rank_top G (j := j + 1) (by omega)]; exact GlobalTheory.ChiGrid.even_rankX D (j + 1)
   have hTc : G.chrT (.top t (j + 1)) = L.mu t (j + 1 + 1) := by
     simp only [GridData.chrT, Formalism.IndefR.Lift.attChr, GridData.chr, GridData.pT, Nat.not_odd_iff_even.2 hr1, ite_false]
   have hc : ((splitFacO (G.chrS (.top t (j + 1) : Pair T)) (G.chrT (.top t (j + 1) : Pair T))

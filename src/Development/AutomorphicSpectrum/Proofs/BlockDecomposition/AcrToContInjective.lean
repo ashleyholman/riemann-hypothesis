@@ -641,9 +641,9 @@ theorem formula (ε : Eps l) {ρ : ℕ → ((base l).cont ℤ_[l]).A}
       ∑ c : ZMod (l ^ m), t.sharp (Hom.f ψ (ind A m c)) * t.sharp (t.s (ε.e m)) ^ c.val := by
   have h := congrArg (mapU (contMap A.fromBase ℤ_[l] ≫ ψ)) (hF m)
 
-  rw [mapU_sharp, map_sum] at h
+  rw [GlobalTheory.CompanionTheory.PAlgNat.mapU_sharp, map_sum] at h
   refine h.trans (Finset.sum_congr rfl fun c _ => ?_)
-  rw [map_mul, map_pow, mapU_sharp, mapU_sharp]
+  rw [map_mul, map_pow, GlobalTheory.CompanionTheory.PAlgNat.mapU_sharp, GlobalTheory.CompanionTheory.PAlgNat.mapU_sharp]
   have h1 : Hom.f (contMap A.fromBase ℤ_[l] ≫ ψ) (ind (base l) m c) = Hom.f ψ (ind A m c) :=
     congrArg (Hom.f ψ) (contMap_ind A.fromBase m c)
   have h2 : Hom.f (contMap A.fromBase ℤ_[l] ≫ ψ) (((base l).cont ℤ_[l]).s (ε.e m)) = t.s (ε.e m) :=
@@ -1114,7 +1114,7 @@ theorem eta_val (ε : Eps l) (A : PAlg l) :
     ((eta ε A : ((A.cont ℤ_[l]).A)ˣ) : (A.cont ℤ_[l]).A) = PAlg.Hom.f (contMap A.fromBase ℤ_[l]) (eta₀ ε) := rfl
 
 theorem eta_sharp (ε : Eps l) (A : PAlg l) : (A.cont ℤ_[l]).sharp (eta ε A) = 1 := by
-  rw [eta_val, ← mapU_sharp, eta₀_sharp, map_one]
+  rw [eta_val, ← GlobalTheory.CompanionTheory.PAlgNat.mapU_sharp, eta₀_sharp, map_one]
 
 theorem eta_map (ε : Eps l) {A B : PAlg l} (φ : A ⟶ B) :
     PAlg.Hom.f (contMap φ ℤ_[l]) (eta ε A) = eta ε B := by

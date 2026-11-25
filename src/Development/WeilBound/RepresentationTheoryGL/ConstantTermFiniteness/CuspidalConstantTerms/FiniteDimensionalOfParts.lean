@@ -875,7 +875,7 @@ theorem minPar_eq_unip_mul_levi : ∀ (F E : Type) [Field F] [NumberField F] [Fi
   have hp' : p ∈ parFlag σ J (X.submatrix id (Fin.castLE hs))
       (fun i : Fin s => (S.filter (· < Fin.castLE hs i)).card) := by
     obtain ⟨B, hB, e⟩ := hp
-    obtain ⟨B', hB', e'⟩ := PositivityTheory.ThKR.inv_mem_minPar h hJ hW (show p ∈ PositivityTheory.ThKR.minPar σ J X from ⟨B, hB, e⟩)
+    obtain ⟨B', hB', e'⟩ := PositivityTheory.ThKR.inv_mem_minimal_parabolic h hJ hW (show p ∈ PositivityTheory.ThKR.minPar σ J X from ⟨B, hB, e⟩)
     exact ⟨exists_block_of_triangular X S hs hB e, exists_block_of_triangular X S hs hB' e'⟩
   obtain ⟨u, hu', m, hm, e, -⟩ := (_root_.GlobalTheory.LeviFlag.levi_decomposition F E σ h n J hJ s (X.submatrix id (Fin.castLE hs))
     (Y.submatrix id (Fin.castLE hs)) (fun i : Fin s => (S.filter (· < Fin.castLE hs i)).card)

@@ -430,10 +430,6 @@ theorem not_dvd_choose_pow_iff (p : ℕ) [hp : Fact p.Prime] (j x : ℕ) :
     ¬ p ∣ x.choose (p ^ j) ↔ ¬ p ∣ x / p ^ j :=
   not_congr ((choose_pow_modEq p j x).dvd_iff dvd_rfl)
 
-theorem not_dvd_choose_pow_mul_add (p : ℕ) [hp : Fact p.Prime] :
-    ∀ (s A B : ℕ), B < p ^ s → ¬ p ∣ (p ^ s * A + B).choose B := by
-  apply GlobalTheory.LazardOne.not_dvd_choose_pow_mul_add
-
 theorem prod_choose_single {d : ℕ} (y : Fin d →₀ ℕ) (i : Fin d) (q : ℕ) :
     ∏ k, (y k).choose (Finsupp.single i q k) = (y i).choose q := by
   rw [Finset.prod_eq_single i]
@@ -554,7 +550,7 @@ theorem atom_line (n : Fin d →₀ ℕ) (c : (Fin d →₀ ℕ) → M)
         have e1 : n k - p ^ j = p ^ s * K' + (p ^ s - p ^ j) := by omega
         have e2 : n k - p ^ s = p ^ s * K' := by omega
         rw [e1, e2, Nat.choose_symm_add]
-        exact not_dvd_choose_pow_mul_add p s K' _ (by omega)
+        exact GlobalTheory.LazardOne.not_dvd_choose_pow_mul_add p s K' _ (by omega)
       · simp only [Finsupp.tsub_apply, Finsupp.single_apply, ite_eq_right (Ne.symm hk), Nat.sub_zero,
           Nat.choose_self]
         exact hp.out.not_dvd_one

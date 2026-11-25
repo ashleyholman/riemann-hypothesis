@@ -27,16 +27,12 @@ private alias map_res := _root_.GlobalTheory.EtC.exactIff_map_res
 
 private alias res_comp := _root_.GlobalTheory.EtC.ClsSpec.res_comp
 
-private alias sec_map_sub := _root_.GlobalTheory.EtC.KummerSplit.smap_sub
-
 private alias sec_res_add := _root_.GlobalTheory.TwSec.res_add
 
 private alias sec_res_nsmul := _root_.GlobalTheory.TwSec.res_nsmul
 
 private lemma map_smul_int {V : Scheme.{0}} (b : Sec Gm V) (n : ℤ) : Sec.map (n • 𝟙 Gm) b = n • b := by
   rfl
-
-private alias unitSec_pow := _root_.GlobalTheory.EtC.KummerSeq.unitSec_pow
 
 variable (q : ℕ) [NeZero q]
 
@@ -65,7 +61,7 @@ private lemma unique_datum {V : Scheme.{0}} (hq : IsUnit (q : Γ(V, ⊤))) (v v'
     (h : kumT q V v + Sec.map (resι _ (tw q 1)) s = kumT q V v' + Sec.map (resι _ (tw q 1)) s') :
     unitSec v + kp q s = unitSec v' + kp q s' := by
   have hx : Sec.map ((q : ℤ) • 𝟙 Gm) (unitSec (v⁻¹ * v')) = 0 := by
-    rw [map_smul_int, natCast_zsmul, ← unitSec_pow, mul_pow, ← hv, inv_pow, inv_mul_cancel,
+    rw [map_smul_int, natCast_zsmul, ← GlobalTheory.EtC.KummerSeq.unitSec_pow, mul_pow, ← hv, inv_pow, inv_mul_cancel,
       UpperTheory.PicD.unitSec_one]
   obtain ⟨a, ha⟩ := (UpperTheory.Deg2.kap_spec q).2.2.2.1 V hq (unitSec (v⁻¹ * v')) hx
   have e1 : unitSec v' = unitSec v + Sec.map (UpperTheory.Deg2.kap q) a := by
@@ -102,7 +98,7 @@ theorem UpperTheory.exists_root_of_kummer_class_eq_zero :
     have e := (GlobalTheory.T.etaleCochainEvalOnSimplex_basic_properties (ZMod q) (E := sch.obj X) (I := res (ZMod q) (tw q 1)) (n := 1)).2.1
       (γ : Cochain _ _ 1) 0 1 (by norm_num) V X g (𝟙 X)
     have hd : Sec.map ((res (ZMod q) (tw q 1)).d 0 1) (Sec.res g y - kumT q V v) = 0 := by
-      rw [sec_map_sub, map_res, hy, sub_eq_zero]
+      rw [GlobalTheory.EtC.KummerSplit.smap_sub, map_res, hy, sub_eq_zero]
       refine e.trans ?_
       exact hγ2 V g v hv
     obtain ⟨s, hs⟩ := ((_root_.GlobalTheory.EtC.resSec _ _ V).1 _).1 hd
@@ -128,10 +124,10 @@ theorem UpperTheory.exists_root_of_kummer_class_eq_zero :
       (Classical.choose_spec (hSP W (k ≫ g) (S.downward_closed hg k))))
   obtain ⟨u, hu⟩ := UpperTheory.exists_unit_eq_multiplicativeGroup_section X b0
   refine ⟨u, UpperTheory.eq_of_unitGlobalSection_eq X _ _ ?_⟩
-  rw [unitSec_pow, hu]
+  rw [GlobalTheory.EtC.KummerSeq.unitSec_pow, hu]
   apply (_root_.GlobalTheory.EtC.sec_ext_glue ℤ Gm X).1
   refine ⟨S, hS, fun V g hg => ?_⟩
   obtain ⟨v, s, hv, -, hb⟩ := Classical.choose_spec (hSP V g hg)
-  rw [sec_res_nsmul, hb0 V g hg, hb, nsmul_add, kp_nsmul, add_zero, ← unitSec_pow, hv,
+  rw [sec_res_nsmul, hb0 V g hg, hb, nsmul_add, kp_nsmul, add_zero, ← GlobalTheory.EtC.KummerSeq.unitSec_pow, hv,
     UpperTheory.PicD.unitSec_res]
   rfl

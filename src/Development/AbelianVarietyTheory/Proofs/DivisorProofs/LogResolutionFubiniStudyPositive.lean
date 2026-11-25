@@ -466,8 +466,6 @@ noncomputable section
 
 namespace GlobalTheory.ArchBound
 
-alias entries_bound := _root_.GlobalTheory.herm_scale_entry_bound
-
 variable {p : ℕ} [Fact p.Prime]
 
 theorem sh_inv_mul (G : HTGroup p) (β : G.Cˣ) (y : grp G β) :
@@ -597,7 +595,7 @@ theorem GlobalTheory.LKCx.entries_sq_le_of_fixL : ∀ (p : ℕ) [Fact p.Prime] (
       ‖G.psi w (((y : G.Cˣ × ℚˣ).1 : G.Cˣ) : G.C) i j‖ ^ 2 ≤ K * ((((y : G.Cˣ × ℚˣ).2 : ℚˣ) : ℚ) : ℝ) := by
   intro p _ G ha v hv β _ hR z hz
   choose P hPh hPp hPs using exists_majorant G ha v hv β hR z hz
-  choose K hK using fun w => entries_bound (P w) (hPh w) (hPp w)
+  choose K hK using fun w => GlobalTheory.herm_scale_entry_bound (P w) (hPh w) (hPp w)
   refine ⟨∑ w, |K w|, fun y hy w i j => ?_⟩
   have hs : (0 : ℝ) < ((((y : G.Cˣ × ℚˣ).2 : ℚˣ) : ℚ) : ℝ) := by exact_mod_cast y.2.2
   refine (hK w _ _ hs (hPs w y hy) i j).trans ?_

@@ -411,14 +411,6 @@ attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
 
 variable {n : ℕ}
 
-theorem unitary_mem_GLs (k : Matrix.unitaryGroup (Fin n) ℂ) : k.1 ∈ GLs n := by
-  show det k.1 ≠ 0
-  intro h0
-  have hd := Matrix.det_of_mem_unitary k.2
-  rw [h0] at hd
-  have h1 : star (0 : ℂ) * 0 = 1 := hd.1
-  simp at h1
-
 theorem act_sum (hL : LgFacts) [MeasurableSpace (G n)] [BorelSpace (G n)] (μ : Measure (G n)) [μ.IsHaarMeasure]
     (E : KMod n) {m : ℕ} (c : Fin m → ℂ) (ks : Fin m → Mat n → (E.V →L[ℂ] E.V)) (k : Mat n → (E.V →L[ℂ] E.V))
     (hsum : ∀ y ∈ GLs n, k y = ∑ i, c i • ks i y) (hcont : ∀ i, ContinuousOn (ks i) (GLs n)) (hcpt : ∀ i, Cpt (ks i))
@@ -708,7 +700,7 @@ theorem chainOf'_of (hDC : DCinCE) (hP : ParamInt) (hA : ActDer) (hI : IBPAct) (
     rw [hR i y hy (lt_of_le_of_lt hle hlt), smul_zero]
   have hke : ∀ y ∈ GLs n, ∀ k₂ : Matrix.unitaryGroup (Fin n) ℂ, k (y * k₂.1) = k y * E.ρ k₂ := by
     intro y hy k₂
-    rw [hsum _ (mul_mem_GLs hy (unitary_mem_GLs k₂)), hsum y hy, Finset.sum_mul]
+    rw [hsum _ (mul_mem_GLs hy (PositivityTheory.RgBcC.LfSt.ChainPf.Cdc.unit_mem k₂)), hsum y hy, Finset.sum_mul]
     refine Finset.sum_congr rfl fun i _ => ?_
     rw [hke1 i y hy k₂, smul_mul_assoc]
   have hcont : ∀ i, ContinuousOn (ks i) (GLs n) := fun i => (hks1 i).continuousOn
@@ -719,7 +711,7 @@ theorem chainOf'_of (hDC : DCinCE) (hP : ParamInt) (hA : ActDer) (hI : IBPAct) (
     (fun v => by rw [← ContinuousLinearMap.mul_apply, hC.Γsq]; rfl)
   have hΓρ : ∀ k₀ : Matrix.unitaryGroup (Fin n) ℂ, Γ * E.ρ k₀ = E.ρ k₀ * Γ := by
     intro k₀
-    have := hC.ΓFr k₀.1 (unitary_mem_GLs k₀)
+    have := hC.ΓFr k₀.1 (PositivityTheory.RgBcC.LfSt.ChainPf.Cdc.unit_mem k₀)
     rwa [hC.onK] at this
   have hA' : ∀ (k₀ : Matrix.unitaryGroup (Fin n) ℂ) v, ΓE (E.ρ k₀ v) = E.ρ k₀ (ΓE v) := by
     intro k₀ v

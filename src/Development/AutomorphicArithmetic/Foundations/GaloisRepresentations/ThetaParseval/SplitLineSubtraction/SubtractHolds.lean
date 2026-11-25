@@ -914,15 +914,6 @@ protected theorem sumRep_rr {a b : ℕ} (r : Γ →* GL (Fin a) k) (s : Γ →* 
       (finSumFinEquiv.symm (Fin.natAdd a i)) (finSumFinEquiv.symm (Fin.natAdd a j)) = _
   simp
 
-protected theorem map_sum' {a b : ℕ} (f : k →+* k') (r₁ : Γ →* GL (Fin a) k) (r₂ : Γ →* GL (Fin b) k) :
-    mapRep f (sumRep r₁ r₂) = sumRep (mapRep f r₁) (mapRep f r₂) := by
-  ext g i j
-  change f (Matrix.fromBlocks (r₁ g : Matrix (Fin a) (Fin a) k) 0 0 (r₂ g : Matrix (Fin b) (Fin b) k)
-      (finSumFinEquiv.symm i) (finSumFinEquiv.symm j)) =
-    Matrix.fromBlocks (mapRep f r₁ g : Matrix (Fin a) (Fin a) k') 0 0 (mapRep f r₂ g : Matrix (Fin b) (Fin b) k')
-      (finSumFinEquiv.symm i) (finSumFinEquiv.symm j)
-  rcases finSumFinEquiv.symm i with i | i <;> rcases finSumFinEquiv.symm j with j | j <;> simp [mapRep]
-
 protected theorem descend {n : ℕ} (f : k →+* k') (hf : Function.Injective f) (r : Γ →* GL (Fin n) k')
     (A : Γ → Matrix (Fin n) (Fin n) k) (hA : ∀ g i j, f (A g i j) = (r g : Matrix (Fin n) (Fin n) k') i j) :
     ∃ r₁ : Γ →* GL (Fin n) k, mapRep f r₁ = r := by
@@ -965,7 +956,7 @@ private theorem model_split {L : FinExt l} {ρ : ↥Gw →* GL (Fin (a + b)) ↥
   obtain ⟨s₁, hs⟩ := Sub.descend (algebraMap ↥L.1 (Om l)) hf s
     (fun g i j => (ρ g : Matrix _ _ ↥L.1) (Fin.natAdd a i) (Fin.natAdd a j))
     (fun g i j => by rw [e, Sub.sumRep_rr])
-  exact ⟨r₁, s₁, ⟨h.1, hr⟩, ⟨h.1, hs⟩, ⟨h.1, by rw [Sub.map_sum', hr, hs]⟩⟩
+  exact ⟨r₁, s₁, ⟨h.1, hr⟩, ⟨h.1, hs⟩, ⟨h.1, by rw [GlobalTheory.Pst.SumParam.mapRep_sumRep, hr, hs]⟩⟩
 
 theorem sumDR_holds : SumDR := by
   intro l _ P AI tied E Ω _ _ _ _ _ A O _ _ _ Bw a b r s hd

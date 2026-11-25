@@ -470,8 +470,6 @@ open Classical
 
 namespace GlobalTheory.TraitSemi
 
-alias spMap_comp'' := _root_.Formalism.L2.Pj.spMap_comp_ring
-
 theorem exists_int_map (F : Type) [Field F] [NumberField F] (V : Type) [CommRing V] [IsDomain V] [IsIntegrallyClosed V]
     (g : F →+* FractionRing V) :
     ∃ oV : 𝓞 F →+* V, (algebraMap V (FractionRing V)).comp oV = g.comp (algebraMap (𝓞 F) F) := by
@@ -540,7 +538,7 @@ theorem exists_finite_point' {X Y : Scheme.{0}} (π : X ⟶ Y) [IsFinite π] (K 
   haveI : FiniteDimensional K (S ⧸ m) :=
     Module.Finite.of_surjective (Ideal.Quotient.mkₐ K m).toLinearMap Ideal.Quotient.mk_surjective
   refine ⟨S ⧸ m, inferInstance, inferInstance, inferInstance, spMap (Ideal.Quotient.mk m) ≫ e.hom ≫ pullback.fst π x, ?_⟩
-  rw [Category.assoc, Category.assoc, pullback.condition, ← Category.assoc e.hom, ← hsp, ← Category.assoc, spMap_comp'']
+  rw [Category.assoc, Category.assoc, pullback.condition, ← Category.assoc e.hom, ← hsp, ← Category.assoc, ReciprocityTheory.ChartRestriction.G.PullbackSections.spMap_comp_spMap]
 
 theorem exists_closure_finite (V : Type) [CommRing V] [IsDomain V] [IsDiscreteValuationRing V] [CharZero V]
     [IsAdicComplete (maximalIdeal V) V] (L : Type) [Field L] [Algebra (FractionRing V) L]
@@ -621,7 +619,7 @@ theorem exists_pos {E : Type} [Field E] [NumberField E] [IsCMField E] (H : Host 
   obtain ⟨mx', -⟩ := sabComp pullCubComp E H _ _ _ _ _ _ _ _ m mx
   have key : ((spMap e ≫ η) ≫ pullback.fst _ _) ≫ r₀ =
       (spMap (e.comp (algebraMap (FractionRing V) L)) ≫ y) ≫ pullback.fst _ _ := by
-    rw [Category.assoc, Category.assoc, ← hr, ← Category.assoc η, hη, ← spMap_comp'']
+    rw [Category.assoc, Category.assoc, ← hr, ← Category.assoc η, hη, ← ReciprocityTheory.ChartRestriction.G.PullbackSections.spMap_comp_spMap]
     simp only [Category.assoc]
   refine ⟨V₁, inferInstance, inferInstance, inferInstance, j, e.comp (algebraMap (FractionRing V) L),
     ⟨hD₁, hB₁.1.2.2.2, hB₁.2⟩, hj, hjl, hjf, fun a => he a, t, tK, ⟨mK⟩, ⟨?_⟩⟩

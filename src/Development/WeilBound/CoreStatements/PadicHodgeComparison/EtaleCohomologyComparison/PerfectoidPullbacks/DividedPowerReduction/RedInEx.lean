@@ -217,16 +217,6 @@ section -- clump:auto
 
 set_option backward.isDefEq.respectTransparency false
 
-noncomputable section
-
-open CategoryTheory AlgebraicGeometry TensorProduct GlobalTheory.LogCris DividedPowers GroundTheory.PAdicHodge
-
-namespace CrystallineSemistableComparison.Pb
-
-alias redIn_ex := _root_.GlobalTheory.CompanionTheory.RedInEx.redIn_ex
-
-end CrystallineSemistableComparison.Pb
-end -- clump:auto
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.DividedPowerReduction.RedInEx =====

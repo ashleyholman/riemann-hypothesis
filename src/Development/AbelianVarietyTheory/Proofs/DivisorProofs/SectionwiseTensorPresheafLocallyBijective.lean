@@ -170,5 +170,3 @@ theorem main : ∀ (R : Type) [CommRing R] (C P Q : Scheme.{0}ᵒᵖ ⥤ ModuleC
   fun _ _ C P Q φ hs hi U => ⟨surj C P Q φ hs U, inj C P Q φ hs hi U⟩
 
 end GlobalTheory.EtC.TensLocBij
-
-alias GlobalTheory.EtC.tensor_loc_bij := _root_.GlobalTheory.EtC.TensLocBij.main

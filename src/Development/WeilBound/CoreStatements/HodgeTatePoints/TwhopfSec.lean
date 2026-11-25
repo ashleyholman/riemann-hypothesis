@@ -20,12 +20,6 @@ theorem valAt_restrict {B : Type} [CommRing B] {X : Scheme.{0}} (x : Spec (CommR
     valAt x V hV ((X.presheaf.map i.op).hom s) = valAt x U hU s :=
   congrArg (fun φ => (Scheme.ΓSpecIso (CommRingCat.of B)).hom.hom (φ.hom s)) (x.map_appLE hV i.op)
 
-theorem top_le_of_mem {K : Type} [Field K] {X : Scheme.{0}} (x : Spec (CommRingCat.of K) ⟶ X) {U : X.Opens}
-    (z : Spec (CommRingCat.of K)) (hz : x z ∈ U) : ⊤ ≤ x ⁻¹ᵁ U := fun w _ => by
-  have e : w = z := Subsingleton.elim (α := PrimeSpectrum K) w z
-  subst e
-  exact hz
-
 alias sec_inj := _root_.PositivityTheory.HtPt.Unc.sec_inj
 
 alias reg_iff := _root_.PositivityTheory.HtPt.Unc.reg_iff
@@ -67,9 +61,6 @@ theorem mem_order : ∀ (R : Type) [CommRing R] [IsDomain R] (T : Type) [CommGro
   intro R _ _ T _ _ Γ U f
   exact ⟨fun h => Algebra.adjoin_le (S := btSub Γ U) (fun _ hx => hx) h, fun h => Algebra.subset_adjoin h⟩
 
-
-open GlobalTheory.CompanionTheory.Ar.BT.SubOrder in
-alias sub_order := _root_.GlobalTheory.CompanionTheory.Ar.BT.SubOrder.hopfOrder_of_finOpenSub
 
 theorem regularAt_generic : ∀ (R : Type) [CommRing R] [IsDomain R] (T : Type) [CommGroup T] [Finite T] (Γ : QFGroup R T) (f : T → FractionRing R) (g : Γ.G.left), (Γ.G.hom g).asIdeal = ⊥ → Γ.RegularAt f g := by
   intro R _ _ T _ _ Γ f g hg

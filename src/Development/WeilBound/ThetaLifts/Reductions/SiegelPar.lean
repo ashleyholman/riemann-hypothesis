@@ -515,19 +515,13 @@ theorem exists_isTorus (h : IsCMExt F E σ) (hJ : IsHermND σ J) (hW : IsWittFra
   obtain ⟨a, h1, h2, h3, h4⟩ := exists_torus h hJ hW
   exact ⟨a, ⟨h1, h2, h3, fun t => (h4 t).1, fun t => (h4 t).2.1, fun t => (h4 t).2.2⟩⟩
 
-alias mul_mem_minPar := _root_.PositivityTheory.ThKR.mul_mem_minimal_parabolic
-
-alias inv_mem_minPar := _root_.PositivityTheory.ThKR.inv_mem_minimal_parabolic
-
 
 variable (X) in
 def minParSub (h : IsCMExt F E σ) (hJ : IsHermND σ J) (hW : IsWittFrame σ J X Y) : Subgroup (GAd σ J) where
   carrier := minPar σ J X
   one_mem' := one_mem_minPar σ J X
-  mul_mem' := mul_mem_minPar
-  inv_mem' := inv_mem_minPar h hJ hW
-
-alias isClosed_minPar := _root_.PositivityTheory.ThKR.isClosed_minimal_parabolic
+  mul_mem' := PositivityTheory.ThKR.mul_mem_minimal_parabolic
+  inv_mem' := PositivityTheory.ThKR.inv_mem_minimal_parabolic h hJ hW
 
 theorem minParOne_subset : minParOne σ J X ⊆ minPar σ J X := fun _ ⟨B, hB, e, _⟩ => ⟨B, hB, e⟩
 
@@ -548,7 +542,7 @@ theorem exists_tau (h : IsCMExt F E σ) (hJ : IsHermND σ J) (hW : IsWittFrame �
 theorem map_mul_torus (h : IsCMExt F E σ) (hJ : IsHermND σ J) (hW : IsWittFrame σ J X Y) {a : (Fin r → ℝ) → GAd σ J}
     (ha : IsTorus σ J X Y a) (ν : Measure (minParSub X h hJ hW)) [ν.IsHaarMeasure] (s : Fin r → ℝ) :
     ν.map (· * ha.sub h hJ hW s) = ENNReal.ofReal (Real.exp (2 * (Module.finrank ℚ F : ℝ) * rho2 n s)) • ν :=
-  PMod.map_mul_torus_of h hJ hW (minParSub X h hJ hW) (isClosed_minPar h hJ hW) (fun _ hp => hp) (fun _ hp => hp)
+  PMod.map_mul_torus_of h hJ hW (minParSub X h hJ hW) (PositivityTheory.ThKR.isClosed_minimal_parabolic h hJ hW) (fun _ hp => hp) (fun _ hp => hp)
     ha.add ha.onX ha.onY ha.onV ha.mem ν s
 
 theorem commute_of_goodPosition (h : IsCMExt F E σ) (hJ : IsHermND σ J) (hW : IsWittFrame σ J X Y)

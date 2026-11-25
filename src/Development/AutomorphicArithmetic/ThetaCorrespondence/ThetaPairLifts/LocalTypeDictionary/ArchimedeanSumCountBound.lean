@@ -148,9 +148,6 @@ open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.L2.Theta Formali
 
 variable {D : D7} {T : Type} {L : LevCh D T} {sc : Consts} (G : GridData L sc)
 
-theorem sig_nonneg : 0 ≤ sig G :=
-  Finset.sum_nonneg fun _ _ => mul_nonneg (Nat.cast_nonneg _) (Real.log_natCast_nonneg _)
-
 theorem absNorm_modul_le : (Ideal.absNorm G.modul : ℝ) ≤ Real.exp (2 * sig G) := by
   unfold sig
   rw [Finset.mul_sum, Real.exp_sum]
@@ -204,7 +201,7 @@ theorem card_datum_le_aOne {C b : ℝ} (hC : 2 ≤ C) (hb : 1 ≤ b) : (Nat.card
   refine (card_datum_le G).trans (Real.exp_le_exp.2 (mul_le_mul_of_nonneg_left ?_ (Nat.cast_nonneg _)))
   have hm : (1 : ℝ) ≤ D.R.m := by exact_mod_cast (by have := D.R.two_le_m; omega : 1 ≤ D.R.m)
   have hl := Real.log_nonneg hb
-  have hs : 0 ≤ (bigN D : ℝ) ^ 2 * sig G := mul_nonneg (by positivity) (sig_nonneg G)
+  have hs : 0 ≤ (bigN D : ℝ) ^ 2 * sig G := mul_nonneg (by positivity) (ResidueCardinalityNilpotence.GlobalTheory.CompanionTheory.VolVal.sig_nonneg G)
   have h1 : 0 ≤ C * D.R.f * bigN D * b * Real.log b := by
     have : 0 ≤ C := by linarith
     have : 0 ≤ b := by linarith

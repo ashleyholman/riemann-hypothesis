@@ -1408,8 +1408,6 @@ open GlobalTheory.EtC
 
 namespace GlobalTheory.QPic
 
-alias pic0 := _root_.GlobalTheory.pic_eq_one_of_forall_isMaximal
-
 theorem poly : ∀ (T : Type) [CommRing T] [IsDomain T] (P P' : Ideal (Polynomial T)), P.IsPrime → P'.IsPrime → P ≤ P' → P ≠ ⊥ → P'.comap (algebraMap T (Polynomial T)) = ⊥ → P = P' := by
   intro T _ _ P P' hP hP' hle h0 hC
   let K := FractionRing T
@@ -1487,7 +1485,7 @@ theorem GlobalTheory.pic_generic_fibre_quotient_strictHenselisation_no_torsion :
     refine pic_transfer (e1.toRingEquiv.trans e2.toRingEquiv) q ?_ c hc
     exact GlobalTheory.pic_localization_strictHenselisation_no_torsion T O q ⟨inferInstance, hAIC⟩ hq
       (Nat.pos_of_ne_zero (NeZero.ne q)) hind
-  · refine pic_transfer eA.toRingEquiv q (fun c' _ => pic0 _ ?_ c') c hc
+  · refine pic_transfer eA.toRingEquiv q (fun c' _ => GlobalTheory.pic_eq_one_of_forall_isMaximal _ ?_ c') c hc
     intro Q hQ
     obtain ⟨Q', hQ'max, hle⟩ := Ideal.exists_le_maximal Q hQ.ne_top
     suffices hQQ : Q = Q' by rw [hQQ]; exact hQ'max

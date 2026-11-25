@@ -51,7 +51,7 @@ theorem _root_.GlobalTheory.T.abelianVariety_degreePolynomial_map_eq_charpoly_ra
       intro n
       rw [hP n]
       simp only [δ, map_sub, map_intCast, Polynomial.aeval_X, eq_intCast]
-    have hroots := GlobalTheory.T.multiplicative_polynomialFunction_eq_normForm (PadicAlgCl l) A.dim δ P hmul hpoly hPm hPd hPn
+    have hroots := GlobalTheory.MulPolyNorm.eq_prod_aroots (PadicAlgCl l) A.dim δ P hmul hpoly hPm hPd hPn
     apply GlobalTheory.PadicRootNorm.eq_of_norm_prod_aeval_eq l
     · exact hPm.map _
     · exact LinearMap.charpoly_monic _
@@ -62,7 +62,7 @@ theorem _root_.GlobalTheory.T.abelianVariety_degreePolynomial_map_eq_charpoly_ra
         congr 2
       rw [h1]
       refine (congrArg norm (hroots F)).symm.trans ?_
-      have h2 := GlobalTheory.T.det_aeval_eq_prod_aroots_charpoly' ℚ_[l] (PadicAlgCl l) (Vl l A) (vmap l f.asHom) (F.map (algebraMap ℤ ℚ_[l]))
+      have h2 := GlobalTheory.det_aeval_eq_prod_aroots_charpoly ℚ_[l] (PadicAlgCl l) (Vl l A) (vmap l f.asHom) (F.map (algebraMap ℤ ℚ_[l]))
       simp only [Polynomial.aeval_map_algebraMap] at h2
       rw [← h2]
       let t : End A →+* Module.End ℤ_[l] (Tl l A) :=
@@ -88,7 +88,7 @@ theorem _root_.GlobalTheory.T.abelianVariety_degreePolynomial_map_eq_charpoly_ra
         · obtain ⟨-, -, hpos, -⟩ := isogeny_flat_finrank K A A g hg
           obtain ⟨-, hcard⟩ :=
             GlobalTheory.T.tateModuleMap_injective_card_coker_of_isogeny K l hl A A g hg
-          have hdet := GlobalTheory.T.norm_det_eq_inv_card_coker l (Tl l A) (tmap l A A g)
+          have hdet := GlobalTheory.DetIndexPadic.norm_det_eq_of_card_coker l (Tl l A) (tmap l A A g)
             (padicValNat l (deg g)) hcard
           rw [hdet, norm_natCast_padicInt l hpos.ne']
         · have hdeg : deg g = 0 := by rw [deg, ite_eq_right hg]

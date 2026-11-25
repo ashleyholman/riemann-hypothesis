@@ -37,12 +37,6 @@ theorem notMem_small_of_QS_notMem {A : Type} [CommRing A] {Q : Ideal A} {l : ℕ
   obtain ⟨c, hc⟩ := ((H.toHostRaw.mem_small_iff).1 hs).2
   exact h (by rw [hc]; push_cast; exact Q.mul_mem_right _ hlQ)
 
-theorem half_ne_bot : H.𝔟 ≠ ⊥ := by
-  intro hb
-  have h1 := H.𝔟_spec.1
-  rw [hb, Ideal.bot_mul] at h1
-  exact differentIdeal_ne_bot h1
-
 theorem half_not_le (Q : Ideal (𝓞 H.E)) [hQ : Q.IsPrime] (h : ((H.QS * H.q : ℕ) : 𝓞 H.E) ∉ Q) : ¬ H.𝔟 ≤ Q := by
   intro hle
   refine h (H.der.diffSupport Q hQ ?_)

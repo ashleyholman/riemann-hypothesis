@@ -663,7 +663,7 @@ theorem UpperTheory.V.Sd.holMul :
     UpperTheory.V.Sd.HolMul := by
   classical
   intro F _ _ _ l _ ι k k' c ω hω φ ψ a d₀ b hφ hψ ea eb ha hd hb
-  obtain ⟨χ, hχ, hh⟩ := hol_mul hω hφ ((holLin F k' _ 1).2.2.2.2 ψ c (fun _ => Nat.zero_le _) hψ)
+  obtain ⟨χ, hχ, hh⟩ := hol_mul hω hφ ((UpperTheory.Reformulated.B.Gr32.holLin F k' _ 1).2.2.2.2 ψ c (fun _ => Nat.zero_le _) hψ)
   choose! Y hY using fun 𝔪 : Ideal (𝓞 F) => exists_genD (𝔪 := 𝔪)
   let A : (Af F)ˣ → ℂ := fun y => cf a y 1 * d₀ y + cv a b y 1
   have one : ∀ v : InfinitePlace F, 0 < reAt v (1 : F) := fun v => by simp [reAt]

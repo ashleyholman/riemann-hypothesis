@@ -565,7 +565,6 @@ namespace UpperTheory.Gal.crystallineComparison
 theorem admissible_sequence_exact : AdmExact := admissibleExact_of_dualInvariantExact dinvExact_of
 theorem joinAbs_holds : JoinAbs :=
   joinAbs_of nilEmb_of (nilSubq_of admissible_sequence_exact nilEmb_of) nilAnn_of annSub_of (annExt_of dinvExt_of) admissible_sequence_exact
-alias boundSt_holds := _root_.UpperTheory.Gal.crystallineComparison.boundSt_of
 theorem stOfCr_holds : StOfCr := stOfCr_of annPer_of boundSt_of
 
 end UpperTheory.Gal.crystallineComparison
@@ -588,7 +587,7 @@ namespace UpperTheory.Ru.crystallineComparison.JQ
 theorem bound_cr {l : ℕ} [Fact l.Prime] (P : LocPrime l) (AI : LocAinf l P) (hT : Nonempty (LocTied l P AI)) (K LL : FinExt l) :
     Bound (σCr P K) ↥LL.1 (finrank ℚ_[l] ↥(K0 K)) := by
   intro U _ _ _ _ _ ρ
-  obtain ⟨hfin, hb⟩ := (boundSt_holds l P AI hT K LL).1 U ρ
+  obtain ⟨hfin, hb⟩ := (UpperTheory.Gal.crystallineComparison.boundSt_of l P AI hT K LL).1 U ρ
   let c : P.R.B →ₗ[ℚ_[l]] Bst P := (Polynomial.CAlgHom : P.R.B →ₐ[ℚ_[l]] Bst P).toLinearMap
   have hc : Function.Injective c := Polynomial.C_injective
   have hcg : ∀ (g : ↥(GK K)) b, c (σCr P K g b) = σSt P K g (c b) := fun g b => (actSt_C P (g : GQ l) b).symm
@@ -1049,7 +1048,7 @@ theorem UpperTheory.Ru.crystallineComparison.joinQ :
     obtain ⟨i, hi, hiG, hiT⟩ := descend v ρ T ρU (fun g => (s₀ (Bw.e.symm g)).1)
       (fun _ _ => rfl) M' ϑ' hinjM' (fun g => by have := hintL (Bw.e.symm g); rwa [MulEquiv.apply_symm_apply] at this) hTL
     have hAcr : admitted (σCr P Bw.Kw) (finrank ℚ_[l] ↥(K0 Bw.Kw)) ρ := admissible_of_crystalline l P Bw.Kw V ρ hcr
-    obtain ⟨hBst, hcm⟩ := boundSt_holds l P AI hT Bw.Kw L
+    obtain ⟨hBst, hcm⟩ := UpperTheory.Gal.crystallineComparison.boundSt_of l P AI hT Bw.Kw L
     obtain ⟨hAst, hDst⟩ := stOfCr_holds l P AI hT Bw.Kw V ρ hAcr
     have hBcr := bound_cr P AI hT Bw.Kw L
     have hAL : admitted (σCr P Bw.Kw) (finrank ℚ_[l] ↥(K0 Bw.Kw)) (extRep ↥L.1 ρ) :=

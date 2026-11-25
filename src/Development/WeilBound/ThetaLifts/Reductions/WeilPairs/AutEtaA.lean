@@ -106,11 +106,11 @@ theorem exists_half_abstract' {F T T' : Type} [Field F] [NumberField F] [CommRin
   swap
   · exact absurd hB3 (hn _)
   have hNI : (e + c e) * I = e + c e := by
-    rw [he3, ← hI, ← map_mul, pair_mul, place_ext _ hα0 (y := 1) (by rw [hι, map_one]), mul_one]
+    rw [he3, ← hI, ← map_mul, pair_mul, GlobalTheory.HalfIdem.place_ext _ hα0 (y := 1) (by rw [hι, map_one]), mul_one]
   rcases mul_self_eq_mul_self_iff.1 (hB3.trans hs.symm) with hp | hp
   · right
     have : j B = (e + c e) * S := by
-      rw [he3, ← hS, ← map_mul, ← hB1, pair_mul, pair_mul', place_ext _ hα0 hp]
+      rw [he3, ← hS, ← map_mul, ← hB1, pair_mul, pair_mul', GlobalTheory.HalfIdem.place_ext _ hα0 hp]
     have h5 : c e = (e + c e) * ε := by
       rw [hε]
       linear_combination -H * D * hNI - H * δ * this + H * δ * hjB + H * (e - c e) * hδ2 - c e * hH
@@ -119,8 +119,8 @@ theorem exists_half_abstract' {F T T' : Type} [Field F] [NumberField F] [CommRin
     · linear_combination -(c e) * h5 + (1 - ε) * he4 - ε * he2
   · left
     have : j B = -((e + c e) * S) := by
-      rw [he3, ← hS, ← map_mul, ← hB1, pair_mul, pair_mul', ← map_neg, pair_neg, ← mul_neg,
-        place_ext _ hα0 (y := -s) (by rw [hp, map_neg])]
+      rw [he3, ← hS, ← map_mul, ← hB1, pair_mul, pair_mul', ← map_neg, GlobalTheory.HalfIdem.pair_neg, ← mul_neg,
+        GlobalTheory.HalfIdem.place_ext _ hα0 (y := -s) (by rw [hp, map_neg])]
     have h5 : e = (e + c e) * ε := by
       rw [hε]
       linear_combination -H * D * hNI + H * δ * this - H * δ * hjB - H * (e - c e) * hδ2 - e * hH

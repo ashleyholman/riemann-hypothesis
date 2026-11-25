@@ -100,11 +100,6 @@ section ReFi
 open NumberField.mixedEmbedding
 variable (F : Type) [Field F] [NumberField F]
 
-theorem continuous_mixedSymm : Continuous (InfiniteAdeleRing.ringEquiv_mixedSpace F).symm := by
-  first
-  | exact _root_.PositivityTheory.ThKF0.Split.continuous_ofMixed
-  | (apply _root_.PositivityTheory.ThKF0.Split.continuous_ofMixed <;> assumption)
-
 def re : mixedSpace F →+ AF F where
   toFun x := pairA F ((InfiniteAdeleRing.ringEquiv_mixedSpace F).symm x) 0
   map_zero' := Prod.ext (map_zero _) rfl
@@ -126,7 +121,7 @@ theorem evI_fi (x : Af F) : evI F (fi F x) = 0 := map_zero (InfiniteAdeleRing.ri
 theorem evI_add (x y : AF F) : evI F (x + y) = evI F x + evI F y := map_add (InfiniteAdeleRing.ringEquiv_mixedSpace F) _ _
 theorem re_add_fi (x : AF F) : re F (evI F x) + fi F x.2 = x :=
   Prod.ext ((add_zero _).trans (RingEquiv.symm_apply_apply _ _)) (zero_add _)
-theorem continuous_re : Continuous (re F) := (continuous_mixedSymm F).prodMk continuous_const
+theorem continuous_re : Continuous (re F) := (PositivityTheory.ThKF0.Split.continuous_ofMixed F).prodMk continuous_const
 
 theorem psi_re {ψ : AddChar (AF F) ℂ} (hstd : IsStd ψ) (x : mixedSpace F) :
     ψ (re F x) = Complex.exp (-(2 * Real.pi * Complex.I) * (Algebra.trace ℝ (mixedSpace F) x : ℝ)) := by

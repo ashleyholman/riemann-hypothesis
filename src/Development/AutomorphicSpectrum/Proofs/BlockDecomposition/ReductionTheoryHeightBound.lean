@@ -286,7 +286,7 @@ theorem exp_le_hgt : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Numbe
   have hf₁ : Reduction.HasFiniteContent y₁ := hf₀.vecMul (trG σ J ω)
   set u := rIdele (F := F) (-s 0) with hu
   have hkey : y₁ ᵥ* (trG σ J (a s)).1 = (u : AF F) • y₁ :=
-    vecMul_trG_torus ha (inv_mem_minPar h hJ hW (hΩP hω)) s e
+    vecMul_trG_torus ha (PositivityTheory.ThKR.inv_mem_minimal_parabolic h hJ hW (hΩP hω)) s e
   have hg : hgt σ J (ω * a s * κ) (e • Xᵀ 0) = Reduction.adelicNorm (((u : AF F) • y₁) ᵥ* (trG σ J κ).1) := by
     rw [hgt_eq, Reduction.height, map_mul, map_mul, Units.val_mul, Units.val_mul, ← Matrix.vecMul_vecMul,
       ← Matrix.vecMul_vecMul, ← hy₀, ← hy₁, hkey]

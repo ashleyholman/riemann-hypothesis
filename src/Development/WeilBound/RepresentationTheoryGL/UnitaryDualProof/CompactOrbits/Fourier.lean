@@ -301,8 +301,6 @@ section Alg
 
 variable {k : Type} [Field k] {n : ℕ} {Z : SubM k n}
 
-theorem inv_mem_Gz {g : GLn k n} (hg : g ∈ Gz Z) : g⁻¹ ∈ Gz Z := Gz_inv_mem hg
-
 theorem conj_mem_Bz {g : GLn k n} (hg : g ∈ Gz Z) {w : Mat k n} (hw : w ∈ Bz Z) :
     g.val * w * g⁻¹.val ∈ Bz Z := conj_mem_Bz_shared hg hw
 
@@ -381,7 +379,7 @@ private theorem Pr_conj {g : GLn k n} (hg : g ∈ Gz Z) (x : Mat k n) :
   refine (Pr_unique hZ h (conj_mem_B0 hg (E_mem Z _)) (funext fun j => ?_)).symm
   show trace (ee Z j * (g.val * Pr Z x * g⁻¹.val)) = trace (ee Z j * (g.val * x * g⁻¹.val))
   rw [tr_conj, tr_conj]
-  have hm := conj_mem_B0 (inv_mem_Gz hg) ((bas Z) j).2
+  have hm := conj_mem_B0 (PositivityTheory.RgUd.T.Gz_inv_mem hg) ((bas Z) j).2
   rw [inv_inv] at hm
   exact (tr_Pr hZ h hm x).symm
 

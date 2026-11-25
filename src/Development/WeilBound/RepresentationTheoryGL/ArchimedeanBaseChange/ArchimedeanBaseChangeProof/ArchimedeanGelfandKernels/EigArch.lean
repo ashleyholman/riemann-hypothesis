@@ -147,8 +147,6 @@ section -- clump:auto
 
 namespace PositivityTheory.Rg.BcB.CG
 
-alias valCont_holds := _root_.PositivityTheory.Rg.BcB.CG.valCont
-
 theorem actVal_holds : ActVal := actVal_of PositivityTheory.RgBcC.wave_existence_speed_multiplicity.2.2.2
 
 end PositivityTheory.Rg.BcB.CG

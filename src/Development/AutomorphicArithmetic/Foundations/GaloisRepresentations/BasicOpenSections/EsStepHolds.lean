@@ -1196,8 +1196,6 @@ private theorem mem_max_iff {E : Type} [Field E] [NumberField E] (w : HeightOneS
   have ha : w.valuation E (a : E) ≤ 1 := a.2
   exact ⟨fun h => lt_of_le_of_ne ha h, fun h => h.ne⟩
 
-private alias pow_sub_mem := _root_.UpperTheory.Reformulated.B.Qk67.pow_sub_mem
-
 end UpperTheory.Gal.Mod.PlaceDataValuations
 
 open UpperTheory.Gal.Mod.PlaceDataValuations in
@@ -1263,7 +1261,7 @@ theorem UpperTheory.Gal.Mod.placeData :
       rw [← h2, map_mul, hws s hs, mul_one] at h6
       exact h6
     rw [hb, ← map_pow, ← map_pow, ← sub_eq_zero, ← map_sub, ← map_sub]
-    exact hιm _ (pow_sub_mem w _)
+    exact hιm _ (UpperTheory.Reformulated.B.Qk67.pow_sub_mem w _)
   · rw [normV, Ideal.absNorm_apply, Submodule.cardQuot_apply]
   · intro m hm
     simpa using h1 (m : 𝓞 E) hm

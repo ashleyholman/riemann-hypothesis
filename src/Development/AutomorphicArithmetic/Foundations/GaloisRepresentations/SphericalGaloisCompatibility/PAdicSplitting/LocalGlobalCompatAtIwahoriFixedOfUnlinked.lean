@@ -851,9 +851,6 @@ theorem linked_single {ρ ρ' : IrrGL (k := k)} (hρ : ρ.IsCusp) (hρ' : ρ'.Is
   · rw [Segment.carrier_single, Segment.carrier_single, Set.singleton_subset_iff, Set.mem_singleton_iff]
     exact fun e => hne e.symm
 
-theorem eq_single_of_len {Δ : Segment k} (h : Δ.len = 1) : Δ = Segment.single Δ.first Δ.isCusp_first :=
-  Segment.ext_first (by simp [Segment.single]) (by simp [Segment.single, h])
-
 variable {E Ω : Type} [Field E] [NumberField E] [Field Ω] [Algebra E Ω] [IsAlgClosure E Ω]
   {A : ValuationSubring Ω} {w : HeightOneSpectrum (𝓞 E)} {h : IsPlaceOver A w}
 
@@ -961,7 +958,7 @@ theorem UpperTheory.Gal.ToralGalois.R2.mixedOf :
   by_cases hij : i = j
   · subst hij; exact hne key
   · refine hun j i (Ne.symm hij) ?_
-    rw [eq_single_of_len (hlen j), eq_single_of_len (hlen i)]
+    rw [GlobalTheory.CompanionTheory.Hypotheses₂.RankOne.eq_single_of_len (hlen j), GlobalTheory.CompanionTheory.Hypotheses₂.RankOne.eq_single_of_len (hlen i)]
     exact linked_single _ _ hne key
 end -- clump:auto
 end -- clump:auto

@@ -410,15 +410,6 @@ section Values
 variable {K : Type} [Fintype K] {ι : K → Type} [∀ k, Fintype (ι k)] {Ω : Type} [Field Ω]
   {x : (Σ k, ι k) → Ω} {z : (Σ k, ι k) → ℂ}
 
-theorem coord_ne (hz : z ∈ mcPts (mCoordIdeal x)) {q : Σ k, ι k} (hq : (X q : MRing ι) ∉ mCoordIdeal z) :
-    x q ≠ 0 := fun h => hq (by
-  have hm : (X q : MRing ι) ∈ mCoordIdeal x := by
-    show mConeMap x (X q) = 0
-    rw [mConeMap, aeval_X, h, map_zero, zero_mul]
-  have h0 : z q = 0 := by simpa using hz.2 _ hm
-  show mConeMap z (X q) = 0
-  rw [mConeMap, aeval_X, h0, map_zero, zero_mul])
-
 theorem isValueAt_sum {α : Type} (S : Finset α) (f : α → Ω) (v : α → ℂ)
     (h : ∀ i ∈ S, IsValueAt x (f i) z (v i)) : IsValueAt x (∑ i ∈ S, f i) z (∑ i ∈ S, v i) := by
   induction S using Finset.induction_on with
@@ -508,8 +499,8 @@ theorem main : ∀ (K : Type) [Fintype K] (ι : K → Type) [∀ k, Fintype (ι 
     Option.ne_none_iff_exists'.1 fun e => (M'.blk_none p).1 e hstep
   obtain ⟨c', hc'⟩ := hz₁.1 k'
   obtain ⟨hy0, hratio⟩ := _root_.GlobalTheory.CompanionTheory.Ar.PB.CovGraph.isValueAt_coord_ratio K' ι' Φ' y' z₁ k' c' hz₁ hc'
-  have ch' : ∀ k, M'.x ⟨k, F'.c k⟩ ≠ 0 := fun k => coord_ne hzb (hG'.1 k)
-  have ch : ∀ k, M.x ⟨k, F.c k⟩ ≠ 0 := fun k => coord_ne hzv (hG.1 k)
+  have ch' : ∀ k, M'.x ⟨k, F'.c k⟩ ≠ 0 := fun k => GlobalTheory.CompanionTheory.Ar.PB.CovMap.LocImg.Ind.coord_ne hzb (hG'.1 k)
+  have ch : ∀ k, M.x ⟨k, F.c k⟩ ≠ 0 := fun k => GlobalTheory.CompanionTheory.Ar.PB.CovMap.LocImg.Ind.coord_ne hzv (hG.1 k)
   obtain ⟨c, hc0, htr⟩ :=
     _root_.GlobalTheory.CompanionTheory.Ar.PB.CovGraph.StepExpr.transPt_eq_smul_sum K ι Φ y Ψ N j M K' ι' Φ' y' M' Cv F' F hF' hF ch' ch p k k' hp hk'
   obtain ⟨a', ha', hz1⟩ := hfl'.2.2 p k' hk'

@@ -768,7 +768,7 @@ theorem Fr.dec (hσ : IsCMExt F E σ) (hJ : IsHermND σ J) (hW : IsWittFrame σ 
       ∀ h', (h.iG h')⁻¹ * q₀ * h.iG h' ∈ minParOne σ J X := by
   haveI := hσ.1
   have hF := pfrA hσ hJ hW
-  have hp' := inv_mem_minPar hσ hJ hW hp
+  have hp' := PositivityTheory.ThKR.inv_mem_minimal_parabolic hσ hJ hW hp
   have matInv : ∀ {k : ℕ} {K : Matrix (Fin k) (Fin k) E} (q : GAd σ K),
       (matHom _ σ K q).1 * (matHom _ σ K q⁻¹).1 = 1 ∧ (matHom _ σ K q⁻¹).1 * (matHom _ σ K q).1 = 1 := fun q => by
     rw [← Units.val_mul, ← Units.val_mul, ← map_mul, ← map_mul, mul_inv_cancel, inv_mul_cancel, map_one, Units.val_one]
@@ -790,7 +790,7 @@ theorem Fr.dec (hσ : IsCMExt F E σ) (hJ : IsHermND σ J) (hW : IsWittFrame σ 
   have hg1 : (matHom _ σ J' g').1 = adMat F Q * (matHom _ σ J p).1 * adMat F P := rfl
   have hg2 : (matHom _ σ J' g'⁻¹).1 = adMat F Q * (matHom _ σ J p⁻¹).1 * adMat F P := rfl
   let β := uU σ J X Y hσ hJ hW hp hp' 0
-  have hβ : 0 < (GlobalTheory.Doubling.absE F E β : ℝ) := NNReal.coe_pos.2 (pos_hom' _ _)
+  have hβ : 0 < (GlobalTheory.Doubling.absE F E β : ℝ) := NNReal.coe_pos.2 (GlobalTheory.Doubling.hom_pos _ _)
   have h0 : (0 : ℝ) < 2 * (Module.finrank ℚ F : ℝ) := mul_pos two_pos (Nat.cast_pos.2 Module.finrank_pos)
   let s₁ : ℝ := Real.log (GlobalTheory.Doubling.absE F E β) / (2 * (Module.finrank ℚ F : ℝ))
   let u := β * rIdU F E (-s₁)

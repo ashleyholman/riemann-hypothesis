@@ -540,11 +540,6 @@ theorem eq_of_specializes_of_coheight {v w : Y} (h : v ⤳ w) (hv : Order.coheig
 
 variable [IsIntegral Y] [IsLocallyNoetherian Y]
 
-theorem mult_neg (F : CartierDiv Y) (z : Y) : (-F).mult z = -F.mult z := by
-  have e := CartierDiv.mult_add F (-F) z
-  rw [add_neg_cancel, (CartierDiv.isEqn_zero (X := Y) z).mult_eq, Units.val_one, (unitAt_one z).ord_eq_zero] at e
-  omega
-
 end GlobalTheory.PairStep.LiftFn
 
 namespace GlobalTheory.PairStep
@@ -595,7 +590,7 @@ theorem exists_lifted_fn : ∀ (X : Scheme.{0}) [IsIntegral X] [IsLocallyNoether
     have h1 := (_root_.GlobalTheory.RegCodimOne.regularAt_iff_forall_specializes Y (-F) x 1).2
     rw [Units.val_one] at h1
     refine h1 fun z hzx => ?_
-    rw [(unitAt_one z).ord_eq_zero, zero_add, mult_neg]
+    rw [(unitAt_one z).ord_eq_zero, zero_add, GlobalTheory.Cartier.MultEff.mult_neg]
     refine neg_nonneg.2 (not_lt.1 fun hz => ?_)
     by_cases hzσ : z = σ
     · subst hzσ
@@ -923,14 +918,6 @@ namespace GlobalTheory.Discrepancy.CoeffPlaces
 
 variable {Z : Scheme.{0}} [IsIntegral Z]
 
-theorem supp_neg_le' (D : CartierDiv Z) : (-D).supp ≤ D.supp := fun x hx h =>
-  hx (by simpa using h.neg)
-
-theorem supp_nsmul_le' (D : CartierDiv Z) (r : ℕ) : (r • D).supp ≤ D.supp := by
-  induction r with
-  | zero => rw [zero_smul, CartierDiv.supp_eq_bot_iff.2 rfl]; exact bot_le
-  | succ r ih => rw [succ_nsmul]; exact (CartierDiv.supp_add_le _ _).trans (sup_le ih le_rfl)
-
 variable [IsLocallyNoetherian Z]
 
 theorem mult_nsmul''' (E : CartierDiv Z) (r : ℕ) (z : Z) : (r • E).mult z = r * E.mult z := by
@@ -977,7 +964,7 @@ theorem GlobalTheory.Discrepancy.neg_one_lt_discrep_add_ord_of_logRes : ∀ (X :
   have hsupp : (G - m • F - m • K).supp ≤ B := by
     rw [e]
     exact (CartierDiv.supp_add_le _ _).trans
-      (sup_le hres.supp ((supp_neg_le' _).trans ((supp_nsmul_le' _ _).trans hFsupp)))
+      (sup_le hres.supp ((GlobalTheory.AmpleUpstairs.supp_neg_le _).trans ((GlobalTheory.AmpleUpstairs.supp_nsmul_le _ _).trans hFsupp)))
   have hFm (w : Y) : F.mult w = Scheme.ord ((fnPull s f : Y.functionFieldˣ) : Y.functionField) w :=
     (isEqn_pullCart s (CartierDiv.isEqn_principal f (s w))).mult_eq
   have hEqn : (G - m • F).IsEqn y' (fnPull s g / fnPull s f ^ m) :=

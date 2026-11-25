@@ -180,23 +180,22 @@ theorem continuousSMul_actX : @ContinuousSMul (GzS Z) (Xs F) (actX hFinv).toSMul
         (continuous_snd.comp (continuous_subtypeVal.comp continuous_snd)))).subtype_mk _
 
 end Act
-theorem t2k : T2Space k := Asm.t2
 
 theorem tdk : TotallyDisconnectedSpace k := totallyDisconnectedSpace_localField
 
 theorem sck : SecondCountableTopology k := (GlobalTheory.SplitWeil.Model.secondCountable_and_t2_local_field (k := k)).1
 
 theorem continuous_aevalM (P : k[X]) : Continuous fun x : Mat k n => aeval x P := by
-  have : T2Space k := t2k
+  have : T2Space k := PositivityTheory.RgUd.T.Desc.Asm.t2
   simp_rw [aeval_eq_sum_range]
   exact continuous_finsetSum _ fun i _ => (continuous_pow i).const_smul (P.coeff i)
 
 theorem isClosed_Tset {F : Set (Mat k n)} (hF : IsClosed F) (P : k[X]) : IsClosed (Tset F P) := by
-  have : T2Space k := t2k
+  have : T2Space k := PositivityTheory.RgUd.T.Desc.Asm.t2
   exact hF.inter (isClosed_eq (continuous_aevalM P) continuous_id)
 
 instance t2Space_centralizer_group (Z : Subalgebra k (Matrix (Fin n) (Fin n) k)) : T2Space (GzS Z) := by
-  have : T2Space k := t2k
+  have : T2Space k := PositivityTheory.RgUd.T.Desc.Asm.t2
   infer_instance
 
 instance gzs_td (Z : SubM k n) : TotallyDisconnectedSpace (GzS Z) := by
@@ -267,7 +266,7 @@ end Hyp
 theorem sliceVan_of_frob' [CharZero k] (hFr : FrobeniusReciprocity) (hU : Unimod (k := k)) : SliceVan (k := k) := by
   intro n Z hZ s hs hss hV F P hFc hFB hFinv hP ξ hsupp hinv f hf
   have hCR : CR (adj Z s) := AdjPf.cr_adj Z hZ s hs hss
-  have : T2Space k := t2k
+  have : T2Space k := PositivityTheory.RgUd.T.Desc.Asm.t2
   have : TotallyDisconnectedSpace k := tdk
   have : SecondCountableTopology k := sck
   have : T2Space (Mat k n) := inferInstanceAs (T2Space (Fin n → Fin n → k))
@@ -397,8 +396,6 @@ open PositivityTheory.RgUd.T
 
 variable {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k] {n : ℕ}
 
-theorem continuous_pZ (Z : SubM k n) : Continuous (pZ Z : Mat k n → _) := continuous_pZ_shared Z
-
 theorem isClosed_Bz (Z : SubM k n) : IsClosed (Bz Z) := isClosed_Bz_shared Z
 
 private theorem mul_ind_mem {X : Type} [TopologicalSpace X] {U s : Set X} (hs : IsClopen s)
@@ -418,7 +415,7 @@ theorem local_descent_holds : LocStep (k := k) := by
   have hbasis : TopologicalSpace.IsTopologicalBasis {s : Set Y | IsClopen s} :=
     isTopologicalBasis_isClopen
   let q : Sp k m → Y := fun p => pZ Z p.1
-  have hq : Continuous q := (continuous_pZ Z).comp continuous_fst
+  have hq : Continuous q := (PositivityTheory.RgUd.T.Desc.Asm.continuous_pZ Z).comp continuous_fst
   have hfS : f ∈ SuppUniv k m := ⟨hf.1, subset_univ _⟩
   have hloc : ∀ y : Y, ∃ O : Set Y, IsOpen O ∧ y ∈ O ∧ ∀ W, IsClopen W → W ⊆ O → ξ (f * (q ⁻¹' W).indicator 1) = 0 := by
     intro y

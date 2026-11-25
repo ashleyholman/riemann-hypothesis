@@ -144,12 +144,12 @@ theorem mem_unip_of_arch_frame : ∀ (F E : Type) [Field F] [NumberField F] [Fie
     intro D hD y
     constructor
     · intro hy
-      obtain ⟨a, ha, rfl⟩ := (mem_span_cols_iff C D y).1 hy
-      refine (mem_span_cols_iff C D _).2 ⟨(1 + N) *ᵥ a, hsupp D N hQ hD a ha, ?_⟩
+      obtain ⟨a, ha, rfl⟩ := (GlobalTheory.ColumnSumLemma.main C D y).1 hy
+      refine (GlobalTheory.ColumnSumLemma.main C D _).2 ⟨(1 + N) *ᵥ a, hsupp D N hQ hD a ha, ?_⟩
       rw [mulVec_mulVec, mulVec_mulVec, hMC]
     · intro hy
-      obtain ⟨a, ha, hay⟩ := (mem_span_cols_iff C D _).1 hy
-      refine (mem_span_cols_iff C D _).2 ⟨(1 + N') *ᵥ a, hsupp D N' hQ' hD a ha, ?_⟩
+      obtain ⟨a, ha, hay⟩ := (GlobalTheory.ColumnSumLemma.main C D _).1 hy
+      refine (GlobalTheory.ColumnSumLemma.main C D _).2 ⟨(1 + N') *ᵥ a, hsupp D N' hQ' hD a ha, ?_⟩
       rw [mulVec_mulVec, ← hM'C, ← mulVec_mulVec, hay, mulVec_mulVec, hM'M, one_mulVec]
   refine ⟨Subgroup.mem_iInf.2 fun j => ⟨fun y => hstab _ (fun i l h hl => hPt i l j h hl) y, fun y hy => ?_⟩,
     hstab _ (fun i l ⟨k, hk, h1, _⟩ _ => ⟨k, hk, h1⟩), fun y hy => ?_⟩
@@ -157,7 +157,7 @@ theorem mem_unip_of_arch_frame : ∀ (F E : Type) [Field F] [NumberField F] [Fie
     obtain ⟨a, rfl⟩ := hy
     show M *ᵥ _ - _ ∈ _
     rw [mulVec_smul, ← smul_sub]
-    refine Submodule.smul_mem _ _ ((mem_span_cols_iff C _ _).2 ⟨fun i => N i j, fun l hl => ?_, ?_⟩)
+    refine Submodule.smul_mem _ _ ((GlobalTheory.ColumnSumLemma.main C _ _).2 ⟨fun i => N i j, fun l hl => ?_, ?_⟩)
     · by_contra h
       exact hl (hQ l j h)
     · have e : M *ᵥ Cᵀ j = fun i => (M * C) i j := by
@@ -180,7 +180,7 @@ theorem mem_unip_of_arch_frame : ∀ (F E : Type) [Field F] [NumberField F] [Fie
     let A : Fin r → AF F ⊗[F] E := fun i => glueInf F E (fun w => a w i)
     have hcA : ∀ w, compInf F E w ∘ A = a w := fun w => funext fun i => compInf_glueInf _ w
     have hsA : ψ ∘ A = 0 := funext fun i => sndA_glueInf _
-    refine (mem_span_cols_iff C _ _).2 ⟨A, fun l hl => ?_, ?_⟩
+    refine (GlobalTheory.ColumnSumLemma.main C _ _).2 ⟨A, fun l hl => ?_, ?_⟩
     · have : (fun w => a w l) = fun _ => 0 := funext fun w => by
         by_contra h'
         exact hl (ha w l h')

@@ -928,13 +928,6 @@ theorem entry_eq_zero {a n : ℕ} (H : Matrix (Fin n) (Fin n) F)
   · exact (mem_headSub _).1 (hH.1 _) i hi
   · rw [hH.2 _ (single_mem_headSub j hj)]; rfl
 
-theorem neg_mem_nilRad {V : Type} [AddCommGroup V] [Module F V] {A : Submodule F V} {h : Module.End F V}
-    (hh : h ∈ nilRad A) : -h ∈ nilRad A := by
-  simp only [nilRad, Set.mem_setOf_eq] at hh ⊢
-  refine ⟨fun x => ?_, fun x hx => ?_⟩
-  · simpa using A.neg_mem (hh.1 x)
-  · simp [hh.2 x hx]
-
 theorem injective_add {V : Type} [AddCommGroup V] [Module F V] [FiniteDimensional F V] (A : Submodule F V)
     (g h : Module.End F V) (hg : ∀ x ∈ A, g x ∈ A) (hh : h ∈ nilRad A) (hinj : Function.Injective g) :
     Function.Injective (g + h) := by
@@ -984,7 +977,7 @@ theorem isUnit_add_iff {a n : ℕ} (M H : Matrix (Fin n) (Fin n) F)
   · intro h
     have hM' : GlobalTheory.Shin.HcAssoc.InParM a (M + H) := (inParM_add_iff M H hH).2 hM
     have := injective_add (headSub a n) (Matrix.toLin' M + Matrix.toLin' H) (-Matrix.toLin' H)
-      (by rw [← map_add (f := _)]; exact mapsTo_headSub _ hM') (neg_mem_nilRad hH) h
+      (by rw [← map_add (f := _)]; exact mapsTo_headSub _ hM') (GlobalTheory.CuspGL.PrimOrth.neg_mem_nilRad hH) h
     simpa using this
   · intro h
     exact injective_add (headSub a n) _ _ (mapsTo_headSub M hM) hH h

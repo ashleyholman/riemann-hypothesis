@@ -98,7 +98,7 @@ private theorem exists_orb_homeo (hO : OrbClosed k) {r : ℕ} {S : SubMat k N} (
     {b : Fin r → Mat k N} (hb : S.toSubmodule = Submodule.span k (Set.range b)) :
     ∃ e : GL (Fin N) k ⧸ GzS S ≃ₜ Orb b, ∀ g : GL (Fin N) k,
       ((e g : Orb b) : Fin r → Mat k N) = fun i => cj g (b i) := by
-  have : T2Space k := t2k
+  have : T2Space k := PositivityTheory.RgUd.T.Desc.Asm.t2
   have : SecondCountableTopology k := sck
   have : LocallyCompactSpace (Mat k N) := lcMat
   have : SecondCountableTopology (GL (Fin N) k) := GlobalTheory.SplitFlip.secondCountable_GL
@@ -273,7 +273,7 @@ private theorem mem_F0_iff {p : (Fin D.a0 → Mat k N) × Sp k N} (hp : p ∈ F0
 
 private theorem isClosed_Ys (hO : OrbClosed k) (hZ : CR Z) (τ : Fin D.m → ℕ) :
     IsClosed (Ys D τ) := by
-  have : T2Space k := t2k
+  have : T2Space k := PositivityTheory.RgUd.T.Desc.Asm.t2
   have hF : IsClosed (F0 D) := by
     have e : F0 D = (Prod.fst ⁻¹' Orb D.z) ∩ ((⋂ i, {p : (Fin D.a0 → Mat k N) × Sp k N |
         p.1 i * p.2.1 = p.2.1 * p.1 i}) ∩ {p | aeval p.2.1 χ = 0}) := by
@@ -520,7 +520,7 @@ private theorem transfer : Transfer k := by
   intro hFr p _ _ hU N q Z hZ χ D τ x₀ hx₀ hV ξ hsupp hinv f hf
   have hOH := TrOrb.orbHom k
   have hOC := TrOrb.orbClosed k
-  have : T2Space k := t2k
+  have : T2Space k := PositivityTheory.RgUd.T.Desc.Asm.t2
   have : TotallyDisconnectedSpace k := tdk
   have : SecondCountableTopology k := sck
   have : TotallyDisconnectedSpace (Mat k N) := tdMat

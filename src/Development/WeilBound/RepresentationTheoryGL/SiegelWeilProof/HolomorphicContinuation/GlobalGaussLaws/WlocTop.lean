@@ -297,7 +297,7 @@ theorem pLaw (hN : LawN) (hMul : LocMul) {V : HSp D} {ψ : AddChar (AF D.host.F)
   rw [hq12, hm, h2, h1, ← hq12]
   funext u
   simp only [levF, gZf_mul]
-  rw [siegelP_actZ q hq Z, siegelP_jF q hq, cnt_add, ← chN_mul_gZf ε (abs_tLoc l τ) _ _ hb u]
+  rw [siegelP_actZ q hq Z, siegelP_jF q hq, cnt_add, ← chN_mul_gZf ε (PositivityTheory.Rg.Sw.Glob.DilAH.abs_tLoc l τ) _ _ hb u]
   ring
 
 end PositivityTheory.Rg.Sw.Glob.GaussH
@@ -331,7 +331,7 @@ theorem gaussLaw_of : TensInj → LawN → LawM → VacK → LocMul → GZSch �
     unfold cLoc
     exact mul_pos (mul_pos two_pos Real.pi_pos) (abs_pos.2 (hLNe D ψ θ l hcx.hψ hcx.hθ hcx.hl τ))
   have hI := isSiegel_I (n := n)
-  have hGi : IsSch (gZf ε (tLoc l τ) (cLoc l τ) (Complex.I • 1)) := hGZ V.rank n ε _ _ hc (abs_tLoc l τ) _ hI
+  have hGi : IsSch (gZf ε (tLoc l τ) (cLoc l τ) (Complex.I • 1)) := hGZ V.rank n ε _ _ hc (PositivityTheory.Rg.Sw.Glob.DilAH.abs_tLoc l τ) _ hI
   obtain ⟨q, hq21, hqZ⟩ := siegelOrb n Z hZ
   obtain ⟨p0, k, hyq, hp0, hk⟩ := iwaGR n (y * q)
   have e1 := pLaw hN hMul hcx hL hLev q hq21 (Complex.I • 1) hGi
@@ -550,7 +550,7 @@ open NbarH GaussH
 
 theorem lawNbar_of (hU : UnipTau) (hW : WEx) (hF : FTfact) (hTI : TensInj) (hLNe : LNe) : LawNbar := by
   intro D n V ψ χ θ μ ω H l s ν τ ε fr ι hC L hL y c hc hyc f hf
-  have htc : |tLoc l τ| = cLoc l τ := abs_tLoc l τ
+  have htc : |tLoc l τ| = cLoc l τ := PositivityTheory.Rg.Sw.Glob.DilAH.abs_tLoc l τ
   have hc0 : 0 < cLoc l τ := by
     unfold cLoc
     exact mul_pos (mul_pos two_pos Real.pi_pos) (abs_pos.2 (hLNe D ψ θ l hC.hψ hC.hθ hC.hl τ))

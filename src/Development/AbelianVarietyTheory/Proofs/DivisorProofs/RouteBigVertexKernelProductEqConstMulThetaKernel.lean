@@ -60,8 +60,6 @@ theorem data_theta {D : D7} {T : Type} {L : LevCh D T} {sc : Consts} {G : GridDa
 theorem dagger_zero {D : D7} (S T : HSp D) : dagger S T 0 = 0 := by
   simp [dagger]
 
-alias hecke_mul' := _root_.GlobalTheory.WeilChange.hecke_mul
-
 theorem splitFac_ratio {D : D7} (a b c : (AE D)ˣ →* Circle) (x y : (AE D)ˣ) :
     (splitFacO a c⁻¹ x y : ℂ) * (splitFacO b⁻¹ c⁻¹ x y : ℂ)⁻¹ = ((a y * b y : Circle) : ℂ) := by
   simp only [splitFacO, MonoidHom.inv_apply, inv_inv, Circle.coe_mul, Circle.coe_inv]
@@ -90,7 +88,7 @@ theorem seesaw_product {D : D7} {ψ : AddChar (AF D.host.F) ℂ} (hψ : IsStdCha
 
   obtain ⟨⟨X, o⟩⟩ := GlobalTheory.OrthSumExists.exists_orthDec D V V₁
   obtain ⟨ω', H'⟩ := GlobalTheory.WeilExist.exists_isWeilDatumO D ψ hψ (negSp Wo) X c1S (c1T * c2S⁻¹) hη
-    H1.hecS (hecke_mul' H1.hecT (GlobalTheory.ConjWeil.hecke_inv H2.hecS)) H1.resS (o.rank_add ▸ resEta_mul H1.resT (resEta_inv H2.resS))
+    H1.hecS (GlobalTheory.WeilChange.hecke_mul H1.hecT (GlobalTheory.ConjWeil.hecke_inv H2.hecS)) H1.resS (o.rank_add ▸ resEta_mul H1.resT (resEta_inv H2.resS))
   have TT := GlobalTheory.TensorTargetRule.tensorTarget D ψ hψ (X) V V₁ o (negSp Wo)
 
   have hF₂ : IsThetaFunO ψ (negSp Wo) V₁ (cj id (cj (dagger Wo V₁) f₂)) := by

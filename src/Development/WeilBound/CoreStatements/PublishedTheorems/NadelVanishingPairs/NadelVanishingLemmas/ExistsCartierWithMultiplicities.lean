@@ -12,17 +12,13 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open ReciprocityTheory.ChartRestriction.G.Out (nonzeroLocus)
 open GlobalTheory GlobalTheory.Cartier GlobalTheory.TopForm GlobalTheory.CechPic GlobalTheory.QCoh GlobalTheory.Discrepancy GlobalTheory.LogPair
 
-private alias Scheme_ord_one := _root_.GlobalTheory.Cartier.MultEff.ord_one
-
-private alias Scheme_ord_units_inv := _root_.GlobalTheory.Cartier.MultEff.ord_inv
-
 private theorem exists_local_unit_ord_eq_finite_sum {X : Scheme.{0}} [IsIntegral X] [IsLocallyNoetherian X]
     [DecidableEq X] (hufd : ∀ x : X, UniqueFactorizationMonoid (X.presheaf.stalk x)) (c : X → ℤ)
     (S : Finset X) (hS : ∀ z ∈ S, Order.coheight z = 1) (x : X) :
     ∃ U : X.Opens, x ∈ U ∧ ∃ f : (X.functionField)ˣ, ∀ v ∈ U,
       Scheme.ord (f : X.functionField) v = ∑ z ∈ S, if v = z then c z else 0 := by
   induction S using Finset.induction_on with
-  | empty => exact ⟨⊤, trivial, 1, fun v _ => by simp [Scheme_ord_one]⟩
+  | empty => exact ⟨⊤, trivial, 1, fun v _ => by simp [GlobalTheory.Cartier.MultEff.ord_one]⟩
   | insert z S hzS ih =>
     obtain ⟨U1, hx1, f1, hf1⟩ := ih (fun w hw => hS w (Finset.mem_insert_of_mem hw))
     obtain ⟨U2, hx2, π, hπ⟩ := PrimeDivCartier.exists_local_eqn X hufd z
@@ -58,7 +54,7 @@ theorem _root_.GlobalTheory.Cartier.CartierDiv.exists_mult_eq_of_locallyFactoria
     refine ⟨U x, hxU x, f x, fun y hy => ?_⟩
     rw [germOf_eq_iff]
     have hu := MultEff.unitAt_of_ord y (f x * (f y)⁻¹) fun v hv => by
-      rw [Units.val_mul, Scheme.ord_mul (f x).ne_zero ((f y)⁻¹).ne_zero, Scheme_ord_units_inv,
+      rw [Units.val_mul, Scheme.ord_mul (f x).ne_zero ((f y)⁻¹).ne_zero, GlobalTheory.Cartier.MultEff.ord_inv,
         hf x v (hv.mem_open (U x).isOpen hy), hf y v (hv.mem_open (U y).isOpen (hxU y)), add_neg_cancel]
     simpa [div_eq_mul_inv] using hu
   let D : CartierDiv X := (⟨fun x => germOf x (f x), hmem⟩ : cartierGroup X)

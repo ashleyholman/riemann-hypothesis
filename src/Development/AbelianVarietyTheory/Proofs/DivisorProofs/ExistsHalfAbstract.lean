@@ -66,16 +66,6 @@ theorem pair_mul (α β : Af F) : pairA F 0 α * pairA F 0 β = pairA F 0 (α * 
 theorem pair_mul' (α : Af F) (b : AF F) : pairA F 0 α * b = pairA F 0 (α * sndA F b) :=
   Prod.ext (zero_mul _) rfl
 
-theorem pair_neg (α : Af F) : -pairA F 0 α = pairA F 0 (-α) :=
-  Prod.ext neg_zero rfl
-
-theorem place_ext {v : HeightOneSpectrum (𝓞 F)} {α : Af F} (h0 : ∀ v', v' ≠ v → evalV F v' α = 0)
-    {x y : Af F} (h : evalV F v x = evalV F v y) : α * x = α * y := by
-  refine af_ext' F fun w => ?_
-  by_cases hw : w = v
-  · subst hw; rw [map_mul, map_mul, h]
-  · rw [map_mul, map_mul, h0 w hw, zero_mul, zero_mul]
-
 theorem evalV_snd_algebraMap (v : HeightOneSpectrum (𝓞 F)) (x : F) :
     evalV F v (sndA F (algebraMap F (AF F) x)) = algebraMap F (Fv F v) x := by
   rw [AlgHom.commutes, AlgHom.commutes]

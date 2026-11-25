@@ -875,8 +875,6 @@ theorem ord_prod {ι : Type} (v : Place k F) (s : Finset ι) (x : ι → F) (hx 
         (Finset.prod_ne_zero_iff.2 fun i hi => hx i (Finset.mem_insert_of_mem hi)),
       ih fun i hi => hx i (Finset.mem_insert_of_mem hi)]
 
-alias val_algebraMap_le := _root_.GlobalTheory.Nef.place_le_one_const
-
 end RiemannCofinal
 
 end GlobalTheory.Nef
@@ -966,7 +964,7 @@ theorem riemann_cofinal : ∀ (k F : Type) [Field k] [IsAlgClosed k] [CharZero k
     by_cases ht1 : w.1 t ≤ 1
     · have hnn : ∀ v, 0 ≤ ord w (t - algebraMap k F (r v)) := fun v =>
         (le_one_iff w (hlin0 _)).1
-          ((Valuation.map_sub _ _ _).trans (max_le ht1 (val_algebraMap_le w _)))
+          ((Valuation.map_sub _ _ _).trans (max_le ht1 (GlobalTheory.Nef.place_le_one_const w _)))
       simp only [hPint w ht1, mul_zero, zero_add, hordh w]
       by_cases hw : w ∈ D.support
       · have hone : 0 < ord w (t - algebraMap k F (r w)) := (lt_one_iff w (hlin0 _)).1 (hr w ht1)
@@ -981,7 +979,7 @@ theorem riemann_cofinal : ∀ (k F : Type) [Field k] [IsAlgClosed k] [CharZero k
         exact Finset.sum_nonneg fun v _ => mul_nonneg (by positivity) (hnn v)
     · have hge : ∀ v, ord w t ≤ ord w (t - algebraMap k F (r v)) := fun v =>
         ord_le_ord w (hlin0 _) ht0 ((Valuation.map_sub _ _ _).trans
-          (max_le le_rfl ((val_algebraMap_le w _).trans (le_of_lt (not_le.1 ht1)))))
+          (max_le le_rfl ((GlobalTheory.Nef.place_le_one_const w _).trans (le_of_lt (not_le.1 ht1)))))
       have hsum : (M : ℤ) * ord w t ≤ ord w h := by
         rw [hordh, hM]
         push_cast

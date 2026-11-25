@@ -93,7 +93,7 @@ theorem UpperTheory.V.Br.eigOf :
       ring
     have hE := UpperTheory.V.Af.Nf.liftExp k N hN f φ.1 hL
     obtain ⟨c₀', hE'⟩ := (UpperTheory.V.Sd.holHk ℚ k hk1 (lev N) ω hfin φ hφ w).2.2 _ _ hE
-    obtain ⟨-, h0, -, hlin, -⟩ := UpperTheory.V.Sd.holLin ℚ k (lev N) ω
+    obtain ⟨-, h0, -, hlin, -⟩ := UpperTheory.Reformulated.B.Gr32.holLin ℚ k (lev N) ω
     have hE2 := hlin 0 φ.1 lam _ _ _ _ h0 hE
     rw [hH] at hE'
     rw [zero_add] at hE2

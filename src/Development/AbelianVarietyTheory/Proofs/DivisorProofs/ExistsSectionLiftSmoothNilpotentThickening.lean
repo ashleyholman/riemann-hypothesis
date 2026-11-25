@@ -1074,19 +1074,10 @@ theorem smooth_strHom {R : Type} [CommRing R] (X : Over (Sp R)) [Smooth X.hom] {
     RingHom.Smooth.of_bijective (Scheme.ΓSpecIso (CommRingCat.of R)).symm.commRingCatIsoToRingEquiv.bijective
   exact h2.comp h1
 
-theorem awayMap_surjective {R R₀ : Type} [CommRing R] [CommRing R₀] (π : R →+* R₀)
-    (hπ : Function.Surjective π) (c : R) : Function.Surjective (Localization.awayMap π c) :=
-  (IsLocalization.Away.map_surjective_iff _ _ π c).2 fun y =>
-    let ⟨x, hx⟩ := hπ y; ⟨x, 0, by simp [hx]⟩
-
 theorem ker_awayMap {R R₀ : Type} [CommRing R] [CommRing R₀] (π : R →+* R₀) (c : R) :
     RingHom.ker (Localization.awayMap π c) = (RingHom.ker π).map (algebraMap R (Localization.Away c)) := by
   exact IsLocalization.ker_map (S := Localization.Away c) (Localization.Away (π c)) π
     (M := Submonoid.powers c) (Submonoid.map_powers π c)
-
-theorem ker_awayMap_sq {R R₀ : Type} [CommRing R] [CommRing R₀] (π : R →+* R₀)
-    (hsq : RingHom.ker π ^ 2 = ⊥) (c : R) : RingHom.ker (Localization.awayMap π c) ^ 2 = ⊥ := by
-  rw [ker_awayMap, ← Ideal.map_pow, hsq, Ideal.map_bot]
 
 theorem awayMap_comp_algebraMap {R R₀ : Type} [CommRing R] [CommRing R₀] (π : R →+* R₀) (c : R) :
     (Localization.awayMap π c).comp (algebraMap R (Localization.Away c)) =
@@ -1188,7 +1179,7 @@ theorem exists_pair_lift_comb : ∀ (R R₀ : Type) [CommRing R] [CommRing R₀]
   have h2 : (spMap ρ ≫ ea) ⁻¹ᵁ V = ⊤ := preimage_spMap_comp_eq_top ρ heaV
   have hbV : (spMap ρ' ≫ eb) ⁻¹ᵁ V = ⊤ :=
     (_root_.GlobalTheory.SecGlue.preimage_eq_of_comp_eq_of_sqZero (Localization.Away (a * b)) (Localization.Away (π (a * b))) (Localization.awayMap π (a * b))
-      (awayMap_surjective π hπ _) (ker_awayMap_sq π hsq _) X.left (spMap ρ' ≫ eb) (spMap ρ ≫ ea) hred V).trans h2
+      (GlobalTheory.SecGlue.Cocycle.awayMap_surjective π hπ _) (GlobalTheory.SecGlue.Cocycle.ker_awayMap_sq π hsq _) X.left (spMap ρ' ≫ eb) (spMap ρ ≫ ea) hred V).trans h2
 
   let φ : Γ(X.left, V) →ₐ[R] Localization.Away a :=
     { chartHom V ea heaV with
@@ -1203,7 +1194,7 @@ theorem exists_pair_lift_comb : ∀ (R R₀ : Type) [CommRing R] [CommRing R₀]
       commutes' := fun r => by
         show eP (chartHom V (spMap ρ' ≫ eb) hbV (strHom X V r)) = _
         rw [← RingHom.comp_apply, chartHom_comp_strHom X hV _ _ hbV heb', AlgEquiv.commutes] }
-  have hJ : RingHom.ker (Localization.awayMap π a) ^ 2 = ⊥ := ker_awayMap_sq π hsq a
+  have hJ : RingHom.ker (Localization.awayMap π a) ^ 2 = ⊥ := GlobalTheory.SecGlue.Cocycle.ker_awayMap_sq π hsq a
   have hcond : ∀ x, ψ x - algebraMap (Localization.Away a) (Localization.Away (algebraMap R (Localization.Away a) b)) (φ x) ∈
       (RingHom.ker (Localization.awayMap π a)).map (algebraMap (Localization.Away a) (Localization.Away (algebraMap R (Localization.Away a) b))) := by
     intro x
@@ -1331,11 +1322,6 @@ namespace GlobalTheory.SecLift
 
 variable {R R₀ : Type} [CommRing R] [CommRing R₀]
 
-theorem awayMap_surjective_of_surjective (π : R →+* R₀) (hπ : Function.Surjective π) (f : R) :
-    Function.Surjective (Localization.awayMap π f) :=
-  Localization.awayMap_surjective_iff.2 fun a =>
-    (hπ a).elim fun b hb => ⟨b, 0, by simp [hb]⟩
-
 theorem isNilpotent_of_awayMap_eq_zero (π : R →+* R₀) (hnil : IsNilpotent (RingHom.ker π)) (f : R)
     (x : Localization.Away f) (hx : Localization.awayMap π f x = 0) : IsNilpotent x := by
   obtain ⟨N, hN⟩ := hnil
@@ -1384,7 +1370,7 @@ theorem exists_liftIn_unfolded : ∀ (R R₀ : Type) [CommRing R] [CommRing R₀
   refine ⟨f, ?_, V, hV, ?_⟩
   · rw [← hp₀]
     exact hp₀r
-  have hsurj := awayMap_surjective_of_surjective π hπ f
+  have hsurj := GlobalTheory.SecGlue.Cocycle.awayMap_surjective π hπ f
   have hnilL := isNilpotent_of_awayMap_eq_zero π hnil f
   have hc : (Localization.awayMap π f).comp (algebraMap R (Localization.Away f)) =
       (algebraMap R₀ (Localization.Away (π f))).comp π := IsLocalization.map_comp _

@@ -529,7 +529,7 @@ theorem block_bound : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Numb
     refine Finset.sum_congr rfl fun α' _ => Finset.sum_congr rfl fun β' _ => ?_
     rw [mul_comm]
   have hp' : p ∈ minPar σ J X := minParOne_sub (hΩP hp)
-  have hp'' : p⁻¹ ∈ minPar σ J X := inv_mem_minPar h hJ hW hp'
+  have hp'' : p⁻¹ ∈ minPar σ J X := PositivityTheory.ThKR.inv_mem_minimal_parabolic h hJ hW hp'
   have term : ∀ α' β', ‖((((frameWt t α' : ℝ) : ℂ) * ((frameWt t β' : ℝ) : ℂ)⁻¹) •
       (P α * G * P α' * M₁ * P β' * G' * P β)) u v‖ ≤ K * Bt / ratio t s := fun α' β' => by
     have hnn : 0 ≤ K * Bt / ratio t s := div_nonneg (mul_nonneg hK0 hBt0) hr.le

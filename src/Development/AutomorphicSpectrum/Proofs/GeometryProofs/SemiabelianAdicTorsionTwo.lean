@@ -339,8 +339,8 @@ theorem core {N : ℕ} (j : W ⟶ W') (hinj : ∀ (Y) (y y' : Y ⟶ W), y ≫ j 
   have hA' : IsAffineOpen U' := isAffine_of_isAffineHom (U'.ι ≫ W'.hom)
   have hY := affOver_finite hA hF
   have hY' := affOver_finite hA' hF'
-  have m1 : ∀ a : affOver hA ⟶ W', ⊤ ≤ a.left ⁻¹ᵁ U' := fun a z _ => mem_of_finite U' hU' _ hY a z
-  have m2 : ∀ a : affOver hA' ⟶ W', ⊤ ≤ a.left ⁻¹ᵁ U' := fun a z _ => mem_of_finite U' hU' _ hY' a z
+  have m1 : ∀ a : affOver hA ⟶ W', ⊤ ≤ a.left ⁻¹ᵁ U' := fun a z _ => GlobalTheory.CompanionTheory.Ar.BT.mem_of_finite_of_closedFibre U' hU' _ hY a z
+  have m2 : ∀ a : affOver hA' ⟶ W', ⊤ ≤ a.left ⁻¹ᵁ U' := fun a z _ => GlobalTheory.CompanionTheory.Ar.BT.mem_of_finite_of_closedFibre U' hU' _ hY' a z
   let r : Γ(W'.left, U') →+* Γ(W.left, U) := valHom (B := Γ(W.left, U)) (taut hA ≫ j).left U' (m1 _)
   have hr : ∀ {B : Type} [CommRing B] {f : Spec (CommRingCat.of B) ⟶ _} (z : Over.mk f ⟶ W) h,
       ∃ h', ∀ s, valHom (B := B) z.left U h (r s) = valHom (B := B) (z ≫ j).left U' h' s := by
@@ -378,7 +378,7 @@ theorem core {N : ℕ} (j : W ⟶ W') (hinj : ∀ (Y) (y y' : Y ⟶ W), y ≫ j 
     rw [← sub_eq_zero, ← e, hq]
     exact Ideal.Quotient.eq_zero_iff_mem.2 (Ideal.subset_span ⟨s, rfl⟩)
   obtain ⟨y, hy⟩ := (hker _ _).1 hqN
-  have hym : ⊤ ≤ y.left ⁻¹ᵁ U := fun z _ => mem_of_finite U hU _ hf₀ y z
+  have hym : ⊤ ≤ y.left ⁻¹ᵁ U := fun z _ => GlobalTheory.CompanionTheory.Ar.BT.mem_of_finite_of_closedFibre U hU _ hf₀ y z
   have hyr : ∀ s, valHom (B := _ ⧸ I₀) y.left U hym (r s) = π s := fun s => by
     obtain ⟨h', e⟩ := hr (B := _ ⧸ I₀) (f := f₀) y hym
     exact (e s).trans ((val_congr hy h' hqm s).trans (hq s))
@@ -447,7 +447,7 @@ theorem exists_fun [IsIntegrallyClosed R] [IsLocalRing R]
     (hR : ∀ P : Ideal R, P.IsPrime → P = ⊥ ∨ P = IsLocalRing.maximalIdeal R) (hF : Γ.IsFinOpenSub U)
     (hU : ∀ g : Γ.G.left, Γ.G.hom g = IsLocalRing.closedPoint R → g ∈ U) (s : Γ(Γ.G.left, U)) :
     ∃ f ∈ Γ.btOrder ⊤, ∀ t h, valAt (Γ.pt t).left U h s = algebraMap R _ (f t) := by
-  obtain ⟨H, A, hH, hA, hAf⟩ := sub_order R T Γ U hF
+  obtain ⟨H, A, hH, hA, hAf⟩ := GlobalTheory.CompanionTheory.Ar.BT.SubOrder.hopfOrder_of_finOpenSub R T Γ U hF
   have hV := isAffineOpen_of_fin Γ hF
   letI : Algebra R Γ(Γ.G.left, U) := (secRho Γ hV).toAlgebra
   have hρ : hV.fromSpec ≫ Γ.G.hom = Spec.map (CommRingCat.ofHom (algebraMap R Γ(Γ.G.left, U))) :=

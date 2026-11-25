@@ -421,7 +421,7 @@ theorem UpperTheory.V.AlgRepEndIrreducible.wtEq :
       _ = (i : ℕ) := Fin.card_Iio i
   have hm : Multiset.map (fun j : Fin n => ν j - (j : ℂ)) Finset.univ.val
       = Multiset.map (fun j : Fin n => ν' j - (j : ℂ)) Finset.univ.val := by
-    apply msetSep
+    apply UpperTheory.Reformulated.B.MultisetSeparation.msetSep
     intro u
     rw [Multiset.map_map, Multiset.map_map]
     have e : ∀ μ : Fin n → ℂ, (Multiset.map ((fun x => u + x) ∘ fun j : Fin n => μ j - (j : ℂ))

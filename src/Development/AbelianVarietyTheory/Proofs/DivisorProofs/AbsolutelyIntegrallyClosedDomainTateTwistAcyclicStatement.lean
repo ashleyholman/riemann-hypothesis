@@ -125,8 +125,6 @@ noncomputable section
 
 namespace GlobalTheory.EtC.AicAcyc
 
-alias aic_of_isAlgClosed := _root_.GlobalTheory.AICStalk.aic_of_isAlgClosed
-
 theorem spMap_comp {A B C : Type} [CommRing A] [CommRing B] [CommRing C] (f : A →+* B) (g : B →+* C) :
     spMap (g.comp f) = spMap g ≫ spMap f := by
   simp only [spMap, CommRingCat.ofHom_comp, Spec.map_comp, Functor.map_comp]
@@ -146,7 +144,7 @@ theorem b5 : B5 := by
   intro q A _ _ hA hq n i hn
   haveI := _root_.GlobalTheory.FractionRingRootRange.isAlgClosed_fractionRing A hA
   have hK : SH (FractionRing A) :=
-    _root_.GlobalTheory.EtC.isField_aic_sh (FractionRing A) (Field.toIsField _) (aic_of_isAlgClosed _)
+    _root_.GlobalTheory.EtC.isField_aic_sh (FractionRing A) (Field.toIsField _) (GlobalTheory.AICStalk.aic_of_isAlgClosed _)
   have hE := _root_.GlobalTheory.EtC.eqv_basic (ZMod q) (tw q i)
   have heqv : Eqv (ZMod q) (spMap (algebraMap A (FractionRing A))) (tw q i) := by
     refine _root_.GlobalTheory.LocGlobRing.main (ZMod q) (tw q i) (_root_.GlobalTheory.EtC.tw_finitary q i) A A (FractionRing A)

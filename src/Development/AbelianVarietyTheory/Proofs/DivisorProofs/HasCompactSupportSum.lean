@@ -31,12 +31,6 @@ theorem level_of_le {φ ψ : Sm E a} (h : IsOpen {k | finRep E a k φ = φ})
     (hle : ∀ k, finRep E a k φ = φ → finRep E a k ψ = ψ) : IsOpen {k | finRep E a k ψ = ψ} :=
   isOpen_stab_of_mem_nhds _ _ (Filter.mem_of_superset (h.mem_nhds (by simp)) fun k hk => hle k hk)
 
-theorem fin_cpt_comm (k : GL (Fin a) (Af E)) (c : Kinf E a) :
-    finRep E a k * cptRep E a c = cptRep E a c * finRep E a k := by
-  change rt E a (finGL E a k) * rt E a (infGL E a (Unitary.toUnits c)) =
-    rt E a (infGL E a (Unitary.toUnits c)) * rt E a (finGL E a k)
-  rw [← map_mul, ← map_mul, infGL_comm]
-
 theorem height_mul_le (c : GL (Fin a) (Cinf E)) : ∃ B : ℝ, 1 ≤ B ∧ ∀ y, height (y * c) ≤ B * height y := by
   apply _root_.GlobalTheory.CuspStabFin.height_mul_le_const
 

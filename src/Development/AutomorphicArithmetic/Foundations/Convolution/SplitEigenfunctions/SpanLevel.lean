@@ -428,12 +428,6 @@ private theorem cont_n : Continuous fun q : A E => gl (nU q) := by
     refine continuous_matrix fun i j => ?_
     fin_cases i <;> fin_cases j <;> simp [vn] <;> fun_prop
 
-private theorem rat_n (k : E) : ∃ γ : GL (Fin 2) E, ratGL E 2 γ = gl (nU (rt k)) := by
-  refine ⟨Matrix.SpecialLinearGroup.toGL ⟨!![1, k; 0, 1], by simp [Matrix.det_fin_two]⟩, Units.ext ?_⟩
-  ext i j
-  change algebraMap E (A E) (!![1, k; 0, 1] i j) = _
-  fin_cases i <;> fin_cases j <;> simp [vn]
-
 private theorem rat_w : ∃ γ : GL (Fin 2) E, ratGL E 2 γ = gl (wW E) := by
   refine ⟨Matrix.SpecialLinearGroup.toGL ⟨!![0, 1; -1, 0], by simp [Matrix.det_fin_two]⟩, Units.ext ?_⟩
   ext i j
@@ -460,7 +454,7 @@ private theorem per_Fh (D : Dat ℚ E) {Φ : GL (Fin 2) (A E) → ℂ} (hL : ∀
     (h : GL (Fin 2) (A E)) : ∀ l ∈ vecLattice ℚ (Fin 2), ∀ x, Fh D Φ h (l + x) = Fh D Φ h x := by
   intro l hl x
   obtain ⟨η, rfl⟩ := mem_vecLattice.1 hl
-  obtain ⟨γ, hγ⟩ := rat_n (algebraMap ℚ E (η 0) + algebraMap ℚ E (η 1) * D.θ)
+  obtain ⟨γ, hγ⟩ := UpperTheory.ConvolutionTheory.R2.Pp.rat_n (algebraMap ℚ E (η 0) + algebraMap ℚ E (η 1) * D.θ)
   simp only [Fh, Pi.add_apply]
   rw [D.mkE_add, n_add]
   change Φ (gl (nU (D.mkE (rt (η 0)) (rt (η 1)))) * gl (nU (D.mkE (x 0) (x 1))) * h) = _

@@ -21,11 +21,11 @@ section
 variable (S : LevSys (per l K)) (hS : S.Good) (hC : ∀ m, (S.L m).CrisOK)
 
 def dOf (m n : ℕ) : RedIn (B.DD false (PAlg.base l) n) (B.κb (okToOC l K) false n) (S.L m).γ l n :=
-  Classical.choose (redIn_ex (S.L m).γ (m + 1) (S.L m).lam ((hS.lev m).lat (m + 1) le_rfl).tf (hC m).1 (hC m).2 n)
+  Classical.choose (GlobalTheory.CompanionTheory.RedInEx.redIn_ex (S.L m).γ (m + 1) (S.L m).lam ((hS.lev m).lat (m + 1) le_rfl).tf (hC m).1 (hC m).2 n)
 
 theorem hcOf (m n : ℕ) (c : Acris l) :
     (dOf S hS hC m n).ρ ((PAlg.base l).cris n c) = Ideal.Quotient.mk _ ((S.L m).lam c) :=
-  Classical.choose_spec (redIn_ex (S.L m).γ (m + 1) (S.L m).lam ((hS.lev m).lat (m + 1) le_rfl).tf (hC m).1 (hC m).2 n) c
+  Classical.choose_spec (GlobalTheory.CompanionTheory.RedInEx.redIn_ex (S.L m).γ (m + 1) (S.L m).lam ((hS.lev m).lat (m + 1) le_rfl).tf (hC m).1 (hC m).2 n) c
 
 abbrev chK (M : Model l K) (m s : ℕ) : Chain.{1} (per l K).A (S.L m).A (S.L m).B K :=
   chainOf (hS.lev m) M s (_root_.CrystallineSemistableComparison.Pb.Kap.qb_le_pf (hS.lev m) M s) (rHof (dOf S hS hC m) (hcOf S hS hC m) M s)

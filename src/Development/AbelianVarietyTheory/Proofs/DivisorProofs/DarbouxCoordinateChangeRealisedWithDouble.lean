@@ -742,8 +742,6 @@ namespace GlobalTheory.TowU.WeylModel
 
 variable {F : Type} [Field F] [NumberField F]
 
-alias act_weyl := _root_.GlobalTheory.AdelicSvN.Weyl.act_weyl
-
 theorem conj_psi {ψ : AddChar (AF F) ℂ} (hψ : IsStd ψ) (t : AF F) : conj (ψ t) = ψ (-t) := by
   rw [AddChar.map_neg_eq_inv, Complex.inv_eq_conj (GlobalTheory.StdCharFromIsStd.norm_psi hψ t)]
 
@@ -778,12 +776,12 @@ theorem GlobalTheory.TowU.realised_weyl2 : ∀ (F : Type) [Field F] [NumberField
   refine ⟨S, S', ?_, Sd, Sd', ?_, fun φ₁ h₁ φ₂ h₂ => ?_⟩
   · convert hS using 1
     funext w
-    rw [act_weyl]
+    rw [GlobalTheory.AdelicSvN.Weyl.act_weyl]
     refine Prod.ext (funext fun i => ?_) (funext fun i => ?_) <;> simp [ε₁]
   · convert hSd using 1
     funext w
     refine Prod.ext (funext fun i => ?_) (funext fun i => ?_) <;> rcases i with i | i <;>
-      simp [dblAct, act_weyl, ε₂]
+      simp [dblAct, GlobalTheory.AdelicSvN.Weyl.act_weyl, ε₂]
   · funext y
     have hν : ν = Measure.map H.toMeasurableEquiv (μ.prod μ) := rfl
     have e₂ : star (S (star φ₂)) (y ∘ Sum.inr) =

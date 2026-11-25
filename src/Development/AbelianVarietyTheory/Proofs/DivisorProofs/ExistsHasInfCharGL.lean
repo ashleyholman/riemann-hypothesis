@@ -24,18 +24,13 @@ theorem cap_commute_act' {E : Type} [Field E] [NumberField E] [_root_.NumberFiel
   | cpt k => exact GlobalTheory.CapAdInv.cap_commute_rt_infGL E a τ u _
   | lie X => exact commute_cap_lie τ u X
 
-theorem exists_scalar {E : Type} [Field E] [NumberField E] [_root_.NumberField.IsTotallyComplex E] {a : ℕ} {V : Submodule ℂ (Sm E a)}
-    (hV : IsDiscrete V) {z : Module.End ℂ (Sm E a)} (hz : z ∈ Zalg E a)
-    (hc : ∀ o : Op E a, Commute z (act o)) : ∃ c : ℂ, ∀ φ ∈ V, z φ = c • φ := by
-  apply _root_.GlobalTheory.DiscLocEx.exists_scalarD <;> assumption
-
 theorem exists_hasInfCharGL {E : Type} [Field E] [NumberField E] [_root_.NumberField.IsTotallyComplex E] {N : ℕ}
     {V : Submodule ℂ (Sm E N)} (hV : IsDiscrete V) (τ : E →+* ℂ) : ∃ μ, HasInfCharGL V τ μ := by
   obtain ⟨φ, hφ, h0⟩ := (Submodule.ne_bot_iff _).1 hV.ne_bot
   obtain ⟨f, hf⟩ := Module.Projective.exists_dual_eq_one ℂ h0
   obtain ⟨m, hm, h⟩ := exists_multiset_qdet (Eop (a := N) τ) (((N : ℂ) - 1) / 2) φ f hf
   refine ⟨m, hm, fun u ψ hψ => ?_⟩
-  obtain ⟨c, h1⟩ := exists_scalar hV (z := cap τ u) (Algebra.subset_adjoin ⟨τ, u, rfl⟩)
+  obtain ⟨c, h1⟩ := GlobalTheory.DiscLocEx.exists_scalarD hV (z := cap τ u) (Algebra.subset_adjoin ⟨τ, u, rfl⟩)
     (fun o => cap_commute_act' τ u o)
   have h2 : f (cap τ u φ) = _ := h u
   rw [h1 φ hφ, map_smul, hf, smul_eq_mul, mul_one] at h2

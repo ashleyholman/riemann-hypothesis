@@ -64,16 +64,6 @@ theorem finite_part : ∀ (R : Type) [CommRing R] [HenselianLocalRing R] (X : Sc
   exact ⟨GlobalTheory.finitePart f, GlobalTheory.isFinite_finitePart (R := CommRingCat.of R) f,
     GlobalTheory.mem_finitePart_of_eq_closedPoint (R := CommRingCat.of R) f⟩
 
-theorem finite_le : ∀ (R : Type) [CommRing R] [IsLocalRing R] (X : Scheme.{0}) (f : X ⟶ Spec (CommRingCat.of R)) (U U' : X.Opens), IsFinite (U.ι ≫ f) → (∀ x : X, f x = IsLocalRing.closedPoint R → x ∈ U') → U ≤ U' := by
-  intro R _ _ X f U U' hU hU' x hx
-  exact (GlobalTheory.preimage_eq_top_of_closedFibre_subset (R := CommRingCat.of R) f U' hU' U.ι).ge
-    (Set.mem_univ ⟨x, hx⟩)
-
-alias mem_of_finite := _root_.GlobalTheory.CompanionTheory.Ar.BT.mem_of_finite_of_closedFibre
-
-theorem finite_sub : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R] (T : Type) [CommGroup T] (Γ : QFGroup R T) (U : Γ.G.left.Opens), IsFinite (U.ι ≫ Γ.G.hom) → (∀ x : Γ.G.left, Γ.G.hom x = IsLocalRing.closedPoint R → x ∈ U) → Γ.IsFinOpenSub U := by
-  apply GlobalTheory.CompanionTheory.Ar.BT.QFGroup.isFinOpenSub_of_closedFibre
-
 theorem mem_iff_section : ∀ (R : Type) [CommRing R] [IsDomain R] [IsIntegrallyClosed R] [IsLocalRing R] (T : Type) [CommGroup T] [Finite T] (Γ : QFGroup R T) (U : Γ.G.left.Opens), IsFinite (U.ι ≫ Γ.G.hom) → (∀ g : Γ.G.left, Γ.G.hom g = IsLocalRing.closedPoint R → g ∈ U) → ∀ t, (⊤ ≤ (Γ.pt t).left ⁻¹ᵁ U ↔ ∃ σ : 𝟙_ (Over (Spec (CommRingCat.of R))) ⟶ Γ.G, toUnit (genPt R) ≫ σ = Γ.pt t) := by
   intro R _ _ _ _ T _ _ Γ U hfin hU t
   constructor
@@ -81,7 +71,7 @@ theorem mem_iff_section : ∀ (R : Type) [CommRing R] [IsDomain R] [IsIntegrally
     obtain ⟨σ, -, hσ⟩ := exists_section_of_generic_point R T Γ U hfin t ht
     exact ⟨σ, hσ⟩
   · rintro ⟨σ, hσ⟩ z _
-    have key := mem_of_finite U hU (𝟙_ _) (show IsFinite (𝟙 _) from inferInstance) σ
+    have key := GlobalTheory.CompanionTheory.Ar.BT.mem_of_finite_of_closedFibre U hU (𝟙_ _) (show IsFinite (𝟙 _) from inferInstance) σ
       ((toUnit (genPt R)).left z)
     rw [← hσ]
     simpa using key

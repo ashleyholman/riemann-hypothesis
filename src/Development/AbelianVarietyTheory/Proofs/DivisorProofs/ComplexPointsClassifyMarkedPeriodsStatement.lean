@@ -679,7 +679,7 @@ theorem Model.fineAt_univ : ∀ (p : ℕ) [Fact p.Prime] (D : Datum p) (R : Type
   · intro y hy
     obtain ⟨o, ⟨m⟩⟩ := _root_.GlobalTheory.HTPullEvery.exists_objMap p D R b N M.X (Sp ℂ) M.s (spMap σ) y hy M.univ
     obtain ⟨h', hL'⟩ := _root_.GlobalTheory.HTDim.relDim_and_isLB p D R b N (Sp ℂ) (spMap σ) o
-    obtain ⟨D', t, Q, e, hC, hU⟩ := GlobalTheory.T.exists_complexUniformisation_harrisTaylor p D R b N σ ρ o h' hL' hN hNp hty
+    obtain ⟨D', t, Q, e, hC, hU⟩ := GlobalTheory.UPel.HT.Unif.exists_unifAt p D R b N σ ρ o h' hL' hN hNp hty
     obtain ⟨e2, he2⟩ := (tr o y m hy h' hL' D' t Q).1 e hU
     exact ⟨D', t, Q, e2, hC, he2⟩
   · intro D' t Q hC hQ
@@ -721,7 +721,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open scoped Matrix
 open GlobalTheory.UPel.HT
 
-alias _root_.GlobalTheory.T.complexPoints_classify_markedPeriods := _root_.GlobalTheory.UPel.HT.Model.fineAt_univ
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ComplexPointsClassifyMarkedPeriodsStatement =====

@@ -431,8 +431,4 @@ theorem transpose (hI : InfInv) (F1 F2 : M2 n → ℂ) (χ1 χ2 : M2 n → ℂ) 
   rw [List.length_ofFn] at key
   exact key
 
-alias iteratedFDeriv_left_mul := _root_.PositivityTheory.Rg.Sw.LVs.left_mul'
-
-alias continuousOn_iteratedFDeriv_translate := _root_.PositivityTheory.Rg.Sw.LVs.cont_translate'
-
 end PositivityTheory.Rg.Sw.LVs

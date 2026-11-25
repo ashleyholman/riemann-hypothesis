@@ -724,11 +724,6 @@ open GlobalTheory GlobalTheory.Cartier GlobalTheory.TopForm GlobalTheory.CechPic
 namespace GlobalTheory.LogResStep
 
 
-open GlobalTheory.Cartier.CartierDiv in
-alias supp_neg_le := _root_.GlobalTheory.AmpleUpstairs.supp_neg_le
-
-alias supp_nsmul_le := _root_.GlobalTheory.AmpleUpstairs.supp_nsmul_le
-
 theorem sup_ne_top {Y : Scheme.{0}} [IsIntegral Y] {Z W : Closeds Y} (hZ : Z ≠ ⊤) (hW : W ≠ ⊤) : Z ⊔ W ≠ ⊤ := by
   have key : ∀ C : Closeds Y, C ≠ ⊤ → genericPoint Y ∉ C := fun C hC h => hC <| by
     ext x; simp only [Closeds.coe_top, Set.mem_univ, iff_true]
@@ -802,7 +797,7 @@ theorem GlobalTheory.exists_logRes_ample : GlobalTheory.Published.Principalisati
       rw [hB]
       exact Or.inr ((_root_.GlobalTheory.Discrepancy.pullCart_supp_and_eff Y₀ Y t D₀).1 y hy)
     · intro y hy
-      have hy' := supp_neg_le _ (supp_nsmul_le _ m hy)
+      have hy' := GlobalTheory.AmpleUpstairs.supp_neg_le _ (GlobalTheory.AmpleUpstairs.supp_nsmul_le _ m hy)
       rw [hB]
       by_contra hc
       refine hkiso y ?_ hy'

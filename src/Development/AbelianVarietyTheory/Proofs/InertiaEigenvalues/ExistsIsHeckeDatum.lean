@@ -36,7 +36,7 @@ theorem exists_isDC_levG (V : HSp D) (β : GL (Fin V.rank) (Lev.EAf D)) (L : Lev
   have hi := GlobalTheory.HeckeLabels.relIndex_conj_ne_zero (L := GfC V) (GlobalTheory.ParahoricCompact.isCompact_levG V β L)
     (GlobalTheory.ParahoricCompact.isOpen_comap_lev V β L) (fun k hk hk' => ⟨hk, hk'⟩) hα
   rw [inf_eq_left.2 hle] at hi
-  obtain ⟨R, r1, r2⟩ := GlobalTheory.HeckeLabels.exists_reps hi
+  obtain ⟨R, r1, r2⟩ := UpperTheory.Reformulated.B.Yt3.exists_reps hi
   refine ⟨R, fun a ha => ?_, fun g ⟨k₁, k₂, hg⟩ => ?_⟩
   · obtain ⟨k₁, h₁, k₂, h₂, e⟩ := r1 a ha
     exact ⟨⟨k₁, h₁⟩, ⟨k₂, h₂⟩, e⟩

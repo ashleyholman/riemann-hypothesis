@@ -54,7 +54,7 @@ private theorem sec_empty {R : Type} [CommRing R] (F : Shv R) (T : Scheme.{0}) [
 private theorem free_sec_zero (R : Type) [CommRing R] (P : PSh)
     (hP : ∀ T : Scheme.{0}, Nonempty (P.obj (op T)) → IsEmpty T) (U : Scheme.{0})
     (y : Sec ((free R).obj P) U) : y = 0 := by
-  obtain ⟨S, hS, h⟩ := (GlobalTheory.T.freeEtaleSheaf_section_locally_finite_combination R P U).1 y
+  obtain ⟨S, hS, h⟩ := (GlobalTheory.EtC.free_sec_loc R P U).1 y
   refine (_root_.GlobalTheory.EtC.sec_ext_glue R _ U).1 y 0 ⟨S, hS, fun V g hg => ?_⟩
   obtain ⟨c, hc⟩ := h V g hg
   have h0 : Sec.res g (0 : Sec ((free R).obj P) U) = 0 := map_zero (((free R).obj P).obj.map g.op).hom
@@ -287,10 +287,6 @@ private theorem pull_cast' {E E' : Spc} (s : E ⟶ E') {n i n' i' : ℤ} (h1 : n
     pull _ s _ _ (x.cast h1 h2) = Ht.cast h1 h2 (pull _ s _ _ x) := by
   subst h1 h2; rfl
 
-private theorem cast_add' {E : Spc} {n i n' i' : ℤ} (h1 : n = n') (h2 : i = i') (x y : Ht q E n i) :
-    (x + y).cast h1 h2 = x.cast h1 h2 + y.cast h1 h2 := by
-  subst h1 h2; rfl
-
 private theorem cast_zero' {E : Spc} {n i n' i' : ℤ} (h1 : n = n') (h2 : i = i') :
     (0 : Ht q E n i).cast h1 h2 = 0 := by
   subst h1 h2; rfl
@@ -336,7 +332,7 @@ private theorem lhmv_phi_add (q : ℕ) {X E : Spc} (π : X ⟶ E) {m : ℕ} (d e
   rw [← Finset.sum_add_distrib]
   refine Finset.sum_congr rfl fun j _ => ?_
   simp only [Pi.add_apply, map_add (f := _), AddMonoidHom.add_apply]
-  exact UpperTheory.LHMV.cast_add' _ _ _ _
+  exact GlobalTheory.EtC.GmPhi.cast_add _ _ _ _
 
 private theorem lhmv_phi_sub (q : ℕ) {X E : Spc} (π : X ⟶ E) {m : ℕ} (d e : Fin m → ℤ) (c : ∀ j, Ht q X (d j) (e j))
     (n i : ℤ) (a b : ∀ j, Ht q E (n - d j) (i - e j)) :
@@ -917,8 +913,6 @@ private theorem eqv_comp {R : Type} [CommRing R] {X Y Z : Spc} {f : X ⟶ Y} {g 
   rw [e]
   exact (hf n).comp (hg n)
 
-private alias eqv_iso := _root_.GlobalTheory.EtC.eqv_of_isIso
-
 private theorem inv_sp {E : Spc} (hE : Inv q E) (a : Act) : Inv q (Sp E a) :=
   fun U ⟨x⟩ => hE U ⟨((Sp.fst E a).app _).app _ x⟩
 
@@ -1060,7 +1054,7 @@ theorem UpperTheory.eqv_twist_unimodularUnitLocus :
   | zero =>
     haveI : IsIso (Sp.map E (incl (Q1 0))) :=
       UpperTheory.isIso_stackProductMap_of_bijective E (incl (Q1 0)) bij_incl0 (fun A => Function.bijective_id)
-    exact eqv_comp (eqv_iso _ _) (equiv_first_twist E hE i)
+    exact eqv_comp (GlobalTheory.EtC.eqv_of_isIso _ _) (equiv_first_twist E hE i)
   | succ M ih =>
     haveI : IsIso (Sp.pair E (rho M) (sig M)) :=
       UpperTheory.isIso_stackProductPair_of_bijective E (rho M) (sig M) (fun A => bij_plain M A) (bij_grp M)
@@ -1068,7 +1062,7 @@ theorem UpperTheory.eqv_twist_unimodularUnitLocus :
         Sp.pair E (rho M) (sig M) ≫ Sp.fst (Sp E ((XC (M + 1)).sub (Q1 M))) affC ≫
           Sp.map E (incl (Q1 M)) ≫ Sp.fst E (XC (M + 1)) := rfl
     rw [e]
-    exact eqv_comp (eqv_iso _ _) (eqv_comp (UpperTheory.affineLineAction_fst_twistEquiv q _ i (inv_sp hE _)) ih)
+    exact eqv_comp (GlobalTheory.EtC.eqv_of_isIso _ _) (eqv_comp (UpperTheory.affineLineAction_fst_twistEquiv q _ i (inv_sp hE _)) ih)
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AutomorphicArithmetic.CommutativeAlgebra.EqvTwistUnimodularUnitLocus =====

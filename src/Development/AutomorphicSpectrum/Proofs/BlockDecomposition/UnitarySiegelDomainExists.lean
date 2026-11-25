@@ -988,7 +988,7 @@ theorem simple_bound : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Num
   intro ω hω s κ hκ e he hNM j' hj'
   rw [show j' = j from Fin.ext (hj'.trans hj.symm)]
   have m1 : ω ∈ minPar σ J X := minParOne_subset (hΩ1 hω)
-  have m2 : ω⁻¹ ∈ minPar σ J X := inv_mem_minPar h hJ hW m1
+  have m2 : ω⁻¹ ∈ minPar σ J X := PositivityTheory.ThKR.inv_mem_minimal_parabolic h hJ hW m1
   obtain ⟨hBt, eB⟩ := (mem_minPar_iff hF).1 m2
   obtain ⟨hBt', -⟩ := (mem_minPar_iff hF).1 m1
   have hu1 : Bm σ J X Y ω⁻¹ 0 0 * Bm σ J X Y ω 0 0 = 1 := by
@@ -1309,9 +1309,9 @@ theorem cov_main : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [NumberF
   obtain ⟨Ω, hΩc, hΩ1, hΩ⟩ := _root_.GlobalTheory.CompanionTheory.ParCocompact.minParOne_cocompact F E σ h n J hJ r X Y hW
   obtain ⟨τ, hτc, hτadd, hτa, hτ1, hτp⟩ := exists_tau h hJ hW ha
   have hD : IsCompact ((C * (K : Set (GAd σ J))) ∩ minPar σ J X) :=
-    (hC.mul hKc).inter_right (isClosed_minPar h hJ hW)
+    (hC.mul hKc).inter_right (PositivityTheory.ThKR.isClosed_minimal_parabolic h hJ hW)
   have hT : IsCompact (Subtype.val ⁻¹' ((C * (K : Set (GAd σ J))) ∩ minPar σ J X) : Set (minParSub X h hJ hW)) := by
-    have hcl : IsClosed ((minParSub X h hJ hW : Subgroup (GAd σ J)) : Set (GAd σ J)) := isClosed_minPar h hJ hW
+    have hcl : IsClosed ((minParSub X h hJ hW : Subgroup (GAd σ J)) : Set (GAd σ J)) := PositivityTheory.ThKR.isClosed_minimal_parabolic h hJ hW
     exact hcl.isClosedEmbedding_subtypeVal.isCompact_preimage hD
   obtain ⟨B, hB⟩ := hT.exists_bound_of_continuousOn hτc.continuousOn
   have hB0 : ∀ p ∈ (Subtype.val ⁻¹' ((C * (K : Set (GAd σ J))) ∩ minPar σ J X) : Set (minParSub X h hJ hW)),

@@ -246,7 +246,7 @@ theorem stdChar_mixed_linear : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ)
   have hg : Continuous g := by
     have : Continuous fun x : Ainf D.host.F => z x :=
       continuous_finsetSum _ fun ρ _ => (hθ ρ).2
-    exact (Complex.continuous_re.comp (this.comp (GlobalTheory.PsiInfLinear.continuous_ringEquiv_mixedSpace_symm D.host.F))).neg
+    exact (Complex.continuous_re.comp (this.comp (PositivityTheory.ThKF0.Split.continuous_ofMixed D.host.F))).neg
   refine ⟨(g.toRealLinearMap hg : mixedEmbedding.mixedSpace D.host.F →ₗ[ℝ] ℝ), ?_, fun a => rfl⟩
   intro a
   have hz : z (e.symm a) = ((z (e.symm a)).re : ℂ) := Complex.ext rfl (by simp [him])

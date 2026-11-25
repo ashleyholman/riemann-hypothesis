@@ -860,7 +860,7 @@ theorem UpperTheory.Ru.crystallineComparison.wTrans :
     let ρ : A.obj.U →+* (B τ).obj.U := PAlg.mapU (f τ).hom
     have hρ : ρ (∏ j, e j (τ j)) = 1 := by
       rw [← hs τ]
-      refine ((RL.expand_nat A.obj (B τ).obj (f τ).hom).2.2.1 (e₀ τ)).trans ?_
+      refine ((GlobalTheory.CompanionTheory.PAlgNat.expand_nat A.obj (B τ).obj (f τ).hom).2.2.1 (e₀ τ)).trans ?_
       rw [hf τ, map_one]
     have hρj : ∀ j, ρ (e j (τ j)) = 1 := by
       intro j

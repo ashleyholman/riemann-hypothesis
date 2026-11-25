@@ -416,8 +416,6 @@ section -- clump:auto
 
 open CategoryTheory TensorProduct MvPowerSeries GlobalTheory GlobalTheory.PDiv GlobalTheory.PDivGroup GlobalTheory.Katz
 
-theorem _root_.GlobalTheory.T.existsUnique_powerSeries_semilinear_pDivGroupHom_chart : ∀ (p : ℕ) (k k' : Type) [CommRing k] [CommRing k'] (σ : k →+* k') (d e : ℕ) (G : PDivGroup p k) (G' : PDivGroup p k') (c : Chart G d) (c' : Chart G' e) (s : SemiHom σ G' G), ∃! φ : Fin d → MvPowerSeries (Fin e) k', ∀ n j, c'.ev n (φ j) = s.app n (c.x n j) := by
-  first | (exact @GlobalTheory.Katz.existsUnique_semiHom_ev)
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ExistsUniquePowerSeriesSemilinearPDivGroupHomChaStatement =====
@@ -1106,7 +1104,7 @@ theorem chartPull_comp {k k' k'' : Type} [Field k] [CharP k p] [PerfectRing k p]
   obtain rfl := ringHom_eq_of_app s t u hu
   induction x using Submodule.Quotient.induction_on with | _ f => ?_
   obtain ⟨φs, hφs, -⟩ := _root_.GlobalTheory.Katz.existsUnique_semiHom_ev p k k' σ d e G G' c c' s
-  obtain ⟨φt, hφt, -⟩ := GlobalTheory.T.existsUnique_powerSeries_semilinear_pDivGroupHom_chart p k' k'' τ e e' G' G'' c' c'' t
+  obtain ⟨φt, hφt, -⟩ := GlobalTheory.Katz.existsUnique_semiHom_ev p k' k'' τ e e' G' G'' c' c'' t
   have h3s := _root_.GlobalTheory.Katz.semiHom_constantCoeff_and_ev p k k' σ d e G G' c c' s φs hφs
   have h3t := _root_.GlobalTheory.Katz.semiHom_constantCoeff_and_ev p k' k'' τ e e' G' G'' c' c'' t φt hφt
   let ψ : Fin d → MvPowerSeries (Fin e) k'' := fun j => MvPowerSeries.map τ (φs j)
@@ -1155,7 +1153,7 @@ theorem chartPull_add {k : Type} [Field k] [CharP k p] [PerfectRing k p] {G H : 
     mfg x = mf x + mg x := by
   induction x using Submodule.Quotient.induction_on with | _ y => ?_
   obtain ⟨φf, hφf, -⟩ := _root_.GlobalTheory.Katz.existsUnique_semiHom_ev p k k (RingHom.id k) e d H G cH cG (SemiHom.ofHom f)
-  obtain ⟨φg, hφg, -⟩ := GlobalTheory.T.existsUnique_powerSeries_semilinear_pDivGroupHom_chart p k k (RingHom.id k) e d H G cH cG (SemiHom.ofHom g)
+  obtain ⟨φg, hφg, -⟩ := GlobalTheory.Katz.existsUnique_semiHom_ev p k k (RingHom.id k) e d H G cH cG (SemiHom.ofHom g)
   have c1 := (_root_.GlobalTheory.Katz.semiHom_constantCoeff_and_ev p k k (RingHom.id k) e d H G cH cG _ φf hφf).1
   have c2 := (_root_.GlobalTheory.Katz.semiHom_constantCoeff_and_ev p k k (RingHom.id k) e d H G cH cG _ φg hφg).1
   have hsum : cG.IsMapOf cH (f + g) (op ν φf φg) :=

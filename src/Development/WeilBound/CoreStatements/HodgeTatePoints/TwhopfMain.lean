@@ -185,7 +185,7 @@ theorem level {R : Type} [CommRing R] [IsDomain R] [IsIntegrallyClosed R] [Hense
   obtain ⟨U, hUf, hUc⟩ := finite_part R Γ.G.left Γ.G.hom
   have hsub := _root_.GlobalTheory.CompanionTheory.Ar.BT.QFGroup.isFinOpenSub_of_closedFibre R T Γ U hUf hUc
   have htop := btOrder_eq_top hR Γ U hUc
-  obtain ⟨H, A, hH, hA, hAf⟩ := sub_order R T Γ U hsub
+  obtain ⟨H, A, hH, hA, hAf⟩ := GlobalTheory.CompanionTheory.Ar.BT.SubOrder.hopfOrder_of_finOpenSub R T Γ U hsub
   have key : Γ.btOrder U = indOrder H.subtype A := by
     ext f
     rw [mem_order R T Γ U f]

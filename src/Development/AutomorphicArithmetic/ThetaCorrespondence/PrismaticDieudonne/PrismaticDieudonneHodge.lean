@@ -821,8 +821,6 @@ namespace GlobalTheory.PDivLat.Frob
 variable {p : ℕ} [Fact p.Prime] {O : Type} [CommRing O] [Fact ¬IsUnit (p : O)]
   [IsAdicComplete (Ideal.span {(p : O)}) O]
 
-alias frob_phiInv := _root_.GlobalTheory.Dieudonne.frobenius_phiInv
-
 def frobT (G : PDivGroup p O) (y : TDual G) : TDual G where
   toFun t := WittVector.frobenius (y t)
   map_add' s t := by rw [map_add (f := _), map_add (f := _)]
@@ -868,7 +866,7 @@ theorem GlobalTheory.PDivLat.exists_frobenius_latt : ∀ (p : ℕ) [Fact p.Prime
         rw [ghost_mul, hs, hphi, hx, LinearMap.smul_apply, smul_eq_mul]⟩
   · apply Subtype.ext; apply LinearMap.ext; intro t
     show WittVector.frobenius (xi ε * phiInv p O (m.1 t)) = _
-    rw [map_mul, frob_phiInv]; rfl
+    rw [map_mul, GlobalTheory.Dieudonne.frobenius_phiInv]; rfl
 end -- clump:auto
 end -- clump:auto
 end -- clump:auto

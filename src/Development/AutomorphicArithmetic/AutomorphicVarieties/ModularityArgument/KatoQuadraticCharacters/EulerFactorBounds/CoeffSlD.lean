@@ -36,8 +36,6 @@ private theorem mulQ (m m' : Matrix (Fin 2) (Fin 2) ℤ) (h : 0 < m.det) (h' : 0
   apply Units.ext
   simp only [Subgroup.coe_mul, Units.val_mul, coeQ _ hmm, coeQ _ h, coeQ _ h', Matrix.map_mul]
 
-private alias slQ := _root_.GlobalTheory.KZ.Betti.toGQ_sl
-
 private theorem detD {N : ℕ} (hN : 0 < N) : (0 : ℤ) < (!![(N : ℤ), 0; 0, 1]).det := by
   simpa [Matrix.det_fin_two_of] using hN
 
@@ -157,7 +155,7 @@ theorem UpperTheory.V.Z.Kato.Nb.sSlD :
   intro Ω _ _ _ ε X N hN
   obtain ⟨φ, hφ1, hφ2⟩ := X.j_hol
   have hover := _root_.GlobalTheory.KZ.Tower.overY_comap_sl_gal ε X ε.injective ⟨φ, hφ2, hφ1⟩
-  refine ⟨fun s f => gal_slD X hN s f, fun h h' hh e f => sl_slD X hN h h' hh e f, slQ,
+  refine ⟨fun s f => gal_slD X hN s f, fun h h' hh e f => sl_slD X hN h h' hh e f, GlobalTheory.KZ.Betti.toGQ_sl,
     fun h h' hh hh' => mulQ h h' hh hh', fun m q f hf => ?_, fun m s f hf => ?_, un_group X, fun M _ s => ?_⟩
   · exact KmapA.un_map X (X.sl q).toRingEquiv (fun W hW => (hover W hW).1 q) m f hf
   · exact KmapA.un_map X (X.gal s) (fun W hW => (hover W hW).2 s) m f hf

@@ -250,12 +250,9 @@ theorem nontrivial_of_irr {ρ : Representation ℂ (Weil h) V} (hρ : ρ.IsIrred
   exact bot_ne_top (α := Subrepresentation ρ)
     (Subrepresentation.toSubmodule_injective (Subsingleton.elim _ _))
 
-theorem N_eq_zero_of_irr (a : WDRep h V) (hirr : a.ρ.IsIrreducible) : a.N = 0 := by
-  apply GlobalTheory.WeilDeligne.SpSummand.N_eq_zero_of_irr <;> assumption
-
 theorem IrrW.mono0 (z : IrrW h) : z.1.mono0 := by
   obtain ⟨_, n, a, rfl, ha⟩ := z
-  exact (WD.monodromyZero_ofWeilDeligneRepClass_iff a).2 (N_eq_zero_of_irr a ha)
+  exact (WD.monodromyZero_ofWeilDeligneRepClass_iff a).2 (GlobalTheory.WeilDeligne.SpSummand.N_eq_zero_of_irr a ha)
 
 theorem IrrW.lpDim_pos (z : IrrW h) : 0 < z.1.lpDim := by
   obtain ⟨_, n, a, rfl, ha⟩ := z

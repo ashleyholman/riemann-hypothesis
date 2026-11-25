@@ -238,7 +238,7 @@ theorem UpperTheory.V.AlgRepEndIrreducible.wigner : GlobalTheory.Published.Wigne
   obtain ⟨τ, hτ⟩ := Function.ne_iff.1 hne
   obtain ⟨u, hu⟩ : ∃ u : ℂ, ((m τ).map (u + ·)).prod ≠ ((m' τ).map (u + ·)).prod := by
     by_contra h
-    exact hτ (msetSep _ _ fun u => not_not.1 fun h' => h ⟨u, h'⟩)
+    exact hτ (UpperTheory.Reformulated.B.MultisetSeparation.msetSep _ _ fun u => not_not.1 fun h' => h ⟨u, h'⟩)
   obtain ⟨a1, a2, a3⟩ := tensA E a π Ξ
   obtain ⟨b1, b2, b3⟩ := tensB E a π Ξ
   obtain ⟨α, hα⟩ := alphaReal E a _ (tensorK π Ξ) (lieA π Ξ) (lieB π Ξ) a1 b1 (lieA_commute π Ξ) a2 b2 τ _ _ _

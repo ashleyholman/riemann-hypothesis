@@ -1280,15 +1280,13 @@ def cTUnit {R : Type} [CommRing R] (s : R →+* R) {k : ℕ} (β : GL (Fin k) R)
 theorem adMat_mul' {a b c : ℕ} (A : Matrix (Fin a) (Fin b) E) (B : Matrix (Fin b) (Fin c) E) :
     adMat F (A * B) = adMat F A * adMat F B := Matrix.map_mul
 
-theorem adMat_one' {a : ℕ} : adMat F (1 : Matrix (Fin a) (Fin a) E) = 1 := Matrix.map_one _ (map_zero _) (map_one _)
-
 def blk {k : ℕ} (P : Matrix (Fin k) (Fin n) E) (X : Matrix (Fin n) (Fin k) E) (g : GAd σ J) :
     Matrix (Fin k) (Fin k) (AF F ⊗[F] E) :=
   adMat F P * (matHom _ σ J g).1 * adMat F X
 
 theorem blk_of {k : ℕ} {P : Matrix (Fin k) (Fin n) E} {X : Matrix (Fin n) (Fin k) E} (hPX : P * X = 1) {g : GAd σ J}
     {B : Matrix (Fin k) (Fin k) (AF F ⊗[F] E)} (h : (matHom _ σ J g).1 * adMat F X = adMat F X * B) : blk P X g = B := by
-  rw [blk, Matrix.mul_assoc, h, ← Matrix.mul_assoc, ← adMat_mul', hPX, adMat_one', Matrix.one_mul]
+  rw [blk, Matrix.mul_assoc, h, ← Matrix.mul_assoc, ← adMat_mul', hPX, GlobalTheory.ResidueEisenstein.ChartU.adMat_one', Matrix.one_mul]
 
 theorem blk_mul {k : ℕ} {P : Matrix (Fin k) (Fin n) E} {X : Matrix (Fin n) (Fin k) E} (hPX : P * X = 1) (a : GAd σ J)
     {b : GAd σ J} {B : Matrix (Fin k) (Fin k) (AF F ⊗[F] E)} (h : (matHom _ σ J b).1 * adMat F X = adMat F X * B) :
@@ -1382,7 +1380,7 @@ theorem leviOne_last_prod : ∀ (F E : Type) [Field F] [NumberField F] [Field E]
         (show (matHom _ σ J (a : GAd σ J)⁻¹).1 * adMat F X = adMat F X * 1 by rw [Matrix.mul_one]; exact hfXi)
       rw [inv_inv, cT_one_sq, Matrix.one_mul] at hform
       have e1 : blk Q Y (a : GAd σ J) = B'.1 := blk_of hQY hB'
-      rw [blk, hform, ← adMat_mul', hQY, adMat_one'] at e1
+      rw [blk, hform, ← adMat_mul', hQY, GlobalTheory.ResidueEisenstein.ChartU.adMat_one'] at e1
       have hfY : (matHom _ σ J (a : GAd σ J)).1 * adMat F Y = adMat F Y := by rw [hB', ← e1, Matrix.mul_one]
       exact Subgroup.mem_inf.2 ⟨hfX, hfY⟩
   have hπc : Continuous π := by

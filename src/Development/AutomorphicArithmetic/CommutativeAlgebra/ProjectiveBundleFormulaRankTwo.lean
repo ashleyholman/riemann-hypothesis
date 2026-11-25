@@ -1013,10 +1013,6 @@ open CategoryTheory Limits AlgebraicGeometry Opposite CochainComplex CochainComp
 namespace UpperTheory.P2
 variable {q : ℕ} [NeZero q]
 
-private alias inv_of_map := _root_.UpperTheory.MayerVietorisKummerChernClass.inv_map
-
-private alias eqv_iso := _root_.GlobalTheory.EtC.eqv_of_isIso
-
 private theorem eqv_comp {R : Type} [CommRing R] {A B C : Spc} {f : A ⟶ B} {g : B ⟶ C} {F : Shv R} (hf : Eqv R f F) (hg : Eqv R g F) :
     Eqv R (f ≫ g) F := by
   intro n
@@ -1044,8 +1040,8 @@ private theorem eqv_fst {Y : Spc} (hY : Inv q Y) (i : ℤ) : Eqv _ (prod.fst : Y
   have e : (prod.fst : Y ⨯ Dv 1 ⟶ Y) = hP.isoPullback.hom ≫ pullback.fst (triv Y 1) (PGL.pr 1) := by
     rw [IsPullback.isoPullback_hom_fst]
   rw [e]
-  refine eqv_comp (eqv_iso _ _) ?_
-  have hX : Inv q (pullback (triv Y 1) (PGL.pr 1)) := inv_of_map (pullback.fst _ _) hY
+  refine eqv_comp (GlobalTheory.EtC.eqv_of_isIso _ _) ?_
+  have hX : Inv q (pullback (triv Y 1) (PGL.pr 1)) := UpperTheory.MayerVietorisKummerChernClass.inv_map (pullback.fst _ _) hY
   set π := pullback.fst (triv Y 1) (PGL.pr 1)
   set ξ := c1 q (pullback.snd (triv Y 1) (PGL.pr 1) ≫ PGL.line 1)
   intro n
@@ -1099,7 +1095,7 @@ theorem UpperTheory.projectiveBundleFormula_rank_two :
   set θ := hP.isoPullback with hθ
   set π := pullback.fst (triv E 2) (PGL.pr 2) with hπ
   set L := pullback.snd (triv E 2) (PGL.pr 2) ≫ PGL.line 2 with hL
-  have hX : Inv q (pullback (triv E 2) (PGL.pr 2)) := inv_of_map π hE
+  have hX : Inv q (pullback (triv E 2) (PGL.pr 2)) := UpperTheory.MayerVietorisKummerChernClass.inv_map π hE
   have hθπ : θ.hom ≫ π = prod.fst := hP.isoPullback_hom_fst
   have hθs : θ.hom ≫ pullback.snd (triv E 2) (PGL.pr 2) = prod.snd ≫ Dv.toPGL 2 := hP.isoPullback_hom_snd
   let f : Fin 2 → (WS E A1 ⟶ pullback (triv E 2) (PGL.pr 2)) := fun b => gch b ≫ θ.hom
@@ -1126,7 +1122,7 @@ theorem UpperTheory.projectiveBundleFormula_rank_two :
   have hρ2 : pullback.fst (f 0) (f 1) ≫ f 0 ≫ π = ρ ≫ prod.snd := by
     rw [hfπ 0, ← hψ1, Category.assoc, cA, mkW_pe]
     simp only [ρ, pe, Category.assoc]
-  have hρE : ∀ i, Eqv _ ρ (tw q i) := fun i => eqv_comp (eqv_iso _ _) (eqv_fst (inv_of_map prod.snd hE) i)
+  have hρE : ∀ i, Eqv _ ρ (tw q i) := fun i => eqv_comp (GlobalTheory.EtC.eqv_of_isIso _ _) (eqv_fst (UpperTheory.MayerVietorisKummerChernClass.inv_map prod.snd hE) i)
   have hK : ∀ m j : ℤ, Function.Bijective fun p : Ht q E (m + 1) (j + 1) × Ht q E m j =>
       pull _ (pullback.fst (f 0) (f 1) ≫ f 0 ≫ π) _ _ p.1 +
         cup q (pull _ (pullback.fst (f 0) (f 1) ≫ f 0 ≫ π) _ _ p.2) (pull _ u _ _ (kappa q)) := by
@@ -1159,7 +1155,7 @@ theorem UpperTheory.projectiveBundleFormula_rank_two :
   have h₁ : ∀ b i, Eqv _ (f b ≫ π) (tw q i) := by
     intro b i
     rw [hfπ]
-    exact eqv_comp (eqv_fst (inv_of_map prod.snd hE) i) (UpperTheory.tateTwist_affineLine_projection_equiv q E i hE)
+    exact eqv_comp (eqv_fst (UpperTheory.MayerVietorisKummerChernClass.inv_map prod.snd hE) i) (UpperTheory.tateTwist_affineLine_projection_equiv q E i hE)
   exact lh2 hX π (c1 q L) fun m j => core π (f 0) (f 1) hcov _ _ (h₁ 0) (h₁ 1) hK hd m j
 end -- clump:auto
 end -- clump:auto

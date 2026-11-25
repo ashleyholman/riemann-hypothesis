@@ -279,8 +279,6 @@ theorem inCoset_weightX {j : ℕ} : InCoset (1 / 2) ((Γ).weightX j) := by
       rw [e]
       ring
 
-alias rankX_even := _root_.GlobalTheory.ChiGrid.even_rankX
-
 theorem isHC_top {j n : ℕ} (hj : j ≤ D.R.m) (hn : n = rankX D j) : IsHC n (Node.par D C (.top j) τ) := by
   have he : entries (Node.par D C (.top j) τ) = (Γ).weightX j := entries_plus _
   have hr : IsRegular (Node.par D C (.top j) τ) := isRegular_plus _
@@ -289,7 +287,7 @@ theorem isHC_top {j n : ℕ} (hj : j ≤ D.R.m) (hn : n = rankX D j) : IsHC n (N
   · rw [he]
     intro x hx
     obtain ⟨y, rfl⟩ := inCoset_weightX D C τ x hx
-    obtain ⟨u, hu⟩ := rankX_even D j
+    obtain ⟨u, hu⟩ := GlobalTheory.ChiGrid.even_rankX D j
     refine ⟨y + 1 - u, ?_⟩
     rw [hn, hu]; push_cast; ring
 

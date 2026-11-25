@@ -246,7 +246,7 @@ theorem UpperTheory.Gal.InertialTypesAlt.L.elemPair :
     UpperTheory.Gal.InertialTypesAlt.L.ElemPair := by
   intro F E _ _ _ _ _ _ _ _ σ hσ hp v w hw inst8 _ _ _ hmap n r hr0 hr1
   obtain ⟨x0, _, _, _, s, hs, hfin, hinc, hgal, -⟩ :=
-    UpperTheory.V.Z.Tf.Orb.placeData_holds F E σ hσ v w hw
+    UpperTheory.V.Z.Tf.Orb.placeData F E σ hσ v w hw
   have hx : x0 = inst8 := Algebra.algebra_ext _ _ fun a => (hinc a).symm.trans (hmap a)
   subst hx
   obtain ⟨⟨mE0, bE, mF0, bF, mE, mF, hmE, hmF, h1, h2⟩, hone⟩ := UpperTheory.ConvolutionTheory.GM.matchOne F E σ n v
@@ -538,7 +538,7 @@ theorem UpperTheory.Gal.InertialTypesAlt.L.elemPairJ :
   intro hP F E _ _ _ _ _ _ _ _ σ hσ hp n hn v w hns σw N hloc hnorm U' U hU' hU
   obtain ⟨-, -, -, huniq, -, -⟩ := UpperTheory.ConvolutionTheory.T.places F E hp
   have hw : ∀ u : PlacesOver E v, u = w := huniq v hns w
-  obtain ⟨iA, iV, iF, iG, s, hs, hrk, hinc, hgal, -⟩ := UpperTheory.V.Z.Tf.Orb.placeData_holds F E σ hσ v w hw
+  obtain ⟨iA, iV, iF, iG, s, hs, hrk, hinc, hgal, -⟩ := UpperTheory.V.Z.Tf.Orb.placeData F E σ hσ v w hw
   have hc : ∀ x, completionMap v w.1 x = algebraMap _ (w.1.adicCompletion E) x := hinc
   have hse : ∀ x, σw x = s x := sig_eq hn σ w hw σw (s : _ ≃+* _) hloc hgal
   have hiter : ∀ (i : ℕ) x, (⇑σw)^[i] x = (⇑(s : w.1.adicCompletion E ≃+* w.1.adicCompletion E))^[i] x := by
@@ -994,7 +994,7 @@ private theorem exists_isRes (hRes : ResEx) {k K : Type} [Field k] [ValuativeRel
 theorem finTrace :
     ResEx → FinAct → InflFacts → FrobFacts → InflTrace → UpperTheory.Gal.InertialTypesAlt.FinTrace := by
   intro hRes hAct hInfl hFrob hIT F E _ _ _ _ _ _ _ _ hp n hn π P hcj hbc v w hsp hu τ τ' hτ hτ' _ hinc s hs f hf hne
-  obtain ⟨w', hw'⟩ := UpperTheory.V.Z.Tf.Orb.placeUniq_holds F E hp v hsp
+  obtain ⟨w', hw'⟩ := UpperTheory.V.Z.Tf.Orb.placeUniq F E hp v hsp
   have hw : ∀ x : PlacesOver E v, x = w := fun x => (hw' x).trans (hw' w).symm
   haveI : FiniteDimensional F E := Module.finite_of_finrank_pos hp.pos
   haveI : Fact (Module.finrank F E).Prime := ⟨hp⟩
@@ -1002,7 +1002,7 @@ theorem finTrace :
     apply isCyclic_of_prime_card (p := Module.finrank F E)
     exact IsGalois.card_aut_eq_finrank F E
   obtain ⟨σ, hσ⟩ := IsCyclic.exists_generator (α := E ≃ₐ[F] E)
-  obtain ⟨i1, i2, i3, i4, s0, hs0, hr, h1, h2, h3⟩ := UpperTheory.V.Z.Tf.Orb.placeData_holds F E σ hσ v w hw
+  obtain ⟨i1, i2, i3, i4, s0, hs0, hr, h1, h2, h3⟩ := UpperTheory.V.Z.Tf.Orb.placeData F E σ hσ v w hw
   letI := Fintype.ofFinite 𝓀[v.adicCompletion F]
   letI := Fintype.ofFinite 𝓀[w.1.adicCompletion E]
   have hcm : ∀ x, completionMap v w.1 x = algebraMap _ (w.1.adicCompletion E) x := h1

@@ -203,7 +203,7 @@ theorem UpperTheory.V.Sd.adelise :
   obtain ⟨hfin, hval⟩ := charVal N hN χ ω hω
   obtain ⟨φ, hL, hH, hC⟩ := lift_hol k N hN χ ω hω g.f g.char
   have hE := liftExp k N hN g.f φ.1 hL
-  obtain ⟨-, hz, hl1, hl2, -⟩ := holLin ℚ k (lev N) ω
+  obtain ⟨-, hz, hl1, hl2, -⟩ := UpperTheory.Reformulated.B.Gr32.holLin ℚ k (lev N) ω
   have h0 : φ ≠ 0 := by
     rintro rfl
     have := (expUnique ℚ _ k _ _ _ _ hE hz).2 ⊤ top_ne_bot

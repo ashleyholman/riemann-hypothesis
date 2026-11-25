@@ -177,7 +177,7 @@ theorem realInv_of (hA : PositivityTheory.ThKF.ArchOp) : RealInv := by
   have hs := hp.weil.isUSplitting
   obtain ⟨N, _, h1, h2⟩ := Dense.pol_finite hp.base.cm hp.base.std hs.toIsSplitting B.emb hf
   haveI : FiniteDimensional ℂ (N ⊓ M.Pol B.ψ B.emb : Submodule ℂ _) := Submodule.finiteDimensional_of_le inf_le_left
-  haveI := Dense.volume_isAddHaar F (Fin n × Fin d)
+  haveI := PositivityTheory.ThKF0.Split.volume_isAddHaar F (Fin n × Fin d)
   haveI : BorelSpace (Fin n × Fin d → mixedEmbedding.mixedSpace F) := Pi.borelSpace
   obtain ⟨f₀, hf₀, hne, hfix⟩ := Dense.exists_fixed
     (SchwartzMap.toLpCLM ℂ ℂ 2 (volume : Measure (Fin n × Fin d → mixedEmbedding.mixedSpace F))).toLinearMap

@@ -32,8 +32,6 @@ section -- clump:auto
 
 open IsDedekindDomain
 
-theorem _root_.GlobalTheory.T.continuous_afP_restr : ∀ (p : ℕ), Continuous (GlobalTheory.LKTrip.AfP.restr p) := by
-  first | (exact @GlobalTheory.LKTrip.AfP.continuous_restr)
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AbelianVarietyTheory.Proofs.DivisorProofs.ContinuousRestrStatement =====

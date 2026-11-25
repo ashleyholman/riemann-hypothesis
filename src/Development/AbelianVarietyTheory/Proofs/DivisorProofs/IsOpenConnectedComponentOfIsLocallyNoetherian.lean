@@ -50,14 +50,6 @@ import Mathlib.CategoryTheory.Monoidal.Opposite.Mon
 open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj TopologicalSpace TensorProduct
 open scoped CategoryTheory.Obj
 
-namespace GlobalTheory.ConnOpen
-
-theorem isOpen_connectedComponent_noetherian {Y : Type*} [TopologicalSpace Y] [NoetherianSpace Y] (y : Y) :
-    IsOpen (connectedComponent y) := by
-  apply CrystallineSemistableComparison.isOpen_connectedComponent_of_noetherianSpace
-
-end GlobalTheory.ConnOpen
-
 theorem GlobalTheory.isOpen_connectedComponent_of_isLocallyNoetherian :
     ∀ (X : Scheme.{0}), IsLocallyNoetherian X → ∀ x : X, IsOpen (connectedComponent x) := by
   intro X hX x
@@ -68,7 +60,7 @@ theorem GlobalTheory.isOpen_connectedComponent_of_isLocallyNoetherian :
   haveI : NoetherianSpace (U : Set X) := noetherianSpace_of_isAffineOpen U hU
   let y' : (U : Set X) := ⟨y, hyU⟩
   refine ⟨Subtype.val '' connectedComponent y', ?_,
-    U.isOpen.isOpenEmbedding_subtypeVal.isOpenMap _ (GlobalTheory.ConnOpen.isOpen_connectedComponent_noetherian y'),
+    U.isOpen.isOpenEmbedding_subtypeVal.isOpenMap _ (CrystallineSemistableComparison.isOpen_connectedComponent_of_noetherianSpace y'),
     ⟨y', mem_connectedComponent, rfl⟩⟩
   have hc : _root_.IsPreconnected (Subtype.val '' connectedComponent y' : Set X) :=
     isPreconnected_connectedComponent.image _ continuous_subtype_val.continuousOn

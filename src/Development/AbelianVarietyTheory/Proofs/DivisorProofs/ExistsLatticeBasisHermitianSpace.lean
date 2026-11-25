@@ -180,8 +180,6 @@ theorem exists_nat_multiples {E : Type} [Field E] [NumberField E] (s : Finset E)
     rw [← Int.cast_natCast, h0, Int.cast_mul]
   rw [this, map_mul, map_intCast, hp, zsmul_eq_mul, mul_assoc]
 
-alias exists_level := _root_.GlobalTheory.CoordinateBasisBounds.main
-
 theorem exists_gl {E : Type} [Field E] [NumberField E] {n : ℕ} (L : Submodule (𝓞 E) (Fin n → E)) (hfg : L.FG)
     (hsp : Submodule.span E (L : Set (Fin n → E)) = ⊤) (N : ℕ) (hN : 0 < N) :
     ∃ (k : ℕ) (γ : GL (Fin n) E), Nat.Coprime k N ∧ (∀ j, (fun i => γ.val i j) ∈ L) ∧
@@ -306,7 +304,7 @@ theorem exists_basis_hat {n : ℕ} (L : Submodule (𝓞 E) (Fin n → E)) (hfg :
       z ∈ GlobalTheory.AdLat.hat F (L : Set (Fin n → E)) ↔
         ∀ i, ((β⁻¹).val *ᵥ fun a => Algebra.TensorProduct.comm F (FiniteAdeleRing (𝓞 F) F) E (z a)) i ∈
           Formalism.L2.Herm.intAf F E := by
-  obtain ⟨N, hN, h1, h2⟩ := exists_level L hfg hsp
+  obtain ⟨N, hN, h1, h2⟩ := GlobalTheory.CoordinateBasisBounds.main L hfg hsp
   obtain ⟨k, γ, hk, h3, h4⟩ := exists_gl L hfg hsp N hN
   obtain ⟨e, f, hee, hef, hun⟩ :=
     GlobalTheory.AdLat.RootNear.exists_idem (fun v : HeightOneSpectrum (𝓞 F) => v.adicCompletionIntegers F) N

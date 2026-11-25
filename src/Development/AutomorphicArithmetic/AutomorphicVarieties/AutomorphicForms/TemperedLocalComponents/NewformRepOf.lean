@@ -127,7 +127,7 @@ theorem UpperTheory.V.Af.newformRepOf :
   obtain ⟨hfin, hval⟩ := charVal f.M hM f.χ ω hω
   obtain ⟨φ, hL, hH, hC⟩ := liftHol k f.M hM f.χ ω hω f.f f.char
   have hE := liftExp k f.M hM f.f φ.1 hL
-  obtain ⟨-, hz, hl1, hl2, -⟩ := holLin ℚ k (lev f.M) ω
+  obtain ⟨-, hz, hl1, hl2, -⟩ := UpperTheory.Reformulated.B.Gr32.holLin ℚ k (lev f.M) ω
   have h0 : φ ≠ 0 := by
     rintro rfl
     have := (expUnique ℚ _ k _ _ _ _ hE hz).2 ⊤ top_ne_bot

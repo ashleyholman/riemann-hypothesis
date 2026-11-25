@@ -85,11 +85,6 @@ private theorem abs_lowK_add_rhoC_le {lam : Fin n → ℝ} {B : ℝ} (hB : ∀ a
   rw [e]
   exact (abs_add_le _ _).trans (add_le_add (hB a) (abs_rhoN_le' a))
 
-private theorem re_inner_smul_real (c : ℝ) (x : M) :
-    RCLike.re (inner ℂ ((c : ℂ) • x) x) = c * ‖x‖ ^ 2 := by
-  rw [inner_smul_left, inner_self_eq_norm_sq_to_K]
-  simp [← Complex.ofReal_pow]
-
 /-- Gap-free Cartan-splitting Casimir energy bound on the lowest K-type (`layer 0`):
 `∑ a b, ‖E b a x‖^2 ≤ 2 * n * (B + n)^2 * ‖x‖^2`, valid in every discrete-series chamber
 with zero weight-gap assumption. -/
@@ -100,7 +95,7 @@ theorem lowestKType_energy_le {lam : Fin n → ℝ} {B : ℝ} (hE : IsGlRep E) (
     ∑ a, ∑ b, ‖E b a x‖ ^ 2 ≤ 2 * n * (B + n) ^ 2 * ‖x‖ ^ 2 := by
   have hK := re_inner_casimirK_layer_le hE hU hV 0 hx
   simp only [Nat.cast_zero, mul_zero, add_zero, Real.sq_sqrt (_root_.ReciprocityTheory.ChartRestriction.DS.nsq_nonneg' _)] at hK
-  rw [sum_sq_eq hU x, hc x hx, re_inner_smul_real]
+  rw [sum_sq_eq hU x, hc x hx, ReciprocityTheory.ChartRestriction.DS.re_inner_smul_self]
   have hN := nsq_le (abs_lowK_add_rhoC_le (ε := ε) hB)
   have hrho := nsq_le (fun a => abs_rho_le (n := n) a)
   have hcoef : 2 * (nsq (lowK ε lam + rhoC ε) - nsq (rhoC ε)) - casVal lam ≤ 2 * n * (B + n) ^ 2 := by
@@ -119,7 +114,7 @@ theorem layer_bound {lam : Fin n → ℝ} {B : ℝ} (hE : IsGlRep E) (hU : IsInf
     ∑ a, ∑ b, ‖E b a x‖ ^ 2 ≤ (8 * Real.sqrt n * (B + S) * ‖x‖) ^ 2 := by
   have hcas : casimir E x = (casVal lam : ℂ) • x := casimir_genSub hE hc x (layer_le_genSub k hx)
   have hK := re_inner_casimirK_layer_le hE hU hV k hx
-  rw [sum_sq_eq hU x, hcas, re_inner_smul_real]
+  rw [sum_sq_eq hU x, hcas, ReciprocityTheory.ChartRestriction.DS.re_inner_smul_self]
   have hn1 : (1 : ℝ) ≤ n := by exact_mod_cast hn
   have hB0 : 0 ≤ B := by linarith
   have hS : (k : ℝ) ≤ S := by exact_mod_cast hk

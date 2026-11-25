@@ -217,7 +217,7 @@ open ValuativeRel UpperTheory.ConvolutionTheory.Loc
 theorem UpperTheory.Gal.InertialTypesAlt.L.normOpen :
     UpperTheory.Gal.InertialTypesAlt.L.NormOpen := by
   intro k E _ _ _ _ _ _ _ _ _ _ _ _ _ σ _ r hr0 hr1
-  have hc : Continuous (algebraMap k E) := (UpperTheory.V.Z.Tf.Orb.extCont_holds k E).1
+  have hc : Continuous (algebraMap k E) := (UpperTheory.V.Z.Tf.Orb.extCont k E).1
   have hS : {z : E | valuation E (z - 1) < r} ∈ nhds (algebraMap k E 1) := by
     rw [map_one]
     exact (IsValuativeTopology.hasBasis_nhds' (1 : E)).mem_of_mem hr0.ne'

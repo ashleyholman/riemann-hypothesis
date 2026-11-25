@@ -39,9 +39,6 @@ theorem locLin (hTI : TensInj) {V : HSp D} {ψ : AddChar (AF D.host.F) ℂ} {χ 
   funext x
   simp [tens, mul_assoc]
 
-theorem abs_tLoc (l : D.what₂.Tau → ℝ) (τ : D.what₂.Tau) : |tLoc l τ| = cLoc l τ := by
-  simp only [tLoc, cLoc, abs_mul, abs_of_pos Real.pi_pos, abs_two]
-
 theorem GR_ext {y y' : GR n} (h : mR y = mR y') : y = y' := Subtype.ext (Units.ext h)
 
 end PositivityTheory.Rg.Sw.Glob.GaussH

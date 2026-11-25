@@ -108,8 +108,6 @@ open scoped nonZeroDivisors
 
 namespace GlobalTheory.HeckeGal
 
-alias continuous_galHom_of_fix := _root_.GlobalTheory.ContinuityFromFixedPoints.continuous_of_forall_exists_fix
-
 theorem exists_topAbelianization_mulEquiv {G H : Type*} [Group G] [TopologicalSpace G] [IsTopologicalGroup G]
     [Group H] [TopologicalSpace H] [IsTopologicalGroup H] (φ : G ≃* H) (hφ : IsHomeomorph φ) :
     ∃ ψ : TopologicalAbelianization G ≃* TopologicalAbelianization H, IsHomeomorph ψ ∧
@@ -141,11 +139,11 @@ theorem exists_abMap_of_algEquiv : ∀ {K : Type} [Field K] [NumberField K] {Ω 
     ⟨fun x => (isIntegral_algEquiv e).1 (Algebra.IsIntegral.isIntegral (e x))⟩
   let φ : (Ω ≃ₐ[K] Ω) ≃* Field.absoluteGaloisGroup K := AlgEquiv.autCongr e
   have h1 : Continuous φ.toMonoidHom :=
-    continuous_galHom_of_fix φ.toMonoidHom fun y => ⟨e.symm y, fun σ hσ => by
+    GlobalTheory.ContinuityFromFixedPoints.continuous_of_forall_exists_fix φ.toMonoidHom fun y => ⟨e.symm y, fun σ hσ => by
       show e (σ (e.symm y)) = y
       rw [hσ, AlgEquiv.apply_symm_apply]⟩
   have h2 : Continuous φ.symm.toMonoidHom :=
-    continuous_galHom_of_fix φ.symm.toMonoidHom fun y => ⟨e y, fun τ hτ => by
+    GlobalTheory.ContinuityFromFixedPoints.continuous_of_forall_exists_fix φ.symm.toMonoidHom fun y => ⟨e y, fun τ hτ => by
       show e.symm (τ (e y)) = y
       rw [hτ, AlgEquiv.symm_apply_apply]⟩
   have hφ : IsHomeomorph φ := (Homeomorph.mk φ.toEquiv h1 h2).isHomeomorph

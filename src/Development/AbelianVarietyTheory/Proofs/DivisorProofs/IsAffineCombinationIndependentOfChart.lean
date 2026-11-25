@@ -62,8 +62,6 @@ theorem chartHom_congr {Y : Scheme.{0}} (V : Y.Opens) {S : Type} [CommRing S] {f
     chartHom V f hf x = chartHom V g hg x := by
   subst e; rfl
 
-alias chartHom_comp := _root_.GlobalTheory.SecGlue.chartHom_spMap_comp
-
 theorem chartHom_mono {Y : Scheme.{0}} {W V : Y.Opens} (hWV : W ≤ V) {S : Type} [CommRing S]
     (f : Sp S ⟶ Y) (hW : f ⁻¹ᵁ W = ⊤) (hV : f ⁻¹ᵁ V = ⊤) (x : Γ(Y, V)) :
     chartHom V f hV x = chartHom W f hW (Y.presheaf.map (homOfLE hWV).op x) := by
@@ -237,8 +235,8 @@ theorem isCombIn_of_chart : ∀ (Y : Scheme.{0}) (V V' : Y.Opens), IsAffineOpen 
 
     rw [map_sum]
     refine Finset.sum_congr rfl fun i _ => ?_
-    rw [chartHom_comp V' g (w i) (hw' i) (h3 i), chartHom_comp V' g u hu' h1, map_mul, map_sub]
-  rw [hsum, chartHom_comp V' g c hc' h2, chartHom_comp V' g u hu' h1] at hxx
+    rw [GlobalTheory.SecGlue.chartHom_spMap_comp V' g (w i) (hw' i) (h3 i), GlobalTheory.SecGlue.chartHom_spMap_comp V' g u hu' h1, map_mul, map_sub]
+  rw [hsum, GlobalTheory.SecGlue.chartHom_spMap_comp V' g c hc' h2, GlobalTheory.SecGlue.chartHom_spMap_comp V' g u hu' h1] at hxx
   rw [map_sub, map_add (f := _), hxx, sub_self]
 
 end GlobalTheory.SecGlue

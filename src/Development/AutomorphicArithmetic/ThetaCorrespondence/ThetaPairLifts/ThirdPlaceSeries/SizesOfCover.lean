@@ -840,13 +840,11 @@ theorem sum_abs_remGaps_le {N : ℕ} (v : Fin N → ℤ) (n : ℤ) (hn : 0 < n) 
 
 variable {E : Type} [Field E] [NumberField E] [IsCMField E] {H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E} {Dw : Datum H}
 
-theorem T₁_pos (P : WtPar Dw) : 0 < P.T₁ := by unfold WtPar.T₁; positivity
-
 theorem sum_abs_u₁_le (P : WtPar Dw) (τ : Psi H) (w : Fin (Dw.p + Dw.q) → ℤ) (c : ℤ)
     (hu : ∀ j, P.u τ j = w j - c) :
     ∑ j, |(P.u₁ τ j : ℝ)| ≤ 2 * (Dw.p + Dw.q : ℕ) * ((2 * ∑ j, |(w j : ℝ)| +
       (Dw.p + Dw.q : ℕ) * (|(P.c₀ : ℝ)| + 2 * (Dw.p + Dw.q : ℕ) + 2)) / P.T₁ + (Dw.p + Dw.q : ℕ)) := by
-  refine sum_abs_floorGaps_le _ w _ (T₁_pos P) _ _ fun k => ?_
+  refine sum_abs_floorGaps_le _ w _ (GlobalTheory.CovTop.WtRun.T₁_pos P) _ _ fun k => ?_
   by_cases h : k + 1 < Dw.p + Dw.q
   · rw [P.gap_uMinus_sub_kap τ h]
     have hu' : P.u τ = fun j => w j - c := funext hu
@@ -872,7 +870,7 @@ theorem sum_abs_u₁_le (P : WtPar Dw) (τ : Psi H) (w : Fin (Dw.p + Dw.q) → �
 
 theorem sum_abs_rem_le (P : WtPar Dw) (τ : Psi H) :
     ∑ j, |(P.rem τ j : ℝ)| ≤ 2 * (Dw.p + Dw.q : ℕ) * (Dw.p + Dw.q : ℕ) * (P.T + FlagTan.dimFlag Dw : ℕ) := by
-  have h := sum_abs_remGaps_le ((P.uMinus - FlagTan.kap Dw) τ) P.T₁ (T₁_pos P) P.a
+  have h := sum_abs_remGaps_le ((P.uMinus - FlagTan.kap Dw) τ) P.T₁ (GlobalTheory.CovTop.WtRun.T₁_pos P) P.a
   have hT : (P.T₁ : ℝ) - 1 = (P.T + FlagTan.dimFlag Dw : ℕ) := by unfold WtPar.T₁; push_cast; ring
   rw [hT] at h
   exact h

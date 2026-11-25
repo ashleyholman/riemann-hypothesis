@@ -555,7 +555,7 @@ theorem exists_rule_of_cls_pull : ∀ (D : D7) (T : Core D) (j : ℕ) (Y : Deep 
         rw [Category.assoc, Category.assoc, ← e1, ← hzz, Category.assoc]
         exact congrArg (zz ≫ ·) (morphismRestrict_ι TF.X.π (barComp TF.Y Z))
       exact (cancel_mono _).1 h1
-    obtain ⟨k', hk'⟩ := exists_chart_of_field (TF.X.F.isLB_LL (AllWt.exOf (T.Q.Dw j) la 0)) (TF.X.pt yy ≫ TF.X.inc)
+    obtain ⟨k', hk'⟩ := GlobalTheory.FibreFrame.exists_chart (TF.X.F.isLB_LL (AllWt.exOf (T.Q.Dw j) la 0)) (TF.X.pt yy ≫ TF.X.inc)
     obtain ⟨Q, tt, hQ, htt⟩ := FlagCover.exists_chartFr_frBor TF.X yy k' hk'
     have hO : ⊤ ≤ (TF.X.pt yy ≫ TF.X.inc) ⁻¹ᵁ flagOpen TF.X :=
       FlagMod.le_preimage_map TF.X.inc (top_le_inc TF.X) le_top

@@ -224,11 +224,6 @@ theorem frobenius_mu (p : ℕ) [Fact p.Prime] (O : Type) [CommRing O] [Fact ¬Is
     frobenius_def, map_pow]
   ring
 
-theorem σ_τ {p : ℕ} [Fact p.Prime] {O : Type} [CommRing O] [Fact ¬IsUnit (p : O)]
-    [IsAdicComplete (Ideal.span {(p : O)}) O] {ε : PreTilt O p} (F : BFrame ε) :
-    F.σ F.τ = p * F.τ := by
-  apply GlobalTheory.WindowIso.σ_τ
-
 end GlobalTheory.FLam
 
 
@@ -240,7 +235,7 @@ theorem GlobalTheory.FLam.exists_lam : ∀ (p : ℕ) [Fact p.Prime] (C : Type) [
   obtain ⟨c, hc⟩ := _root_.GlobalTheory.FixedPointApproximation.exists_fixed (p : F.B) F.σ (map_natCast F.σ p) w
   refine ⟨1 + F.τ * c, ⟨c, by ring⟩, ?_⟩
   have hu' : u = 1 + F.τ * w := by rw [← hw]; ring
-  rw [map_add (f := _), map_one, map_mul, σ_τ, hu']
+  rw [map_add (f := _), map_one, map_mul, GlobalTheory.WindowIso.σ_τ, hu']
   have hτ := F.τ_sq
   linear_combination (-(w * c)) * hτ - F.τ * hc
 end -- clump:auto

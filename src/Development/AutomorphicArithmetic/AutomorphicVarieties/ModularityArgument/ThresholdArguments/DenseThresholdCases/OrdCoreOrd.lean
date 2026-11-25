@@ -495,7 +495,7 @@ private theorem local_exp (hJ : OrdJac) {k : Type} [Field k] [ValuativeRel k] [T
   have hval : ∀ i y, (φ (eT k n i y) : ℂ) = f i y := fun i y => by
     have := smul_left_injective ℂ hF0 ((hφ (eT k n i y)).symm.trans (hT i y))
     rwa [Units.val_inv_eq_inv_val, inv_inj] at this
-  obtain ⟨p, hp, hp0⟩ := isoSep hσ hFY hF0
+  obtain ⟨p, hp, hp0⟩ := UpperTheory.Reformulated.B.IsoSeparation.isoSep hσ hFY hF0
   have hpe : p F ∈ (glIwa k n).eig σ.ρ e φ :=
     ⟨fun u hu => by rw [← hp u F hFY, hN u hu], fun u hu => by rw [← hp u F hFY, hNm u hu],
       fun t => (hp _ F hFY).symm.trans ((congrArg p (hφ t)).trans (map_smul p _ _))⟩

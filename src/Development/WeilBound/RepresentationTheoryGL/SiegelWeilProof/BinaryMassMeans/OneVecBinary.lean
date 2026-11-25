@@ -651,7 +651,7 @@ theorem scal_module : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Numb
   obtain ⟨ci, c, hu, hi, hv⟩ := _root_.GlobalTheory.CompanionTheory.SW.pf_herm F E σ hcm 1 (oneByOne l) hdet
   haveI : BorelSpace (Ainf F) := ⟨rfl⟩
   haveI : ∀ v, BorelSpace (Fv F v) := fun _ => ⟨rfl⟩
-  refine ⟨NNReal.sqrt ci, fun v => NNReal.sqrt (c v), (PositivityTheory.PlacePermOperatorBicommutantSpan.up_alg F ci ci c c hu hu).2.2.2.2.2.1, ?_, ?_⟩
+  refine ⟨NNReal.sqrt ci, fun v => NNReal.sqrt (c v), (GlobalTheory.CompanionTheory.SW.UnitProdAlg.main F ci ci c c hu hu).2.2.2.2.2.1, ?_, ?_⟩
   · intro ν hν
     exact local_scal σ hcm (Ainf F) (GlobalTheory.CompanionTheory.SW.isLocR_Ainf F hcm.1) l hl ci ν hν (hi ν hν)
   · intro v ν hν
@@ -706,7 +706,7 @@ theorem simil : PositivityTheory.Rg.Mass.Simil := by
   change thetaMeas σ J μ 𝓕 (PositivityTheory.Rg.Mass.sph σ J β) = thetaMeas σ J μ' 𝓕' (PositivityTheory.Rg.Mass.sph σ J β) at hind
   obtain ⟨ai, a, hau, hai, hav⟩ := _root_.GlobalTheory.CompanionTheory.SW.PfAct.product_formula_actTup F E σ hcm 1 2 γ
   obtain ⟨ci, cv, hcu, hci, hcv⟩ := _root_.GlobalTheory.CompanionTheory.SW.MassSimil.ScalModule.scal_module F E σ hcm (β' / β) hl0
-  obtain ⟨-, -, -, -, hq, -⟩ := PositivityTheory.PlacePermOperatorBicommutantSpan.up_alg F ai ci a cv hau hcu
+  obtain ⟨-, -, -, -, hq, -⟩ := GlobalTheory.CompanionTheory.SW.UnitProdAlg.main F ai ci a cv hau hcu
   obtain ⟨⟨i1, i2, i3⟩, -⟩ := GlobalTheory.CompanionTheory.AdeleTop.adele_top F
   have hLi : IsLocR (Ainf F) := GlobalTheory.CompanionTheory.SW.isLocR_Ainf F hcm.1
   have hLv : ∀ v, IsLocR (Fv F v) := fun v => GlobalTheory.CompanionTheory.SW.LocFv.isLocR_Fv F v

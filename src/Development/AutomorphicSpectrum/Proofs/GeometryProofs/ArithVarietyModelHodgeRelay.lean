@@ -598,7 +598,7 @@ theorem order_ind (Γ : QFGroup R T) (U : Γ.G.left.Opens) (hU : Γ.IsFinOpenSub
         valAt (Γ.pt t).left U h s = algebraMap R _ (f t)) ∧
       ∀ s : Γ(Γ.G.left, U), ∃ f ∈ A, ∀ (t : K) (h : ⊤ ≤ (Γ.pt t).left ⁻¹ᵁ U),
         valAt (Γ.pt t).left U h s = algebraMap R _ (f t) := by
-  obtain ⟨K, A, hK, hA, hAf⟩ := Twhopf.sub_order R T Γ U hU
+  obtain ⟨K, A, hK, hA, hAf⟩ := GlobalTheory.CompanionTheory.Ar.BT.SubOrder.hopfOrder_of_finOpenSub R T Γ U hU
   refine ⟨K, A, hK, hA, ?_, hAf, fun s => ?_⟩
   · rw [← sub_eq_top_of hE R T Γ U hU]
     ext f
@@ -1320,7 +1320,7 @@ theorem btOrder_ind [IsIntegrallyClosed R] [Finite T] (Γ : QFGroup R T) (U : Γ
     (H : Subgroup T) (hH : ∀ t, t ∈ H ↔ ⊤ ≤ (Γ.pt t).left ⁻¹ᵁ U) :
     Γ.btOrder ⊤ = indOrder H.subtype (resOrder H.subtype (Γ.btOrder ⊤)) := by
   have htop := PositivityTheory.UnitarySelfGeneration.bt_sub_eq_top R T Γ U hsub
-  obtain ⟨H', A, hH', hA, hAf⟩ := PositivityTheory.HtPt.Twhopf.sub_order R T Γ U hsub
+  obtain ⟨H', A, hH', hA, hAf⟩ := GlobalTheory.CompanionTheory.Ar.BT.SubOrder.hopfOrder_of_finOpenSub R T Γ U hsub
   obtain rfl : H = H' := Subgroup.ext fun t => (hH t).trans (hH' t).symm
   have key : Γ.btOrder U = indOrder H.subtype A := by
     ext f

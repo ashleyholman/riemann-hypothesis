@@ -321,7 +321,7 @@ theorem isCuspForm_fin (k : GL (Fin a) (Af E)) {φ : Sm E a} (h : IsCuspForm φ)
     refine Submodule.finiteDimensional_of_le (S₂ := (Submodule.span ℂ (Set.range fun c => cptRep E a c φ)).map
       (finRep E a k)) (Submodule.span_le.2 ?_)
     rintro _ ⟨c, rfl⟩
-    exact ⟨_, Submodule.subset_span ⟨c, rfl⟩, (LinearMap.congr_fun (fin_cpt_comm k c) φ)⟩
+    exact ⟨_, Submodule.subset_span ⟨c, rfl⟩, (LinearMap.congr_fun (GlobalTheory.AutGrowth.SmoothFinite.fin_cpt_comm k c) φ)⟩
   · exact zfin_of_comm _ (fun z hz => zalg_comm_fin k hz) hA.zfin
   · obtain ⟨C, N, h1⟩ := hA.growth (g * finGL E a k)
     refine ⟨C, N, fun y => ?_⟩
@@ -340,7 +340,7 @@ theorem isCuspForm_cpt (c : Kinf E a) {φ : Sm E a} (h : IsCuspForm φ) : IsCusp
   · change φ.1 (ratGL E a γ * g * infGL E a (Unitary.toUnits c)) = φ.1 (g * infGL E a (Unitary.toUnits c))
     rw [mul_assoc, hA.left]
   · exact level_of_le hA.level fun k hk => by
-      rw [← Module.End.mul_apply, fin_cpt_comm, Module.End.mul_apply, hk]
+      rw [← Module.End.mul_apply, GlobalTheory.AutGrowth.SmoothFinite.fin_cpt_comm, Module.End.mul_apply, hk]
   · have := hA.kfin
     refine Submodule.finiteDimensional_of_le (S₂ := Submodule.span ℂ (Set.range fun c => cptRep E a c φ))
       (Submodule.span_le.2 ?_)

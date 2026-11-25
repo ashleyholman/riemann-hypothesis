@@ -726,8 +726,6 @@ variable {X T : Type} [Group X] [TopologicalSpace X] [IsTopologicalGroup X] [Loc
   [SecondCountableTopology X] [MeasurableSpace X] [BorelSpace X] [Group T] [TopologicalSpace T] [IsTopologicalGroup T]
   [LocallyCompactSpace T] [T2Space T] [SecondCountableTopology T] [MeasurableSpace T] [BorelSpace T]
 
-private alias lintegral_swap_norm := _root_.UpperTheory.Reformulated.B.Qf2.lintegral_swap_norm
-
 private theorem ae_lt_top_norm (μ : Measure X) [μ.IsHaarMeasure] (ν : Measure T) [ν.IsHaarMeasure]
     (i : T →* X) (hi : Continuous i) {a : X → ℝ≥0∞} (ha : Measurable a) (hA : ∀ x, ∫⁻ t, a (i t * x) ∂ν = 1) :
     ∀ᵐ x ∂μ, a x < ⊤ := by
@@ -782,8 +780,8 @@ private theorem real_eq (μ : Measure X) [μ.IsHaarMeasure] (ν : Measure T) [ν
   simp only [← neg_mul]
   rw [lintegral_ofReal_toReal μ fa g, lintegral_ofReal_toReal μ fa (fun x => - g x),
     lintegral_ofReal_toReal μ fb g, lintegral_ofReal_toReal μ fb (fun x => - g x),
-    lintegral_swap_norm μ ν i hi ha hb hg.ennreal_ofReal (fun t x => by rw [hinv]) hA hB,
-    lintegral_swap_norm μ ν i hi ha hb (Ψ := fun x => ENNReal.ofReal (- g x)) hg.neg.ennreal_ofReal
+    UpperTheory.Reformulated.B.Qf2.lintegral_swap_norm μ ν i hi ha hb hg.ennreal_ofReal (fun t x => by rw [hinv]) hA hB,
+    UpperTheory.Reformulated.B.Qf2.lintegral_swap_norm μ ν i hi ha hb (Ψ := fun x => ENNReal.ofReal (- g x)) hg.neg.ennreal_ofReal
       (fun t x => by rw [hinv]) hA hB]
 
 private theorem integrable_mul_toReal (μ : Measure X) {Φ : X → ℂ} {a : X → ℝ≥0∞} (hΦ : Measurable Φ)
@@ -813,7 +811,7 @@ theorem UpperTheory.ConvolutionTheory.G.isUnit_last_join :
   have hA : ∀ x, ∫⁻ t, ρ (u (i t * x)) ∂ν = 1 := fun x => by simpa [map_mul] using hn.2 x
   have hB : ∀ x, ∫⁻ t, ρ₀ (u (i t * x)) ∂ν = 1 := fun x => by simpa [map_mul] using h0.2 x
   have hfin' : ∫⁻ x, ‖Φ x‖ₑ * ρ₀ (u x) ∂μ < ⊤ := by
-    rw [← lintegral_swap_norm μ ν i hi ha hb hΦ.enorm (fun t x => by rw [hinv]) hA hB]
+    rw [← UpperTheory.Reformulated.B.Qf2.lintegral_swap_norm μ ν i hi ha hb hΦ.enorm (fun t x => by rw [hinv]) hA hB]
     exact hfin
   have h1 := integrable_mul_toReal μ hΦ ha hfin
   have h2 := integrable_mul_toReal μ hΦ hb hfin'

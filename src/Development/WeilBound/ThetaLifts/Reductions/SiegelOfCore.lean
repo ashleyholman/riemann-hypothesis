@@ -75,7 +75,7 @@ theorem isClosed_siegelSet (h : IsCMExt F E σ) (hJ : IsHermND σ J) (hW : IsWit
     (hc : 0 < c) : IsClosed (siegelSet σ J X Y Ω c K) := by
   obtain ⟨a, ha⟩ := exists_isTorus h hJ hW
   obtain ⟨τ, hτc, -, hτa, -, -⟩ := exists_tau h hJ hW ha
-  have hP : IsClosed ((minParSub X h hJ hW : Subgroup (GAd σ J)) : Set (GAd σ J)) := isClosed_minPar h hJ hW
+  have hP : IsClosed ((minParSub X h hJ hW : Subgroup (GAd σ J)) : Set (GAd σ J)) := PositivityTheory.ThKR.isClosed_minimal_parabolic h hJ hW
   have hsc : Continuous (ha.sub h hJ hW) := ha.cont.subtype_mk _
   have h1 : IsClosed (ha.sub h hJ hW '' {s : Fin r → ℝ | (fun i => Real.exp (s i)) ∈ cone r c}) :=
     PositivityTheory.ThKR.Sieg.isClosed_image_section τ hτc _ hsc hτa (isClosed_logCone c)
@@ -201,7 +201,7 @@ theorem siegel_measure (h : IsCMExt F E σ) (hJ : IsHermND σ J) (hW : IsWittFra
   intro μ hμ
   obtain ⟨a, ha⟩ := exists_isTorus h hJ hW
   obtain ⟨τ, hτc, hτm, hτa, hτ0, -⟩ := exists_tau h hJ hW ha
-  have hP : IsClosed ((minParSub X h hJ hW : Subgroup (GAd σ J)) : Set (GAd σ J)) := isClosed_minPar h hJ hW
+  have hP : IsClosed ((minParSub X h hJ hW : Subgroup (GAd σ J)) : Set (GAd σ J)) := PositivityTheory.ThKR.isClosed_minimal_parabolic h hJ hW
   have : LocallyCompactSpace (minParSub X h hJ hW) := hP.isClosedEmbedding_subtypeVal.locallyCompactSpace
   let ρ : (Fin r → ℝ) → ℝ := fun s => 2 * (Module.finrank ℚ F : ℝ) * rho2 n s
   have hρ : Continuous ρ := by

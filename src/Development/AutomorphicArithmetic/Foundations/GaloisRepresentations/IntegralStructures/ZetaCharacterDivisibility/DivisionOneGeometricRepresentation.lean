@@ -1103,7 +1103,7 @@ private theorem model_split {L : FinExt l} {ρ : ↥Gw →* GL (Fin (a + b)) ↥
   obtain ⟨s₁, hs⟩ := TP.Sub.descend (algebraMap ↥L.1 (Om l)) hf s
     (fun g i j => (ρ g : Matrix _ _ ↥L.1) (Fin.natAdd a i) (Fin.natAdd a j))
     (fun g i j => by rw [e, TP.Sub.sumRep_rr])
-  exact ⟨r₁, s₁, ⟨h.1, hr⟩, ⟨h.1, hs⟩, ⟨h.1, by rw [TP.Sub.map_sum', hr, hs]⟩⟩
+  exact ⟨r₁, s₁, ⟨h.1, hr⟩, ⟨h.1, hs⟩, ⟨h.1, by rw [GlobalTheory.Pst.SumParam.mapRep_sumRep, hr, hs]⟩⟩
 
 end UpperTheory.Gal.Int.Div.LocalSums
 

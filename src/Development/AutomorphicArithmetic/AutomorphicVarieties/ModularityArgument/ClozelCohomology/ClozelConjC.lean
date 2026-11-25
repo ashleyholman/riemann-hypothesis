@@ -1072,7 +1072,7 @@ private theorem map_infChar (σ : ℂ ≃+* ℂ) (Ξ : AlgRep E a) {τ : E →+*
     ∀ z ∈ m, σ z = z := by
   obtain ⟨m', e1, -, e3⟩ := GlobalTheory.AlgInfChar.exists_dualInfChar E a Ξ τ
   have e2 := (AlgRepEndIrreducible.dualIff E a Ξ τ m').2 e1
-  have e : m = m'.map Neg.neg := AlgRepEndIrreducible.msetSep _ _ fun u => by
+  have e : m = m'.map Neg.neg := UpperTheory.Reformulated.B.MultisetSeparation.msetSep _ _ fun u => by
     have : Nonempty (Fin Ξ.d) := ⟨⟨0, Ξ.pos⟩⟩
     exact smul_left_injective ℂ one_ne_zero ((h.2 u).symm.trans (e2.2 u))
   intro z hz
@@ -1741,7 +1741,7 @@ theorem UpperTheory.V.Z.Coh.clozelCohC :
   have hd : ∀ τ, GlobalTheory.WignerGL.HasDualInfChar Ξ τ (m τ) := fun τ => (dualIff E a Ξ τ _).1 (h2 τ)
   have hreg : (CG.mk π).IsRegAlg := (GlobalTheory.CuspRep.CG.isRegAlg_iff _).2 fun τ => by
     obtain ⟨m', e1, e2, e3⟩ := GlobalTheory.AlgInfChar.exists_dualInfChar E a Ξ τ
-    have e : m τ = m' := msetSep _ _ fun u => by
+    have e : m τ = m' := UpperTheory.Reformulated.B.MultisetSeparation.msetSep _ _ fun u => by
       have : Nonempty (Fin Ξ.d) := ⟨⟨0, Ξ.pos⟩⟩
       exact smul_left_injective ℂ one_ne_zero (((hd τ).2 u).symm.trans (e1.2 u))
     have h3 : (CG.mk π).HasInfChar τ (m τ) := h1 τ

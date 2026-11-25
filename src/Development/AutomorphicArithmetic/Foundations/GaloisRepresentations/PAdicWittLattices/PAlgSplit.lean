@@ -98,10 +98,6 @@ private lemma sec_tmul {A A' C J : Type} [CommRing A] [CommRing A'] [CommRing C]
     (τ : J → (A' →ₐ[A] C)) (c : C) (b : A') (j : J) : sec τ (c ⊗ₜ b) j = c * τ j b := by
   simp [sec]
 
-private alias tensor_hom_ext := _root_.UpperTheory.Reformulated.B.Qk54.tensor_hom_ext
-
-private alias exists_eval := _root_.UpperTheory.Reformulated.B.ExistsEvaluation.exists_eval
-
 private lemma bij_of_pts (hiso : AlgIsoPts) {C D E : Type} [CommRing C] [CommRing D] [CommRing E] [Algebra C D]
     [Algebra C E] [Algebra.Etale C D] [Algebra.Etale C E] (φ : D →ₐ[C] E)
     (pts : ∀ (Ω : Type) [Field Ω] [IsAlgClosed Ω] (x : D →+* Ω), ∃! y : E →+* Ω, y.comp (φ : D →+* E) = x) :
@@ -132,7 +128,7 @@ theorem UpperTheory.Gal.G3.pAlgSplit :
   obtain ⟨j, hj, huniq⟩ := h Ω x₀ y₀ compat
   have hτ : ∀ b, x₀ (τ j b) = y₀ b := fun b => congrArg (fun f : A' →+* Ω => f b) hj
   refine ⟨x₀.comp (Pi.evalRingHom (fun _ => C) j), ?_, ?_⟩
-  · apply tensor_hom_ext
+  · apply UpperTheory.Reformulated.B.Qk54.tensor_hom_ext
     · intro c
       simp [sec_tmul, hx₀]
     · intro b
@@ -141,7 +137,7 @@ theorem UpperTheory.Gal.G3.pAlgSplit :
       rw [this, hy₀]
   · intro y' hy'
     have hy'd : ∀ d, y' (sec τ d) = x d := fun d => congrArg (fun f : C ⊗[A] A' →+* Ω => f d) hy'
-    obtain ⟨j', hj'⟩ := exists_eval y'
+    obtain ⟨j', hj'⟩ := UpperTheory.Reformulated.B.ExistsEvaluation.exists_eval y'
     have hal : ∀ c : C, y' (algebraMap C (J → C) c) = x₀ c := by
       intro c
       rw [hx₀, ← hy'd]

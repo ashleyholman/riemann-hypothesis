@@ -1,7 +1,7 @@
 module
 
 public import Development.AbelianVarietyTheory.Definitions.Divisors.IndEtOfForallFinset
-public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CoveringsRefineOfCechConervePropertyStatement
+public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.CoveringsRefineOfCechConerveProperty
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.EtaleCohomologyEquivalenceBasicPropertiesStatement
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.EtaleCohomologyEquivalenceOfStrictlyHenselianSta
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.EtaleSpaceDescentLocalEquivalenceStatement
@@ -56,7 +56,7 @@ theorem UpperTheory.Cb.equiv_of_stalkwise_base_change :
   let β : Φ' ⟶ Φ := NatTrans.op (Functor.whiskerLeft (Scheme.Etale.forget S) (bcMap α p))
   have hall : ∀ U, Eqv R (β.app U).unop F := by
     refine _root_.GlobalTheory.EtC.Descent.main R F (S.Etale)ᵒᵖ (covE S) Φ Φ' β ?_ ?_ ?_
-    · refine GlobalTheory.T.coveringsRefine_of_cechConerve_property (S.Etale)ᵒᵖ (covE S) _ ?_
+    · refine GlobalTheory.refines_of_coAug (S.Etale)ᵒᵖ (covE S) _ ?_
       intro U V g hg
       exact ⟨_root_.GlobalTheory.EtC.SmallEtaleCech.hyp_coAug R S E (α ≫ p) U V g hg, _root_.GlobalTheory.EtC.SmallEtaleCech.hyp_coAug R S E' p U V g hg⟩
     · intro U n x

@@ -492,12 +492,6 @@ open scoped ComplexOrder
 
 namespace GlobalTheory.PresSum
 
-theorem cj_mul_of_mem (M : IntermediateField ℚ ℂ) (ρ : M →ₐ[ℚ] ℂ) {a b : ℂ} (ha : a ∈ M) (hb : b ∈ M) :
-    StandardLatticesGL3.cj M ρ (a * b) = StandardLatticesGL3.cj M ρ a * StandardLatticesGL3.cj M ρ b := by
-  unfold StandardLatticesGL3.cj TaylorLogMetric.liftM
-  rw [dite_eq_left ha, dite_eq_left hb, dite_eq_left (mul_mem ha hb), ← map_mul]
-  rfl
-
 variable {D : D7} {T : TaylorLogMetric.Tor D} {a b : ℕ} {L : Submodule (𝓞 D.host.E) (Fin a → D.host.E)}
   {L' : Submodule (𝓞 D.host.E) (Fin b → D.host.E)} {F₀ : TaylorLogMetric.VC D a b → ℂ}
 
@@ -530,7 +524,7 @@ theorem pres_smul {F : TaylorLogMetric.VC D a b → ℂ} {n β : ℝ} {c : ℂ} 
     Pres D T L L' F₀ (fun z => c * F z) (β * n) := by
   obtain ⟨k, r, y, h1, h2, h3, rfl⟩ := hF
   refine ⟨k, fun i => c * r i, y, fun i => mul_mem hc (h1 i), h2, fun ρ => ?_, ?_⟩
-  · simp only [fun i => cj_mul_of_mem TaylorLogMetric.Qbar ρ hc (h1 i), norm_mul]
+  · simp only [fun i => GlobalTheory.GalTheta.cj_mul TaylorLogMetric.Qbar ρ hc (h1 i), norm_mul]
     rw [← Finset.mul_sum]
     exact mul_le_mul (hb ρ) (h3 ρ) (Finset.sum_nonneg fun _ _ => norm_nonneg _) hβ
   · funext z

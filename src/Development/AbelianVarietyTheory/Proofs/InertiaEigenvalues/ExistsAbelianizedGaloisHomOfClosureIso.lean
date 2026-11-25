@@ -45,7 +45,7 @@ theorem exists_abHom_of_ringEquiv : ∀ (E Ω : Type) [Field E] [NumberField E] 
     Subgroup.isClosed_topologicalClosure _
   let c := conjGal φ j hφ
   have hc : Continuous c :=
-    continuous_galHom_of_fix c fun y => ⟨φ y, fun τ hτ => by
+    GlobalTheory.ContinuityFromFixedPoints.continuous_of_forall_exists_fix c fun y => ⟨φ y, fun τ hτ => by
       rw [conjGal_apply, hτ, RingEquiv.symm_apply_apply]⟩
   let r : Formalism.ConjugateSelfDual.G E' Ω' →* Gab E Ω := (toAb E Ω).comp c
   have hr : Continuous r := QuotientGroup.continuous_mk.comp hc

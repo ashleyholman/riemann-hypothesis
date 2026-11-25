@@ -221,8 +221,6 @@ open GroundTheory.Global GroundTheory.Automorphic GroundTheory.Automorphic.Reduc
 
 namespace PositivityTheory.Rg.Rs.l2glue
 
-alias integral_le_toReal := _root_.GlobalTheory.CompanionTheory.Dblock.integral_norm_sq_le_toReal_lintegral_enorm_sq
-
 alias unfold := _root_.GlobalTheory.CompanionTheory.Unfolding.setLIntegral_le_mul_fundamentalDomain_diff
 
 variable {K : Type} [Field K] [NumberField K] {n : ℕ}
@@ -326,7 +324,7 @@ theorem l2glue_holds : An.L2DecayOfCountEscape := by
     intro T hT
     filter_upwards [hEsc K n r hr hrn D Q T hD hQ hT, eventually_ge_atTop 0] with t ht ht0
     have hS := l2glue.isCompact_sset r t hD hQ
-    have h1 := l2glue.integral_le_toReal (μ.restrict Q) (fun g => An.ctn r φ (An.aR K n r t * g))
+    have h1 := GlobalTheory.CompanionTheory.Dblock.integral_norm_sq_le_toReal_lintegral_enorm_sq (μ.restrict Q) (fun g => An.ctn r φ (An.aR K n r t * g))
     have h2 := l2glue.swap μ φ hφ r t hD hD0 hQ
     have h3 := l2glue.unfold (An.lat K n) μ F (l2glue.sset K n r t D Q) T hF hS.isClosed.measurableSet
       hT.isClosed.measurableSet (fun x => ‖φ x‖ₑ ^ 2) hhm

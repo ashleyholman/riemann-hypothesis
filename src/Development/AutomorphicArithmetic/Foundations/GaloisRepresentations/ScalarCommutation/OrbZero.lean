@@ -292,8 +292,6 @@ theorem volRat_of_le (U : Subgroup H) {W S : Subgroup H} (hWS : W ≤ S) (h : W.
     field_simp
     linear_combination (S.relIndex U : ℝ) * e3'
 
-alias mem_locPart := _root_.GlobalTheory.ConjugateIntersectionMembership.mem_inter_conj_iff
-
 theorem exists_mul_of_mem_sup {L N : Subgroup H} (hLN : ∀ l ∈ L, ∀ n ∈ N, l * n * l⁻¹ ∈ N) {k : H}
     (hk : k ∈ L ⊔ N) : ∃ n ∈ N, ∃ l ∈ L, k = n * l := by
   let S : Subgroup H :=
@@ -316,16 +314,16 @@ theorem ncard_fibre_eq_relIndex (T : Subgroup H) {L N : Subgroup H} (hLN : ∀ l
   set S := GlobalTheory.LKLoc.locPart T (L ⊔ N) y with hS
   have hstab : MulAction.stabilizer S ((y : H) : H ⧸ L) = (GlobalTheory.LKLoc.locPart T L y).subgroupOf S := by
     ext s
-    rw [MulAction.mem_stabilizer_iff, Subgroup.mem_subgroupOf, mem_locPart]
+    rw [MulAction.mem_stabilizer_iff, Subgroup.mem_subgroupOf, GlobalTheory.ConjugateIntersectionMembership.mem_inter_conj_iff]
     change (((s : H) * y : H) : H ⧸ L) = _ ↔ _
     rw [eq_comm, QuotientGroup.eq, ← mul_assoc]
-    exact ⟨fun h => ⟨(mem_locPart.1 s.2).1, h⟩, fun h => h.2⟩
+    exact ⟨fun h => ⟨(GlobalTheory.ConjugateIntersectionMembership.mem_inter_conj_iff.1 s.2).1, h⟩, fun h => h.2⟩
   rw [Subgroup.relIndex, ← hstab, MulAction.index_stabilizer]
   refine Set.ncard_congr (fun q _ => ((m * Quotient.out q : H) : H ⧸ L)) ?_ ?_ ?_
   · rintro q ⟨hq, he⟩
     obtain ⟨t, ht, l, hl, h⟩ := (@DoubleCoset.eq _ _ T L _ _).1 he.symm
     have hts : t ∈ S := by
-      refine mem_locPart.2 ⟨ht, ?_⟩
+      refine GlobalTheory.ConjugateIntersectionMembership.mem_inter_conj_iff.2 ⟨ht, ?_⟩
       have : y⁻¹ * t * y = (m⁻¹ * y)⁻¹ * Quotient.out q * l⁻¹ := by
         calc y⁻¹ * t * y = y⁻¹ * (t * y * l) * l⁻¹ := by group
           _ = _ := by rw [← h]; group
@@ -344,7 +342,7 @@ theorem ncard_fibre_eq_relIndex (T : Subgroup H) {L N : Subgroup H} (hLN : ∀ l
     have : (m * Quotient.out q)⁻¹ * (m * Quotient.out q') = (Quotient.out q)⁻¹ * Quotient.out q' := by group
     rwa [this] at he
   · rintro _ ⟨s, rfl⟩
-    obtain ⟨hsT, hs⟩ := mem_locPart.1 s.2
+    obtain ⟨hsT, hs⟩ := GlobalTheory.ConjugateIntersectionMembership.mem_inter_conj_iff.1 s.2
     obtain ⟨n, hn, l, hl, hnl⟩ := exists_mul_of_mem_sup hLN (Subgroup.mul_mem _ hy hs)
     obtain ⟨j, hj⟩ := QuotientGroup.mk_out_eq_mul (N ⊓ L) n
     have hsy : (s : H) * y = m * n * l := by
@@ -400,7 +398,7 @@ theorem dsum_eq_zero_of_fibre_sums : ∀ (H : Type) [Group H] (T P N L U : Subgr
     have hne : (GlobalTheory.LKLoc.locPart T L (m * k)).relIndex (GlobalTheory.LKLoc.locPart T (L ⊔ N) (m * k)) ≠ 0 :=
       hfin _ (P.mul_mem hm (hsup hk))
     have hle : GlobalTheory.LKLoc.locPart T L (m * k) ≤ GlobalTheory.LKLoc.locPart T (L ⊔ N) (m * k) := fun g hg =>
-      mem_locPart.2 ⟨(mem_locPart.1 hg).1, Subgroup.mem_sup_left (mem_locPart.1 hg).2⟩
+      GlobalTheory.ConjugateIntersectionMembership.mem_inter_conj_iff.2 ⟨(GlobalTheory.ConjugateIntersectionMembership.mem_inter_conj_iff.1 hg).1, Subgroup.mem_sup_left (GlobalTheory.ConjugateIntersectionMembership.mem_inter_conj_iff.1 hg).2⟩
     have h1 : GlobalTheory.LKLoc.locPart T L (Quotient.out D) = GlobalTheory.LKLoc.locPart T L (m * k) := by
       rw [← locPart_mul hT (x := m * k) ht L.one_mem, e]; congr 1; group
     have h2 : GlobalTheory.LKLoc.locPart T (L ⊔ N) (m * k) = GlobalTheory.LKLoc.locPart T (L ⊔ N) m := by

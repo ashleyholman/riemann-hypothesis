@@ -519,16 +519,16 @@ open PositivityTheory.Rg.Tf.Geo (mapGL incFin galFin) in
 theorem UpperTheory.ConvolutionTheory.H.locHeckeInert :
     UpperTheory.ConvolutionTheory.GM.LocHeckeInert := by
   intro F E _ _ _ _ _ _ σ hσ hp n _ v hu hsp w t ht h0 D
-  obtain ⟨w', hw'⟩ := placeUniq_holds F E hp v hsp
+  obtain ⟨w', hw'⟩ := UpperTheory.V.Z.Tf.Orb.placeUniq F E hp v hsp
   have hw : ∀ x : PlacesOver E v, x = w := fun x => (hw' x).trans (hw' w).symm
-  obtain ⟨i1, i2, i3, i4, s, hs, hr, h1, h2, h3⟩ := placeData_holds F E σ hσ v w hw
+  obtain ⟨i1, i2, i3, i4, s, hs, hr, h1, h2, h3⟩ := UpperTheory.V.Z.Tf.Orb.placeData F E σ hσ v w hw
   letI : MeasurableSpace (GL (Fin n) (w.1.adicCompletion E)) := borel _
   haveI : BorelSpace (GL (Fin n) (w.1.adicCompletion E)) := ⟨rfl⟩
   letI mv : MeasurableSpace (GL (Fin n) (v.adicCompletion F)) := borel _
   haveI bv : BorelSpace (GL (Fin n) (v.adicCompletion F)) := ⟨rfl⟩
   haveI : CharZero (v.adicCompletion F) := algebraRat.charZero _
-  obtain ⟨μE, hμE, vE⟩ := haar_ex _ (unitSB_holds (w.1.adicCompletion E) n).2.1 (unitSB_holds (w.1.adicCompletion E) n).1
-  obtain ⟨μF, hμF, vF⟩ := haar_ex _ (unitSB_holds (v.adicCompletion F) n).2.1 (unitSB_holds (v.adicCompletion F) n).1
+  obtain ⟨μE, hμE, vE⟩ := haar_ex _ (UpperTheory.V.Z.Tf.Orb.unitSB (w.1.adicCompletion E) n).2.1 (UpperTheory.V.Z.Tf.Orb.unitSB (w.1.adicCompletion E) n).1
+  obtain ⟨μF, hμF, vF⟩ := haar_ex _ (UpperTheory.V.Z.Tf.Orb.unitSB (v.adicCompletion F) n).2.1 (UpperTheory.V.Z.Tf.Orb.unitSB (v.adicCompletion F) n).1
   obtain ⟨z, hz⟩ := exists_point t ht h0
   obtain ⟨a1, a2, a3, a4⟩ := polyAlg n
   obtain ⟨P, hP, hPD⟩ := a4 D
@@ -543,12 +543,12 @@ theorem UpperTheory.ConvolutionTheory.H.locHeckeInert :
   have hc : Continuous (mapGL n (Pi.evalRingHom (fun w : PlacesOver E v => w.1.adicCompletion E) w)) :=
     Continuous.units_map _ (continuous_id.matrix_map (continuous_apply w))
   have eE := UpperTheory.ConvolutionTheory.L1.haar_uniq hμE hH vE
-    (by rw [Measure.map_apply hc.measurable (unitSB_holds _ n).1.measurableSet,
-      ← placeInt_holds.2 F E v w hw n, wE])
+    (by rw [Measure.map_apply hc.measurable (UpperTheory.V.Z.Tf.Orb.unitSB _ n).1.measurableSet,
+      ← UpperTheory.V.Z.Tf.Orb.placeInt.2 F E v w hw n, wE])
   have eF := UpperTheory.ConvolutionTheory.L1.haar_uniq hμF hF vF
-    (by rw [placeInt_holds.1 F v n, wF])
-  obtain ⟨HE, hE1, hE2⟩ := sphIndep E n w.1 _ h hh μE (by rw [← placeInt_holds.1 E w.1 n, vE])
-  obtain ⟨HF, hF1, hF2⟩ := sphIndep F n v _ f hf μF (by rw [← placeInt_holds.1 F v n, vF])
+    (by rw [UpperTheory.V.Z.Tf.Orb.placeInt.1 F v n, wF])
+  obtain ⟨HE, hE1, hE2⟩ := sphIndep E n w.1 _ h hh μE (by rw [← UpperTheory.V.Z.Tf.Orb.placeInt.1 E w.1 n, vE])
+  obtain ⟨HF, hF1, hF2⟩ := sphIndep F n v _ f hf μF (by rw [← UpperTheory.V.Z.Tf.Orb.placeInt.1 F v n, vF])
   have hm := H _ (hPD p hpD) HE HF (by rw [hE2, map_mul, map_mul]) (by rw [hF2, hr, ← a3, map_mul, map_mul])
   have e1 : (fun x => (HE : HeckeAlgebra μE) x) = h := funext hE1
   have e2 : (fun x => (HF : HeckeAlgebra μF) x) = f := funext hF1
@@ -659,7 +659,7 @@ theorem UpperTheory.ConvolutionTheory.GM.locAll :
       convert hf using 2 with w
       have : (powE 1 : Fin n → MvPolynomial (Fin n) ℂ) = X := funext powE_one
       rw [resDeg_split v hs w, this, aeval_X_left_apply]
-  · obtain ⟨w, hw⟩ := UpperTheory.V.Z.Tf.Orb.placeUniq_holds F E hp v hs
+  · obtain ⟨w, hw⟩ := UpperTheory.V.Z.Tf.Orb.placeUniq F E hp v hs
     rw [Finset.prod_eq_single w (fun b _ hb => absurd (hw b) hb) (by simp)] at hf
     have e : (prodFn fun w : PlacesOver E v => h w.1) = fun g => h w.1 (cmp w g) := by
       funext g

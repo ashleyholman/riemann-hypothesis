@@ -24,7 +24,7 @@ theorem integrable_iteratedFDeriv_translate (F : M2 n → ℂ) (U : Set (M2 n)) 
     (μ : Measure Kg) [IsFiniteMeasureOnCompacts μ] (ι : Kg → M2 n) (hι : Continuous ι) (c : Kg → ℂ) (hc : Continuous c)
     (N : ℕ) (x : M2 n) (hx : ∀ k, ι k * x ∈ U) (w : Fin N → M2 n) :
     Integrable (fun k => iteratedFDeriv ℂ N (fun y => F (ι k * y) * c k) x w) μ := by
-  have h := continuousOn_iteratedFDeriv_translate F U hU hF Kg ι hι c hc N
+  have h := PositivityTheory.Rg.Sw.LVs.cont_translate' F U hU hF Kg ι hι c hc N
   have hg : Continuous (fun k : Kg => (k, x)) := continuous_id.prodMk continuous_const
   have hm : ∀ k, (k, x) ∈ (Set.univ ×ˢ {x | ∀ k, ι k * x ∈ U} : Set (Kg × M2 n)) :=
     fun k => ⟨Set.mem_univ _, hx⟩
@@ -50,7 +50,7 @@ theorem spherical_detD (hHI : HolInt) (F : M2 n → ℂ) (hF : ContDiffOn ℂ �
   have hsm : ∀ k, ContDiffOn ℂ ∞ (fun x => F (ι k * x) * c k) Ω := fun k =>
     (hF.comp (contDiff_mulLeft (ι k)).contDiffOn (fun x (hx : x ∈ Ω) => hx k)).mul contDiffOn_const
   have hH := hHI n Kg μ Ω (fun k x => F (ι k * x) * c k) hΩo
-    (fun N => continuousOn_iteratedFDeriv_translate F (Dom n) isOpen_dom hF Kg ι hι c hc N) hsm
+    (fun N => PositivityTheory.Rg.Sw.LVs.cont_translate' F (Dom n) isOpen_dom hF Kg ι hι c hc N) hsm
   have hgΩ : g ∈ Ω := hg
   have hAv : ContDiffOn ℂ ∞ (fun x => ∫ k, F (ι k * x) * c k ∂μ) Ω := hH.1
   have key : ∀ (N : ℕ) (v : Fin N → M2 n), iteratedFDeriv ℂ N (fun x => ∫ k, F (ι k * x) * c k ∂μ) g v =
@@ -69,7 +69,7 @@ theorem spherical_detD (hHI : HolInt) (F : M2 n → ℂ) (hF : ContDiffOn ℂ �
       detD_detD_comp (fun y => F y * c k) (Dom n) isOpen_dom (hFc k) (ι k * g) (hg k) _ _]
     refine Finset.sum_congr rfl fun σ _ => Finset.sum_congr rfl fun τ _ => ?_
     congr 1
-    rw [iteratedFDeriv_left_mul (fun y => F y * c k) (Dom n) isOpen_dom (hFc k) (ι k) g (hg k), fin_append_mul]
+    rw [PositivityTheory.Rg.Sw.LVs.left_mul' (fun y => F y * c k) (Dom n) isOpen_dom (hFc k) (ι k) g (hg k), fin_append_mul]
     simp only [hLA, hLB]
   have hint : ∀ (σ : Equiv.Perm ιA) (τ : Equiv.Perm ιB), Integrable (fun k =>
       iteratedFDeriv ℂ (Fintype.card ιA + Fintype.card ιB) (fun x => F (ι k * x) * c k) g

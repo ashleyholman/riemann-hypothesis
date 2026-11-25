@@ -144,7 +144,7 @@ theorem charpoly_den_bounded : ∀ (p : ℕ) [Fact p.Prime] (G : HTGroup p) (Ω 
     rw [hval] at h2
     have h3 : algebraMap ℚ (AfP p) ((D : ℚ) * (LinearMap.mulLeft ℚ y).charpoly.coeff i) ∈ LevelExists.intAfP p := by
       rw [map_mul, map_natCast]; exact h2
-    obtain ⟨k, a, ha⟩ := GlobalTheory.T.exists_primePow_mul_eq_int_of_integral_finiteAdeleAway p _ h3
+    obtain ⟨k, a, ha⟩ := GlobalTheory.ratDen_pow_of_intAfP p _ h3
     exact ⟨k, a, by rw [← ha]; push_cast; ring⟩
   · refine ⟨0, 0, ?_⟩
     rw [Polynomial.coeff_eq_zero_of_natDegree_lt (by rw [LinearMap.charpoly_natDegree]; omega)]

@@ -60,8 +60,6 @@ theorem qU_mem (k : Bool) (n : ℕ) : (ε.qU n : (bs l k n).R) - 1 ∈ (bs l k n
 
 end Eps
 
-alias mapU_sharp := _root_.GlobalTheory.CompanionTheory.PAlgNat.mapU_sharp
-
 def epsU (ε : Eps l) (P : PAlg l ⥤ Type) : UF P.Elements where
   U T := (Units.map T.1.sharp).ker
   map {T T'} φ :=
@@ -69,7 +67,7 @@ def epsU (ε : Eps l) (P : PAlg l ⥤ Type) : UF P.Elements where
         have h : T.1.sharp (x.1 : T.1.A) = 1 := congrArg Units.val (MonoidHom.mem_ker.1 x.2)
         refine MonoidHom.mem_ker.2 (Units.ext ?_)
         change T'.1.sharp (Hom.f φ.1 (x.1 : T.1.A)) = 1
-        rw [← mapU_sharp, h, map_one]⟩
+        rw [← GlobalTheory.CompanionTheory.PAlgNat.mapU_sharp, h, map_one]⟩
       map_one' := Subtype.ext (map_one _)
       map_mul' := fun _ _ => Subtype.ext (map_mul _ _ _) }
   map_id _ _ := rfl

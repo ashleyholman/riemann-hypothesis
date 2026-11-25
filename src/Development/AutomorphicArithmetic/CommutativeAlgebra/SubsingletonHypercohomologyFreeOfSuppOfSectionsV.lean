@@ -18,7 +18,7 @@ theorem UpperTheory.subsingleton_hypercohomology_free_of_supp_of_sections_vanish
   intro Q G hG P hP n
   apply UpperTheory.subsingleton_hypercohomology_free_of_subsingleton_cohomology
   haveI : (res ℤ G).IsKInjective := (_root_.GlobalTheory.EtC.ResBasic.res_basic ℤ G).1
-  refine GlobalTheory.T.subsingleton_hypercohomology_of_locallyExact_on_support ℤ (disc.obj P) (res ℤ G) ?_ n
+  refine GlobalTheory.EtC.subsingleton_of_locExact_supp ℤ (disc.obj P) (res ℤ G) ?_ n
   intro U hU m b hb
   have hQ : Q U := hP U hU
   haveI : Subsingleton (Sec G U) := hG U hQ

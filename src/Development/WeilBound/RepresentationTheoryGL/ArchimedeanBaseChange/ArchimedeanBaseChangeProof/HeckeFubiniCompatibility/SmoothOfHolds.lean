@@ -1487,17 +1487,8 @@ variable {E : Type} [Field E] [NumberField E] [_root_.NumberField.IsTotallyCompl
 
 abbrev gI (v : InfinitePlace E) : GA E n →* G n := Matrix.GeneralLinearGroup.map (PositivityTheory.Rg.BcB.cV v)
 
-theorem continuous_pInf₀ : Continuous (pInf E) :=
-  continuous_pi fun w =>
-    (InfinitePlace.Completion.isometryEquivComplexOfIsComplex (IsTotallyComplex.isComplex w)).continuous.comp
-      ((continuous_apply w).comp continuous_fst)
-
 theorem continuous_gI (v : InfinitePlace E) : Continuous (gI (n := n) v : GA E n → G n) :=
-  Continuous.units_map _ (continuous_id.matrix_map ((continuous_apply v).comp continuous_pInf₀))
-
-theorem continuous_infGL₀ : Continuous (infGL E n) :=
-  Continuous.units_map _ (continuous_const.add (continuous_id.matrix_map ((continuous_infEq E).prodMk continuous_const :
-    Continuous fun x : Cinf E => ((infEq E x, 0) : InfiniteAdeleRing E × Af E))))
+  Continuous.units_map _ (continuous_id.matrix_map ((continuous_apply v).comp GlobalTheory.CuspRep.RankOne.continuous_pInf))
 
 theorem gI_infGL_val (v : InfinitePlace E) (u : GL (Fin n) (Cinf E)) :
     (gI v (infGL E n u)).val = fun i j => u.val i j v := by
@@ -1637,7 +1628,7 @@ theorem mem_Sm_conv (μ : Measure T) [μ.IsMulLeftInvariant] [IsFiniteMeasureOnC
     refine ⟨L '' (closedBall x₀ (r / 2) ×ˢ tsupport Φ),
       ((isCompact_closedBall x₀ (r / 2)).prod hΦc).image_of_continuousOn ?_, ?_⟩
     · have hu : ContinuousOn (fun q : Lie E n × T => ι (infGL E n (uOf q.1))) (closedBall x₀ (r / 2) ×ˢ tsupport Φ) :=
-        (hι.comp continuous_infGL₀).comp_continuousOn
+        (hι.comp GlobalTheory.CuspQuot.continuous_infGL).comp_continuousOn
           (continuousOn_uOf.comp continuous_fst.continuousOn fun q hq => hS hq.1)
       exact (continuousOn_const.mul hu).mul continuous_snd.continuousOn
     · filter_upwards [closedBall_mem_nhds x₀ (half_pos hr)] with x' hx' y hy

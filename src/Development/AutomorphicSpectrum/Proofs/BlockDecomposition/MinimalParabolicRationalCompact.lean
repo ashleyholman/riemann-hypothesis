@@ -1411,7 +1411,7 @@ theorem mem_leviMin_of_comm : ∀ (F E : Type) [Field F] [NumberField F] [Field 
     rwa [projFam, Sum.elim_inr, hP] at this)
   refine ⟨⟨_, _, hX, hY⟩, ⟨Matrix.diagonal _, Matrix.blockTriangular_diagonal _, hX, fun i => ?_⟩⟩
   have hp : γ ∈ minPar σ J X := ⟨_, Matrix.blockTriangular_diagonal _, hX⟩
-  have hp' := inv_mem_minPar h hJ hW hp
+  have hp' := PositivityTheory.ThKR.inv_mem_minimal_parabolic h hJ hW hp
   refine ⟨uU σ J X Y h hJ hW hp hp' i, ?_, ?_⟩
   · rw [val_uU h hJ hW hp hp' i, Bm_eq hF hX]
   · obtain ⟨M, hM⟩ := bmRat γ hγ
@@ -1642,7 +1642,7 @@ theorem levi_decomp : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Numb
   have hF := pfrA hcm hJ hW
   obtain ⟨B, hB, e, hu⟩ := id hp
   choose v hv1 hv2 using hu
-  obtain ⟨Q, -, eQ⟩ := inv_mem_minPar hcm hJ hW (minParOne_sub hp)
+  obtain ⟨Q, -, eQ⟩ := PositivityTheory.ThKR.inv_mem_minimal_parabolic hcm hJ hW (minParOne_sub hp)
   have hgh : (matHom _ σ J p).1 * (matHom _ σ J p⁻¹).1 = 1 := by
     rw [← Units.val_mul, ← map_mul, mul_inv_cancel, map_one, Units.val_one]
   have hhg : (matHom _ σ J p⁻¹).1 * (matHom _ σ J p).1 = 1 := by
@@ -1739,7 +1739,7 @@ theorem minParOne_cocompact : ∀ (F E : Type) [Field F] [NumberField F] [Field 
     obtain ⟨δ, hδ, hδL, c', hc', rfl⟩ := hM m hm hm1
     have hu' := _root_.GlobalTheory.CompanionTheory.ParCocompact.UnipNormal.leviMin_normalises_unipMin F E σ h n J hJ r X Y hW δ hδL u hu
     obtain ⟨δ', hδ', hδU, c, hc, hcU, e⟩ := hU _ hu'
-    refine ⟨δ * δ', mul_mem hδ hδ', mul_mem_minPar (leviMin_subset X Y hδL)
+    refine ⟨δ * δ', mul_mem hδ hδ', PositivityTheory.ThKR.mul_mem_minimal_parabolic (leviMin_subset X Y hδL)
       (minParOne_subset (unipMin_subset_minParOne X hδU)), c * c',
       ⟨c, ⟨hc, unipMin_subset_minParOne X hcU⟩, c', hc', rfl⟩, ?_⟩
     have e2 : u = δ * (δ' * c) * δ⁻¹ := by

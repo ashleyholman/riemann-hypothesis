@@ -349,7 +349,7 @@ variable {A : Type} [CommRing A] {n m : ℕ}
 theorem mulVec_eq_of_mem (C : Matrix (Fin n) (Fin m) A) (D : Matrix (Fin m) (Fin n) A) (U : Matrix (Fin m) (Fin n) A)
     (W : Matrix (Fin n) (Fin m) A) (I : Set (Fin m)) (hDC : D * C = 0) (hUC : ∀ i j, j ∈ I → (U * C) i j = 0)
     {y : Fin n → A} (hy : y ∈ Submodule.span A ((fun i => Cᵀ i) '' I)) : (1 + C * U + W * D) *ᵥ y = y := by
-  obtain ⟨a, ha, rfl⟩ := (GlobalTheory.StdPar.UnipArch.mem_span_cols_iff C I y).1 hy
+  obtain ⟨a, ha, rfl⟩ := (GlobalTheory.ColumnSumLemma.main C I y).1 hy
   have h1 : (U * C) *ᵥ a = 0 := funext fun i => by
     show ∑ l, (U * C) i l * a l = 0
     refine Finset.sum_eq_zero fun l _ => ?_
@@ -368,7 +368,7 @@ theorem mulVec_sub_mem (C : Matrix (Fin n) (Fin m) A) (D : Matrix (Fin m) (Fin n
     simp only [add_mulVec, one_mulVec, ← mulVec_mulVec, hy]
     abel
   rw [h]
-  refine (GlobalTheory.StdPar.UnipArch.mem_span_cols_iff C I _).2 ⟨U *ᵥ y, fun l hl => ?_, rfl⟩
+  refine (GlobalTheory.ColumnSumLemma.main C I _).2 ⟨U *ᵥ y, fun l hl => ?_, rfl⟩
   show ∑ v, U l v * y v = 0
   exact Finset.sum_eq_zero fun v _ => by rw [hU l v hl, zero_mul]
 
@@ -415,7 +415,7 @@ theorem mem_unip {F E : Type} [Field F] [NumberField F] [Field E] [Algebra F E] 
           ⟨k, hk, hik, not_le.1 fun h => hj ⟨k, hk, h⟩⟩⟩
       rw [hA]
       refine ⟨hiff _ le_rfl, fun y hy => hsub y ?_⟩
-      obtain ⟨a, -, rfl⟩ := (GlobalTheory.StdPar.UnipArch.mem_span_cols_iff _ _ y).1 hy
+      obtain ⟨a, -, rfl⟩ := (GlobalTheory.ColumnSumLemma.main _ _ y).1 hy
       rw [mulVec_mulVec a, hDC, zero_mulVec, mulVec_zero]
   · funext v
     show ∑ i, W v i * (adMat F (Formalism.UG.cT (σ : E →+* E) X * J) *ᵥ y) i = 0

@@ -785,7 +785,7 @@ theorem chart_of_one {O : Type} [CommRing O] (F : Fn O) (κ : O →+* OC l) {d :
   have hu : IsUnit ((CommRingCat.ofHom (mapU ψ.1.hom)).hom s) := by
     obtain ⟨c, hc⟩ := Ideal.mem_span_singleton'.1 ha
     have h2 := congrArg (mapU ψ.1.hom) hc
-    rw [map_mul, mapU_sharp, h, map_one] at h2
+    rw [map_mul, GlobalTheory.CompanionTheory.PAlgNat.mapU_sharp, h, map_one] at h2
     exact IsUnit.of_mul_eq_one _ (by rw [mul_comm]; exact h2)
   obtain ⟨α, hα⟩ := hcov _ _ hu
   have hpt : F.Pt.map (CommRingCat.ofHom (mapU ψ.1.hom)) T.2.1 = T₁.2.1 := congrArg Subtype.val ψ.2
@@ -1067,13 +1067,13 @@ theorem core {O : Type} [CommRing O] {F : Fn O} {κ : O →+* OC l} {d : ℕ} {s
         simp only [RingHom.comp_apply, MvPolynomial.coe_eval₂Hom, MvPolynomial.eval₂_C]
         rw [e1, e2, mapU_oC]
       · simp only [RingHom.comp_apply, MvPolynomial.coe_eval₂Hom, MvPolynomial.eval₂_X]
-        rw [← 𝒯.c_sharp, mapU_sharp, hck, hu]
+        rw [← 𝒯.c_sharp, GlobalTheory.CompanionTheory.PAlgNat.mapU_sharp, hck, hu]
     · refine RingHom.ext fun r => ?_
       obtain ⟨a, ha⟩ := exists_sharp_cong 𝒯.A (𝒯.g r)
       have e : gBar A' g r = Ideal.Quotient.mk _ (Hom.f φ a) := by rw [hφa]; exact (hfg r a ha).symm
       have e1 := (gBar_iff A' g r _).1 e
       have e2 := mapU_mem φ ha
-      rw [map_sub, mapU_sharp] at e2
+      rw [map_sub, GlobalTheory.CompanionTheory.PAlgNat.mapU_sharp] at e2
       refine Ideal.Quotient.eq.2 ?_
       have e3 : mapU φ (𝒯.g r) - g r = (A'.sharp (Hom.f φ a) - g r) - (A'.sharp (Hom.f φ a) - mapU φ (𝒯.g r)) := by ring
       change mapU φ (𝒯.g r) - g r ∈ _
@@ -1083,7 +1083,7 @@ theorem core {O : Type} [CommRing O] {F : Fn O} {κ : O →+* OC l} {d : ℕ} {s
   · rw [RingHom.comp_assoc, Hom.comm]
   · intro r a ha
     have e2 := mapU_mem φ' ha
-    rw [map_sub, mapU_sharp] at e2
+    rw [map_sub, GlobalTheory.CompanionTheory.PAlgNat.mapU_sharp] at e2
     have e3 : mapU φ' (𝒯.g r) = g r := RingHom.congr_fun hg' r
     rw [e3] at e2
     exact ((gBar_iff A' g r _).2 e2).symm
@@ -1147,7 +1147,7 @@ theorem val_comp (𝒯 : Tower κ s) {T T' : (F.pt κ).Elements} (φ : 𝒯.obj 
 
 theorem sharp_val (𝒯 : Tower κ s) {T : (F.pt κ).Elements} (φ : 𝒯.obj ⟶ T) (k : Fin d) :
     T.1.sharp (val 𝒯 φ k) = mapU φ.1 (𝒯.g (s.T k)) := by
-  rw [val, ← mapU_sharp]
+  rw [val, ← GlobalTheory.CompanionTheory.PAlgNat.mapU_sharp]
   exact congrArg (mapU φ.1) (𝒯.c_sharp k)
 
 def valU (𝒯 : Tower κ s) {T : (F.pt κ).Elements} (φ : 𝒯.obj ⟶ T) (k : Fin d) : (T.1.A)ˣ :=
@@ -1638,12 +1638,6 @@ section -- clump:auto
 set_option backward.isDefEq.respectTransparency false
 open CategoryTheory AlgebraicGeometry DividedPowers GroundTheory.PAdicHodge GlobalTheory.LogCris GlobalTheory.PDA CrystallineSemistableComparison CrystallineSemistableComparison.CH CrystallineSemistableComparison.PAlg CrystallineSemistableComparison.B
 
-theorem CrystallineSemistableComparison.B.P.tower_ex : ∀ {l : ℕ} [Fact l.Prime] {O : Type} [CommRing O] {F : Fn O} (κ : O →+* OC l) {d : ℕ} (s : F.Small d), Nonempty (Tower κ s) :=
-  @GlobalTheory.CompanionTheory.TowerEx.tower_ex
-
-theorem CrystallineSemistableComparison.B.P.tower_act : ∀ {l : ℕ} [Fact l.Prime] {O : Type} [CommRing O] {F : Fn O} {κ : O →+* OC l} {d : ℕ} {s : F.Small d} (𝒯 : Tower κ s) (ε : Eps l), ∃ A : Act (jE (F.pt κ)) (epsU ε (F.pt κ)) d 𝒯.obj, ∀ (T : (F.pt κ).Elements) (a : Fin d → (epsU ε (F.pt κ)).U T) (φ : 𝒯.obj ⟶ T) (k : Fin d), PAlg.Hom.f (A.act a φ).1 (𝒯.c k 0).val = ((a k).1 : T.1.A) * PAlg.Hom.f φ.1 (𝒯.c k 0).val :=
-  @GlobalTheory.CompanionTheory.TowerAct.tower_act
-
 theorem CrystallineSemistableComparison.B.P.theta_ex : ∀ {l : ℕ} [Fact l.Prime] {O : Type} [CommRing O] {F : Fn O} {κ : O →+* OC l} {d : ℕ} {s : F.Small d} (𝒯 : Tower κ s) (k : Bool) (n : ℕ) (𝓛 : Lift s.a (fun k => (s.T k : s.R)) (bs l k n).R (bs l k n).I (κb κ k n)) (δ : DividedPowers ((bs l k n).I.map 𝓛.i)) (hδ : IsDPMorphism (bs l k n).γ δ 𝓛.i) (hp : (bs l k n).p ≠ 0) (hn : IsNilpotent ((bs l k n).p : (bs l k n).R)) (ε : Eps l) (A : Act (𝟭 _) (thU (Lc F κ k n) (ε.qU n) (ε.qU_mem k n)) d (liftObj s (b := bs l k n) rfl 𝓛 δ hδ hp hn)) (A' : Act (jE (F.pt κ)) (epsU ε (F.pt κ)) d 𝒯.obj), (∀ (T : Thick (Lc F κ k n)) (a : Fin d → (thU (Lc F κ k n) (ε.qU n) (ε.qU_mem k n)).U T) (c : liftObj s (b := bs l k n) rfl 𝓛 δ hδ hp hn ⟶ T) (j : Fin d), (A.act a c).φ (𝓛.t j) = ((a j).1 : T.B) * c.φ (𝓛.t j)) → (∀ (T : (F.pt κ).Elements) (a : Fin d → (epsU ε (F.pt κ)).U T) (φ : 𝒯.obj ⟶ T) (j : Fin d), PAlg.Hom.f (A'.act a φ).1 (𝒯.c j 0).val = ((a j).1 : T.1.A) * PAlg.Hom.f φ.1 (𝒯.c j 0).val) → ∃ θ : liftObj s (b := bs l k n) rfl 𝓛 δ hδ hp hn ⟶ (gE F κ k n).obj 𝒯.obj, (∀ j, θ.φ (𝓛.t j) = 𝒯.A.toAcr n (WittVector.teichmuller l (𝒯.c j 0 : 𝒯.A.A))) ∧ ∀ a, (A.γ a).asHom ≫ θ = θ ≫ (gE F κ k n).map (A'.γ a).asHom :=
   @GlobalTheory.CompanionTheory.ThetaEx.main
 
@@ -1685,9 +1679,9 @@ theorem local_of (hD : D.Out l) : Local l := by
   obtain ⟨δ, hδ⟩ := exists_dp 𝓛.i (P.lift_flat 𝓛.i 𝓛.t 𝓛.et).1 (bs l k n).I (bs l k n).γ
   have hp : (bs l k n).p ≠ 0 := (Fact.out : l.Prime).ne_zero
   have hnil : IsNilpotent ((bs l k n).p : (bs l k n).R) := ⟨n, (base l).pow_l_acr n⟩
-  obtain ⟨𝒯⟩ := P.tower_ex κ s
+  obtain ⟨𝒯⟩ := GlobalTheory.CompanionTheory.TowerEx.tower_ex κ s
   obtain ⟨A, hA⟩ := P.thick_act s (b := bs l k n) rfl 𝓛 δ hδ hp hnil (ε.qU n) (ε.qU_mem k n)
-  obtain ⟨A', hA'⟩ := P.tower_act 𝒯 ε
+  obtain ⟨A', hA'⟩ := GlobalTheory.CompanionTheory.TowerAct.tower_act 𝒯 ε
   obtain ⟨θ, hθ, hθγ⟩ := P.theta_ex 𝒯 k n 𝓛 δ hδ hp hnil ε A A' hA hA'
   have hε := GlobalTheory.CompanionTheory.EpsFacts.eps_facts ε
   have hq : (ε.qU n : (bs l k n).R) = (base l).cris n (ε.qk 1) ^ (bs l k n).p :=

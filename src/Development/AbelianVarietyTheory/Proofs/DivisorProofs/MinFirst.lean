@@ -92,8 +92,6 @@ theorem hw_of_map {a : Mat p q →ₗ[ℂ] Module.End ℂ V} {b : Mat p q →ₗ
 
 alias kStable_inf := _root_.GlobalTheory.BlockReps.stable_inf
 
-alias kStable_sup := _root_.GlobalTheory.BlockReps.stable_sup
-
 theorem kStable_ker {a : Mat p q →ₗ[ℂ] Module.End ℂ V} {b : Mat p q →ₗ[ℂ] Module.End ℂ V'}
     (g : V →ₗ[ℂ] V') (hg : ∀ Z, IsKC Z → ∀ v, g (a Z v) = b Z (g v)) :
     KStable a (LinearMap.ker g) := by
@@ -181,7 +179,7 @@ theorem hw_span {μ : Ix p q → ℚ} (T : Submodule ℂ V) (S : Set V)
   | add x y _ _ hx hy =>
     obtain ⟨U, fU, sU, tU, hx⟩ := hx
     obtain ⟨W, fW, sW, tW, hy⟩ := hy
-    refine ⟨U ⊔ W, inferInstance, kStable_sup sU sW, fun v hv h => ?_, Submodule.add_mem_sup hx hy⟩
+    refine ⟨U ⊔ W, inferInstance, GlobalTheory.BlockReps.stable_sup sU sW, fun v hv h => ?_, Submodule.add_mem_sup hx hy⟩
     obtain ⟨y, hy, z, hz, h1, h2, rfl⟩ := hw_sup ha hwt fW sU sW hv h
     exact T.add_mem (tU y hy h1) (tW z hz h2)
   | smul c x _ hx =>
@@ -496,7 +494,7 @@ theorem GlobalTheory.FockAlg.min_first : ∀ (p q r s : ℕ) (M1 : GKMod p q) (M
     have hle : W ≤ genSub (fockAct2 p q r s) S ⊔ LinearMap.ker f := by
       by_contra h
       obtain ⟨ν, u, hu, hhw, hN⟩ := exists_hw_notMem kLie1 wts1 fW sW
-        (kStable_sup sG fun Z _ P hP => ker_stable1 hI Z hP) h
+        (GlobalTheory.BlockReps.stable_sup sG fun Z _ P hP => ker_stable1 hI Z hP) h
       obtain rfl := hW ν u hu hhw
       refine hN (hw_mem hI hmin _ le_sup_right ?_ ?_ hhw.2)
       · intro Z y hy

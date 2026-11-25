@@ -1365,7 +1365,7 @@ theorem dform_trace_eq : ∀ (p : ℕ) [Fact p.Prime] (G : HTGroup p), G.a = 1 �
     rw [hf _ hk.1 _ hk'.1, hf' _ hk.2 _ hk'.2]
   rw [GlobalTheory.LKDef.DForm.trace, heckeTrace_eq_orbital B.emb hinj _ _ _ hF
     (_root_.GlobalTheory.testProd_support_finite p G L f hfT hf K' f' hf'T hf') (GlobalTheory.T.finite_doubleCoset_definiteHermitianForm_level p G ha L K' hf'T.1 B)
-    (GlobalTheory.T.definiteForm_stabilizer_finite_away_from_p p G ha L K' hf'T.1 B)]
+    (GlobalTheory.DefStab.finite_locPart p G ha L K' hf'T.1 B)]
   refine finsum_congr fun c => ?_
   congr 1
   exact orbital_eq_centSum _ _ hinj _ _ f f' _

@@ -648,7 +648,7 @@ theorem contDiffOn_PhiZ (hFd : FdProps) (hFz : FzHol) (m : ℕ) (Kg : Type) [Top
     ContDiffOn ℂ ∞ (fun x => ∫ k, Fd m (ι k * x) * c k ∂μ) {x : M2 n | ∀ k, ι k * x ∈ DomZ n} := by
   have hF : ContDiffOn ℂ ∞ (Fd (n := n) m) (DomZ n) := (hFd n m).1.of_le le_top
   exact (PositivityTheory.Rg.Sw.LVs.holInt n Kg μ _ (fun k x => Fd m (ι k * x) * c k) (isOpen_OmZ hFz Kg ι hι)
-    (fun N => continuousOn_iteratedFDeriv_translate (Fd m) (DomZ n) (hFz n 0 0).1 hF Kg ι hι c hc N)
+    (fun N => PositivityTheory.Rg.Sw.LVs.cont_translate' (Fd m) (DomZ n) (hFz n 0 0).1 hF Kg ι hι c hc N)
     (fun k => (hF.comp (contDiff_mulLeft (ι k)).contDiffOn
       (fun x (hx : x ∈ {x : M2 n | ∀ k, ι k * x ∈ DomZ n}) => hx k)).mul contDiffOn_const)).1
 
@@ -817,7 +817,7 @@ theorem stepD (j : ℕ) (p q : ℤ) {Kg : Type} [TopologicalSpace Kg] [CompactSp
   have hsm : ∀ k, ContDiffOn ℂ ∞ (fun x => hF j p q (ι k * x) * ρ k) Ω := fun k =>
     (hF0.comp (contDiff_mulLeft (ι k)).contDiffOn (fun x (hx : x ∈ Ω) => hx k)).mul contDiffOn_const
   have hH := holInt n Kg μ Ω (fun k x => hF j p q (ι k * x) * ρ k) hΩo
-    (fun N => continuousOn_iteratedFDeriv_translate (hF j p q) (Dom n) isOpen_dom hF0 Kg ι hι ρ hρ N) hsm
+    (fun N => PositivityTheory.Rg.Sw.LVs.cont_translate' (hF j p q) (Dom n) isOpen_dom hF0 Kg ι hι ρ hρ N) hsm
   have hz := holZero n Ω (fun x => ∫ k, hF j p q (ι k * x) * ρ k ∂μ) hΩo hGΩ hH.1
     (fun g hg => hC g hg) N g hg
   have key := hH.2 N g (fun i => g * W i) (hGΩ hg)
@@ -830,7 +830,7 @@ theorem stepD (j : ℕ) (p q : ℤ) {Kg : Type} [TopologicalSpace Kg] [CompactSp
     iteratedFDeriv ℂ N (fun x => hF j p q (ι k * x) * ρ k) g (fun i => g * W i)
   rw [iteratedFDeriv_mul_const_of (fun x => hF j p q (ι k * x)) Ω hΩo
     (hF0.comp (contDiff_mulLeft (ι k)).contDiffOn (fun x (hx : x ∈ Ω) => hx k)) (ρ k) g (hGΩ hg) N,
-    iteratedFDeriv_left_mul (hF j p q) (Dom n) isOpen_dom hF0 (ι k) g hk N]
+    PositivityTheory.Rg.Sw.LVs.left_mul' (hF j p q) (Dom n) isOpen_dom hF0 (ι k) g hk N]
   simp only [mul_assoc]
 
 theorem stepC (hFd : FdProps) (hDj : DjFd) (hSph : SphU) (hFz : FzHol) (m j : ℕ) (hj1 : 1 ≤ j) (hjn : j ≤ n)
@@ -914,7 +914,7 @@ theorem vacuum_nonvanishing_of_facts (hFd : FdProps) (hDj : DjFd) (hKS : KSplit)
   set Φ : Matrix (Fin n) (Fin n) ℂ → M2 n → ℂ := fun Y x => ∫ k, Fd m (ι k * x) * ρ Y k ∂μ with hΦdef
   have hΦ : ∀ Y, ContDiffOn ℂ ∞ (Φ Y) ΩZ := fun Y =>
     (holInt n Kg μ ΩZ (fun k x => Fd m (ι k * x) * ρ Y k) hΩZo
-      (fun N => (continuousOn_iteratedFDeriv_translate (Fd m) (DomZ n) (hFz n m 0).1 hFdCD Kg ι hι _ (hρc Y) N).mono
+      (fun N => (PositivityTheory.Rg.Sw.LVs.cont_translate' (Fd m) (DomZ n) (hFz n m 0).1 hFdCD Kg ι hι _ (hρc Y) N).mono
         (Set.prod_mono subset_rfl (fun x hx => hx)))
       (fun k => (hFdCD.comp (contDiff_mulLeft (ι k)).contDiffOn (fun x (hx : x ∈ ΩZ) => hx k)).mul contDiffOn_const)).1
 

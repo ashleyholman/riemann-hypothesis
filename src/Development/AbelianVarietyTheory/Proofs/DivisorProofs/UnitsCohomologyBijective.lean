@@ -73,8 +73,6 @@ theorem cast_nsmul {q : ℕ} {E : Spc} {n i n' i' : ℤ} (hn : n = n') (hi : i =
     (k • x).cast hn hi = k • x.cast hn hi := by
   subst hn; subst hi; rfl
 
-alias inv_sp := _root_.GlobalTheory.EtC.KumSurj.inv_sp
-
 theorem dvd_of_T_eq_pow {T : Type} [CommRing T] [IsDomain T] (q n : ℕ) (w : LaurentPolynomial T)
     (hw : (LaurentPolynomial.T (n : ℤ) : LaurentPolynomial T) = w ^ q) : q ∣ n := by
   obtain ⟨k, f, hf⟩ := LaurentPolynomial.exists_T_pow w
@@ -125,8 +123,8 @@ theorem eq_zero_of_cup_kum (q : ℕ) [NeZero q] (T : Type) [CommRing T] [IsDomai
     intro m x
     rw [map_nsmul, map_nsmul, AddMonoidHom.nsmul_apply]
   have hone : pull _ (spMap (LaurentPolynomial.C : T →+* LaurentPolynomial T)) (tw q 0) 0 (one q (sp T)) =
-      one q (sp (LaurentPolynomial T)) := (_root_.GlobalTheory.EtC.a6nat_holds q).2.1 _ (inv_sp q T hq)
-  have hunit := (_root_.GlobalTheory.EtC.a6ring_holds q (sp (LaurentPolynomial T))).1 (inv_sp q _ hqL) (kum q (laurentVar T))
+      one q (sp (LaurentPolynomial T)) := (_root_.GlobalTheory.EtC.a6nat_holds q).2.1 _ (GlobalTheory.EtC.KumSurj.inv_sp q T hq)
+  have hunit := (_root_.GlobalTheory.EtC.a6ring_holds q (sp (LaurentPolynomial T))).1 (GlobalTheory.EtC.KumSurj.inv_sp q _ hqL) (kum q (laurentVar T))
   have h1 := hκ (e (one q (sp T))).val (e.symm 1)
   rw [← hrep, hone, hunit] at h1
   have h2 := hκ (e b).val (e.symm 1)
@@ -157,7 +155,7 @@ theorem main : ∀ (q : ℕ) [NeZero q] (T : Type) [CommRing T] [IsDomain T] [Is
         (by rw [Polynomial.natDegree_cyclotomic]; exact Nat.totient_pos.2 (NeZero.pos q))
       exact ⟨a, by rw [Polynomial.aeval_def, Polynomial.eval₂_eq_eval_map, Polynomial.map_cyclotomic]; exact ha⟩
     let ζ : Prim q Γ(Spec (CommRingCat.of T), ⊤) := Prim.map (Scheme.ΓSpecIso (CommRingCat.of T)).inv.hom ⟨z, hq, hz⟩
-    let τ := Untwist.twistEquiv ζ (inv_sp q T hq) 0 (i - 1) 0
+    let τ := Untwist.twistEquiv ζ (GlobalTheory.EtC.KumSurj.inv_sp q T hq) 0 (i - 1) 0
     have hτ : τ a = 0 := by
       apply eq_zero_of_cup_kum q T hT hq
       show cup q (pull _ _ _ 0 ((cup q (rootClass (0 - (i - 1)) ζ) a).cast (zero_add 0) (by ring))) (kum q (laurentVar T)) = 0

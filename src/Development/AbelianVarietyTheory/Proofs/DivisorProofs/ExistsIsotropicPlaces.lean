@@ -949,9 +949,6 @@ section Alg
 
 variable (K : Type) [Field K] [Algebra F K]
 
-theorem sigR_inclR' (σ : E →ₐ[F] E) (e : E) : sigR K σ (inclR (F := F) K e) = inclR K (σ e) := by
-  simp [sigR, inclR]
-
 theorem sigR_algebraMap' (σ : E →ₐ[F] E) (k : K) :
     sigR K σ (algebraMap K (K ⊗[F] E) k) = algebraMap K (K ⊗[F] E) k := by
   simp [sigR, Algebra.TensorProduct.algebraMap_apply]
@@ -959,7 +956,7 @@ theorem sigR_algebraMap' (σ : E →ₐ[F] E) (k : K) :
 theorem hR_incl (σ : E →ₐ[F] E) {M : ℕ} (J : Matrix (Fin M) (Fin M) E) (x y : Fin M → E) :
     hR K σ J (fun i => inclR K (x i)) (fun i => inclR K (y i)) = inclR K (hE σ J x y) := by
 
-  simp [hR, hE, Formalism.UG.hform, JR, map_sum, map_mul, sigR_inclR']
+  simp [hR, hE, Formalism.UG.hform, JR, map_sum, map_mul, GlobalTheory.PlaneNorm.FieldCase.sigR_inclR]
 
 theorem hermitianGramDetTwoVectorsTensor_incl (σ : E →ₐ[F] E) {M : ℕ} (J : Matrix (Fin M) (Fin M) E) (x y : Fin M → E) :
     gram2R K σ J (fun i => inclR K (x i)) (fun i => inclR K (y i)) = inclR K (gram2E σ J x y) := by
@@ -972,7 +969,7 @@ theorem sigR_hR {σ : E →ₐ[F] E} (hσ : ∀ e, σ (σ e) = e) {M : ℕ} {J :
     (hJ : ∀ i j, σ (J j i) = J i j) (a b : Fin M → K ⊗[F] E) :
     sigR K σ (hR K σ J a b) = hR K σ J b a := by
 
-  simp only [hR, Formalism.UG.hform, map_sum, map_mul, sigR_sigR K hσ, JR, Matrix.map_apply, sigR_inclR', hJ]
+  simp only [hR, Formalism.UG.hform, map_sum, map_mul, sigR_sigR K hσ, JR, Matrix.map_apply, GlobalTheory.PlaneNorm.FieldCase.sigR_inclR, hJ]
   rw [Finset.sum_comm]
   refine Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => ?_
   ring

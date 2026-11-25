@@ -178,11 +178,11 @@ theorem classes_finite : (∀ (D : Type) [Ring D] [Algebra ℚ D] [FiniteDimensi
   have hsplit : ∃ (π₁ : FiniteAdeleRing (𝓞 ℚ) ℚ →ₐ[ℚ] AfP p)
       (π₂ : FiniteAdeleRing (𝓞 ℚ) ℚ →ₐ[ℚ] ℚ_[p]),
       Continuous π₁ ∧ Continuous π₂ ∧ Function.Bijective (fun a => (π₁ a, π₂ a)) := by
-    obtain ⟨e, he⟩ := GlobalTheory.T.exists_continuous_finiteAdele_equiv_rat_int
-    obtain ⟨π, hπc, hπb⟩ := GlobalTheory.T.ratFiniteAdeles_split_awayFromPrime_padic p
+    obtain ⟨e, he⟩ := GlobalTheory.AdeleZ.exists_continuous_adele_equiv
+    obtain ⟨π, hπc, hπb⟩ := GlobalTheory.AdeleSplitP.finiteAdele_split p
     let r : FiniteAdeleRing ℤ ℚ →ₐ[ℚ] AfP p := { AfP.restr p with commutes' := fun _ => rfl }
     exact ⟨r.comp e.toAlgHom, π.comp e.toAlgHom,
-      (GlobalTheory.T.continuous_afP_restr p).comp he, hπc.comp he, hπb.comp e.bijective⟩
+      (GlobalTheory.LKTrip.AfP.continuous_restr p).comp he, hπc.comp he, hπb.comp e.bijective⟩
   obtain ⟨π₁, π₂, hc₁, hc₂, hbij⟩ := hsplit
   let Φ : HeckeCharacterZeroLocus.locusSubgroup S hS (FiniteAdeleRing (𝓞 ℚ) ℚ) →*
       ((AfP p ⊗[ℚ] D)ˣ × (AfP p)ˣ) × ((ℚ_[p] ⊗[ℚ] D)ˣ × ℚ_[p]ˣ) :=

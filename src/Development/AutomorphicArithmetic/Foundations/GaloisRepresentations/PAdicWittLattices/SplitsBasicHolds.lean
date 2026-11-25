@@ -306,8 +306,6 @@ theorem extGood_holds : ExtGood.{u} := pExtGood _root_.UpperTheory.Gal.G3.pExtTr
 
 theorem opEx_holds : OpEx.{u} := pOpEx _root_.UpperTheory.Gal.G3.pOpTr
 
-alias galInv_holds := _root_.UpperTheory.Gal.G3.pGalInv
-
 theorem opBc_holds : OpBc.{u} := pOpBc bcSplits_holds bcGal_holds
 
 theorem fEtInj_holds : FEtInj.{u} := pFEtInj galClosD_holds
@@ -322,7 +320,7 @@ theorem hopSpec_holds : HopSpec := pHopSpec etGood_holds bcGood_holds galClos_ho
 
 theorem liesOp_holds : LiesOp.{u} := pLiesOp _root_.UpperTheory.Gal.G3.pLiesGen liesAbs_holds
 
-theorem coverInv_holds : CoverInv.{u} := pCoverInv galInv_holds splitsPts_holds
+theorem coverInv_holds : CoverInv.{u} := pCoverInv UpperTheory.Gal.G3.pGalInv splitsPts_holds
 
 theorem pieceLe_holds : PieceLe := pPieceLe etGood_holds bcGood_holds extGood_holds _root_.UpperTheory.Gal.G3.pExtTr hopSpec_holds coverInv_holds
 

@@ -92,12 +92,9 @@ def liftC [IsTotallyReal F] (τ : ∀ w : InfinitePlace F, EmbOver E w) (ξ : E)
   liftR (fun w => (c w).re - (c w).im / ((τ w).1 ξ).im * ((τ w).1 ξ).re) ⊗ₜ[F] (1 : E) +
     liftR (fun w => (c w).im / ((τ w).1 ξ).im) ⊗ₜ[F] ξ
 
-theorem piInf_tmul {w : InfinitePlace F} (τ : EmbOver E w) (a : AF F) (e : E) :
-    piInf τ (a ⊗ₜ[F] e) = InfinitePlace.Completion.extensionEmbedding w (evInf F w a) * τ.1 e := rfl
-
 theorem piInf_liftC [IsTotallyReal F] (τ : ∀ w : InfinitePlace F, EmbOver E w) {ξ : E} (hξ : ∀ w, ((τ w).1 ξ).im ≠ 0)
     (c : InfinitePlace F → ℂ) (w : InfinitePlace F) : piInf (τ w) (liftC τ ξ c) = c w := by
-  rw [liftC, map_add (f := _), piInf_tmul, piInf_tmul, evInf_liftR, evInf_liftR, map_one, mul_one]
+  rw [liftC, map_add (f := _), GlobalTheory.RealLift.KLineProof.piInf_tmul, GlobalTheory.RealLift.KLineProof.piInf_tmul, evInf_liftR, evInf_liftR, map_one, mul_one]
   have := hξ w
   apply Complex.ext <;> simp <;> field_simp
 
@@ -137,7 +134,7 @@ theorem piInf_cA {σ : E →ₐ[F] E} (h : IsCMExt F E σ) {w : InfinitePlace F}
   | zero => simp
   | add x y hx hy => simp only [map_add (f := _), hx, hy]
   | tmul a e =>
-    rw [cA, Algebra.TensorProduct.map_tmul, AlgHom.id_apply, piInf_tmul, piInf_tmul, map_mul,
+    rw [cA, Algebra.TensorProduct.map_tmul, AlgHom.id_apply, GlobalTheory.RealLift.KLineProof.piInf_tmul, GlobalTheory.RealLift.KLineProof.piInf_tmul, map_mul,
       ← InfinitePlace.Completion.extensionEmbeddingOfIsReal_apply (IsTotallyReal.isReal w), Complex.conj_ofReal]
     congr 1
     exact h.2.2.2 τ.1 e

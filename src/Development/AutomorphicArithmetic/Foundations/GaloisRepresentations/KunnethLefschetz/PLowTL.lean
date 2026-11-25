@@ -62,8 +62,6 @@ theorem cocEq : CocEq := by
     change -(i:ℤ) = q at hi
     omega
 
-alias CocEq_of := _root_.LateralTheory.EtaleTrace.cocEq
-
 end LateralTheory.EtaleTrace
 end -- clump:auto
 end -- clump:auto
@@ -863,7 +861,7 @@ private theorem lowPt (hA : A9) (l : ℕ) [Fact l.Prime] (k : Type) [Field k] [I
           ∀ (U : Scheme) (x : Sx (sch.obj (S k)) 0 U) (ζ : Prim (l ^ j) Γ(U, ⊤)),
             ev (β : Cochain _ _ 0) 0 0 (by simp) U x = resGen 0 ζ) c from ⟨_, α, hα, hnat⟩)
     obtain ⟨β, hβ, hβev⟩ := h1
-    refine hβ.symm.trans ((congrArg CohomologyClass.mk (CocEq_of _ _ _ β α (fun U x => ?_))).trans hα)
+    refine hβ.symm.trans ((congrArg CohomologyClass.mk (LateralTheory.EtaleTrace.cocEq _ _ _ β α (fun U x => ?_))).trans hα)
     exact (hβev U x (Prim.map (Scheme.Γ.map x.op).hom ζ0)).trans (hnat U x _).symm
   refine ⟨fun z => ?_, fun a ha => ?_⟩
   · obtain ⟨t, ht⟩ := exists_ofRings_sec_eq_twF_zero k (l ^ j) ((e (S k)).symm z)

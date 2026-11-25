@@ -249,7 +249,7 @@ theorem br (ht : TFil l) (hs : CrisSurj l) : Br (per l K) (cb K ht hs) (RingHom.
 theorem red_ex {m : ℕ} (L : Lev (per l K) m) (hL : L.Good) (hC : L.CrisOK) (n : ℕ) :
     ∃ d : RedIn (B.DD false (base l) n) (B.κb (okToOC l K) false n) L.γ l n,
       ∀ c, d.ρ ((base l).cris n c) = Ideal.Quotient.mk _ (L.lam c) :=
-  redIn_ex L.γ m L.lam (hL.lat m le_rfl).tf hC.1 hC.2 n
+  GlobalTheory.CompanionTheory.RedInEx.redIn_ex L.γ m L.lam (hL.lat m le_rfl).tf hC.1 hC.2 n
 
 theorem lvEx_of (h : ∃ S : LevSys (per l K), S.Good ∧ ∀ m, (S.L m).CrisOK) : LvEx l K := fun ht hs =>
   h.elim fun S hS => (br l K ht hs).sys S hS.1 fun m n => red_ex l K (S.L m) (hS.1.lev m) (hS.2 m) n

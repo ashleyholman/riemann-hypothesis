@@ -196,9 +196,6 @@ private theorem joint_gen {I : Type} (g : I → B)
     exact hann _ fun m => by rw [sub_smul, sub_eq_zero]; exact LinearMap.congr_fun e m
   rwa [e, e'] at hm
 
-omit [Module B M] in
-private alias exists_semi := _root_.UpperTheory.Reformulated.B.Ra9.exists_semi
-
 include hann in
 private theorem mu_eq [IsAlgClosed K] [Module.Finite A M] [Module.Free A M] {I : Type} (g : I → B)
     (hg : ∀ b, actL lam M hs b ∈ Algebra.adjoin A (Set.range fun i => actL lam M hs (g i)))
@@ -211,7 +208,7 @@ private theorem mu_eq [IsAlgClosed K] [Module.Finite A M] [Module.Free A M] {I :
   unfold mu
   letI : Algebra A K := (y.comp lam).toRingHom.toAlgebra
   have hK : ∀ a, algebraMap A K a = y (lam a) := fun _ => rfl
-  obtain ⟨Ψ, ht, hk, hi, hr⟩ := exists_semi M ι sp hsm hind
+  obtain ⟨Ψ, ht, hk, hi, hr⟩ := UpperTheory.Reformulated.B.Ra9.exists_semi M ι sp hsm hind
   have hne := joint_ne lam M hs y hann hK
   rw [joint_gen lam M hs y hann g hg hK] at hne ⊢
   have tr := transport ι Ψ hk hi _ hr (fun i => (actL lam M hs (g i)).baseChange K) γ (fun i v => by

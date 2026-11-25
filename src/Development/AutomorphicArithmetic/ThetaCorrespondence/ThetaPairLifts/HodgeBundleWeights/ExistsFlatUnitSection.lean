@@ -166,12 +166,6 @@ def IsBddUnit (G : WTZ E) (s t : Rul Xo c) : Prop :=
 theorem exZ_zero' : Formalism.L2.Pj.exZ Dw (0 : WTZ E) = 0 := by
   funext i; cases i <;> rfl
 
-theorem exZ_add_eq' (G G' : WTZ E) : Formalism.L2.Pj.exZ Dw (G + G') = Formalism.L2.Pj.exZ Dw G + Formalism.L2.Pj.exZ Dw G' :=
-  funext fun i => exZ_add _ _ i
-
-theorem exZ_neg_eq' (G : WTZ E) : Formalism.L2.Pj.exZ Dw (-G) = -Formalism.L2.Pj.exZ Dw G := by
-  funext i; cases i <;> rfl
-
 theorem homN_idem_le {σ : c.F →+* ℂ} (V : Unf Xo c σ r) {z} (hz : z ∈ framesOn V Z) :
     GlobalTheory.AllWt.homN V x 0 (GlobalTheory.FlatLine.idem Z) z ≤ 1 := by
   obtain ⟨hd, hl⟩ := hz
@@ -196,8 +190,8 @@ theorem IsBddUnit.mul {G G' : WTZ E} {s t s' t' : Rul Xo c} (h : IsBddUnit U x Z
   obtain ⟨hG', hs', ht', his', hit', hst', hb', m', hm', hv'⟩ := h'
   refine ⟨hG.add hG', ?_, ?_, by rw [← mul_assoc, his], by rw [← mul_assoc, hit], ?_,
     fun σ hσ => ?_, m * m', Nat.mul_pos hm hm', fun la v hw => ?_⟩
-  · rw [exZ_add_eq']; exact GlobalTheory.AllWt.mul_mem_secZ hs hs'
-  · rw [exZ_add_eq', neg_add]; exact GlobalTheory.AllWt.mul_mem_secZ ht ht'
+  · rw [GlobalTheory.FlatTw.exZ_add_eq]; exact GlobalTheory.AllWt.mul_mem_secZ hs hs'
+  · rw [GlobalTheory.FlatTw.exZ_add_eq, neg_add]; exact GlobalTheory.AllWt.mul_mem_secZ ht ht'
   · rw [mul_mul_mul_comm, hst, hst', GlobalTheory.FlatLine.idem_mul_idem]
   · obtain ⟨C, hC⟩ := hb σ hσ
     obtain ⟨C', hC'⟩ := hb' σ hσ
@@ -214,7 +208,7 @@ theorem IsBddUnit.mul {G G' : WTZ E} {s t s' t' : Rul Xo c} (h : IsBddUnit U x Z
 
 theorem IsBddUnit.swap {G : WTZ E} {s t : Rul Xo c} (h : IsBddUnit U x Z G s t) : IsBddUnit U x Z (-G) t s := by
   obtain ⟨hG, hs, ht, his, hit, hst, hb, m, hm, hv⟩ := h
-  refine ⟨hG.neg, by rwa [exZ_neg_eq'], by rwa [exZ_neg_eq', neg_neg], hit, his,
+  refine ⟨hG.neg, by rwa [GlobalTheory.FlatTw.exZ_neg_eq], by rwa [GlobalTheory.FlatTw.exZ_neg_eq, neg_neg], hit, his,
     by rw [mul_comm, hst], fun σ hσ => ?_, m, hm, fun la v hw => (hv la v hw).symm⟩
   obtain ⟨C, hC⟩ := hb σ hσ
   exact ⟨C, fun z hz => ⟨(hC z hz).2, by rw [neg_neg]; exact (hC z hz).1⟩⟩
@@ -341,12 +335,6 @@ theorem archEx_continuousOn_horizGen {r : ℕ} (X : Data E r) (τ : X.Ψ) : Cont
   (archEx_continuous_det τ).continuousOn.inv₀ fun _ hy => (hy τ).1
 
 variable {H : ReciprocityTheory.ChartRestriction.G.Geo.Tor.Host E} {Dw : Datum H} {l : Level H} {Xo : Moduli Dw l} {c : Coeff l} {r : ℕ}
-
-theorem archEx_relab_mem {σ : c.F →+* ℂ} (U : Unf Xo c σ r) (hσ : GoodEmb c σ) (hU : IsUnf U) (τ : Psi H) (k : U.Comp) :
-    relab c σ τ.1 ∈ (U.X k).Ψ := by
-  refine ((hU.2.1 k).2 _).2 ?_
-  have hσ0 : σ ⟨H.rt0, c.le (baseKA l).ρ.2⟩ = H.rt0 := hσ
-  exact (congrArg σ (Subtype.ext τ.2)).trans hσ0
 
 end SlopeTestRemainingChoices
 
@@ -1078,7 +1066,7 @@ theorem archEx {U : ∀ σ : c.F →+* ℂ, Unf Xo c σ r} (hL : NeatUnf U) (x :
   have hex : exZ Dw (G + wtOf Dw (flatWt Dw τ) 0) - exZ Dw G = exOf Dw (flatWt Dw τ) 0 := by
     funext i; rw [Pi.sub_apply, exZ_add, exOf, add_sub_cancel_left]
   have hmem : ∀ σ (hσ : GoodEmb c σ) k, relab c σ τ.1 ∈ ((U σ).X k).Ψ := fun σ hσ k =>
-    archEx_relab_mem (U σ) hσ (hL.unf σ hσ) τ k
+    GlobalTheory.FlatPair.relab_mem (U σ) hσ (hL.unf σ hσ) τ k
   have hgood : ∀ σ, GoodEmb c (goodOf c σ) := fun σ => goodEmb_goodOf c σ
   have hσ₀ := hgood c.F.val.toRingHom
   generalize goodOf c c.F.val.toRingHom = σ₀ at hσ₀

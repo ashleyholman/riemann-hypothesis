@@ -18,15 +18,13 @@ open GlobalTheory.ShFam (EigFrame FlagCpt stalkPt genericPt constF)
 open GlobalTheory.VarFlag
 open ReciprocityTheory.ChartRestriction.G.PullbackSections (tv TanM)
 
-alias sp_comp_sp := _root_.Formalism.L2.Pj.spMap_comp_ring
-
 theorem eq_spMap_of_comp {R R' S : Type} [CommRing R] [CommRing R'] [CommRing S] {ι : R →+* R'}
     (hι : Function.Injective ι) {h : Sp R ⟶ Sp S} {φ : S →+* R} (e : spMap ι ≫ h = spMap (ι.comp φ)) :
     h = spMap φ := by
   obtain ⟨p, rfl⟩ := Spec.map_surjective h
   have h1 : ι.comp p.hom = ι.comp φ := by
     apply GlobalTheory.ShFam.EigLoc.spMap_inj
-    rw [← e, ← sp_comp_sp]; rfl
+    rw [← e, ← ReciprocityTheory.ChartRestriction.G.PullbackSections.spMap_comp_spMap]; rfl
   have hp : p.hom = φ := RingHom.ext fun a => hι (RingHom.congr_fun h1 a)
   rw [← hp]; rfl
 
@@ -106,7 +104,7 @@ theorem GlobalTheory.VarFlag.rel_specialise : ∀ {E : Type} [Field E] [NumberFi
   have hsA : u ≫ X.π ≫ Y.s = spMap (ψA.comp φ₁) := by
     rw [← Category.assoc, hxA]
     simp only [Category.assoc]
-    rw [flagSpaceComponent_stalkPoint_over_coefficientField C y hf0, sp_comp_sp]
+    rw [flagSpaceComponent_stalkPoint_over_coefficientField C y hf0, ReciprocityTheory.ChartRestriction.G.PullbackSections.spMap_comp_spMap]
 
   obtain ⟨kk, hkk⟩ := GlobalTheory.FlagMod.exists_chart_of_isLocalRing X.F.cover u
   obtain ⟨gA, hgA⟩ := hFE A (ψA.comp φ₁) u kk hkk hsA
@@ -114,7 +112,7 @@ theorem GlobalTheory.VarFlag.rel_specialise : ∀ {E : Type} [Field E] [NumberFi
 
   obtain ⟨φL, k0, hz0, gL, hsL, hgL, hcL⟩ := hL
   obtain rfl : φL = ι.comp (ψA.comp φ₁) := GlobalTheory.ShFam.EigLoc.spMap_inj (by
-    rw [← hsL, Category.assoc, hsA, sp_comp_sp])
+    rw [← hsL, Category.assoc, hsA, ReciprocityTheory.ChartRestriction.G.PullbackSections.spMap_comp_spMap])
   have hxL : (spMap ι ≫ u) ≫ X.π = spMap ι ≫ (u ≫ X.π) := Category.assoc _ _ _
   obtain ⟨fL, hfL⟩ := fA.exists_isMap ι (φ' := ι.comp (ψA.comp φ₁)) rfl hxL
   obtain ⟨gL', hgL'⟩ := gA.exists_isMap ι (φ' := ι.comp (ψA.comp φ₁)) rfl hxL
@@ -122,8 +120,8 @@ theorem GlobalTheory.VarFlag.rel_specialise : ∀ {E : Type} [Field E] [NumberFi
   have hfLf : f.IsMap (ι.comp ψA) fL := fun τ i => by
     rw [hfL τ i, hfA τ i, GlobalTheory.GradedPieces.dual_comp]
   have hcF : C.Carries (spMap ι ≫ v) fL :=
-    ⟨y, ι.comp ψA, φ₁, f, t, 1, by rw [hv, ← Category.assoc, sp_comp_sp], hf0,
-      hfLf.tri rfl (by rw [hxL, hxA, ← Category.assoc, sp_comp_sp])⟩
+    ⟨y, ι.comp ψA, φ₁, f, t, 1, by rw [hv, ← Category.assoc, ReciprocityTheory.ChartRestriction.G.PullbackSections.spMap_comp_spMap], hf0,
+      hfLf.tri rfl (by rw [hxL, hxA, ← Category.assoc, ReciprocityTheory.ChartRestriction.G.PullbackSections.spMap_comp_spMap])⟩
   obtain ⟨t1, ht1⟩ := hCT (FractionRing A) _ _ _ _ fL gL hcF hcL
   have hfLid : fL.IsMap (RingHom.id _) fL := fun τ i => by rw [spMap_dualMap_id, Category.id_comp]
 
@@ -151,10 +149,10 @@ theorem GlobalTheory.VarFlag.rel_specialise : ∀ {E : Type} [Field E] [NumberFi
     rw [hfk τ i, hfA τ i, GlobalTheory.GradedPieces.dual_comp]
   have hmk : ∀ τ, fk.co gk τ = (fA.co gA τ).map ρ := fun τ => hfk.co τ hgk hxk
   refine ⟨ρ.comp (ψA.comp φ₁), kk, GlobalTheory.FlagMod.le_preimage_comp _ hkk, gk, ?_, isFrameAt_map X.F hgA ρ hgk, ?_⟩
-  · rw [Category.assoc, hsA, sp_comp_sp]
+  · rw [Category.assoc, hsA, ReciprocityTheory.ChartRestriction.G.PullbackSections.spMap_comp_spMap]
   · refine ⟨y, ρ.comp ψA, φ₁, f, t, fun τ i => (((key τ).2 i).map ρ).unit,
-      by rw [hv, ← Category.assoc, sp_comp_sp], hf0,
-      by rw [hxk, hxA, ← Category.assoc, sp_comp_sp], rfl, fun τ i => ⟨fun a => fk.co gk τ a i, ?_, ?_, ?_⟩⟩
+      by rw [hv, ← Category.assoc, ReciprocityTheory.ChartRestriction.G.PullbackSections.spMap_comp_spMap], hf0,
+      by rw [hxk, hxA, ← Category.assoc, ReciprocityTheory.ChartRestriction.G.PullbackSections.spMap_comp_spMap], rfl, fun τ i => ⟨fun a => fk.co gk τ a i, ?_, ?_, ?_⟩⟩
     · rw [hmk]; beta_reduce; rw [Matrix.map_apply, IsUnit.unit_spec]
     · intro a ha
       rw [hmk]; beta_reduce; rw [Matrix.map_apply, (key τ).1 ha, map_zero]

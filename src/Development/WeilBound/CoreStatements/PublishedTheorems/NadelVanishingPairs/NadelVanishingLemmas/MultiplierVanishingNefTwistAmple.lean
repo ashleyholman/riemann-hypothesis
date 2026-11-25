@@ -1248,8 +1248,6 @@ private theorem mult_sub₀ {Y : Scheme.{0}} [IsIntegral Y] [IsLocallyNoetherian
   rw [sub_add_cancel] at h
   linarith
 
-private alias eff_nsmul := _root_.GlobalTheory.RoundEqn.Eff.nsmul'
-
 private theorem supp_nsmul_le {Y : Scheme.{0}} [IsIntegral Y] (D : CartierDiv Y) (n : ℕ) :
     (n • D).supp ≤ D.supp := by
   induction n with
@@ -1293,7 +1291,7 @@ theorem GlobalTheory.Discrepancy.vanishing_logRes_floor : ∀ (k : Type) [Field 
 
   obtain ⟨b, hab, hb⟩ := _root_.GlobalTheory.CoefBound.coef_lt_of_large Y R Fd m r a hr hRlt
   set Γ' := (r * b) • R + m • Fd with hΓ'
-  have hΓ'eff : Γ'.Eff := (eff_nsmul hReff _).add (eff_nsmul hFd _)
+  have hΓ'eff : Γ'.Eff := (GlobalTheory.RoundEqn.Eff.nsmul' hReff _).add (GlobalTheory.RoundEqn.Eff.nsmul' hFd _)
   have hΓ'B : Γ'.supp ≤ B := (CartierDiv.supp_add_le _ _).trans
     (sup_le ((supp_nsmul_le _ _).trans hRB) ((supp_nsmul_le _ _).trans hFdB))
 

@@ -814,8 +814,6 @@ theorem actO_mul {D : D7} (V W : HSp D) (h h' : GA D W) (u : WO V W) :
   rw [e1, e2]
   simp only [Matrix.mul_one, Matrix.mul_assoc]
 
-alias actO_one := _root_.GlobalTheory.LatNhds.actO_one
-
 theorem latR_rfl {E : Type} [Field E] [NumberField E] {m : ℕ} (L : Submodule (𝓞 E) (Fin m → E)) : latR rfl L = L := by
   have : LinearMap.funLeft (𝓞 E) E (Fin.cast (rfl : m = m).symm) = LinearMap.id := rfl
   unfold latR
@@ -906,7 +904,7 @@ theorem exists_vacuum_multiplier : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ)
       refine ⟨w₀, hw₀, ?_⟩
       have := congrArg (actO V W 1 (k₀ * c⁻¹)) e
       rw [← actO_mul, ← actO_mul, inv_mul_cancel_right] at this
-      rw [← this, show k₀ * c⁻¹ * (c * k₀⁻¹) = 1 by group, actO_one])
+      rw [← this, show k₀ * c⁻¹ * (c * k₀⁻¹) = 1 by group, GlobalTheory.LatNhds.actO_one])
   have hth : IsThetaFunO ψ V W (om (1, c * k₀⁻¹) (om (1, k₀) f)) := hP.weil.om_pres _ _ hf₀.2.theta
   have hR := (GlobalTheory.AdTh.reads_linear_injective D ψ θ V W W.rank g rfl X bas idx hstd hP.inf hP.std hP.even hX hS x₀ hx
     _ _ _ _ hR₀ hR₀).1 (mu (c * k₀⁻¹)) 0
