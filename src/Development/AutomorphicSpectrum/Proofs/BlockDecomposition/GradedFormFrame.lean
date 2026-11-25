@@ -4,7 +4,7 @@ public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.StCocycl
 public import Development.WeilBound.CoreStatements.PadicHodgeComparison.EtaleCohomologyComparison.PerfectoidPullbacks.SEqOne
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ChartDividedPowersGradedConstant
 public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ChartIsGoodStatement
-public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsChartFromCoordinatesStatement
+public import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.ExistsChartFromCoordinates
 import Development.AutomorphicSpectrum.Proofs.BlockDecomposition.PdPBotPos
 import Mathlib.Tactic.Linter.HaveILetI
 
