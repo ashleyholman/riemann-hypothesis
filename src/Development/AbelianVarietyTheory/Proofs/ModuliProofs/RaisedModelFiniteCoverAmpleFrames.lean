@@ -244,7 +244,7 @@ theorem amp_of_raises : Out.Laws → Out.Laws2 → Out.Laws3 → ∀ (E : Type) 
       isAffineHom_isStableUnderBaseChange.of_isPullback (IsPullback.of_hasPullback _ _).flip this
     rw [← pullback.lift_fst g Y'.s hg]
     infer_instance
-  obtain ⟨A', -⟩ := _root_.GlobalTheory.AmpPull.ampFrames_pull_of_isAffineHom E H _ _ T.t Y'.t g mu _ A haff
+  obtain ⟨A', -⟩ := _root_.GlobalTheory.AmpPull.ampFrames_pull E H _ _ T.t Y'.t g mu _ A haff
   exact ⟨n ^ k, Y'.X, a.π, Y'.t, a.mu, hodd.pow, by rw [Nat.cast_pow]; exact hu.pow k, hf, hs, ⟨A'⟩⟩
 
 end GlobalTheory.RaisedAmple

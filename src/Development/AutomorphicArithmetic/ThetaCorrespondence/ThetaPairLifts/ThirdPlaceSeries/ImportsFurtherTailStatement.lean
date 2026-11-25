@@ -1703,7 +1703,7 @@ theorem main_alt_alt : Hypotheses₂ → ∀ {eps : ℝ} (Fm : FamP eps), ∀ (C
     _root_.GlobalTheory.NLink.BoundAtTwoThreeFamilyFonAlt Fm → ConclF Fm := by
   intro hP eps Fm C CT hC0 hTw hF h23
   obtain ⟨C₀, h03⟩ := _root_.GlobalTheory.ThmECorA.closing hP.bk hP.tate hP.euler
-  obtain ⟨constantFirstHub, Q, h67⟩ := _root_.GlobalTheory.T.embedding_jumps_aux2_of_setup
+  obtain ⟨constantFirstHub, Q, h67⟩ := _root_.GlobalTheory.TheoremBQD.main_alt_alt
   obtain ⟨C1, xpar, hC1, hpar⟩ := _root_.GlobalTheory.NLink.admissible_parameters_design_family Fm
   obtain ⟨Ca, xa, ha⟩ := h23
   obtain ⟨Cb, xb, hb'⟩ := _root_.UpperTheory.N.starSF_of_prints hP Fm

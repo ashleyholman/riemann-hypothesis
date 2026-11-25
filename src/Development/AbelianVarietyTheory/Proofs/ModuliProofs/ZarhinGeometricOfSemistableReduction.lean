@@ -293,7 +293,7 @@ theorem abelian_locus : GlobalTheory.UT.LL → ∀ (o Ω : Type) [CommRing o] [F
   refine ⟨isOpen_iff_forall_mem_open.2 fun z hz => ⟨_, fun z' h => ?_, OpenPart.isOpen_supI_subset (S := S) z,
     fun _ h => h⟩, mem_G hB Q, fun z hz hT => ?_⟩
   · exact le_bot_iff.1 ((OpenPart.TT_le_TT h).trans (le_of_eq hz))
-  obtain ⟨h1, h2⟩ := GlobalTheory.T.exists_geometricTest_map_classicalPoint hL o Ω S ρ M U₀ EE hB Q hbig hgeo
+  obtain ⟨h1, h2⟩ := _root_.GlobalTheory.ZH.exists_geoTest_tMap_and_centre hL o Ω S ρ M U₀ EE hB Q hbig hgeo
   obtain ⟨p, hp, y, hy⟩ := h2 z hz
   obtain ⟨y₀, t, c, ⟨tm⟩⟩ := h1 p y hy.2
   obtain ⟨τ, e, he, -⟩ := _root_.GlobalTheory.ZH.Clos.exists_core_test_of_geoTest hL o Ω S ρ M U₀ EE hB Q ex p y y₀ t c tm hbig
@@ -417,7 +417,7 @@ theorem torsSec : GlobalTheory.UT.LL → ∀ (o Ω : Type) [CommRing o] [Field �
   refine ⟨N, Set.mem_iInter.2 hz, ?_⟩
   intro p _ y τ x c hy hx hc
   have hcl := GlobalTheory.ZH.GradedCharts.cl_of_test τ
-  obtain ⟨y₀, t, cf, ⟨tm⟩⟩ := (GlobalTheory.T.exists_geometricTest_map_classicalPoint hL o Ω S ρ M U₀ EE hB Q hS hG).1 p y hcl
+  obtain ⟨y₀, t, cf, ⟨tm⟩⟩ := (_root_.GlobalTheory.ZH.exists_geoTest_tMap_and_centre hL o Ω S ρ M U₀ EE hB Q hS hG).1 p y hcl
   obtain ⟨e, he, hef⟩ := GlobalTheory.T.exists_iso_special_fibre_test_geometric_test hL o Ω S ρ M U₀ EE hB Q ex p y y₀ t cf tm τ hS hF
   obtain ⟨c', hc', hcl'⟩ := exists_torsion_pullback τ.H _ c _ hc
   have hint : ∀ a : o, ‖y₀ (algebraMap o S.R a)‖ ≤ 1 := fun a => by

@@ -938,7 +938,7 @@ theorem stCmp : StCmp := by
     rw [(twistSAB_symm_refl E H Xo.X Xo.univ.t (HostAut.refl H)).2.2]
     exact (exists_sabMap_id E H Xo.X Xo.univ.t).choose
   obtain ⟨K, hK, ι, hι, κ, v, κ', v', Ω, hΩ, hΩ0, y, b, d, hbv, hbv', hP, hP', harith, hmh, hb, hne, hdeg, hiso⟩ :=
-    _root_.GlobalTheory.CompanionTheory.Relay.twisted_hodge_tie_compare PositivityTheory.UnitarySelfGeneration.cmpHodgeTiedAlt _root_.GlobalTheory.thetaUnifAV_closed E H D l Xo c O β Y (HostAut.refl H) (Iso.refl Xo.X) hsab (Equiv.refl _) S n M M' T T'
+    _root_.GlobalTheory.CompanionTheory.Relay.twisted_hodge_tie_compare _root_.GlobalTheory.CompanionTheory.Ar.CmpTiedK.cmpHodgeTied _root_.GlobalTheory.thetaUnifAV_closed E H D l Xo c O β Y (HostAut.refl H) (Iso.refl Xo.X) hsab (Equiv.refl _) S n M M' T T'
       hβ (by simp) (fun τ => by ext; rfl)
       (Indep.imageCpt_refl_of_genPt E H D l Xo c O β Y S _ _ _ _ _ _ _ _ T.A T'.A hβ hgen) hR
   have hJ := _root_.PositivityTheory.UnitarySelfGeneration.j_pull M.K M.ι K ι κ v hbv

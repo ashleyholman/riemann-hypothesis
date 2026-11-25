@@ -262,7 +262,7 @@ theorem of_dual_families (hG : admG1 D) (hC : Crv D cc δ)
     rw [show sq z.1 _ = sq u.1 _ from congrArg Subtype.val (congrFun hzu i)]
   have h1 : L.ω₁ ∈ lamOf D cc δ := (hL _).2 L.ω₁_mem_lattice
   have h2 : L.ω₂ ∈ lamOf D cc δ := (hL _).2 L.ω₂_mem_lattice
-  refine ⟨GlobalTheory.T.thetaFunction_selfDual_exists_eq_smul D _ N N' A hpos hdisc fun x => ⟨hint x, hsd x⟩, fun x hx F => ?_, hint, hsd,
+  refine ⟨_root_.GlobalTheory.ThetaCoordLine.exists_eq_smul D _ N N' A hpos hdisc fun x => ⟨hint x, hsd x⟩, fun x hx F => ?_, hint, hsd,
     ?_, ?_, hq⟩
   · obtain ⟨m, hm⟩ := hq x hx
     funext z

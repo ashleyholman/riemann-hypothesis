@@ -236,7 +236,7 @@ theorem pairing : HypsG → ∀ (k r : ℕ) (ι κ : Type) [Fintype ι] [Decidab
   have hpt : ∀ᵐ x ∂νq, ⟪BI I ((RI I).σ (Matrix.of x) y), Formalism.QuantumDeterminants.herm Γ (ρ (Matrix.of x) *ᵥ a) om • Bm (R.σ (Matrix.of x) w)⟫_ℂ =
       ∑ J, β J * ⟪BI I ((RI I).σ (Matrix.of x) y), BI J ((RI J).σ (Matrix.of x) (∑ c, pr J c (BranchingSupport.tm R a w c)))⟫_ℂ := by
     filter_upwards [hae] with x hx
-    rw [Gp91.GlobalTheory.T.tensor_bessel_transfer hK k r ι κ ρ Γ d R RI io pr ε mu muI Wp om Bm BI β hR hRI hT hB.1 hB.2.1 hev a w hw
+    rw [_root_.Gp91.GlobalTheory.herm_smul_eq_sum_of_tensRaw hK k r ι κ ρ Γ d R RI io pr ε mu muI Wp om Bm BI β hR hRI hT hB.1 hB.2.1 hev a w hw
       (Matrix.of x) hx, inner_sum]
     simp only [inner_smul_right]
   refine (MeasureTheory.integral_congr_ae hpt).trans ?_

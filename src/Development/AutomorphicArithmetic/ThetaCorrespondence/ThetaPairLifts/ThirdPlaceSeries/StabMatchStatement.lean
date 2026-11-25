@@ -1073,7 +1073,7 @@ theorem glue : ∀ (D : D7) (V A : HSp D) (e : GA D A →* GA D V) (g : GA D V) 
   intro D V A e g L M hL hM he hloc
   classical
   choose a c ha hc hs using hloc
-  choose z hz hzm using fun v => GlobalTheory.T.exists_centralUnitary_scalar_of_normOneIdele D V v (c v) (hc v)
+  choose z hz hzm using fun v => _root_.GlobalTheory.Core.Mi.LatMatch.exists_cenAt_scalar D V v (c v) (hc v)
   obtain ⟨M', hM'sd, hgM'⟩ := (_root_.GlobalTheory.FinPl.GlobImage.glob D V L hL).1 g
   have hfull : ∀ (V : HSp D) (Λ : Submodule (𝓞 D.host.E) (Fin V.rank → D.host.E)),
       IsSelfDualC V Λ → Submodule.IsFullLattice D.host.E Λ := by
@@ -1560,7 +1560,7 @@ theorem GlobalTheory.Core.Mi.LatMatch.coreOff_homothetic : ∀ (D : D7) (S A L :
   obtain ⟨γ, hγ, hmove⟩ := _root_.GlobalTheory.IwaOrbit.selfDual_orbit D L v _ Λ' (GlobalTheory.FinPl.TamePlaces.tame D v)
     (GlobalTheory.IwaPlace.LocSD.isSDAt_latV D L LL v hLL) hΛ'
   obtain ⟨c, hc, hc', hγc⟩ := GlobalTheory.T.exists_normOneIdele_of_supported_rankOneUnitary D L v γ hζ.1 hγ
-  obtain ⟨a, ha, hma⟩ := GlobalTheory.T.exists_centralUnitary_scalar_of_normOneIdele D A v (cA D c) hc'
+  obtain ⟨a, ha, hma⟩ := _root_.GlobalTheory.Core.Mi.LatMatch.exists_cenAt_scalar D A v (cA D c) hc'
   refine ⟨a, c, ha, hc, ?_⟩
   intro y hy
   have hAy : ∀ i, (o.pA *ᵥ y) i ∈ idAt D (· = v) := GlobalTheory.IwaPlace.mulVec_mem_idAt _ hy
@@ -1683,7 +1683,7 @@ theorem exists_center_stab_at_of_transport_correction : ∀ {D : D7} {L : SizeDa
   rw [hb] at hC
   obtain ⟨M, c1, c2, c3, c4⟩ := hC
   obtain ⟨s1, s2, s3, -, -, s6⟩ := rows_shape hE hF
-  obtain ⟨-, z2, -⟩ := GlobalTheory.T.besselLevelLineVector_primitive_rowLattice_norm D W.S.X W.Q.instEq u W.Q.Rl.ψ _ B μ lam hE hF
+  obtain ⟨-, z2, -⟩ := _root_.GlobalTheory.Core.Mi.LatMatch.sz_tied D W.S.X W.Q.instEq u W.Q.Rl.ψ _ B μ lam hE hF
   have loc : ∀ p : GlobalTheory.FinPl.Pl D, ∃ (a : GA D (D.sp.X 0)) (c : AE D), CenAt (D.sp.X 0) p a ∧ NormOneAt p c ∧
       SMoves (D.sp.Y 0) c (embA B.d B.o (a₀ * a)) Lm (latS D) p := by
     intro p

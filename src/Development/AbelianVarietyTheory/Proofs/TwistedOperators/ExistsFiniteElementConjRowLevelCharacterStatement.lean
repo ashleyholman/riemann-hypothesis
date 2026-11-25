@@ -646,7 +646,7 @@ theorem GlobalTheory.SeeConj.exists_frame_symLevel : ∀ {D : D7} {G : Type} [Gr
   intro D G _ _ Pl0 T A Ks _ _ _ R F X h hIs hGrp ψ0 hψ0
   classical
   obtain ⟨β, hβ, hred⟩ := GlobalTheory.T.exists_frame_reduction_eq_flagBasis_otherInstance R F X h hIs hGrp
-  obtain ⟨ψ', a, hψ', hchi⟩ := GlobalTheory.T.conjCharacter_eq_prod_symmetricEdge_characters_alt R F X h hIs hGrp β hβ hred
+  obtain ⟨ψ', a, hψ', hchi⟩ := _root_.GlobalTheory.SeeConjChar.conjCharacter_eq_prod_symmetricEdge_characters R F X h hIs hGrp β hβ hred
   have hsc : ∀ PP ∈ R.Pg, ∃ d : Fin D.R.r → (kP PP)ˣ, ∀ u : GL (Fin D.R.r) (kP PP), u ∈ unipSym (kP PP) D.R.r D.R.rS D.R.k →
       ψ' PP (∑ i, ∑ j, if symEdge D.R.rS D.R.k i j then (a PP i j : kP PP) * u.val i j else 0) =
         ψ0 PP (edgeSum (symEdge D.R.rS D.R.k) ((diagGL d)⁻¹ * u * diagGL d)) :=

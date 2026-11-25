@@ -915,7 +915,6 @@ theorem suppFirst_holds (D : D7) : SuppFirst D := by
 
 end GlobalTheory.FinPl
 
-theorem GlobalTheory.FinPl.suppFirst_all : ∀ D : D7, GlobalTheory.FinPl.SuppFirst D := GlobalTheory.FinPl.suppFirst_holds
 end -- clump:auto
 end -- clump:auto
 end -- clump:auto

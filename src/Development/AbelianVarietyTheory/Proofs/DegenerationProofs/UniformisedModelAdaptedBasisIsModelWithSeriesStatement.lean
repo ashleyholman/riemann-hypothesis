@@ -1287,7 +1287,7 @@ theorem utest_nonempty_mod : GlobalTheory.UT.LL → UTorsSt → ∀ (o Ω : Type
             pol := fb.pol
             dim := ?_
             red := hred
-            ser := GlobalTheory.T.theta_series_at_point_integral_of_period_valuation hL hT o Ω S ρ p y₀ u l σ cls f hb }⟩
+            ser := _root_.GlobalTheory.ZH.SeriesAtPoint.main hL hT o Ω S ρ p y₀ u l σ cls f hb }⟩
   rw [fb.dim, fb.xe.toIntLinearEquiv.finrank_eq]
   exact hdim
 

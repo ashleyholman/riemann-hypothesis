@@ -791,7 +791,7 @@ theorem exists_test (hL : GlobalTheory.UT.LL) (o Ω : Type) [CommRing o] [Field 
     ∃ τ : ex.core.Test y, ∀ x : Sp (GlobalTheory.ZJ.kb p) ⟶ Q.P.left, x ≫ Q.P.hom = GlobalTheory.ZJ.rPt p ≫ y →
       ((∃ c : Sp (GlobalTheory.ZJ.kb p) ⟶ τ.H.left, c ≫ τ.H.hom = GlobalTheory.ZJ.rPt p ≫ spMap τ.j ∧ c ≫ τ.f ≫ Q.G.ι = x) ↔
         (⊤ ≤ x ⁻¹ᵁ Q.G ∧ Q.InFib x)) := by
-  obtain ⟨y₀, t, c, ⟨tm⟩⟩ := (GlobalTheory.T.exists_geometricTest_map_classicalPoint hL o Ω S ρ M U₀ EE hB Q hS hG).1 p y hy
+  obtain ⟨y₀, t, c, ⟨tm⟩⟩ := (_root_.GlobalTheory.ZH.exists_geoTest_tMap_and_centre hL o Ω S ρ M U₀ EE hB Q hS hG).1 p y hy
   obtain ⟨τ, e, e₁, e₂⟩ := _root_.GlobalTheory.ZH.Clos.exists_core_test_of_geoTest hL o Ω S ρ M U₀ EE hB Q ex p y y₀ t c tm hS
   refine ⟨τ, fun x hx => ?_⟩
   exact (image_iff _ _ _ _ _ _ t.mod.cart.1 _ _ e e₁ e₂ x).trans

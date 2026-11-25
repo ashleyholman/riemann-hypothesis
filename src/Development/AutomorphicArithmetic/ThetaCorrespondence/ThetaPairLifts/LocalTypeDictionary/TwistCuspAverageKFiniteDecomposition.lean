@@ -769,17 +769,6 @@ theorem kFiniteDecomp_class_add : ∀ (D : D7) (θ : InfFam D), IsInfFam θ → 
 end GlobalTheory.KFinDecomp
 end
 end
-
-section
-open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.IndefR Formalism.IndefR.Datum Formalism.IndefR.Links Formalism.L2.DIV
-open IsDedekindDomain NumberField MeasureTheory GlobalTheory.ChiGrid GlobalTheory.FunObj GlobalTheory.RowTest GlobalTheory.StdFrames GlobalTheory.RowClaim GlobalTheory.FlipRun
-open GlobalTheory.Grow GlobalTheory.Size
-open Formalism.REAL Formalism.MainNotions.S GlobalTheory.SmoothGlob GlobalTheory.LowTypeDetermined GlobalTheory.TypeSum GlobalTheory.SeriesToClosure GlobalTheory.PlaceDecomp GlobalTheory.KFinDecomp Matrix
-open scoped InnerProductSpace
-
-theorem _root_.GlobalTheory.T.kFinite_isotypic_decomposition_additive : ∀ (D : D7) (θ : InfFam D), IsInfFam θ → _root_.GlobalTheory.FunPr.ThetaLocalInputs → ∀ (N : GlobalTheory.Grid.Node D) (U : Subgroup (GA D N.V)) (f f' : GA D N.V → ℂ), f ∈ Cls θ N U → f' ∈ Cls θ N U → f + f' ∈ Cls θ N U := by
-  first | exact @_root_.GlobalTheory.KFinDecomp.kFiniteDecomp_class_add
-end
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.KFiniteIsotypicDecompositionAdditive =====
@@ -944,17 +933,6 @@ theorem placeDecomposition_hasCtp_of_isClosed : ∀ (D : D7) (θ : InfFam D), Is
 end GlobalTheory.PlaceDecomp
 end
 end
-
-section
-open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.IndefR Formalism.IndefR.Datum Formalism.IndefR.Links Formalism.L2.DIV
-open IsDedekindDomain NumberField MeasureTheory GlobalTheory.ChiGrid GlobalTheory.FunObj GlobalTheory.RowTest GlobalTheory.StdFrames GlobalTheory.RowClaim GlobalTheory.FlipRun
-open GlobalTheory.Grow GlobalTheory.Size
-open Formalism.REAL Formalism.MainNotions.S GlobalTheory.SmoothGlob GlobalTheory.LowTypeDetermined GlobalTheory.TypeSum GlobalTheory.SeriesToClosure GlobalTheory.PlaceDecomp GlobalTheory.KFinDecomp Matrix
-open scoped InnerProductSpace
-
-theorem _root_.GlobalTheory.T.twist_placeDecomposition_hasCtp : ∀ (D : D7) (θ : InfFam D), IsInfFam θ → _root_.GlobalTheory.FunPr.ThetaLocalInputs → ∀ (N : GlobalTheory.Grid.Node D) (U : Subgroup (GA D N.V)) (W : D.what₂.Tau → Type) [∀ τ, AddCommGroup (W τ)] [∀ τ, Module ℂ (W τ)] (ρ : ∀ τ, Representation ℂ (Formalism.REAL.KG (N.M.ε τ)) (W τ)) (τ : D.what₂.Tau), (∀ f f' : GA D N.V → ℂ, f ∈ Cls θ N U → f' ∈ Cls θ N U → f + f' ∈ Cls θ N U) → (0 : GA D N.V → ℂ) ∈ Cls θ N U → (∀ (c : ℂ) (f : GA D N.V → ℂ), f ∈ Cls θ N U → c • f ∈ Cls θ N U) → (∀ T T' : N.M.H τ → N.M.H τ, HasCtp θ N U (TyOf θ N ρ) τ T → HasCtp θ N U (TyOf θ N ρ) τ T' → HasCtp θ N U (TyOf θ N ρ) τ (fun w => T w + T' w) ∧ HasCtp θ N U (TyOf θ N ρ) τ (fun w => T (T' w))) ∧ (∀ (c : ℂ) (T : N.M.H τ → N.M.H τ), HasCtp θ N U (TyOf θ N ρ) τ T → HasCtp θ N U (TyOf θ N ρ) τ (fun w => c • T w)) ∧ HasCtp θ N U (TyOf θ N ρ) τ (fun _ => 0) := by
-  first | exact @_root_.GlobalTheory.PlaceDecomp.placeDecomposition_hasCtp_of_isClosed
-end
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.PlaceDecompositionHasCtpOfIsClosed =====
@@ -1043,17 +1021,6 @@ theorem placeDecomposition_kAverage : ∀ (D : D7) (θ : InfFam D), IsInfFam θ 
 end GlobalTheory.PlaceDecomp
 end
 end
-
-section
-open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.IndefR Formalism.IndefR.Datum Formalism.IndefR.Links Formalism.L2.DIV
-open IsDedekindDomain NumberField MeasureTheory GlobalTheory.ChiGrid GlobalTheory.FunObj GlobalTheory.RowTest GlobalTheory.StdFrames GlobalTheory.RowClaim GlobalTheory.FlipRun
-open GlobalTheory.Grow GlobalTheory.Size
-open Formalism.REAL Formalism.MainNotions.S GlobalTheory.SmoothGlob GlobalTheory.LowTypeDetermined GlobalTheory.TypeSum GlobalTheory.SeriesToClosure GlobalTheory.PlaceDecomp GlobalTheory.KFinDecomp Matrix
-open scoped InnerProductSpace
-
-theorem _root_.GlobalTheory.T.placewise_decomposition_of_K_average : ∀ (D : D7) (θ : InfFam D), IsInfFam θ → _root_.GlobalTheory.FunPr.ThetaLocalInputs → ∀ (N : GlobalTheory.Grid.Node D) (U : Subgroup (GA D N.V)) (W : D.what₂.Tau → Type) [∀ τ, AddCommGroup (W τ)] [∀ τ, Module ℂ (W τ)] [∀ τ, FiniteDimensional ℂ (W τ)] (ρ : ∀ τ, Representation ℂ (Formalism.REAL.KG (N.M.ε τ)) (W τ)) (τ : D.what₂.Tau) (e : Formalism.REAL.KG (N.M.ε τ) → ℂ), KFinFun (N.M.ε τ) e → HasCtp θ N U (TyOf θ N ρ) τ (kAvg (N.M.ε τ) (N.M.σ τ) e) := by
-  exact @_root_.GlobalTheory.PlaceDecomp.placeDecomposition_kAverage
-end
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.PlacewiseDecompositionOfKAverage =====
@@ -1124,17 +1091,6 @@ theorem placeDecomposition_translate : ∀ (D : D7) (θ : InfFam D), IsInfFam θ
 end GlobalTheory.PlaceDecomp
 end
 end
-
-section
-open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.L2.Theta Formalism.IndefR Formalism.IndefR.Datum Formalism.IndefR.Links Formalism.L2.DIV
-open IsDedekindDomain NumberField MeasureTheory GlobalTheory.ChiGrid GlobalTheory.FunObj GlobalTheory.RowTest GlobalTheory.StdFrames GlobalTheory.RowClaim GlobalTheory.FlipRun
-open GlobalTheory.Grow GlobalTheory.Size
-open Formalism.REAL Formalism.MainNotions.S GlobalTheory.SmoothGlob GlobalTheory.LowTypeDetermined GlobalTheory.TypeSum GlobalTheory.SeriesToClosure GlobalTheory.PlaceDecomp GlobalTheory.KFinDecomp Matrix
-open scoped InnerProductSpace
-
-theorem _root_.GlobalTheory.T.placewise_decomposition_translation_invariant : ∀ (D : D7) (θ : InfFam D), IsInfFam θ → _root_.GlobalTheory.FunPr.ThetaLocalInputs → ∀ (N : GlobalTheory.Grid.Node D) (U : Subgroup (GA D N.V)) (W : D.what₂.Tau → Type) [∀ τ, AddCommGroup (W τ)] [∀ τ, Module ℂ (W τ)] (ρ : ∀ τ, Representation ℂ (Formalism.REAL.KG (N.M.ε τ)) (W τ)) (τ : D.what₂.Tau), ∀ g ∈ UJset (N.M.ε τ), HasCtp θ N U (TyOf θ N ρ) τ (N.M.σ τ g) := by
-  first | exact @_root_.GlobalTheory.PlaceDecomp.placeDecomposition_translate
-end
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AutomorphicArithmetic.ThetaCorrespondence.ThetaPairLifts.LocalTypeDictionary.PlacewiseDecompositionTranslationInvariant =====
@@ -1155,10 +1111,10 @@ theorem GlobalTheory.PlaceDecomp.weil_decomposition_at_place : ∀ (D : D7) (θ 
   haveI : CompleteSpace (N.M.H τ) := (N.M.ds τ).1
   have hσ : Std (N.M.ε τ) (N.M.σ τ) := std_of_isDS hp.harishChandraModules (N.M.ds τ)
   obtain ⟨e, he, he1⟩ := GlobalTheory.T.exists_K_finite_reproducing_function _ (N.M.ε τ) (W τ) (ρ τ) (hρ τ)
-  have hcl := _root_.GlobalTheory.T.twist_placeDecomposition_hasCtp D θ hθ hp N U W ρ τ (fun f f' hf hf' => _root_.GlobalTheory.T.kFinite_isotypic_decomposition_additive D θ hθ hp N U f f' hf hf')
+  have hcl := _root_.GlobalTheory.PlaceDecomp.placeDecomposition_hasCtp_of_isClosed D θ hθ hp N U W ρ τ (fun f f' hf hf' => _root_.GlobalTheory.KFinDecomp.kFiniteDecomp_class_add D θ hθ hp N U f f' hf hf')
     (GlobalTheory.T.cuspFormsOfVertexType_zero_mem_and_smul_mem D θ hθ N U).1 (GlobalTheory.T.cuspFormsOfVertexType_zero_mem_and_smul_mem D θ hθ N U).2
   obtain ⟨m, a, c, haK, hQ, hA⟩ := _root_.GlobalTheory.TypeSum.rank_one_mem_of_closed _ (N.M.ε τ) (N.M.H τ) (N.M.σ τ) hσ (HasCtp θ N U (TyOf θ N ρ) τ)
-    (_root_.GlobalTheory.T.placewise_decomposition_translation_invariant D θ hθ hp N U W ρ τ) hcl.1 hcl.2.1 (_root_.GlobalTheory.T.placewise_decomposition_of_K_average D θ hθ hp N U W ρ τ) hcl.2.2 e he
+    (_root_.GlobalTheory.PlaceDecomp.placeDecomposition_translate D θ hθ hp N U W ρ τ) hcl.1 hcl.2.1 (_root_.GlobalTheory.PlaceDecomp.placeDecomposition_kAverage D θ hθ hp N U W ρ τ) hcl.2.2 e he
   choose A hAop hAmv using fun j (u : GlobalTheory.IndefiniteRowSideFullHecke.KTypeExtension.kFin N.M τ) => hA j u u.2
   have hexp := fun (f : GA D N.V → ℂ) (hf : f ∈ Cls θ N U) => _root_.GlobalTheory.PlaceDecomp.placeDecomposition_exists_exponential_model D θ hθ hp N τ f hf.1.1 (hf.1.2.2 τ)
   refine ⟨m, fun j => ⟨a j, haK j⟩, A, hAop, fun j f hf => ?_, fun f hf hTy => ?_⟩

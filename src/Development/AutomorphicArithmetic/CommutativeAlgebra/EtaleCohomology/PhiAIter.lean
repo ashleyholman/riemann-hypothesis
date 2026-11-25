@@ -168,7 +168,7 @@ private theorem l_pfil0 (A : PAlg l) : (l : A.Acr0) ∈ A.PFil0 :=
   Ideal.mem_sup_left (Ideal.mem_span_singleton_self _)
 
 private theorem iA_dp (r : Res l K) (A : PAlg l) (n : ℕ) : IsDPMorphism (Wc.pd l r.k n) (A.pdPFil n) (iA r A n) :=
-  RL.pd_mor _ _ _ _ _ _ ((algebraMap A.W A.Acr0).comp (A.sW.comp (WittVector.map r.s))) _ Ideal.Quotient.mk_surjective
+  _root_.GlobalTheory.CompanionTheory.PdMor.isDPMorphism_of_isPd _ _ _ _ _ _ ((algebraMap A.W A.Acr0).comp (A.sW.comp (WittVector.map r.s))) _ Ideal.Quotient.mk_surjective
     (pdI_l l (witt_unit l r.k)) (Wc.isPd l r.k n) (A.isPd_pdPFil n)
     (fun x hx => by
       obtain ⟨c, rfl⟩ := Ideal.mem_span_singleton'.1 hx

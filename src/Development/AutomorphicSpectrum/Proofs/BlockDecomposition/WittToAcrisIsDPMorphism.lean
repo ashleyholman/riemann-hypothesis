@@ -17,7 +17,7 @@ theorem wn_isDPMorphism : ∀ {l : ℕ} [Fact l.Prime] {K : IntermediateField �
   intro l _ K r n
   let F₀ : WittVector l r.k →+* (base l).Acr0 :=
     (algebraMap (base l).W (base l).Acr0).comp ((base l).sW.comp (WittVector.map r.s))
-  refine RL.pd_mor (Ideal.Quotient.mk _) ((base l).mkAcr n) (Ideal.span {(l : WittVector l r.k)}) (base l).PFil0
+  refine _root_.GlobalTheory.CompanionTheory.PdMor.isDPMorphism_of_isPd (Ideal.Quotient.mk _) ((base l).mkAcr n) (Ideal.span {(l : WittVector l r.k)}) (base l).PFil0
     (Wc.pd l r.k n) (B.DD true (base l) n) F₀ (Mid.wn r n) Ideal.Quotient.mk_surjective
     (pdI_l l (witt_unit l r.k)) (Wc.isPd l r.k n) ((base l).isPd_pdPFil n) ?_ ?_
   · intro x hx

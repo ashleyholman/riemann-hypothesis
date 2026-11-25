@@ -612,7 +612,7 @@ theorem main_succ (A : Type) [Ring A] [Algebra ℂ A] (m : ℕ) (F : Fin (m+1) �
       = Q.eval w * ∑ k ∈ range (N + 1), (-1) ^ k * (w - m) ^ (N - k) * φ (etr F k) := by
     intro w
     have h1 := congrArg φ (_root_.GlobalTheory.TracedComatrix.traced_comatrix A m F hF w N)
-    rw [← _root_.GlobalTheory.qdet_add_one_sub_eq_sum_qminor, hR] at h1
+    rw [← _root_.GlobalTheory.CapelliDiff.qdet_add_one_sub, hR] at h1
     simp only [hq, ← Algebra.smul_def, map_add (f := _), map_smul, smul_eq_mul, hRp] at h1
 
     simp only [mul_sum, map_sum, map_smul, map_sub, smul_eq_mul, hφa] at h1

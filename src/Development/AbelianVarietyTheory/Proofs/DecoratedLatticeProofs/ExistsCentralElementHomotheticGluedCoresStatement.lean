@@ -982,7 +982,7 @@ theorem exists_central_sMoves : ∀ (D : D7) (k : Type) [Field k] [ValuativeRel 
   obtain ⟨g, s, hs, hg, hPP⟩ := _root_.GlobalTheory.LatPair.StabScal.eq_scalar_smul_of_stab k n P P' hn hstab
   obtain ⟨c, hc, hcpr⟩ := _root_.GlobalTheory.Core.Mi.LatMatch.exists_normOneAt_pr D k p (p.pr (incA D μ))⁻¹ (inv_ne_zero hm)
   obtain ⟨c', hc', hc'pr⟩ := _root_.GlobalTheory.Core.Mi.LatMatch.exists_normOneAt_pr D k p (s * p.pr (incA D μ)) (mul_ne_zero hs hm)
-  obtain ⟨a, hcen, hamt⟩ := GlobalTheory.T.exists_centralUnitary_scalar_of_normOneIdele D A p.v c' hc'
+  obtain ⟨a, hcen, hamt⟩ := _root_.GlobalTheory.Core.Mi.LatMatch.exists_cenAt_scalar D A p.v c' hc'
   refine ⟨a, c, hcen, hc, ?_⟩
   have key : SMoves S c (o.emb (a, 1)) M M'' p.v := by
     refine GlobalTheory.T.normOneHomothety_carries_selfDual_of_splitComponent D k p S M M'' c (o.emb (a, 1)) hM hsd'' hc fun x => ?_

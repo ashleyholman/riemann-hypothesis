@@ -825,7 +825,7 @@ open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formal
 namespace GlobalTheory.TieChiPin
 theorem locComp_of_isRc_classMapD_cenLoc : _root_.GlobalTheory.NRows.ThetaLocalInputsAlt → ∀ (hL : _root_.UpperTheory.Zero.LLC.RecTExists) (D : D7) (P : _root_.GlobalTheory.NPin.CharacterChoiceData hL D), (∀ i : D.nd.Loc, Nonempty (RowMod D P.rep (D.nd.j i))) → LabAll D P.T → ChiTOk D P.cf → PairedCharacterCondition.tieChi (D := D) := by
   intro hPr hL D P hRow hLab hChi i k hl v
-  obtain ⟨S, hS, -, -⟩ := _root_.GlobalTheory.T.exists_true_reading_with_laws_suppLaws hPr.fin hL D P hRow
+  obtain ⟨S, hS, -, -⟩ := _root_.GlobalTheory.TrueReading.exists_true_reading_alt hPr.fin hL D P hRow
   have hsp : IsSplitPl D.host (D.naut.plGw k v) := _root_.GlobalTheory.TypeSplit.main D k _ (D.naut.plGw_over k v)
   obtain ⟨htame, hχ, u, hu, hlab⟩ := _root_.GlobalTheory.T.nonGalois_tame_label_mu_alt hPr hL D P hChi S hS i k v hsp
   refine ⟨u, hu, fun w hw => ⟨fun hw0 => ?_, fun hc => ?_⟩⟩

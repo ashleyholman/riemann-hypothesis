@@ -768,7 +768,7 @@ theorem archimedean_real_line_invariance : _root_.GlobalTheory.FunPr.ThetaLocalI
         Acts (evI F) (om (1, γ (Multiplicative.ofAdd t))) ⇑f ⇑(Φ.symm (T t (Φ f))) := by
   intro hP F E _ _ _ _ _ σ n d X W M ψ χX χW om hCM hψ hW γ hγ
   have hex : ∀ h ∈ UAt σ W (evI F), ∀ f : SInf F (Fin n × Fin d), ∃ f₁ : SInf F (Fin n × Fin d),
-      Acts (evI F) (om (1, h)) ⇑f ⇑f₁ := fun h hh f => _root_.GlobalTheory.T.theta_action_archimedean_locality hP M ψ χX χW om hCM hψ hW h hh f
+      Acts (evI F) (om (1, h)) ⇑f ⇑f₁ := fun h hh f => _root_.GlobalTheory.ArchLocality.theta_action_local_at_archimedean_place hP M ψ χX χW om hCM hψ hW h hh f
   obtain ⟨hadd, hsmul, hone, hmul⟩ := _root_.GlobalTheory.ArchLine.archOp_laws M ψ χX χW om hW hex
   obtain ⟨aadd, asmul, amul⟩ := GlobalTheory.ArchLine.archAct_linear_mul M
   have hγU : ∀ t : ℝ, γ (Multiplicative.ofAdd t) ∈ UAt σ W (evI F) := fun t => hγ.2 _

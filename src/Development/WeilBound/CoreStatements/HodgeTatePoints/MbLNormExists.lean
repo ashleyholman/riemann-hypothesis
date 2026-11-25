@@ -256,9 +256,6 @@ theorem finite_integralClosure_chRing {o : Type} [CommRing o] [Algebra.EssFinite
 end PositivityTheory.HtPt.Mb.LFiniteExt.ChartFinite
 
 
-open AlgebraicGeometry CategoryTheory GlobalTheory.CompanionTheory.Ar NumberField in
-theorem PositivityTheory.HtPt.Mb.finite_ext : ∀ {o : Type} [CommRing o] [Algebra.EssFiniteType ℤ o] {Ω : Type} [Field Ω] [Algebra o Ω] {κ : Type} [Finite κ] {x : κ → Ω} (M : PModel o x) (Ω' : Type) [Field Ω'] [Algebra Ω Ω'] [FiniteDimensional Ω Ω'] [Algebra o Ω'] [IsScalarTower o Ω Ω'] (c : κ), x c ≠ 0 → Module.Finite (chRing o (fun k => algebraMap Ω Ω' (x k)) c) (integralClosure (chRing o (fun k => algebraMap Ω Ω' (x k)) c) Ω') :=
-  @PositivityTheory.HtPt.Mb.LFiniteExt.ChartFinite.finite_integralClosure_chRing
 end -- clump:auto
 end -- clump:auto
 end -- clump:auto
@@ -803,7 +800,7 @@ theorem exists_normalisation : ∀ (o : Type) [CommRing o] [Algebra.EssFiniteTyp
     simpa using hc
   have hinj' : ∀ c, algebraMap Ω Ω' (x c) ≠ 0 → x c ≠ 0 := fun c hc h => hc (by simp [h])
   obtain ⟨d, n, z, hz1, hz2⟩ := _root_.GlobalTheory.CompanionTheory.Ar.IntClGens.exists_twisted_gens o Ω' κ (fun k => algebraMap Ω Ω' (x k))
-    (fun c hc => PositivityTheory.HtPt.Mb.finite_ext M Ω' c (hinj' c hc))
+    (fun c hc => _root_.PositivityTheory.HtPt.Mb.LFiniteExt.ChartFinite.finite_integralClosure_chRing M Ω' c (hinj' c hc))
   set x' : κ → Ω' := fun k => algebraMap Ω Ω' (x k) with hx'
   set y := joinCo (RingHom.id Ω') x' z with hy
   obtain ⟨c₀, hc₀⟩ := exists_ne M

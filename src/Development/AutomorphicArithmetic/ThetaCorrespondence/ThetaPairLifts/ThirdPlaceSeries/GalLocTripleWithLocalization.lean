@@ -1291,7 +1291,7 @@ theorem galLoc_triple_with_localization_alt (hP : _root_.GlobalTheory.HeightCoun
   have hg := _root_.GlobalTheory.GalAway.galoisReps_of_cgTrue_alt_alt hL hP.what₂.fin hP.what₂.gal _ T cg
   have hm := _root_.GlobalTheory.TwInputs.meetsAll_of_ties hP.greenC _ exT grp
   have hs := GlobalTheory.T.good_part_eigensystem_is_triple_eigensystem _ _ _ _ _ _ _ _ _ Bs' nf hm cm fa
-  exact _root_.GlobalTheory.T.side_eigen_export_alt hP.what₂.cheb hP.what₂.art _ _ _ _ _ _ _ _ _ Bs' Sb hSb ks chiT grp chr val roots hstar (eT Rw' hR) eO
+  exact _root_.GlobalTheory.TripInhab.isTriple_of_sideB_alt hP.what₂.cheb hP.what₂.art _ _ _ _ _ _ _ _ _ Bs' Sb hSb ks chiT grp chr val roots hstar (eT Rw' hR) eO
     (rp Rw' hR) (rt Rw' hR) hg hs
 end GlobalTheory.GalLoc
 namespace GlobalTheory.GalLoc

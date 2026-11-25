@@ -94,12 +94,12 @@ theorem fil_pdFil (r : ℕ) : fil (A.pdFil n) r = A.Fil n r := by
       | nil =>
         intro _
         simp only [List.map_nil, List.prod_nil, List.sum_nil]
-        rw [(RL.filtration_multiplicative A).2.2.2.2.2.2.1 n]
+        rw [(_root_.GlobalTheory.CompanionTheory.FilMul.main A).2.2.2.2.2.2.1 n]
         trivial
       | cons p L ih =>
         intro hL
         simp only [List.map_cons, List.prod_cons, List.sum_cons]
-        exact (RL.filtration_multiplicative A).2.2.2.2.2.2.2 n _ _ (Ideal.mul_mem_mul
+        exact (_root_.GlobalTheory.CompanionTheory.FilMul.main A).2.2.2.2.2.2.2 n _ _ (Ideal.mul_mem_mul
           (A.dpow_mem_fil n p.1 (hL p (by simp))) (ih fun q hq => hL q (by simp [hq])))
     refine Ideal.span_le.2 ?_
     rintro _ ⟨L, h1, h2, rfl⟩

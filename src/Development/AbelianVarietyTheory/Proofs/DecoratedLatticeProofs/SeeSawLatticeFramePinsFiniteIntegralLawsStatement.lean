@@ -776,7 +776,7 @@ theorem suppSecond_holds : ∀ D : D7, SuppSecond D := by
 
     set Ξ₁ := flatBF s₁ (s₁.om (g, h₁) Φ₁) with hΞ₁def
     have hΞ₁P : Vac ψ B.V₀ J.W₀ Λ.M₀ Λ.M₁ P Ξ₁ :=
-      ((_root_.GlobalTheory.FinPl.suppFirst_all D ψ (σ + 1) B J s₁ Λ.L₀ Λ.M₀ Λ.L₁ Λ.M₁ P (fun w hw => sh.good w hw)
+      ((_root_.GlobalTheory.FinPl.suppFirst_holds D ψ (σ + 1) B J s₁ Λ.L₀ Λ.M₀ Λ.L₁ Λ.M₁ P (fun w hw => sh.good w hw)
         (fun w hw => (sh.unr w hw).1) sdL₁ Φ₁ hΦ₁).2 g hg).2 h₁ hh₁
     have hΞ₁ : Vac ψ B.V₀ J.W₀ Λ.M₀ Λ.M₁ (· = v) Ξ₁ :=
       ((_root_.GlobalTheory.VacLoc.vac_loc D ψ B.V₀ J.W₀ s₁.χV s₁.χW s₁.om₀ s₁.weil₀ Λ.M₀ Λ.M₁ gd.sdV₀ gd.sdW₀ P tameP Ξ₁).1.mp
@@ -881,7 +881,7 @@ theorem offOfShape_of_supp (h1 : SuppFirst D) (h2 : SuppSecond D) : OffOfShape D
   rw [hS.ram] at hφ
   exact hφ
 
-theorem offOfShape_all : ∀ D : D7, OffOfShape D := fun D => offOfShape_of_supp (_root_.GlobalTheory.FinPl.suppFirst_all D) (_root_.GlobalTheory.FinPl.suppSecond_holds D)
+theorem offOfShape_all : ∀ D : D7, OffOfShape D := fun D => offOfShape_of_supp (_root_.GlobalTheory.FinPl.suppFirst_holds D) (_root_.GlobalTheory.FinPl.suppSecond_holds D)
 
 end GlobalTheory.SeeSaw
 

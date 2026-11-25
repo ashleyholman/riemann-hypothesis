@@ -54,7 +54,7 @@ theorem etr_apply_of_eigen : ∀ (V : Type) [AddCommGroup V] [Module ℂ V] (m :
       = (∑ k ∈ range N, (-1) ^ k * (w - m) ^ (N - k) * t k) * (P.eval w * φ v) + (-1) ^ N * Pq.eval w := by
     intro w
     have h1 := congrArg (fun T : Module.End ℂ V => φ (T v)) (_root_.GlobalTheory.TracedComatrix.traced_comatrix (Module.End ℂ V) m E hE w N)
-    rw [← _root_.GlobalTheory.qdet_add_one_sub_eq_sum_qminor, hR] at h1
+    rw [← _root_.GlobalTheory.CapelliDiff.qdet_add_one_sub, hR] at h1
     have h2 : (qdet E w * ∑ k ∈ range (N + 1), algebraMap ℂ (Module.End ℂ V) ((-1) ^ k * (w - m) ^ (N - k)) * etr E k) v
         = (∑ k ∈ range N, (-1) ^ k * (w - m) ^ (N - k) * t k) • qdet E w v
           + ((-1 : ℂ) ^ N) • qdet E w (etr E N v) := by

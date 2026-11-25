@@ -7,6 +7,7 @@ public import Development.WeilBound.ThetaLifts.SmallCones.ExpAlg
 public import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LatAtVAtStable
 public import Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.ExistsNhdsInvariant
 public import Development.WeilBound.CoreStatements.LocallyConstantCoinvariants.CompFinLiftE
+import Development.WeilBound.ThetaLifts.EigenvalueEndgame.EigenKilling.EigenKillSet
 import Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsStdCharNegOneOfStandardTraceAdelicAddChar
 import Development.WeilBound.ThetaLifts.TowerModels.TwistedSums.StandardTraceAdelicAddCharLocalComponentNeOne
 import Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.PureEqPureA
@@ -29,7 +30,7 @@ import Mathlib.RingTheory.PiTensorProduct
 -- Members: Development.WeilBound.ThetaLifts.SmallCones.SoKill, Development.WeilBound.ThetaLifts.SmallCones.FormSwapZero
 
 -- ===== clump member: Development.WeilBound.ThetaLifts.SmallCones.SoKill =====
--- clump-header: {"m": "Development.WeilBound.ThetaLifts.SmallCones.SoKill", "h": "module\n\npublic import Development.WeilBound.ThetaLifts.SmallCones.SoDefs\npublic import Development.WeilBound.CoreStatements.LocallyConstantCoinvariants.SoStatement\nimport Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsStdCharNegOneOfStandardTraceAdelicAddChar\nimport Development.WeilBound.ThetaLifts.TowerModels.TwistedSums.StandardTraceAdelicAddCharLocalComponentNeOne\nimport Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.PureEqPureA\nimport Development.WeilBound.CoreStatements.LocallyConstantCoinvariants.IndicatorMem\npublic import Development.WeilBound.ThetaLifts.SmallCones.SoStab\nimport GroundTheory.GlobalFields.LocalAtPlace\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Coalgebra.IsFrobenius\nimport Mathlib.RingTheory.Etale.Weakly\nimport Mathlib.RingTheory.HopfAlgebra.Basic\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.TotallySplit\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.HaveILetI\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.MetricSpace.Ultra.TotallySeparated\nimport Mathlib.Topology.Sheaves.Init\nimport Std.Tactic.BVDecide.Normalize.Prop\nimport Development.AbelianVarietyTheory.Definitions.Divisors.MatchingOfParts\nimport Mathlib.Topology.Connected.Separation\n\n"}
+-- clump-header: {"m": "Development.WeilBound.ThetaLifts.SmallCones.SoKill", "h": "module\n\npublic import Development.WeilBound.ThetaLifts.SmallCones.SoDefs\npublic import Development.WeilBound.CoreStatements.LocallyConstantCoinvariants.SoStatement\nimport Development.WeilBound.ThetaLifts.EigenvalueEndgame.EigenKilling.EigenKillSet\nimport Development.AbelianVarietyTheory.Proofs.DivisorProofs.IsStdCharNegOneOfStandardTraceAdelicAddChar\nimport Development.WeilBound.ThetaLifts.TowerModels.TwistedSums.StandardTraceAdelicAddCharLocalComponentNeOne\nimport Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.PureEqPureA\nimport Development.WeilBound.CoreStatements.LocallyConstantCoinvariants.IndicatorMem\npublic import Development.WeilBound.ThetaLifts.SmallCones.SoStab\nimport GroundTheory.GlobalFields.LocalAtPlace\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Coalgebra.IsFrobenius\nimport Mathlib.RingTheory.Etale.Weakly\nimport Mathlib.RingTheory.HopfAlgebra.Basic\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.TotallySplit\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.HaveILetI\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.MetricSpace.Ultra.TotallySeparated\nimport Mathlib.Topology.Sheaves.Init\nimport Std.Tactic.BVDecide.Normalize.Prop\nimport Development.AbelianVarietyTheory.Definitions.Divisors.MatchingOfParts\nimport Mathlib.Topology.Connected.Separation\n\n"}
 section -- clump:auto
 @[expose] public section
 
@@ -96,65 +97,11 @@ theorem rank_ne_iff {k : Type} [Field k] {n d : ℕ} (C : Matrix (Fin n) (Fin d)
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] {σ : E →ₐ[F] E} {v : Pl F} {n d : ℕ}
   {X : Spc F E n} {W : Spc F E d} (M : Model σ X W) {ψ : AddChar (AF F) ℂ}
 
-theorem eigen_kill_set (h : IsCMExt F E σ) (hψ : IsStd ψ) (hX : X.J.det ≠ 0) (hW : W.J.det ≠ 0) {t : E →ₐ[F] Fv F v} {ι}
-    (hι : M.IsLinBar ψ t 1 1 ι) (l : ((Fin n × Fin d → Fv F v) → ℂ) →ₗ[ℂ] ℂ)
-    (A : Set (Matrix (Fin n) (Fin d) (AE F E) × ℂ)) (hA : ∀ a ∈ A, At (evFin F v) a.1 ∧ a.1.map (piW (t.comp σ)) = 0)
-    (hl : ∀ a ∈ A, ∀ φ ∈ SB _, l (locRho M ψ v a.1 φ) = a.2 * l φ) {φ} (hφ : φ ∈ SB (Fin n × Fin d → Fv F v))
-    (hz : ∀ x, At (evFin F v) x → x.map (piW t) = 0 → (∀ a ∈ A, ψ (sy σ X W x a.1) = a.2) → ι φ (coB σ X W t x) = 0) :
-    l φ = 0 := by
-  choose xo a1 a2 a3 using exists_coB h t hX hW
-  have hb := hι.bij
-  have key := kill_set ((SB _ ⊓ LinearMap.ker l).map ι) {Y | ∀ a ∈ A, ψ (sy σ X W (xo Y) a.1) = a.2} (fun Y hY => ?_) _ (hb.1 hφ)
-    fun Y hY => by rw [← a3 Y]; exact hz _ (a1 Y) (a2 Y) hY
-  · obtain ⟨φ', h', e⟩ := key
-    rw [← hb.2.1 h'.1 hφ e]
-    exact h'.2
-  simp only [Set.mem_setOf_eq, not_forall] at hY
-  obtain ⟨⟨u, c⟩, ha, hne⟩ := hY
-  obtain ⟨hu, h1⟩ := hA _ ha
-  let m : Matrix (Fin n) (Fin d) (Fv F v) → ℂ := fun y => ψ (sy σ X W (xo y) u)
-  have hm : ∀ φ ∈ SB (Fin n × Fin d → Fv F v), ι (locRho M ψ v u φ) = fun y => m y * ι φ y := fun φ hφ => funext fun y => by
-    have := mult' M hψ hι hu h1 (a1 y) (a2 y) hφ
-    rwa [a3] at this
-  haveI : T2Space (Matrix (Fin n) (Fin d) (Fv F v)) := inferInstanceAs (T2Space (Fin n → Fin d → Fv F v))
-  haveI : LocallyCompactSpace (Matrix (Fin n) (Fin d) (Fv F v)) := inferInstanceAs (LocallyCompactSpace (Fin n → Fin d → Fv F v))
-  haveI : TotallyDisconnectedSpace (Matrix (Fin n) (Fin d) (Fv F v)) :=
-    inferInstanceAs (TotallyDisconnectedSpace (Fin n → Fin d → Fv F v))
-  refine ⟨m, c, lc_of_mul m fun Φ hΦ => ?_, hne, fun Φ hΦ => ?_⟩
-  · obtain ⟨φ', h', rfl⟩ := hb.2.2 hΦ
-    rw [← hm φ' h']
-    exact hb.1 (locRho_mem M hψ u h')
-  · obtain ⟨φ', h', rfl⟩ := hb.2.2 hΦ
-    refine ⟨locRho M ψ v u φ' - c • φ', ⟨sub_mem (locRho_mem M hψ u h') (Submodule.smul_mem _ _ h'), ?_⟩, ?_⟩
-    · change l _ = 0
-      rw [map_sub, map_smul, hl _ ha φ' h', smul_eq_mul, sub_self]
-    · rw [map_sub, map_smul, hm φ' h']
-      funext y
-      simp [sub_mul]
-
-include M in
-theorem sy_smul (x u : Matrix (Fin n) (Fin d) (AE F E)) (a : AF F) : sy σ X W x (a • u) = a * sy σ X W x u := by
-  simp only [sy, M.co.form, map_smul, Prod.smul_fst, Prod.smul_snd, dotProduct_smul, smul_dotProduct, smul_eq_mul, mul_sub]
-
-theorem map_vec (π : AE F E →+* Fv F v) (t : E → Fv F v) (ht : ∀ x, π (inclR (F := F) (AF F) x) = t x) (ε : AE F E) (p : Fin n → E)
-    (q : Fin d → E) : (ε • incM F (vecMulVec p q)).map π = π ε • vecMulVec (fun i => t (p i)) fun j => t (q j) := by
-  ext i j
-  simp [incM, vecMulVec_apply, ht]
-
-theorem trace_vec {k : Type} [Field k] (C : Matrix (Fin n) (Fin d) k) (p : Fin n → k) (q : Fin d → k) :
-    (Cᵀ * vecMulVec p q).trace = p ⬝ᵥ C *ᵥ q := by
-  simp only [Matrix.trace, Matrix.diag, Matrix.mul_apply, Matrix.transpose_apply, vecMulVec_apply, dotProduct, mulVec, Finset.mul_sum]
-  rw [Finset.sum_comm]
-  exact Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => by ring
-
 theorem piW_inc (t : E →ₐ[F] Fv F v) (x : E) : piW t (inclR (F := F) (AF F) x) = t x := by
   show splitProj t (compFin F E v ((1 : AF F) ⊗ₜ[F] x)) = t x
   have : compFin F E v ((1 : AF F) ⊗ₜ[F] x) = 1 ⊗ₜ[F] x :=
     congrArg (· ⊗ₜ[F] x) (map_one (evFin F v))
   rw [this, splitProj_tmul, one_mul]
-
-theorem at_lift (c : Fv F v) (u : Matrix (Fin n) (Fin d) (AE F E)) : At (evFin F v) (liftV v c • u) := fun a ha => by
-  rw [smul_smul, ← smul_eq_mul, at_liftV v c a ha, zero_smul]
 
 theorem so_le (hM : M.IsGood ψ) (t : E →ₐ[F] Fv F v) {Ψ} (h : Ψ ∈ M.So ψ t) : Ψ ∈ schA F (Fin n × Fin d) := by
   refine (Submodule.span_le.2 ?_ : M.So ψ t ≤ _) h
@@ -196,13 +143,13 @@ theorem so_kill (hL : LinEx) {B : Base F E} {r s r' s' : ℕ} (hB : B.IsGood σ)
         rw [e, map_smul]
         rfl }
   obtain ⟨ε, e0, e1, e2⟩ := exists_pair hB.cm t 1 0
-  have hat : ∀ (c : Fv F v) (u : Matrix (Fin n) (Fin d) (AE F E)), At (evFin F v) (liftV v c • u) := at_lift
-  refine eigen_kill_set M hB.cm hB.std (det_herm hX) (det_skew hW) hι l
+  have hat : ∀ (c : Fv F v) (u : Matrix (Fin n) (Fin d) (AE F E)), At (evFin F v) (liftV v c • u) := PositivityTheory.ThKEnd.Comp.SoL.at_lift
+  refine PositivityTheory.ThKEnd.Comp.SoL.eigen_kill_set M hB.cm hB.std (det_herm hX) (det_skew hW) hι l
     {b | ∃ a ∈ S, ∃ c : Fv F v, b = (liftV v c • ε • incM F (vecMulVec a.1 a.2.1), B.ψ (liftV v (a.2.2 * c)))} ?_ ?_ hv
     fun x hx h0 hc => h3 _ ?_
   · rintro _ ⟨a, -, c, rfl⟩
     refine ⟨hat _ _, ?_⟩
-    rw [← smul_assoc, map_vec _ _ (piW_inc _), Algebra.smul_def, map_mul, e2, mul_zero, zero_smul]
+    rw [← smul_assoc, PositivityTheory.ThKEnd.Comp.SoL.map_vec _ _ (piW_inc _), Algebra.smul_def, map_mul, e2, mul_zero, zero_smul]
   · rintro _ ⟨a, ha, c, rfl⟩ φ' h'
     change L (tens _ (locRho M B.ψ v _ φ') r) = _ * L _
     rw [← rho_tens M B.ψ (hat _ _) φ' hr, hS a ha ε e0 e1 e2 c _ (hsch φ' h')]
@@ -212,13 +159,13 @@ theorem so_kill (hL : LinEx) {B : Base F E} {r s r' s' : ℕ} (hB : B.IsGood σ)
     exact Tw.PsiNontriv.psiV_ne_one B.ψ hB.std v (AddChar.ext _ _ e)
   obtain ⟨p, hp, e⟩ := hz (X.J.map t * x.map (piW (t.comp σ)) * (W.J.map t)ᵀ) fun a ha => by
     have k1 := (hL F E σ B n d X W M _ _ _ _ hB hX hW v t).2 x (ε • incM F (vecMulVec a.1 a.2.1)) hx h0
-    rw [map_vec _ _ (piW_inc _), e1, one_smul, trace_vec] at k1
+    rw [PositivityTheory.ThKEnd.Comp.SoL.map_vec _ _ (piW_inc _), e1, one_smul, PositivityTheory.ThKEnd.Comp.SoL.trace_vec] at k1
     rw [← k1]
     by_contra hne
     set b := evFin F v (sy σ X W x (ε • incM F (vecMulVec a.1 a.2.1)))
     have k2 := hc _ ⟨a, ha, s₀ / (b - a.2.2), rfl⟩
     simp only at k2
-    rw [sy_smul M, mul_comm, mul_liftV] at k2
+    rw [PositivityTheory.ThKEnd.Comp.SoL.sy_smul M, mul_comm, mul_liftV] at k2
     have k3 : b * (s₀ / (b - a.2.2)) = s₀ + a.2.2 * (s₀ / (b - a.2.2)) := by
       have := sub_ne_zero.2 hne
       field_simp
@@ -239,7 +186,7 @@ end -- clump:auto
 -- ===== end clump member: Development.WeilBound.ThetaLifts.SmallCones.SoKill =====
 
 -- ===== clump member: Development.WeilBound.ThetaLifts.SmallCones.FormSwapZero =====
--- clump-header: {"m": "Development.WeilBound.ThetaLifts.SmallCones.FormSwapZero", "h": "module\n\npublic import Development.WeilBound.ThetaLifts.SmallCones.SoDefs\npublic import Development.WeilBound.ThetaLifts.SmallCones.ExpAlg\npublic import Development.WeilBound.ThetaLifts.SmallCones.SoKill\nimport Development.WeilBound.ThetaLifts.SmallCones.SoStab\nimport GroundTheory.GlobalFields.CompletionAtPlace.Integers\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Etale.Weakly\nimport Mathlib.RingTheory.PiTensorProduct\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.TotallySplit\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\npublic import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LatAtVAtStable\npublic import Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.ExistsNhdsInvariant\npublic import Development.WeilBound.CoreStatements.LocallyConstantCoinvariants.CompFinLiftE\npublic import Development.WeilBound.CoreStatements.LocallyConstantCoinvariants.SoStatement\nimport Development.AbelianVarietyTheory.Definitions.Divisors.MatchingOfParts\n\n"}
+-- clump-header: {"m": "Development.WeilBound.ThetaLifts.SmallCones.FormSwapZero", "h": "module\n\npublic import Development.WeilBound.ThetaLifts.SmallCones.SoDefs\npublic import Development.WeilBound.ThetaLifts.SmallCones.ExpAlg\npublic import Development.WeilBound.ThetaLifts.SmallCones.SoKill\nimport Development.WeilBound.ThetaLifts.EigenvalueEndgame.EigenKilling.EigenKillSet\nimport Development.WeilBound.ThetaLifts.SmallCones.SoStab\nimport GroundTheory.GlobalFields.CompletionAtPlace.Integers\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Etale.Weakly\nimport Mathlib.RingTheory.PiTensorProduct\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.TotallySplit\nimport Mathlib.Tactic.Basify\nimport Mathlib.Tactic.ENatToNat\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Mathlib.Topology.Sheaves.Init\npublic import Development.AbelianVarietyTheory.Proofs.DivisorProofs.LatAtVAtStable\npublic import Development.AutomorphicSpectrum.Proofs.DivisibilityProofs.ExistsNhdsInvariant\npublic import Development.WeilBound.CoreStatements.LocallyConstantCoinvariants.CompFinLiftE\npublic import Development.WeilBound.CoreStatements.LocallyConstantCoinvariants.SoStatement\nimport Development.AbelianVarietyTheory.Definitions.Divisors.MatchingOfParts\n\n"}
 section -- clump:auto
 @[expose] public section
 
@@ -273,16 +220,9 @@ variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algeb
 
 alias sig_sig := _root_.GlobalTheory.AdelicU.cm_conj_conj
 
-theorem form_swap (hσ : ∀ x, σ (σ x) = x) {J : Matrix (Fin n) (Fin n) E} (ε : E) (h : ∀ i j, σ (J j i) = ε * J i j) (x y : Fin n → E) :
-    σ (form σ J x y) = ε * form σ J y x := by
-
-  simp only [form, dotProduct, mulVec, map_sum, map_mul, hσ, h, Finset.mul_sum]
-  rw [Finset.sum_comm]
-  exact Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun j _ => by ring
-
 theorem form_swap_zero (hσ : ∀ x, σ (σ x) = x) {J : Matrix (Fin n) (Fin n) E} (ε : E) (h : ∀ i j, σ (J j i) = ε * J i j)
     {x y : Fin n → E} (h0 : form σ J x y = 0) : form σ J y x = 0 := by
-  have := form_swap hσ ε h y x
+  have := PositivityTheory.ThKEnd.Comp.SoL.form_swap hσ ε h y x
   rw [h0, mul_zero] at this
   exact (map_eq_zero σ).1 this
 
@@ -298,22 +238,6 @@ theorem hTens_vec (a c : AE F E) (x p : Fin n → E) (y q : Fin d → E) :
   rw [Finset.sum_congr rfl fun i _ => Finset.sum_comm, Finset.sum_comm]
   exact Finset.sum_congr rfl fun l _ => Finset.sum_congr rfl fun i _ => Finset.sum_congr rfl fun k _ => by ring
 
-theorem plane_span {H : Plane E n n₁} {i₀ i₁ : ℕ} (h : H.IsAdapted σ B X X₁ i₀ i₁) (hL : X.L.IsFullLattice E) (z : Fin n → E) :
-    ∃ (s t : E) (u : Fin n₁ → E), z = s • H.x + H.ι *ᵥ u + t • H.y := by
-  have hz : z ∈ Submodule.span E (X.L : Set (Fin n → E)) := by rw [Submodule.IsFullLattice.span_eq_top (self := hL)]; trivial
-  induction hz using Submodule.span_induction with
-  | mem z hz =>
-    obtain ⟨s, t, u, -, -, -, e⟩ := h.split z hz
-    exact ⟨s, t, u, e⟩
-  | zero => exact ⟨0, 0, 0, by simp⟩
-  | add a b _ _ ha hb =>
-    obtain ⟨s, t, u, rfl⟩ := ha
-    obtain ⟨s', t', u', rfl⟩ := hb
-    exact ⟨s + s', t + t', u + u', by rw [add_smul, add_smul, mulVec_add]; abel⟩
-  | smul c a _ ha =>
-    obtain ⟨s, t, u, rfl⟩ := ha
-    exact ⟨c * s, c * t, c • u, by rw [mulVec_smul, mul_smul, mul_smul, smul_add, smul_add]⟩
-
 theorem vec_left (a : AF F) (ε : AE F E) (p : Fin n → E) (q : Fin d → E) :
     a • ε • incM F (vecMulVec p q) = vecMulVec (incV F p) (a • ε • incV F q) := by
   ext i j
@@ -324,33 +248,6 @@ theorem vec_left (a : AF F) (ε : AE F E) (p : Fin n → E) (q : Fin d → E) :
 theorem incV_mulVec (ι : Matrix (Fin n) (Fin n₁) E) (p : Fin n₁ → E) : incV F (ι *ᵥ p) = incM F ι *ᵥ incV F p := by
   funext i
   simp [incV, incM, mulVec, dotProduct]
-
-theorem vec_right (a : AF F) (ε : AE F E) (ι : Matrix (Fin n) (Fin n₁) E) (p : Fin n₁ → E) (q : Fin d → E) :
-    a • ε • incM F (vecMulVec (ι *ᵥ p) q) = vecMulVec (incM F ι *ᵥ (a • ε • incV F p)) (incV F q) := by
-  rw [mulVec_smul, mulVec_smul, ← incV_mulVec]
-  ext i j
-  simp only [incM, incV, Matrix.smul_apply, map_apply, vecMulVec_apply, Pi.smul_apply, smul_eq_mul, map_mul, smul_mul_assoc,
-    mul_assoc]
-
-theorem vec_mid (a : AF F) (ε : AE F E) (ι : Matrix (Fin n) (Fin n₁) E) (ι' : Matrix (Fin d) (Fin d₁) E) (p : Fin n₁ → E)
-    (q : Fin d₁ → E) : a • ε • incM F (vecMulVec (ι *ᵥ p) (ι' *ᵥ q)) =
-      incM F ι * (a • ε • incM F (vecMulVec p q)) * (incM F ι')ᵀ := by
-  have e : ∀ {a b : ℕ} (p : Fin a → E) (q : Fin b → E), incM F (vecMulVec p q) = vecMulVec (incV F p) (incV F q) := fun p q => by
-    ext i j
-    simp [incM, incV, vecMulVec_apply]
-  rw [Matrix.mul_smul, Matrix.mul_smul, Matrix.smul_mul, Matrix.smul_mul, e, e, incV_mulVec, incV_mulVec, mul_vecMulVec,
-    vecMulVec_mul, vecMul_transpose]
-
-theorem map_mulVec' (t : E →ₐ[F] Fv F v) (ι : Matrix (Fin n) (Fin n₁) E) (p : Fin n₁ → E) :
-    (fun i => t ((ι *ᵥ p) i)) = ι.map t *ᵥ fun i => t (p i) := by
-  funext i
-  simp [mulVec, dotProduct]
-
-theorem map_sgl (t : E →ₐ[F] Fv F v) (j : Fin n) : (fun i => t ((Pi.single j 1 : Fin n → E) i)) = Pi.single j 1 := by
-  funext i
-  by_cases h : i = j
-  · subst h; simp
-  · simp [h]
 
 theorem ev_zero (hL : LinEx) {r s r' s' : ℕ} (hB : B.IsGood σ) (hX : X.IsHerm σ B r s) (hW : W.IsSkew σ B r' s') {M : Model σ X W}
     (hM : M.IsGood B.ψ) (t : E →ₐ[F] Fv F v) (e : Fn F n d →ₗ[ℂ] Fn F n₁ d₁) {x : Fin n → E} (hx : x ≠ 0)
@@ -363,7 +260,7 @@ theorem ev_zero (hL : LinEx) {r s r' s' : ℕ} (hB : B.IsGood σ) (hX : X.IsHerm
   · exact fun h0 => hx (funext fun i => (map_eq_zero t).1 (congrFun h0 i))
   · funext j
     have := hC (x, Pi.single j 1, 0) ⟨rfl, rfl⟩
-    simp only [map_sgl] at this
+    simp only [PositivityTheory.ThKEnd.Comp.SoL.map_single] at this
     rwa [dotProduct_mulVec, dotProduct_single, mul_one] at this
 
 theorem x_ne {H : Plane E n n₁} {i₀ i₁ : ℕ} (h : H.IsAdapted σ B X X₁ i₀ i₁) : H.x ≠ 0 := fun e => by
@@ -425,21 +322,21 @@ theorem soEv_of (hL : LinEx) (hLow : Low) : SoEv := by
     · rw [hcomm _ _ _ _ (by rcases hq with rfl | ⟨q, rfl⟩; exacts [hH'.xx, hww q]), he.inv _ (Or.inl ⟨_, vec_left _ _ _ _⟩) _ hs]
       simp
     · cases h
-      rw [hcomm _ _ _ _ hH'.xx, he.inv _ (Or.inr ⟨_, vec_right _ _ _ _ _⟩) _ hs]
+      rw [hcomm _ _ _ _ hH'.xx, he.inv _ (Or.inr ⟨_, PositivityTheory.ThKEnd.Comp.SoL.vec_right _ _ _ _ _⟩) _ hs]
       simp
     · cases h
-      have hu : At (evFin F B.v₁) (liftV B.v₁ b • ε • incM F (vecMulVec p q)) := at_lift _ _
-      rw [hcomm _ _ _ _ (hww q), vec_mid, he.Heisenberg₂ _ _ hs, slice_rho M₀ B.ψ hu, mult' M₀ hB.std hι₀ hu
-        (by rw [← smul_assoc, map_vec _ _ (piW_inc _), Algebra.smul_def, map_mul, e2, mul_zero, zero_smul]) hx h0
+      have hu : At (evFin F B.v₁) (liftV B.v₁ b • ε • incM F (vecMulVec p q)) := PositivityTheory.ThKEnd.Comp.SoL.at_lift _ _
+      rw [hcomm _ _ _ _ (hww q), PositivityTheory.ThKEnd.Comp.SoL.vec_mid, he.Heisenberg₂ _ _ hs, slice_rho M₀ B.ψ hu, mult' M₀ hB.std hι₀ hu
+        (by rw [← smul_assoc, PositivityTheory.ThKEnd.Comp.SoL.map_vec _ _ (piW_inc _), Algebra.smul_def, map_mul, e2, mul_zero, zero_smul]) hx h0
         (slice_mem' (hsch Φ hΦ) z)]
       have k1 := hf x₀ (ε • incM F (vecMulVec p q)) hx h0
-      rw [map_vec _ _ (piW_inc _), e1, one_smul, trace_vec] at k1
-      rw [show symp _ _ _ _ _ _ = _ from sy_smul M₀ _ _ _, mul_comm (liftV _ _), mul_liftV, k1]
+      rw [PositivityTheory.ThKEnd.Comp.SoL.map_vec _ _ (piW_inc _), e1, one_smul, PositivityTheory.ThKEnd.Comp.SoL.trace_vec] at k1
+      rw [show symp _ _ _ _ _ _ = _ from PositivityTheory.ThKEnd.Comp.SoL.sy_smul M₀ _ _ _, mul_comm (liftV _ _), mul_liftV, k1]
   · have hrow : ∀ (w : Fin d → Fv F B.v₁) (w₁ : Fin d₁ → Fv F B.v₁), (∀ p : Fin n₁ → E, (H.ι.map t *ᵥ fun i => t (p i)) ⬝ᵥ C *ᵥ w =
         (fun i => t (p i)) ⬝ᵥ C₀ *ᵥ w₁) → (H.ι.map t *ᵥ c) ⬝ᵥ C *ᵥ w = 0 := fun w w₁ h => by
       have : (H.ι.map t)ᵀ *ᵥ C *ᵥ w = C₀ *ᵥ w₁ := funext fun i => by
         have := h (Pi.single i 1)
-        rwa [map_sgl, dotProduct_comm, dotProduct_mulVec, ← mulVec_transpose, dotProduct_single, single_dotProduct, mul_one,
+        rwa [PositivityTheory.ThKEnd.Comp.SoL.map_single, dotProduct_comm, dotProduct_mulVec, ← mulVec_transpose, dotProduct_single, single_dotProduct, mul_one,
           one_mul] at this
       rw [dotProduct_comm, dotProduct_mulVec, ← mulVec_transpose, this, dotProduct_comm, dotProduct_mulVec, hc1, zero_dotProduct]
     refine two_rows C (fun i => t (H.x i)) (H.ι.map t *ᵥ c) (fun j => t (H'.y j))
@@ -454,18 +351,18 @@ theorem soEv_of (hL : LinEx) (hLow : Low) : SoEv := by
       rw [← vecMul_transpose, vecMul_vecMul, g2] at g3
       by_contra hβ
       exact hc (eq_zero_of_vecMul_eq_zero (unit_map t (det_herm hX₁)).ne_zero ((smul_eq_zero.1 g3).resolve_left hβ))
-    · obtain ⟨α, β, u, ej⟩ := plane_span hH' hW.lat (Pi.single j 1)
+    · obtain ⟨α, β, u, ej⟩ := PositivityTheory.ThKEnd.Comp.SoL.plane_span hH' hW.lat (Pi.single j 1)
       refine ⟨t β, t α • (fun j => t (H'.x j)) + fun j => t ((H'.ι *ᵥ u) j), ?_, ?_, ?_⟩
       · rw [mulVec_add, mulVec_smul, dotProduct_add, dotProduct_smul, hC (H.x, H'.x, 0) (Or.inl ⟨rfl, Or.inl rfl, rfl⟩),
           hC (H.x, H'.ι *ᵥ u, 0) (Or.inl ⟨rfl, Or.inr ⟨u, rfl⟩, rfl⟩), smul_zero, add_zero]
       · have q1 := hrow (fun j => t (H'.x j)) 0 fun p => by
-          rw [← map_mulVec', mulVec_zero, dotProduct_zero]
+          rw [← PositivityTheory.ThKEnd.Comp.SoL.map_mulVec', mulVec_zero, dotProduct_zero]
           exact hC (H.ι *ᵥ p, H'.x, 0) (Or.inr (Or.inl ⟨p, rfl⟩))
         have q2 := hrow (fun j => t ((H'.ι *ᵥ u) j)) (fun j => t (u j)) fun p => by
-          rw [← map_mulVec' t H.ι]
+          rw [← PositivityTheory.ThKEnd.Comp.SoL.map_mulVec' t H.ι]
           exact hC (H.ι *ᵥ p, H'.ι *ᵥ u, _) (Or.inr (Or.inr ⟨p, u, rfl⟩))
         rw [mulVec_add, mulVec_smul, dotProduct_add, dotProduct_smul, q1, q2, smul_zero, add_zero]
-      · rw [← map_sgl t j, ej]
+      · rw [← PositivityTheory.ThKEnd.Comp.SoL.map_single t j, ej]
         funext i
         simp
 

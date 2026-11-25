@@ -1044,9 +1044,9 @@ namespace PositivityTheory.Rg.BcB.F
 
 theorem candTOut_holds2 : CandTOut :=
   candTOut_of (candS_of (Tail.rReadS_c RS.reading_module_holds _root_.PositivityTheory.Rg.BcB.F.RS.JB.joinMod_holds fun E _ _ _ => PositivityTheory.Rg.BcN.F2.LocOpPf.locOp3 E))
-    (candT_of (Tail.rReadT RS.reading_module_holds) (Tail.rExpRead' N3.Final.n3) RS.joinSat_holds)
-    (PCandLh.candLev_of (_root_.GlobalTheory.CompanionTheory.ReadLevel.rReadLev RS.reading_module_holds RS.join_module_holds) (Tail.rReadT RS.reading_module_holds)
-      (Tail.rExpRead' N3.Final.n3) RS.joinSat_holds)
+    (candT_of (Tail.rReadT RS.reading_module_holds) (Tail.rExpRead' N3.Final.n3) _root_.GlobalTheory.CompanionTheory.JoinSatPf.joinSat)
+    (PCandLh.candLev_of (_root_.GlobalTheory.CompanionTheory.ReadLevel.rReadLev RS.reading_module_holds _root_.PositivityTheory.Rg.BcB.F.RS.JB.joinMod_holds) (Tail.rReadT RS.reading_module_holds)
+      (Tail.rExpRead' N3.Final.n3) _root_.GlobalTheory.CompanionTheory.JoinSatPf.joinSat)
 
 end PositivityTheory.Rg.BcB.F
 end -- clump:auto

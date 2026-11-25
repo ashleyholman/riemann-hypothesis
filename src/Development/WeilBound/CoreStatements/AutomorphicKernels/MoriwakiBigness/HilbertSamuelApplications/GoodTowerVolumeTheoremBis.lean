@@ -1173,7 +1173,7 @@ theorem goodTower_volume_of_reduced : (PartI ∧ N1ab ∧ N1c ∧ ∀ (E : Type)
   have hOrd : GR.OrdinaryCurveStatement := _root_.GlobalTheory.CompanionTheory.Ar.Link.ordinaryCurveStatement
   have hFam : Num.FamilyExistsPos := _root_.GlobalTheory.CompanionTheory.Ar.Num.FamEx.familyExistsPos_holds hFHT hQ hZ hHTD hOrd
   have hCmpSt : Cmp.CmpSt := _root_.GlobalTheory.CompanionTheory.Relay.comparison_of_inputs_avoidance hPB hAvoid hResK
-  have hTied : HodgeComparisonCompatibility := _root_.PositivityTheory.UnitarySelfGeneration.cmpHodgeTiedAlt
+  have hTied : HodgeComparisonCompatibility := _root_.GlobalTheory.CompanionTheory.Ar.CmpTiedK.cmpHodgeTied
   have hPair : Cmp.CmpPair := _root_.GlobalTheory.CompanionTheory.Ar.Cmp.PairTop.cmpPair hPB hCmpSt hTied hTheta
   exact GlobalTheory.T.good_tower_volume_theorem hGiven hPts hAvoid hW hFam hPair
 

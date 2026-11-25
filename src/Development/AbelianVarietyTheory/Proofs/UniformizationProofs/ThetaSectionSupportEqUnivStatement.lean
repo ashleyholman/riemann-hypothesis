@@ -1356,7 +1356,7 @@ theorem supp_rel : Laws → Laws2 → (AllPre fun {V} _ _ _ {D} {A} {G} _ _ U =>
   obtain ⟨r, n, t, t', s, s', hr, hexp, hA, hAB⟩ := _root_.GlobalTheory.AddClosure.main hL hL2 V hV D A G U θ f hθ th s₀ hth hs₀
   obtain ⟨hth0, -, -⟩ := _root_.GlobalTheory.UU.OneDim.expF_one_dim hL hL2 V hV D A G U θ f hθ th s₀ hth hs₀
   obtain ⟨ex, hex, huniq, hsep, hsupp⟩ := GlobalTheory.T.exists_linear_fourierJacobi_expansion_family hL hL2 V hV D A G U (Kbar V) 2 (by norm_num)
-  obtain ⟨hcut, -, hinj⟩ := GlobalTheory.T.lineBundleSections_torusTorsion_weightSpaces hL hL2 V hV D A G U 2 (by norm_num)
+  obtain ⟨hcut, -, hinj⟩ := _root_.GlobalTheory.UU.Weight.main hL hL2 V hV D A G U 2 (by norm_num)
   obtain ⟨hon, hoff⟩ := GlobalTheory.T.additionTensor_abelianPart_ne_zero_iff V D (Kbar V) s₀ r n s s' hr hAB
   have hcV : CharZero V := hV.2.2
   have hchar : CharZero (FractionRing V) :=
@@ -1432,7 +1432,7 @@ theorem theta_support_eq_univ : Laws → Laws2 → (AllPre fun {V} _ _ _ {D} {A}
   intro h1 h2 V _ _ _ hV D A G _ _ U θ f hθ
   have hrel := GlobalTheory.T.thetaSupport_pair_iff_degreeTwo_sum_diff h1 h2 V hV D A G U θ f hθ
   have hodd := GlobalTheory.T.thetaExpansion_support_not_in_primeIndex_subgroup h1 h2 V hV D A G U θ f hθ
-  have hw := GlobalTheory.T.lineBundleSections_torusTorsion_weightSpaces h1 h2 V hV D A G U
+  have hw := _root_.GlobalTheory.UU.Weight.main h1 h2 V hV D A G U
   have hpull := GlobalTheory.UU.PullSec.pullEx V hV D A G U (Kbar V) (𝟙_ _) (toUnit _) 1
   obtain ⟨th, hth, -⟩ := hpull.1 θ
   obtain ⟨s₀, hs₀, -⟩ := hpull.2 f

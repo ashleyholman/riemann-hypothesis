@@ -1180,7 +1180,6 @@ section -- clump:auto
 
 namespace PositivityTheory.Rg.BcB.F.RS
 
-theorem joinSat_holds : JoinSat := GlobalTheory.CompanionTheory.JoinSatPf.joinSat
 
 theorem treeMod_of (h : JoinMod) : TreeMod := treeModOf_holds leafMod_holds GlobalTheory.CompanionTheory.NodeSep.nodeMod h
 

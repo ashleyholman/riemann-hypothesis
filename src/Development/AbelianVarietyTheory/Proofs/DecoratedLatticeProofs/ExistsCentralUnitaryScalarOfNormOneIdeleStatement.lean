@@ -131,8 +131,6 @@ open GlobalTheory.SeeSaw (idV dI FI)
 open ValuativeRel
 open GlobalTheory.Core.Mi.LatMatch
 
-theorem _root_.GlobalTheory.T.exists_centralUnitary_scalar_of_normOneIdele : ∀ (D : D7) (S : HSp D) (v : GlobalTheory.FinPl.Pl D) (c : AE D), NormOneAt v c → ∃ z : GA D S, CenAt S v z ∧ Formalism.L2.Theta.mt S z = c • (1 : Matrix (Fin S.rank) (Fin S.rank) (AE D)) := by
-  first | exact @GlobalTheory.Core.Mi.LatMatch.exists_cenAt_scalar
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ExistsCentralUnitaryScalarOfNormOneIdeleStatement =====

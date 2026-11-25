@@ -632,7 +632,7 @@ theorem etr_mem_adjoin_qdet' (A : Type) [Ring A] [Algebra ℂ A] (n : ℕ) (X : 
       have hmem : ∀ u, f u ∈ S := by
         intro u
         have h1 := _root_.GlobalTheory.TracedComatrix.traced_comatrix A m X hX u N
-        rw [← _root_.GlobalTheory.qdet_add_one_sub_eq_sum_qminor, sum_range_succ, Nat.sub_self, pow_zero, mul_one, mul_add] at h1
+        rw [← _root_.GlobalTheory.CapelliDiff.qdet_add_one_sub, sum_range_succ, Nat.sub_self, pow_zero, mul_one, mul_add] at h1
         have key : algebraMap ℂ A ((-1) ^ N) * f u = algebraMap ℂ A ((u - m) ^ (N + 1)) * (qdet X (u + 1) - qdet X u)
             - qdet X u * ∑ k ∈ range N, algebraMap ℂ A ((-1) ^ k * (u - m) ^ (N - k)) * etr X k := by
           simp only [f]

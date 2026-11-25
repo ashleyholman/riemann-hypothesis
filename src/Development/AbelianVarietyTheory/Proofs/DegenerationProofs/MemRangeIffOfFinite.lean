@@ -1591,7 +1591,7 @@ theorem near_of_unif (hV : HV) {Z : Scheme.{0}} {G₀ : Over Z} [GrpObj G₀] {L
   · exact (GlobalTheory.T.thetaTable_algClosed_complete_singleValued hL V A' _ ρ' p₁.2.2.1 m n r hm hn' th τF q₁).2
   · obtain ⟨e, u', hu'⟩ := IsDiscreteValuationRing.eq_unit_mul_pow_irreducible hu hϖ
     have he : HasVal ϖ (algebraMap V (FractionRing V) u) e := ⟨u', by simp [hu', mul_comm]⟩
-    refine GlobalTheory.T.uniformised_table_lattice_integral_families hL h₁ h₂ h₃ h₄ V hc ϖ hϖ D Q hQ _ v hv A' G hG U w₀ ρ' p₂ th ϑ p₃ p₄ m n hm hmV h3 hn hn' hnV O hO r cls
+    refine _root_.GlobalTheory.OneBasis.UnifLoc.main hL h₁ h₂ h₃ h₄ V hc ϖ hϖ D Q hQ _ v hv A' G hG U w₀ ρ' p₂ th ϑ p₃ p₄ m n hm hmV h3 hn hn' hnV O hO r cls
       b τF s _ p₈ p₉ q₁ q₂ d _ ?_
     have e₁ : (d : ℚ) * ∑ i, (Q (cls i) : ℚ) = C * e * (m ^ 2 : ℕ) := by exact_mod_cast hidx ϖ Q e hϖ hQ he cls mu p₇
     have e₂ : ((m ^ 2 : ℕ) : ℚ) ≠ 0 := by exact_mod_cast (by omega : m ^ 2 ≠ 0)

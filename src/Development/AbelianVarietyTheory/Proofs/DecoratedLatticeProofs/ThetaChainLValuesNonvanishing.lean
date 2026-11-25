@@ -2,7 +2,7 @@ module
 
 public import Development.AbelianVarietyTheory.Definitions.LatticeFrames.ParBoundW
 public import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ThetaChainCharQuotientLFunctionEntireNeZeroStatement
-public import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ThetaLiftChainHeckeParameterTwistNextTargetCharStatement
+public import Development.AbelianVarietyTheory.Proofs.DecoratedLatticeProofs.ThetaLiftChainHeckeParameterTwistNextTargetChar
 import Mathlib.Tactic.Linter.Style
 
 @[expose] public section

@@ -96,7 +96,7 @@ private theorem etr_mem_adjoin_range_qdet (A : Type) [Ring A] [Algebra ℂ A] (m
     rw [eq_sub_of_add_eq' key, sub_right_comm, add_sub_cancel_right]
     refine S.sub_mem (S.mul_mem (hq u) (S.sum_mem fun k hk => S.mul_mem (S.algebraMap_mem _)
       (ih k (Finset.mem_range.mp hk)))) (S.mul_mem (S.algebraMap_mem _) ?_)
-    rw [← _root_.GlobalTheory.qdet_add_one_sub_eq_sum_qminor A m E u]
+    rw [← _root_.GlobalTheory.CapelliDiff.qdet_add_one_sub A m E u]
     exact S.sub_mem (hq _) (hq _)
   have h1 : ∀ i j : Fin (m + 1), ∃ v : ℕ → A, v (m + 1) = 0 ∧ ∀ u : ℂ,
       (((-1 : ℤ) ^ ((i : ℕ) + (j : ℕ)) : ℤ) : A) * qminor E j.succAbove i.succAbove u * epow E (N + 1) j i

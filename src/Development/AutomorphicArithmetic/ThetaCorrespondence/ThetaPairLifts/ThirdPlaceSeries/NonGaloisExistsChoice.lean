@@ -1402,7 +1402,7 @@ theorem exists_local_component_at_place_alt (hCo : GlobalTheory.Published.Discre
     exact hcl'
   refine (_root_.GlobalTheory.LiftClassSumTwist.thF_eq_classSum D X j _ hB hBo _ _ hg ha (H.tup ι hι) _ hω _ _ hcl u).elim fun z hz => hz.elim fun a₀ hz => ?_
   obtain ⟨hz, ha₀, hth⟩ := hz
-  refine (GlobalTheory.T.classSums_conjugate_twists_conjugate_expansions D X j _ hB _ _ hg hg' ha (_root_.GlobalTheory.PlaceTup.has_local_tuples_at_place_alt hCo hCW hHM hP D X X0 Y S YS Z c w j H ι hι τ hfix _ hg' hcj) u cc κ hu hc hκ τ hfb hfd
+  refine (_root_.GlobalTheory.PlaceClassSum.classSum_conj_place D X j _ hB _ _ hg hg' ha (_root_.GlobalTheory.PlaceTup.has_local_tuples_at_place_alt hCo hCW hHM hP D X X0 Y S YS Z c w j H ι hι τ hfix _ hg' hcj) u cc κ hu hc hκ τ hfb hfd
     hcj _ _ hω hω').elim fun ζ hζ => ?_
   obtain ⟨hζ, hcs⟩ := hζ
   obtain ⟨hinj, hrange⟩ := GlobalTheory.T.definiteComplexForms_eq_twistComplexForms_fockModel D X X0 Y S YS Z c w j H ι hι u hu

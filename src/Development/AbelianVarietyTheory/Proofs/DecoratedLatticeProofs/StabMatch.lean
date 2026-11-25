@@ -446,7 +446,7 @@ theorem sMoves_of_wShape : ∀ (D : D7) (k : Type) [Field k] [ValuativeRel k] [T
   intro D k _ _ _ _ p S S₀ A Ln ρ d o ζ L L' N N' α α' β β' γ δ c₀ a₀ hζ hL hL' hW hW' hN hc₀ hb hb' hd
   obtain ⟨c, hc, hpc⟩ := _root_.GlobalTheory.Core.Mi.LatMatch.exists_normOneAt_pr D k p c₀ hc₀
   obtain ⟨c', hc', hpc'⟩ := _root_.GlobalTheory.Core.Mi.LatMatch.exists_normOneAt_pr D k p c₀⁻¹ (inv_ne_zero hc₀)
-  obtain ⟨a, haC, ha⟩ := GlobalTheory.T.exists_centralUnitary_scalar_of_normOneIdele D A p.v c' hc'
+  obtain ⟨a, haC, ha⟩ := _root_.GlobalTheory.Core.Mi.LatMatch.exists_cenAt_scalar D A p.v c' hc'
   refine ⟨a, c, haC, hc, ?_⟩
   apply GlobalTheory.T.normOneHomothety_carries_selfDual_of_splitComponent D k p S L L' c _ hL hL' hc
   set f : D.host.E →+* k := p.pr.comp (incA D) with hf
@@ -1275,7 +1275,7 @@ theorem rows_shape (hE : GlobalTheory.Core.Mi.IdE X) (hF : B.FrameAt μ lam) :
     ∀ v, LineAt (vecB B.o B.ζ) μ (coreLat B.d (latS D)) v := by
   obtain ⟨h1, h2, h3, h4⟩ := _root_.GlobalTheory.Core.Mi.LatMatch.latS_rescaled_frame D X h u ψ _ B μ lam hE hF
   obtain ⟨h5, h6⟩ := _root_.GlobalTheory.Core.Mi.LatMatch.selfDual_core_monoAt D _ _ _ B.d (latS D) h1 h2
-  obtain ⟨h7, -, h8⟩ := GlobalTheory.T.besselLevelLineVector_primitive_rowLattice_norm D X h u ψ _ B μ lam hE hF
+  obtain ⟨h7, -, h8⟩ := _root_.GlobalTheory.Core.Mi.LatMatch.sz_tied D X h u ψ _ B μ lam hE hF
   refine ⟨h1, h5, h6, fun v i => ?_, fun v i => ?_, fun v a ha => ?_⟩
   · rw [← GlobalTheory.T.rowLineIdeal_eq_inverseDifferent_pow D i]
     exact line_loc h1 (col_e_ne B.d i) (scl_ne hF i) (h3 i) v
@@ -1306,7 +1306,7 @@ theorem loc_of_core (hψ : IsStdChar D ψ (-1)) (hE : GlobalTheory.Core.Mi.IdE X
   obtain ⟨p1, p2⟩ := _root_.GlobalTheory.Core.Mi.LatMatch.primAt_lastAt_of_lines D ψ hψ _ _ _ B.d (vecB B.o B.ζ) (latS D) _ μ v hF.ne (s6 v) (fun i x hx => by
     rw [s4 v i x hx, GlobalTheory.Core.SBesEx.scl, mul_comm μ, map_mul, mul_assoc, pow_mul_mem_iff hg hl])
   exact ⟨a, c, ha, hc, _root_.GlobalTheory.Core.Mi.LatMatch.homothetic_of_monomial_primitive_selfDual_cores D ψ _ _ _ B.d (vecB B.o B.ζ) L (latS D) M _ v c _ hL s1 hM
-    (GlobalTheory.T.besselLevelLineVector_primitive_rowLattice_norm D X h u ψ _ B μ lam hE hF).2.2 h1 (s3 v) h2 p1 h3 p2 hc (emb_fix _ _ _) hm⟩
+    (_root_.GlobalTheory.Core.Mi.LatMatch.sz_tied D X h u ψ _ B μ lam hE hF).2.2 h1 (s3 v) h2 p1 h3 p2 hc (emb_fix _ _ _) hm⟩
 
 theorem loc_level (hE : GlobalTheory.Core.Mi.IdE X) (hF : B.FrameAt μ lam) (hM : Formalism.L2.SG.ColDict.LevelMatch X tr hK)
     (hA : B.Adapted tr.wt) (h0 : IsTransportAdelicCorrection tr a₀) {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace k]
@@ -1320,7 +1320,7 @@ theorem loc_level (hE : GlobalTheory.Core.Mi.IdE X) (hF : B.FrameAt μ lam) (hM 
     ∃ (a : GA D (D.sp.X 0)) (c : AE D), CenAt (D.sp.X 0) p.v a ∧ NormOneAt p.v c ∧
       SMoves (D.sp.Y 0) c (embA B.d B.o (a₀ * a)) L (latS D) p.v := by
   obtain ⟨s1, s2, s3, s4, s5, s6⟩ := rows_shape hE hF
-  obtain ⟨-, z2, -⟩ := GlobalTheory.T.besselLevelLineVector_primitive_rowLattice_norm D X h u ψ _ B μ lam hE hF
+  obtain ⟨-, z2, -⟩ := _root_.GlobalTheory.Core.Mi.LatMatch.sz_tied D X h u ψ _ B μ lam hE hF
   have hS := _root_.GlobalTheory.Core.Mi.LatMatch.wShape_of_mono D k p _ _ _ _ _ B.d B.o B.ζ (latS D) _ N (fun i => GlobalTheory.Core.SBesEx.scl μ lam i)
     (fun i => (star (GlobalTheory.Core.SBesEx.scl μ lam i))⁻¹) μ a₀ (s3 _)
     (fun i x hx => by rw [s4 _ i x hx, (_root_.GlobalTheory.Core.Mi.LatMatch.idV_dI_pow_unit D k p hp _ _).1]) (fun i x hx => by rw [s5 _ i x hx, (_root_.GlobalTheory.Core.Mi.LatMatch.idV_dI_pow_unit D k p hp _ _).2])

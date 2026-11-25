@@ -306,14 +306,3 @@ theorem ampFrames_pull (E : Type) [Field E] [NumberField E] [IsCMField E] (H : H
 end GlobalTheory.AmpPull
 
 end
-
-section
-open AlgebraicGeometry CategoryTheory Limits MonoidalCategory CartesianMonoidalCategory MonObj NumberField
-open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
-open scoped CategoryTheory.Obj TensorProduct Pointwise
-open GlobalTheory.Models GlobalTheory.ZM
-
-theorem GlobalTheory.AmpPull.ampFrames_pull_of_isAffineHom : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E] (H : Host E) (Z Z' : Scheme.{0}) (t : SAB H Z) (t' : SAB H Z') (f : Z' ⟶ Z) (_ : SABMap t' t f) (N : ℕ) (A : GlobalTheory.LN.AmpFrames t.G t.PP.L N), IsAffineHom f → ∃ A' : GlobalTheory.LN.AmpFrames t'.G t'.PP.L N, A'.r = A.r ∧ A'.s = A.s :=
-  GlobalTheory.AmpPull.ampFrames_pull
-
-end

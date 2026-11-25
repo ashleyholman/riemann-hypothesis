@@ -966,7 +966,7 @@ theorem inBig_bf {ρ : ℕ} {B : BesLev D ρ} {J : JacLev D ρ} (s : StepBF ψ B
     (sd : IsSelfDualC J.W LW) {Φ : WO B.V J.W → ℂ} (hΦ : Vac ψ B.V J.W LV LW P Φ) {g : GA D B.V} {h : GA D J.W}
     (hg : InBig B.V (besGrp B.d B.o) LV P g) (hne : flatBF s (s.om (g, h) Φ) ≠ 0) : InBig J.W (jacGrp J.d) LW P h := by
   obtain ⟨r, hr, -, g', hg', κ, hκ, rfl⟩ := hg
-  obtain ⟨h1, h2⟩ := _root_.GlobalTheory.FinPl.suppFirst_all D ψ ρ B J s LV LV₀ LW LW₀ P good unr sd Φ hΦ
+  obtain ⟨h1, h2⟩ := _root_.GlobalTheory.FinPl.suppFirst_holds D ψ ρ B J s LV LV₀ LW LW₀ P good unr sd Φ hΦ
   refine (h2 g' hg').1 h (flatBF_src_ne s (s.weil.om_pres _ _ hΦ.1) hr ?_)
   have e : s.om (r * g' * κ, h) Φ = s.om (r, 1) (s.om (g', h) (s.om (κ, 1) Φ)) := by
     rw [← om_mul, ← om_mul, one_mul, mul_one]

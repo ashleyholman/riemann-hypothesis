@@ -1623,7 +1623,7 @@ theorem rowsAD_in_setting_alt : Hypotheses₂ → ∀ (D : D7) (L : SizeData₂ 
   have hst1 : TruncatedSeriesCountingIdentities.IntegralityFromMetric D := _root_.GlobalTheory.LocalisationBoundAtPoint.boundAtPoint_all_localisations_of_objectConditions hP.artin hP.bk hP.tate hP.euler D hS.facts.duties.2.2.1
   have h78 := _root_.GlobalTheory.splitCase_bound_at_point_of_admitted_items hP.artin hP.tate hP.euler D
   have hG2 : ∀ i, D.nd.l i ∉ TwistedPlaces.gset D → ∀ π ∈ D.nd.Zgood i, TruncatedSeriesCountingIdentities.admG2 i (X.r i) (X.ρ i) π :=
-    fun i hi π hπ => (_root_.GlobalTheory.T.set_pt_of_setup_not_twisted hP D L P nch HW F Cm X C₂ hS i hi π hπ).2.1
+    fun i hi π hπ => (_root_.GlobalTheory.SetPtOff.main_alt_alt hP D L P nch HW F Cm X C₂ hS i hi π hπ).2.1
   refine ⟨_root_.GlobalTheory.NLink.starAD_of_global D L HW X (rowC C₂) hS.canon.data hstep hst1 h78 hG2 hS.kill hS.sha, ?_⟩
   have h := _root_.GlobalTheory.NLink.BBSize.main D L P HW X (rowC C₂) 120 (by norm_num) hS.canon.data
     (_root_.GlobalTheory.NSizes.main_alt_alt hP D L P nch HW F Cm X C₂ hS)

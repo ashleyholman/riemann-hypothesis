@@ -891,7 +891,7 @@ theorem moment_step : HypsG → ∀ (k r : ℕ) (Wp : Type) [NormedAddCommGroup 
       · rw [_root_.GlobalTheory.MomentParseval.sum_herm_sq k r _ dualM _ Q 1 _ hF hQ.2 _ hx]
         exact (GlobalTheory.TensLen.lengths k r z hG.1 hG.2.1 _ hx).2.1
       · simp only [hy]
-        exact GlobalTheory.T.tensor_bessel_transfer hK k r _ _ dualM (Formalism.QuantumDeterminants.Hpk k r) 1 (R ν) (fun s => R (ν - Pi.single s 1)) io pr _ _ _
+        exact _root_.Gp91.GlobalTheory.herm_smul_eq_sum_of_tensRaw hK k r _ _ dualM (Formalism.QuantumDeterminants.Hpk k r) 1 (R ν) (fun s => R (ν - Pi.single s 1)) io pr _ _ _
           Wp _ (l ν) (fun s => l (ν - Pi.single s 1)) _ hDS hDSs hT.raw hBe.1.1 hBe.1.2.1 hdual _ w w.2 _ hx)
     (fun d s => by positivity)
     (fun d s => hind s _ (by rw [param_sub_single]; exact (hlev d).1 s))

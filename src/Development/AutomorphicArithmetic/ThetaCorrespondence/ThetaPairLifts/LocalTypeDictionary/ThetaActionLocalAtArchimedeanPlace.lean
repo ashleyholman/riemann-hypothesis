@@ -80,13 +80,3 @@ theorem theta_action_local_at_archimedean_place : _root_.GlobalTheory.FunPr.Thet
 end GlobalTheory.ArchLocality
 end
 end
-
-section
-open GlobalTheory.IndefiniteRowSideFullHecke.WeilTensorModels NumberField IsDedekindDomain Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes GlobalTheory.WeilM GlobalTheory.AdelicU GlobalTheory.LFun
-
-theorem _root_.GlobalTheory.T.theta_action_archimedean_locality : _root_.GlobalTheory.FunPr.ThetaLocalInputs → ∀ {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E] {σ : E →ₐ[F] E}
-    {n d : ℕ} {X : Spc F E n} {W : Spc F E d} (M : Model σ X W) (ψ : AddChar (AF F) ℂ) (χX χW : Chr F E) (om : Rep σ X W),
-    IsCMExt F E σ → IsStd ψ → M.IsWeil ψ χX χW om →
-    ∀ h ∈ UAt σ W (evI F), ∀ f : SInf F (Fin n × Fin d), ∃ f₁ : SInf F (Fin n × Fin d), Acts (evI F) (om (1, h)) f f₁ := by
-  first | exact @_root_.GlobalTheory.ArchLocality.theta_action_local_at_archimedean_place
-end

@@ -1295,7 +1295,7 @@ theorem isFinite_of_isProper (h1 : Out.Laws) (h2 : Out.Laws2) {R : Type} [CommRi
   obtain ⟨a, -⟩ := exists_comp m' mU rfl
   obtain ⟨b, -⟩ := exists_comp m' mM rfl
   obtain ⟨b', -⟩ := exists_cancel mV b (morphismRestrict_ι u V.1)
-  obtain ⟨A', -⟩ := _root_.GlobalTheory.AmpPull.ampFrames_pull_of_isAffineHom E H Z _ t t' _ a N A ha
+  obtain ⟨A', -⟩ := _root_.GlobalTheory.AmpPull.ampFrames_pull E H Z _ t t' _ a N A ha
   exact _root_.GlobalTheory.FrameFinite.isFinite_of_ampFrames h1 h2 E H _ _ (((u ⁻¹ᵁ V.1).ι ≫ U.ι) ≫ z) t' tV (u ∣_ V.1) b' N A' hN
     (isNormalScheme_of_open ((u ⁻¹ᵁ V.1).ι ≫ U.ι) hn) inferInstance (isProper_pull b hp) ((pol_of_map b hp).1 am)
     ((pol_of_map b hp).2 kt) inferInstance

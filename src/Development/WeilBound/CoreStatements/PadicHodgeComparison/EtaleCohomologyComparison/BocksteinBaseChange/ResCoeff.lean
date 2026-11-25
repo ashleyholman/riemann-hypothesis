@@ -92,7 +92,7 @@ theorem red_mk (m : ℕ) (x : WittVector l k) : red l k m (Ideal.Quotient.mk _ x
   Ideal.Quotient.factor_mk _ x
 
 theorem dp_red (m : ℕ) : IsDPMorphism (pd l k (m + 1)) (pd l k m) (red l k m) :=
-  RL.pd_mor _ _ _ _ _ _ (RingHom.id _) _ Ideal.Quotient.mk_surjective (pdI_l l (witt_unit l k)) (isPd l k _) (isPd l k _)
+  _root_.GlobalTheory.CompanionTheory.PdMor.isDPMorphism_of_isPd _ _ _ _ _ _ (RingHom.id _) _ Ideal.Quotient.mk_surjective (pdI_l l (witt_unit l k)) (isPd l k _) (isPd l k _)
     (fun _ hx => hx) fun _ => rfl
 
 variable {k} {O : Type} [CommRing O] (F : B.Fn O) (ρ : O →+* k)

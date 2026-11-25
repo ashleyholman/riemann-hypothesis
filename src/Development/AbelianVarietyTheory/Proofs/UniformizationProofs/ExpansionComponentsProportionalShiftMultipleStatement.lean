@@ -81,7 +81,7 @@ theorem components_proportional : Laws → Laws2 → (AllPre fun {V} _ _ _ {D} {
   obtain ⟨Φ, e, hfr, hθ, hmul, hcomm, hnd⟩ :=
     GlobalTheory.ThetaRep.exists_projective_rep hL hL2 _ A (Kbar V) (jFK (R := V) (Kbar V)) N hNF
   obtain ⟨m, hm, hact, -⟩ := GlobalTheory.UU.Eqv.main hL hL2 V hV D A G U N hN
-  obtain ⟨hw1, hw2, hw3⟩ := GlobalTheory.T.lineBundleSections_torusTorsion_weightSpaces hL hL2 V hV D A G U N hN
+  obtain ⟨hw1, hw2, hw3⟩ := _root_.GlobalTheory.UU.Weight.main hL hL2 V hV D A G U N hN
   have huniq := GlobalTheory.UU.ExpFUniq.main V hV D A G U (Kbar V) N
   choose xp hxp using GlobalTheory.UU.ExpTotal.expF_total hL hL2 V hV D A G U (Kbar V) N hN
   have hcA := (hL.mulN _ A N hN).2.2.2.2 (Kbar V) (jFK (R := V) (Kbar V)) hNF

@@ -104,7 +104,7 @@ theorem main_succ (V : Type) [AddCommGroup V] [Module ℂ V] (m : ℕ)
   have hrec : ∀ w : ℂ, (w - m) ^ (N + 1) * (P.eval (w + 1) - P.eval w) - P.eval w * ∑ k ∈ range (N + 1), (-1) ^ k * (w - m) ^ (N - k) * gelfVal χ k = (C (-(-1) ^ N) * Rp).eval w := by
     intro w
     have h1 := congrArg (fun T : Module.End ℂ V => φ (T v)) (_root_.GlobalTheory.TracedComatrix.traced_comatrix (Module.End ℂ V) m E hE w N)
-    rw [← _root_.GlobalTheory.qdet_add_one_sub_eq_sum_qminor, hR] at h1
+    rw [← _root_.GlobalTheory.CapelliDiff.qdet_add_one_sub, hR] at h1
     have h2 : (qdet E w * ∑ k ∈ range (N + 1), algebraMap ℂ (Module.End ℂ V) ((-1) ^ k * (w - m) ^ (N - k)) * etr E k) v
         = (∑ k ∈ range (N + 1), (-1) ^ k * (w - m) ^ (N - k) * gelfVal χ k) • qdet E w v := by
       rw [Module.End.mul_apply, LinearMap.sum_apply]

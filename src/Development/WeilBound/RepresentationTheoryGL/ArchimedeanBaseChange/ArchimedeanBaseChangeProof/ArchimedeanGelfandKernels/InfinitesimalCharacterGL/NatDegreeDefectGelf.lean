@@ -144,7 +144,7 @@ theorem natDegree_defect_op (V : Type) [AddCommGroup V] [Module ℂ V] (m : ℕ)
   have key : defect t m N Q = -(C ((-1 : ℂ) ^ N) * Rp) := by
     refine Polynomial.funext fun w => ?_
     have h1 := congrArg (fun T : Module.End ℂ V => f (T v)) (_root_.GlobalTheory.TracedComatrix.traced_comatrix (Module.End ℂ V) m M hM w N)
-    rw [← _root_.GlobalTheory.qdet_add_one_sub_eq_sum_qminor, hR] at h1
+    rw [← _root_.GlobalTheory.CapelliDiff.qdet_add_one_sub, hR] at h1
     have h2 : (qdet M w * ∑ k ∈ range (N + 1), algebraMap ℂ (Module.End ℂ V) ((-1) ^ k * (w - m) ^ (N - k)) * etr M k) v
         = (∑ k ∈ range (N + 1), (-1) ^ k * (w - m) ^ (N - k) * t k) • qdet M w v := by
 

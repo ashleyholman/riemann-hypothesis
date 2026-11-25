@@ -143,7 +143,7 @@ theorem lam0_mem_of_mem_fil0_one (hb : TFBase γ l s) (lam : Acris l →+* A)
     rw [Fil0, Ideal.span_le]
     rintro _ ⟨k, hk, rfl⟩
     refine mem_of_fact_mul hb k _ ?_
-    rw [← map_natCast (lam0 lam), ← map_mul, (RL.filtration_multiplicative (base l)).2.2.1 k, map_pow]
+    rw [← map_natCast (lam0 lam), ← map_mul, (_root_.GlobalTheory.CompanionTheory.FilMul.main (base l)).2.2.1 k, map_pow]
     refine Ideal.pow_mem_of_mem _ ?_ _ hk
     rw [show (base l).xi = (base l).sW (xi0 l) from rfl, lam0_algebraMap_sW_eq_lam_algebraMap]
     exact hξ

@@ -25,6 +25,7 @@ public import Development.WeilBound.CoreStatements.HodgeTatePoints.GermCompOneAs
 public import Development.WeilBound.CoreStatements.HodgeTatePoints.CdFrame
 public import Development.WeilBound.CoreStatements.HodgeTatePoints.Comp1IdentityLeft
 public import Formalism.SharpRestriction.Divisibility.GeneratorPowers.FBMapPf
+import Development.WeilBound.CoreStatements.HodgeTatePoints.ActGeneratorZero
 import Formalism.SharpRestriction.Divisibility.GeneratorPowers.ThetaSwapFirstTwo
 public import Development.WeilBound.CoreStatements.HodgeTatePoints.IsPullbackWhisker
 import Mathlib.Tactic.Linter.Style
@@ -40,7 +41,7 @@ import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.ExistsGenOfIsV
 -- Members: Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.ActGeneratorZero, Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.CompListProd, Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.EqMulInversePow, Development.AutomorphicSpectrum.Proofs.GeometryProofs.ExistsGermSystem, Development.AutomorphicSpectrum.Proofs.GeometryProofs.ExistsGermSystemStatement
 
 -- ===== clump member: Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.ActGeneratorZero =====
--- clump-header: {"m": "Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.ActGeneratorZero", "h": "module\n\npublic import Formalism.SharpRestriction.Divisibility.GeneratorPowers.FBIdAd\npublic import Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.GermComp1ZeroPointLeft\npublic import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.ToFirst\npublic import Development.WeilBound.CoreStatements.HodgeTatePoints.CdUniv\npublic import Formalism.SharpRestriction.Divisibility.GeneratorPowers.FrRatio\npublic import Formalism.SharpRestriction.Divisibility.GeneratorPowers.GermBPf\nimport Formalism.SharpRestriction.Divisibility.GeneratorPowers.GermDJet\nimport Formalism.SharpRestriction.Divisibility.GeneratorPowers.ThetaSwapFirstTwo\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.CubicalLawRight\nimport ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.DiscreteValuationRings.LBPull\nimport ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.DiscreteValuationRings.PullFEPf\npublic import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.DifBijectiveOfParam\npublic import Formalism.SharpRestriction.Divisibility.GeneratorPowers.GermBFr\n\n"}
+-- clump-header: {"m": "Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.ActGeneratorZero", "h": "module\n\npublic import Formalism.SharpRestriction.Divisibility.GeneratorPowers.FBIdAd\npublic import Development.AutomorphicSpectrum.Definitions.CommutativeAlgebra.GermComp1ZeroPointLeft\npublic import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.ToFirst\npublic import Development.WeilBound.CoreStatements.HodgeTatePoints.CdUniv\npublic import Formalism.SharpRestriction.Divisibility.GeneratorPowers.FrRatio\npublic import Formalism.SharpRestriction.Divisibility.GeneratorPowers.GermBPf\nimport Development.WeilBound.CoreStatements.HodgeTatePoints.ActGeneratorZero\nimport Formalism.SharpRestriction.Divisibility.GeneratorPowers.GermDJet\nimport Formalism.SharpRestriction.Divisibility.GeneratorPowers.ThetaSwapFirstTwo\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.BirationalGeometry.ToroidalCompactification.CubicalLawRight\nimport ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.DiscreteValuationRings.LBPull\nimport ReciprocityTheory.ReductiveGroups.ArithmeticGeometry.DiscreteValuationRings.PullFEPf\npublic import Development.AbelianVarietyTheory.Proofs.UnitaryExistence.DifBijectiveOfParam\npublic import Formalism.SharpRestriction.Divisibility.GeneratorPowers.GermBFr\n\n"}
 section -- clump:auto
 @[expose] public section
 
@@ -68,27 +69,7 @@ theorem aug_jQ {k : ℕ} (m : ℕ) (b : Fin k → Q S d n) :
   jet_hom_ext fun s => by
     rw [AlgHom.comp_apply, jQ_X, aug_psJet, GermB.jetAug_X]; exact (b s.1).2 s.2
 
-theorem trunc_jQ {k : ℕ} (m : ℕ) (b : Fin k → Q S d n) :
-    (jetTrunc : Jet S (Fin n × Fin d) (m + 1) →ₐ[S] _).comp (jQ (m + 1) b) = (jQ m b).comp jetTrunc :=
-  jet_hom_ext fun s => by
-    rw [AlgHom.comp_apply, jQ_X, FrRatio.psJet_trunc, AlgHom.comp_apply, jetTrunc_mk, jQ_X]
-
-theorem act_generator_zero (A : Q S d 1) : ac A (gen 0) = A :=
-  Subtype.ext (funext fun i => (congrArg (sb · (A.1 i)) (funext fun j => by fin_cases j; rfl)).trans (sb_gen _))
-
-theorem ac_zero (A : Q S d 1) : ac A (0 : Q S d n) = 0 := Subtype.ext (funext fun i => by
-  have e := TB.LogPf.ev_zeroFam (n := n) (A.1 i)
-  rw [A.2 i, map_zero] at e
-  exact ((sb_apply _ _).trans (congrArg (ev · (A.1 i)) (funext fun j => by fin_cases j; rfl))).trans e)
-
 variable (g g₂ : GermAt t x d)
-
-theorem PP_inj {u v : Q S d n} (h : ∀ m, PP m g.x u = PP m g.x v) : u = v := by
-  refine Subtype.ext (funext fun i => ps_ext fun m => ?_)
-  have := (coord_aug g (jetAug : Jet S (Fin n × Fin d) m →ₐ[S] S) (ker_aug_pow _ m) (PP m g.x u) (by
-    rw [PP, ← Category.assoc, homAt_comp, aug_jQ, g.chart.zero])).unique ⟨aug_jQ m ![u], rfl⟩ ⟨aug_jQ m ![v], h m⟩
-  have e := AlgHom.congr_fun this (Ideal.Quotient.mk _ (MvPolynomial.X ((0 : Fin 1), i)))
-  rwa [jQ_X, jQ_X] at e
 
 theorem exists_coord : ∃ φ : Q S d 1, ∀ m, g₂.x m = PP m g.x φ := by
   choose χ hχ using fun m => (coord_aug g (jetAug : Jet S (Fin 1 × Fin d) m →ₐ[S] S) (ker_aug_pow _ m) (g₂.x m)
@@ -118,28 +99,6 @@ theorem exists_coord : ∃ φ : Q S d 1, ∀ m, g₂.x m = PP m g.x φ := by
 variable {g g₂} {φ : Q S d 1} (hφ : ∀ m, g₂.x m = PP m g.x φ)
 include hφ
 
-theorem PP_coord (m : ℕ) (u : Q S d n) : PP m g₂.x u = PP m g.x (ac φ u) := by
-  rw [PP, hφ, PP_sq]; rfl
-
-theorem coord_op (u v : Q S d n) : ac φ (op (FQ g₂.B.G) u v) = op (FQ g.B.G) (ac φ u) (ac φ v) :=
-  PP_inj g fun m => by rw [← PP_coord hφ, PP_op g₂.chart, PP_op g.chart, PP_coord hφ, PP_coord hφ]
-
-theorem coord_ac (a : 𝓞 E) (u : Q S d n) : ac φ (ac (AQ g₂.B.A a) u) = ac (AQ g.B.A a) (ac φ u) :=
-  PP_inj g fun m => by rw [← PP_coord hφ, PP_ac g₂.chart, PP_ac g.chart, PP_coord hφ]
-
-theorem coord_inv {ψ : Q S d 1} (hψ : ∀ m, g.x m = PP m g₂.x ψ) : comp1 φ.1 ψ.1 = pt S (n := 1) d 0 := by
-  have : ac φ (ac ψ (gen 0)) = (gen 0 : Q S d 1) := PP_inj g fun m => by rw [← PP_coord hφ, ← PP_coord hψ]
-  rw [act_generator_zero] at this
-  exact (ac_val φ ψ).symm.trans (congrArg Subtype.val this)
-
-theorem coord_tan (l : Fin d) : IsCombAtG t x g.tg (fun j => lin φ.1 1 j l) (g₂.tg l) := by
-  have e : jetSubstP 1 (fun p : Fin 1 × Fin d => psTrunc 1 (φ.1 p.2)) = jQ 1 ![φ] :=
-    subst_eq 1 _ ![φ] (fun s => by obtain ⟨j, s⟩ := s; fin_cases j; rfl)
-      (fun s => (FBIdPh.cc_psTrunc 1 _).trans (φ.2 _))
-  have e₂ : (fun j => lin φ.1 1 j l) = (lin φ.1 1).mulVec (Pi.single l 1) := by
-    funext j; simp
-  rw [comb_iff, tg_eq, tv_gd, tv_gd, hφ, PP, ← e, GlobalTheory.ChartCompare.hcomp, vec_subst, e₂]
-
 
 omit hφ in
 abbrev vE (g : GermAt t x d) (m : ℕ) {Z : Scheme.{0}} (r : Z ⟶ Sp (Jet S (Fin 2 × Fin d) m)) (z : Z)
@@ -160,7 +119,7 @@ def LamEq (g g₂ : GermAt t x d) (φ : Q S d 1) (lam : PS S 2 d) : Prop :=
 theorem exists_lam : ∃ lam : PS S 2 d, LamEq g g₂ φ lam := by
   let b : Fin 2 → Q S d 2 := bb φ
   have hb : ∀ m (i : Fin 2), homAt x (jQ m b) ≫ jptG t x d g.x m i = jptG t x d g₂.x m i := fun m i => by
-    rw [PP_gen, PP_gen, PP_sq, sq_gen, PP_coord hφ]
+    rw [PP_gen, PP_gen, PP_sq, sq_gen, PositivityTheory.HtPt.Cd.PP_coord hφ]
     fin_cases i <;> rfl
   obtain ⟨lam, hlam⟩ := GermB.exists_series t x d (n := 2)
     (fun m => cφG t ![jptG t x d g₂.x m (0 : Fin 2), jptG t x d g₂.x m (1 : Fin 2)]) (cε 2) _ (cε 2)
@@ -174,7 +133,7 @@ theorem exists_lam : ∃ lam : PS S 2 d, LamEq g g₂ φ lam := by
     (fun m y J hJ => by
       have hs : (GermB.ρn x d 2 m).left ≫ (homAt x (jQ (m + 1) b)).left =
           (𝟙 _ ≫ (homAt x (jQ m b)).left) ≫ (GermB.ρn x d 2 m).left := by
-        rw [Category.id_comp, ← Over.comp_left, ← Over.comp_left, homAt_comp, homAt_comp, trunc_jQ]
+        rw [Category.id_comp, ← Over.comp_left, ← Over.comp_left, homAt_comp, homAt_comp, PositivityTheory.HtPt.Cd.trunc_jQ]
       exact (val_pull hJ (g.e (m + 1)) _ _).trans ((congrArg (fun r => val (g.e (m + 1)) r y J) hs).trans
         ((val_pull hJ (g.e (m + 1)) _ _).symm.trans ((val_corr hJ (g.trunc m) _).trans (val_pull hJ (g.e m) _ _).symm))))
   refine ⟨lam, fun m => ?_⟩
@@ -201,41 +160,6 @@ theorem LamEq.dL {lam : PS S 2 d} (hl : LamEq g g₂ φ lam) {n m} {y : (jOG x d
     (h _ _ y J hJ).trans (congrArg₂ (· * ·) rfl e₀)
   exact hc.symm.trans (congrArg Units.val (eq_mul_inv_of_mul_eq k.symm))
 
-omit hφ in
-theorem exists_dA (hs : ∀ a : 𝓞 E, star a = H.bar a) (g : GermAt t x d) (a : 𝓞 E) :
-    ∃ wL : LB.Gen (LB.LinComb t.PP.L
-      (Sum.elim (cφG t ![fst t.G t.G, snd t.G t.G ≫ t.act.act (H.bar a)])
-        (cφG t ![fst t.G t.G ≫ t.act.act a, snd t.G t.G]))
-      (Sum.elim (cε 2) fun I => -cε 2 I)), wL.IsGen ∧
-      (∀ {n m} {y : (jOG x d m n).left} {J}, Good t.PP.L y J → ∀ u v : Q S d n, VV m y (E2 (g.B.ad a) u v) =
-        (val₂ wL y J (PP m g.x u) (PP m g.x v) * ee g.x g.e y J (ac (AQ g.B.A a) u) v *
-          (ee g.x g.e y J u (ac (AQ g.B.A (star a)) v))⁻¹).val) ∧
-      ∀ {n m} {y : (jOG x d m n).left} {J}, Good t.PP.L y J → val₂ wL y J (1 : jOG x d m n ⟶ t.G) 1 = 1 := by
-  obtain ⟨wL, hw, hU⟩ := g.frame.ad a
-  have dA : ∀ {n m} {y : (jOG x d m n).left} {J}, Good t.PP.L y J → ∀ u v : Q S d n, VV m y (E2 (g.B.ad a) u v) =
-        (val₂ wL y J (PP m g.x u) (PP m g.x v) * ee g.x g.e y J (ac (AQ g.B.A a) u) v *
-          (ee g.x g.e y J u (ac (AQ g.B.A (star a)) v))⁻¹).val := fun {n m y J} hJ u v => by
-    obtain ⟨U, h₁, h₂⟩ := hU m
-    rw [hs]; exact dict_ad hJ a wL U h₁ h₂ u v
-  refine ⟨wL, hw, dA, fun {n m y J} hJ => ?_⟩
-  have k := dA hJ 0 0
-  have z : E2 (g.B.ad a) (0 : Q S d n) 0 = 1 := by
-    have e : E2 (g.B.ad a) (0 : Q S d 1) (gen 0) = 1 := (formalSeriesValueAtTwoPoints_eq_ev _ _ _).trans (g.B.adjoint_zero_fst a)
-    have := congrArg (sb ![(0 : Q S d n)]) e
-    rwa [formalPointSubstitutionSeries_valueAtTwoPoints, map_one, map_zero, sq_gen] at this
-  rw [z, VV_one, ac0, ac0, mul_inv_cancel_right, PP_zero g.chart] at k
-  exact Units.ext k.symm
-
-omit hφ in
-theorem val₂_eq (hp : PowFns t) {K : Type} [Fintype K] {ξ : K → ((t.G ⊗ t.G).left ⟶ t.G.left)} {ε : K → ℤ}
-    {w w' : LB.Gen (LB.LinComb t.PP.L ξ ε)} (hw : w.IsGen) (hw' : w'.IsGen) {T : Over X0} {z : T.left} {J}
-    (hJ : Good t.PP.L z J) (h : val₂ w z J (1 : T ⟶ t.G) 1 = 1) (h' : val₂ w' z J (1 : T ⟶ t.G) 1 = 1)
-    (p q : T ⟶ t.G) : val₂ w z J p q = val₂ w' z J p q := by
-  have key := ratio_pow (hp 3).2 t.PP.isLB (fun U _ h => rfl)
-    (pullGen_isGen _ _ _ _ hw (lift (powPr t.G (0 : Fin 3)) (powPr t.G (2 : Fin 3))).left)
-    (pullGen_isGen _ _ _ _ hw' (lift (powPr t.G (0 : Fin 3)) (powPr t.G (2 : Fin 3))).left) p p q hJ
-  simpa only [val_ros _ _ hJ, tup_0, tup_2, h, h', _root_.mul_one] using key
-
 
 theorem iso_of_coord (hs : ∀ a : 𝓞 E, star a = H.bar a) (hp : PowFns t) {ψ : Q S d 1}
     (hψ : ∀ m, g.x m = PP m g₂.x ψ) {lam : PS S 2 d} (hl : LamEq g g₂ φ lam) :
@@ -248,24 +172,24 @@ theorem iso_of_coord (hs : ∀ a : 𝓞 E, star a = H.bar a) (hp : PowFns t) {ψ
     (formalSeriesValueAtTwoPoints_eq_ev f (gen 0) (gen 1)).symm.trans (formalSeriesValueAtTwoPoints_genericPoints f)
   have g3 : ∀ f : PS S 3 d, ev (n := 3) ![pt S d 0, pt S d 1, pt S d 2] f = f := fun f =>
     (formalSeriesValueAtThreePoints_eq_ev f (gen 0) (gen 1) (gen 2)).symm.trans (formalSeriesValueAtThreePoints_genericPoints f)
-  refine ⟨φ.2, ψ.2, coord_inv hφ hψ, coord_inv hψ hφ, ⟨?_, ?_⟩, ?_, fun a => ?_, ?_, ?_, ?_, fun a => ?_⟩
+  refine ⟨φ.2, ψ.2, PositivityTheory.HtPt.Cd.coord_inv hφ hψ, PositivityTheory.HtPt.Cd.coord_inv hψ hφ, ⟨?_, ?_⟩, ?_, fun a => ?_, ?_, ?_, ?_, fun a => ?_⟩
   · have : E2 lam (0 : Q S d 1) (gen 0) = 1 := VV_ext (x0 := x) hL fun m y J hJ => by
-      rw [dL hJ, VV_one, ac_zero, (dict_ax hJ g.axes _).1, (dict_ax hJ g₂.axes _).1]; simp
+      rw [dL hJ, VV_one, PositivityTheory.HtPt.Cd.ac_zero, (dict_ax hJ g.axes _).1, (dict_ax hJ g₂.axes _).1]; simp
     exact (formalSeriesValueAtTwoPoints_eq_ev lam (0 : Q S d 1) (gen 0)).symm.trans this
   · have : E2 lam (gen 0 : Q S d 1) 0 = 1 := VV_ext (x0 := x) hL fun m y J hJ => by
-      rw [dL hJ, VV_one, ac_zero, (dict_ax hJ g.axes _).2, (dict_ax hJ g₂.axes _).2]; simp
+      rw [dL hJ, VV_one, PositivityTheory.HtPt.Cd.ac_zero, (dict_ax hJ g.axes _).2, (dict_ax hJ g₂.axes _).2]; simp
     exact (formalSeriesValueAtTwoPoints_eq_ev lam (gen 0 : Q S d 1) 0).symm.trans this
-  · have := congrArg Subtype.val (coord_op hφ (gen 0 : Q S d 2) (gen 1))
+  · have := congrArg Subtype.val (PositivityTheory.HtPt.Cd.coord_op hφ (gen 0 : Q S d 2) (gen 1))
     simpa only [op_val, ac_val, gen_val] using this
-  · have := coord_ac hφ a (gen 0 : Q S d 1)
-    rw [act_generator_zero, act_generator_zero] at this
+  · have := PositivityTheory.HtPt.Cd.coord_ac hφ a (gen 0 : Q S d 1)
+    rw [PositivityTheory.HtPt.Cd.act_generator_zero, PositivityTheory.HtPt.Cd.act_generator_zero] at this
     simpa only [ac_val] using congrArg Subtype.val this
   · have : E3 g₂.B.ph1 (gen 0 : Q S d 3) (gen 1) (gen 2) * E2 lam (op (FQ g₂.B.G) (gen 0) (gen 1)) (gen 2) =
         E2 lam (gen 0) (gen 2) * E2 lam (gen 1) (gen 2) *
           E3 g.B.ph1 (ac φ (gen 0)) (ac φ (gen 1)) (ac φ (gen 2)) := VV_ext (x0 := x) hL fun m y J hJ => by
       simp only [VV_mul, frame_biext_dictionary_first_partial_law hJ g.frame, frame_biext_dictionary_first_partial_law hJ g₂.frame, dL hJ, ← Units.val_mul]
       refine congrArg Units.val (Additive.ofMul.injective ?_)
-      simp only [PP_coord hφ, coord_op hφ, ofMul_mul, ofMul_inv]
+      simp only [PositivityTheory.HtPt.Cd.PP_coord hφ, PositivityTheory.HtPt.Cd.coord_op hφ, ofMul_mul, ofMul_inv]
       abel
     simpa only [formalSeriesValueAtTwoPoints_eq_ev, formalSeriesValueAtThreePoints_eq_ev, op_val, ac_val, gen_val, g3] using this
   · have : E3 g₂.B.ph2 (gen 0 : Q S d 3) (gen 1) (gen 2) * E2 lam (gen 0) (op (FQ g₂.B.G) (gen 1) (gen 2)) =
@@ -273,7 +197,7 @@ theorem iso_of_coord (hs : ∀ a : 𝓞 E, star a = H.bar a) (hp : PowFns t) {ψ
           E3 g.B.ph2 (ac φ (gen 0)) (ac φ (gen 1)) (ac φ (gen 2)) := VV_ext (x0 := x) hL fun m y J hJ => by
       simp only [VV_mul, frame_biext_dictionary_second_partial_law hJ g.frame, frame_biext_dictionary_second_partial_law hJ g₂.frame, dL hJ, ← Units.val_mul]
       refine congrArg Units.val (Additive.ofMul.injective ?_)
-      simp only [PP_coord hφ, coord_op hφ, ofMul_mul, ofMul_inv]
+      simp only [PositivityTheory.HtPt.Cd.PP_coord hφ, PositivityTheory.HtPt.Cd.coord_op hφ, ofMul_mul, ofMul_inv]
       abel
     simpa only [formalSeriesValueAtTwoPoints_eq_ev, formalSeriesValueAtThreePoints_eq_ev, op_val, ac_val, gen_val, g3] using this
   · have : E2 g₂.B.sy (gen 0 : Q S d 2) (gen 1) * E2 lam (gen 0) (gen 1) =
@@ -283,15 +207,15 @@ theorem iso_of_coord (hs : ∀ a : 𝓞 E, star a = H.bar a) (hp : PowFns t) {ψ
       simp only [ofMul_mul, ofMul_inv]
       abel
     simpa only [formalSeriesValueAtTwoPoints_eq_ev, formalSeriesValueAtThreePoints_eq_ev, op_val, ac_val, gen_val, g2] using this
-  · obtain ⟨w, hw, dA, h1⟩ := exists_dA hs g a
-    obtain ⟨w₂, hw₂, dA₂, h1₂⟩ := exists_dA hs g₂ a
+  · obtain ⟨w, hw, dA, h1⟩ := PositivityTheory.HtPt.Cd.exists_dA hs g a
+    obtain ⟨w₂, hw₂, dA₂, h1₂⟩ := PositivityTheory.HtPt.Cd.exists_dA hs g₂ a
     have : E2 (g₂.B.ad a) (gen 0 : Q S d 2) (gen 1) * E2 lam (gen 0) (ac (AQ g₂.B.A (star a)) (gen 1)) =
         E2 lam (ac (AQ g₂.B.A a) (gen 0)) (gen 1) * E2 (g.B.ad a) (ac φ (gen 0)) (ac φ (gen 1)) :=
       VV_ext (x0 := x) hL fun m y J hJ => by
         simp only [VV_mul, dA hJ, dA₂ hJ, dL hJ, ← Units.val_mul]
         refine congrArg Units.val (Additive.ofMul.injective ?_)
-        simp only [PP_coord hφ, coord_ac hφ, ofMul_mul, ofMul_inv]
-        rw [val₂_eq hp hw₂ hw hJ (h1₂ hJ) (h1 hJ)]
+        simp only [PositivityTheory.HtPt.Cd.PP_coord hφ, PositivityTheory.HtPt.Cd.coord_ac hφ, ofMul_mul, ofMul_inv]
+        rw [PositivityTheory.HtPt.Cd.val₂_eq hp hw₂ hw hJ (h1₂ hJ) (h1 hJ)]
         abel
     simpa only [formalSeriesValueAtTwoPoints_eq_ev, formalSeriesValueAtThreePoints_eq_ev, op_val, ac_val, gen_val, g2] using this
 
@@ -541,7 +465,7 @@ end -- clump:auto
 -- ===== end clump member: Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.CompListProd =====
 
 -- ===== clump member: Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.EqMulInversePow =====
--- clump-header: {"m": "Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.EqMulInversePow", "h": "module\n\npublic import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.GermSys\npublic import Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.ActGeneratorZero\npublic import Development.WeilBound.CoreStatements.HodgeTatePoints.CdChart\npublic import Development.WeilBound.CoreStatements.HodgeTatePoints.CdUniv\npublic import Development.WeilBound.CoreStatements.HodgeTatePoints.GermCompOneAssocOfConstantCoeffZero\npublic import Formalism.LocalToGlobal.ProjectiveLattices.ChartDirectionsIntegral\npublic import Development.WeilBound.CoreStatements.HodgeTatePoints.CdFrame\npublic import Development.WeilBound.CoreStatements.HodgeTatePoints.Comp1IdentityLeft\npublic import Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.CompListProd\nimport Formalism.SharpRestriction.Divisibility.GeneratorPowers.ChartJetTrA\nimport Formalism.SharpRestriction.Divisibility.GeneratorPowers.FBIdJet\npublic import Formalism.SharpRestriction.Divisibility.GeneratorPowers.FBMapPf\npublic import Development.WeilBound.CoreStatements.HodgeTatePoints.IsPullbackWhisker\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Development.AutomorphicSpectrum.Definitions.AdelicLattices.FactPrimes\nimport Development.AutomorphicSpectrum.Definitions.GlobalGeometry.ExistsGenOfIsVBOne\n\n"}
+-- clump-header: {"m": "Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.EqMulInversePow", "h": "module\n\npublic import Development.AutomorphicSpectrum.Definitions.GlobalGeometry.GermSys\npublic import Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.ActGeneratorZero\npublic import Development.WeilBound.CoreStatements.HodgeTatePoints.CdChart\npublic import Development.WeilBound.CoreStatements.HodgeTatePoints.CdUniv\npublic import Development.WeilBound.CoreStatements.HodgeTatePoints.GermCompOneAssocOfConstantCoeffZero\npublic import Formalism.LocalToGlobal.ProjectiveLattices.ChartDirectionsIntegral\npublic import Development.WeilBound.CoreStatements.HodgeTatePoints.CdFrame\npublic import Development.WeilBound.CoreStatements.HodgeTatePoints.Comp1IdentityLeft\npublic import Development.WeilBound.CoreStatements.TorusUniformisation.ChowMahlerFamilies.CompListProd\nimport Development.WeilBound.CoreStatements.HodgeTatePoints.ActGeneratorZero\nimport Formalism.SharpRestriction.Divisibility.GeneratorPowers.ChartJetTrA\nimport Formalism.SharpRestriction.Divisibility.GeneratorPowers.FBIdJet\npublic import Formalism.SharpRestriction.Divisibility.GeneratorPowers.FBMapPf\npublic import Development.WeilBound.CoreStatements.HodgeTatePoints.IsPullbackWhisker\nimport Mathlib.Algebra.Order.Floor.Extended\nimport Mathlib.Algebra.Order.Floor.Semifield\nimport Mathlib.Algebra.Order.Interval.Basic\nimport Mathlib.Analysis.Complex.UpperHalfPlane.Basic\nimport Mathlib.Analysis.Normed.Algebra.GelfandRadius\nimport Mathlib.Analysis.SpecialFunctions.Bernstein\nimport Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp\nimport Mathlib.Combinatorics.Enumerative.DyckWord\nimport Mathlib.Combinatorics.SimpleGraph.Triangle.Removal\nimport Mathlib.Data.NNRat.Floor\nimport Mathlib.Geometry.Euclidean.Volume.Basic\nimport Mathlib.NumberTheory.Chebyshev\nimport Mathlib.NumberTheory.Height.NumberField\nimport Mathlib.NumberTheory.Height.Projectivization\nimport Mathlib.NumberTheory.LucasLehmer\nimport Mathlib.NumberTheory.SelbergSieve\nimport Mathlib.RingTheory.Radical.NatInt\nimport Mathlib.RingTheory.WittVector.IsPoly\nimport Mathlib.Tactic.Echelon.Zsqrtd\nimport Mathlib.Tactic.Inclusion.Extension.Core.Core\nimport Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp\nimport Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic\nimport Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses\nimport Mathlib.Tactic.Linter.Style\nimport Mathlib.Tactic.NormNum.Irrational\nimport Mathlib.Tactic.NormNum.IsCoprime\nimport Mathlib.Tactic.NormNum.IsSquare\nimport Mathlib.Tactic.NormNum.LegendreSymbol\nimport Mathlib.Tactic.NormNum.ModEq\nimport Mathlib.Tactic.NormNum.NatFib\nimport Mathlib.Tactic.NormNum.NatLog\nimport Mathlib.Tactic.NormNum.NatSqrt\nimport Mathlib.Tactic.NormNum.Ordinal\nimport Mathlib.Tactic.NormNum.Parity\nimport Mathlib.Tactic.NormNum.Prime\nimport Mathlib.Tactic.NormNum.RealSqrt\nimport Mathlib.Tactic.Polynomial.Basic\nimport Mathlib.Tactic.ReduceModChar\nimport Development.AutomorphicSpectrum.Definitions.AdelicLattices.FactPrimes\nimport Development.AutomorphicSpectrum.Definitions.GlobalGeometry.ExistsGenOfIsVBOne\n\n"}
 section -- clump:auto
 @[expose] public section
 
@@ -754,10 +678,10 @@ theorem Cmp.iso (hs : ∀ a : 𝓞 E, star a = H.bar a) (hp : PowFns t) {g g₂ 
 theorem Cmp.trans (hs : ∀ a : 𝓞 E, star a = H.bar a) (hp : PowFns t) {g g₂ g₃ : GermAt t x d}
     {φ ψ φ' ψ' φ'' ψ'' : Q S d 1} {lam lam' lam'' : PS S 2 d} (c : Cmp g g₂ φ ψ lam) (c' : Cmp g₂ g₃ φ' ψ' lam')
     (c'' : Cmp g g₃ φ'' ψ'' lam'') : transH φ''.1 ψ''.1 lam'' = transH φ.1 ψ.1 lam ∘ₗ transH φ'.1 ψ'.1 lam' := by
-  have e₁ : φ'' = ac φ φ' := PP_inj g fun m => by rw [← c''.hφ, ← PP_coord c.hφ, ← c'.hφ]
-  have e₂ : ψ'' = ac ψ' ψ := PP_inj g₃ fun m => by rw [← c''.hψ, ← PP_coord c'.hψ, ← c.hψ]
-  have e₃ : ∀ u : Q S d 2, ac φ'' u = ac φ (ac φ' u) := fun u => PP_inj g fun m => by
-    rw [← PP_coord c''.hφ, ← PP_coord c.hφ, ← PP_coord c'.hφ]
+  have e₁ : φ'' = ac φ φ' := PositivityTheory.HtPt.Cd.PP_inj g fun m => by rw [← c''.hφ, ← PositivityTheory.HtPt.Cd.PP_coord c.hφ, ← c'.hφ]
+  have e₂ : ψ'' = ac ψ' ψ := PositivityTheory.HtPt.Cd.PP_inj g₃ fun m => by rw [← c''.hψ, ← PositivityTheory.HtPt.Cd.PP_coord c'.hψ, ← c.hψ]
+  have e₃ : ∀ u : Q S d 2, ac φ'' u = ac φ (ac φ' u) := fun u => PositivityTheory.HtPt.Cd.PP_inj g fun m => by
+    rw [← PositivityTheory.HtPt.Cd.PP_coord c''.hφ, ← PositivityTheory.HtPt.Cd.PP_coord c.hφ, ← PositivityTheory.HtPt.Cd.PP_coord c'.hφ]
   have e₄ : E2 lam'' (gen 0 : Q S d 2) (gen 1) =
       E2 lam' (gen 0) (gen 1) * E2 lam (ac φ' (gen 0)) (ac φ' (gen 1)) :=
     VV_ext (x0 := x) t.PP.isLB fun m y J hJ => by
@@ -890,7 +814,7 @@ theorem key_dir {f : S →+* S₂} {g : GermAt t x d} {g₀ gq : GermAt t x₂ d
     {lam : PS S₂ 2 d} (c : Cmp g₀ gq φ ψ lam) (l : Fin d) :
     ((lieM g₀).pt ((lin φ.1 1).mulVec (Pi.single l 1))).left =
       spMap (_root_.GlobalTheory.CompanionTheory.Ar.dualMap f) ≫ g.tg l := by
-  have := (comb_iff g₀ _ _).1 (coord_tan c.hφ l)
+  have := (comb_iff g₀ _ _).1 (PositivityTheory.HtPt.Cd.coord_tan c.hφ l)
   have e₂ : (fun j => lin φ.1 1 j l) = (lin φ.1 1).mulVec (Pi.single l 1) := by
     funext j; simp
   rw [e₂, h.tg] at this

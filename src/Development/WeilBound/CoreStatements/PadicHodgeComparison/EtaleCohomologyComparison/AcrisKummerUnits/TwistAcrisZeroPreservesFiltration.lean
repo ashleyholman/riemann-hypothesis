@@ -52,17 +52,17 @@ alias mkAcr_surjective := _root_.GlobalTheory.CompanionTheory.PerfFil.GradedFilt
 
 theorem dpow_dxi (n k : ℕ) : (A.pdFil n).dpow k (A.dxi n 1) = A.dxi n k :=
   (A.isPd_pdFil n).2 k _ _ (Ideal.subset_span ⟨1, le_rfl, rfl⟩) (by
-    have h1 := (RL.filtration_multiplicative A).2.2.1 1
+    have h1 := (_root_.GlobalTheory.CompanionTheory.FilMul.main A).2.2.1 1
     rw [Nat.factorial_one, Nat.cast_one, one_mul, pow_one] at h1
-    rw [(RL.filtration_multiplicative A).2.2.1 k, h1])
+    rw [(_root_.GlobalTheory.CompanionTheory.FilMul.main A).2.2.1 k, h1])
 
 theorem dpow_mem_fil (n k : ℕ) {x : A.Acr n} (hx : x ∈ A.Fil n 1) : (A.pdFil n).dpow k x ∈ A.Fil n k := by
   rcases Nat.eq_zero_or_pos k with rfl | hk
-  · rw [(RL.filtration_multiplicative A).2.2.2.2.2.2.1]; trivial
-  rw [(RL.filtration_multiplicative A).2.2.2.2.1] at hx
+  · rw [(_root_.GlobalTheory.CompanionTheory.FilMul.main A).2.2.2.2.2.2.1]; trivial
+  rw [(_root_.GlobalTheory.CompanionTheory.FilMul.main A).2.2.2.2.1] at hx
   obtain ⟨x, hx', rfl⟩ := (Ideal.mem_map_iff_of_surjective _ (A.mkAcr_surjective n)).1 hx
   obtain ⟨y, -, hy⟩ := (RL.pdi A).1 x hx' k hk.ne'
-  rw [(A.isPd_pdFil n).2 k x y hx' hy, (RL.filtration_multiplicative A).2.2.2.2.1]
+  rw [(A.isPd_pdFil n).2 k x y hx' hy, (_root_.GlobalTheory.CompanionTheory.FilMul.main A).2.2.2.2.1]
   exact Ideal.mem_map_of_mem _ ((RL.pdi A).2.2 x hx' k y hy)
 
 variable {A} {B : PAlg l}
@@ -83,40 +83,40 @@ theorem twist_acrisZero_preserves_filtration (f : A ⟶ B) (r : ℕ) : ∀ x ∈
   exact this
 
 theorem dp_mapAcr (f : A ⟶ B) (n : ℕ) : DividedPowers.IsDPMorphism (A.pdFil n) (B.pdFil n) (mapAcr f n) :=
-  RL.pd_mor _ _ _ _ _ _ (pdOk_hom f).acr0 _ (A.mkAcr_surjective n) (RL.pdi A).1 (A.isPd_pdFil n) (B.isPd_pdFil n)
+  _root_.GlobalTheory.CompanionTheory.PdMor.isDPMorphism_of_isPd _ _ _ _ _ _ (pdOk_hom f).acr0 _ (A.mkAcr_surjective n) (RL.pdi A).1 (A.isPd_pdFil n) (B.isPd_pdFil n)
     (twist_acrisZero_preserves_filtration f 1) fun _ => rfl
 
 theorem dpP_mapAcr (f : A ⟶ B) (n : ℕ) : DividedPowers.IsDPMorphism (A.pdPFil n) (B.pdPFil n) (mapAcr f n) :=
-  RL.pd_mor _ _ _ _ _ _ (pdOk_hom f).acr0 _ (A.mkAcr_surjective n) (RL.pdi A).2.1 (A.isPd_pdPFil n) (B.isPd_pdPFil n)
+  _root_.GlobalTheory.CompanionTheory.PdMor.isDPMorphism_of_isPd _ _ _ _ _ _ (pdOk_hom f).acr0 _ (A.mkAcr_surjective n) (RL.pdi A).2.1 (A.isPd_pdPFil n) (B.isPd_pdPFil n)
     ((pdOk_hom f).acris_positive_filtration fun x hx => Ideal.mem_sup_right (twist_acrisZero_preserves_filtration f 1 x hx)) fun _ => rfl
 
 variable (A)
 
 theorem dp_fil_pfil (n : ℕ) : DividedPowers.IsDPMorphism (A.pdFil n) (A.pdPFil n) (RingHom.id _) :=
-  RL.pd_mor _ _ _ _ _ _ (RingHom.id _) _ (A.mkAcr_surjective n) (RL.pdi A).1 (A.isPd_pdFil n) (A.isPd_pdPFil n)
+  _root_.GlobalTheory.CompanionTheory.PdMor.isDPMorphism_of_isPd _ _ _ _ _ _ (RingHom.id _) _ (A.mkAcr_surjective n) (RL.pdi A).1 (A.isPd_pdFil n) (A.isPd_pdPFil n)
     (fun x hx => Ideal.mem_sup_right hx) fun _ => rfl
 
 theorem dp_red {m n : ℕ} (h : n ≤ m) : DividedPowers.IsDPMorphism (A.pdFil m) (A.pdFil n) (A.red h) :=
-  RL.pd_mor _ _ _ _ _ _ (RingHom.id _) _ (A.mkAcr_surjective m) (RL.pdi A).1 (A.isPd_pdFil m) (A.isPd_pdFil n)
+  _root_.GlobalTheory.CompanionTheory.PdMor.isDPMorphism_of_isPd _ _ _ _ _ _ (RingHom.id _) _ (A.mkAcr_surjective m) (RL.pdi A).1 (A.isPd_pdFil m) (A.isPd_pdFil n)
     (fun x hx => hx) fun _ => rfl
 
 theorem dpP_red {m n : ℕ} (h : n ≤ m) : DividedPowers.IsDPMorphism (A.pdPFil m) (A.pdPFil n) (A.red h) :=
-  RL.pd_mor _ _ _ _ _ _ (RingHom.id _) _ (A.mkAcr_surjective m) (RL.pdi A).2.1 (A.isPd_pdPFil m) (A.isPd_pdPFil n)
+  _root_.GlobalTheory.CompanionTheory.PdMor.isDPMorphism_of_isPd _ _ _ _ _ _ (RingHom.id _) _ (A.mkAcr_surjective m) (RL.pdi A).2.1 (A.isPd_pdPFil m) (A.isPd_pdPFil n)
     (fun x hx => hx) fun _ => rfl
 
 theorem dpP_phi (n : ℕ) : DividedPowers.IsDPMorphism (A.pdPFil n) (A.pdPFil n) (A.phi n) :=
-  RL.pd_mor _ _ _ _ _ _ A.pdOk_frob.acr0 _ (A.mkAcr_surjective n) (RL.pdi A).2.1 (A.isPd_pdPFil n) (A.isPd_pdPFil n)
+  _root_.GlobalTheory.CompanionTheory.PdMor.isDPMorphism_of_isPd _ _ _ _ _ _ A.pdOk_frob.acr0 _ (A.mkAcr_surjective n) (RL.pdi A).2.1 (A.isPd_pdPFil n) (A.isPd_pdPFil n)
     (fun x hx => Ideal.mem_sup_left ((_root_.GlobalTheory.CompanionTheory.TwFil.tw_fil A (1 : Gal(PadicAlgCl l/(⊥ : IntermediateField ℚ_[l] (PadicAlgCl l))))).2.1 x hx))
     fun _ => rfl
 
 theorem dp_twAcr (σ : Gal(PadicAlgCl l/K)) (n : ℕ) :
     DividedPowers.IsDPMorphism ((tw σ A).pdFil n) (A.pdFil n) (twAcr σ A n) :=
-  RL.pd_mor _ _ _ _ _ _ (pdOk_twId σ A).acr0 _ ((tw σ A).mkAcr_surjective n) (RL.pdi _).1 ((tw σ A).isPd_pdFil n)
+  _root_.GlobalTheory.CompanionTheory.PdMor.isDPMorphism_of_isPd _ _ _ _ _ _ (pdOk_twId σ A).acr0 _ ((tw σ A).mkAcr_surjective n) (RL.pdi _).1 ((tw σ A).isPd_pdFil n)
     (A.isPd_pdFil n) (_root_.GlobalTheory.CompanionTheory.TwFil.tw_fil A σ).1 fun _ => rfl
 
 theorem dpP_twAcr (σ : Gal(PadicAlgCl l/K)) (n : ℕ) :
     DividedPowers.IsDPMorphism ((tw σ A).pdPFil n) (A.pdPFil n) (twAcr σ A n) :=
-  RL.pd_mor _ _ _ _ _ _ (pdOk_twId σ A).acr0 _ ((tw σ A).mkAcr_surjective n) (RL.pdi _).2.1 ((tw σ A).isPd_pdPFil n)
+  _root_.GlobalTheory.CompanionTheory.PdMor.isDPMorphism_of_isPd _ _ _ _ _ _ (pdOk_twId σ A).acr0 _ ((tw σ A).mkAcr_surjective n) (RL.pdi _).2.1 ((tw σ A).isPd_pdPFil n)
     (A.isPd_pdPFil n) ((pdOk_twId σ A).acris_positive_filtration fun x hx => Ideal.mem_sup_right ((_root_.GlobalTheory.CompanionTheory.TwFil.tw_fil A σ).1 x hx)) fun _ => rfl
 
 def baseTw (σ : Gal(PadicAlgCl l/K)) : base l ⟶ tw σ (base l) := (tw σ (base l)).fromBase
