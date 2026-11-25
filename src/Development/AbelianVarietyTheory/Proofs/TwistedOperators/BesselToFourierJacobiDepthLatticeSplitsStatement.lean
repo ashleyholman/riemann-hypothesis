@@ -189,46 +189,15 @@ theorem auxiliaryCoordinate_mem_staircaseIdeal {A B : HSp D} {c : ℕ} {ε : D.h
   · have : antiDiagonalSignGramMatrix c ε r r.rev = 1 := by
       have := r.2
       simp only [antiDiagonalSignGramMatrix, Fin.val_rev]
-      rw [if_pos (by omega), if_neg (fun h => hr (by rw [Fin.ext_iff, Fin.val_rev] at h; omega))]
+      rw [ite_eq_left (by omega), ite_eq_right (fun h => hr (by rw [Fin.ext_iff, Fin.val_rev] at h; omega))]
     rw [this, one_mul]; exact hv _
   · intro q _ hq
     have : antiDiagonalSignGramMatrix c ε r q = 0 := by
       have := r.2; have := q.2
       simp only [antiDiagonalSignGramMatrix]
-      rw [if_neg (fun h => hq (by rw [Fin.ext_iff, Fin.val_rev]; omega))]
+      rw [ite_eq_right (fun h => hq (by rw [Fin.ext_iff, Fin.val_rev]; omega))]
     rw [this, zero_mul]
   · intro h; exact absurd (Finset.mem_univ _) h
-
-theorem negPair_colsOf {n c k : ℕ} (G : Matrix (Fin n) (Fin n) D.host.E) (hG : ∀ i j, star (G j i) = G i j)
-    (a : Matrix (Fin n) (Fin c) D.host.E) (f : Fin k → Fin c) (w : Fin k → D.host.E) (s : Fin n → D.host.E) (p : Fin k) :
-    ∑ j, (∑ l, star (s l) * (-G) l j) * colsOf a f w j p = -(w p * star (((aᴴ * G) *ᵥ s) (f p))) := by
-  simp only [colsOf, mulVec, dotProduct, Matrix.mul_apply, conjTranspose_apply, star_sum, star_mul', star_star, hG,
-    Matrix.neg_apply, Finset.mul_sum, Finset.sum_mul, ← Finset.sum_neg_distrib]
-  conv_rhs => rw [Finset.sum_comm]
-  exact Finset.sum_congr rfl fun j _ => Finset.sum_congr rfl fun i _ => by ring
-
-theorem entry_rankOne {m n k l : ℕ} (q : Matrix (Fin k) (Fin m) D.host.E) (e : Matrix (Fin n) (Fin l) D.host.E) (a : D.host.E)
-    (t : Fin m → D.host.E) (g : Fin n → D.host.E) (p : Fin k) (p' : Fin l) :
-    (q * Matrix.of (fun i j => a * t i * g j) * e) p p' = a * (q *ᵥ t) p * ∑ j, g j * e j p' := by
-  simp only [Matrix.mul_apply, Matrix.of_apply, mulVec, dotProduct, Finset.mul_sum, Finset.sum_mul]
-  exact Finset.sum_congr rfl fun j _ => Finset.sum_congr rfl fun i _ => by ring
-
-theorem stairId_mul_inv_succ (𝔞 𝔞' : FractionalIdeal (𝓞 D.host.E)⁰ D.host.E) (h𝔞 : 𝔞 ≠ 0) (h𝔞' : 𝔞' ≠ 0) {c₁ c₂ : ℕ}
-    (q₁ : Fin c₁) (q₂ : Fin c₂) (hc : c₂ = c₁ + 1) (hq : q₂.1 = q₁.1 + 1) :
-    stairId 𝔞 𝔞' c₁ q₁ * (stairId 𝔞 𝔞' c₂ q₂)⁻¹ = 𝔞' := by
-  unfold stairId
-  rw [show c₂ - q₂.1 = c₁ - q₁.1 by omega, hq, pow_succ 𝔞' (q₁.1 + 1)]
-  have h1 : 𝔞 ^ (c₁ - q₁.1) ≠ 0 := pow_ne_zero _ h𝔞
-  have h2 : 𝔞' ^ (q₁.1 + 1) ≠ 0 := pow_ne_zero _ h𝔞'
-  field_simp
-
-theorem colsOf_gram {n c k : ℕ} (G : Matrix (Fin n) (Fin n) D.host.E) (a : Matrix (Fin n) (Fin c) D.host.E) (f g : Fin k → Fin c)
-    (w w' : Fin k → D.host.E) (p q : Fin k) :
-    ((colsOf a f w)ᴴ * G * colsOf a g w') p q = star (w p) * w' q * (aᴴ * G * a) (f p) (g q) := by
-  simp only [colsOf, Matrix.mul_apply, conjTranspose_apply, star_mul', Finset.mul_sum, Finset.sum_mul]
-  exact Finset.sum_congr rfl fun j _ => Finset.sum_congr rfl fun i _ => by ring
-
-
 
 end GlobalTheory.XCharBF.DiagCoord
 end -- clump:auto
@@ -487,7 +456,7 @@ theorem ideal_smul_auxiliary_vector_mem_lattice (a : HermitianOrthogonalExtensio
   · by_cases hp : p = j
     · subst hp
       simpa using hb
-    · simp only [Pi.single_apply, hp, if_false]
+    · simp only [Pi.single_apply, hp, ite_false]
       exact (𝔟 p).zero_mem
   · funext k
     rw [Matrix.mulVec_zero, zero_add, mulVec_single_apply, mul_comm]
@@ -1237,7 +1206,7 @@ theorem wittHyperbolic_projX_auxiliary_vectors (hd : IsAuxiliaryVectorWittDec a 
   rw [Matrix.mul_diagonal]
   by_cases hq : q.1 < ρ
   · obtain ⟨p, κ, h⟩ := (auxiliary_vector_multiple_of_witt_basis_vector a d hd hc q).1 hq
-    rw [mul_col _ _ _ q p κ h, Matrix.mul_assoc, _root_.GlobalTheory.MixPer.qX_e, Matrix.mul_one, if_pos hq, mul_one, h]
+    rw [mul_col _ _ _ q p κ h, Matrix.mul_assoc, _root_.GlobalTheory.MixPer.qX_e, Matrix.mul_one, ite_eq_left hq, mul_one, h]
   · obtain ⟨p, κ, h⟩ := (auxiliary_vector_multiple_of_witt_basis_vector a d hd hc q).2 hq
     rw [mul_col _ _ _ q p κ h]
     simp [Matrix.mul_assoc, _root_.GlobalTheory.SeeSaw.SplitLat.qX_e', hq]
@@ -1251,7 +1220,7 @@ theorem wittHyperbolic_projY_auxiliary_vectors (hd : IsAuxiliaryVectorWittDec a 
     rw [mul_col _ _ _ q p κ h]
     simp [Matrix.mul_assoc, _root_.GlobalTheory.SeeSaw.SplitLat.qY_e, hq]
   · obtain ⟨p, κ, h⟩ := (auxiliary_vector_multiple_of_witt_basis_vector a d hd hc q).2 hq
-    rw [mul_col _ _ _ q p κ h, Matrix.mul_assoc, _root_.GlobalTheory.SeeSaw.SplitLat.qY_e', Matrix.mul_one, if_neg hq, mul_one, h]
+    rw [mul_col _ _ _ q p κ h, Matrix.mul_assoc, _root_.GlobalTheory.SeeSaw.SplitLat.qY_e', Matrix.mul_one, ite_eq_right hq, mul_one, h]
 
 theorem proj_lat (hd : IsAuxiliaryVectorWittDec a d) (hc : c = 2 * ρ) (hi : d.i₀ = frameMat B A a.ι)
     (Λ : Submodule (𝓞 D.host.E) (Fin A.rank → D.host.E)) (𝔟 : Fin c → FractionalIdeal (𝓞 D.host.E)⁰ D.host.E) :

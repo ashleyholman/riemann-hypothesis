@@ -148,26 +148,6 @@ variable {Bs : DefBase K} {A : DefAmb Bs} (X : CxData A) {fc : DefSub A → DefF
 
 end Abstract
 
-section Concrete
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
-variable {D : D7} {G : Type} [Group G] [Fintype G] {Pl0 T0 : Type} {A : FamIn D.what₂.LL G Pl0 T0 D.R.m}
-  {Ks : Type} [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL] (R : RealDat D A Ks) (F : Face D A)
-
-end Concrete
-
-section Comparison₂
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
-
-open Formalism.IndefR.FWT Formalism.L2.Pj Formalism.MainNotions
-
-variable {D : D7} {G : Type} [Group G] [Fintype G] {Pl0 T0 : Type} {A : FamIn D.what₂.LL G Pl0 T0 D.R.m}
-
-
-end Comparison₂
-
 end GlobalTheory.ScalarConjugation
 end -- clump:auto
 end -- clump:auto
@@ -772,7 +752,7 @@ theorem lift_eig_mem_part : GlobalTheory.Hk3.HoweUnram → ∀ {D : D7} {G : Typ
     if h : Good R A.μ0 P ∧ RelLab (Wc D i) P d then (loc P h.1 d h.2).choose else 0
   obtain ⟨ev, hev⟩ := GlobalTheory.T.thetaForm_eigen_mem_single_part R hC.lev hC.models.HW i σ b
   refine ⟨ev, fun u hu => hev (th u) fun P d hP hd => ?_⟩
-  simp only [b, dif_pos (And.intro hP hd)]
+  simp only [b, dite_eq_left (And.intro hP hd)]
   exact (loc P hP d hd).choose_spec u hu
 
 end GlobalTheory.ConjScalar.LiftPart
@@ -821,12 +801,6 @@ theorem mem_orthogonal_of_le_span {H : Type} [NormedAddCommGroup H] [InnerProduc
   | zero => exact inner_zero_right _
   | add u u' _ _ h h' => rw [inner_add_right, h, h', add_zero]
   | smul a u _ h => rw [inner_smul_right, h, mul_zero]
-
-theorem toF_mem {K : Type} [Field K] [NumberField K] [StarRing K] {G : Type} [Group G] [Fintype G] {Pl0 : Type}
-    (B : BlockDat K G Pl0) (ℓ : Lvl K G) (Z : Submodule K B.S.Forms) (y : Fin (B.dZ ℓ Z) → K) : B.toF ℓ Z y ∈ Z := by
-  obtain ⟨f, hf, e⟩ : (B.zE ℓ Z).mulVec y ∈ B.Z0 ℓ Z := (subspace_image_spec _ _ _).2.le ⟨y, rfl⟩
-  have : B.toF ℓ Z y = f := (congrArg B.S.basis.equivFun.symm e.symm).trans (B.S.basis.equivFun.symm_apply_apply f)
-  exact this ▸ hf
 
 theorem inner_eq_zero_of_mem_range_adjoint {H W : Type} [NormedAddCommGroup H] [InnerProductSpace ℂ H] [FiniteDimensional ℂ H]
     [NormedAddCommGroup W] [InnerProductSpace ℂ W] [FiniteDimensional ℂ W] (T : H →ₗ[ℂ] W) {a b : H}
@@ -878,7 +852,7 @@ theorem conjForms_mem_orthogonal_ker : ∀ {D : D7} {G : Type} [Group G] [Fintyp
     (smul_eq_zero.1 ((map_zero _).symm.trans hv).symm).resolve_left hph
   refine (GlobalTheory.LiftLower.inner_conjForms_eq_csumAt R hM.jV gramR c0R c0L hT i σ c c₁ H j hD.2.2.1 _ v).trans ?_
   exact (GlobalTheory.Proof.ConjugateTransposeMajorant.majAt_eq_csumAt (A.fam.L i A.μ0) ℓ Z hH hE).2 v
-    (fun y => csum_eq_zero_of_adjoint hM.HV hM.jV i A.μ0 (hZ _ (toF_mem _ ℓ Z y)) h0) σ x
+    (fun y => csum_eq_zero_of_adjoint hM.HV hM.jV i A.μ0 (hZ _ (Formalism.IndefR.Cx.BlockGood.toF_mem _ ℓ Z y)) h0) σ x
 
 end GlobalTheory.ConjScalar
 end -- clump:auto
@@ -1027,7 +1001,7 @@ theorem heckePolyOf_coeff {L : Type} [Field L] (n q : ℕ) (a : ℕ → L) {k : 
   classical
   simp only [Formalism.L2.Col.heckePolyOf, Polynomial.finsetSum_coeff, Polynomial.coeff_C_mul_X_pow]
   rw [Finset.sum_ite_eq]
-  rw [if_pos (Finset.mem_range.2 (Nat.lt_succ_of_le hk))]
+  rw [ite_eq_left (Finset.mem_range.2 (Nat.lt_succ_of_le hk))]
 
 theorem heckePolyOf_val_eq {L : Type} [Field L] [CharZero L] (n q : ℕ) (hq : q ≠ 0) (a b : ℕ → L)
     (h : Formalism.L2.Col.heckePolyOf n q a = Formalism.L2.Col.heckePolyOf n q b) {k : ℕ} (hk : k ≤ n) : a k = b k := by

@@ -822,30 +822,12 @@ private theorem ordP_actU_inv_eq_ordP_actP {L F : Type} [Field L] [Field F] [Num
   rfl
 
 private theorem actP_mul_selmer_order_counts {L F : Type} [Field L] [Field F] [NumberField F] [Algebra L F]
-    (σ τ : Gal(F/L)) (P : HeightOneSpectrum (𝓞 F)) : actP (σ * τ) P = actP σ (actP τ P) := by
-  apply HeightOneSpectrum.ext
-  ext x
-  change (RingOfIntegers.mapRingEquiv (σ * τ).toRingEquiv).symm x ∈ P.asIdeal ↔
-    (RingOfIntegers.mapRingEquiv τ.toRingEquiv).symm
-      ((RingOfIntegers.mapRingEquiv σ.toRingEquiv).symm x) ∈ P.asIdeal
-  have : (RingOfIntegers.mapRingEquiv (σ * τ).toRingEquiv).symm x =
-      (RingOfIntegers.mapRingEquiv τ.toRingEquiv).symm
-        ((RingOfIntegers.mapRingEquiv σ.toRingEquiv).symm x) := by
-    apply RingOfIntegers.ext
-    simp
-    rw [← AlgEquiv.aut_inv, ← AlgEquiv.aut_inv, ← AlgEquiv.aut_inv, mul_inv_rev, AlgEquiv.mul_apply]
-  rw [this]
+    (σ τ : Gal(F/L)) (P : HeightOneSpectrum (𝓞 F)) : actP (σ * τ) P = actP σ (actP τ P) :=
+  rfl
 
 private theorem actP_one_selmer_order_counts {L F : Type} [Field L] [Field F] [NumberField F] [Algebra L F]
-    (P : HeightOneSpectrum (𝓞 F)) : actP (1 : Gal(F/L)) P = P := by
-  apply HeightOneSpectrum.ext
-  ext x
-  change (RingOfIntegers.mapRingEquiv (1 : Gal(F/L)).toRingEquiv).symm x ∈ P.asIdeal ↔ x ∈ P.asIdeal
-  have : (RingOfIntegers.mapRingEquiv (1 : Gal(F/L)).toRingEquiv).symm x = x := by
-    apply RingOfIntegers.ext
-    simp
-    rw [← AlgEquiv.aut_inv, inv_one, AlgEquiv.one_apply]
-  rw [this]
+    (P : HeightOneSpectrum (𝓞 F)) : actP (1 : Gal(F/L)) P = P :=
+  rfl
 
 private theorem actU_mul' {L F : Type} [Field L] [Field F] [Algebra L F]
     (σ τ : Gal(F/L)) (α : Fˣ) : actU (σ * τ) α = actU σ (actU τ α) := by
@@ -1808,7 +1790,7 @@ theorem UpperTheory.V.ZK.Ct.selInvLe :
     intro x hx
     obtain ⟨t, htT, hxt⟩ := hty x hx
     have hex : ∃ x ∈ D.SelInv l, Ty x t := ⟨x, hx, hxt⟩
-    have hrep : rep t = hex.choose := dif_pos hex
+    have hrep : rep t = hex.choose := dite_eq_left hex
     obtain ⟨_, hx't⟩ := hex.choose_spec
     obtain ⟨α, v, hxα, hord, hact, hN⟩ := hxt
     obtain ⟨α', v', hxα', hord', hact', hN'⟩ := hx't

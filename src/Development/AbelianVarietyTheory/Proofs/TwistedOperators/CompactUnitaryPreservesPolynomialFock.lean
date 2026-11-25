@@ -78,14 +78,8 @@ theorem heisLine_zero (M : Model σ Y W) (ψ : AddChar (AF F) ℂ) (u : Matrix (
   simp [Model.heisLine, Darboux.rho, schr]
 
 theorem sa_of_acts {κ : Type} [Fintype κ] {T : ((κ → AF F) → ℂ) → (κ → AF F) → ℂ} {f f₁ : SInf F κ}
-    (h : Acts (evI F) T f f₁) : SA T f f₁ := by
-  intro g hg
-  refine h (fun x => g (fun i => (x i).2)) ⟨fun x z hz => ?_, Submodule.subset_span ⟨f, g, hg, rfl⟩⟩
-  change g (fun i => (x i + z i).2) = g (fun i => (x i).2)
-  congr 1
-  funext i
-  change (x i).2 + (z i).2 = (x i).2
-  rw [fin_eq_zero_of_at hz, add_zero]
+    (h : Acts (evI F) T f f₁) : SA T f f₁ :=
+  _root_.GlobalTheory.KInfPol.sa_of_acts h
 
 theorem sd_intertwine {M : Model σ Y W} {ψ : AddChar (AF F) ℂ} {χ₁ χ₂ : Chr F E} {om : Rep σ Y W}
     (hw : M.IsWeil ψ χ₁ χ₂ om) (h : UA σ W.J) {f f₁ g g₁ : SInf F (Fin n × Fin d)}

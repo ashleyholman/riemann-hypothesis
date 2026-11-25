@@ -350,7 +350,7 @@ theorem joint_eigen_mem_iSup {ι κ M : Type} [AddCommGroup M] [Module ℂ M]
       obtain ⟨y, hy, z, hz, rfl⟩ := h
       obtain ⟨i, hi⟩ : ∃ i, χ k0 i ≠ ψ i := by
         by_contra h'
-        push_neg at h'
+        push Not at h'
         exact hne k0 (funext h')
       have hw : (op i : M → M) z - χ k0 i • z ∈ ⨆ k ∈ s, E k :=
         Submodule.sub_mem _ (hstab s i z hz) (Submodule.smul_mem _ _ hz)
@@ -967,7 +967,7 @@ private theorem logLam_twArgs_pz : GlobalTheory.Published.WeilRepresentationUnit
   | mk G Pl0 I0 T' A3 core R F cG geo pins err' Y Z' C' sEE div JA amb0 JM mjH =>
   cases pack
   intro i π c e he hne hle
-  have hW : Y.mj.eW = t.r.Y.mj.eW := by set_option maxHeartbeats 100000 in exact eq_of_heq heW
+  have hW : Y.mj.eW = t.r.Y.mj.eW := by exact eq_of_heq heW
   let fits (eW : type_of% t.r.Y.mj.eW) : Prop :=
     (w.st Z).toD7.what₂.isot ((i : ℕ) + 1) π ≤ (t.r.z.R.Wp3 i c).comap (eW i)
   have hWp : ((t.r.z.R.updS t.r.z.R.kap lam).withErr err).Wp3 = t.r.z.R.Wp3 := rfl

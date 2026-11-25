@@ -161,7 +161,7 @@ theorem UpperTheory.V.Z.Kato.Joint.admissibleFunctional_of_projection :
     by_cases h : g.χ (d : ZMod g.M) = 1
     · simp [χd, h]
     · have h' := (hq d (hcop d hd)).resolve_left h
-      simp only [χd, if_neg h]
+      simp only [χd, ite_eq_right h]
       rw [h']
       simp
   have hχd' : ∀ d : ℕ, d.Coprime N → ι ((χd d : ℤ_[l]) : Qbar l) = χ d := by
@@ -1000,7 +1000,7 @@ private theorem extend {M : Type} [AddCommGroup M] [Module ℤ_[l] M] (B : Submo
       ring
   haveI : Module.IsTorsionFree ℤ_[l] (Qbar l) := by
     refine (Module.isTorsionFree_iff_algebraMap_injective).2 ?_
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro a ha
     have := norm_zl a
     rw [ha, norm_zero] at this

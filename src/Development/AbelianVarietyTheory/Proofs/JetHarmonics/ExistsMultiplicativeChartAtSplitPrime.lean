@@ -92,10 +92,6 @@ noncomputable section
 
 namespace GlobalTheory.IndefiniteRowSideFullHecke.NodalSeriesPeriods
 
-abbrev Qbar : Type := ↥(algebraicClosure ℚ ℂ)
-
-abbrev Place (p : ℕ) [Fact p.Prime] : Type := Qbar →+* ℂ_[p]
-
 abbrev incl (p : ℕ) [Fact p.Prime] : 𝓞_ℂ_[p] →+* ℂ_[p] := algebraMap 𝓞_ℂ_[p] ℂ_[p]
 
 section Expansion
@@ -823,10 +819,6 @@ theorem thue_normSq (d e : ℕ) (he : d + 1 = 4 * e) (u v : ℤ) :
   push_cast
   linear_combination ((v : ℝ) ^ 2 / 4) * hs + ((v : ℝ) ^ 2 / 4) * he'
 
-theorem thue_norm_zc {q : ℕ} [Fact q.Prime] (a : ℤ_[q]) : ‖zc a‖ = ‖a‖ := by
-  unfold zc
-  rw [norm_algebraMap', PadicInt.padic_norm_e_of_padicInt]
-
 theorem thue_pigeon {q : ℕ} [Fact q.Prime] (a : ℤ_[q]) (k : ℕ) :
     ∃ u v : ℤ, (u ≠ 0 ∨ v ≠ 0) ∧ u ^ 2 ≤ (q : ℤ) ^ k ∧ v ^ 2 ≤ (q : ℤ) ^ k ∧
       ‖(u : ℤ_[q]) + (v : ℤ_[q]) * a‖ ≤ (q : ℝ) ^ (-(k : ℤ)) := by
@@ -888,7 +880,7 @@ theorem exists_small_in_prime_pow : ∀ (d q : ℕ) [Fact q.Prime] (ι : ℂ ≃
   · have : ι ((u : ℂ) + (v : ℂ) * wK d) = zc ((u : ℤ_[q]) + (v : ℤ_[q]) * a) := by
       rw [map_add (f := _), map_mul, ha]
       simp [zc]
-    rw [this, thue_norm_zc]
+    rw [this, GlobalTheory.MomOne.MulSeries.norm_zc]
     exact hn
   · rw [Complex.mul_conj, hN, hNe]
     simp
@@ -1166,7 +1158,7 @@ theorem norm_le_of_bdT (xs : ℂ_[q]⟦X⟧) (k : ℕ) (c : ℕ → ℂ_[q]) (B 
     have h1 := hB (2 * n) (by omega)
 
     rw [← Finset.add_sum_erase _ _ (Finset.mem_range.mpr (Nat.lt_succ_of_le hj)), map_add (f := _), map_sum, mul_assoc,
-    coeff_C_mul, coeff_X_pow_mul', if_pos (by omega), hn, Nat.sub_self, coeff_zero_eq_constantCoeff] at h1
+    coeff_C_mul, coeff_X_pow_mul', ite_eq_left (by omega), hn, Nat.sub_self, coeff_zero_eq_constantCoeff] at h1
     have h2 : ‖∑ l ∈ (Finset.range (k + 1)).erase j, coeff (2 * n) (C (c l) * X ^ (2 * (k - l)) * xs ^ l)‖ ≤ B := by
       refine IsUltrametricDist.norm_sum_le_of_forall_le_of_nonneg hB0 ?_
       intro l hl
@@ -1617,7 +1609,7 @@ theorem padic_multiplications : ∀ (q : ℕ) [Fact q.Prime] (F : FormalGroup �
       rw [hW]
       linear_combination hT + ((d⁄dX U).subst ℓ : ℂ_[q]⟦X⟧) * hh'
     have := hbd (m + N)
-    rw [e, map_add (f := _), map_add (f := _), coeff_X_pow_mul, coeff_X, if_neg (by omega), coeff_X_pow_mul', if_neg (by omega)] at this
+    rw [e, map_add (f := _), map_add (f := _), coeff_X_pow_mul, coeff_X, ite_eq_right (by omega), coeff_X_pow_mul', ite_eq_right (by omega)] at this
     simpa using this
   have hq1 : ‖(q : ℂ_[q])‖ < 1 := by
     rw [← zc_natCast, norm_zc, PadicInt.norm_p]

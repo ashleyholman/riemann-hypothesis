@@ -671,8 +671,8 @@ theorem UpperTheory.V.Z.InvariantSubmoduleMonicPolynomial.E.sideX :
     exact hsm _
   have hcases : ∀ i : ZMod 2, i = 0 ∨ i = 1 := by decide
   let Uq : ZMod 2 → LL μ →L[ℂ] LL μ := fun i => if i = 0 then Uiw μ w₀.1 ν else Uiw μ w₁.1 ν
-  have h0 : Uq 0 = Uiw μ w₀.1 ν := if_pos rfl
-  have h1 : Uq 1 = Uiw μ w₁.1 ν := if_neg (by decide)
+  have h0 : Uq 0 = Uiw μ w₀.1 ν := ite_eq_left rfl
+  have h1 : Uq 1 = Uiw μ w₁.1 ν := ite_eq_right (by decide)
   have hin : ∀ w : PlacesOver E q, Inner μ (Uiw μ w.1 ν) := fun w =>
     (UpperTheory.ConvolutionTheory.Tf.innerOps E n μ).2.2.2.2.2 w.1 _ _ (iw_oc μ w.1).1 (iw_oc μ w.1).2
   have hcm : Commute (Uiw μ w₀.1 ν) (Uiw μ w₁.1 ν) :=
@@ -1131,7 +1131,7 @@ theorem UpperTheory.V.Z.InvariantSubmoduleMonicPolynomial.secFD :
   let pts : (Fin a × Fin a) × (Fin b × Fin b) × s × (Fin c × Fin c) → G1 K (2 + 2) := fun p =>
     lv (x p.1.1 p.1.2) (y p.2.1.1 p.2.1.2) 0 * (p.2.2.1 : G1 K (2 + 2)) * (z p.2.2.2.1 p.2.2.2.2 : G1 K (2 + 2))
   refine FiniteDimensional.of_injective ((LinearMap.funLeft ℂ ℂ pts).comp S.subtype) ?_
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   rintro ⟨f, a1, a2, a3, a4, a5, a6⟩ hf
   have h0 : ∀ p, f (pts p) = 0 := fun p => congrFun hf p
   have h1 : ∀ i p j q, ∀ k ∈ KG K (2 + 2), f (lv (x i p) (y j q) 0 * k) = 0 := by
@@ -1363,10 +1363,10 @@ theorem UpperTheory.V.Z.InvariantSubmoduleMonicPolynomial.E.coreInd :
     have h := hu' v
     by_cases h1 : v ∈ SE'
     · have h1' := (hSE' v).1 h1
-      rw [if_pos ((hSE v).2 (Or.inl h1')), ] at h
-      rw [if_pos h1]
+      rw [ite_eq_left ((hSE v).2 (Or.inl h1')), ] at h
+      rw [ite_eq_left h1]
       exact hUle v h1' h
-    · rw [if_neg h1]
+    · rw [ite_eq_right h1]
       split_ifs at h with h2
       · exact (hU v).2 h
       · exact h

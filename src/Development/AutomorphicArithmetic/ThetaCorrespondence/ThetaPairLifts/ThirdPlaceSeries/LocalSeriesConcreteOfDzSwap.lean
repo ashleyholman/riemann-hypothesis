@@ -375,7 +375,7 @@ theorem eSerC_mul_zIdem {r : ℕ} (ρ : FDRep ℂ (GL (Fin r) (ZMod g))) (hρ : 
       rw [← h, GlobalTheory.SerOSys.eSerO_eq_sum, Finset.mul_sum]
       refine Finset.sum_eq_zero fun z hz => ?_
       have hz' := (GlobalTheory.SerOSys.Zl_finite O r f).mem_toFinset.1 hz
-      rw [GlobalTheory.SerOSys.mul_of_mem ⟨ρ, hρ, rfl⟩ (GlobalTheory.SerOSys.Zl_sub O r f hz'), if_neg]
+      rw [GlobalTheory.SerOSys.mul_of_mem ⟨ρ, hρ, rfl⟩ (GlobalTheory.SerOSys.Zl_sub O r f hz'), ite_eq_right]
       rintro e
       exact hm (e ▸ hz')
     rw [h0, mul_zero]
@@ -1488,21 +1488,6 @@ section -- clump:auto
 section
 section
 open Formalism.BasicNotions Formalism.MainNotions Formalism.MainNotions.N Formalism.ConjugateSelfDual ReciprocityTheory.Gal ReciprocityTheory.Aut Formalism.AUTREP Formalism.L2 Formalism.L2.Host Formalism.L2.NT NumberField IsDedekindDomain Polynomial GlobalTheory.HeightCounting GlobalTheory.RowTie GlobalTheory.SplitRead GlobalTheory.NPin GlobalTheory.PendOf
-namespace GlobalTheory.DepthZeroRankOneLabel
-open ValuativeRel
-variable {E : Type} [Field E] [NumberField E] {w : HeightOneSpectrum (𝓞 E)} {g : ℕ} [Fact g.Prime]
-variable (i : ℚ_[g] ≃+* w.adicCompletion E) (hi : Continuous i)
-end GlobalTheory.DepthZeroRankOneLabel
-namespace GlobalTheory.DepthZeroRankOneLabel
-open ValuativeRel GlobalTheory.WeilDeligne GlobalTheory.LocGL GlobalTheory.LocLanglands
-variable {E Ω : Type} [Field E] [NumberField E] [Field Ω] [Algebra E Ω] [IsAlgClosure E Ω] {g : ℕ} [Fact g.Prime]
-  {A : ValuationSubring Ω} {w : HeightOneSpectrum (𝓞 E)} {h : IsPlaceOver A w}
-end GlobalTheory.DepthZeroRankOneLabel
-namespace GlobalTheory.DepthZeroRankOneLabel
-open GlobalTheory.TameRes
-end GlobalTheory.DepthZeroRankOneLabel
-namespace GlobalTheory.DepthZeroRankOneLabel
-end GlobalTheory.DepthZeroRankOneLabel
 open GlobalTheory.WeilDeligne in
 theorem GlobalTheory.DepthZeroRankOneLabel.wild_trivial_m_alt (D : D7) (k : Fin 2) (v : D.nd.PlG k)
     (μ : ((D.naut.plGw k v).adicCompletion D.host.E)ˣ →* ℂˣ) (hμ : GlobalTheory.SmGL.IsSmoothChar μ) (hT : GlobalTheory.SplitWeil.IsTame μ)

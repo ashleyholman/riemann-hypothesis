@@ -118,7 +118,7 @@ theorem _root_.GlobalTheory.T.evaluationMap_trueChain_forms_to_forms :
         (TC.per I l u a).lowerMap ((TC.per I l u a).evz (M.emb B.R.m x)) := by
       intro x hx
       obtain ⟨y, -, hy⟩ := GlobalTheory.LvT.BuiltChain.exists_image (Q := TC.perIn I u a)
-        B.fields.emb B.embLL (B.hcW u) GlobalTheory.LvT.BuiltChain.branching_ok
+        B.fields.emb B.embLL (B.hcW u) Formalism.L2.DIV.BrJ.branching_interlacing_pairs
         (l.ch u a) (l.per u a) (fun τ => (hW τ).1) (fun τ => (hW τ).2)
         ((l.fmL u a).fam B.R.m) (l.fmL u a).famP x hx
       exact ⟨y, hy⟩
@@ -429,7 +429,7 @@ theorem latCo_one {B : Base} {X : PreX B.toPre} (I : TC B X) (hI : I.Ok) (l : I.
     show (GlobalTheory.Mem.Col2.shW (Examples₂.lamOf (B.hcW u τ) B.R.m) _).natW = (Examples₂.lamOf (B.hcW u τ) B.R.m).natW
     funext i
     have hN : 0 < B.R.N B.R.m := lt_of_le_of_lt (Nat.zero_le _) i.2
-    simp only [DomWeight.natW, DomWeight.detShift, dif_pos hN, GlobalTheory.Mem.Col2.shW]
+    simp only [DomWeight.natW, DomWeight.detShift, dite_eq_left hN, GlobalTheory.Mem.Col2.shW]
     congr 1
     ring
   exact (_root_.GlobalTheory.WeylLocOnePlace.mem_locW_delAtr_iff B.fields.emb B.embLL B.places (I.rec7 l Z).plEq (I.rec7 l Z).val_eq
@@ -572,7 +572,7 @@ theorem coP_PtT_eq_blk : ∀ {B : Base} {X : PreX B.toPre} (I : TC B X), I.Ok �
       ValC (Gr B.fields.emb B.embLL (B.R.N B.R.m)) (lamT (B.hcW u) B.R.m) :=
     GlobalTheory.LvT.Built.RealM.trFr_mem _ _ _ _ _ hV
   obtain ⟨F, hF⟩ := (GlobalTheory.TilClass.mem_ValC_iff _ _ _ _).1 hT
-  have hW := fun τ => GlobalTheory.T.trueWeights_eq_descentShiftedWeights_interlace I hI l Z u a τ
+  have hW := fun τ => GlobalTheory.PerQ.trueWeights_built I hI l Z u a τ
   have hS := GlobalTheory.T.localBasisRepLattice_integralCoords_spec I hI l u a w c
   show actP (I.perIn u a).sgT (invTrK ((embGL (embAt B.embLL B.fields.emb)) (GlobalTheory.PerQ.Co.bP I u a w c)⁻¹))
       (polOf (Gr B.fields.emb B.embLL (B.R.N B.R.m - 1)) (shiftOf (I.perIn u a).sgT) (fr0 B.fields.emb B.embLL (B.R.N B.R.m - 1))

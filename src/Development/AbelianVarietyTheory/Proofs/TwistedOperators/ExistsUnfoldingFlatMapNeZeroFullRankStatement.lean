@@ -479,8 +479,8 @@ theorem main_part {D : D7} {ρ : ℕ} (ψ : AddChar (AF D.host.F) ℂ) (u : UX D
   have hsplit : N = GlobalTheory.FinTranslate.eInf D • N + (1 - GlobalTheory.FinTranslate.eInf D) • N := by
     rw [sub_smul, one_smul, add_sub_cancel]
   show psiE ψ (upSum u.1.1) = _
-  rw [hN, GlobalTheory.AscFinInhab.upSum_add', GlobalTheory.AscFinInhab.upSum_one', zero_add, hsplit,
-    GlobalTheory.AscFinInhab.upSum_add', psiE_add, h1, mul_one, ← hsplit]
+  rw [hN, GlobalTheory.MixPer.upSum_add, GlobalTheory.AscFinInhab.upSum_one', zero_add, hsplit,
+    GlobalTheory.MixPer.upSum_add, psiE_add, h1, mul_one, ← hsplit]
 
 theorem charOnSupport : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (V V₀ W W₀ : HSp D) (ρ σ : ℕ) (dV : HypDec V V₀ ρ) (dW : HypDec W W₀ σ) (p : Pieces V₀ W W₀ ρ σ) (x₀ : Matrix (Fin W.rank) (Fin ρ) D.host.E) (L : Matrix (Fin ρ) (Fin W.rank) D.host.E), L * x₀ = 1 → p.Is dV dW (rat x₀) ψ → ∀ (u : UX D ρ) (r : Mx D W.rank ρ), r.map (finPart D) = 0 → rat x₀ ⬝ u.1.1 - (rat x₀ + r) ∈ p.A₁ → psiUni ψ u.1 = psiE ψ (upSum (rat L ⬝ r)) := by
   intro D ψ V V₀ W W₀ ρ σ dV dW p x₀ L hL hp u r hr ha

@@ -106,14 +106,6 @@ open GlobalTheory.KZ GlobalTheory.Glue GlobalTheory.K5 GlobalTheory.KummerEisens
 
 namespace GlobalTheory.GeoFix
 
-theorem inR_algebraMap {p : ℕ} [Fact p.Prime] {Ω : Type} [Field Ω] [Algebra (O0 p) Ω]
-    {T : Tower p Ω} {n : ℕ} {ψ : O0 p →+* Ω} (h : IsReb T n ψ) (c : O0 p) :
-    ∃ c' : O0 p, ψ c' = algebraMap (O0 p) Ω c := by
-  have hmem : algebraMap (O0 p) Ω c ∈ ψ.range := by
-    rw [h.rng]
-    exact Subalgebra.algebraMap_mem _ c
-  exact hmem
-
 theorem inR_pow {p : ℕ} [Fact p.Prime] {Ω : Type} [Field Ω] [Algebra (O0 p) Ω]
     {ψ : O0 p →+* Ω} {x : Ω} (hx : InR ψ x) (k : ℕ) : InR ψ (x ^ k) := by
   induction k with
@@ -140,11 +132,11 @@ theorem exists_inR_mul_eq_psi : ∀ (p : ℕ) [Fact p.Prime] (Ω : Type) [Field 
         rw [Polynomial.eval₂_mul, Polynomial.eval₂_X] at hf
         exact (mul_eq_zero.1 hf).resolve_left hN0
       · obtain ⟨g, hg⟩ := Polynomial.X_dvd_iff.2 (show (f - Polynomial.C (f.coeff 0)).coeff 0 = 0 by simp)
-        obtain ⟨D, hD⟩ := inR_algebraMap h (-f.coeff 0)
+        obtain ⟨D, hD⟩ := GlobalTheory.K5.Reb.mem_range h (-f.coeff 0)
         refine ⟨Polynomial.eval₂ (algebraMap (O0 p) Ω) N g, D, ?_, ?_, ?_⟩
         · rw [Polynomial.eval₂_eq_sum_range]
           refine inR_sum _ _ fun i _ => ?_
-          obtain ⟨c', hc'⟩ := inR_algebraMap h (g.coeff i)
+          obtain ⟨c', hc'⟩ := GlobalTheory.K5.Reb.mem_range h (g.coeff i)
           rw [← hc']
           exact inR_mul (inR_psi ψ c') (inR_pow hN i)
         · rintro rfl
@@ -380,7 +372,7 @@ theorem divide_ev : ∀ (p : ℕ) [Fact p.Prime] (Ω : Type) [Field Ω] [Algebra
     simp only [Function.mem_support] at hr
     by_cases h0 : ∀ t, (a t).coeff r = 0
     · exact absurd (by simp [μ', h0]) hr
-    · push_neg at h0
+    · push Not at h0
       obtain ⟨t, ht⟩ := h0
       exact Set.mem_biUnion (Finset.mem_coe.2 (Finset.mem_univ t)) ht
   have hpwo : (⋃ t ∈ (Finset.univ : Finset (Fin d)), (a t).support).IsPWO :=
@@ -1048,18 +1040,17 @@ theorem cmul_hahn {Ω Ωl : Type} [Field Ω] [CharZero Ω] [Field Ωl] (j : Ω �
     intro u i
     rw [PowerSeries.coeff_coe]
     by_cases hi : 0 ≤ i
-    · rw [if_neg (not_lt.2 hi), if_pos hi]
+    · rw [ite_eq_right (not_lt.2 hi), ite_eq_left hi]
       congr 2
       omega
-    · rw [if_pos (not_le.1 hi), if_neg hi]
+    · rw [ite_eq_left (not_le.1 hi), ite_eq_right hi]
   have e1 : C = HahnSeries.ofPowerSeries ℤ Ωl (PowerSeries.mk fun k => j (f k)) := by
     ext i; rw [key, hC, PowerSeries.coeff_mk]
   have e2 : D = HahnSeries.ofPowerSeries ℤ Ωl (PowerSeries.mk fun k => j (g k)) := by
     ext i; rw [key, hD, PowerSeries.coeff_mk]
   rw [e1, e2, ← map_mul, key]
   split_ifs
-  · set_option synthInstance.maxHeartbeats 100000 in
-      rw [PowerSeries.coeff_mul, Finset.Nat.sum_antidiagonal_eq_sum_range_succ_mk, cmul, map_sum]
+  · rw [PowerSeries.coeff_mul, Finset.Nat.sum_antidiagonal_eq_sum_range_succ_mk, cmul, map_sum]
     simp only [PowerSeries.coeff_mk, map_mul]
   · rfl
 
@@ -1420,7 +1411,7 @@ theorem coefQ_supp {Ω : Type} [Field Ω] (p L : ℕ) (hp : 0 < p) (f : ℕ → 
   have hp0 : (0 : ℚ) < (p : ℚ) ^ L := pow_pos (by exact_mod_cast hp) L
   have h1 : 0 ≤ r ∧ (r * ((p ^ L : ℕ) : ℚ)).den = 1 := by
     by_contra h2
-    exact h (if_neg h2)
+    exact h (ite_eq_right h2)
   refine ⟨(r * ((p ^ L : ℕ) : ℚ)).num, Rat.num_nonneg.2 (mul_nonneg h1.1 (Nat.cast_nonneg _)), ?_⟩
   rw [(Rat.den_eq_one_iff _).1 h1.2, Rat.natCast_pow, mul_div_cancel_right₀ _ hp0.ne']
 

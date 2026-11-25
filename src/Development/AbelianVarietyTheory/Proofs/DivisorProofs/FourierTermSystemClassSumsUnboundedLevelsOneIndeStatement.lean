@@ -204,14 +204,6 @@ noncomputable section
 
 namespace GlobalTheory.GSep.DeepDivG
 
-variable {I : Type} {X₁ : GSet} {z₁ : X₁.M.Z} {act : I → (X₁.ρ.P.A ⟶ X₁.ρ.P.A)} {x₀ : X₁.S.Gam}
-  {V : Type} [CommRing V] [IsDomain V] [IsLocalRing V] {ev : X₁.M.Z.presheaf.stalk z₁ →+* V}
-  {X : Type} [AddCommGroup X] {t : X → V} {δ : I → X → X}
-
-end GlobalTheory.GSep.DeepDivG
-
-namespace GlobalTheory.GSep.DeepDivG
-
 theorem tower_same {I : Type} {X₁ : GlobalTheory.GSep.GSet} {act : I → (X₁.ρ.P.A ⟶ X₁.ρ.P.A)} (𝔗 : GlobalTheory.GSep.Tower X₁ act) :
     GlobalTheory.Poinc.Same X₁.ρ (fun _ => 𝟙 _) 𝔗.X₂.ρ (fun _ => 𝟙 _) 𝔗.lam (algebraMap X₁.Ω₁ 𝔗.X₂.Ω₁) := by
   let f₂ : Sp 𝔗.X₂.Ω₁ ⟶ Sp 𝔗.X₂.S.R := spMap 𝔗.X₂.S.R.val.toRingHom
@@ -660,7 +652,7 @@ theorem exists_classSum_fun : ∀ (I : Type) (X₁ : GlobalTheory.GSep.GSet) (z�
     have key := sumI_comp hinj (fun mu hmu => ?_) hsum
     · simp only [hfam, hin, ite_true] at key
       exact key
-    · rw [hfam, if_neg]
+    · rw [hfam, ite_eq_right]
       intro hd
       apply hmu
       have h1 := (hcong _ _ 0 (hsub _ _ _ _ (hA mu) hκ)).1 ((hint _).1 hd)
@@ -1463,7 +1455,7 @@ theorem classSums_deeper : ∀ (O : Type) [CommRing O] (bar : O → O) (q : ℕ)
       rw [hkk₀]
       rfl
     · have := congrFun (hKlin y c (fun _ => x)) 0
-      simp only [kk, hy, dif_neg, not_false_eq_true, one_apply]
+      simp only [kk, hy, dite_eq_right, not_false_eq_true, one_apply]
       exact this
   choose aκ haκ using (hyy y₀).2.1
   have hper : ∀ κ κ' c, (∀ v, CongMod L₂ (κ v) (κ' v)) → Fv (aκ κ) c = Fv (aκ κ') c := by

@@ -214,7 +214,7 @@ theorem perFr_add' (X : Data E r) (y : Frame X.Ψ r) (v w : Fin r → E) (τ : E
   · simp
 
 def pvHom (W : UnfAt U k x) : (Fin r → E) →+ (Fin W.g → ℂ) :=
-  AddMonoidHom.mk' (pv W) fun v w => funext fun j => perFr_add' _ _ _ _ _ _
+  AddMonoidHom.mk' (pv W) fun _ _ => funext fun _ => perFr_add' _ _ _ _ _ _
 
 theorem pv_nsmul (W : UnfAt U k x) (N : ℕ) (v : Fin r → E) : pv W ((N : E) • v) = (N : ℂ) • pv W v := by
   have h1 : (N : E) • v = N • v := by rw [Nat.cast_smul_eq_nsmul]

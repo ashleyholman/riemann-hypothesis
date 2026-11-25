@@ -221,8 +221,6 @@ namespace GlobalTheory.ChainTw.ParInv
 
 variable {D : D7}
 
-alias under_conjPl := _root_.GlobalTheory.ChainInv.under_conjPl
-
 alias absNorm_conjPl' := _root_.GlobalTheory.ChainInv.absNorm_conjPl
 
 theorem conjPl_ne_of_isSplit (w : HeightOneSpectrum (𝓞 D.host.E))
@@ -268,12 +266,12 @@ theorem GlobalTheory.ChainTw.invFam_bounded : ∀ D : D7, ForStageQ D fun c _ j 
       rcases hx with ⟨hs, -⟩ | ⟨hin, -⟩
       · exact absurd hc (conjPl_ne_of_isSplit w hs)
       · exact (GlobalTheory.LFun.ConjPlace.map_inv_of_isParamVec hin (hP _ hv w rfl)).symm
-    · have hx' := hP (w.under (𝓞 D.host.F)) hv (Formalism.DivisionValues.conjPl w) (under_conjPl w)
+    · have hx' := hP (w.under (𝓞 D.host.F)) hv (Formalism.DivisionValues.conjPl w) (GlobalTheory.ChainInv.under_conjPl w)
       exact GlobalTheory.LFun.ConjPlace.eq_map_inv_of_isParamVec hcm hJ hd (Ne.symm hc) hx hx'
   intro w hw
   have hw' : Formalism.DivisionValues.conjPl w ∉ GlobalTheory.LFun.above D.host.E (c.S : Set (HeightOneSpectrum (𝓞 D.host.F))) := by
     show (Formalism.DivisionValues.conjPl w).under (𝓞 D.host.F) ∉ (c.S : Set (HeightOneSpectrum (𝓞 D.host.F)))
-    rw [under_conjPl]; exact hw
+    rw [GlobalTheory.ChainInv.under_conjPl]; exact hw
   have hB' : B (Formalism.DivisionValues.conjPl w) = (B w).map (·⁻¹) := GlobalTheory.T.firstMemberParameter_inv_of_chainParameter_inv D c htw.com j hj B w hw (key w hw)
   have e : GlobalTheory.ChainNS.invFam B w = B (Formalism.DivisionValues.conjPl w) := hB'.symm
   rw [e]

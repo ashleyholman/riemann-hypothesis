@@ -115,7 +115,7 @@ theorem classGroup_nthPower_of_codim_one_mod : ∀ (k A : Type) [Field k] [IsAlg
   have hI0 : (I : Ideal A) ≠ ⊥ := nonZeroDivisors.coe_ne_zero I
   by_cases hex : ∃ P₀ : Ideal A, P₀.IsMaximal ∧ P₀ ≠ ⊥
   swap
-  · push_neg at hex
+  · push Not at hex
     have htop : (I : Ideal A) = ⊤ := by
       by_contra h
       obtain ⟨M, hM, hIM⟩ := Ideal.exists_le_maximal _ h
@@ -770,10 +770,10 @@ theorem hasse_mul (l : ℕ) (φ ψ : PowerSeries R) :
   set g : R[X] := PowerSeries.trunc M ψ
   have hf : ∀ m < M, PowerSeries.coeff m φ = PowerSeries.coeff m (f : PowerSeries R) := by
     intro m hm
-    rw [Polynomial.coeff_coe, PowerSeries.coeff_trunc, if_pos hm]
+    rw [Polynomial.coeff_coe, PowerSeries.coeff_trunc, ite_eq_left hm]
   have hg : ∀ m < M, PowerSeries.coeff m ψ = PowerSeries.coeff m (g : PowerSeries R) := by
     intro m hm
-    rw [Polynomial.coeff_coe, PowerSeries.coeff_trunc, if_pos hm]
+    rw [Polynomial.coeff_coe, PowerSeries.coeff_trunc, ite_eq_left hm]
   have hpoly : hasse l ((f : PowerSeries R) * (g : PowerSeries R)) =
       ∑ p ∈ Finset.range (l + 1), hasse p (f : PowerSeries R) * hasse (l - p) (g : PowerSeries R) := by
     rw [← Polynomial.coe_mul, hasse_coe, hasseDeriv_mul,
@@ -1074,7 +1074,6 @@ theorem formal_deformation : ∀ (k A : Type) [Field k] [IsAlgClosed k] [CommRin
   intro k A _ _ _ _ _ _ N I _ V D P₀ Q f₀ hN hNk hP₀ hyp
   obtain ⟨hVfin, hVD, hQmax, hQinj, hQP, hDQ, hDP, hf₀V, hf₀, hspan, hsurj⟩ := hyp
   classical
-  have hne : Ideal.span {f₀} ≠ ⊥ := by simpa [Ideal.span_singleton_eq_bot] using hf₀
   have hf₀P : f₀ ∈ P₀ := by
     have : Ideal.span {f₀} ≤ P₀ := hspan ▸ le_trans Ideal.mul_le_left Ideal.mul_le_left
     exact this (Ideal.mem_span_singleton_self f₀)

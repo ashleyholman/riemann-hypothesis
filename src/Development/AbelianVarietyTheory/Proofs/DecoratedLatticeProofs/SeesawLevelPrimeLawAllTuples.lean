@@ -168,8 +168,8 @@ theorem vertexExact (D : D7) : VertexExact D := by
   let ε : 𝓀[k]ˣ := if e = 1 then 1 else -1
   have hεe : (e = 1 ∧ ε = 1) ∨ (e = -1 ∧ ε = -1) := by
     by_cases h1 : e = 1
-    · exact Or.inl ⟨h1, if_pos h1⟩
-    · exact Or.inr ⟨he.resolve_left h1, if_neg h1⟩
+    · exact Or.inl ⟨h1, ite_eq_left h1⟩
+    · exact Or.inr ⟨he.resolve_left h1, ite_eq_right h1⟩
   refine ⟨ε, ?_, ?_⟩
   · rcases hεe with ⟨-, h⟩ | ⟨-, h⟩
     · exact Or.inl h
@@ -220,7 +220,7 @@ theorem vertexExact (D : D7) : VertexExact D := by
     rwa [val_FFStar'] at this
   let v' : caSub B.A := ⟨_, hFF P⟩
   let x : Pair k n → SB (Matrix n (n' ⊕ Fin 1) k) := fun Q' =>
-    col (phiOne P Q') (GlobalTheory.IndefiniteRowSideFullHecke.IndicatorFunctionIdentity.phiOne_mem P Q') (charInd (resChar χ hχ q) Q') (charInd_mem' _ Q')
+    col (phiOne P Q') (GlobalTheory.IndefiniteRowSideFullHecke.IndicatorFunctionIdentity.phiOne_mem P Q') (charInd (resChar χ hχ q) Q') (GlobalTheory.FinPl.SBFacts.charInd_mem _ Q')
   let xv : Pair k n' → Pair k n → SB (Matrix n (n' ⊕ Fin 1) k) := fun A Q' =>
     col (phiOne A Q') (GlobalTheory.IndefiniteRowSideFullHecke.IndicatorFunctionIdentity.phiOne_mem A Q') (vecInd Q.lat) hvec
   let yd : Pair k n → SB (Matrix (n'' ⊕ Fin 1) n k) := fun Q'' =>
@@ -244,7 +244,7 @@ theorem vertexExact (D : D7) : VertexExact D := by
 
   have t0 : ∀ Q' ∈ withLat Q.lat, (Θ v' (x Q') y₀).1 = 0 := fun Q' hQ' => by
     have := key v' (phiOne P Q') (GlobalTheory.IndefiniteRowSideFullHecke.IndicatorFunctionIdentity.phiOne_mem P Q') (latInd Q.lat R.ker) (latInd_mem_SB _ _)
-      (charInd (resChar χ hχ q) Q') (vecInd Q.lat) (dualInd Q.lat) (dualInd Q.lat) (charInd_mem' _ Q') hvec hdual hdual
+      (charInd (resChar χ hχ q) Q') (vecInd Q.lat) (dualInd Q.lat) (dualInd Q.lat) (GlobalTheory.FinPl.SBFacts.charInd_mem _ Q') hvec hdual hdual
     have hf := _root_.GlobalTheory.FinPl.Comm.fpair_charInd_dualInd k n q χ hχ e he μ Q'
     rw [mem_withLat.1 hQ'] at hf
     rw [hf, zero_smul] at this
@@ -258,14 +258,14 @@ theorem vertexExact (D : D7) : VertexExact D := by
     rw [Finset.sum_eq_single_of_mem (ε • Q') hmem]
     · have := key v' (phiOne P Q') (GlobalTheory.IndefiniteRowSideFullHecke.IndicatorFunctionIdentity.phiOne_mem P Q') (phiOne (ε • Q') R)
         (GlobalTheory.IndefiniteRowSideFullHecke.IndicatorFunctionIdentity.phiOne_mem _ R) (charInd (resChar χ hχ q) Q') (vecInd Q.lat)
-        (cosetInd q (ε • Q').lat (ε • Q').red) (dualInd Q.lat) (charInd_mem' _ Q') hvec (_root_.GlobalTheory.FinPl.CosetSB.cosetInd_mem_SB k n q _ _) hdual
+        (cosetInd q (ε • Q').lat (ε • Q').red) (dualInd Q.lat) (GlobalTheory.FinPl.SBFacts.charInd_mem _ Q') hvec (_root_.GlobalTheory.FinPl.CosetSB.cosetInd_mem_SB k n q _ _) hdual
       rw [(_root_.GlobalTheory.FinPl.CosetPairing.fpair_charInd_cosetInd k n q χ hχ e ε hεe μ Q' (ε • Q') (by rw [Pair.dia_lat])).1 rfl, hQ'l] at this
       exact smul_right_injective _ I0 this
     · intro Q'' hQ'' hne
       have hQ''l : Q''.lat = Q.lat := mem_withLat.1 hQ''
       have := key v' (phiOne P Q') (GlobalTheory.IndefiniteRowSideFullHecke.IndicatorFunctionIdentity.phiOne_mem P Q') (phiOne Q'' R)
         (GlobalTheory.IndefiniteRowSideFullHecke.IndicatorFunctionIdentity.phiOne_mem _ R) (charInd (resChar χ hχ q) Q') (vecInd Q.lat)
-        (cosetInd q Q''.lat Q''.red) (dualInd Q.lat) (charInd_mem' _ Q') hvec (_root_.GlobalTheory.FinPl.CosetSB.cosetInd_mem_SB k n q _ _) hdual
+        (cosetInd q Q''.lat Q''.red) (dualInd Q.lat) (GlobalTheory.FinPl.SBFacts.charInd_mem _ Q') hvec (_root_.GlobalTheory.FinPl.CosetSB.cosetInd_mem_SB k n q _ _) hdual
       rw [(_root_.GlobalTheory.FinPl.CosetPairing.fpair_charInd_cosetInd k n q χ hχ e ε hεe μ Q' Q'' (hQ''l.trans hQ'l.symm)).2 hne, zero_smul] at this
       exact (smul_eq_zero.1 this).resolve_left I0
 
@@ -693,34 +693,34 @@ theorem gen (hstd : IsStdChar D ψ (-1)) {I : List ι} {P : Pl D → Prop} (hPl 
     let BT : ι → Submodule 𝒪[k] (n → k) := fun j => if j ∈ l then A'T j else AT j
     have hBS : ∀ j, (BS j).IsLattice k := fun j => by
       by_cases hj : j ∈ l
-      · simp only [BS, if_pos hj]; exact (hL j).2.1
-      · simp only [BS, if_neg hj]; exact (hL j).1
+      · simp only [BS, ite_eq_left hj]; exact (hL j).2.1
+      · simp only [BS, ite_eq_right hj]; exact (hL j).1
     have hBT : ∀ j, (BT j).IsLattice k := fun j => by
       by_cases hj : j ∈ l
-      · simp only [BT, if_pos hj]; exact (hL j).2.2.2
-      · simp only [BT, if_neg hj]; exact (hL j).2.2.1
+      · simp only [BT, ite_eq_left hj]; exact (hL j).2.2.2
+      · simp only [BT, ite_eq_right hj]; exact (hL j).2.2.1
     have hBSfull : ∀ j, (BS j).IsFullLattice k := fun j => by
       by_cases hj : j ∈ l
       · apply full_of_isLat (α j) N'S h3 _ (hBS j)
-        simpa only [BS, if_pos hj] using (hA j).2.1
+        simpa only [BS, ite_eq_left hj] using (hA j).2.1
       · apply full_of_isLat (α j) NS h1 _ (hBS j)
-        simpa only [BS, if_neg hj] using (hA j).1
+        simpa only [BS, ite_eq_right hj] using (hA j).1
     have hBTfull : ∀ j, (BT j).IsFullLattice k := fun j => by
       by_cases hj : j ∈ l
       · apply full_of_isLat (β j) N'T h4 _ (hBT j)
-        simpa only [BT, if_pos hj] using (hA j).2.2.2
+        simpa only [BT, ite_eq_left hj] using (hA j).2.2.2
       · apply full_of_isLat (β j) NT h2 _ (hBT j)
-        simpa only [BT, if_neg hj] using (hA j).2.2.1
+        simpa only [BT, ite_eq_right hj] using (hA j).2.2.1
     obtain ⟨N₁S, hN₁S, hlatS, -⟩ := _root_.GlobalTheory.LatPresc.latAll D k ι p I P hPl n' S α NS h1 BS hBSfull
     obtain ⟨N₁T, hN₁T, hlatT, -⟩ := _root_.GlobalTheory.LatPresc.latAll D k ι p I P hPl n T β NT h2 BT hBTfull
     obtain ⟨g₁, hg₁, hO⟩ := ValDbl.overAll_cons.1 hg
     have hg₁' : OverAll ψ α β NS NT (fun j => latInd (BS j) (BT j)) l f g₁ :=
-      overAll_congrΨ l (fun j hj => by simp only [BS, BT, if_pos hj]) f g₁ hg₁
+      overAll_congrΨ l (fun j hj => by simp only [BS, BT, ite_eq_left hj]) f g₁ hg₁
     have IH := ih hnd NS N₁S NT N₁T AS BS AT BT h1 h2 hN₁S hN₁T
       (fun j => ⟨(hL j).1, hBS j, (hL j).2.2.1, hBT j⟩) (fun j => ⟨(hA j).1, hlatS j, (hA j).2.2.1, hlatT j⟩)
-      (fun j hj => ⟨by simp only [BS, if_neg hj], by simp only [BT, if_neg hj]⟩)
+      (fun j hj => ⟨by simp only [BS, ite_eq_right hj], by simp only [BT, ite_eq_right hj]⟩)
       f g₁ (fun j hj => hf j (List.mem_cons_of_mem _ hj)) hg₁'
-    have hBi : BS i = AS i ∧ BT i = AT i := ⟨by simp only [BS, if_neg hil], by simp only [BT, if_neg hil]⟩
+    have hBi : BS i = AS i ∧ BT i = AT i := ⟨by simp only [BS, ite_eq_right hil], by simp only [BT, ite_eq_right hil]⟩
     have hN₁Si : (α i).IsLat N₁S (AS i) := hBi.1 ▸ hlatS i
     have hN₁Ti : (β i).IsLat N₁T (AT i) := hBi.2 ▸ hlatT i
     have hg₁v : Vac ψ S T NS NT (· = (p i).v) g₁ :=
@@ -729,8 +729,8 @@ theorem gen (hstd : IsStdChar D ψ (-1)) {I : List ι} {P : Pl D → Prop} (hPl 
     have hO₁ := C.2 _ _ hO
     have hsame : ∀ j ∈ l, ∃ (ΛS : Submodule 𝒪[k] (n' → k)) (ΛT : Submodule 𝒪[k] (n → k)),
         (α j).IsLat N₁S ΛS ∧ (α j).IsLat N'S ΛS ∧ (β j).IsLat N₁T ΛT ∧ (β j).IsLat N'T ΛT := fun j hj =>
-      ⟨A'S j, A'T j, by simpa only [BS, if_pos hj] using hlatS j, (hA j).2.1,
-        by simpa only [BT, if_pos hj] using hlatT j, (hA j).2.2.2⟩
+      ⟨A'S j, A'T j, by simpa only [BS, ite_eq_left hj] using hlatS j, (hA j).2.1,
+        by simpa only [BT, ite_eq_left hj] using hlatT j, (hA j).2.2.2⟩
     have hgv : ∀ j ∈ l, Vac ψ S T N'S N'T (· = (p j).v) g := fun j hj => by
       obtain ⟨ΛS, ΛT, a, b, c, d⟩ := hsame j hj
       have hji : (p j).v ≠ (p i).v := fun e => hil (by rw [← hinj e]; exact hj)
@@ -891,12 +891,6 @@ theorem bl_contr (hCL : ContrLaw D) {c : Comm D} (v : VCom c) (t : Tup c) (hW : 
     (t.kom (j + 1)) omz' e1 e2 w1 w2 w3 w4 φ Ξ₁ Ξ₂ hφ h₁ h₂).2.2 g
   rw [hand0, this]
   rfl
-
-end GlobalTheory.LevPrimeMid
-
-namespace GlobalTheory.LevPrimeMid
-
-variable {D : D7}
 
 end GlobalTheory.LevPrimeMid
 

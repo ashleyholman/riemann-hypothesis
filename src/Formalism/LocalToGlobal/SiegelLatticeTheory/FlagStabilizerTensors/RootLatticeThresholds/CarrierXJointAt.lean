@@ -49,7 +49,7 @@ namespace Formalism.L2.SG.Pf.Carrier
 
 open Formalism.L2.SG.RealObj Formalism.L2.SG.DataInst
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar instCM
+attribute [local instance] instCM
 
 variable {D : D7}
 
@@ -132,7 +132,7 @@ theorem vJoint_of_tensorAt (S : Formalism.FourierDecayAlt.C.HidaSetting D.host.E
     exact ⟨(h, h'), hh⟩
   refine Eq.trans ?_ (h2 p w hpw hrep hpos hex.choose.1 hex.choose.2 hex.choose_spec x)
   unfold unscaledOperatorAtPointRepresentative unscaledFrameConjugatedOperator
-  rw [if_pos hrep, dite_eq_left hex]
+  rw [ite_eq_left hrep, dite_eq_left hex]
   rfl
 
 private theorem sign_flip_involutive {K : Type} [Ring K] (r b : ℕ) (x : Formalism.FourierDecayAlt.TB.Pt K) :
@@ -197,8 +197,6 @@ namespace Formalism.L2.SG.Pf.Carrier.JointPinJB
 
 open Formalism.L2.SG.RealObj Formalism.L2.SG.RealObj.EnergyCut Formalism.L2.SG.Pf.Carrier Formalism.L2.SG.Pf.Carrier.JointPf
   Formalism.L2.SG.Pf.Carrier.JointQuot Formalism.L2.SG.Pf.Carrier.JointPin
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 variable {D : D7}
 
@@ -357,11 +355,11 @@ theorem monoPt_holds : MonoPt X := by
     simp only [Formalism.L2.SG.PtCell.mono, Formalism.FourierDecayAlt.C2.monoP, Matrix.of_apply, Function.Involutive.coe_toPerm]
     by_cases h : a = Formalism.L2.SG.PtCell.pinv w i
     · have h2 : i = Formalism.L2.SG.PtCell.pinv w a := by rw [h, hinv]
-      rw [if_pos h]
-      simp only [h2, if_true]
+      rw [ite_eq_left h]
+      simp only [h2, ite_true]
     · have h2 : ¬ i = Formalism.L2.SG.PtCell.pinv w a := fun e => h (by rw [e, hinv])
-      rw [if_neg h]
-      simp only [h2, if_false, map_zero, mul_zero]
+      rw [ite_eq_right h]
+      simp only [h2, ite_false, map_zero, mul_zero]
 
 theorem hlocU_inv {v : InfinitePlace X.B.I.F} {h : Formalism.REAL.UJ (X.B.I.ε v)} (hh : h ∈ HlocU X u v) :
     h⁻¹ ∈ HlocU X u v := by
@@ -725,7 +723,7 @@ namespace Formalism.L2.SG.Pf.Carrier
 
 open Formalism.L2.SG.RealObj Formalism.L2.SG.HidaSetting Formalism.L2.SG.RealObj.InfCut Formalism.L2.SG.Pf.Carrier.JointQuot
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar instCM
+attribute [local instance] instCM
 
 section Gen
 
@@ -965,8 +963,6 @@ open MeasureTheory NumberField Formalism.BasicNotions Formalism.MainNotions.S Fo
 namespace Formalism.L2.SG.Pf.CarrierXAll
 
 open Formalism.L2.SG.Pf.Carrier
-
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 
 variable {D : D7} {X : Formalism.L2.SG.HidaSetting.HidaSetting D} {u u' : D.what₂.Word}
 

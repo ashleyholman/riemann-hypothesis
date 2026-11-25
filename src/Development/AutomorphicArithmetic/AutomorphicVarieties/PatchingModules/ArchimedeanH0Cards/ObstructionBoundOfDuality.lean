@@ -474,7 +474,7 @@ private theorem od_dec {K : Type} [Field K] {X : Type} [CommRing X] [Algebra (Po
   simp only [odOf, Submodule.coe_add, Submodule.coe_smul, Matrix.add_apply, Matrix.smul_apply, Matrix.of_apply]
   by_cases hij : ((i : ℕ) < a ↔ (j : ℕ) < a)
   · simp [hij, (od_iff _).1 Y.2 i j hij]
-  · simp only [hij, if_false]
+  · simp only [hij, ite_false]
     rw [← hb i j, hcd i j, map_add (f := _), Algebra.smul_def, map_mul]
 
 end SlopeTestRemainingChoices
@@ -823,7 +823,7 @@ theorem UpperTheory.V.Pa.B2.genTrick :
       · intro i
         obtain ⟨w, hw⟩ := hall i
         exact ⟨w, by rw [hd' i, hw, pow_succ, mul_assoc]⟩
-      · push_neg at hall
+      · push Not at hall
         obtain ⟨i0, hi0⟩ := hall
         exfalso
         have hdd : d = t ^ k • d' := funext fun i => by simp [hd' i]
@@ -1077,7 +1077,7 @@ private theorem low_ann {l : ℕ} [Fact l.Prime] {F : GFrame l} {n : ℕ} (x : N
     · rw [hdg g i, hdg g⁻¹ j, ← map_mul, ← map_one (algebraMap x.A X), ← map_sub]
       apply map_dvd
       have hf : fac v i j = (x.ψ v i g : PowerSeries x.K) * (x.ψ v j g⁻¹ : PowerSeries x.K) - 1 := by
-        simp only [fac, dif_neg hij']
+        simp only [fac, dite_eq_right hij']
         rfl
       rw [← hf]
       exact (Finset.dvd_prod_of_mem (fun j => fac v i j) (Finset.mem_univ j)).trans
@@ -1135,7 +1135,7 @@ theorem UpperTheory.V.Pa.B2.H0_local_card_bounded_of_cls_ker_le_ker :
     rw [← hch q1, ← hch q2, ← sub_eq_zero, ← map_sub, hker, hZsub]
     intro i j hij
     have h3 := congrArg (fun f => ((f i j : S) : x.Am e)) hq
-    simp only [φ, dif_pos hij] at h3
+    simp only [φ, dite_eq_left hij] at h3
     rw [Matrix.sub_apply, h3, sub_self]
   have hK : 1 < Nat.card x.K := Finite.one_lt_card
   calc Nat.card (ReciprocityTheory.Gal.H0 (D.Q (inV G v)).ρ) ≤ Nat.card (Fin n → Fin n → S) :=
@@ -1288,18 +1288,8 @@ section -- clump:auto
 open Matrix Filter ReciprocityTheory.Gal UpperTheory.V.W UpperTheory.V.Pa UpperTheory.V.Pa.B2
 
 private theorem map_algebraMap_mul_mul_map_linearMap {l : ℕ} [Fact l.Prime] {F : GFrame l} {n : ℕ} (x : NP F n) {Y Z : Type} [CommRing Y] [Algebra x.A Y] [CommRing Z] [Algebra x.A Z] (u : Y →ₗ[x.A] Z) (P Q : Matrix (Fin n) (Fin n) x.A) (N : Matrix (Fin n) (Fin n) Y) :
-    (P.map (algebraMap x.A Y) * N * Q.map (algebraMap x.A Y)).map u = P.map (algebraMap x.A Z) * N.map u * Q.map (algebraMap x.A Z) := by
-  have key : ∀ (p q : x.A) (y : Y), u (algebraMap x.A Y p * y * algebraMap x.A Y q) = algebraMap x.A Z p * u y * algebraMap x.A Z q := by
-    intro p q y
-    have h1 : algebraMap x.A Y p * y * algebraMap x.A Y q = (p * q) • y := by
-      rw [Algebra.smul_def, map_mul]; ring
-    have h2 : algebraMap x.A Z p * u y * algebraMap x.A Z q = (p * q) • u y := by
-      rw [Algebra.smul_def, map_mul]; ring
-    rw [h1, h2, map_smul]
-  ext i j
-
-  simp only [Matrix.map_apply, Matrix.mul_apply, Finset.sum_mul, map_sum]
-  exact Finset.sum_congr rfl fun k _ => Finset.sum_congr rfl fun m _ => key _ _ _
+    (P.map (algebraMap x.A Y) * N * Q.map (algebraMap x.A Y)).map u = P.map (algebraMap x.A Z) * N.map u * Q.map (algebraMap x.A Z) :=
+  map_conj u P Q N
 
 private theorem exists_matrix_map_eq_of_zero_on_of_mem_range {n : ℕ} {R Y Z : Type} [CommRing R] [AddCommGroup Y] [Module R Y] [AddCommGroup Z] [Module R Z] (w : Y →ₗ[R] Z) (S : Fin n → Fin n → Prop) (N : Matrix (Fin n) (Fin n) Z) (h0 : ∀ i j, S i j → N i j = 0) (hr : ∀ i j, ¬ S i j → N i j ∈ Set.range w) :
     ∃ N' : Matrix (Fin n) (Fin n) Y, (∀ i j, S i j → N' i j = 0) ∧ N'.map w = N := by

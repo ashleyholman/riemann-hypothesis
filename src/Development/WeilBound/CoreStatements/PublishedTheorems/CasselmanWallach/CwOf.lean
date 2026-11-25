@@ -509,7 +509,6 @@ theorem incl_E (a b : Fin n) (v : kfin ε σ) :
 
 theorem incl_actM (X : Mx n) (v : kfin ε σ) :
     incl hK (ReciprocityTheory.ChartRestriction.DS.actM (Eop hK h2) X v) = ReciprocityTheory.ChartRestriction.DS.actM (ReciprocityTheory.ChartRestriction.DS.smE ε σ) X (incl hK v) := by
-  set_option synthInstance.maxHeartbeats 100000 in
     simp only [ReciprocityTheory.ChartRestriction.DS.actM, LinearMap.sum_apply, LinearMap.smul_apply, map_sum, map_smul, incl_E]
 
 end PositivityTheory.CW.KFiniteInclusion
@@ -1445,7 +1444,7 @@ theorem re_inner_casK_nonneg (hU : IsInfUnitary ε E) (x : V) : 0 ≤ (⟪x, cas
   refine Finset.sum_nonneg fun a _ => Finset.sum_nonneg fun b hb => ?_
   have hb' : ε b = ε a := (Finset.mem_filter.1 hb).2
   have h := hU b a x (E b a x)
-  simp only [ReciprocityTheory.ChartRestriction.DS.adjSign, hb', if_true, one_mul] at h
+  simp only [ReciprocityTheory.ChartRestriction.DS.adjSign, hb', ite_true, one_mul] at h
   rw [← h]
   simpa using (inner_self_nonneg (𝕜 := ℂ) (x := E b a x))
 
@@ -1455,7 +1454,7 @@ theorem eig_nonneg (hU : IsInfUnitary ε E) {μ : ℝ} {v : V} (hv : v ≠ 0) (h
   have h3 : 0 ≤ μ * ‖v‖ ^ 2 := by simpa [← Complex.ofReal_pow] using h2
   have hn : 0 < ‖v‖ ^ 2 := pow_pos (norm_pos_iff.2 hv) 2
   by_contra hμ
-  push_neg at hμ
+  push Not at hμ
   nlinarith [mul_neg_of_neg_of_pos hμ hn]
 
 end PositivityTheory.CW.CasimirNonnegativeSymmetric

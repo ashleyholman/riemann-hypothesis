@@ -287,11 +287,6 @@ lemma gram_sq (k r : ℕ) : Hpk k r * Hpk k r = 1 := by
 
 end GlobalTheory.BesselUnitary
 
-namespace GlobalTheory
-
-open BesselUnitary
-
-end GlobalTheory
 end -- clump:auto
 end -- clump:auto
 end -- clump:auto

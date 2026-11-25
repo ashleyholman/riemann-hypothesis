@@ -93,9 +93,6 @@ theorem idem_mul_sum {es : Formalism.L2.DIV.Pl D.host.E → AE D} {S : Finset (F
 
 end GlobalTheory.IdemSumLoc
 
-namespace GlobalTheory.IdemSumLoc
-
-end GlobalTheory.IdemSumLoc
 end -- clump:auto
 end -- clump:auto
 end -- clump:auto

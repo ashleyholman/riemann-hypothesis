@@ -112,13 +112,11 @@ theorem shift_pow (ζ : ℂ_[q]) (hζ : ‖ζ - 1‖ < 1) (f : ℂ_[q]⟦X⟧) (
   | succ k ih =>
     rw [pow_succ, (h2 _ _ ⟨1, bd_pow f hf k⟩ ⟨1, hf⟩).2, ih, pow_succ]
 
-alias zc_natCast := _root_.GlobalTheory.MomOne.ShiftComp.zc_natCast
-
 theorem zc_sub_one (a : ℤ_[q]) : zc (a - 1) = zc a - 1 := by simp [zc]
 
 theorem coprime_pred (m : ℕ) (hm : 1 ≤ m) (h : ‖(m : ℂ_[q])‖ < 1) : Nat.Coprime (m - 1) q := by
   have hn := (GlobalTheory.MomOne.MulSeries.mulS_laws q).2.2.2.2.2
-  rw [← zc_natCast, hn] at h
+  rw [← GlobalTheory.MomOne.ShiftComp.zc_natCast, hn] at h
   have h1 : (q : ℤ) ∣ (m : ℤ) := by
     rw [← PadicInt.norm_int_lt_one_iff_dvd]; simpa using h
   have h2 : q ∣ m := by exact_mod_cast h1

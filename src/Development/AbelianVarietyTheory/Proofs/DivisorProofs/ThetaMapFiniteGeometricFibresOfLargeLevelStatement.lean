@@ -243,9 +243,6 @@ def oActIso {O : Type} [CommRing O] {S : Scheme.{0}} {A B : Over S} [GrpObj A] [
 
 end GlobalTheory.PolPartPull
 
-namespace GlobalTheory.PolPartPull
-
-end GlobalTheory.PolPartPull
 end -- clump:auto
 end -- clump:auto
 end -- clump:auto

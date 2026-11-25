@@ -775,18 +775,13 @@ section Alg
 
 variable {R R' : Type} [CommRing R] [CommRing R'] {n : Type} [Fintype n] [DecidableEq n]
 
-omit [Fintype n] [DecidableEq n] in
-theorem map_smul_hom (f : R →+* R') (c : R) (M : Matrix n n R) : (c • M).map f = f c • M.map f := by
-  ext i j
-  simp
-
 theorem frobenius_matrix_equation_inverse_scaling (F : R →+* R) (e t v : R) (hv : v * t = 1) (ht : F t = e * t) (a N : ℕ) (Y A : Matrix n n R)
     (h : e ^ a • Y.map F = Y * A) : e ^ (a + N) • (v ^ N • Y).map F = (v ^ N • Y) * A := by
   have h1 : F v * (e * t) = 1 := by rw [← ht, ← map_mul, hv, map_one]
   have h2 : e * F v = v := by linear_combination v * h1 - (e * F v) * hv
   have h3 : e ^ (a + N) * F v ^ N = v ^ N * e ^ a := by
     rw [pow_add, mul_assoc, ← mul_pow, h2, mul_comm]
-  rw [map_smul_hom, map_pow, smul_smul, h3, ← smul_smul, h, Matrix.smul_mul]
+  rw [GlobalTheory.CrisPeriods.map_smul_ring, map_pow, smul_smul, h3, ← smul_smul, h, Matrix.smul_mul]
 
 theorem galois_matrix_equation_inverse_scaling (G : R →+* R) (t v : R) (hv : v * t = 1) (N : ℕ) (P Y ε : Matrix n n R)
     (h : t ^ N • (P * Y.map G) = G t ^ N • (Y * ε)) : P * (v ^ N • Y).map G = (v ^ N • Y) * ε := by
@@ -797,17 +792,17 @@ theorem galois_matrix_equation_inverse_scaling (G : R →+* R) (t v : R) (hv : v
   have h4 : v ^ N * G v ^ N * G t ^ N = v ^ N := by
     rw [mul_assoc, ← mul_pow, h1, one_pow, mul_one]
   simp only [smul_smul, h3, h4] at h2
-  rw [map_smul_hom, map_pow, Matrix.mul_smul, h2, Matrix.smul_mul]
+  rw [GlobalTheory.CrisPeriods.map_smul_ring, map_pow, Matrix.mul_smul, h2, Matrix.smul_mul]
 
 theorem descend (f : R →+* R') (hf : Function.Injective f) (x y : R) (N : ℕ) (M Y ε : Matrix n n R)
     (h : f x ^ N • M.map f = f y ^ N • (Y.map f * ε.map f)) : x ^ N • M = y ^ N • (Y * ε) := by
   apply Matrix.map_injective hf
   simp only []
-  rw [map_smul_hom, map_smul_hom, map_pow, map_pow, Matrix.map_mul, h]
+  rw [GlobalTheory.CrisPeriods.map_smul_ring, GlobalTheory.CrisPeriods.map_smul_ring, map_pow, map_pow, Matrix.map_mul, h]
 
 theorem push (f : R →+* R') (x y : R) (N : ℕ) (P Q Y ε : Matrix n n R) (h : x ^ N • (P * Q) = y ^ N • (Y * ε)) :
     f x ^ N • (P.map f * Q.map f) = f y ^ N • (Y.map f * ε.map f) := by
-  rw [← Matrix.map_mul, ← Matrix.map_mul, ← map_pow, ← map_pow, ← map_smul_hom, ← map_smul_hom, h]
+  rw [← Matrix.map_mul, ← Matrix.map_mul, ← map_pow, ← map_pow, ← GlobalTheory.CrisPeriods.map_smul_ring, ← GlobalTheory.CrisPeriods.map_smul_ring, h]
 
 end Alg
 
@@ -826,7 +821,7 @@ theorem exists_mreal : ∀ (l : ℕ) [Fact l.Prime] (K : FinExt l) (bk : BK K) (
       rw [frobW_inclW, hτ.1, map_mul]
     · have h := congrArg (fun M => M.map (inclW l)) ht.φ
       try beta_reduce at h
-      rw [map_smul_hom, map_pow, Matrix.map_mul] at h
+      rw [GlobalTheory.CrisPeriods.map_smul_ring, map_pow, Matrix.map_mul] at h
       refine Eq.trans ?_ h
       congr 1
       ext1 i j

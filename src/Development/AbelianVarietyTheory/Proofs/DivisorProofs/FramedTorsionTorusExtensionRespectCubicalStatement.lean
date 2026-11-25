@@ -686,7 +686,6 @@ open GlobalTheory.Poinc.Sep
 
 open GlobalTheory.Poinc.Tors
 
-set_option backward.isDefEq.respectTransparency false
 
 namespace GlobalTheory.GenericCube
 

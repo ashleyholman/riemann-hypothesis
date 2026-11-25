@@ -615,10 +615,6 @@ theorem apply_tprod_eq {ι : Type} [Fintype ι] {E : ι → Type} [∀ i, AddCom
 
 end GlobalTheory.SepPer.PerNe
 
-namespace GlobalTheory.SepPer
-
-end GlobalTheory.SepPer
-
 end
 end -- clump:auto
 end -- clump:auto

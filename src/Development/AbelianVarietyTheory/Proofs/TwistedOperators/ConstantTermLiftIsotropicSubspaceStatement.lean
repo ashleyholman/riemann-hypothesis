@@ -656,9 +656,6 @@ theorem symplO_iso (S T : HSp D) {s : ℕ} (L : Matrix (Fin T.rank) (Fin s) D.ho
 end GlobalTheory.IsoTermMean
 
 namespace GlobalTheory.IsoTermMean
-end GlobalTheory.IsoTermMean
-
-namespace GlobalTheory.IsoTermMean
 variable {D : D7}
 
 theorem map_frame_decomp (V V' : HSp D) {r : ℕ} (C C' : Matrix (Fin V.rank) (Fin r) D.host.E)

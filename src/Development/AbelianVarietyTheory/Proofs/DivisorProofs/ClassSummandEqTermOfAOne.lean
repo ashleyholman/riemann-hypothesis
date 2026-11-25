@@ -122,9 +122,6 @@ theorem local_class_scalar_norm_sep : ∀ (p : ℕ) [Fact p.Prime] (G : HTGroup 
       inC G ℚ_[ℓ] (((c⁻¹ : G.Cˣ) : G.C) * β * sh G ((c⁻¹ : G.Cˣ) : G.C) * ((β⁻¹ : G.Cˣ) : G.C)) = algebraMap ℚ_[ℓ] (ℚ_[ℓ] ⊗[ℚ] G.C) (u : ℚ_[ℓ]) * ((z : ℚ_[ℓ] ⊗[ℚ] G.C) * inC G ℚ_[ℓ] (β : G.C) *
         (starT G.star ℚ_[ℓ] (z : ℚ_[ℓ] ⊗[ℚ] G.C)).unop * inC G ℚ_[ℓ] ((β⁻¹ : G.Cˣ) : G.C)) := by
   intro p _ G L f hf β x t hx hβ y₀ hsep hdeg
-  have hcomm : ∀ a b : G.C, Commute a (((y₀ : G.Cˣ × ℚˣ).1 : G.Cˣ) : G.C) →
-      Commute b (((y₀ : G.Cˣ × ℚˣ).1 : G.Cˣ) : G.C) → Commute a b :=
-    fun a b ha hb => GlobalTheory.LKCx.ClsReg.commute_of_commute_of_separable G _ hsep hdeg a b ha hb
   obtain ⟨Ω, hΩc, hΩ⟩ := _root_.GlobalTheory.FinClsLoc.support_subset_compact p G L f hf
   have hev := eventually_compL_mem_intPts p G Ω hΩc
   have hlat := _root_.GlobalTheory.FinClsLoc.SepLat.kottwitz_lattice_sep p G (y₀ : G.Cˣ × ℚˣ).1 hsep hdeg
@@ -304,7 +301,7 @@ theorem classes_finite : ∀ (p : ℕ) [Fact p.Prime] (G : HTGroup p), G.a = 1 �
   obtain ⟨a', ha', b, hD⟩ := key y hy a.1.1 (left_ne_zero_of_mul ha)
   have hex : ∃ y, D (a', b) y := ⟨y, hD⟩
   refine ⟨ρ (a', b), Finset.mem_image_of_mem _ (Finset.mem_product.2 ⟨ha', Finset.mem_univ _⟩), ?_⟩
-  have hρ : ρ (a', b) = hex.choose := dif_pos hex
+  have hρ : ρ (a', b) = hex.choose := dite_eq_left hex
   rw [hρ]
   obtain ⟨c', r', e', hc', he', hb', hre'⟩ := hex.choose_spec
   dsimp only at hb' hre'
@@ -502,7 +499,7 @@ theorem _root_.GlobalTheory.finite_monic_coeff_bdd_mul_isIntegral (K : Type) [Fi
     ext n
     by_cases hn : n ≤ d
     · exact congrFun hPQ ⟨n, Nat.lt_succ_of_le hn⟩
-    · push_neg at hn
+    · push Not at hn
       rw [Polynomial.coeff_eq_zero_of_natDegree_lt (hP.2.1.trans_lt hn),
         Polynomial.coeff_eq_zero_of_natDegree_lt (hQ.2.1.trans_lt hn)]
 
@@ -1016,7 +1013,6 @@ theorem valued_snd_eq_one {p : ℕ} [Fact p.Prime] (G : HTGroup p) (K : Subgroup
   have h1 := hle k hk
   have h2 := hle k⁻¹ (K.inv_mem hk)
   have h3 : F k⁻¹ * F k = 1 := by rw [← hmul, inv_mul_cancel, hone]
-  have h0 : 0 ≤ F k⁻¹ := norm_nonneg _
   have h0' : 0 ≤ F k := norm_nonneg _
   have hk1 : F k = 1 := by nlinarith
   have hle1 : Valued.v (AfP.eval w (((k : (AfP p ⊗[ℚ] G.C)ˣ × (AfP p)ˣ).2 : (AfP p)ˣ) : AfP p)) ≤ 1 :=
@@ -1046,7 +1042,6 @@ theorem glOneUnramifiedEntryNorm_eq_one_of_integral (p : ℕ) [Fact p.Prime] {k 
   have h1 := glOneUnramifiedEntryNorm_le_one_of_integral p hk
   have h2 := glOneUnramifiedEntryNorm_le_one_of_integral p ((GlobalTheory.LKLoc.Kint p (Q0 p) 1 1).inv_mem hk)
   have h3 : nu1 p k⁻¹ * nu1 p k = 1 := by rw [← glOneUnramifiedEntryNorm_mul, inv_mul_cancel, glOneUnramifiedEntryNorm_one]
-  have h0 : 0 ≤ nu1 p k⁻¹ := norm_nonneg _
   have h0' : 0 ≤ nu1 p k := norm_nonneg _
   nlinarith
 
@@ -1139,7 +1134,7 @@ theorem main : ∀ (p : ℕ) [Fact p.Prime] (G : HTGroup p) (L : G.Level) (f : G
     eq_of_valuations hM.1 hex.choose_spec.1 (fun w => by rw [hM.2.1 w, hex.choose_spec.2.1 w])
       (by exact_mod_cast hM.2.2.trans hex.choose_spec.2.2.symm)
   have hg : ((((y : G.Cˣ × ℚˣ).2 : ℚˣ) : ℚ) : ℝ) = g σ σ' := by
-    simp only [g, dif_pos hex, heq]
+    simp only [g, dite_eq_left hex, heq]
   rw [hg]
   calc g σ σ' ≤ ∑ σ'' ∈ T', g σ σ'' :=
         Finset.single_le_sum (f := fun σ'' => g σ σ'') (fun i _ => g_nonneg σ i) hσ'
@@ -1317,7 +1312,7 @@ theorem class_summand_eq_term_of_a_one : ∀ (p : ℕ) [Fact p.Prime] (G : HTGro
   intro p _ G hG v hv wt Kf f K' f' hf hf' P x t hx r hr
   have hiff := fix_iff_mark G hG v hv P r hr
   by_cases hm : ∃ μ, P.Mark μ
-  · rw [if_pos (hiff.2 hm), if_pos hm]
+  · rw [ite_eq_left (hiff.2 hm), ite_eq_left hm]
     obtain ⟨μ, hμ⟩ := hm
     have hpos := cent_sim_pos p G P μ hG hμ
     set e := centEquiv G P hpos r hr with he
@@ -1339,13 +1334,10 @@ theorem class_summand_eq_term_of_a_one : ∀ (p : ℕ) [Fact p.Prime] (G : HTGro
     have h5 : minpoly G.F (((r : G.Cˣ × ℚˣ).1 : G.Cˣ) : G.C) = P.pol := by
       rw [hr]; rfl
     rw [h1, h2, h3, h4, h5, GlobalTheory.pointSum_comp_mulEquiv, _root_.GlobalTheory.LKMid.Pair.term_one_eq_pointSum p G P Kf f K' f' hf hf' x t hx]
-  · rw [if_neg (fun h => hm (hiff.1 h)), if_neg hm]
+  · rw [ite_eq_right (fun h => hm (hiff.1 h)), ite_eq_right hm]
 
 end GlobalTheory.LKCx.CxReg
 
-namespace GlobalTheory.LKCx
-
-end GlobalTheory.LKCx
 end -- clump:auto
 end -- clump:auto
 end -- clump:auto

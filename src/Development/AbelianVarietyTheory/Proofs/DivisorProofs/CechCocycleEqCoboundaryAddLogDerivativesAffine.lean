@@ -1250,15 +1250,6 @@ end Data
 
 end GlobalTheory.DeRhamSheaf
 
-namespace GlobalTheory.AffGlue
-
-variable {T : Scheme.{0}}
-
-end GlobalTheory.AffGlue
-
-namespace GlobalTheory.DeRhamSheaf
-
-end GlobalTheory.DeRhamSheaf
 end -- clump:auto
 end -- clump:auto
 end -- clump:auto

@@ -710,9 +710,6 @@ end -- clump:auto
 section -- clump:auto
 @[expose] public section
 
-set_option synthInstance.maxHeartbeats 200000
-set_option maxHeartbeats 1000000
-
 noncomputable section
 
 open CategoryTheory Limits AlgebraicGeometry GroundTheory.PAdicHodge CrystallineSemistableComparison TensorProduct
@@ -761,7 +758,6 @@ theorem UpperTheory.Ru.crystallineComparison.injOf :
     UpperTheory.Ru.crystallineComparison.InjOf := by
   intro l _ K B₀ ι hι hc hq G Amp hF hE hL e e' hB hP hcomp M hM j κ _ v c u hu
   refine (hL.ch M hM).elim fun a => ?_
-  set_option synthInstance.maxHeartbeats 2000000 in
   have h0 : (per l K).t ^ u • ∑ k, (show (per l K).A from c k) • e'.e a j (v k) = 0 :=
     UpperTheory.Ru.crystallineComparison.submodule_pi_smul_sum_eq_zero (S := (M.MS j).lim)
       (UpperTheory.Ru.crystallineComparison.tA l ^ u) c (fun k => e'.e a j (v k))
@@ -912,8 +908,6 @@ section -- clump:auto
 @[expose] public section
 
 set_option maxSynthPendingDepth 1
-set_option maxHeartbeats 1600000
-set_option synthInstance.maxHeartbeats 400000
 
 noncomputable section
 

@@ -610,10 +610,10 @@ theorem mem_jac {D : D7} {k : Type} [Field k] [ValuativeRel k] [TopologicalSpace
     · rintro (a | i | i)
       · rfl
       · show (if i.val < σ then i.val + 1 else i.val + 2) = i.val + 1
-        rw [if_pos i.isLt]
+        rw [ite_eq_left i.isLt]
       · show (if 2 * σ - 1 - i.val < σ then 2 * σ - 1 - i.val + 1 else 2 * σ - 1 - i.val + 2) = 2 * σ - i.val + 1
         have := i.isLt
-        rw [if_neg (by omega)]
+        rw [ite_eq_right (by omega)]
         omega
     · intro r s hrs
       have hq' : GlobalTheory.RootEx.InN p' q := hq
@@ -666,7 +666,6 @@ open IsDedekindDomain NumberField MeasureTheory Matrix GlobalTheory.ChiGrid Glob
 open GlobalTheory.MixModel GlobalTheory.MixPer GlobalTheory.Grow GlobalTheory.RowUnf GlobalTheory.RowChain GlobalTheory.SeeSaw GlobalTheory.RowVal GlobalTheory.RowReal
 noncomputable section
 open GlobalTheory.RootEx GlobalTheory.RowRep
-attribute [local instance] GlobalTheory.LocalData.complRel GlobalTheory.LocalData.isLocalField
 
 theorem _root_.GlobalTheory.T.rowTest_mem_fourierJacobiGroup_of_sumFrame_symmetric : ∀ {D : D7} {A B : HSp D} {c σ : ℕ} {ε : D.host.E} (d : HermitianOrthogonalExtensionData A B c ε) (h : c = 2 * σ), 1 ≤ σ → ∀ (w : Pl D.host.E) (β : GL (Fin A.rank) (Lev.EAf D)) (β' : GL (Fin B.rank) (Lev.EAf D)) (u : Fin c → Kw w), IsSumFrame d w β β' u → (∀ p, u p ≠ 0) → ∀ {a b : ℕ} (_ : a = A.rank) (hb : b = B.rank) (hab : a + c = b) (q : GlobalTheory.FinPl.SplitPt D (Kw w)), (∀ x, q.pr x = GlobalTheory.RowRep.piAt w x) → ∀ g : GA D B, SuppAt q.e B g → frameGL hab (inBasis hb β' w (Lev.finE B g)) ∈ symR (Kw w) (Fin a) c → g ∈ jacGrp (jacDec d h) := by
   exact @GlobalTheory.RowRepLoc.mem_jacGrp_of_symR
@@ -915,7 +914,7 @@ namespace GlobalTheory.RowVal
 theorem eltAt {k : Type} [Field k] {Gr : GlobalTheory.SplitFlip.Grid k} {hs : 1 ≤ Gr.s} {J : Gr.Level} (ρ : Reps hs J)
     (β : Cosets hs J) (i : ℕ) (hi : i < Gr.m - 2) : ρ.elt β (Gr.m, i + 1) = ρ.rep ⟨i, hi⟩ (β ⟨i, hi⟩) := by
   rw [Reps.elt, onColumn_apply]
-  simp only [dif_pos hi]
+  simp only [dite_eq_left hi]
 
 
 
@@ -1082,13 +1081,13 @@ theorem suppOn_of_cover (s : ℤˣ) (hC : CoverAt ch s) (hF : FlatAt ch s) (hO :
   have hp : IsRealPt p := by
     refine ⟨fun j => ?_, fun j hj => by simp [p, hj]⟩
     by_cases hj : j ∈ idx D
-    · simp only [p, if_pos hj]; exact ha' j hj
-    · simp only [p, if_neg hj]; exact one_mem _
+    · simp only [p, ite_eq_left hj]; exact ha' j hj
+    · simp only [p, ite_eq_right hj]; exact one_mem _
   have hmove : tot ch.W hM P τ (colFn ch a) (formTop ch t y) h = tot ch.W hM P τ (colFn ch a) (formTop ch t y) (p * b β) := by
     refine biInv_eq_of_cells (idx D) (hI t a τ hτ M hM P y) h (p * b β) (fun j hj => ?_) (fun j hj => ?_)
     · simp [p, hj, h1 j hj, (hb β).1 j hj]
     · refine ⟨r j, hr j hj, k j, hk j hj, ?_⟩
-      simp only [Pi.mul_apply, p, if_pos hj, e j hj, mul_assoc]
+      simp only [Pi.mul_apply, p, ite_eq_left hj, e j hj, mul_assoc]
   rw [hmove]
 
   have hexp : ch.S.IsExpansion t (ch.Phi a) β 0 := by

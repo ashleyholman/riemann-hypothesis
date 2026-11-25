@@ -813,7 +813,7 @@ theorem adjZ_Eab {p q : ℕ} {a b : Ix p q} (h : sameBlock a b) : adjZ (Eab a b)
 theorem isKC_Eab {p q : ℕ} {a b : Ix p q} (h : sameBlock a b) : IsKC (Eab a b) := by
   unfold IsKC Eab
   intro c d hcd
-  rw [Matrix.single_apply, if_neg]
+  rw [Matrix.single_apply, ite_eq_right]
   rintro ⟨rfl, rfl⟩
   exact hcd h
 
@@ -825,12 +825,6 @@ theorem sameBlock_of_posC {p q : ℕ} {a b : Ix p q} (h : posC a b) : sameBlock 
 
 theorem sameBlock_refl {p q : ℕ} (a : Ix p q) : sameBlock a a := by
   cases a <;> exact True.intro
-
-private theorem mem_hwSub_iff' {p q : ℕ} {V0 : Type} [AddCommGroup V0] [Module ℂ V0]
-    (f : Mat p q →ₗ[ℂ] Module.End ℂ V0) (μ : Ix p q → ℚ) (z : V0) :
-    z ∈ hwSub f μ ↔ (∀ a, f (Eab a a) z = (μ a : ℂ) • z) ∧ ∀ a b, posC a b → f (Eab a b) z = 0 := by
-  simp only [hwSub, wtSub, Submodule.mem_inf, Submodule.mem_iInf, LinearMap.mem_ker, LinearMap.sub_apply,
-    LinearMap.smul_apply, LinearMap.id_apply, sub_eq_zero]
 
 theorem inner_eq_of_irreducible (p q : ℕ) (M : GKMod p q) (H₁ : Type) [NormedAddCommGroup H₁]
     [InnerProductSpace ℂ H₁] (H₂ : Type) [NormedAddCommGroup H₂] [InnerProductSpace ℂ H₂]
@@ -865,7 +859,7 @@ theorem inner_eq_of_irreducible (p q : ℕ) (M : GKMod p q) (H₁ : Type) [Norme
     intro w
     rw [h₁, h₂, hz]
   obtain ⟨hv0, hvmem⟩ : v ≠ 0 ∧ v ∈ hwSub M.act μ := hv
-  have hmem := (mem_hwSub_iff' M.act μ v).mp hvmem
+  have hmem := (GlobalTheory.LowGen.mem_hwSub M.act μ v).mp hvmem
 
   let A : ({ab : Ix p q × Ix p q // posC ab.1 ab.2} ⊕ Ix p q) → Module.End ℂ M.V :=
     Sum.elim (fun ab => M.act (Eab ab.1.1 ab.1.2)) (fun c => M.act (Eab c c) - (μ c : ℂ) • LinearMap.id)
@@ -890,7 +884,7 @@ theorem inner_eq_of_irreducible (p q : ℕ) (M : GKMod p q) (H₁ : Type) [Norme
   have hline : ∀ z, (∀ i, A i z = 0) → ∃ c : ℂ, c • v = z := by
     intro z hz0
     have hzmem : z ∈ hwSub M.act μ := by
-      rw [mem_hwSub_iff']
+      rw [GlobalTheory.LowGen.mem_hwSub]
       refine ⟨fun c => ?_, fun a b hab => hz0 (Sum.inl ⟨(a, b), hab⟩)⟩
       have hc0 := hz0 (Sum.inr c)
       simp only [A, Sum.elim_inr, LinearMap.sub_apply, LinearMap.smul_apply, LinearMap.id_apply,
@@ -1092,7 +1086,7 @@ theorem exists_coeff_ne_zero (hn : 1 ≤ p + q) (T : GrpData p q) (π₁ π₂ :
     if h : IsKC Z then (prodAct M₁ M₂ Z).restrict (hK Z h) else 0
   have ha : ∀ Z, IsKC Z → ∀ w : E, (a Z w : M₁.V × M₂.V) = prodAct M₁ M₂ Z w := by
     intro Z hZ w
-    simp only [a, dif_pos hZ, LinearMap.restrict_coe_apply]
+    simp only [a, dite_eq_left hZ, LinearMap.restrict_coe_apply]
   have heq := _root_.GlobalTheory.RealPar.pair_kEquivariant_of_lie p q T (_root_.GlobalTheory.CoverKGen.kset_gen p q hn T) π₁ π₂ E a i₁ i₂ (by
     intro Y hY hYK w
     simp only [i₁, i₂, LinearMap.comp_apply, Submodule.subtype_apply, ha Y hYK]
@@ -1236,7 +1230,7 @@ theorem casimir_compact (h : r = 0 ∨ s = 0) {V W : Type} [AddCommGroup V] [Mod
     {c : ℂ} (hc : casimir b w = c • w) : casimir a v = c • v := by
   have h1 := (_root_.GlobalTheory.CasimirHighest.casimir_central_and_highest r s V a ha).2 μ v hv
   have h2 := (_root_.GlobalTheory.CasimirHighest.casimir_central_and_highest r s W b hb).2 μ w hw
-  simp only [sameBlock_of_compact h, if_true] at h1 h2
+  simp only [sameBlock_of_compact h, ite_true] at h1 h2
   simp only [casimir, LinearMap.sum_apply, Module.End.mul_apply] at hc ⊢
   rw [h1]
   rw [h2] at hc

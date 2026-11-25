@@ -32,46 +32,8 @@ public import Development.AbelianVarietyTheory.Proofs.FoundationProofs.TaylorCoe
 public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.TaylorDirLinear
 public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.IteratedFDerivConstSmulOfNe
 public import Development.AbelianVarietyTheory.Proofs.SatakeParameters.DecompositionUnitaryMulStarEqOneStatement
-import Mathlib.Algebra.Order.Floor.Extended
-import Mathlib.Algebra.Order.Floor.Semifield
-import Mathlib.Algebra.Order.Interval.Basic
-import Mathlib.Analysis.Complex.UpperHalfPlane.Basic
-import Mathlib.Analysis.SpecialFunctions.Trigonometric.DerivHyp
-import Mathlib.Combinatorics.Enumerative.DyckWord
-import Mathlib.Combinatorics.SimpleGraph.Triangle.Removal
-import Mathlib.Data.NNRat.Floor
-import Mathlib.Geometry.Euclidean.Volume.Basic
-import Mathlib.NumberTheory.Chebyshev
-import Mathlib.NumberTheory.Height.NumberField
-import Mathlib.NumberTheory.Height.Projectivization
-import Mathlib.NumberTheory.LucasLehmer
-import Mathlib.NumberTheory.SelbergSieve
-import Mathlib.RingTheory.Radical.NatInt
-import Mathlib.Tactic.Echelon.Zsqrtd
-import Mathlib.Tactic.Inclusion.Extension.Core.Core
-import Mathlib.Tactic.Inclusion.Extension.Interval.BinarySplit
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Exp
-import Mathlib.Tactic.Inclusion.Extension.IntervalDyadicReal.Hypotheses
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Basic
-import Mathlib.Tactic.Inclusion.Extension.IntervalInt.Hypotheses
 import Mathlib.Tactic.Linter.Style
-import Mathlib.Tactic.NormNum.Irrational
-import Mathlib.Tactic.NormNum.IsCoprime
-import Mathlib.Tactic.NormNum.IsSquare
-import Mathlib.Tactic.NormNum.LegendreSymbol
-import Mathlib.Tactic.NormNum.ModEq
-import Mathlib.Tactic.NormNum.NatFib
-import Mathlib.Tactic.NormNum.NatLog
-import Mathlib.Tactic.NormNum.NatSqrt
-import Mathlib.Tactic.NormNum.Ordinal
-import Mathlib.Tactic.NormNum.Parity
-import Mathlib.Tactic.NormNum.Prime
-import Mathlib.Tactic.NormNum.RealSqrt
-import Mathlib.Topology.Sheaves.Init
 import Formalism.SharpRestriction.AdmissibleParameterJoins.GandSp
-import Mathlib.Analysis.Normed.Algebra.GelfandRadius
-import Mathlib.Tactic.Polynomial.Basic
-import Mathlib.Tactic.ReduceModChar
 import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.LocSpBot
 import Formalism.LocalToGlobal.InertKernelTheory.DelPolOfTies
 import Formalism.LocalToGlobal.InertKernelTheory.SecondKernelEntrywiseLastLevel
@@ -82,19 +44,13 @@ import Formalism.SharpRestriction.GrowthBounds.ChartedClasses.ToLEInvApply
 import Development.AbelianVarietyTheory.Definitions.GaloisGeometry.MemMoveLevUloc
 import Formalism.LocalToGlobal.PairingIndexBounds.OrthogonalChartLevels.IsOrthCo
 import Formalism.LocalToGlobal.KernelLattices.KernelLocalFactors.PeriodLatticeFinitelyGenerated
-import Mathlib.Analysis.SpecialFunctions.Bernstein
-import Mathlib.Data.Nat.Choose.Multinomial
 import Formalism.LocalToGlobal.GroupLattices.PendingLemmas.WittFractionToCpAlgebraMap
 import Formalism.LocalToGlobal.KernelLattices.TopLawQ
 import Formalism.LocalToGlobal.PairingIndexBounds.OrthogonalChartLevels.LtCNeZero
 import Formalism.SharpRestriction.GrowthBounds.MonomialFactorials.Imports
 import Formalism.SharpRestriction.GrowthBounds.MultisetValuation.CoeffProdRename
-import Mathlib.RingTheory.Coalgebra.CoassocSimps
-import Mathlib.Tactic.Basify
-import Mathlib.Tactic.ENatToNat
 import Formalism.LocalToGlobal.GlobalTheory.GL3.IsometryLinkageTrivialLevel
 import Formalism.LocalRingCardinality.SpanPowerMembership.ExampleLayerExistsGenerators
-import Mathlib.Analysis.SpecialFunctions.Gamma.Basic
 import Formalism.LocalToGlobal.KernelLattices.KernelLocalFactors.AlternatingFormStandardHermitian
 import Formalism.LocalRingCardinality.RankBoundMonotoneInDimension
 
@@ -363,7 +319,7 @@ theorem scalAt_all : AllSites (fun {D L hT Gi Gl Kc Dx cX ex u μ w hg Lv I H X}
       (((t.O u μ).mt (j + 1) ((t.O u μ).dt (j + 1) (clsAt X H (j + 1) La'.1 La'.2)) : ℂˣ) : ℂ) *
         ((D.chiD ((t.O u μ).dt (j + 1) (clsAt X H (j + 1) La'.1 La'.2)) : ℂˣ) : ℂ) ^ ((((D.R.N j / 2 : ℕ) : ℤ))) := by
     simp [GL3Theta.rhoOf']
-  simp only [Dec.sC, Dec.sP, Dec.uS, Dec.uT, scal0, Base.chiFac, dif_pos hj1, dif_pos hj0]
+  simp only [Dec.sC, Dec.sP, Dec.uS, Dec.uT, scal0, Base.chiFac, dite_eq_left hj1, dite_eq_left hj0]
   rw [R0, R1, hdt0, hdt1, M0.1, M1.1, C0.1, C1.1, eN0, eN1, ht]
   exact GlobalTheory.T.pullback_contraction_scalars_identity _ _ _ _ _ _ _ _ _ _ _ _ _ _ (cTw D j) (cTw D (j + 1)) (Units.ne_zero _) (Units.ne_zero _) M0.2.1 M1.2.1 M0.2.2 M1.2.2
     (Units.ne_zero _) (Units.ne_zero _) (Units.ne_zero _) (Units.ne_zero _) C0.2 C1.2
@@ -914,11 +870,11 @@ theorem expS_seam : ∀ {D : D7} {X : Fields} (s : Seam D X), s.Ok → ∀ (SS :
   rw [← conjP_seamP s hs] at h2
   unfold expS
   by_cases hP : P ∈ SS
-  · rw [if_pos (h1.2 hP), if_pos hP]
-  · rw [if_neg (fun h => hP (h1.1 h)), if_neg hP]
+  · rw [ite_eq_left (h1.2 hP), ite_eq_left hP]
+  · rw [ite_eq_right (fun h => hP (h1.1 h)), ite_eq_right hP]
     by_cases hQ : conjPrime₂ P ∈ SS
-    · rw [if_pos (h2.2 hQ), if_pos hQ]
-    · rw [if_neg (fun h => hQ (h2.1 h)), if_neg hQ]
+    · rw [ite_eq_left (h2.2 hQ), ite_eq_left hQ]
+    · rw [ite_eq_right (fun h => hQ (h2.1 h)), ite_eq_right hQ]
 
 end GlobalTheory.TwU.SeamExp
 end -- clump:auto
@@ -1330,7 +1286,7 @@ theorem pullbackScalar_ne_zero : AllSites (fun {D L hT Gi Gl Kc Dx cX ex u μ w 
       (d.gam i hi Lb) (d.mem i hi Lb) (d.kap i hi Lb) (d.eq i hi Lb hLb)
   have n1 := (key j (Nat.le_of_succ_le hj') La h1).2.2
   have n2 := (key (j + 1) hj' La' h2).2.2
-  simp only [Dec.sP, dif_pos hj', Dec.chi]
+  simp only [Dec.sP, dite_eq_left hj', Dec.chi]
   exact div_ne_zero (mul_ne_zero n1 (Units.ne_zero _)) (mul_ne_zero n2 (Units.ne_zero _))
 
 end GlobalTheory.TwV.DelB
@@ -1489,13 +1445,13 @@ theorem sum_pullMat_subBG_reframe : ∀ (D : D7) (p : ℕ) [Fact p.Prime] (X : S
       intro z _
       simp [pullMat, Ne.symm hne]
     · intro h; exact absurd (Finset.mem_univ _) h
-  · rw [show subBG E pos (reframe fd ρ e) j La La' (τ, b0, a0) (τ', b1, a1) = 0 from if_neg hxy, mul_zero]
+  · rw [show subBG E pos (reframe fd ρ e) j La La' (τ, b0, a0) (τ', b1, a1) = 0 from ite_eq_right hxy, mul_zero]
     apply Finset.sum_eq_zero
     intro z _
     by_cases h1 : τ = z.1
     · have h2 : z.1 ≠ τ' := fun h => hxy (h1.trans h)
-      rw [show subBG E pos fd j La La' z (τ', b1, a1) = 0 from if_neg h2, mul_zero, mul_zero]
-    · rw [show pullMat (e j La) (e (j + 1) La') (τ, b0, a0) z = 0 from if_neg h1, map_zero, zero_mul]
+      rw [show subBG E pos fd j La La' z (τ', b1, a1) = 0 from ite_eq_right h2, mul_zero, mul_zero]
+    · rw [show pullMat (e j La) (e (j + 1) La') (τ, b0, a0) z = 0 from ite_eq_right h1, map_zero, zero_mul]
 
 end GlobalTheory.TwV.DelB
 end -- clump:auto
@@ -1525,7 +1481,7 @@ theorem pull_eq_linear (D : D7) (T : TaylorLogMetric.Tor D) (hT : ∀ τ, T.emb 
   simp only [ite_mul, zero_mul, Finset.sum_mul]
   rw [Finset.sum_comm]
   rw [Fintype.sum_eq_single τ (fun x hx => by simp [Ne.symm hx])]
-  simp only [if_true]
+  simp only [ite_true]
   refine Finset.sum_congr rfl fun k _ => Finset.sum_congr rfl fun l _ => ?_
   rw [← Complex.star_def]
   ring

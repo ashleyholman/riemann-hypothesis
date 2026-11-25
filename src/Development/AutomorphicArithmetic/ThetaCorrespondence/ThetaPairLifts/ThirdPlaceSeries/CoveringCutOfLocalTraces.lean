@@ -355,13 +355,6 @@ structure ActsUnitarily (R : RealDat D A Ks) : Prop where
 
 end Statement
 
-section Basic₂
-
-variable {D : D7} {G : Type} [Group G] [Fintype G] {Pl0 T : Type} {A : FamIn D.what₂.LL G Pl0 T D.R.m}
-  {Ks : Type} [Field Ks] [NumberField Ks] [Algebra Ks D.what₂.LL]
-
-end Basic₂
-
 end GlobalTheory.IndefiniteRowSideFullHecke.DefiniteUnitaryAction
 
 end
@@ -521,9 +514,6 @@ theorem idemOf_props {K : Type} [Field K] [NumberField K] {G : Type} [Group G] [
 
 end GlobalTheory.TieIdem
 
-namespace GlobalTheory.TieIdem
-
-end GlobalTheory.TieIdem
 end -- clump:auto
 end -- clump:auto
 end -- clump:auto
@@ -540,8 +530,6 @@ section
 open NumberField IsDedekindDomain Formalism.BasicNotions Formalism.MainNotions Formalism.L2 Formalism.L2.DIV Formalism.L2.Indef Formalism.L2.Pj Formalism.IndefR.Links Formalism.IndefR.FWT
 open ReciprocityTheory.ChartRestriction.G.Geo.Tor ReciprocityTheory.ChartRestriction.G.FD GlobalTheory.AllWt GlobalTheory.CompHt GlobalTheory.BigTop
 noncomputable section
-namespace GlobalTheory.TieIdem
-end GlobalTheory.TieIdem
 namespace GlobalTheory.TieIdem
 theorem tied_good_idem_alt : ∀ {D : D7} {L : SizeData₂ D} {hT : GatTies D} {Gi : Formalism.MainNotions.G.Inst D L} {Gl : Formalism.MainNotions.G.LatInst D} {Kc : Formalism.MainNotions.G.Consts}
     {Y0 : DivX D} {cX : ExtraC} {ex : Extra D L hT Gi Gl Kc Y0 cX} {Csz : ℝ} (p : PtAt ex Csz), p.PointConditions' → GlobalTheory.CovTop.RecTied D L →

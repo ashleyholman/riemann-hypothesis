@@ -74,10 +74,7 @@ noncomputable section
 namespace GlobalTheory.DSGapData
 
 theorem two_mul_rkR_le {n : ℕ} (ε : Fin n → Bool) : 2 * GlobalTheory.Count.rkR ε ≤ n := by
-  have h := Finset.card_filter_add_card_filter_not (s := (Finset.univ : Finset (Fin n))) (fun a => ε a = true)
-  simp only [Bool.not_eq_true, Finset.card_univ, Fintype.card_fin] at h
-  delta GlobalTheory.Count.rkR
-  omega
+  exact GlobalTheory.KernelExpansion.two_mul_rank_le ε
 
 theorem rank_bound (n q : ℕ) (hq : 2 * q ≤ n) :
     120 * (n : ℝ) * ((q : ℕ) : ℝ) ^ ((3 : ℝ) / 2) ≤ 100 * (n : ℝ) ^ 4 := by

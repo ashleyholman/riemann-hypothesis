@@ -1385,7 +1385,7 @@ theorem unitarySphericalComponent_of_reading_alt : GlobalTheory.Published.Bernst
   rw [hfrob]
   refine ⟨?_, ?_⟩
   · simpa [Multiset.map_map, Function.comp_def] using h1
-  · have := GlobalTheory.RowSatakeBound.finite_residue w
+  · have := GlobalTheory.SelfDualGenus.finite_residueField_adicCompletionIntegers w
     exact _root_.GlobalTheory.SatakeInv.isUnitarySatake_map_inv _ _ _ _ h1
 end GlobalTheory.SplitRead
 end

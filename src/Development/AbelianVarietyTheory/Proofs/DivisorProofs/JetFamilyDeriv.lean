@@ -656,13 +656,6 @@ theorem ex_zero {B : NumB ℂ} {g : ℕ} (d : AB B g) : d.ex 0 = 1 := by
   rw [add_zero] at this
   exact mul_eq_left.1 this.symm
 
-theorem ex_sum {B : NumB ℂ} {g : ℕ} (d : AB B g) {J : Type} (s : Finset J) (v : J → Fin g → ℂ) :
-    d.ex (∑ i ∈ s, v i) = ∏ i ∈ s, d.ex (v i) := by
-  classical
-  induction s using Finset.induction_on with
-  | empty => simp [ex_zero]
-  | insert a s ha ih => rw [Finset.sum_insert ha, Finset.prod_insert ha, d.ex_add, ih]
-
 section Pts
 variable {R : Type} [CommRing R] [IsDomain R] {D : DegPre R} [Algebra (FractionRing R) ℂ] {N : NumD ℂ} {g : ℕ}
 

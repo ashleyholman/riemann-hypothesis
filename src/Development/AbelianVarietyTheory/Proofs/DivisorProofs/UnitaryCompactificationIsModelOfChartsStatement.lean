@@ -934,7 +934,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 open GlobalTheory.LieHt GlobalTheory.Cartier GlobalTheory.ThetaOnto
 open scoped CategoryTheory.Obj
 
-set_option backward.isDefEq.respectTransparency false
 
 namespace GlobalTheory.OpenPartUnit
 
@@ -961,7 +960,6 @@ section -- clump:auto
 open AlgebraicGeometry CategoryTheory Limits
 open ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 
-set_option backward.isDefEq.respectTransparency false
 
 namespace GlobalTheory.VerticalUnit
 
@@ -1094,7 +1092,7 @@ theorem finite_coheight_one_notMem (X : Scheme.{0}) [IsIntegral X] [AlgebraicGeo
   have hzη : z < genericPoint X := lt_of_le_not_ge (genericPoint_specializes z)
     fun h => hzS ((show z ⤳ genericPoint X from h).mem_open hS hη)
   refine ⟨Z, hZ, ?_⟩
-  simp only [dif_pos (hi Z hZ)]
+  simp only [dite_eq_left (hi Z hZ)]
   by_contra hne
   have hxlt : x < z := lt_of_le_not_ge hxz fun h =>
     hne ((show x ⤳ z from h).antisymm (show z ⤳ x from hxz)).eq.symm
@@ -1121,7 +1119,6 @@ section -- clump:auto
 open AlgebraicGeometry CategoryTheory Limits
 open ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
 
-set_option backward.isDefEq.respectTransparency false
 
 namespace GlobalTheory.VerticalUnit
 

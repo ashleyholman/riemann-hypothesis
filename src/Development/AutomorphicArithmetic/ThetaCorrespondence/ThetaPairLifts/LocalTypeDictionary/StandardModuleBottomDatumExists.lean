@@ -266,7 +266,7 @@ private theorem sb_cosInd (hc : D.host.ccK = ⊤) (hS : S.gram = 1) {e : AE D} {
   generalize Ideal.absNorm 𝔪 = n at hn0 hnm
   have hsupp : ∀ t : WO S T, cosInd e 𝔪 rfl rfl 0 t ≠ 0 → IsHalf e t ∧ ∀ i j, toEAf D (t i j) ∈ idGrp 𝔪 := fun t ht => by
     by_contra hh
-    exact ht (by rw [cosInd_zero, if_neg hh])
+    exact ht (by rw [cosInd_zero, ite_eq_right hh])
   refine ⟨fun t ht => (hsupp t ht).1, n, hn0, fun u hu hue t => ?_, fun t ht => nsmul_mem ?_ _⟩
   · have h1 : n • u ∈ latO S T (stdL D S.rank : Set (Fin S.rank → D.host.E))
         (skewLat D 𝔪 T.rank : Set (Fin T.rank → D.host.E)) fun _ => True := by
@@ -348,11 +348,11 @@ private theorem fix_deep (hc : D.host.ccK = ⊤) (hs : Setup ψ θ S T ⊤ δ 1)
       (stdL D T.rank : Set (Fin T.rank → D.host.E)) fun _ => True)) := by
     refine ⟨fun t ht => ?_, 1, one_pos, fun u hu hue t => ?_, fun t ht => ?_⟩
     · by_contra hh
-      exact ht (if_neg fun h' => hh h'.2)
+      exact ht (ite_eq_right fun h' => hh h'.2)
     · simp only [one_smul, halfInd, add_mem_cancel_right hu, half_add hue]
     · rw [one_smul]
       by_contra hh
-      exact ht (if_neg fun h' => hh h'.1)
+      exact ht (ite_eq_right fun h' => hh h'.1)
   have hvac := hTm.vac
   rw [one_smul] at hvac
   have hT : ∑ q, heisO ψ S T (cA D e • finTens 1 (-z q)) v =
@@ -428,7 +428,7 @@ theorem _root_.GlobalTheory.T.cosetIndicator_reads_as_translate_curveTheta : ∀
   have hcurve : cosV δ 𝔪 z G =
       Formalism.MainNotions.TaylorLogMetric.U D (tor0 D ⊤ δ) (pt D (tor0 D ⊤ δ) δ ((μ : D.host.E) • z)) (cosV δ 𝔪 0 G) := by
     have hfix := GlobalTheory.NormSum.VacMove.wd_fix h1 hs.crv kB hH (pt_mem δ (mem_skewMat h𝔪 hz hμ1))
-    rw [cosV, cosV, GlobalTheory.NormSum.VacMove.pt_zero, GlobalTheory.NormSum.VacMove.wd_zero]
+    rw [cosV, cosV, GlobalTheory.NormSum.VacMove.pt_zero, GlobalTheory.NormSum.wd_zero]
     generalize Iop D (tor0 D ⊤ δ) (La0 D (tor0 D ⊤ δ) S.rank T.rank)
       (La D (tor0 D ⊤ δ) (stdL D S.rank) (skewLat D 𝔪 T.rank)) G = H at hfix ⊢
     have hW := wd_pt_mul hs.crv htop (smul_mem_skewMat μ hz1) (smul_mem_skewMat (1 - μ) hz1) H
@@ -499,7 +499,6 @@ open GlobalTheory.FunObj.SqNum (hatId CongOne skewLat unitBlock cosetVec)
 open GlobalTheory.NormExact (Reads Setup IsFinIdl HasFinPart finPt)
 open GlobalTheory.IndefiniteRowSideFullHecke.UnitCharTriangle (InId IsUnitDet unitChar stdFst)
 
-attribute [local instance] Formalism.BasicNotions.Host.cmStar
 open GlobalTheory.StdRead
 
 
@@ -1283,10 +1282,6 @@ end GlobalTheory.StdRead
 
 end
 
-namespace GlobalTheory.StdRead
-
-end GlobalTheory.StdRead
-
 end -- clump:auto
 end -- clump:auto
 end -- clump:auto
@@ -1483,7 +1478,7 @@ theorem exp_w (G : GridData L sc) {μ₀ : T} (hL : L.Is μ₀) (t : T) (i j : F
   have a2 : D.R.m - i ≤ D.R.m := by omega
   have hu := G.pl.under_w hv
   by_cases h0 : v = G.pl.v0
-  · rw [condExp, if_pos h0]
+  · rw [condExp, ite_eq_left h0]
     have hu0 : (G.pl.w v).under (𝓞 D.host.F) = G.pl.v0 := hu.trans h0
     obtain ⟨l1, l2⟩ := G.ch.lev0 _ a1 a2 _ hu0
     have hmu : (L.C.mu0 j).UnrAt (G.pl.w v) := gridBaseCharacter_unramified_off_badPlaces j (by rw [hu0]; exact G.ch.basePlace_not_mem_chiGridBadPlaces)
@@ -1494,7 +1489,7 @@ theorem exp_w (G : GridData L sc) {μ₀ : T} (hL : L.Is μ₀) (t : T) (i j : F
       · exact G.pl.levelPlace_ne_basePlace t _ hq ((GlobalTheory.BadPlaceExp.under_eq_of_isConjPl hcj).trans hu0)
     exact exp_div (n := 0) hc (Formalism.L2.Host.HChar.UnrAt.levelLe (hmu.mul hxi) 0) l1
       (fun h => l2 ((Formalism.L2.Host.HChar.unrAt_iff _ _).2 h))
-  · rw [condExp, if_neg h0]
+  · rw [condExp, ite_eq_right h0]
     have h1 : v ∈ S1 D := (G.pl.mem_S0_of_sum_eq.1 hv).resolve_left h0
     obtain ⟨l1, l2⟩ := G.ch.lev1 _ a1 a2 (G.pl.w v) (by rw [hu]; exact h1)
     exact exp_div (n := 1) hc (Formalism.L2.Host.HChar.LevelLe.mul ((L.C.isMu0 j).tame _) (hL.xi_tame t _)) l1 l2
@@ -1560,8 +1555,6 @@ section -- clump:auto
 
 section
 noncomputable section
-namespace GlobalTheory.StdRead
-end GlobalTheory.StdRead
 section
 open Formalism.BasicNotions Formalism.BasicNotions.TH Formalism.MainNotions Formalism.MainNotions.GlobalTheoryTheory.GenusMassVolumes Formalism.MainNotions.StandardLattice Formalism.IndefR Formalism.IndefR.Datum Formalism.IndefR.Links Formalism.L2.Theta IsDedekindDomain NumberField Finset MeasureTheory
 open Formalism.MainNotions.TaylorLogMetric Formalism.MainNotions.StandardLatticesGL3 Formalism.L2.Indef.Tree.ArchimedeanLeafBounds.Cuts

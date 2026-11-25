@@ -637,7 +637,7 @@ theorem iota_natCast (x : ℕ) : iota l n x = ((l ^ n * x : ℕ) : ZMod (l ^ (n 
   rw [iota_apply, pow_mul_val]
 
 theorem iota_injective : Function.Injective (iota l n) := by
-  set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+  rw [injective_iff_map_eq_zero]
   intro b hb
   rw [iota_apply, CharP.cast_eq_zero_iff (ZMod (l ^ (n + 1))) (l ^ (n + 1)), pow_succ,
     Nat.mul_dvd_mul_iff_left (pow_pos (Fact.out : l.Prime).pos n)] at hb
@@ -834,7 +834,7 @@ theorem mk_eq_zero_of_rational (hT : LocalTateDuality) {F Ω : Type} [Field F] [
   have hr : Set.range Bw.toLL = Set.range (algebraMap ↥(Loc.OL Bw.LL) ↥Bw.LL.1) :=
     Bw.eO.surjective.range_comp (algebraMap ↥(Loc.OL Bw.LL) ↥Bw.LL.1)
   obtain ⟨n, a, ha, e⟩ := _root_.GlobalTheory.exists_zmod_pow_coboundary_of_rational_coboundary (Dec (F := F) A) l (fun g => ((cycZ F Ω l g : ℤ_[l]ˣ) : ℤ_[l])) O ↥Bw.LL.1 Bw.toLL
-    (GlobalTheory.BlochKatoIntegralScalars.toLL_injective Bw) (hr ▸ GlobalTheory.LocalIntegers.isOpen_integers l Bw.LL)
+    (Formalism.MainNotions.N.Br.toLL_inj Bw) (hr ▸ GlobalTheory.LocalIntegers.isOpen_integers l Bw.LL)
     (Nat.cast_ne_zero.2 (Fact.out : l.Prime).ne_zero)
     (fun x => by
       obtain ⟨n, hn⟩ := GlobalTheory.BlochKatoIntegralScalars.exists_pow_mul_mem_OL Bw.LL (fun (_ : Unit) (_ : Fin 1) => x)
@@ -1155,14 +1155,14 @@ theorem mem_unrAt {bkP : BKPh X} {Q : Finset (PlE D.host)} {x : H1 (red i K ρ)}
     resH1 (red i K ρ) (DecV N v).subtype continuous_subtype_val x ∈ Formalism.GaloisCohomology.unrAt (red i K ρ) (N.plOm.1 v) := by
   have h := (mem_Sel _ _ _ _ _).1 hx v
   unfold Formalism.GaloisCohomology.bkCond at h
-  rwa [if_neg (show ¬ ((X.l i : ℕ) : 𝓞 D.host.E) ∈ v.asIdeal from hv), if_neg (fun e => e.elim hv' hQ)] at h
+  rwa [ite_eq_right (show ¬ ((X.l i : ℕ) : 𝓞 D.host.E) ∈ v.asIdeal from hv), ite_eq_right (fun e => e.elim hv' hQ)] at h
 
 theorem mem_bkOn {bkP : BKPh X} {Q : Finset (PlE D.host)} {x : H1 (red i K ρ)}
     (hx : x ∈ selOn bkP i ρ (1 : GE N →* Kˣ) K Q) {v : PlE D.host} (hv : v ∈ placesOver D.host.E (X.l i)) :
     resH1 (red i K ρ) (DecV N v).subtype continuous_subtype_val x ∈ bkOn bkP i ρ (1 : GE N →* Kˣ) K v := by
   have h := (mem_Sel _ _ _ _ _).1 hx v
   unfold Formalism.GaloisCohomology.bkCond at h
-  rwa [if_pos (show ((X.l i : ℕ) : 𝓞 D.host.E) ∈ v.asIdeal from hv)] at h
+  rwa [ite_eq_left (show ((X.l i : ℕ) : 𝓞 D.host.E) ∈ v.asIdeal from hv)] at h
 
 theorem vanish_NS {bkP : BKPh X} (h : GalHyp bkP i s) (hK : IsRes i K) (hρ : ρ = Tgl i s ∨ IsDual i s ρ)
     {Q : Finset (PlE D.host)} {x : Z1 (red i K ρ)} (hx : cl x ∈ selOn bkP i ρ (1 : GE N →* Kˣ) K Q)

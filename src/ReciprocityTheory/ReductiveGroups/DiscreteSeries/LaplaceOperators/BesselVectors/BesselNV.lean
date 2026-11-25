@@ -400,8 +400,6 @@ namespace ReciprocityTheory.ChartRestriction.DS.Lap.TopNV
 
 open ReciprocityTheory.ChartRestriction.DS ReciprocityTheory.ChartRestriction.DS.Lap
 
-attribute [local instance] Matrix.normedAddCommGroup Matrix.normedSpace
-
 def BesselNVUnder (Gap : ℕ → ∀ r : ℕ, (Fin (2 * r + 2) → ℝ) → Prop) : Prop :=
   ∀ (k r : ℕ) (z : Fin (2 * r + k + 1) → ℂ) (c : Fin r → ℂ) (u : Fin k → ℝ) (v : Fin (k - 1) → ℝ)
     (b : Fin (2 * r + 2) → ℝ),

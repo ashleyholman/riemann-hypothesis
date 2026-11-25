@@ -1441,7 +1441,7 @@ theorem trFin_pf : TrFin := by
   let c : (B → ℂ) →ₗ[ℂ] LinearMap.range L :=
     L.rangeRestrict.comp (Fintype.linearCombination ℂ w)
   have hA : Function.Injective A := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro r hr0
     apply Subtype.ext
     rw [hr r]

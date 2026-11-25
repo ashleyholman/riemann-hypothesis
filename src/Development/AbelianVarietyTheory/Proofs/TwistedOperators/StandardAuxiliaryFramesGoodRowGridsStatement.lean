@@ -290,10 +290,6 @@ theorem fin_mul_left {k m n : ℕ} (M : Mx D k m) {u : Mx D m n} (hu : u.map (in
     (M * u).map (infPart D) = 0 := by
   rw [Matrix.map_mul, hu, Matrix.mul_zero]
 
-theorem fin_mul_right {k m n : ℕ} {u : Mx D k m} (hu : u.map (infPart D) = 0) (M : Mx D m n) :
-    (u * M).map (infPart D) = 0 := by
-  rw [Matrix.map_mul, hu, Matrix.zero_mul]
-
 theorem isHalf_mul_left {e : AE D} {k m n : ℕ} (M : Mx D k m) {u : Mx D m n} (hu : IsHalf e u) : IsHalf e (M * u) := by
   intro i j
   simp only [Matrix.mul_apply, Finset.mul_sum]
@@ -357,17 +353,17 @@ theorem cls_stable : ∀ (D : D7) (ψ : AddChar (AF D.host.F) ℂ) (V V₀ W W�
     intro a b
     rw [dV.wittDecomp_sympl_extAnisotropic_extAnisotropic W, dW.wittDecomp_sympl_inclAnisotropic_inclAnisotropic V₀]
   have hfin0 : ∀ u ∈ p.Γ₀, (dV.ext0 W (dW.inc0 V₀ u)).map (infPart D) = 0 := fun u hu =>
-    fin_mul_right (fin_mul_left _ (fin_of_mxAt (hp.fin₀ u hu))) _
+    GlobalTheory.MixHalf.map_infPart_mul (fin_mul_left _ (fin_of_mxAt (hp.fin₀ u hu))) _
   have comm0 : ∀ {a b : WO V W}, symplOH V W a b = 0 → Comm ψ V W a b := fun h g =>
     heisO_comm_of ψ g (by rw [h, add_zero, AddChar.map_zero_eq_one])
   refine ⟨fun w hw => ?_, fun w hw => ?_, ?_⟩
   · have cr : ∀ {a : WO V W}, a.map (infPart D) = 0 → Comm ψ V W a w := fun ha =>
       comm0 (GlobalTheory.FinTranslate.symplOH_fin_real ha hw)
     exact mem_cls_of_comm dV dW p _ y hΦ w (GlobalTheory.ThetaClosed.isThetaFunO_heisO_all hstd hθ w)
-      (fun a ha => cr (fin_mul_right (fin_of_mxAt (hp.a₁.fin a ha)) _))
-      (fun a ha => cr (fin_mul_right (fin_of_mxAt (hp.a₂.fin a ha)) _))
-      (fun ξ hξ => cr (fin_mul_right (fin_mul_left _ (fin_of_mxAt (hp.b₁.fin ξ hξ))) _))
-      (fun η hη => cr (fin_mul_right (fin_mul_left _ (fin_of_mxAt (hp.b₂.fin η hη))) _))
+      (fun a ha => cr (GlobalTheory.MixHalf.map_infPart_mul (fin_of_mxAt (hp.a₁.fin a ha)) _))
+      (fun a ha => cr (GlobalTheory.MixHalf.map_infPart_mul (fin_of_mxAt (hp.a₂.fin a ha)) _))
+      (fun ξ hξ => cr (GlobalTheory.MixHalf.map_infPart_mul (fin_mul_left _ (fin_of_mxAt (hp.b₁.fin ξ hξ))) _))
+      (fun η hη => cr (GlobalTheory.MixHalf.map_infPart_mul (fin_mul_left _ (fin_of_mxAt (hp.b₂.fin η hη))) _))
       (fun u hu => cr (by
         rw [← map_nsmul (dV.ext0 W), ← map_nsmul (dW.inc0 V₀)]
         exact hfin0 _ (nsmul_mem hu 2)))
@@ -872,7 +868,7 @@ theorem psi_of_shift (hG : GoodAt dV dW x ψ LV LV₀ LW LW₀ v) (hS : StdAt dV
       simp only [HypDec.extX_apply, Matrix.mul_assoc, Matrix.mul_one])
   have e2 : upSum (u.1 ⬝ (Matrix.single i j s : Mx D ρ ρ)) = s := by
     unfold upSum
-    rw [Finset.sum_eq_single i, Finset.sum_eq_single j, if_pos hij, Matrix.mul_single_apply_same, (hU i i).2, one_mul]
+    rw [Finset.sum_eq_single i, Finset.sum_eq_single j, ite_eq_left hij, Matrix.mul_single_apply_same, (hU i i).2, one_mul]
     · intro l _ hl; rw [Matrix.mul_single_apply_of_ne _ _ _ _ _ hl, ite_self]
     · intro h; exact absurd (Finset.mem_univ _) h
     · intro k _ hk

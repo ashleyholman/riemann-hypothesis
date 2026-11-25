@@ -821,7 +821,7 @@ theorem cell_volume_mul_coef : Big fun {D} _ _ _ _ _ _ _ _ _ _ _ ch => ∀ (s : 
   have key := idxRatio_row hS.core.lev ch.S.toGridChoice (Set.mem_univ t) hi hj hj' (hlat t j hm.1 hj) s β hδ hb₀ hr
   rw [← eb] at key
   rw [← hset, ← real_mul_idxRatio la (hop _ hb₀.1) (hcp _) (hop _ hbj) (hcp _), key, GlobalTheory.RowWt.colCoef]
-  simp only [dif_pos hj']
+  simp only [dite_eq_left hj']
 
 end GlobalTheory.SymmetricJacobianSignature
 end -- clump:auto
@@ -871,30 +871,6 @@ variable {D : D7}
 
 end GlobalTheory.CellIdx
 
-namespace GlobalTheory.CellIdx
-open GlobalTheory.RootEx GlobalTheory.LocGrp GlobalTheory.RowRep GlobalTheory.SplitWeil
-
-section Local
-variable {k : Type} [Field k]
-
-variable [ValuativeRel k] [TopologicalSpace k] [IsNonarchimedeanLocalField k]
-
-end Local
-
-variable {D : D7} {T : Type} {L : LevCh D T} {sc : Consts} {G : GridData L sc} {W : G.Weil} {U : Set T}
-
-
-
-theorem vol_mul_colCoef : Big fun {D} _ _ _ _ _ _ _ _ _ _ _ ch => ∀ (s : ℤˣ), ∀ j ∈ idx D,
-    ∀ la : Measure ((rowN ch.G j).subgroupOf (GfC (ch.G.V (.grid D.R.m j)))), la.IsHaarMeasure →
-    ∃ V₀ : ℝ, 0 < V₀ ∧ ∀ t β b, IsRep t ch.S.B s β b → ∀ hb : b j ∈ GfC _,
-      la.real {n | (⟨b j, hb⟩ : GfC _)⁻¹ * n.1 * ⟨b j, hb⟩ ∈ (latGrp ch.G j).subgroupOf (GfC _)} *
-        (GlobalTheory.RowWt.colCoef ch t β j : ℝ) = V₀ := by
-  first
-  | (exact @_root_.GlobalTheory.SymmetricJacobianSignature.cell_volume_mul_coef)
-
-end GlobalTheory.CellIdx
-
 end
 end -- clump:auto
 end -- clump:auto
@@ -918,7 +894,7 @@ theorem _root_.GlobalTheory.T.exists_haar_volume_of_conjugate_lattice : Big fun 
     ∃ V₀ : ℝ, 0 < V₀ ∧ ∀ t β b, IsRep t ch.S.B s β b → ∀ hb : b j ∈ GfC _,
       la.real {n | (⟨b j, hb⟩ : GfC _)⁻¹ * n.1 * ⟨b j, hb⟩ ∈ (latGrp ch.G j).subgroupOf (GfC _)} *
         (GlobalTheory.RowWt.colCoef ch t β j : ℝ) = V₀ := by
-  first | exact @GlobalTheory.CellIdx.vol_mul_colCoef
+  first | exact @GlobalTheory.SymmetricJacobianSignature.cell_volume_mul_coef
 end -- clump:auto
 end -- clump:auto
 -- ===== end clump member: Development.AbelianVarietyTheory.Proofs.TwistedOperators.ExistsHaarVolumeOfConjugateLatticeStatement =====

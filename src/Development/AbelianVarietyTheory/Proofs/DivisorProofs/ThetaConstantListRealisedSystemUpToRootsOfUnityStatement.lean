@@ -129,9 +129,6 @@ theorem normalised_root_stalk {S : Scheme.{0}} (hG : GlobalFnsSt) (P : PolAV S) 
 
 end GlobalTheory.ThetaCompare
 
-namespace GlobalTheory
-
-end GlobalTheory
 end -- clump:auto
 end -- clump:auto
 end -- clump:auto

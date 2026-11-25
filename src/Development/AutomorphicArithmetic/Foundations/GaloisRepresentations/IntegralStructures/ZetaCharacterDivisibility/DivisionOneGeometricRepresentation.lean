@@ -557,7 +557,7 @@ theorem UpperTheory.Gal.Int.Div.divSet_of :
     if h : ∃ Q, T g Q then h.choose else 1
   have hP : ∀ s ∈ {g : G E Ω | ∃ Q, T g Q}, T s (P s) := by
     intro s hs
-    have e : P s = (show ∃ Q, T s Q from hs).choose := dif_pos hs
+    have e : P s = (show ∃ Q, T s Q from hs).choose := dite_eq_left hs
     rw [e]
     exact (show ∃ Q, T s Q from hs).choose_spec
   have hss' : IsSSMat ρ := by
@@ -1038,7 +1038,7 @@ theorem UpperTheory.Gal.Int.Div.locConj_of :
     LocConj := by
   intro l _ P AI hT E Ω _ _ _ _ _ A O _ _ _ Bw a r r'
   have pst : ∀ {s : ↥(Dec (F := E) A) →* GL (Fin a) (Qbar l)}, IsCrysAt P Bw s → IsPstAt P Bw s := fun {s} h =>
-    GlobalTheory.GalCut.IwaTwist.isPstAt_of_isSstAt P AI hT Bw s
+    GlobalTheory.GalCut.IwaAll.isPstAt_of_isSstAt P AI hT Bw s
       (GlobalTheory.CrysSst.isSstAt_of_isCrysAt l P AI hT E Ω _ O Bw a s h)
   refine ⟨fun h => ⟨isdRAt_of_isCrysAt P AI hT h, pst h⟩, fun hiso => ?_⟩
   obtain ⟨g, hg⟩ := id hiso

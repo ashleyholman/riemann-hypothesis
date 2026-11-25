@@ -173,12 +173,6 @@ theorem cube_dilate_bound_at (hψ : IsStdChar D ψ (-1)) (hc : Chart θ σ) {N :
 
 end GlobalTheory.SupremumSobolevWords
 
-namespace GlobalTheory.SupremumSobolevWords
-
-open GlobalTheory.Size
-
-end GlobalTheory.SupremumSobolevWords
-
 end
 end -- clump:auto
 end -- clump:auto

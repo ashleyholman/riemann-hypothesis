@@ -49,10 +49,7 @@ theorem chi_ev_zero (ts : List (Deg k × R)) : ∀ (F : GMod B R k),
     simp [chi, a, b]
 
 theorem ann_le_sub (F : GMod B R k) (N : Submodule R F.M) : F.Ann ≤ (F.sub N).Ann := by
-  intro a ha
-  refine Module.mem_annihilator.mpr fun x => ?_
-  have hx : ∀ x : N, a • x = 0 := fun x => Subtype.ext (Module.mem_annihilator.mp ha x.1)
-  exact hx x
+  exact Formalism.MainNotions.V.Pf.V2.Calc.E7.ann_le_sub F N
 
 theorem ann_le_quo (F : GMod B R k) (N : Submodule R F.M) : F.Ann ≤ (F.quo N).Ann := by
   apply _root_.Formalism.MainNotions.V.Pf.V2.Calc.E7.ann_le_quo <;> assumption

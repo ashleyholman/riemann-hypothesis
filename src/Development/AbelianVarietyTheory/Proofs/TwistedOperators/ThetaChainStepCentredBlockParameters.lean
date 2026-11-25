@@ -64,8 +64,7 @@ namespace GlobalTheory.ArchRec.ParChain
 
 theorem num_bound_two {n q m N : ℕ} (hq : q ≤ m) (hn : n ≤ N) (hm : 1 ≤ m) (hN : 8 * m ≤ N) :
     120 * (n : ℝ) * (q : ℝ) ^ ((3 : ℝ) / 2) ≤ 2 * (N : ℝ) ^ 3 := by
-  intros
-  apply _root_.GlobalTheory.ArchRec.ParPair.num_bound <;> assumption
+  apply GlobalTheory.ArchRec.ParPair.num_bound <;> assumption
 
 theorem stepGap_of_gap {D : D7} (h : NodeGap D) (k : Fin D.R.m) : StepGap D k := by
   intro τ

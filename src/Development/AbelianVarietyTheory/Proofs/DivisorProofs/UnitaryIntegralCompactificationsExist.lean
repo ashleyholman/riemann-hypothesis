@@ -825,7 +825,7 @@ theorem exists_affineOpen_isIntegrallyClosed_charZero (X : Scheme.{0})
       algebraMap Γ(X, V) (X.presheaf.stalk x) a := fun a =>
     X.presheaf.germ_res_apply (homOfLE (X.basicOpen_le f)) x hxU a
   have hinj : Function.Injective g := by
-    set_option backward.isDefEq.respectTransparency.instanceSearchTypes false in rw [injective_iff_map_eq_zero]
+    rw [injective_iff_map_eq_zero]
     intro σ hσ
     obtain ⟨⟨r, m⟩, hrm⟩ := IsLocalization.surj (Submonoid.powers f) σ
     have hr : algebraMap Γ(X, V) (X.presheaf.stalk x) r = 0 := by
@@ -1114,8 +1114,6 @@ namespace GlobalTheory.UMin.IntTheta
 
 section Pull
 variable {S : Scheme.{0}} {A : Over S} [GrpObj A] {L : LB A.left} {a : ℤ}
-
-alias sec_ext' := _root_.ReciprocityTheory.ChartRestriction.G.DVR.SecOps.sec_ext
 
 theorem pullS_heq {T : Over S} {Y : Scheme.{0}} {y₁ y₂ : Y ⟶ S} (e : y₁ = y₂) (h₁ : Over.mk y₁ ⟶ T)
     (h₂ : Over.mk y₂ ⟶ T) (he : h₁.left = h₂.left) (s : LB.Sec (LPow A L a T)) :
