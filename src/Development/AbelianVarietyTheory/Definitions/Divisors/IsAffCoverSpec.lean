@@ -75,9 +75,6 @@ theorem scale_pull (L : V n →L[ℂ] V m) (s t : ℂ) (α : Alt m) :
 
 end GlobalTheory.CxForm.PullType
 
-namespace GlobalTheory.CxForm
-
-end GlobalTheory.CxForm
 end -- clump:auto
 end -- clump:auto
 end -- clump:auto
@@ -534,23 +531,6 @@ end HSm
 
 end GlobalTheory.CxForm.HolAtlas
 
-namespace GlobalTheory.CxForm.HolAtlas
-
-open GlobalTheory.GoodMetric (coordVec)
-
-end GlobalTheory.CxForm.HolAtlas
-
-namespace GlobalTheory.CxForm
-
-open CategoryTheory AlgebraicGeometry ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.Semi ReciprocityTheory.ChartRestriction.G.Geo.Tor
-
-variable {k k' : Type} [CommRing k] [CommRing k'] {X Y : Scheme.{0}}
-
-end GlobalTheory.CxForm
-
-namespace GlobalTheory.CxForm.HolAtlas
-
-end GlobalTheory.CxForm.HolAtlas
 end -- clump:auto
 end -- clump:auto
 end -- clump:auto

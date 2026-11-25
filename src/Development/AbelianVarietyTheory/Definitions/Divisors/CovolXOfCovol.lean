@@ -210,20 +210,9 @@ def Lifts (Q : ∀ {eps : ℝ} (Fm : FamP eps) (x : ℝ) (hx : Fm.x1 < x) (ι : 
     (PP C : ℝ), Prop) : Prop :=
   Closed FamHyp fun Fm _ => ∃ C : ℝ, 0 ≤ C ∧ EvTied Fm fun x hx ι p => ∀ i, Q Fm x hx ι p i (Fm.parT x hx ι).PP C
 
-def Covers (Q : ∀ {eps : ℝ} (Fm : FamP eps) (x : ℝ) (hx : Fm.x1 < x) (ι : Fm.Ix x) (p : Pt Fm x hx ι) (i : Fin (Fm.D x ι).R.m)
-    (_Y : Cov p i) (PP C : ℝ), Prop) : Prop :=
-  Lifts fun Fm x hx ι p i PP C => (i : ℕ) + 1 < (Fm.D x ι).R.m →
-    ∀ Y : Cov p i, GoodCov p i Y → Q Fm x hx ι p i Y PP C
-
 def Gram : Prop := Lifts fun _ _ _ _ p i _ _ => GramAt p i
 
-def Rec : Prop := Lifts fun _ _ _ _ p i _ _ => RecAt p i
-
 def Cut : Prop := Lifts fun _ _ _ _ p i _ _ => CutAt p i
-
-def abelian₂ : Prop := Lifts fun _ _ _ _ p i _ C => LamAt p i C
-
-def Size : Prop := Lifts fun _ _ _ _ p i PP C => SizeAt p i PP C
 
 def Meas : Prop := Lifts fun _ _ _ _ p i _ C => MeasAt p i C
 
@@ -234,10 +223,6 @@ def CoreLe : Prop := Lifts fun _ _ _ _ p i _ C => CoreAt p i C
 def Low : Prop := Lifts fun _ _ _ _ p i _ C => LowAt p i C
 
 def LowDef : Prop := Lifts fun Fm x _ ι p i _ C => (i : ℕ) + 1 = (Fm.D x ι).R.m → LowAt p i C
-
-def Ring : Prop := Covers fun _ _ _ _ p i Y _ _ => RingAt p i Y
-
-def Flat : Prop := Covers fun _ _ _ _ p i Y _ C => FlatAt p i Y C
 
 end GlobalTheory.CovTop
 

@@ -394,16 +394,6 @@ variable {Dw : Datum H} {Xo : ∀ l : Level H, Moduli Dw l} {p : ℕ} {W : Valua
 
 end Generic
 
-section Record
-
-open Formalism.BasicNotions Formalism.MainNotions GlobalTheory.ShFam
-
-variable {D : D7} {A : Amb D} {N j : ℕ} {S : Sig A N j} {κ : Lv A} {p : ℕ}
-
-variable (ct : At S κ p) (Λ : (uniTrue ct).Unim)
-
-end Record
-
 end GlobalTheory.LocM
 end -- clump:auto
 end -- clump:auto

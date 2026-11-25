@@ -57,11 +57,6 @@ def RigI : Prop :=
     ∀ (hr : HasMult D.η (push f S.r.hom)) (ι : Qbar l ≃+* ℂ), U3.TypeI D.η (push f S.r.hom) → D.IsAutI ι (push f S.r.hom) hr →
       Af.BlochKatoSelmerVanishes l (adRep (push f S.r.hom))
 
-def RigSp4 : Prop :=
-  ∀ (Ω : Type) [Field Ω] [CharZero Ω] [IsAlgClosure ℚ Ω] (l : ℕ) [Fact l.Prime] (c : Coef l) (D : GradeZeroInterpolatingElement.Raw Ω c),
-    Ws.Ctx2 D ∨ Ws.Ctx3 D → ∀ N : ℕ, 1 ≤ N → Af.KillsMu N D.ψ → Af.KillsMu N D.ξ → Af.KillsMu N D.om →
-    ∀ (ι : PadicAlgCl l ≃+* ℂ) r, D.EPt r → GradeZeroInterpolatingElement.Irr r → Aut.IsAut4 ι r → D.RigidAt r
-
 end UpperTheory.V.Th
 
 end

@@ -129,43 +129,6 @@ structure TautBase (o : Type) [CommRing o] (W : Type) [CommRing W] [IsLocalRing 
 
 attribute [instance] TautBase.grp TautBase.comm
 
-
-open InhTate Inh in
-def TautBase.torus {o W : Type} [CommRing o] [CommRing W] [IsLocalRing W] (b : o →+* W) (r : ℕ)
-    (u : Γ((𝟙_ (Over (Sp W))).left, ⊤)ˣ) (β : LinearMap.BilinForm ℤ (Fin r → ℤ)) (hβ : ∀ a a', β a a' = β a' a) :
-    TautBase o W where
-  b := b
-  B := (zeroPolAV (Sp W)).A
-  comm := (zeroPolAV (Sp W)).isAb.comm
-  isAb := (zeroPolAV (Sp W)).isAb
-  g := (zeroPolAV (Sp W)).g
-  smoothDim := (zeroPolAV (Sp W)).smoothDim
-  M := ⟨(zeroPolAV (Sp W)).L, cg _ _ 1, (zeroPolAV (Sp W)).isLB, cg_isGen _ _ 1⟩
-  cub :=
-    { t := cg _ _ 1
-      isGen := cg_isGen _ _ 1
-      face := fun _ => corr_of_isConst ((isConst_pullGen (cg_isConst _ _ 1) _).of_eq (map_one _)) (isConst_oneGen _)
-      cubeSymmetric_swap_first := corr_of_isConst (cg_isConst _ _ 1) ((isConst_pullGen (cg_isConst _ _ 1) _).of_eq (map_one _))
-      cubeSymmetric_swap_last := corr_of_isConst (cg_isConst _ _ 1) ((isConst_pullGen (cg_isConst _ _ 1) _).of_eq (map_one _))
-      cocycle := corr_of_isConst
-        ((isConst_mulGen ((isConst_pullGen (cg_isConst _ _ 1) _).of_eq (map_one _))
-          ((isConst_pullGen (cg_isConst _ _ 1) _).of_eq (map_one _))).of_eq (_root_.mul_one _))
-        ((isConst_mulGen ((isConst_pullGen (cg_isConst _ _ 1) _).of_eq (map_one _))
-          ((isConst_pullGen (cg_isConst _ _ 1) _).of_eq (map_one _))).of_eq (_root_.mul_one _)) }
-  ample := (zeroPolAV (Sp W)).ample
-  ktriv := (zeroPolAV (Sp W)).ktriv
-  r := r
-  c₀ := fun _ => toUnit _ ≫ η[(zeroPolAV (Sp W)).A]
-  c₀_add := fun _ _ => toUnit_unique _ _
-  τ₀ a a' := cg _ _ (u ^ β a a')
-  τ₀_gen a a' := cg_isGen _ _ _
-  τ₀_symm a a' z J hJ := (gm_res _ z _ (hJ.mem _ _) _).trans
-    ((congrArg (fun l : ℤ => gm (𝟙 _) z ⊤ (u ^ l)) (hβ a a')).trans (gm_res _ z _ (hJ.mem _ _) _).symm)
-  τ₀_add a a' a'' z J hJ := by
-    refine (congrArg₂ (· * ·) (gm_res _ z _ (hJ.mem _ _) _) ((gm_res _ z _ (hJ.mem _ _) _).trans (map_one _))).trans
-      (Eq.trans ?_ (congrArg₂ (· * ·) (gm_res _ z _ (hJ.mem _ _) _) (gm_res _ z _ (hJ.mem _ _) _)).symm)
-    rw [_root_.mul_one, ← map_mul, ← zpow_add, map_add (f := _), LinearMap.add_apply]
-
 def TautBase.ofPolAV {o W : Type} [CommRing o] [CommRing W] [IsLocalRing W] (b : o →+* W) (P : PolAV (Sp W))
     [IsCommMonObj P.A] (rig : LB.Gen (P.L.pull (eSec P.A))) (hr : rig.IsGen)
     (cub : CubicalStr P.A ⟨P.L, rig, P.isLB, hr⟩) {r : ℕ}

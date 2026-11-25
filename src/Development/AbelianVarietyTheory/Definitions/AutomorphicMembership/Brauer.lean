@@ -1,6 +1,5 @@
 module
 
-public import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology₂.BaseChangeIsobaric
 public import Development.AbelianVarietyTheory.PublishedTheorems.TwistedTraceFormula.BernsteinUnitaryProductIrreducible
 public import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology₂.DiscreteSpectrumResidual
 public import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology₂.PoitouTateNormalised
@@ -19,7 +18,6 @@ public import Development.AbelianVarietyTheory.PublishedTheorems.GaloisGeometry�
 public import Development.AbelianVarietyTheory.PublishedTheorems.GaloisGeometry₂.AlgebraicCharacterWD
 public import Development.AbelianVarietyTheory.PublishedTheorems.GaloisGeometry₂.TemperedProductOfSquareIntegrable
 public import Development.AbelianVarietyTheory.PublishedTheorems.GaloisGeometry₂.EssSquareIntegrableSegments
-public import Development.AbelianVarietyTheory.PublishedTheorems.GaloisGeometry₂.CaraianiTempered
 public import Development.AbelianVarietyTheory.PublishedTheorems.GaloisGeometry₂.GelfandKazhdanDual
 public import Development.AbelianVarietyTheory.PublishedTheorems.GaloisGeometry₂.CaraianiLocalGlobalDual
 public import Development.AbelianVarietyTheory.PublishedTheorems.GaloisGeometry₂.GaloisRepOfPolarizedPair
@@ -40,7 +38,6 @@ public import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.Exi
 public import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.SiegelKlingenDeligneRibet
 public import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.HeckeTateFunctionalEquationCM
 public import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomology₂.RationalDualityOfAllCoefficients
-public import Development.AbelianVarietyTheory.PublishedTheorems.Divisors₂.HilbertKodairaSpencer
 public import Development.AbelianVarietyTheory.Definitions.Divisors.IsKSValueOneOfRetraction
 public import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForms₂.CuspDiscreteDecompositionGL
 public import Development.AbelianVarietyTheory.PublishedTheorems.AutomorphicForms₂.ExistsNormLeHeightPow
@@ -53,26 +50,6 @@ public import Development.AbelianVarietyTheory.PublishedTheorems.GaloisCohomolog
 namespace GlobalTheory.Mem.LiteralAutomorphy
 
 open ReciprocityTheory.Gal Formalism.GaloisCohomology GlobalTheory.Published
-
-structure LitAut : Prop where
-  decay : CuspRapidDecay
-  hc : HarishChandraFinite
-  fin : AutomorphicFormsFiniteGL
-  js : JacquetShalika
-  cusp : CuspidalSpectrumGL
-  mw : DiscreteSpectrumResidual
-  bc : BaseChangeIsobaric
-  gk : GelfandKazhdanDual
-  gal : GaloisRepOfPolarizedPair
-  car : CaraianiLocalGlobalDual
-  ctemp : CaraianiTempered
-  pur : ClozelPurity
-  coh : ClozelCohomological
-  art : GlobalArtinReciprocity
-  ray : RayClassFieldSt
-  chA : HeckeLAdicCharacterAbove
-  chW : AlgebraicCharacterWD
-  berger : DeRhamPotSemistable
 
 structure LitCoh : Prop where
   pt : PoitouTateNormalised
@@ -87,18 +64,5 @@ structure LitCoh : Prop where
   ltK : LocalTateDualityK
   leK : LocalEulerCharK
   bk : BlochKatoLocal
-
-structure LitCM : Prop where
-  hb : HilbertBlumenthal
-  gm : GrothendieckDeformation
-  dr : AbelianDeRham
-  dual : AbelianDualCrystal
-  per : PeriodComparison
-  st : SerreTateGoodReductionSt
-  cm : EllipticMainTheoremCM
-  hj : HilbertClassFieldJ
-  dri : SiegelKlingenDeligneRibet
-  pz : PartialZetaFunctionalEquation
-  fe : HeckeTateFunctionalEquation
 
 end GlobalTheory.Mem.LiteralAutomorphy

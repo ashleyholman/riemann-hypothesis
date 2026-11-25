@@ -83,26 +83,6 @@ def DlogIs {O : Type} [CommRing O] {x : Sp O ⟶ X} (p n : ℕ) (c : TorsChar t 
         (c.χ _ w : DualNumber (O ⧸ Ideal.span {(p : O) ^ n})).snd =
           Ideal.Quotient.mk (Ideal.span {(p : O) ^ n}) (∑ i, h i * a i)
 
-def Thru {R B : Type} [CommRing R] [CommRing B] [Algebra R B] (u : Sp B ⟶ t.G.left) {S : Type} [CommRing S]
-    (φ : R →+* S) (w : Sp S ⟶ t.G.left) : Prop :=
-  ∃ β : B →+* S, β.comp (algebraMap R B) = φ ∧ spMap β ≫ u = w
-
-structure IsFinPart {R : Type} [CommRing R] (x : Sp R ⟶ X) (q : ℕ) {B : Type} [CommRing B] [Algebra R B]
-    (u : Over.mk (spMap (algebraMap R B) ≫ x) ⟶ t.G) : Prop where
-  finite : Module.Finite R B
-  free : Module.Free R B
-  tors : u ^ q = 1
-  mono : ∀ (S : Type) [CommRing S] (β β' : B →+* S), β.comp (algebraMap R B) = β'.comp (algebraMap R B) →
-    spMap β ≫ u.left = spMap β' ≫ u.left → β = β'
-  isOpen : ∀ (S : Type) [CommRing S] (φ : R →+* S) (w : Over.mk (spMap φ ≫ x) ⟶ t.G), w ^ q = 1 →
-    (∀ 𝔪 : Ideal S, 𝔪.IsMaximal →
-      Thru t u.left ((Ideal.Quotient.mk 𝔪).comp φ) (spMap (Ideal.Quotient.mk 𝔪) ≫ w.left)) → Thru t u.left φ w.left
-  one : ∀ (S : Type) [CommRing S] (φ : R →+* S), Thru t u.left φ (1 : Over.mk (spMap φ ≫ x) ⟶ t.G).left
-  mul : ∀ (S : Type) [CommRing S] (φ : R →+* S) (w w' : Over.mk (spMap φ ≫ x) ⟶ t.G),
-    Thru t u.left φ w.left → Thru t u.left φ w'.left → Thru t u.left φ (w * w').left
-  sect : ∀ (k : Type) [Field k] (β : B →+* k), ∃ σ : B →ₐ[R] R, β = (β.comp (algebraMap R B)).comp σ.toRingHom
-  inj : ∀ b : B, (∀ σ : B →ₐ[R] R, σ b = 0) → b = 0
-
 variable {F : Type} [Field F] [NumberField F] {Y : Var F}
 
 

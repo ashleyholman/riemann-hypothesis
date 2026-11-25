@@ -163,14 +163,6 @@ theorem Tri.symm (hu : Ind t x u) (hu' : Ind t x u') (h : Tri t x u u') : Tri t 
 
 end Tan
 
-section Norm
-
-variable {t} {C : Type} [NontriviallyNormedField C] [IsUltrametricDist C] {x : Sp C ⟶ X} {m : ℕ}
-  {u u' : Fin m → (Sp (DualNumber C) ⟶ t.G.left)}
-
-
-end Norm
-
 end GlobalTheory.ShFam.Pad.Pull
 end -- clump:auto
 end -- clump:auto
@@ -221,44 +213,6 @@ theorem comb_push {m : ℕ} {u : Fin m → (Sp (DualNumber R) ⟶ t'.G.left)} (h
   simp only [← map_smul, ← map_sum, EmbeddingLike.apply_eq_iff_eq]
 
 end Frames
-
-section Steps
-
-variable {X X' : Scheme.{0}} {t : SAB H X} {t' : SAB H X'} {l : Level H} {c : Coeff l} {p : ℕ}
-
-end Steps
-
-section Models
-
-variable {Xo : ∀ l : Level H, Moduli Dw l} {p : ℕ} {W : ValuationSubring ℂ} {Y : LocalSystem Xo p W} {i₀ : Idx H p}
-
-variable {Z Z' : Mdl Y i₀} {f : Z'.X ⟶ Z.X} (hf : IsMap Z' Z f) {τ : (Y Z'.i).X ⟶ (Y Z.i).X}
-  {mu : SABMap (Y Z'.i).t (Y Z.i).t τ} (hT : IsTrans Z.i Z'.i τ mu)
-
-include hf hT
-
-end Models
-
-section Bundle
-
-variable {X Y : Scheme.{0}} (f : Y ⟶ X)
-
-end Bundle
-
-section Main
-
-variable {Xo : ∀ l : Level H, Moduli Dw l} {p : ℕ} {W : ValuationSubring ℂ} {Y : LocalSystem Xo p W} {i₀ : Idx H p}
-  {Z Z' : Mdl Y i₀} {f : Z'.X ⟶ Z.X} {τ : (Y Z'.i).X ⟶ (Y Z.i).X}
-  {b : Bool} {st : ((E →+* ℂ) × ℕ) ⊕ ℕ} {x : Letter Dw}
-
-variable (hf : IsMap Z' Z f) {mu : SABMap (Y Z'.i).t (Y Z.i).t τ} (hT : IsTrans Z.i Z'.i τ mu)
-  (hty : ∀ τ n, n ≤ Dw.mult τ → n ∈ Z.ty τ) (M : LineModel Z b st x)
-
-include hf hT hty
-
-
-
-end Main
 
 end GlobalTheory.ShFam.Pad.Pull
 end -- clump:auto
