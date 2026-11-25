@@ -27,7 +27,6 @@ theorem isSchemeTheoreticallyDominant_ι_of_germ_eq_zero_over_affine
   have h1 := Scheme.Hom.germ_stalkMap_apply W.ι U ⟨x, hxW⟩ hx b
   rw [hb', map_zero] at h1
   let y : W.toScheme := ⟨x, hxW⟩
-  have hiso : IsIso (W.ι.stalkMap y) := inferInstance
   have hinj : Function.Injective (W.ι.stalkMap y) :=
     (ConcreteCategory.bijective_of_isIso (W.ι.stalkMap y)).1
   exact hinj (h1.trans (map_zero _).symm)

@@ -35,7 +35,6 @@ theorem GlobalTheory.CompHS.exists_eigFrame_vecAt₀ : ∀ {E : Type} [Field E] 
   haveI := TF.X.proper
   haveI := TF.smooth
   haveI : Smooth TF.Y.s := SmoothOfRelativeDimension.smooth Dw.dim TF.Y.s
-  haveI : LocallyOfFiniteType TF.Y.s := inferInstance
   haveI : LocallyOfFiniteType (str₀ TF.X Z) := by unfold str₀ flagStr; infer_instance
   haveI : IsLocallyNoetherian (Y₀ TF.X Z) := LocallyOfFiniteType.isLocallyNoetherian (str₀ TF.X Z)
   obtain ⟨K, _, ρ, hρ, hK⟩ := _root_.GlobalTheory.affineOpen_injects_to_dense (Y₀ TF.X Z) (U₀ TF.X Z) (dense_U₀ TF.X Z) W hW

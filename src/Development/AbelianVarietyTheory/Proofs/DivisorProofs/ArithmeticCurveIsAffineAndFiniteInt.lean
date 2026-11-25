@@ -47,7 +47,6 @@ theorem isAffine_and_finite : ∀ (k : Type) [CommRing k] (Y : Scheme.{0}) (q : 
     exact RingHom.finite_algebraMap.2 ‹_›
   set f : Y ⟶ Sp ℤ := q ≫ spMap (Int.castRingHom k) with hf
   have : Flat f := h.flat
-  have : IsProper f := inferInstance
   have hη : f (genericPoint Y) = genericPoint (Sp ℤ) := by
     obtain ⟨y, hy, e⟩ := Flat.generalizingMap f (genericPoint_specializes (f (genericPoint Y)))
     rwa [(hy.antisymm (genericPoint_specializes y)).eq] at e

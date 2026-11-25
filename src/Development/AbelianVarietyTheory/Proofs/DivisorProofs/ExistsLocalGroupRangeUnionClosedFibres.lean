@@ -322,7 +322,6 @@ theorem exists_desc_specStalk : ∀ (R : Type) [CommRing R] [IsDomain R] (f : R)
   have : Flat φ₁ := by rw [← hπ₁]; infer_instance
   have key : pullback.fst π π ≫ u₁ = pullback.snd π π ≫ u₁ := by
     let g : pullback π π ⟶ Sp R := pullback.fst π π ≫ φ₁ ≫ pB
-    have hg : Flat g := inferInstance
     have hφ : pullback.fst π π ≫ φ₁ = pullback.snd π π ≫ φ₁ := by
       rw [← hπ₁, pullback.condition_assoc]
     have hAf : IsSchemeTheoreticallyDominant (awayMap f) :=
@@ -473,9 +472,7 @@ namespace GlobalTheory.Desc
 theorem exists_smooth_nhds_of_smooth_fromSpecStalk :
     ∀ (R : Type) [CommRing R] [IsNoetherianRing R] (P : Scheme.{0}) (p : P ⟶ Sp R) (x : Sp R) (V W : P.Opens), W ≤ V → Smooth (Limits.pullback.snd (V.ι ≫ p) ((Sp R).fromSpecStalk x)) → LocallyOfFiniteType (W.ι ≫ p) → ∀ z : P, z ∈ W → (p z).asIdeal ≤ x.asIdeal → ∃ W' : P.Opens, z ∈ W' ∧ W' ≤ W ∧ Smooth (W'.ι ≫ p) := by
   intro R _ _ P p x V W hWV hV hW z hz hle
-  have : LocallyOfFinitePresentation (W.ι ≫ p) := inferInstance
   have : Flat ((Sp R).fromSpecStalk x) := GlobalTheory.LocalRingGeneralisation.flat_fromSpecStalk _ x
-  have : SurjectiveOnStalks ((Sp R).fromSpecStalk x) := inferInstance
   have e : W.ι ≫ p = P.homOfLE hWV ≫ V.ι ≫ p := by simp
   have h1 : Smooth (Limits.pullback.snd (P.homOfLE hWV ≫ V.ι ≫ p) ((Sp R).fromSpecStalk x)) := by
     rw [← pullbackRightPullbackFstIso_inv_snd_snd]
@@ -531,7 +528,6 @@ theorem exists_spread_basicOpen_agree : ∀ (R : Type) [CommRing R] [IsDomain R]
 
   have key : pullback.fst φ₀ (pullback.fst pB V.ι) ≫ u₀ = pullback.snd φ₀ (pullback.fst pB V.ι) ≫ g₀ := by
     let qN : pullback φ₀ (pullback.fst pB V.ι) ⟶ Sp R := pullback.fst _ _ ≫ φ₀ ≫ pB
-    haveI : Flat qN := inferInstance
     haveI : IsDominant ((Sp R).fromSpecStalk x) := by
       refine ⟨Dense.mono (s₁ := {genericPoint (Sp R)}) ?_ ?_⟩
       · rw [Set.singleton_subset_iff, Scheme.range_fromSpecStalk]

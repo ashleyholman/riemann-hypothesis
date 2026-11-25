@@ -36,7 +36,6 @@ theorem formallyEtale_localRingHom_of_etale {R S : Type} [CommRing R] [CommRing 
   let : Algebra Rₓ Sₓ := (Localization.localRingHom _ _ _ rfl).toAlgebra
   have : IsScalarTower R Rₓ Sₓ := .of_algebraMap_eq
     fun x ↦ (Localization.localRingHom_to_map _ _ _ rfl x).symm
-  have : Algebra.FormallyEtale R Sₓ := inferInstance
   have : Algebra.FormallyEtale Rₓ Sₓ :=
     Algebra.FormallyEtale.localization_base (J.comap f).primeCompl
   exact (RingHom.formallyEtale_algebraMap (R := Rₓ) (S := Sₓ)).2 this

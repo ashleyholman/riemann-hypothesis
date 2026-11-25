@@ -443,7 +443,6 @@ theorem weak_resolution : GlobalTheory.Published.Principalisation → ∀ (F : T
     obtain ⟨W', j, hjc, hjo, hW', w', rfl⟩ := _root_.GlobalTheory.exists_clopen_integral_of_smooth_over_field F J.subscheme (J.subschemeι ≫ s₁ ≫ f) hsm z
     have hg : ∀ w, (j ≫ J.subschemeι ≫ s₁) w ∈ i.ker.support := fun w =>
       hJB (Scheme.IdealSheafData.range_subschemeι J ▸ Set.mem_range_self _)
-    have : IsReduced W' := inferInstance
     obtain ⟨h, hh⟩ := _root_.GlobalTheory.lift_of_reduced_of_support i (j ≫ J.subschemeι ≫ s₁) hg
     have hw' : h w' = genericPoint W := by
       apply i.isEmbedding.injective

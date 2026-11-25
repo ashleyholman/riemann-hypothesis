@@ -212,7 +212,6 @@ theorem hol_point (f : Hol (⊤ : Opens (Empty → ℂ))) : algebraMap ℂ _ (f.
 theorem pHom_of (hE : PExist) (hU : PUniq) : PHom := by
   intro A _ g hA L u
   have : IsProper A.hom := hA.proper
-  have : IsSeparated (A.hom ≫ 𝟙 _) := inferInstance
   have hB : (fibUnif u).Based := by
     let f : Sp ℂ ⟶ A.left := (u.ex 0).left
     have hs : Subsingleton (Sp ℂ) := inferInstanceAs (Subsingleton (PrimeSpectrum ℂ))

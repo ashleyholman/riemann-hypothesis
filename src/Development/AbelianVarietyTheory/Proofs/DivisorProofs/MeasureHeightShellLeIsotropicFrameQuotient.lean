@@ -764,7 +764,6 @@ theorem measure_fundamentalDomain_prod_lt_top : ∀ (G₁ G₂ : Type) [Group G�
       ext <;> simp [h.1, h.2]
     exact this.countable
   rw [h𝓕.measure_eq hd]
-  have hp : (Measure.haar : Measure G₁).prod (Measure.haar : Measure G₂) |>.IsHaarMeasure := inferInstance
   rw [Measure.isMulLeftInvariant_eq_smul μ ((Measure.haar : Measure G₁).prod (Measure.haar : Measure G₂)),
     Measure.smul_apply, Measure.prod_prod, ENNReal.smul_def, smul_eq_mul]
   have a₁ := h₁ Measure.haar inferInstance _ (GlobalTheory.AutomorphicL2Unitary.isFundamentalDomain_stdDom Γ₁ Measure.haar)
@@ -1133,7 +1132,6 @@ theorem glOne_finvol : ∀ (F E : Type) [Field F] [NumberField F] [Field E] [Num
   · intro _ _ π DM hπ hDM
     rcases Nat.eq_zero_or_pos k with rfl | hk
     · haveI : Subsingleton H := inferInstance
-      haveI : CompactSpace H := inferInstance
       exact ((measure_mono (Set.subset_univ DM)).trans_lt (isCompact_univ.measure_lt_top)).ne
     obtain ⟨a, ha, hs⟩ := _root_.GlobalTheory.GLOneVol.log_absE_det_cR F E k hk
     let s : GL (Fin k) (AF F ⊗[F] E) → ℝ := fun g => Real.log (absE F E (Matrix.GeneralLinearGroup.det g) : ℝ) / a
@@ -1482,7 +1480,6 @@ theorem finCovol_leviOne_last : ∀ (F E : Type) [Field F] [NumberField F] [Fiel
       apply Subtype.ext; apply Subtype.ext
       exact congrArg (fun y : ratPts σ J => (y : GAd σ J)) h)
   haveI : Countable (ΓA.prod ΓG) := by
-    haveI : Countable ΓA := inferInstance
     haveI : Countable ΓG := TopologicalSpace.separableSpace_iff_countable.1 inferInstance
     exact Function.Injective.countable (f := fun x : ΓA.prod ΓG => ((⟨x.1.1, x.2.1⟩ : ΓA), (⟨x.1.2, x.2.2⟩ : ΓG)))
       (fun a b h => Subtype.ext (Prod.ext (congrArg (fun q => (q.1 : A)) h) (congrArg (fun q => (q.2 : G₁)) h)))
@@ -1572,7 +1569,6 @@ theorem measure_shell_le : ∀ (F E : Type) [Field F] [NumberField F] [Field E] 
   have hmod := _root_.GlobalTheory.ResidueEisenstein.ModConj.modulus_conj_flow F E σ n J r X Y hD.cm hD.herm hD.witt b hb ν hν
   obtain ⟨π, DM, hSL⟩ := _root_.GlobalTheory.ResidueEisenstein.semiLat_frameGrp F E σ n J r X Y hD.cm hD.herm hD.witt ν DN hν hDN hone
   obtain ⟨C, hC, hslab⟩ := _root_.GlobalTheory.ResidueEisenstein.slab_subset F E σ n J r X Y L a h hD b hb
-  haveI : Countable (ratPts σ J) := inferInstance
   haveI : Countable ((ratPts σ J ⊓ GlobalTheory.StdPar.frameStab σ J X ⊤) : Subgroup (GAd σ J)) :=
     Function.Injective.countable (Subgroup.inclusion_injective
       (inf_le_left : ratPts σ J ⊓ GlobalTheory.StdPar.frameStab σ J X ⊤ ≤ ratPts σ J))

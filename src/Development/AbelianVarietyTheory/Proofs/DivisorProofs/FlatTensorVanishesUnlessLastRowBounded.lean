@@ -226,8 +226,6 @@ theorem flatTensor_lastRow_bounded : ∀ {k : Type} [Field k] [ValuativeRel k] [
   obtain ⟨_, _⟩ := GlobalTheory.SplitWeil.Model.secondCountable_and_t2_local_field (k := k)
   have hFeq : flatTensor hs ψ ν (moved G keep g T) x y =
       (ψ (t * u) : ℂ) * flatTensor hs ψ ν (moved G keep g T) x y := by
-    have : SigmaFinite ν := inferInstance
-    have : ν.IsAddRightInvariant := inferInstance
     have : (varsVol G ν).IsAddRightInvariant := by unfold varsVol; infer_instance
     unfold flatTensor
     calc ∫ e', flatIntegrand hs ψ (moved G keep g T) x y e' ∂(varsVol G ν)

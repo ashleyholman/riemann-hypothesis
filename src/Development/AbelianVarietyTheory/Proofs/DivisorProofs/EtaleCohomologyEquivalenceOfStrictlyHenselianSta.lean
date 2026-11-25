@@ -118,7 +118,6 @@ theorem stalk_local_classes : ∀ (R : Type) [CommRing R] (F : Shv R) (S : Schem
   have hcF : IsLimit ((Over.forget S).mapCone (Cone.mk _ π)) := isLimitOfPreserves (Over.forget S) hl
   haveI : ∀ i, IsAffine ((G ⋙ Over.forget S).obj i) := fun i => (hG i).1
   haveI : ∀ {i j : I} (f : i ⟶ j), IsAffineHom ((G ⋙ Over.forget S).map f) := fun _ => inferInstance
-  haveI : LocallyOfFinitePresentation U.hom := inferInstance
   let t0 : G ⋙ Over.forget S ⟶ (Functor.const I).obj S :=
     { app := fun i => (G.obj i).hom, naturality := fun i j f => by simp }
   obtain ⟨j, u0, hu0, hu1⟩ := Scheme.exists_π_app_comp_eq_of_locallyOfFinitePresentation

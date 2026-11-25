@@ -922,7 +922,6 @@ theorem relRep_htPull : ∀ (p : ℕ) [Fact p.Prime] (D : Datum p) (R : Type) [C
   obtain ⟨u, ψ, ψ₂, pbu, squ, isou, actu, etau⟩ := _root_.GlobalTheory.HTMkObj.exists_obj_of_locus p D R b N hN hNp h M B ζ S s₁ t c e he hc E πE AE
     φE φ₂E actE ηE pbE sqE rosE etaE Z j hZj.1 hZj.2
   haveI : IsFinite πE := hEf
-  haveI : Mono j := inferInstance
   refine ⟨Z, j ≫ πE, u, ψ ≫ φE, ψ₂, pbu.comp pbE, squ, isou, inferInstance, ?_⟩
   intro T g t' o φ φ₂ hgt pbo sqo isoo
   have rosO : RosatiFor D o.act (c.P.pull φ₂) :=

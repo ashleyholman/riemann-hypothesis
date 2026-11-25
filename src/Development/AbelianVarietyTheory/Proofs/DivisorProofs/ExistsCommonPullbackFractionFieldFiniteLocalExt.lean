@@ -27,7 +27,6 @@ theorem exists_cover_field (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R] 
   haveI : IsScalarTower R (FractionRing R) K' := IsScalarTower.of_algebraMap_eq fun _ => rfl
   haveI : FiniteDimensional (FractionRing R) K' := hfin
   haveI : CharZero (FractionRing R) := charZero_of_injective_algebraMap (IsFractionRing.injective R _)
-  haveI : Algebra.IsSeparable (FractionRing R) K' := inferInstance
   let C := integralClosure R K'
   haveI : Module.Finite R C := IsIntegralClosure.finite R (FractionRing R) K' C
   haveI : IsFractionRing C K' := integralClosure.isFractionRing_of_finite_extension (FractionRing R) K'

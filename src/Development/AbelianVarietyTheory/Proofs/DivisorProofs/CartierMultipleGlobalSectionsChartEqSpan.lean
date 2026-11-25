@@ -109,7 +109,6 @@ theorem exists_basis_of_finite : ∀ (R F : Type) [CommRing R] [IsDomain R] [IsN
   haveI : FaithfulSMul B F := (faithfulSMul_iff_algebraMap_injective B F).mpr hli
   let E := Submodule.span B T
   haveI : Module.Finite B E := Module.Finite.span_of_finite B hT
-  haveI : Module.Free B E := inferInstance
   let e := Module.finBasis B E
   have clear : ∀ {ι : Type} [Finite ι] (z : ι → B), ∃ t, t ∉ p ∧ ∃ g : ι → R,
       ∀ i, c₀ (g i) = c₀ t * l (z i) := fun z => by

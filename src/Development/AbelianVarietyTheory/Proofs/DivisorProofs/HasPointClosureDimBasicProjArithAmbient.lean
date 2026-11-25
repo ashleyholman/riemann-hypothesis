@@ -57,7 +57,6 @@ theorem dim_closure_eq_zero_iff {T : Type*} [TopologicalSpace T] [T0Space T] (x 
     rw [ha]; trivial
 
 theorem ringKrullDim_le_one (k : Type) [CommRing k] [Module.Finite ℤ k] : ringKrullDim k ≤ 1 := by
-  have : Algebra.IsIntegral ℤ k := inferInstance
   calc ringKrullDim k ≤ ringKrullDim ℤ :=
         Order.krullDim_le_of_strictMono (PrimeSpectrum.comap (algebraMap ℤ k))
           fun I J h => Ideal.IsIntegral.comap_lt_comap (I := I.asIdeal) (J := J.asIdeal) h

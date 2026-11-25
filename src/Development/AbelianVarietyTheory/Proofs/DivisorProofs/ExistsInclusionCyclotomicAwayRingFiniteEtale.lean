@@ -157,7 +157,6 @@ theorem exists_inclusion_cycAway : ∀ n N : ℕ, N ≠ 0 → n ∣ N → ∃ j 
   have : Algebra.FiniteType (cycAway n) (cycAway N) := .of_restrictScalars_finiteType ℤ _ _
   have hfin : Module.Finite (cycAway n) (cycAway N) := Algebra.IsIntegral.finite
   have : FaithfulSMul (cycAway n) (cycAway N) := (faithfulSMul_iff_algebraMap_injective _ _).2 hj
-  have : Module.Flat (cycAway n) (cycAway N) := inferInstance
   have : Algebra.FinitePresentation (cycAway n) (cycAway N) := Algebra.FinitePresentation.of_finiteType.1 inferInstance
   have := formallyUnramified_cycAway hN (cycAway n)
   have het : Algebra.Etale (cycAway n) (cycAway N) := Algebra.Etale.of_formallyUnramified_of_flat

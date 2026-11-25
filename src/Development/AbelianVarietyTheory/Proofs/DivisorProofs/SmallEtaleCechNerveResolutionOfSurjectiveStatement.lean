@@ -35,7 +35,6 @@ noncomputable def bcIso {E : Spc} {S : Scheme.{0}} (p : E ⟶ sch.obj S) :
 
 theorem bc_preserves {E : Spc} {S : Scheme.{0}} (p : E ⟶ sch.obj S) (J : Type) [SmallCategory J] [IsConnected J]
     [FinCategory J] : PreservesLimitsOfShape J (bc p) := by
-  have : PreservesLimitsOfShape J (Over.post sch ⋙ Over.pullback p ⋙ Over.forget E : Over S ⥤ _) := inferInstance
   exact preservesLimitsOfShape_of_natIso (bcIso p).symm
 
 theorem bc_isPullback {E : Spc} {S : Scheme.{0}} (p : E ⟶ sch.obj S) {U V : Over S} (g : U ⟶ V) :

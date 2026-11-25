@@ -169,7 +169,6 @@ theorem exists_component_iso (T : TorFlag Xo c) (Z : Comp Xo c) (B : Comp Xo c �
       have := _root_.GlobalTheory.VarFlag.rel_specialise T.X hX C hC A (u ≫ inc₀ T.X Z) v (by simpa only [Category.assoc] using huv)
         (by simpa only [Category.assoc] using hr)
       simpa only [Category.assoc] using this)
-  have : IsProper (inc₀ T.X Z ≫ T.X.π) := inferInstance
   have : IsProper (h ≫ C.π ≫ genι T.Y) := by rw [hh]; infer_instance
   have : IsProper h := IsProper.of_comp h (C.π ≫ genι T.Y)
   have := _root_.GlobalTheory.VarFlag.locallyQuasiFinite_flag T.flag C hC Z h hR

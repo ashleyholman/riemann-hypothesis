@@ -267,7 +267,6 @@ theorem exists_dotProduct_eq_local : ∀ {F : Type} [Field F] [NumberField F] (v
     ∀ χ : (κ → Fv F v) → ℂ, (∀ y ∈ L, ∀ y' ∈ L, χ (y + y') = χ y * χ y') → (∀ y ∈ L, y ∈ L' → χ y = 1) →
     ∃ x₀ : κ → Fv F v, ∀ y ∈ L, χ y = ψ₀ (x₀ ⬝ᵥ y) := by
   intro F _ _ v κ _ ψ₀ hc hne L hL L' hL' χ hmul htriv
-  haveI : IsUltrametricDist (Fv F v) := inferInstance
   exact exists_dotProduct_eq ψ₀ hc hne L hL L' hL' χ hmul htriv
 
 end GlobalTheory.CompactCharDual

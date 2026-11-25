@@ -455,7 +455,6 @@ theorem exists_integral {R : Type} [CommRing R] [IsDomain R] {I : Ideal R} {D : 
         (D.toPre.famφB α) (DegPre.famε k) (f₀ α) (DegPre.prB D.toPre (FractionRing R)).left
         (scal (DegPre.BF D.toPre (FractionRing R)).hom r₀) := by
   have := U.smooth
-  have : Flat G.hom := inferInstance
   have hL := U.LG.isLB
   obtain ⟨s, hs⟩ := exists_sec hL (φ := fun _ : Fin 1 => pullback.fst G.hom (jK R) ≫ 𝟙 G.left)
     (ε := fun _ => (k : ℤ)) (φ' := fun _ : Fin 1 => pullback.fst G.hom (jK R)) (ε' := fun _ => (k : ℤ))

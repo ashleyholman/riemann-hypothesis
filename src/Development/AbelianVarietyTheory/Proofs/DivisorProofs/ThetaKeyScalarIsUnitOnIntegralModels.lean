@@ -1108,7 +1108,6 @@ theorem integral_of_arcs_of_good : ∀ (E : Type) [Field E] [NumberField E] [IsC
     rw [← ev_factor la (spMap (algebraMap R K) ≫ z) _ rfl W₀ h (le_preimage_comp _ h),
       GlobalTheory.FlagMod.ev_congr hpt2 W₀ _ (le_preimage_comp _ hSW), ev_factor φS _ _ rfl W₀ hSW, hs, hφS]
     rfl
-  haveI : IsLocalHom (g.comp i) := inferInstance
   exact mem_range_of_map (g.comp i) la (fun r => RingHom.congr_fun hla r) _ ⟨evu s, hval.symm⟩
 
 end GlobalTheory.ArcIntegralMixed

@@ -331,8 +331,6 @@ theorem symm_lbIso_descends_to_subring_containing_finset : ∀ (R : Type) [CommR
   intro R _ S A _ _ B _ _ φ φ₂ P P₀ hB hφ sq hP hP₀ hw hsym
   haveI := hB.proper
   have hprop : IsProper (G2 B).hom := by rw [Over.tensorObj_hom]; infer_instance
-  haveI : QuasiCompact (G2 B).hom := inferInstance
-  haveI : QuasiSeparated (G2 B).hom := inferInstance
   set sw₀ := (lift (snd B B) (fst B B)).left with hsw₀
   have hpb := isPullback_square hφ.1 φ₂ sq
   have H : LBIso (P₀.pull φ₂) ((P₀.pull sw₀).pull φ₂) :=

@@ -511,8 +511,6 @@ theorem genericPoints_XF_finite : ∀ (E : Type) [Field E] [NumberField E] [IsCM
   have := ReciprocityTheory.ChartRestriction.G.Geo.Tor.isProper_str (KA l) N
   haveI : QuasiCompact Xo.s := he ▸ inferInstance
   haveI : LocallyOfFiniteType Xo.s := he ▸ inferInstance
-  haveI : QuasiCompact (pullback.snd Xo.s (spMap (IntermediateField.inclusion c.le).toRingHom)) := inferInstance
-  haveI : LocallyOfFiniteType (pullback.snd Xo.s (spMap (IntermediateField.inclusion c.le).toRingHom)) := inferInstance
   haveI : IsLocallyNoetherian (Xo.XF c) :=
     LocallyOfFiniteType.isLocallyNoetherian (pullback.snd Xo.s (spMap (IntermediateField.inclusion c.le).toRingHom))
   haveI : CompactSpace (Xo.XF c) :=

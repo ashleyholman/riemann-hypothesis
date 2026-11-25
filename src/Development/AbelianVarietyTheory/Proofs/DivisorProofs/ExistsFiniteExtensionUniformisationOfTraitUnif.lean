@@ -1172,7 +1172,6 @@ theorem exists_polAV : ∀ (K K' : Type) [Field K] [Field K'] (ga : K →+* K') 
   have hP' : IsGrpPullback A'.A G (spMap (algebraMap K K')) α := hP
   have : Flat (spMap ga) := Flat.SpecMap_iff.2 (RingHom.flat_algebraMap_iff.2 inferInstance)
   have : Surjective (spMap ga) := ⟨PrimeSpectrum.comap_surjective_of_faithfullyFlat (A := K) (B := K')⟩
-  have : QuasiCompact (spMap ga) := inferInstance
   have hAb : IsAbelianScheme G := PolFlatDescent.isAbelianScheme_of_pull hP A'.isAb
   have hdim : SmoothOfRelativeDimension A'.g G.hom :=
     CM.smoothOfRelativeDimension_of_fibre K K' ga G A'.A.left α A'.A.hom A'.g hAb hP.1 A'.smoothDim

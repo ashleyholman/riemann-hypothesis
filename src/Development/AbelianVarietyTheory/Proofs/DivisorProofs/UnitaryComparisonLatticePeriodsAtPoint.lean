@@ -280,7 +280,6 @@ theorem abelianScheme_end_ext_of_dense : ∀ (W : Scheme.{0}) [IsIntegral W] (G 
   have : Smooth G.hom := hG.smooth
   have : IsProper G.hom := hG.proper
   have : IsDominant pt := ⟨hpt⟩
-  have : QuasiCompact pt := inferInstance
   have := IsSchemeTheoreticallyDominant.of_isDominant pt
   have : IsSchemeTheoreticallyDominant (pullback.fst G.hom pt) :=
     IsSchemeTheoreticallyDominant.of_isPullback (IsPullback.of_hasPullback G.hom pt).flip
@@ -320,8 +319,6 @@ theorem isIntegral_pullback_toRat : ∀ (o Ω : Type) [CommRing o] [Field Ω] [A
   let pt := pullback.lift _ _ w
   let j : pullback u₀ (spMap (toRat R)) ⟶ M.Z := pullback.fst _ _ ≫ U₀.ι
   have hpt : pt ≫ j = M.pt := by rw [← Category.assoc, pullback.lift_fst, hx]
-  haveI : IsPreimmersion j := inferInstance
-  haveI : Flat j := inferInstance
   haveI := _root_.GlobalTheory.FamSiegel.isReduced_of_flat_preimmersion j
   have hj : ∀ y, j (pt y) = genericPoint M.Z := fun y => by
     rw [← Scheme.Hom.comp_apply, hpt]

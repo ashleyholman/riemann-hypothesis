@@ -65,7 +65,6 @@ theorem GlobalTheory.EtC.tateTwistCohomology_zero_strictlyHenselian_equiv : ∀ 
     AddEquiv.ofBijective (AddMonoidHom.mk' (secClass (tw q j))
       (_root_.GlobalTheory.EtC.secClass_props (ZMod q) (tw q j) _).2.2.1)
       (_root_.GlobalTheory.EtC.secClass_props (ZMod q) (tw q j) _).2.1
-  haveI : Nonempty (Spec (CommRingCat.of A)) := inferInstance
   let ζ : Prim q Γ(Spec (CommRingCat.of A), ⊤) :=
     Prim.map (Scheme.ΓSpecIso (CommRingCat.of A)).inv.hom ⟨ζ0, hq, hζ0⟩
   have hidem : ∀ x : A, IsIdempotentElem x → x = 0 ∨ x = 1 := fun x hx => by

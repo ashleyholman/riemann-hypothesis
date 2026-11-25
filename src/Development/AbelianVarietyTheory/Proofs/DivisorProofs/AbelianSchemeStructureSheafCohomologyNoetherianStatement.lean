@@ -544,7 +544,6 @@ theorem exists_grpObj_of_isPullback {R R' : Type} [CommRing R] [CommRing R'] (f 
   have := smoothOfRelativeDimension_isStableUnderBaseChange.{0} g
   refine ⟨gr, GlobalTheory.Compare.AbelianSchemeTorusCompare.isAbelianScheme_of_iso e ?_ hPA,
     MorphismProperty.of_isPullback (P := @SmoothOfRelativeDimension g) h hg⟩
-  haveI : IsMonHom e.symm.hom := inferInstance
   exact isMonHom_inv_of_iso e.symm
 
 end GlobalTheory.AbCohRing

@@ -31,7 +31,6 @@ theorem l2A_eq_of_isUnitaryOn : ∀ (F : Type) [Field F] [NumberField F] (κ : T
   haveI : BorelSpace (κ → AdeleRing (𝓞 F) F) := ⟨rfl⟩
   haveI : SigmaCompactSpace (κ → FiniteAdeleRing (𝓞 F) F) := sigmaCompactSpace_of_locallyCompact_secondCountable
   set ν : Measure (κ → FiniteAdeleRing (𝓞 F) F) := Measure.addHaar with hν
-  haveI : SFinite ν := inferInstance
   haveI : MeasurableAdd (κ → mixedEmbedding.mixedSpace F) := ContinuousAdd.measurableAdd
   haveI : MeasurableAdd (κ → FiniteAdeleRing (𝓞 F) F) := ContinuousAdd.measurableAdd
   haveI hνH : ν.IsAddHaarMeasure := by rw [hν]; infer_instance

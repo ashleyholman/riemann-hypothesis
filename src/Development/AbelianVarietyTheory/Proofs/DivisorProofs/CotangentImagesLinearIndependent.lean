@@ -124,8 +124,6 @@ theorem formallySmooth_residueField {k : Type} [Field k] [PerfectField k] {X : S
     Algebra.EssFiniteType.of_isLocalization _ (hU.primeIdealOf ⟨y, hy⟩).asIdeal.primeCompl
   haveI : Algebra.EssFiniteType k (X.presheaf.stalk y) :=
     Algebra.EssFiniteType.comp k Γ(X, U) (X.presheaf.stalk y)
-  haveI : Algebra.EssFiniteType (X.presheaf.stalk y) (IsLocalRing.ResidueField (X.presheaf.stalk y)) :=
-    inferInstance
   haveI : Algebra.EssFiniteType k (IsLocalRing.ResidueField (X.presheaf.stalk y)) :=
     Algebra.EssFiniteType.comp k (X.presheaf.stalk y) _
   exact Algebra.FormallySmooth.of_perfectField

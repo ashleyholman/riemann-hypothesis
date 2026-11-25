@@ -38,7 +38,6 @@ theorem isExcisionNbhd_away : ∀ (A A' : Type) [CommRing A] [CommRing A'] [Alge
     exact Ideal.mul_mem_left _ _ (Ideal.mem_span_singleton_self _)
   refine ⟨?_, ?_, ?_⟩
   · haveI := hE
-    haveI : Algebra.Etale A' (Localization.Away a) := inferInstance
     exact Algebra.Etale.comp A A' (Localization.Away a)
   · intro z
     obtain ⟨⟨y, s⟩, rfl⟩ := IsLocalization.mk'_surjective (Submonoid.powers a) z

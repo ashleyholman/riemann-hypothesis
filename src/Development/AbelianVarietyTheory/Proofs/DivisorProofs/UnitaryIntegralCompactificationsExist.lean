@@ -353,7 +353,6 @@ theorem isOpenImmersion_dense_genericFibre_normalization : ∀ (o F : Type) [Com
     obtain ⟨a, d, hd, e⟩ := hfrac x
     exact ⟨a, d, (eq_div_iff hd).mpr e⟩
   haveI : GlobalTheory.IsNormalScheme X := GlobalTheory.IsNormalScheme.of_pred hN
-  haveI : IsReduced X := inferInstance
   obtain ⟨-, i₀, hoi, hd, hsnd, hfst⟩ :=
     GlobalTheory.SecCompact.exists_openImmersion_genericFibre F o n X s f hfs hfib
   have e : iF = i₀ := by

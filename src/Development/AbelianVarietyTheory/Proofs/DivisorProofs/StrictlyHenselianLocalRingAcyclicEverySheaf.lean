@@ -31,7 +31,6 @@ theorem etale_surjective_section_of_SH : ∀ (A : Type) [CommRing A], SH A → �
   obtain ⟨z, hz⟩ := 𝒰.covers y
   let g : Spec (𝒰.X i) ⟶ Spec (CommRingCat.of A) := 𝒰.f i ≫ f
   haveI : IsOpenImmersion (𝒰.f i) := 𝒰.map_prop i
-  haveI : Etale g := inferInstance
   let φ : CommRingCat.of A ⟶ 𝒰.X i := Spec.preimage g
   have hφ : Spec.map φ = g := Spec.map_preimage g
   have hEt : φ.hom.Etale := by

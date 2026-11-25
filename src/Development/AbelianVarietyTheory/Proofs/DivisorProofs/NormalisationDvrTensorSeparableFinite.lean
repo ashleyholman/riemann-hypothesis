@@ -78,7 +78,6 @@ theorem main : ∀ (S K L D : Type) [CommRing S] [IsDomain S] [IsDiscreteValuati
   intro S K L D _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
   classical
   let K' := FractionRing D
-  haveI : IsScalarTower S D K' := inferInstance
   have hSK' : Function.Injective (algebraMap S K') :=
     by
       rw [IsScalarTower.algebraMap_eq S D K']
@@ -88,9 +87,6 @@ theorem main : ∀ (S K L D : Type) [CommRing S] [IsDomain S] [IsDiscreteValuati
     IsScalarTower.of_algebraMap_eq (fun x => (IsFractionRing.lift_algebraMap hSK' x).symm)
   haveI : SMulCommClass K D K' := ⟨fun a b c => by simp only [Algebra.smul_def]; ring⟩
   haveI : Algebra.FormallyUnramified K L := Algebra.FormallyUnramified.of_isSeparable K L
-  haveI : Algebra.FormallyUnramified K' (K' ⊗[K] L) := inferInstance
-  haveI : FiniteDimensional K' (K' ⊗[K] L) := inferInstance
-  haveI : IsScalarTower D K' (K' ⊗[K] L) := inferInstance
   have hfinC : Module.Finite D (integralClosure D (K' ⊗[K] L)) :=
     GlobalTheory.AbhFin.finite_integralClosure_of_formallyUnramified D K' (K' ⊗[K] L)
   haveI : Module.Flat S K := IsLocalization.flat K (nonZeroDivisors S)

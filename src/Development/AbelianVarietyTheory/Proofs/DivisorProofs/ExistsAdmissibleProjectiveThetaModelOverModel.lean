@@ -95,7 +95,6 @@ theorem GlobalTheory.Poinc.exists_admissible_projective_theta_model : ∀ (o Ω 
   let J₂ : K₂ → Type := fun d => S.J × (d.1.1 → ZMod ((S.r * S.N) ^ 2))
   let B := (∀ k : K₁, Jk k.1) × (∀ d : K₂, J₂ d)
   let b : B → Ω := fun p => (∏ k : K₁, t k.1 (p.1 k)) * ∏ d : K₂, S.FF d.1.1 d.1.2 (p.2 d)
-  haveI : Finite B := inferInstance
   letI : Fintype (Fin (n + 1) × B) := Fintype.ofFinite _
   obtain ⟨p₀, hp₀⟩ : ∃ p, b p ≠ 0 := by
     choose κ hκ using fun d : K₂ => Function.ne_iff.1 d.2

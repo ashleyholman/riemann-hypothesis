@@ -235,7 +235,6 @@ namespace GlobalTheory.StableExt
 
 theorem isSSRep_of_finite {G : Type} [Group G] [Finite G] {d : ℕ} (ρ : G →* GL (Fin d) ℂ) :
     Formalism.MainNotions.N.IsSSRep ρ := by
-  haveI : (⊥ : Subgroup G).FiniteIndex := inferInstance
   apply GlobalTheory.FiniteIndexSemisimple.isSSRep_of_finiteIndex ρ (⊥ : Subgroup G)
   intro W _
   obtain ⟨W', hW'⟩ := Submodule.exists_isCompl W

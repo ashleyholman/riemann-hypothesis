@@ -82,8 +82,6 @@ theorem map_conj_eq_self_of_lattice : ∀ (H : Type) [Group H] [TopologicalSpace
   haveI := hρ
   haveI : LocallyCompactSpace B := hBc.locallyCompactSpace
   haveI : SecondCountableTopology B := TopologicalSpace.Subtype.secondCountableTopology (B : Set G)
-  haveI : SigmaCompactSpace B := inferInstance
-  haveI : SigmaFinite β := inferInstance
   have hΛ' : ∀ x ∈ Λ, β.map (conjB ι B hB x) = β := hΛ
   show ∀ x : H, β.map (conjB ι B hB x) = β
   have hφm : ∀ x, Measurable (conjB ι B hB x) := fun x => (conjCME ι B hB x).continuous.measurable

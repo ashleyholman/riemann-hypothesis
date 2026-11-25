@@ -421,7 +421,6 @@ theorem exists_extension_of_cover : ∀ (R : Type) [CommRing R] [IsDomain R] [Is
     rw [HasRingHomProperty.Spec_iff (P := @Flat)]
     exact RingHom.flat_algebraMap_iff.2 (IsLocalization.flat _ (nonZeroDivisors R))
   have : IsDominant (jK R) := ReciprocityTheory.ChartRestriction.G.DVR.isDominant_jK
-  have : QuasiCompact (jK R) := inferInstance
   have := IsSchemeTheoreticallyDominant.of_isDominant (jK R)
   have hJ := (pullback.fst p (jK R)).app_injective
   have all : ∀ A : P.Opens, e (closedPoint R) ∈ A → ∀ x, e x ∈ A := fun A hA x ↦

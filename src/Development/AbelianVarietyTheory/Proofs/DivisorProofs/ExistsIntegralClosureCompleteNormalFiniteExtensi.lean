@@ -35,7 +35,6 @@ theorem exists_integralClosure_isCN_finite_local : ∀ (V₀ : Type) [CommRing V
   haveI : IsScalarTower V₀ K₀ L := .of_algebraMap_eq fun _ => rfl
   haveI : CharZero K₀ := IsFractionRing.charZero_of_isFractionRing V₀
   haveI : CharZero L := charZero_of_injective_algebraMap (algebraMap K₀ L).injective
-  haveI : Algebra.IsSeparable K₀ L := inferInstance
   let V₁ := integralClosure V₀ L
   haveI : Module.Finite V₀ V₁ := IsIntegralClosure.finite V₀ K₀ L V₁
   haveI hN₁ : IsNoetherianRing V₁ := IsIntegralClosure.isNoetherianRing V₀ K₀ L V₁

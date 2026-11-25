@@ -205,7 +205,6 @@ theorem splitTorus_hom_eq_of_nilpotent : ∀ (A κ : Type) [CommRing A] [IsLocal
     i₁ = i₂ := by
   intro A κ _ _ _ π hπ hJ X _ H _ _ i₁ i₂ h₁ h₂ h
   set J := RingHom.ker π
-  haveI : IsMonHom i₂⁻¹ := inferInstance
   haveI hf : IsMonHom (i₁ * i₂⁻¹) := GlobalTheory.Serre.isMonHom_mul _ _
   set r : Sp (A ⧸ J) ⟶ Sp A := Spec.map (CommRingCat.ofHom (Ideal.Quotient.mk J))
   let e : A ⧸ J ≃+* κ := RingHom.quotientKerEquivOfSurjective hπ
@@ -469,9 +468,6 @@ theorem nonempty_tq_of_normal [FiniteDimensional k K] [Normal k K] [Module.Free 
     refine ⟨A, _, a, b, spMap ψ, ?_, ?_, agree_artinian hB₀ hG hB q i H hinv a b τ hab hτ⟩
     · rw [← spMap_comp, ha]; rfl
     · rw [← spMap_comp, hb]; rfl
-  haveI h₁ : Flat (spMap (algebraMap k K)) := inferInstance
-  haveI h₂ : Surjective (spMap (algebraMap k K)) := inferInstance
-  haveI h₃ : QuasiCompact (spMap (algebraMap k K)) := inferInstance
   have hT := isPullback_bcMap (spMap (algebraMap k K)) X
   obtain ⟨⟨g₁, g₂⟩, g₃⟩ := ExtDescent.fpqc_of_isPullback hG.1
   obtain ⟨⟨t₁, t₂⟩, t₃⟩ := ExtDescent.fpqc_of_isPullback hT

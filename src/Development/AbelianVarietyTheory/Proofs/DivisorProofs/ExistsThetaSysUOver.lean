@@ -230,7 +230,6 @@ theorem exists_thetaSys_uOver (Xo : Moduli D l) (c : Coeff l) {o Ω : Type} [Com
   have pt' : spMap (ratHull R').val.toRingHom ≫ u' = spMap (ratHull R₀).val.toRingHom ≫ u₀ := by
     rw [← ptR, ← Category.assoc, ← Spec.map_comp]; rfl
 
-  haveI : IsNoetherianRing o := inferInstance
   haveI := (Subalgebra.fg_iff_finiteType R).1 hR
   haveI := (Subalgebra.fg_iff_finiteType R').1 hR'
   haveI : IsNoetherianRing R := Algebra.FiniteType.isNoetherianRing o R

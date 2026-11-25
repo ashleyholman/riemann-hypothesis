@@ -91,7 +91,6 @@ theorem reduces_iff_ker_eq : ∀ (R : Type) [CommRing R] (J : Ideal R) (W T Y : 
     have he : e ≫ pullback.fst (i ≫ f) m ≫ i = j := IsClosedImmersion.lift_fac _ _ _
     haveI : IsIso e := IsClosedImmersion.isIso_of_ker_eq j _ e he hker.symm
     haveI : IsClosedImmersion m := IsClosedImmersion.spec_of_surjective _ Ideal.Quotient.mk_surjective
-    have hmono : Mono m := inferInstance
     have hqe : e ≫ pullback.snd (i ≫ f) m = q := by
       rw [← cancel_mono m, ← hq, Category.assoc, ← pullback.condition, ← he]
       simp only [Category.assoc]

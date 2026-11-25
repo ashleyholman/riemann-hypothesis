@@ -270,9 +270,7 @@ theorem GlobalTheory.GeomIrrComp.exists_open_irreducibleSpace_baseChange : ∀ (
   intro E _ _ _ H Dw l Xo c hac Z
   haveI := Xo.smooth
   haveI : Smooth Xo.s := SmoothOfRelativeDimension.smooth Dw.dim Xo.s
-  haveI : Smooth (strK (Xo := Xo) (c := c)) := inferInstance
   haveI : GlobalTheory.IsNormalScheme (Xo.XF c) := GlobalTheory.isNormalScheme_of_smooth strK
-  haveI : LocallyOfFiniteType (strK (Xo := Xo) (c := c)) := inferInstance
   haveI : IsLocallyNoetherian (Xo.XF c) := LocallyOfFiniteType.isLocallyNoetherian strK
   haveI : IsReduced (Xo.XF c) := GlobalTheory.IsNormalScheme.isReduced
   refine ⟨GlobalTheory.IsNormalScheme.component Z, rfl, fun k _ f => ?_⟩

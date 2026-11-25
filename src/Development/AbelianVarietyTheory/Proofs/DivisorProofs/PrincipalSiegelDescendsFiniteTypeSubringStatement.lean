@@ -314,7 +314,6 @@ theorem sections_eq_of_spMap_subtype_comp_eq : ∀ (R : Type) [CommRing R] (R₀
   intro R _ R₀ X p _ x y hp hR
   let l : Sp R₀ ⟶ pullback p p := pullback.lift x y hp
   let c : pullback (pullback.diagonal p) l ⟶ Sp R₀ := pullback.snd _ _
-  haveI : IsClosedImmersion c := inferInstance
   have e1 : l ≫ pullback.fst p p = x := pullback.lift_fst _ _ _
   have e2 : l ≫ pullback.snd p p = y := pullback.lift_snd _ _ _
   have hc : c ≫ x = c ≫ y := by

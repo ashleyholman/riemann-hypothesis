@@ -424,8 +424,6 @@ theorem etale_integrallyClosed_localization : ∀ (S E : Type) [CommRing S] [IsD
   let SM := Localization M
   let T := E ⊗[S] SM
   letI : Algebra SM T := Algebra.TensorProduct.rightAlgebra
-  haveI : IsScalarTower S SM T := inferInstance
-  haveI : Algebra.IsPushout S E SM T := inferInstance
   haveI : IsLocalization (Algebra.algebraMapSubmonoid E M) T :=
     (Algebra.isLocalization_iff_isPushout M SM).2 (Algebra.IsPushout.symm inferInstance)
   let e : T ≃ₐ[E] Localization (Algebra.algebraMapSubmonoid E M) :=
@@ -1075,7 +1073,6 @@ theorem closureEtaleAt_baseChange : ∀ (T O : Type) [CommRing T] [CommRing O] [
     rw [IsScalarTower.algebraMap_eq A₁ (Polynomial A₁) (Loc₁ f i i₁ EA QA jA hcomp hj)]
     exact h1.comp Polynomial.C_injective
   haveI : Module.Finite (GenFib A (Localization.AtPrime QA)) DA := htors.1
-  haveI : Algebra.IsIntegral (GenFib A (Localization.AtPrime QA)) DA := inferInstance
   have hκ : (locBC f i i₁ EA QA jA hcomp hj).comp (algebraMap A (Localization.AtPrime QA)) =
       (algebraMap A₁ (Loc₁ f i i₁ EA QA jA hcomp hj)).comp f :=
     RingHom.ext (locBC_algebraMap_base f i i₁ EA QA jA hcomp hj)

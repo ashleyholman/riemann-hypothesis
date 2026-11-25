@@ -802,7 +802,6 @@ theorem isPullback_of_forall_isPushout_app :
   suffices hiso : IsIso φ by
     exact IsPullback.of_iso_pullback ⟨w⟩ (asIso φ) hφ1 hφ2
   have hPb : IsPullback (pullback.fst y q) (pullback.snd y q) y q := IsPullback.of_hasPullback y q
-  haveI : IsAffineHom q := inferInstance
   haveI : IsAffineHom (pullback.fst y q) :=
     isAffineHom_isStableUnderBaseChange.of_isPullback hPb.flip inferInstance
   let U : Y.affineOpens → (pullback y q).Opens := fun V => pullback.fst y q ⁻¹ᵁ V.1

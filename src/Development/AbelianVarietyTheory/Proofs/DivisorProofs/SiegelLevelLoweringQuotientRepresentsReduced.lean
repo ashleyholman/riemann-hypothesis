@@ -59,7 +59,6 @@ theorem asIdeal_eq_bot_iff {A A' : Type} [CommRing A] [CommRing A'] [IsDomain A]
     ((spMap j) y).asIdeal = ⊥ ↔ y.asIdeal = ⊥ := by
   algebraize [j]
   have hm : Module.Finite A A' := by rw [IsFinite.SpecMap_iff] at hf; exact hf
-  have : Algebra.IsIntegral A A' := inferInstance
   show Ideal.comap (algebraMap A A') y.asIdeal = ⊥ ↔ _
   refine ⟨fun e => Ideal.eq_bot_of_comap_eq_bot e, fun e => ?_⟩
   rw [e]; exact Ideal.comap_bot_of_injective (algebraMap A A') hj

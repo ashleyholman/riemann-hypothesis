@@ -171,7 +171,6 @@ theorem exists_symm_isKS_abLocus : ∀ (E : Type) [Field E] [NumberField E] [IsC
     rw [h2]
     show ∏ i, tt i ∉ (⊥ : Ideal R)
     simpa using hne
-  haveI : IsDomain Γ(Sp R, U.1) := inferInstance
   let K := FractionRing Γ(Sp R, U.1)
   let x₀ : Γ(Sp R, U.1) →+* K := algebraMap _ _
   letI : Algebra ℚ K := ((x₀.comp ρ).comp (algebraMap ℚ R)).toAlgebra

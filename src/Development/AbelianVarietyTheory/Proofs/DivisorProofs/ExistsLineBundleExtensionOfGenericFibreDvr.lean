@@ -30,7 +30,6 @@ theorem exists_lineBundle_extension_of_genericFibre_dvr :
   have hφ := IsPullback.of_hasPullback A.hom (spMap (algebraMap R K))
   have := hA.smooth
   have := hA.proper
-  have hR : IsRegularRing R := inferInstance
   have : GeometricallyIntegral A.hom :=
     forall_geometricallyIntegral_of_smooth_of_geometricallyConnected _ _ _ hA.smooth
       hA.geomConnected

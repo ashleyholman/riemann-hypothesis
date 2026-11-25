@@ -91,7 +91,6 @@ theorem exists_finExt_etale_of_isSeparable : ∀ (R : Type) [CommRing R] [IsDoma
       exact hy ((IsLocalRing.mem_maximalIdeal y).mpr h))
   haveI : IsDomain A := e.toMulEquiv.isDomain
   haveI : IsIntegrallyClosed A := IsIntegrallyClosed.of_equiv e.toRingEquiv.symm
-  haveI : IsNoetherian R A := inferInstance
   haveI : IsNoetherianRing A := isNoetherian_of_tower R inferInstance
   let g2 : ResidueField R ⊗[R] A →ₐ[R] ResidueField A :=
     Algebra.TensorProduct.lift (IsScalarTower.toAlgHom R (ResidueField R) (ResidueField A))

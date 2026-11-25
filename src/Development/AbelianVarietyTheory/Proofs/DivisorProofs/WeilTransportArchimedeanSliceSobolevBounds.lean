@@ -957,9 +957,7 @@ theorem eq_zero_of_l2A_eq_zero : ∀ (F : Type) [Field F] [NumberField F] (κ : 
     refine Finset.sum_congr rfl fun i _ => ?_
     rw [GlobalTheory.WeilCont.pureA_adeleJoin, GlobalTheory.WeilCont.pureA_adeleJoin, hy i]
   have hsc : Continuous fun x => ‖s x‖ₑ ^ 2 := (ENNReal.continuous_pow 2).comp (continuous_enorm.comp s.continuous)
-  haveI : BorelSpace (mixedEmbedding.mixedSpace F) := inferInstance
   haveI : MeasurableAdd (mixedEmbedding.mixedSpace F) := inferInstance
-  haveI h1 : (volume : Measure (mixedEmbedding.mixedSpace F)).IsAddHaarMeasure := inferInstance
   haveI h2 : (volume : Measure (κ → mixedEmbedding.mixedSpace F)).IsAddHaarMeasure := Measure.pi.isAddHaarMeasure _
   have hc : (∫⁻ x, ‖s x‖ₑ ^ 2) ≠ 0 := by
     intro hc
@@ -1182,10 +1180,8 @@ theorem tendsto_l2A_diffQuot : ∀ (F : Type) [Field F] [NumberField F] [Inverti
         (GlobalTheory.WeilM.schr ψ (GlobalTheory.WeilL2Words.archPair F (((n : ℝ) + 1)⁻¹ • h)) φ a - φ a) - GlobalTheory.WeilL2Words.dS F ψ h φ a))
         Filter.atTop (nhds 0) := by
   intro F _ _ _ κ _ ψ hψ μ hμ h φ hφ
-  haveI hO : OpensMeasurableSpace (κ → mixedEmbedding.mixedSpace F) := inferInstance
   haveI := GlobalTheory.WeilAdm.HaarSplit.volume_isAddHaar F κ
   haveI : BorelSpace (κ → mixedEmbedding.mixedSpace F) := inferInstance
-  haveI : (volume : Measure (κ → mixedEmbedding.mixedSpace F)).HasTemperateGrowth := inferInstance
   obtain ⟨ℓ, -, hℓ⟩ := hψ
   obtain ⟨m, f, g, hg, rfl⟩ := GlobalTheory.WeilL2Words.schA_exists_sum F hφ
   have hgc : ∀ i, Continuous (g i) := fun i => (hg i).1.continuous

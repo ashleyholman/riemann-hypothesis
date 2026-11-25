@@ -57,7 +57,6 @@ theorem weyl_finite (n : ℕ) (ν : Fin n → ℕ) (hν : Antitone ν) : Module.
 theorem exists_weyl_basis : ∀ (n : ℕ) (ν : Fin n → ℕ), Antitone ν → ∃ (P : Type) (_ : Fintype P) (b : P → MvPolynomial (Fin n × Fin n) ℤ), LinearIndependent ℤ b ∧ (∀ (R : Type) [CommRing R], weyl R n n le_rfl ν = Submodule.span R (Set.range fun i => MvPolynomial.map (Int.castRingHom R) (b i))) ∧ ∀ (K : Type) [Field K] [CharZero K], dualWeyl K n n ν = Submodule.span K (Set.range fun i => MvPolynomial.map (Int.castRingHom K) (b i)) := by
   intro n ν hν
   have := weyl_finite n ν hν
-  have : Module.Free ℤ (weyl ℤ n n le_rfl ν) := inferInstance
   let B := Module.Free.chooseBasis ℤ (weyl ℤ n n le_rfl ν)
   have hspan : Submodule.span ℤ (Set.range fun i => (B i : MvPolynomial (Fin n × Fin n) ℤ)) = weyl ℤ n n le_rfl ν := by
     have h := congrArg (Submodule.map (weyl ℤ n n le_rfl ν).subtype) B.span_eq

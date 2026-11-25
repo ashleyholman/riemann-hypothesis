@@ -676,7 +676,6 @@ theorem section_eq_zero_of_expansion_zero_family {W : Type} [CommRing W] [IsDoma
     (hk : 1 ≤ k) (σ : H0 U.LG.L k) (f : ∀ α : D.toPre.X, D.toPre.SecB k α) (hf : ∀ α j, (f α).f j = 0)
     (hE : ∀ e, U.ExpandsAt e k σ f) : ∀ j, σ.f j = 0 := by
   have := U.smooth
-  have : Flat G.hom := inferInstance
   have ex : ∀ (φ' : Fin 1 → (pullback G.hom (jK W) ⟶ G.left))
       (_ : φ' = fun _ => pullback.fst G.hom (jK W) ≫ 𝟙 G.left),
       ∃ s' : LB.Sec (LB.LinComb U.LG.L φ' (fun _ => (k : ℤ))), ∀ z J, Good U.LG.L z J →
@@ -994,7 +993,6 @@ theorem cancel (C : LabCover D) {W : Type} [CommRing W] [IsDomain W] [IsLocalRin
     (Z : Scheme.{0}) (p : Z ⟶ T.G.left) (p' : Z ⟶ C.A.A.left) (hp : p ≫ T.β = p' ≫ C.α) (z : Z)
     (J : (Z ⟶ C.G.left) → C.P.L.L.ι) (hJ : Good C.P.L.L z J) : sval s₁ p z J = sval s₂ p' z J := by
   haveI := T.U.smooth
-  haveI : Flat (pullback.fst T.β C.α ≫ T.G.hom) := inferInstance
   obtain ⟨g, rfl, rfl⟩ : ∃ g, g ≫ pullback.fst T.β C.α = p ∧ g ≫ pullback.snd T.β C.α = p' :=
     ⟨pullback.lift p p' hp, pullback.lift_fst _ _ _, pullback.lift_snd _ _ _⟩
   obtain ⟨J₀, hJ₀, e₀⟩ := exists_good C.P.L.L C.P.L.isLB (g z) (K := Unit)

@@ -788,7 +788,6 @@ theorem exists_transp_all : ∀ {D : D7} {L : SizeData₂ D} {hT : GatTies D} {G
   let ι := Σ k' : (uAt r v i).Comp, {a : GL (Fin D.R.r) D.host.E //
     ∃ hm : GlobalTheory.LevelCusp.IsMatch ((uAt r v i).X k) ((uAt r v i).X k') a, ReadsInv p r i v ψ γ k k' a}
   let S : ι → Set V := fun c => {x | ∃ hx : x ∈ Dk, MovesAt p r i v γ k c.1 c.2.1 c.2.2.1 x hx}
-  haveI : Countable ι := inferInstance
   obtain ⟨x₀, hx₀⟩ := hDn
   haveI : Nonempty ι := by
     obtain ⟨k', a, hm, hR, -⟩ := h1 γ k x₀ hx₀

@@ -477,7 +477,6 @@ theorem integralClosure_finiteType_of_charZero :
   have : IsNoetherianRing A := Algebra.FiniteType.isNoetherianRing k A
   have : IsIntegrallyClosed A := IsIntegrallyClosed.of_equiv e.toRingEquiv
   have : CharZero F := charZero_of_injective_algebraMap (algebraMap k F).injective
-  have : Algebra.IsSeparable F K := inferInstance
   set_option synthInstance.maxHeartbeats 200000 in
   have : Module.Finite A (integralClosure A K) := IsIntegralClosure.finite A F K (integralClosure A K)
   have : Algebra.FiniteType A (integralClosure A K) := inferInstance
@@ -808,7 +807,6 @@ theorem span_D_uniformizer_transcendenceBasis : ∀ (k R : Type) [Field k] [Char
   have hker : RingHom.ker (algebraMap R (ResidueField R)) = maximalIdeal R := ker_residue
   have hs0 : algebraMap R (ResidueField R) s = 0 := by
     rw [← RingHom.mem_ker, hker, hmax]; exact Ideal.mem_span_singleton_self s
-  haveI : Module.Finite R Ω[R⁄k] := inferInstance
   set N := Submodule.span R (insert (D k R s) (Set.range fun j => D k R (y j))) with hN
   have hmb : ∀ x : R, mapBaseChange k R (ResidueField R) ((1 : ResidueField R) ⊗ₜ[R] D k R x) =
       D k (ResidueField R) (algebraMap R (ResidueField R) x) :=
@@ -926,7 +924,6 @@ theorem GlobalTheory.span_D_lift_clear_denominators : ∀ (k K L : Type) [Field 
   haveI : IsScalarTower k R L := IsScalarTower.of_algebraMap_eq fun a => by
     rw [IsScalarTower.algebraMap_apply k B R, hRL, IsScalarTower.algebraMap_apply k K L]
     rfl
-  haveI : SMulCommClass k R L := inferInstance
   let Φ := KaehlerDifferential.map k k R L
   let g : Fin (m + 1) → Ω[R⁄k] := Fin.cons (D k R (algebraMap B R s)) (fun j => D k R (algebraMap B R (y j)))
   have hDv : D k R (algebraMap B R v) ∈ Submodule.span R (Set.range g) := by

@@ -32,9 +32,7 @@ theorem exists_gl_mul_isPrimFrame : ∀ (k : Type) [Field k] [ValuativeRel k] [T
   have hΛfg : Λ.FG := (isLattice_diagLat d).fg
   haveI : IsNoetherian 𝒪[k] Λ := isNoetherian_of_fg_of_noetherian Λ hΛfg
   haveI : IsNoetherian 𝒪[k] M := isNoetherian_of_le inf_le_right
-  haveI : Module.IsTorsionFree 𝒪[k] k := inferInstance
   haveI : Module.IsTorsionFree 𝒪[k] (C → k) := Module.IsTorsionFree.trans_faithfulSMul 𝒪[k] k (C → k)
-  haveI : Module.IsTorsionFree 𝒪[k] M := inferInstance
   haveI : Module.Free 𝒪[k] M := Module.free_of_finite_type_torsion_free'
   let ι := Module.Free.ChooseBasisIndex 𝒪[k] M
   let b : Module.Basis ι 𝒪[k] M := Module.Free.chooseBasis 𝒪[k] M

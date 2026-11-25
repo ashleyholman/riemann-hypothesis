@@ -212,7 +212,6 @@ namespace GlobalTheory.Div.DescendOpens
 theorem overlap_preimage_open : ∀ (B S X : Scheme.{0}) (π : S ⟶ B) (U : Over B) (J : Type) (e : J → (pullback U.hom π ⟶ X)), IsProper π → Surjective π → (∀ j, IsOpenImmersion (e j)) → (∀ (i j : J) (T : Scheme.{0}) (w₁ w₂ h₁ : T ⟶ pullback U.hom π), w₁ ≫ pullback.fst _ _ = w₂ ≫ pullback.fst _ _ → h₁ ≫ e j = w₁ ≫ e i → ∃ h₂ : T ⟶ pullback U.hom π, h₂ ≫ e j = w₂ ≫ e i ∧ h₂ ≫ pullback.fst _ _ = h₁ ≫ pullback.fst _ _) → ∀ i j : J, ∃ V : U.left.Opens, ∀ a : ↥(pullback U.hom π), pullback.fst U.hom π a ∈ V ↔ e i a ∈ Set.range (e j) := by
   intro B S X π U J e hP _ hO key i j
   haveI := hP
-  haveI : UniversallyClosed (pullback.fst U.hom π) := inferInstance
   set p := pullback.fst U.hom π with hp
   let W : Set ↥(pullback U.hom π) := (e i) ⁻¹' Set.range (e j)
   have hWo : IsOpen W := by

@@ -1345,7 +1345,6 @@ theorem mem_zpowers_of_prime {F F' : Type} [Field F] [Field F'] [Algebra F F'] [
   haveI : Fintype F := Fintype.ofFinite F
   haveI : Fintype F' := Fintype.ofFinite F'
   haveI : FiniteDimensional F F' := Module.Finite.of_finite
-  haveI : IsGalois F F' := inferInstance
   haveI : Fact (Module.finrank F F').Prime := ⟨hl⟩
   have hc : Nat.card (F' ≃ₐ[F] F') = Module.finrank F F' := IsGalois.card_aut_eq_finrank F F'
   intro t

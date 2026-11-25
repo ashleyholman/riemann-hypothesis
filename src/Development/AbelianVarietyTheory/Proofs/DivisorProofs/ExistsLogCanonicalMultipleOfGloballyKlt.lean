@@ -127,7 +127,6 @@ theorem compactSpace_of_isProjOver' {R : Type} [CommRing R] {Y : Scheme.{0}} {f 
     (hf : IsProjOver f) : CompactSpace Y := by
   obtain ⟨N, i, hi, rfl⟩ := hf
   have := isProper_str R N
-  have : IsProper (i ≫ PSpace.str R N) := inferInstance
   exact QuasiCompact.compactSpace_of_compactSpace (i ≫ PSpace.str R N)
 
 theorem unitAt_of_specializes' {z : X} {f : X.functionField} (hz : z ⤳ y) (hf : UnitAt y f) :

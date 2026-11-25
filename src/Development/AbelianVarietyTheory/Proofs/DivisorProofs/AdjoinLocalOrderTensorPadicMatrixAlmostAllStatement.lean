@@ -1083,7 +1083,6 @@ theorem locOrder_isAzumaya : ∀ (F B : Type) [Field F] [NumberField F] [Ring B]
     refine isUnit_iff_exists_inv.2 ⟨⟨_, hinv⟩, Subtype.ext ?_⟩
     rw [Subalgebra.coe_mul, hdet, Subalgebra.coe_one, Algebra.TensorProduct.tmul_mul_tmul, mul_one,
       mul_inv_cancel₀ hδ.ne_zero, Algebra.TensorProduct.one_def]
-  haveI : Nontrivial B := inferInstance
   haveI : FaithfulSMul (cenOrder ℓ F) (locOrder ℓ Λ) := by
     rw [faithfulSMul_iff_algebraMap_injective]
     intro a b hab

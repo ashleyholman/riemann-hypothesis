@@ -393,7 +393,6 @@ theorem exists_common_modification (hE : GlobalTheory.Published.SemiAbelianHomEx
   have := GlobalTheory.IsNormalScheme.of_pred Y.normal
   have : Y.X.IsSeparated := ⟨by rw [← terminal.comp_from Y.s]; infer_instance⟩
   have : IsDominant Y.j := ⟨LogKS.dense_interior Y⟩
-  have : QuasiCompact Y.j := inferInstance
   have : GlobalTheory.IsNormalScheme (Xo.XF c) := GlobalTheory.IsNormalScheme.of_isIso_stalkMap Y.j
   have : IsLocallyNoetherian (Xo.XF c) := isLocallyNoetherian_of_isOpenImmersion Y.j
   let f : Xo.XF c ⟶ pullback Y.s Y'.s := pullback.lift Y.j Y'.j ((j_s Y).trans (j_s Y').symm)
@@ -411,7 +410,6 @@ theorem exists_common_modification (hE : GlobalTheory.Published.SemiAbelianHomEx
   let p' := f.fromNormalization ≫ pullback.snd Y.s Y'.s
   have hu₁ : u ≫ p = Y.j := by simp [u, p, hf₁]
   have hu₂ : u ≫ p' = Y'.j := by simp [u, p', hf₂]
-  have : IsOpenImmersion u := inferInstance
   have hN := GlobalTheory.IsNormalScheme.pred f.normalization
   have : IsLocallyNoetherian f.normalization := LocallyOfFiniteType.isLocallyNoetherian p
   have : CompactSpace f.normalization := QuasiCompact.compactSpace_of_compactSpace p

@@ -33,7 +33,6 @@ theorem surj_restrict_snd {S : Scheme.{0}} {A : Over S} [GrpObj A] (hA : IsAbeli
   have he : e.hom ≫ (snd A T).left = (snd A Y).left ∣_ V := IsPullback.isoIsPullback_hom_fst _ _ _ _
   have hq : Function.Surjective (snd A T).left.appTop.hom := surj_snd GlobalTheory.SemiRigid.globalFns hA T
   have hi : Function.Surjective e.hom.appTop.hom := by
-    have : IsIso (e.hom.app ⊤) := inferInstance
     exact (ConcreteCategory.bijective_of_isIso (e.hom.app ⊤)).2
   rw [← he]
   exact surj_comp hi hq

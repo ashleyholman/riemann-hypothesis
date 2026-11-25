@@ -135,7 +135,6 @@ theorem exists_lift_i {E : Type} [Field E] [NumberField E] [IsCMField E] {H : Ho
   haveI := C.ded
   haveI := C.iF_open
   haveI : IsPreimmersion (spMap C.b) := IsPreimmersion.of_isLocalization (nonZeroDivisors C.o)
-  haveI : IsPreimmersion (pullback.fst C.z (spMap C.b)) := inferInstance
   have hinj : Function.Injective (pullback.fst C.z (spMap C.b)) :=
     (pullback.fst C.z (spMap C.b)).isEmbedding.injective
   let pt : Sp F := ⟨⊥, Ideal.isPrime_bot⟩
@@ -194,7 +193,6 @@ theorem exists_uTrait_of_classicalPoint : ∀ (E : Type) [Field E] [NumberField 
   haveI hdvr : IsDiscreteValuationRing V₀ := ReciprocityTheory.ChartRestriction.G.T0.FiniteAlgebraLocalCompletion.cl_dvr ℤ_[p] ℚ_[p] K
   haveI : Module.Finite ℤ_[p] V₀ := IsIntegralClosure.finite ℤ_[p] ℚ_[p] K _
   haveI : IsAdicComplete (maximalIdeal V₀) V₀ := CompleteFiniteExtension.isAdicComplete_of_finite_local ℤ_[p] _
-  haveI : CharZero V₀ := inferInstance
   have hB : GlobalTheory.Mum.Base V₀ := ⟨⟨inferInstance, inferInstance, inferInstance, inferInstance⟩, inferInstance⟩
 
   have hj₀i : Function.Injective ((OO p).subtype.comp j₀) := by

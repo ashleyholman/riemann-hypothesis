@@ -431,7 +431,6 @@ namespace GlobalTheory.OrbFinAf
 theorem iotaF_props : ∀ (p : ℕ) [Fact p.Prime] (G : HTGroup p) (v : AwayP p), Function.Injective (iotaF G v) ∧ (∀ z x, Commute (iotaF G v z) x) ∧ Module.finrank (Qv v) (Qv v ⊗[ℚ] G.C) = G.n ^ 2 * Module.finrank (Qv v) (Qv v ⊗[ℚ] G.F) := by
   intro p _ G v
   haveI : IsSimpleRing G.C := G.simpleC
-  haveI : Nontrivial G.C := inferInstance
   haveI : Module.Finite ℚ G.C := Module.Finite.trans G.F G.C
   refine ⟨?_, ?_, ?_⟩
   · have hf : Function.Injective ((IsScalarTower.toAlgHom ℚ G.F G.C).toLinearMap) :=

@@ -19,7 +19,6 @@ theorem isAffineOpen_preimage_genericBaseChange : ∀ (R : Type) [CommRing R] [I
     rw [← terminal.comp_from M.π]
     infer_instance
   haveI : IsAffineHom M.gp := by
-    haveI : IsAffineHom (M.gp ≫ terminal.from M.S) := inferInstance
     exact IsAffineHom.of_comp M.gp (terminal.from M.S)
   haveI : IsAffineHom α := MorphismProperty.of_isPullback (P := @IsAffineHom) h.flip inferInstance
   exact hW.preimage α

@@ -153,7 +153,6 @@ theorem val_stalkHom_eq : ∀ (o' Ω : Type) [CommRing o'] [Field Ω] [Algebra o
   have hψ : Spec.map (M.Z.presheaf.stalkSpecializes h ≫ Scheme.stalkClosedPointTo y) ≫ M.Z.fromSpecStalk x = y := by
     rw [Spec.map_comp, Category.assoc, Scheme.SpecMap_stalkSpecializes_fromSpecStalk,
       Scheme.Spec_stalkClosedPointTo_fromSpecStalk]
-  haveI : Mono (M.Z.fromSpecStalk x) := inferInstance
   have heq : spMap φ = Spec.map (M.Z.presheaf.stalkSpecializes h ≫ Scheme.stalkClosedPointTo y) := by
     rw [← cancel_mono (M.Z.fromSpecStalk x), hφ, hψ]
   have hφψ := Spec.map_injective heq

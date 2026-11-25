@@ -70,7 +70,6 @@ theorem main : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R] (V : Typ
       _ = r' ^ 2 * ((g w : V) * ((Units.map g.toMonoidHom w)⁻¹ : Vˣ)) := by rw [k1]; ring
       _ = r' ^ 2 := by rw [hw1, _root_.mul_one]
   have hsq : Associated ((g r) ^ 2) (r' ^ 2) := ⟨v, key⟩
-  haveI : IsIntegrallyClosed V := inferInstance
   exact associated_of_dvd_dvd ((IsIntegrallyClosed.pow_dvd_pow_iff two_ne_zero).1 hsq.dvd)
     ((IsIntegrallyClosed.pow_dvd_pow_iff two_ne_zero).1 hsq.symm.dvd)
 

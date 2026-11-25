@@ -210,7 +210,6 @@ theorem exists_kummer_enlargement : ∀ (T : Type) [CommRing T] [IsDomain T] [Is
   let B := integralClosure A (loc S)
   haveI : FaithfulSMul A B := (faithfulSMul_iff_algebraMap_injective A B).mpr
     (fun x x' h => hfinj (congrArg Subtype.val h))
-  haveI : Algebra.HasGoingDown A B := inferInstance
   let M : Submonoid B := (IsUnit.submonoid (loc S)).comap (algebraMap B (loc S))
   haveI hML : IsLocalization M (loc S) := by
     refine ⟨fun m => m.2, fun z => ?_, fun {u v} h => ⟨1, ?_⟩⟩

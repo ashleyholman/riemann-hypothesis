@@ -402,8 +402,6 @@ theorem psi_shift [ν.IsAddHaarMeasure] (hs : 1 ≤ G.s) (hT : G.IsTensor ϖ e (
       rw [← hu]
       exact isSigmaCompact_iUnion_of_isCompact _ fun γ => IsNonarchimedeanLocalField.isCompact_closedBall k γ
     exact isSigmaCompact_univ_iff.mp hsig
-  have i1 : SigmaFinite ν := inferInstance
-  have i2 : ν.IsAddRightInvariant := inferInstance
   have : (varsVol G ν).IsAddRightInvariant := by
     unfold varsVol
     infer_instance

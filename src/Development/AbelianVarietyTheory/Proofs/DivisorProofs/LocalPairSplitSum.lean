@@ -48,7 +48,6 @@ theorem etale_of_isZTorsor (B D : Type) [CommRing B] [CommRing D] [Algebra B D] 
     exact Ideal.mul_mem_mul hx heI
   haveI : Subsingleton Ω[D⁄B] := (Ideal.cotangent_subsingleton_iff _).2 hidem
   haveI : Algebra.FormallyUnramified B D := ⟨inferInstance⟩
-  haveI : Module.Flat B D := inferInstance
   haveI : Module.FinitePresentation B D := Module.finitePresentation_of_projective B D
   haveI : Algebra.FinitePresentation B D :=
     (Module.FinitePresentation.iff_finitePresentation_of_finite B D).mp inferInstance

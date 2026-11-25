@@ -282,8 +282,6 @@ theorem exists_oAct_desc : ∀ (p : ℕ) [Fact p.Prime] (D : Datum p) (R : Type)
     exact this
   obtain ⟨hfin, het, hsurj⟩ := isFinite_etale_surjective_of_isQuasiInv Y o.A B c ψ ψ' o.ab hB hc hq
   haveI : Surjective ψ.left := hsurj
-  haveI : Flat ψ.left := inferInstance
-  haveI : QuasiCompact ψ.left := inferInstance
   haveI : IsMonHom ψ := hq.1
   have : Epi ψ := GlobalTheory.FlatQuotient.epi_of_flat_surjective ψ
   have : Epi (ψ ⊗ₘ ψ) := GlobalTheory.FlatQuotient.epi_tensorHom ψ ψ

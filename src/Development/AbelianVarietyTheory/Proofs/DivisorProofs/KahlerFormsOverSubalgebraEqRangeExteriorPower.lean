@@ -44,7 +44,6 @@ theorem omB_eq_range_exteriorPower : ∀ (k K : Type) [Field k] [Field K] [Algeb
     exact Module.Projective.of_split (exteriorPower.map q s)
       (exteriorPower.map q (Finsupp.linearCombination B id))
       (by rw [← exteriorPower.map_comp, hs, exteriorPower.map_id])
-  haveI : Module.Flat B (⋀[B]^q Ω[B⁄k]) := inferInstance
   haveI : Module.IsTorsionFree B (⋀[B]^q Ω[B⁄k]) := Module.Flat.isTorsionFree
   have hEinj : Function.Injective E := by
     intro x y hxy

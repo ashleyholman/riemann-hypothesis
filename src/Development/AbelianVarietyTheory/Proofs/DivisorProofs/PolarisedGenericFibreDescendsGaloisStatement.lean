@@ -95,8 +95,6 @@ theorem abelian_of_field_of_pullback : ∀ (K K' : Type) [Field K] [Field K'] (i
   have := hG.separated
   have := hG.quasiCompact
   have := hG.geomConnected
-  have : Flat (spMap i) := inferInstance
-  have : Surjective (spMap i) := inferInstance
   have : UniversallyClosed G.hom := MorphismProperty.of_isPullback_of_descendsAlong (P := @UniversallyClosed)
     (Q := @Surjective ⊓ @Flat ⊓ @QuasiCompact) h.1.flip ⟨⟨inferInstance, inferInstance⟩, inferInstance⟩ inferInstance
   have hp : IsProper G.hom := ⟨⟩
@@ -399,8 +397,6 @@ theorem fracMap_finite : ∀ (R R' : Type) [CommRing R] [IsDomain R] [CommRing R
   letI : Algebra (FractionRing R) (FractionRing R') := FractionRing.liftAlgebra R (FractionRing R')
   haveI : IsScalarTower R (FractionRing R) (FractionRing R') :=
     FractionRing.isScalarTower_liftAlgebra R (FractionRing R')
-  haveI : IsLocalization (Algebra.algebraMapSubmonoid R' (nonZeroDivisors R)) (FractionRing R') :=
-    inferInstance
   haveI : Module.Finite (FractionRing R) (FractionRing R') :=
     Module.Finite.of_isLocalization R R' (nonZeroDivisors R)
   have heq : fracMap ρ hρ = algebraMap (FractionRing R) (FractionRing R') := by

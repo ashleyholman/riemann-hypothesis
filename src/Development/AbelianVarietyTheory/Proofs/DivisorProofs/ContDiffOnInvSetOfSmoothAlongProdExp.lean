@@ -119,7 +119,6 @@ theorem contDiffOn_of_prodExp : ∀ (E : Type) [Field E] [NumberField E] (d : �
   refine ContDiffAt.contDiffWithinAt ?_
 
   obtain ⟨b, hbS, hbspan, hbli⟩ := exists_linearIndependent ℝ S
-  haveI : Module.Finite ℝ (Matrix (Fin d) (Fin d) (Cinf E)) := inferInstance
   haveI : Finite b := hbli.finite
   letI : Fintype b := Fintype.ofFinite b
   set m := Fintype.card b

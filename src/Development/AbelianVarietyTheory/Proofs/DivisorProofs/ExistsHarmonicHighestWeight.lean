@@ -103,7 +103,6 @@ theorem stable_complement_of_kernel_exists
   set K : Submodule ℂ V := H0 ⊓ LinearMap.ker pr with hK
   haveI : FiniteDimensional ℂ K := Submodule.finiteDimensional_of_le inf_le_left
   set K' : Submodule ℂ H := K.map ι with hK'
-  haveI : FiniteDimensional ℂ K' := inferInstance
   haveI : CompleteSpace K' := FiniteDimensional.complete ℂ K'
   obtain ⟨y, hy, e, he, hsum⟩ := K'.exists_add_mem_mem_orthogonal (ι h)
   obtain ⟨k, hk, rfl⟩ := Submodule.mem_map.mp hy

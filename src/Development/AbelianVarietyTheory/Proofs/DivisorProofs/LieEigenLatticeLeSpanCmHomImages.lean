@@ -455,7 +455,6 @@ theorem flat_surjective_spMap_ringOfIntegers (K K' : Type) [Field K] [NumberFiel
     apply j.injective
     exact congrArg ((↑) : 𝓞 K' → K') h
   haveI : FaithfulSMul (𝓞 K) (𝓞 K') := (faithfulSMul_iff_algebraMap_injective _ _).2 hinj
-  haveI : Module.Flat (𝓞 K) (𝓞 K') := inferInstance
   haveI : Algebra.IsIntegral (𝓞 K) (𝓞 K') := by
     constructor
     intro x

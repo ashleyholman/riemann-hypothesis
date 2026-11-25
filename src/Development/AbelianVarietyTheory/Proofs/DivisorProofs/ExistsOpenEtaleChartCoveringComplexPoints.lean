@@ -151,7 +151,6 @@ private theorem generic_etale (A B : Type) [CommRing A] [IsDomain A] [IsNoetheri
       Algebra.Etale A' B' := by
   haveI : Algebra.FinitePresentation A B := Algebra.FinitePresentation.of_finiteType.1 inferInstance
   letI : Algebra (FractionRing A) (FractionRing B) := FractionRing.liftAlgebra A (FractionRing B)
-  haveI : Algebra.IsAlgebraic (FractionRing A) (FractionRing B) := inferInstance
   haveI : Algebra.FormallyEtale (FractionRing A) (FractionRing B) :=
     Algebra.FormallyEtale.of_isSeparable _ _
   haveI : Algebra.FormallyEtale A (FractionRing A) :=

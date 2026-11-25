@@ -161,7 +161,6 @@ theorem exists_etale_of_isAffine {U T S : Scheme.{0}} [IsAffine S] (τ : U ⟶ S
       (Spec.map (CommRingCat.ofHom (algebraMap C (C ⊗[Γ(S, ⊤)] B)))) (Spec.map φ) (Spec.map ψ) :=
     (isPullback_SpecMap_of_isPushout _ _ _ _ (CommRingCat.isPushout_tensorProduct Γ(S, ⊤) C B)).flip
   let m := pullback.map (Spec.map φ) (Spec.map ψ) τ h i k S.isoSpec.inv (by simp [hφ]) (by simp [hψ])
-  have hm : IsOpenImmersion m := inferInstance
   have hpm : p ∈ Set.range m := by
     rw [Scheme.Pullback.range_map]
     exact ⟨⟨q, hq⟩, ⟨t, ht⟩⟩
@@ -917,7 +916,6 @@ theorem exists_isIso_restrict {X Y U : Scheme.{0}} (f : X ⟶ Y) (q : Y ⟶ U) [
     (hinj : ∀ (Ω : Type) [Field Ω] (p p' : Sp Ω ⟶ X), Set.range (p ≫ f ≫ q) = {x} → p ≫ f = p' ≫ f → p = p')
     (hsurj : ∀ y : Y, q y = x → y ∈ Set.range f) :
     ∃ W : U.Opens, x ∈ W ∧ IsIso (f ∣_ (q ⁻¹ᵁ W)) := by
-  have hΔ : IsOpenImmersion (pullback.diagonal f) := inferInstance
   let r : pullback f f ⟶ U := pullback.fst f f ≫ f ≫ q
   have h1 : IsClosed (r '' (Set.range (pullback.diagonal f))ᶜ) :=
     r.isClosedMap _ (pullback.diagonal f).isOpenEmbedding.isOpen_range.isClosed_compl

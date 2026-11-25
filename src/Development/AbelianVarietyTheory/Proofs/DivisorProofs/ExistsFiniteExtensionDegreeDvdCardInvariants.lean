@@ -29,10 +29,8 @@ theorem exists_extension {A B Ω : Type} [CommRing A] [CommRing B] [Algebra A B]
   letI : Algebra (A ⧸ RingHom.ker e) Ω := (RingHom.kerLift e).toAlgebra
   haveI : FaithfulSMul (A ⧸ RingHom.ker e) Ω :=
     (faithfulSMul_iff_algebraMap_injective _ _).2 (RingHom.kerLift_injective e)
-  haveI : Algebra.IsIntegral (A ⧸ RingHom.ker e) (B ⧸ Q) := inferInstance
   haveI : IsDomain (A ⧸ RingHom.ker e) := Ideal.Quotient.isDomain _
   haveI : IsDomain (B ⧸ Q) := Ideal.Quotient.isDomain _
-  haveI : FaithfulSMul (A ⧸ RingHom.ker e) (B ⧸ Q) := inferInstance
   haveI : Module.IsTorsionFree (A ⧸ RingHom.ker e) (B ⧸ Q) :=
     Module.isTorsionFree_iff_algebraMap_injective.2 (FaithfulSMul.algebraMap_injective _ _)
   haveI : Module.IsTorsionFree (A ⧸ RingHom.ker e) Ω :=

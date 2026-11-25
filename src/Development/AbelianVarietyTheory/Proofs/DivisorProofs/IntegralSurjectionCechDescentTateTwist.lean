@@ -303,7 +303,6 @@ theorem cech_level_eqv_of_integral_pullback :
   obtain ⟨Z, π, e, hπ, he⟩ := _root_.GlobalTheory.EtC.cech_level_representable (@IsIntegralHom) Y X f hf n
   obtain ⟨Z', π', e', hπ', he'⟩ := _root_.GlobalTheory.EtC.cech_level_representable (@IsIntegralHom) Y' X' f' hf' n
   have hh : IsIntegralHom (π ≫ f) := inferInstance
-  have hh' : IsIntegralHom (π' ≫ f') := inferInstance
   let φ : Z' ⟶ Z := yoneda.preimage (e'.hom ≫ m.app n ≫ e.inv)
   have hφ : yoneda.map φ = e'.hom ≫ m.app n ≫ e.inv := yoneda.map_preimage _
   have hsqY : IsPullback (yoneda.map φ) (yoneda.map (π' ≫ f')) (yoneda.map (π ≫ f)) (yoneda.map b) := by
@@ -433,7 +432,6 @@ theorem exists_ringHom_algClosure_residueField_of_isIntegral (A B : Type) [CommR
     Ideal.Quotient.algebraOfLiesOver P (IsLocalRing.maximalIdeal A)
   haveI : IsScalarTower A (IsLocalRing.ResidueField A) (B ⧸ P) :=
     IsScalarTower.of_algebraMap_eq (fun _ => rfl)
-  haveI : Algebra.IsIntegral A (B ⧸ P) := inferInstance
   haveI : Algebra.IsIntegral (IsLocalRing.ResidueField A) (B ⧸ P) :=
     Algebra.IsIntegral.tower_top (R := A)
   let l : (B ⧸ P) →ₐ[IsLocalRing.ResidueField A] AlgebraicClosure (IsLocalRing.ResidueField A) :=

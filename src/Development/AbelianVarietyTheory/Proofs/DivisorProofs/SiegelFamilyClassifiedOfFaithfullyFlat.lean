@@ -43,8 +43,6 @@ theorem siegPB_id_of_fpqc (b : TBase B n) {sc : T ⟶ Sp B'} {su : T ⟶ Sp B} (
   have : Flat ψ₁ := MorphismProperty.of_isPullback hψ.1.flip inferInstance
   have : Surjective ψ₁ := MorphismProperty.of_isPullback hψ.1.flip inferInstance
   have : QuasiCompact ψ₁ := MorphismProperty.of_isPullback hψ.1.flip inferInstance
-  have : EffectiveEpi φ₁ := inferInstance
-  have : EffectiveEpi ψ₁ := inferInstance
   let φ := EffectiveEpi.desc φ₁ ψ₁ (comp_eq_of_comp_eq b hn ho hu hm hk)
   have hφψ : φ₁ ≫ φ = ψ₁ := EffectiveEpi.fac _ _ _
   have w : φ ≫ u.A.hom = c.A.hom := by
@@ -109,7 +107,6 @@ theorem classified_of_faithfullyFlat : ∀ (g n : ℕ), 1 ≤ g → 3 ≤ n → 
   let π : Sp R' ⟶ Sp R := spMap (algebraMap R R')
   have : Flat π := Flat.SpecMap_iff.2 (RingHom.flat_algebraMap_iff.2 inferInstance)
   have : Surjective π := ⟨PrimeSpectrum.comap_surjective_of_faithfullyFlat⟩
-  have : QuasiCompact π := inferInstance
   have hcomp : π ≫ spMap β = spMap ((algebraMap R R').comp β) := by
     simp only [π, spMap, ← Spec.map_comp]
     rfl

@@ -434,8 +434,6 @@ theorem GlobalTheory.dvr_eq_localization_integralClosure : ∀ (K L : Type) [Fie
   set E : ValuationSubring K := V.comap φ with hEdef
   letI : Algebra E L := (φ.comp E.subtype).toAlgebra
   haveI : IsScalarTower E K L := IsScalarTower.of_algebraMap_eq (fun _ => rfl)
-  haveI : IsFractionRing E K := inferInstance
-  haveI : Algebra.IsSeparable K L := inferInstance
   haveI : IsDedekindDomain (integralClosure E L) := integralClosure.isDedekindDomain E K L
   haveI : IsFractionRing (integralClosure E L) L := integralClosure.isFractionRing_of_finite_extension K L
 
@@ -994,7 +992,6 @@ theorem height_le_one_of_going_down :
   haveI : Algebra.IsIntegral R S := Algebra.IsIntegral.adjoin (fun x hx => by
     obtain ⟨-, q, hq, hqx⟩ := ht x hx
     exact ⟨q, hq, hqx⟩)
-  haveI : Algebra.HasGoingDown R S := inferInstance
 
   have hSV : ∀ z ∈ S, z ∈ V := by
     intro z hz

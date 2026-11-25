@@ -667,7 +667,6 @@ theorem exists_resolved_modification : GlobalTheory.Published.Principalisation �
   obtain ⟨M, r, hMi, hrt, hrM⟩ :=
     _root_.GlobalTheory.CompHS.exists_modif_map_of_open hP F X (pullback q s) sX n (pullback.snd q s ≫ s ≫ sW) U r₀ inferInstance hsX ht hUne hr₀
   haveI := hMi
-  have hsep : IsSeparated sX := inferInstance
   haveI : IsDominant M.opn.ι := ⟨show Dense (Set.range M.opn.ι) by rw [Scheme.Opens.range_ι]; exact M.dense⟩
   have hσ : r ≫ pullback.fst q s ≫ φ = M.σ := by
     refine ext_of_isDominant_of_isSeparated sX ?_ M.opn.ι ?_

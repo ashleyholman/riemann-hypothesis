@@ -16,7 +16,6 @@ theorem exists_cdvr_valuation_le : ∀ (V : Type) [CommRing V] [IsDomain V] [IsL
   have hmK : algebraMap V (FractionRing V) m ≠ 0 :=
     (map_ne_zero_iff _ (IsFractionRing.injective V (FractionRing V))).2 hm0
   haveI : ν.IsNontrivial := ⟨algebraMap V (FractionRing V) m, (ν.ne_zero_iff).2 hmK, (h2 m hmm).ne⟩
-  haveI : IsDiscreteValuationRing ν.valuationSubring := inferInstance
   haveI : CharZero (FractionRing V) :=
     charZero_of_injective_ringHom (IsFractionRing.injective V (FractionRing V))
   haveI : CharZero ν.valuationSubring :=

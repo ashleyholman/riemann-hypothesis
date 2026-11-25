@@ -54,7 +54,6 @@ theorem exists_mem_pow_add_eq_one : ∀ (p : ℕ) [Fact p.Prime] (D : Datum p) (
   haveI : Finite (𝓞 D.F ⧸ w0) := Ideal.finiteQuotientOfFreeOfNeBot w0 hne
   letI : Algebra (ZMod p) (𝓞 D.F ⧸ w0) := ZMod.algebra _ p
   letI : Algebra (ZMod p) k := ZMod.algebra _ p
-  haveI : Algebra.IsAlgebraic (ZMod p) (𝓞 D.F ⧸ w0) := inferInstance
   let φ0 := IsAlgClosed.lift (M := k) (R := ZMod p) (S := 𝓞 D.F ⧸ w0)
   let φ : 𝓞 D.F →+* k := φ0.toRingHom.comp (Ideal.Quotient.mk w0)
   have hker : RingHom.ker φ = w0 := by

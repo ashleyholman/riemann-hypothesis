@@ -70,7 +70,6 @@ theorem isDomain_and_isIntegrallyClosed_of_formallyEtale (A T : Type*) [CommRing
   let e : T ≃ₐ[A] Localization.AtPrime P :=
     (IsLocalization.algEquiv P.primeCompl T (Localization.AtPrime P)).restrictScalars A
   haveI : Algebra.FormallySmooth A (Localization.AtPrime P) := Algebra.FormallySmooth.of_equiv e
-  haveI : Algebra.IsSmoothAt A P := inferInstance
   obtain ⟨f, hfP, n, _, _, _⟩ :=
     Algebra.IsSmoothAt.exists_isStandardEtale_mvPolynomial (R := A) (p := P)
   have := isIntegrallyClosed_mvPolynomial_fin A n

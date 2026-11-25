@@ -519,8 +519,6 @@ theorem surjective_of_unique_injective_localHom : ∀ (B R : Type) [CommRing B] 
   let Ω := AlgebraicClosure M
   let L := IntermediateField.normalClosure K M Ω
   haveI : FiniteDimensional K L := normalClosure.is_finiteDimensional K M Ω
-  haveI : IsScalarTower B K Ω := inferInstance
-  haveI : IsScalarTower B K L := inferInstance
   haveI : CharZero L := charZero_of_injective_algebraMap (algebraMap K L).injective
   let C := integralClosure B L
   haveI : Module.Finite B C := IsIntegralClosure.finite B K L C

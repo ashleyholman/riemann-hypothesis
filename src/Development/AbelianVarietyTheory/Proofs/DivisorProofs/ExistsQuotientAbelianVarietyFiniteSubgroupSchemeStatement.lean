@@ -116,7 +116,6 @@ theorem exists_quotient : ∀ (K : Type) [Field K] [IsAlgClosed K] (A : Over (Sp
   have := flat_of_comp_of_flat_of_surjective q.left Q.hom
   have := UniversallyClosed.of_comp_surjective q.left Q.hom
   have := geometricallyReduced_of_comp q.left Q.hom
-  have : LocallyOfFinitePresentation Q.hom := inferInstance
   exact ⟨hcomm, smooth_of_grpObj_of_flat Q, ⟨⟩, geometricallyConnected_of_comp q.left Q.hom⟩
 
 end GlobalTheory.AbelianQuotientField

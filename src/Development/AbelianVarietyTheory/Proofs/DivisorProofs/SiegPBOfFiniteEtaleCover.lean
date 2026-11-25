@@ -179,8 +179,6 @@ theorem siegPB_id_of_cover (b : TBase B n) {sc : T ⟶ Sp B'} {su : T ⟶ Sp B} 
   obtain ⟨ψ₁, hk⟩ := exists_of_siegPB k
   obtain ⟨φ₁₂, hφ, sq₁, iso₁, lev₁⟩ := (sRelBy_one_iff _ _ _ _).1 hm
   obtain ⟨ψ₁₂, hψ, sq₂, iso₂, lev₂⟩ := (sRelBy_one_iff _ _ _ _).1 hk
-  have : QuasiCompact p := inferInstance
-  have : Flat p := inferInstance
   have : Epi p := Flat.epi_of_flat_of_surjective p
   have : Flat φ₁ := MorphismProperty.of_isPullback hφ.1.flip inferInstance
   have : Surjective φ₁ := MorphismProperty.of_isPullback hφ.1.flip inferInstance
@@ -188,8 +186,6 @@ theorem siegPB_id_of_cover (b : TBase B n) {sc : T ⟶ Sp B'} {su : T ⟶ Sp B} 
   have : Flat ψ₁ := MorphismProperty.of_isPullback hψ.1.flip inferInstance
   have : Surjective ψ₁ := MorphismProperty.of_isPullback hψ.1.flip inferInstance
   have : QuasiCompact ψ₁ := MorphismProperty.of_isPullback hψ.1.flip inferInstance
-  have : EffectiveEpi φ₁ := inferInstance
-  have : EffectiveEpi ψ₁ := inferInstance
   let φ := EffectiveEpi.desc φ₁ ψ₁ (comp_eq_of_comp_eq b hn ho hu hm hk)
   have hφψ : φ₁ ≫ φ = ψ₁ := EffectiveEpi.fac _ _ _
   have w : φ ≫ u.A.hom = c.A.hom := by

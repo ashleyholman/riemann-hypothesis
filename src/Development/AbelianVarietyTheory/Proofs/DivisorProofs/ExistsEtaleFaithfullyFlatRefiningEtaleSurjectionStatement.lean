@@ -29,8 +29,6 @@ theorem etFF_preimage_of_etale_surjective (A B : CommRingCat.{0}) (k : Spec B �
 theorem exists_etFF_of_isAffine (A : CommRingCat.{0}) (X V : Scheme.{0}) [IsAffine X]
     (h' : X ⟶ V) (f : V ⟶ Spec A) [Etale (h' ≫ f)] [Surjective (h' ≫ f)] :
     ∃ (B : CommRingCat.{0}) (g : A ⟶ B) (h : Spec B ⟶ V), EtFF g ∧ h ≫ f = Spec.map g := by
-  have he : Etale (X.isoSpec.inv ≫ h' ≫ f) := inferInstance
-  have hs : Surjective (X.isoSpec.inv ≫ h' ≫ f) := inferInstance
   refine ⟨Γ(X, ⊤), Spec.preimage (X.isoSpec.inv ≫ h' ≫ f), X.isoSpec.inv ≫ h',
     etFF_preimage_of_etale_surjective _ _ _, ?_⟩
   rw [Spec.map_preimage, Category.assoc]

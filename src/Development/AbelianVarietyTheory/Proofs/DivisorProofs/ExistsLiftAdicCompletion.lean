@@ -262,7 +262,6 @@ theorem exists_lift_adicCompletion (A V : Type) [CommRing A] [IsLocalRing A] [Al
       (Algebra.TensorProduct.cancelBaseChange A V V (V ⧸ maximalIdeal V) R).toRingEquiv).trans
       (Algebra.TensorProduct.comm A _ _).toRingEquiv
   haveI := formalFibre_isReduced_of_field A (V ⧸ maximalIdeal V)
-  haveI : Nontrivial (R ⊗[A] (V ⧸ maximalIdeal V)) := inferInstance
   obtain ⟨V', i1, i2, i3, h₀, hc, hirr⟩ := GlobalTheory.ReducedFibre.exists_cdvr_of_flat_of_isReduced V C
     e.toEquiv.nontrivial (isReduced_of_injective e e.injective)
   refine ⟨V', i1, i2, i3, h₀.comp (algebraMap V C),

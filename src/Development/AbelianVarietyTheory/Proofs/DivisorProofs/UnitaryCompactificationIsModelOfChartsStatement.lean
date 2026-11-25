@@ -1508,7 +1508,6 @@ theorem exists_model_of_charts : ∀ {E : Type} [Field E] [NumberField E] [IsCMF
   have eid : spMap (RingHom.id c.F) = 𝟙 _ := by simp [spMap]
   have hid : IsIso (spMap (RingHom.id c.F)) := by rw [eid]; infer_instance
   let g := pullback.fst (π ≫ zs) (spMap (RingHom.id c.F))
-  have hg : IsIso g := inferInstance
   let jQ : Xo.XF c ⟶ pullback (π ≫ zs) (spMap (RingHom.id c.F)) := j ≫ inv g
   have hjQ : jQ ≫ g = j := by simp [jQ]
   have hab : abLocus t.G = Set.range j := htab.trans hGab

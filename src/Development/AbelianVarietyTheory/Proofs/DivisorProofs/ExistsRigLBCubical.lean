@@ -1192,7 +1192,6 @@ theorem exists_ample_root {K : Type} [Field K] [IsAlgClosed K] (A : Over (Sp K))
     intro T t ht
     have hf := GlobalTheory.MulFinite.isFinite_mul K A hA 2 (by norm_num)
     let N := pullback ((𝟙 A) ^ 2 : A ⟶ A).left (η[A]).left
-    have hfin : IsFinite (pullback.snd ((𝟙 A) ^ 2 : A ⟶ A).left (η[A]).left) := inferInstance
     haveI : IsAffine (𝟙_ (Over (Sp K))).left := inferInstanceAs (IsAffine (Sp K))
     have haff : IsAffine N := isAffine_of_isAffineHom (pullback.snd ((𝟙 A) ^ 2 : A ⟶ A).left (η[A]).left)
     haveI : IsAffine (𝟙_ (Over (Sp K))).left := inferInstanceAs (IsAffine (Sp K))

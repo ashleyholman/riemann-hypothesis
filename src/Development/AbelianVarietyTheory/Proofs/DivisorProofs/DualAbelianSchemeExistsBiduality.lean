@@ -205,7 +205,6 @@ theorem exists_closed_subgroup_ker : ∀ (K : Type) [Field K] [IsAlgClosed K] (A
     rw [← hG, same_iff hs ht, h0, evc_swap hP hs, evc_ker_iff]
   have hK : ∀ (T : Over (Sp K)) (z : T ⟶ N), evc hP (fst T B ≫ z ≫ i) (snd T B) = 0 :=
     fun T z ↦ (key T _).2 ⟨z, rfl⟩
-  haveI : Mono i.left := inferInstance
   haveI : Mono i := Over.mono_of_mono_left i
   have hl : ∀ {T : Over (Sp K)} (x : T ⟶ A), evc hP (fst T B ≫ x) (snd T B) = 0 →
       ∃ z : T ⟶ N, z ≫ i = x := fun x h ↦ (key _ x).1 h

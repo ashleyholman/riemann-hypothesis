@@ -1291,7 +1291,6 @@ open ReciprocityTheory.ChartRestriction.G ReciprocityTheory.ChartRestriction.G.S
 private theorem UpperTheory.RepresentationRank.finite_etale_of_rep {S : Scheme.{0}} (G Y : Over S) (U : (Y ⊗ G).left.Opens)
     (hf : IsFinite G.hom) (he : Etale G.hom) (hr : UpperTheory.RepresentationRank.Rep G Y U) :
     IsFinite Y.hom ∧ Etale Y.hom := by
-  have hfl : Flat G.hom := inferInstance
   have hlc := Scheme.Hom.isLocallyConstant_finrank G.hom
   let W : ℕ → S.Opens := fun n => ⟨G.hom.finrank ⁻¹' {n}, hlc.isOpen_fiber n⟩
   have hW : iSup W = ⊤ := by

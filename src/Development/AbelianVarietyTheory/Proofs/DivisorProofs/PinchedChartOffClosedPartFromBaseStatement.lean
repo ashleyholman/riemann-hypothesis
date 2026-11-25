@@ -83,7 +83,6 @@ theorem pinched_off : ∀ (R : Type) [CommRing R] (R' : Type) [CommRing R'] [Alg
     haveI : SmoothOfRelativeDimension g (pullback.snd b' l') :=
       (smoothOfRelativeDimension_isStableUnderBaseChange g).of_isPullback
         (IsPullback.of_hasPullback b' l') hsm
-    haveI : SmoothOfRelativeDimension 0 h := inferInstance
     have := smoothOfRelativeDimension_comp g 0 (pullback.snd b' l') h
     simpa using this
   have hD : ∀ t : ↥(pullback b' l'), f ∉ (u t).asIdeal := fun t => by

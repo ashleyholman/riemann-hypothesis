@@ -382,7 +382,6 @@ theorem main : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R], Base R 
   by_contra h0
   push Not at h0
   have hs := U.semi.smooth
-  have : Flat G.hom := inferInstance
   have : IsDominant (spMap φ) := by
     refine ⟨?_⟩
     exact (PrimeSpectrum.denseRange_comap_iff_ker_le_nilRadical φ).2
@@ -983,8 +982,6 @@ theorem germ_dvd_of_expT_dvd : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocal
     IsClosedImmersion.spec_of_surjective _ Ideal.Quotient.mk_surjective
 
   haveI : IsIso (λ_ G).inv.left := ⟨⟨(snd (𝟙_ (Over (Sp R))) G).left, lam', lam⟩⟩
-  haveI : IsClosedImmersion (pullback.fst G.hom (thick R (maximalIdeal R) e)) := inferInstance
-  haveI : IsClosedImmersion (pullback.fst G.hom (thick R (maximalIdeal R) e) ≫ (λ_ G).inv.left) := inferInstance
 
   have hmap : Ideal.map (cstHom (𝟙_ (Over (Sp R)) ⊗ G).hom
       ((pullback.fst G.hom (thick R (maximalIdeal R) e) ≫ (λ_ G).inv.left) z)) (maximalIdeal R ^ (e + 1)) ≤

@@ -115,7 +115,6 @@ theorem eq_of_le_of_comap_eq_of_indEtale : ∀ (B O : Type) [CommRing B] [CommRi
     exact hne (le_antisymm hle h)
   obtain ⟨i, hi⟩ := hcov x
   obtain ⟨E, _, _, _, P, _, ⟨e⟩⟩ := hloc i
-  haveI : Algebra.QuasiFinite B (Localization.AtPrime P) := inferInstance
   haveI : Algebra.QuasiFinite B (Si i) := (Algebra.QuasiFinite.iff_of_algEquiv e).mp inferInstance
   have key := Algebra.QuasiFinite.eq_of_le_of_under_eq (R := B)
     (p.comap (algebraMap (Si i) O)) (p'.comap (algebraMap (Si i) O)) (Ideal.comap_mono hle)

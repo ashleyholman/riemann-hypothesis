@@ -202,8 +202,6 @@ theorem fibre_going_down_tensor : ∀ (S A C : Type) [CommRing S] [CommRing A] [
   let e1 : p.Fiber (A ⊗[S] C) ≃ₐ[K] K ⊗[S] C := Algebra.TensorProduct.cancelBaseChange S A K K C
   let e2 : K ⊗[K₁] F₁ ≃ₐ[K] K ⊗[S] C := Algebra.TensorProduct.cancelBaseChange S K₁ K K C
   let e3 : K ⊗[K₁] F₁ ≃ₐ[K₁] E := Algebra.TensorProduct.comm K₁ K F₁
-  haveI : Module.Flat F₁ E := inferInstance
-  haveI : Algebra.HasGoingDown F₁ E := inferInstance
   let Φ : p.Fiber (A ⊗[S] C) ≃+* E :=
     (e1.toRingEquiv.trans e2.symm.toRingEquiv).trans e3.toRingEquiv
   have hΦ : ∀ c : C, Φ (Algebra.TensorProduct.includeRight (Algebra.TensorProduct.includeRight c : A ⊗[S] C))

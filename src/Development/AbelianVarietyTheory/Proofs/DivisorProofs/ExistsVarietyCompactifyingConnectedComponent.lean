@@ -58,7 +58,6 @@ theorem geometricallyConnected_of_denseRange {F : Type} [Field F] {U V : Scheme.
   have h1 : ConnectedSpace ↥(pullback (g ≫ p) x) :=
     GeometricallyConnected.geometrically_connectedSpace _ _ _ (.of_hasPullback _ _)
   rw [← (pullbackRightPullbackFstIso p x g).hom.homeomorph.connectedSpace_iff] at h1
-  have ho : UniversallyOpen x := inferInstance
   have h2 : Dense (Set.range (pullback.snd g (pullback.fst p x))) := by
     rw [Scheme.Pullback.range_snd]
     exact hg.preimage (pullback.fst p x).isOpenMap

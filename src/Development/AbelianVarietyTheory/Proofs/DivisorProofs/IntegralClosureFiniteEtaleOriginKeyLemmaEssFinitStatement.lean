@@ -632,7 +632,6 @@ theorem exists_smul_dvd_of_localization_atPrime_tensor :
     ∃ s ∉ Q, ∃ m' : O ⊗[R] C, s • m = algebraMap R O b • m' := by
   intro R C O _ _ _ _ _ Q _ b m ⟨m', hm'⟩
   let f := AlgebraTensorModule.rTensor R C (Algebra.linearMap O (Localization.AtPrime Q))
-  haveI : IsLocalizedModule Q.primeCompl f := inferInstance
   have hf : ∀ x, (IsScalarTower.toAlgHom R O (Localization.AtPrime Q)).toLinearMap.rTensor C x = f x := by
     intro x
     induction x using TensorProduct.induction_on with
@@ -1104,7 +1103,6 @@ theorem flat_noetherian_nzd_intClosed : ∀ (A : Type) [CommRing A] [IsDomain A]
   · intro f hf
     set K := FractionRing A
     letI : Algebra K (R ⊗[A] K) := Algebra.TensorProduct.rightAlgebra
-    haveI : IsScalarTower A K (R ⊗[A] K) := inferInstance
     haveI hloc : IsLocalization (Algebra.algebraMapSubmonoid R (nonZeroDivisors A)) (R ⊗[A] K) :=
       (Algebra.isLocalization_iff_isPushout (nonZeroDivisors A) K).2 inferInstance
     let e : GlobalTheory.LocAcyc.GenFib A R ≃ₐ[R] R ⊗[A] K :=

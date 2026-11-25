@@ -241,7 +241,6 @@ theorem exists_finite_tors (K : Type) [Field K] (A : PolAV (Sp K)) (n : ℕ) (hn
   let f := (mulA A.A n).left
   let g := (η[A.A]).left
   haveI : IsFinite f := hF
-  haveI hY : IsFinite (pullback.snd f g) := inferInstance
   haveI : IsAffine (pullback f g) := isAffine_of_isAffineHom (pullback.snd f g)
   let Y := pullback f g
   let q : Sp Γ(Y, ⊤) ⟶ Sp K := Y.isoSpec.inv ≫ pullback.snd f g
@@ -335,8 +334,6 @@ theorem exists_finExt_realising : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLo
   haveI : CharZero R₁ := charZero_of_injective_ringHom hinj
   have hR₁ : Base R₁ := ⟨hadm, inferInstance⟩
   let E' := IntermediateField.normalClosure (FractionRing R₁) E (Kb R₁)
-  haveI : IsGalois (FractionRing R₁) E' := inferInstance
-  haveI : FiniteDimensional (FractionRing R₁) E' := inferInstance
   obtain ⟨hloc, hfe⟩ := finExt_integralClosure (E := E') hR₁
   letI : Algebra R₁ E' := (baseMap R₁ E').toAlgebra
   haveI : IsScalarTower R₁ (FractionRing R₁) E' := IsScalarTower.of_algebraMap_eq' rfl

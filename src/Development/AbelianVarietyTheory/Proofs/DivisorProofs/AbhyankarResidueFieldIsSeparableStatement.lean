@@ -920,8 +920,6 @@ theorem abhyankar_residueField_isSeparable : ∀ (S K L : Type) [CommRing S] [Is
   haveI : Module.Finite S (AdjoinRoot (Polynomial.X ^ e - Polynomial.C π)) :=
     (AdjoinRoot.powerBasis' (Polynomial.monic_X_pow_sub_C π he0.ne')).finite
   haveI : Module.Finite S D := Module.Finite.equiv φ.symm.toLinearEquiv
-  haveI : Algebra.IsIntegral S D := inferInstance
-  haveI : Algebra.IsIntegral D (integralClosure D (TensorProduct S D L)) := inferInstance
   haveI : Algebra.IsIntegral S (integralClosure D (TensorProduct S D L)) := Algebra.IsIntegral.trans D
   haveI : Algebra.IsIntegral (integralClosure S L) (integralClosure D (TensorProduct S D L)) :=
     Algebra.IsIntegral.tower_top S

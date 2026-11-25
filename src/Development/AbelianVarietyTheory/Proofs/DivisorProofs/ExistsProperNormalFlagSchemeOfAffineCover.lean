@@ -852,7 +852,6 @@ end
 theorem cell_closed : ∀ (O K : Type) [CommRing O] [Field K] (β : O →+* K) (X : Scheme.{0}) (s : X ⟶ Sp O) (T : Type) [Finite T] (m : T → ℕ) (M : ℕ) (B : Type) (V : B → X.affineOpens) (α : ∀ b, K →+* Γ(X, (V b).1)) (c D : ∀ b, Let m → Fin (M + 1) → Γ(X, (V b).1)) (P : Scheme.{0}) (p0 : P ⟶ X) (p : ∀ en : En m, P ⟶ PSpace O (plN M en.1)) (h : ∀ b, Pm m → (Sp (CR m (V b)) ⟶ P)), IsCover β s V α c D → IsPlk β s V α c p0 p h → IsNoetherianRing O → IsProjOver s → ∀ b w (W : P.Opens), IsCellOpen p0 p (V b) (D b) w W → ∃ h' : Sp (CR m (V b)) ⟶ W.toScheme, h' ≫ W.ι = h b w ∧ IsClosedImmersion h' := by
   intro O K _ _ β X s T _ m M B V α c D P p0 p h hcov hpl _ _ b w W hW
   obtain ⟨N, i, hi, hi'⟩ := hpl.proj
-  have : IsSeparated (PSpace.str O N) := inferInstance
   have : IsSeparated (p0 ≫ s) := by
     rw [← hi']
     infer_instance
@@ -1385,7 +1384,6 @@ theorem preimage_opens_eq_range_of_valuative (F Z X : Scheme.{0}) (j : F ⟶ Z) 
       rw [← cancel_mono U.ι, Category.assoc, hgfac, hl2]
     exact ⟨⟨{ l := l, fac_left := hl1, fac_right := hl3 }⟩⟩
   haveI : UniversallyClosed (j' ≫ (π ∣_ U)) := by rw [hcomp]; infer_instance
-  haveI : IsSeparated ((π ⁻¹ᵁ U).ι ≫ π) := inferInstance
   haveI : IsSeparated ((π ∣_ U) ≫ U.ι) := by rw [morphismRestrict_ι]; infer_instance
   haveI : IsSeparated (π ∣_ U) := IsSeparated.of_comp (π ∣_ U) U.ι
   haveI : UniversallyClosed j' := UniversallyClosed.of_comp_of_isSeparated j' (π ∣_ U)
@@ -1456,7 +1454,6 @@ theorem preimage_iUnion_eq_range_cells : ∀ (O K : Type) [CommRing O] [Field K]
     have h1 : a' ≫ cbase m (V b') = spMap (algebraMap A k) ≫ x := by
       rw [← hcb b' w', ← Category.assoc, ha', ← hax, hjf]
     obtain ⟨b, w, l, hl, hl2⟩ := GlobalTheory.T.flagCell_valuativeExistence_over_union_of_opens O K β X s T m M B V α c D P p0 p h hC hP A k b' w' a' x hx h1
-    haveI : Mono f := inferInstance
     refine ⟨l ≫ i b w, ?_, ?_⟩
     · rw [← cancel_mono f, Category.assoc, Category.assoc, hif, hl2, ← hif b' w', ← Category.assoc, ha']
     · rw [hjf, Category.assoc, hcb b w, hl]
@@ -1496,10 +1493,8 @@ theorem exists_properFlag : ∀ (K : Type) [Field K] (X : Scheme.{0}) (s : X ⟶
     have := isProper_str K N
     infer_instance
   have hp0 : IsProper p0 := IsProper.of_comp p0 s
-  have : LocallyOfFiniteType (f ≫ p0 ≫ s) := inferInstance
   have : IsLocallyNoetherian F := LocallyOfFiniteType.isLocallyNoetherian (f ≫ p0 ≫ s)
   have : IsNoetherian F := {}
-  have hqc : QuasiCompact f := inferInstance
   have hsep : IsSeparated (f.imageι ≫ p0) := inferInstance
   have hpre := _root_.GlobalTheory.FlagEmb.preimage_iUnion_eq_range_cells K K (RingHom.id K) X s T m M B V α c D P p0 p h hC hPlk F f.image f i f.toImage f.imageι
     hf hi hif hcov inferInstance f.toImage_imageι f.toImage.denseRange hFnoe hsep

@@ -30,7 +30,6 @@ theorem irreducibleSpace_of_smooth_of_geometricallyConnected_domain :
   have hgf : Flat g := by
     rw [Flat.SpecMap_iff]
     exact RingHom.flat_algebraMap_iff.mpr (IsLocalization.flat K (nonZeroDivisors R))
-  have hG : Flat G.hom := inferInstance
 
   have hη : genericPoint (Spec (CommRingCat.of R)) ∈ Set.range g :=
     (Flat.generalizingMap g).stableUnderGeneralization_range

@@ -23,7 +23,6 @@ attribute [local instance] FractionRing.liftAlgebra FractionRing.isScalarTower_l
 variable {F E : Type} [Field F] [NumberField F] [Field E] [NumberField E] [Algebra F E]
 
 theorem differentIdeal_eq_top_of_unram [Algebra.Unramified (𝓞 F) (𝓞 E)] : differentIdeal (𝓞 F) (𝓞 E) = ⊤ := by
-  haveI : Algebra.IsSeparable (FractionRing (𝓞 F)) (FractionRing (𝓞 E)) := inferInstance
   by_contra hne
   obtain ⟨P, hP, hle⟩ := Ideal.exists_le_maximal _ hne
   have hd : P ∣ differentIdeal (𝓞 F) (𝓞 E) := Ideal.dvd_iff_le.mpr hle

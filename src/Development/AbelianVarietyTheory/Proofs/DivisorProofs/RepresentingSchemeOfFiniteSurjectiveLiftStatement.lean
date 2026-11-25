@@ -580,7 +580,6 @@ theorem inj_of_fibInj : ∀ (R : Type) [CommRing R] [IsNoetherianRing R] (A : Ov
     exact (same_iff hM.isLB hM.isLB _ _).2 rfl)
   let p : G.left ⟶ U.left := (i ≫ fst U U).left
   have hp : p ≫ U.hom = G.hom := Over.w (i ≫ fst U U)
-  have : Mono i.left := inferInstance
   have pt : ∀ (Z : Scheme.{0}) (a b : Z ⟶ G.left) (K : Type) [Field K] [IsAlgClosed K] (t : Z ⟶ Sp K)
       (s : Sp K ⟶ Sp R), a ≫ p = b ≫ p → a ≫ G.hom = t ≫ s → a = b := by
     intro Z a b K _ _ t s e es
@@ -681,7 +680,6 @@ namespace GlobalTheory.DualCon
 theorem surjective_to_spec_field {T : Scheme.{0}} (K : Type) [Field K] (h : T ⟶ Spec (CommRingCat.of K))
     (t : T) : Surjective h := by
   refine ⟨fun x ↦ ⟨t, ?_⟩⟩
-  have : Subsingleton (PrimeSpectrum K) := inferInstance
   exact Subsingleton.elim (α := PrimeSpectrum K) _ _
 
 theorem geometricallyConnected_of_isPullback {X X' Y Y' : Scheme.{0}} {f : X ⟶ Y} {f' : X' ⟶ Y'} {p : X' ⟶ X}
@@ -726,7 +724,6 @@ theorem good_of_isPullback_finite_surjective : ∀ (X X' Y Y' : Scheme.{0}) (f :
   have : UniversallyClosed f := UniversallyClosed.of_comp_surjective p f
   have : IsSeparated f := GlobalTheory.NilProper.isSeparated_of_comp_surjective p f
   have : Smooth f := hf.smooth
-  have : LocallyOfFiniteType f := inferInstance
   exact ⟨{}, hf, geometricallyConnected_of_isPullback hsq⟩
 
 end GlobalTheory.DualCon

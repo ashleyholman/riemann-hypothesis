@@ -168,7 +168,6 @@ theorem etale_of_isUnit_discr (R A : Type) [CommRing R] [CommRing A] [Algebra R 
   obtain ⟨d, hd⟩ := exists_dual R A b h
   haveI := formallyUnramified_of_dual R A b d hd
   haveI : Module.FinitePresentation R A := Module.finitePresentation_of_projective R A
-  haveI : Algebra.FinitePresentation R A := inferInstance
   exact Algebra.Etale.of_formallyUnramified_of_flat
 
 theorem exists_height_one_mem (R : Type) [CommRing R] [IsDomain R] [IsNoetherianRing R] {x : R}

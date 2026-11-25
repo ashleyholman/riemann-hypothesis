@@ -77,7 +77,6 @@ theorem isPullback_rat (k K : Type) [CommRing k] [IsDomain k] [Module.Finite ℤ
     [Algebra k K] [IsFractionRing k K] :
     IsPullback (spMap (algebraMap k K)) (spMap (algebraMap ℚ K)) (spMap (Int.castRingHom k))
       (spMap (algebraMap ℤ ℚ)) := by
-  have : IsLocalization (Algebra.algebraMapSubmonoid k (nonZeroDivisors ℤ)) K := inferInstance
   have := Algebra.isPushout_of_isLocalization (nonZeroDivisors ℤ) ℚ k K
   exact isPullback_SpecMap_of_isPushout _ _ _ _ (CommRingCat.isPushout_of_isPushout ℤ k ℚ K)
 

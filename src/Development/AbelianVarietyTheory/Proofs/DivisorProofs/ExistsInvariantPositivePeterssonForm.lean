@@ -159,7 +159,6 @@ theorem exists_invariant_pos_form : ∀ (E : Type) [Field E] [NumberField E] [Is
   letI : MeasurableSpace (UA E n) := borel _
   haveI : BorelSpace (UA E n) := ⟨rfl⟩
   haveI : SecondCountableTopology (ratU E n) := TopologicalSpace.Subtype.secondCountableTopology _
-  haveI : TopologicalSpace.SeparableSpace (ratU E n) := inferInstance
   haveI : Countable (ratU E n) := TopologicalSpace.separableSpace_iff_countable.1 inferInstance
   obtain ⟨μ, hμ⟩ : ∃ μ : Measure (UA E n), μ.IsHaarMeasure := ⟨Measure.haar, inferInstance⟩
   obtain ⟨𝓕, -, h𝓕'⟩ := _root_.Bl.SecondBlockLemmaC.goal1 (ratU E n)

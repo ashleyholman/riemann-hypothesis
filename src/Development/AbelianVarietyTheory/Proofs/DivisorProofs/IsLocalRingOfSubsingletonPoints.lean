@@ -398,7 +398,6 @@ theorem main : ∀ (p : ℕ) [Fact p.Prime] (C : Type) [Field C] [IsAlgClosed C]
       exact conv_eq_one_of_mul G _ _ _ h1
     exact ⟨x, z, by rwa [pow_one] at hz⟩
   have : Module.Finite ℤ_[p] (G.TateOver k) := Module.Finite.of_surjective π hπ
-  have : Module.Free ℤ_[p] (G.TateOver k) := inferInstance
   obtain ⟨s, hs⟩ := Module.projective_lifting_property π LinearMap.id hπ
   refine ⟨s, fun t => LinearMap.congr_fun hs t, fun n t t' h => ?_⟩
   have hd : (t - t').conv n = 1 := by

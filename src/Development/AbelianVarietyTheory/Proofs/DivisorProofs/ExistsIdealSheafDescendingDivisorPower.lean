@@ -220,7 +220,6 @@ theorem exists_lift_finite_through_point : ∀ (X Z : Scheme.{0}) (f : X ⟶ Z),
   letI := (f.residueFieldMap w).hom.toAlgebra
   letI := φ.hom.toAlgebra
   haveI : Module.Finite (Z.residueField (f w)) (X.residueField w) := hfin
-  haveI : Algebra.IsAlgebraic (Z.residueField (f w)) (X.residueField w) := inferInstance
   let ψ : X.residueField w →ₐ[Z.residueField (f w)] PadicAlgCl p := (by
     refine @_root_.IsAlgClosed.lift _ _ _ _ _ _ _ _ _ _ _ ?_ ?_ ?_
     solve_by_elim* (maxDepth := 2) only [*,
@@ -235,7 +234,6 @@ theorem exists_lift_finite_through_point : ∀ (X Z : Scheme.{0}) (f : X ⟶ Z),
   have hy0w : y0 (IsLocalRing.closedPoint (PadicAlgCl p)) = w :=
     (Scheme.Hom.comp_apply _ _ _).trans (Scheme.fromSpecResidueField_apply w _)
 
-  haveI : IsProper f := inferInstance
   have hE : ValuativeCriterion.Existence f :=
     (UniversallyClosed.eq_valuativeCriterion ▸ (inferInstance : UniversallyClosed f) :
       (ValuativeCriterion.Existence ⊓ @QuasiCompact) f).1

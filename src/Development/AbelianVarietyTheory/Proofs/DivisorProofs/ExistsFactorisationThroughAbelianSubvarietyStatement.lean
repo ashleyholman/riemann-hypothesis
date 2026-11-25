@@ -249,7 +249,6 @@ theorem exists_factor_abelianSubvariety : ∀ (K : Type) [Field K] (A B : AbVar 
   obtain ⟨hG, hpm, him⟩ := _root_.GlobalTheory.AV.AbVar.exists_grpObj_of_image K A B f Z p i hpi hp hi hg
   letI := hG
   have hmono : Mono i := by
-    have : Mono i.left := inferInstance
     exact Over.mono_of_mono_left i
   have hcomm : IsCommMonObj Z := ⟨by
     apply (cancel_mono i).1

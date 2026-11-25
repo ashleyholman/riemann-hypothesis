@@ -132,7 +132,6 @@ theorem exists_normalisation_pullback_cover : ∀ {o : CommRingCat.{0}} [Algebra
   intro o _ Z Z' M z _ b _ J hB _ _ U g' _ hne
   haveI : IsNoetherianRing o := Algebra.FiniteType.isNoetherianRing ℤ o
   haveI : IsLocallyNoetherian Z := LocallyOfFiniteType.isLocallyNoetherian z
-  haveI : LocallyOfFiniteType (g' ≫ U.ι ≫ z) := inferInstance
   haveI : IsLocallyNoetherian M := LocallyOfFiniteType.isLocallyNoetherian (g' ≫ U.ι ≫ z)
   let Vi : Z.Opens := J.support.compl
   haveI hbV : IsIso (b ∣_ Vi) := GlobalTheory.Principalise.isIso_restrict_of_blowup hB Vi (fun x hx => hx)
@@ -191,8 +190,6 @@ theorem exists_normalisation_pullback_cover : ∀ {o : CommRingCat.{0}} [Algebra
   haveI : LocallyOfFiniteType (j ≫ pullback.snd bU g') := by rw [hjs]; infer_instance
   haveI : LocallyOfFiniteType j := locallyOfFiniteType_of_comp j (pullback.snd bU g')
   haveI : GlobalTheory.IsNormalScheme (V : Scheme.{0}) := .of_isOpenImmersion V.ι
-  haveI : IsReduced (V : Scheme.{0}) := inferInstance
-  haveI : IsLocallyNoetherian (V : Scheme.{0}) := inferInstance
   haveI hfin : IsFinite j.fromNormalization :=
     GlobalTheory.NormBlowupInt.isFinite_fromNormalization_int_of_isReduced (o := o) j
       (pullback.fst bU g' ≫ bU ≫ U.ι ≫ z) fun x _ => (LocallyOfFiniteType.stalkMap j x).residueFieldMap
@@ -733,7 +730,6 @@ theorem comap_map_eq {R S : Type} [CommRing R] [IsDomain R] [IsDiscreteValuation
   letI := f.toAlgebra
   have : FaithfulSMul R S := (faithfulSMul_iff_algebraMap_injective _ _).2 hf
   have : IsLocalHom (algebraMap R S) := ‹IsLocalHom f›
-  have : Module.Flat R S := inferInstance
   have : Module.FaithfullyFlat R S := Module.FaithfullyFlat.of_flat_of_isLocalHom
   exact Ideal.comap_map_eq_self_of_faithfullyFlat (B := S) I
 

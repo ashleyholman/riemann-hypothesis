@@ -65,7 +65,6 @@ theorem finrank_fractionRing (k K : Type) [CommRing k] [IsDomain k] [CharZero k]
   haveI : Module.Free ℤ k := Module.free_of_finite_type_torsion_free'
   haveI : @IsScalarTower ℤ ℚ K Algebra.toSMul Algebra.toSMul Algebra.toSMul :=
     IsScalarTower.of_algebraMap_eq' (RingHom.ext_int _ _)
-  haveI : IsLocalization (Algebra.algebraMapSubmonoid k (nonZeroDivisors ℤ)) K := inferInstance
   let b := Module.Free.chooseBasis ℤ k
   let b' := b.localizationLocalization ℚ (nonZeroDivisors ℤ) K
   exact ⟨(Module.finrank_eq_card_basis b').trans (Module.finrank_eq_card_basis b).symm,

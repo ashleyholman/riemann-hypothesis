@@ -249,7 +249,6 @@ theorem hasTheta_of_smooth : ∀ (E : Type) [Field E] [NumberField E] [IsCMField
     exact charZero_of_injective_ringHom φ.injective
   obtain ⟨k, _, _, hk, S', hS'⟩ := CoveringCompare.exists_finite_splitOver Y.t.G Y.t.semi x
 
-  haveI : Algebra.IsSeparable (Y.X.residueField x) k := inferInstance
   obtain ⟨R, _, _, _, _, j, _, _, hj⟩ := LocM.Bdy.exists_etale_local
     (AdicCompletion (maximalIdeal (Y.X.presheaf.stalk x)) (Y.X.presheaf.stalk x)) (Y.X.residueField x) k
     (ResidueField.map (algebraMap (Y.X.presheaf.stalk x)
@@ -276,7 +275,6 @@ theorem hasTheta_of_smooth : ∀ (E : Type) [Field E] [NumberField E] [IsCMField
   have hadm := isAdmissibleCompleteLocalDomainPrime_maximalIdeal R hNR hn hc
   have hψf : ψ.Flat := RingHom.Flat.comp (RingHom.flat_algebraMap_iff.2 inferInstance)
     (RingHom.flat_algebraMap_iff.2 inferInstance)
-  haveI : IsLocalHom ψ := inferInstance
 
   obtain ⟨t, ⟨m⟩⟩ := ReciprocityTheory.ChartRestriction.G.Geo.Tor.exists_sab (spMap ψ ≫ Y.X.fromSpecStalk x) Y.t
   haveI : IsProper Y.s := ProperFamily.isProper_of_isProjOver Y.proj

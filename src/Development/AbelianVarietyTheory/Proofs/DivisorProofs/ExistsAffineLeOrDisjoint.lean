@@ -411,7 +411,6 @@ theorem chow (R : Type) [CommRing R] [IsNoetherianRing R] (W : Scheme)
   let s := PSpace.str R N
   let γ : U.toScheme ⟶ pullback f s := pullback.lift U.ι φ hφs.symm
   have : IsAffine U.toScheme := hU
-  have : QuasiCompact (γ ≫ pullback.fst f s ≫ f) := inferInstance
   have : QuasiCompact γ := QuasiCompact.of_comp γ (pullback.fst f s ≫ f)
   have h₁ : γ.toImage ≫ γ.imageι ≫ pullback.fst f s = U.ι := by
     rw [γ.toImage_imageι_assoc, pullback.lift_fst]

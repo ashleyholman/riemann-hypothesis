@@ -186,7 +186,6 @@ theorem avg_invariant {x : V} (hx : (stab π L x).FiniteIndex) (l : L) :
 
 theorem avg_add {x y : V} (hx : (stab π L x).FiniteIndex) (hy : (stab π L y).FiniteIndex) :
     avg π L (x + y) = avg π L x + avg π L y := by
-  haveI : (stab π L x ⊓ stab π L y).FiniteIndex := inferInstance
   rw [avg_eq π L (stab_le_add π L x y), avg_eq π L (inf_le_left : stab π L x ⊓ stab π L y ≤ stab π L x),
     avg_eq π L (inf_le_right : stab π L x ⊓ stab π L y ≤ stab π L y), avgH_add]
 

@@ -1165,7 +1165,6 @@ theorem alg_comp_of_isOpenImmersion : ∀ (R : Type) [CommRing R] (I : Ideal R),
     exact ⟨(t 0).subschemeι x, by simp⟩
 
   have hT : ((T.support : Set W)) ⊆ Set.range j := by
-    haveI : UniversallyClosed (T.subschemeι ≫ f) := inferInstance
     have hZ : IsClosed (T.subschemeι.base ⁻¹' (Set.range j)ᶜ) :=
       (j.isOpenEmbedding.isOpen_range.isClosed_compl).preimage T.subschemeι.continuous
     have hE := _root_.GlobalTheory.closed_empty_of_universallyClosed_of_le_jacobson R I hI T.subscheme (T.subschemeι ≫ f) inferInstance _ hZ (by

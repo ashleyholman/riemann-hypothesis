@@ -238,7 +238,6 @@ theorem exists_sec_nonempty : ∀ (S : Scheme.{0}) (P : PolAV S) (K : Type) [Fie
     exact zero_ne_one ((Scheme.ΓSpecIso (CommRingCat.of K)).commRingCatIsoToRingEquiv.symm.injective
       ((map_zero _).trans ((congrFun this i₀).trans (map_one _).symm)))
   obtain ⟨j, hj⟩ := nz
-  haveI : IsReduced (T ⊗ P.A).left := inferInstance
   obtain ⟨y, hy⟩ : ∃ y, y ∈ (T ⊗ P.A).left.basicOpen ((b i₀).f j) := by
     by_contra! h
     exact hj (eq_zero_of_basicOpen_eq_bot _ (eq_bot_iff.2 fun y hy' => (h y hy').elim))
@@ -436,7 +435,6 @@ theorem exists_sec_of_baseChange : ∀ (S : Scheme.{0}) (P : PolAV S) (k : Type)
   have hpb := GlobalTheory.AbLaw.SecBC.isPullback_snd P.A T
   haveI : IsProper f := MorphismProperty.of_isPullback (P := @IsProper) hpb P.isAb.proper
   haveI : Smooth f := MorphismProperty.of_isPullback (P := @Smooth) hpb P.isAb.smooth
-  haveI : Flat f := inferInstance
   obtain ⟨Q⟩ := GlobalTheory.ProperFinite.nonempty_perf_of_isProper f hM
   haveI hι : Surjective ιK := ⟨fun p => ⟨⟨⊥, Ideal.isPrime_bot⟩, Subsingleton.elim _ _⟩⟩
   have hπ : Surjective π := MorphismProperty.of_isPullback (P := @Surjective) H.flip hι
@@ -526,7 +524,6 @@ theorem exists_sec_of_closed {X : Scheme.{0}} [CompactSpace X] (M : LB X)
 theorem compactSpace_fibre {S : Scheme.{0}} (P : PolAV S) (k : Type) [Field k]
     (t : Spec (CommRingCat.of k) ⟶ S) : CompactSpace (Over.mk t ⊗ P.A).left := by
   have := P.isAb.proper
-  have : QuasiCompact (pullback.fst t P.A.hom) := inferInstance
   exact QuasiCompact.compactSpace_of_compactSpace (pullback.fst t P.A.hom)
 
 theorem exists_sec_algClosed {S : Scheme.{0}} (P : PolAV S) (K : Type) [Field K] [IsAlgClosed K]

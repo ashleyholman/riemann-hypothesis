@@ -158,7 +158,6 @@ theorem exists_compact_mod_sim (Z S : Type) [Group Z] [TopologicalSpace Z] [IsTo
     · ext
       · exact hrr
       · simp [ha]
-  haveI : T2Space (Z × S) := inferInstance
   obtain ⟨B, hB, hBs⟩ := GlobalTheory.InvolutionNorm.exists_compact_mod_kernel (Z × S) hcomm T hTc hTi hsqT
     (D ×ˢ {1}) (hD.prod isCompact_singleton)
   refine ⟨Prod.fst '' B, hB.image continuous_fst, fun z a hz => ?_⟩

@@ -225,8 +225,6 @@ namespace GlobalTheory.Mum
 theorem exists_modif_graph : ∀ (R : Type) [CommRing R] [IsDomain R] (o : Type) [CommRing o] (b : o →+* R) (Z : Scheme.{0}) (s : Z ⟶ Sp o), IsProper s → ∀ y : Sp (FractionRing R) ⟶ Z, y ≫ s = jK R ≫ spMap b → ∃ (M : Modif R) (h : M.S ⟶ Z), M.gp ≫ h = y ∧ h ≫ s = M.π ≫ spMap b := by
   intro R _ _ o _ b Z s hs y hy
   let ℓ : Sp (FractionRing R) ⟶ pullback s (spMap b) := pullback.lift y (jK R) hy
-  have : QuasiCompact ℓ := inferInstance
-  have : IsProper (pullback.snd s (spMap b)) := inferInstance
   refine ⟨{ S := ℓ.image
             π := ℓ.imageι ≫ pullback.snd s (spMap b)
             proper := inferInstance

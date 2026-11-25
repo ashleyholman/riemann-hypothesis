@@ -120,7 +120,6 @@ theorem etale_integralClosure_pi : ∀ (R : Type) [CommRing R] (ι : Type) [Fint
     [∀ i, Algebra R (E i)], (∀ i, Algebra.Etale R (integralClosure R (E i))) →
     Algebra.Etale R (integralClosure R (∀ i, E i)) := by
   intro R _ ι _ E _ _ h
-  haveI : Algebra.Etale R (∀ i, integralClosure R (E i)) := inferInstance
   exact Algebra.Etale.of_equiv (integralClosurePiEquiv R ι E).symm
 
 end GlobalTheory.PiClosure
@@ -759,7 +758,6 @@ theorem ramGal : ∀ (S K L : Type) [CommRing S] [IsDomain S] [IsDiscreteValuati
       rw [← Ideal.inertiaDeg_eq_of_isMaximal (maximalIdeal S) P,
         ← Ideal.inertiaDegIn_eq_inertiaDeg (maximalIdeal S) P (L ≃ₐ[K] L)]
       exact (Dvd.intro_left _ rfl).trans hef
-    have : Module.Finite S (B ⧸ P) := inferInstance
     have : Module.Finite (S ⧸ maximalIdeal S) (B ⧸ P) :=
       Module.Finite.of_restrictScalars_finite S _ _
     refine isSeparable_of_isField ((Ideal.Quotient.maximal_ideal_iff_isField_quotient _).1 inferInstance)
@@ -1110,9 +1108,7 @@ theorem height_one_and_comap_eq_map_C : ∀ (A : Type) [CommRing A] [IsDomain A]
         (P.comap (algebraMap A (Localization.AtPrime Q))).map (Polynomial.C : A →+* A[X]) := by
   intro A _ _ _ _ E _ _ _ _ _ Q _ P _ a ha haP hP
   set R := Localization.AtPrime Q
-  haveI : Module.Flat A[X] E := inferInstance
   haveI : Module.Flat A E := Module.Flat.trans A A[X] E
-  haveI : Module.Flat E R := inferInstance
   haveI : Module.Flat A R := Module.Flat.trans A E R
   haveI : Module.Flat A[X] R := Module.Flat.trans A[X] E R
   haveI : Algebra.HasGoingDown A R := Algebra.HasGoingDown.of_flat

@@ -135,7 +135,6 @@ theorem flat_of_retract {X Y S : Scheme.{0}} (f : X ⟶ S) (i : X ⟶ Y) (r : Y 
   have hx : r (i x) = x := by
     rw [← Scheme.Hom.comp_apply, h]; rfl
   haveI : IsIso (i ≫ r) := by rw [h]; infer_instance
-  haveI : IsOpenImmersion (i ≫ r) := inferInstance
   haveI : IsIso ((i ≫ r).stalkMap x) := inferInstance
   have key : (f.stalkMap (r (i x))).hom.Flat := by
     have e1 : r.stalkMap (i x) ≫ i.stalkMap x = (i ≫ r).stalkMap x := (Scheme.Hom.stalkMap_comp i r x).symm

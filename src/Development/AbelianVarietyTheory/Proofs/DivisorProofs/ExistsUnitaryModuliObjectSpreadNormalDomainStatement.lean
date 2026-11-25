@@ -347,7 +347,6 @@ theorem exists_levelIsometry_of_point : ∀ (E : Type) [Field E] [NumberField E]
       Module.Free.of_basis (AdjoinRoot.powerBasis' (Polynomial.cyclotomic.monic n ℤ)).basis
     have : Flat (spMap (algebraMap ℤ (CycRing n))) :=
       (HasRingHomProperty.Spec_iff (P := @Flat)).2 (RingHom.flat_algebraMap_iff.2 inferInstance)
-    have : Flat Z₀.hom := inferInstance
     show Flat (p ≫ Z₀.hom)
     infer_instance
 

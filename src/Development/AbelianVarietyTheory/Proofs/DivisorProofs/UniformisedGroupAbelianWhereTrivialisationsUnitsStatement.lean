@@ -531,7 +531,6 @@ theorem exists_dominating_dvr : ∀ (F : Type) [Field F] [CharZero F] (T' : Subr
   let L := IntermediateField.adjoin K (s : Set F)
   haveI : FiniteDimensional K L := IntermediateField.finiteDimensional_adjoin hintK
   haveI : CharZero K := (algebraMap K F).charZero
-  haveI : Algebra.IsSeparable K L := inferInstance
   let C := integralClosure T' L
   haveI : IsDedekindDomain C := IsIntegralClosure.isDedekindDomain T' K L C
 

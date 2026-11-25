@@ -35,8 +35,6 @@ theorem surjective_algebraMap_of_finite_unramified : ∀ (R : Type) [CommRing R]
   haveI := GlobalTheory.isLocalHom_algebraMap_of_moduleFinite R T
   have hm := Algebra.FormallyUnramified.map_maximalIdeal (R := R) (S := T)
   haveI : Algebra.IsIntegral R T := Algebra.IsIntegral.of_finite R T
-  haveI : Algebra.IsIntegral (IsLocalRing.ResidueField R) (IsLocalRing.ResidueField T) :=
-    inferInstance
   have hk : Function.Surjective
       (algebraMap (IsLocalRing.ResidueField R) (IsLocalRing.ResidueField T)) :=
     IsAlgClosed.algebraMap_bijective_of_isIntegral.2
@@ -68,8 +66,6 @@ theorem nonempty_algHom_residueField : ∀ (R : Type) [CommRing R] [IsLocalRing 
   intro R _ _ _ T _ _ _ _
   haveI := GlobalTheory.isLocalHom_algebraMap_of_moduleFinite R T
   haveI : Algebra.IsIntegral R T := Algebra.IsIntegral.of_finite R T
-  haveI : Algebra.IsIntegral (IsLocalRing.ResidueField R) (IsLocalRing.ResidueField T) :=
-    inferInstance
   let l : IsLocalRing.ResidueField T →ₐ[IsLocalRing.ResidueField R] IsLocalRing.ResidueField R :=
     IsAlgClosed.lift
   exact ⟨(l.restrictScalars R).comp (IsScalarTower.toAlgHom R T (IsLocalRing.ResidueField T))⟩
@@ -110,7 +106,6 @@ theorem exists_section_of_point : ∀ (R : Type) [CommRing R] [HenselianLocalRin
 
     simp [map_sum, h] at this
   have hi1 : χ (ε i) = 1 := (IsIdempotentElem.iff_eq_zero_or_one.1 ((hεid i).map χ)).resolve_left hi
-  haveI : IsLocalRing (T i) := inferInstance
   haveI : Module.Finite R (T i) := (hT' i).2
   let π : B →ₐ[R] T i := (Pi.evalAlgHom R T i).comp e.toAlgHom
   have hπ : Function.Surjective π := fun y => ⟨e.symm (Pi.single i y), by simp [π]⟩

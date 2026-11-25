@@ -675,7 +675,6 @@ theorem exists_gradedTateIso : ∀ {E : Type} [Field E] [NumberField E] [IsCMFie
   have hG := hL.1.globalFns
   have := hR.2
   have := hR.1.1
-  have : IsLocallyNoetherian (Spec (CommRingCat.of R)) := inferInstance
   choose q hq hy using hI
   have huniq : ∀ (n : ℕ) (x y : TF (R := R) F ⟶ P.D.toPre.P.A) (c c' : Fˣ),
       Out.WeilIs P.D.toPre.P.A P.D.toPre.P.L n x y (unitOn c) →

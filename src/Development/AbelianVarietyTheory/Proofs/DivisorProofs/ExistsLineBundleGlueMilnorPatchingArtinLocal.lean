@@ -878,7 +878,6 @@ theorem glues_affine_of_flat_baseChange : ∀ (S : Scheme.{0}) (E X X' Z Z' : Ov
       (E ◁ j).left ≫ (snd E Y).left = (snd E Y').left ≫ j.left := by
     intro Y Y' j
     rw [← Over.comp_left, ← Over.comp_left, whiskerLeft_snd]
-  haveI : IsAffineHom i.left := inferInstance
   haveI : IsClosedImmersion i'.left := MorphismProperty.of_isPullback hpb.flip ‹_›
   haveI : IsAffineHom p'.left := MorphismProperty.of_isPullback hpb ‹_›
   haveI : Flat (snd E X).left := by

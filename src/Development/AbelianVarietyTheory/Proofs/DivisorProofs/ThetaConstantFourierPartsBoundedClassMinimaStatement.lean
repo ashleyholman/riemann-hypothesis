@@ -151,7 +151,6 @@ open Classical
 
 theorem GlobalTheory.Poinc.norm_lift_le_one_iff_mem_range : ∀ (p : ℕ) [Fact p.Prime] (V : Type) [CommRing V] [IsDomain V] [IsDiscreteValuationRing V] (i : V →+* OO p), IsLocalHom i → ∀ (hi : Function.Injective ((OO p).subtype.comp i)) (x : FractionRing V), ‖IsFractionRing.lift (K := FractionRing V) hi x‖ ≤ 1 ↔ x ∈ Set.range (algebraMap V (FractionRing V)) := by
   intro p _ V _ _ _ i hloc hi x
-  have hV : ValuationRing V := inferInstance
   constructor
   · intro hx
     by_contra hnot
@@ -700,7 +699,6 @@ theorem main : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R], GlobalT
     let ρ : Over.mk ((𝟙_ (Over (Sp V))).hom ≫ spMap ev₀) ⟶ N := Over.homMk ξ hh'
     have e : pushHom gG _ x₁' = ρ ≫ x₀ := Over.OverMorphism.ext e₁
     rw [map_pow, map_one, e, ← MonObj.comp_pow, htors, MonObj.comp_one])
-  haveI : IsMonHom bc.inv := inferInstance
   have hk₁ : x₁ ^ k = 1 := by
     show (x₁' ≫ bc.inv) ^ k = 1
     rw [← MonObj.pow_comp, hk₁', MonObj.one_comp]

@@ -485,7 +485,6 @@ theorem isSMulRegular_of_etale_punctured_of_depth_pos_domain :
   have hPm : P ≠ maximalIdeal S := fun h => hmax (h ▸ hP)
   haveI := het P hPm
   set L := Localization.AtPrime P
-  haveI : Module.Flat L (TensorProduct S L A) := inferInstance
   have hfb : f • b = 0 := by
     have : f ∈ (⊥ : Submodule S A).colon {b} := hb ▸ hfP
     simpa using Submodule.mem_colon_singleton.mp this

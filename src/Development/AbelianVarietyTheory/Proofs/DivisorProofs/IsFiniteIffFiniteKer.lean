@@ -112,7 +112,6 @@ theorem isFinite_iff_finite_ker : ∀ (K : Type) [Field K] (A B : AbVar K) (f : 
   constructor
   · intro hf
     let u : Sp (AlgebraicClosure K) ⟶ B.X.left := (1 : B.Pt).left
-    have : IsFinite (pullback.fst u f.hom.left) := inferInstance
     have hfin := ((pullback.fst u f.hom.left).finite_preimage_singleton pt).to_subtype
     have hmem : ∀ x : (ptMap f).ker, 𝟙 _ ≫ u = x.1.left ≫ f.hom.left := fun x ↦ by
       rw [Category.id_comp, ← Over.comp_left]

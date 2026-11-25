@@ -184,7 +184,6 @@ theorem etale_awayToCyc {M : ℕ} (hM : M ≠ 0) : (awayToCyc M hM).Etale := by
   haveI : Module.Finite (Localization.Away (M : ℤ)) (cycAway M) := finite_awayToCyc hM
   haveI : FaithfulSMul (Localization.Away (M : ℤ)) (cycAway M) :=
     (faithfulSMul_iff_algebraMap_injective _ _).2 (awayToCyc_injective hM)
-  haveI : Module.Flat (Localization.Away (M : ℤ)) (cycAway M) := inferInstance
   haveI : Algebra.FinitePresentation (Localization.Away (M : ℤ)) (cycAway M) :=
     Algebra.FinitePresentation.of_finiteType.1 inferInstance
   haveI := formallyUnramified_cycAway hM (Localization.Away (M : ℤ))

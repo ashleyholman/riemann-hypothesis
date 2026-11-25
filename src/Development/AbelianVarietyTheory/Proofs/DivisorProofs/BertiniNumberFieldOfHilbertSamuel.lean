@@ -932,7 +932,6 @@ theorem subset_of_forall_pt_mem : ∀ (k : Type) [Field k] (S : LinSys k), S.IsV
   intro k _ S hS Ω _ _ _ Z hZ U hU h
   haveI := hS.smooth
   haveI : Smooth S.str := SmoothOfRelativeDimension.smooth S.D S.str
-  haveI : LocallyOfFiniteType S.str := inferInstance
   haveI : JacobsonSpace S.Y := LocallyOfFiniteType.jacobsonSpace S.str
   by_contra hne
   obtain ⟨z, hzZ, hzU⟩ := Set.not_subset.1 hne

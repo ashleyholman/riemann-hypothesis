@@ -29,11 +29,8 @@ theorem exists_complAt_factor_of_isAdicComplete : ∀ (W : Type) [CommRing W] [I
   haveI : q.IsPrime := Ideal.comap_isPrime _ _
   let L := Localization.AtPrime q
   haveI : IsRegularRing W := GlobalTheory.isRegularRing_of_isRegularLocalRing W
-  haveI : IsRegularLocalRing L := inferInstance
   let R := AdicCompletion (maximalIdeal L) L
   haveI : IsRegularLocalRing R := GlobalTheory.RegularCompletion.isRegularLocalRing_adicCompletion L
-  haveI : IsDomain R := inferInstance
-  haveI : IsNoetherianRing R := inferInstance
   have hfg : (maximalIdeal L).FG := (maximalIdeal L).fg_of_isNoetherianRing
   have hunit : ∀ y : q.primeCompl, IsUnit (ψV y) := fun y => by
     have := y.2

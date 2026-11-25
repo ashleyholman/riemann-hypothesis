@@ -416,7 +416,6 @@ theorem triv_of_geometricFibres : ∀ (S : Scheme.{0}) (A : Over S) [GrpObj A] [
       (IsPullback.of_hasPullback A.hom V.ι).flip
     have he : e.hom ≫ pullback.snd A.hom V.ι = A.hom ∣_ V := IsPullback.isoIsPullback_hom_fst _ _ _ _
     have hi : Function.Surjective e.hom.appTop.hom := by
-      have : IsIso (e.hom.app ⊤) := inferInstance
       exact (ConcreteCategory.bijective_of_isIso (e.hom.app ⊤)).2
     rw [← he, Scheme.Hom.comp_appTop, CommRingCat.hom_comp]
     exact hi.comp h1.2

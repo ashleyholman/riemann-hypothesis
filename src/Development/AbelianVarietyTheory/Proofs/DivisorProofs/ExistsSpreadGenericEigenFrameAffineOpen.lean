@@ -78,7 +78,6 @@ theorem stalk_loc {X : Scheme.{0}} (B : X.Opens) (y : B.toScheme) {U : X.Opens} 
   letI : Algebra Γ(X, U) (X.presheaf.stalk (B.ι y)) :=
     TopCat.Presheaf.algebra_section_stalk X.presheaf ⟨B.ι y, hy⟩
   have hloc := hU.isLocalization_stalk ⟨B.ι y, hy⟩
-  have : IsIso (B.ι.stalkMap y) := inferInstance
   let e : X.presheaf.stalk (B.ι y) ≃+* B.toScheme.presheaf.stalk y :=
     (asIso (B.ι.stalkMap y)).commRingCatIsoToRingEquiv
   exact IsLocalization.isLocalization_of_algEquiv _ (AlgEquiv.ofRingEquiv (f := e) fun r => rfl)

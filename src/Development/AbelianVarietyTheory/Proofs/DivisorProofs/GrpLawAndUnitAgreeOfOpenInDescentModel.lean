@@ -119,7 +119,6 @@ theorem mul_agree {S₁ S₂ : Scheme.{0}} (s₁ : S₁ ⟶ Sp σ.R) (s₂ : S�
   let A'u : Over.mk (π ≫ ya' ≫ H₂.hom) ⟶ H₂ := Over.homMk (π ≫ ya') (by simp)
   let B'u : Over.mk (π ≫ ya' ≫ H₂.hom) ⟶ H₂ := Over.homMk ρ (by simp [eT₂])
   have key : (Au * Bu).left ≫ h₁ = (A'u * B'u).left ≫ h₂ := by
-    haveI : Flat (π ≫ ya ≫ fa ≫ H₁.hom ≫ s₁) := inferInstance
     refine ext_generic σ.hf (π ≫ ya ≫ fa ≫ H₁.hom ≫ s₁) E.p _ _ ?_ ?_ ?_
     · rw [Category.assoc, w₁, ← Category.assoc, Over.w (Au * Bu)]; simp
     · rw [Category.assoc, w₂, ← Category.assoc, Over.w (A'u * B'u)]
@@ -183,7 +182,6 @@ theorem one_agree {S₁ S₂ : Scheme.{0}} (s₁ : S₁ ⟶ Sp σ.R) (s₂ : S�
   obtain ⟨Z, u₁, u₂, hP, _⟩ : ∃ (Z : Scheme.{0}) (u₁ : Z ⟶ S₁) (u₂ : Z ⟶ S₂), IsPullback u₁ u₂ s₁ s₂ ∧ Flat u₁ :=
     ⟨_, _, _, IsPullback.of_hasPullback _ _, inferInstance⟩
   have key : (1 : Over.mk u₁ ⟶ H₁).left ≫ h₁ = (1 : Over.mk u₂ ⟶ H₂).left ≫ h₂ := by
-    haveI : Flat (u₁ ≫ s₁) := inferInstance
     refine ext_generic σ.hf (u₁ ≫ s₁) E.p _ _ ?_ ?_ ?_
     · rw [Category.assoc, w₁, ← Category.assoc, Over.w]; rfl
     · rw [Category.assoc, w₂, ← Category.assoc, Over.w]; exact hP.w.symm

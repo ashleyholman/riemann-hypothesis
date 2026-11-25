@@ -753,7 +753,6 @@ theorem isIso_hom_of_dim_eq_zero {K : Type} [Field K] (A : AbVar K) (h : A.dim =
     have : IsClosedImmersion (e ≫ A.X.hom) := by rw [he]; infer_instance
     exact IsClosedImmersion.of_comp e A.X.hom
   obtain ⟨hI, -, -⟩ := isIntegral_isLocallyNoetherian_compactSpace K A
-  have : ConnectedSpace A.X.left := inferInstance
   have hne : (Set.range e).Nonempty := ⟨_, (default : PrimeSpectrum K), rfl⟩
   have hsurj : Function.Surjective e := Set.range_eq_univ.1
     (IsClopen.eq_univ ⟨e.isClosedEmbedding.isClosed_range, e.isOpenEmbedding.isOpen_range⟩ hne)

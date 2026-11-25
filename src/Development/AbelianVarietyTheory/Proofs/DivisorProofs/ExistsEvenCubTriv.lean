@@ -213,7 +213,6 @@ theorem cube (k : Type) [Field k] (X : Type) [AddCommGroup X] [Module.Free ℤ X
       cubV c z J (x ≫ i) (y ≫ i) (u ≫ i) * val τ (x * y).left z J * val τ (x * u).left z J *
         val τ (y * u).left z J * val τ (1 : T ⟶ splitTorus (Spec (CommRingCat.of k)) X).left z J := by
   obtain ⟨w, hw⟩ := exists_ratio i L c τ hτ
-  have hT : TwoUniqueSums (X × X × X) := inferInstance
   have face : ∀ (Z : Over (Spec (CommRingCat.of k))) (a b d : Z ⟶ splitTorus (Spec (CommRingCat.of k)) X),
       (a = 1 ∨ b = 1 ∨ d = 1) → (lift a (lift b d)).left.appTop.hom w.val = 1 := fun Z a b d h => fn_ext fun q _ => by
     choose I hI using fun χ : Z.left ⟶ G.left => exists_chart L.isLB (χ q)

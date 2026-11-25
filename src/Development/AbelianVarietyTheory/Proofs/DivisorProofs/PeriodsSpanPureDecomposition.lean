@@ -131,7 +131,6 @@ theorem etale_of_comp_etale_of_smoothOfRelativeDimension :
       Etale (h ≫ f) → Etale h := by
   intro X Y Z S h f sX sY d hs hX hY he
   subst hs
-  haveI : FormallyUnramified (h ≫ f) := inferInstance
   haveI : FormallyUnramified h := FormallyUnramified.of_comp h f
   exact etale_of_formallyUnramified_of_smoothOfRelativeDimension h sY d hY hX
 

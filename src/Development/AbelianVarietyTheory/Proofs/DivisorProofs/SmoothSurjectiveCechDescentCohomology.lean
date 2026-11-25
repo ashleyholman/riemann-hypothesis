@@ -221,7 +221,6 @@ theorem smooth_surjective_loc_sections : ∀ {Y X : Scheme.{0}} (f : Y ⟶ X) [S
     let W := pullback (s ≫ f) y
     obtain ⟨z, hz⟩ := W.affineCover.covers w
     haveI := hE
-    have hEt : Etale (pullback.snd (s ≫ f) y) := inferInstance
     refine ⟨_, W.affineCover.f (W.affineCover.idx w) ≫ pullback.snd (s ≫ f) y, inferInstance, inferInstance, ⟨z, ?_⟩, ?_⟩
     · simp [hz, hw2]
     · refine ⟨W.affineCover.f (W.affineCover.idx w) ≫ pullback.fst (s ≫ f) y ≫ s, ?_⟩

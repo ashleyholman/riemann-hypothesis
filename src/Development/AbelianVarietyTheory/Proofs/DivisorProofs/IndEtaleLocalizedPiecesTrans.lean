@@ -450,7 +450,6 @@ theorem etale_adjoin_baseChange_image (R S B : Type) [CommRing R] [CommRing S] [
       commutes' := fun _ => rfl }
   let Φ : S' ⊗[A₀] B₀ →ₐ[A₀] S ⊗[A₀] B₀ := Algebra.TensorProduct.map ι (AlgHom.id A₀ B₀)
   let Ψ : S' ⊗[A₀] B₀ →+* B := (e.symm : S ⊗[A₀] B₀ →+* B).comp Φ.toRingHom
-  haveI : Module.Flat A₀ B₀ := inferInstance
   have hΦ : Function.Injective Φ := by
     have hl : (Φ.toLinearMap : S' ⊗[A₀] B₀ →ₗ[A₀] S ⊗[A₀] B₀) = LinearMap.rTensor B₀ ι.toLinearMap := by
       apply TensorProduct.ext'
@@ -565,8 +564,6 @@ theorem exists_finitePresentation_isLocalization_of_localization (A B E : Type) 
   let D := MvPolynomial (Fin n) A ⧸ J₀
   haveI : Algebra.FinitePresentation A D := Algebra.FinitePresentation.quotient hJfg
   let Dl := MvPolynomial (Fin n) B ⧸ J₀.map (algebraMap (MvPolynomial (Fin n) A) (MvPolynomial (Fin n) B))
-  haveI hDl : IsLocalization (Algebra.algebraMapSubmonoid D (M.map (MvPolynomial.C (σ := Fin n)))) Dl :=
-    inferInstance
   let e : Dl ≃+* E := (Ideal.quotEquivOfEq hJ).trans (Ideal.quotientKerAlgEquivOfSurjective hf).toRingEquiv
   let φ : D →+* E := e.toRingHom.comp (algebraMap D Dl)
   refine ⟨D, inferInstance, inferInstance, inferInstance, φ, ?_, ?_⟩
@@ -630,14 +627,11 @@ theorem essEtale_atPrime_of_etale_over_atPrime : ∀ (R A E : Type) [CommRing R]
       IsScalarTower.algebraMap_eq R A (Localization.AtPrime q), ← RingHom.comp_assoc, ← hφ]
     rfl
   let EP := Localization.AtPrime P
-  haveI : IsScalarTower D E EP := inferInstance
-  haveI : IsScalarTower R D EP := inferInstance
   haveI hEP : IsLocalization.AtPrime EP (P.comap (algebraMap D E)) :=
     IsLocalization.isLocalization_isLocalization_atPrime_isLocalization
       (Algebra.algebraMapSubmonoid D q.primeCompl) EP P
   let P' := P.comap (algebraMap D E)
   let eP : Localization.AtPrime P' ≃ₐ[D] EP := IsLocalization.algEquiv P'.primeCompl _ _
-  haveI : Algebra.FormallyEtale R A := inferInstance
   haveI : Algebra.FormallyEtale A (Localization.AtPrime q) :=
     Algebra.FormallyEtale.of_isLocalization q.primeCompl
   haveI : Algebra.FormallyEtale R (Localization.AtPrime q) :=

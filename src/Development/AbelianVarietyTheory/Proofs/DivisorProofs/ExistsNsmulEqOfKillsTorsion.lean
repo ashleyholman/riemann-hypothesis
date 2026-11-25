@@ -122,7 +122,6 @@ theorem comp_hom_eq_one_of_torsion_pts (K : Type) [Field K] (A C : AbVar K) (f :
       change _ ≫ pullback.snd C.X.hom t = _ at w1 w2
       rw [w1, w2]
   have hred : IsReduced (torsion A.X n).left := isReduced_of_smooth_of_isReduced (torsion A.X n).hom
-  have hdom : IsDominant (pullback.fst (torsion A.X n).hom t) := inferInstance
   have h6 : torsion.ι A.X n ≫ f.hom = 1 := by
     apply Over.OverMorphism.ext
     refine ext_of_isDominant_of_isSeparated C.X.hom (by rw [Over.w, Over.w]) (pullback.fst (torsion A.X n).hom t) ?_

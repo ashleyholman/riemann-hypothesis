@@ -187,7 +187,6 @@ theorem main : ∀ (E : Type) [Field E] [NumberField E] [IsCMField E], Unr E →
   haveI : IsUltrametricDist (w.adicCompletion E) :=
     inferInstanceAs (@IsUltrametricDist (w.adicCompletion E)
       (Valued.toNormedField (w.adicCompletion E) (WithZero (Multiplicative ℤ))).toDist)
-  haveI : CompleteSpace (w.adicCompletion E) := inferInstance
   haveI : ProperSpace (w.adicCompletion E) :=
     ProperSpace.of_nontriviallyNormedField_of_weaklyLocallyCompactSpace (w.adicCompletion E)
   obtain ⟨M, hM⟩ := exists_bound_local (y.1.val) hs

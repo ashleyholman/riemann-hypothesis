@@ -1095,7 +1095,6 @@ namespace GlobalTheory.TorsorColim
 theorem faithfullyFlat_of_split : ∀ (R D : Type) [CommRing R] [CommRing D] [Algebra R D], Module.Projective R D →
     (∃ τ : D →ₗ[R] R, τ 1 = 1) → Module.FaithfullyFlat R D := by
   intro R D _ _ _ hP ⟨τ, hτ⟩
-  haveI : Module.Flat R D := inferInstance
   refine ⟨fun m hm h => ?_⟩
   have h1 : (1 : D) ∈ m • (⊤ : Submodule R D) := by rw [h]; exact Submodule.mem_top
   have h2 : ∀ x ∈ m • (⊤ : Submodule R D), τ x ∈ m := by

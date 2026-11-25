@@ -24,7 +24,6 @@ theorem encard_complexPoints_eq_rank : ∀ {A B : Type} [CommRing A] [CommRing B
   obtain ⟨hF, hrk⟩ := hfree
   have hEt : Algebra.Etale A B := RingHom.etale_algebraMap.1 hf
   have hMF : Module.Finite A B := hfin
-  have hFE : Algebra.FormallyEtale ℂ (ℂ ⊗[A] B) := inferInstance
   have hcard := GlobalTheory.natCard_algHom_eq_finrank_of_etale_baseChange A B ℂ
   have hto (ψ : {ψ : B →+* ℂ | ψ.comp f = φ}) (a : A) : ψ.1 (algebraMap A B a) = algebraMap A ℂ a := by
     have := congrArg (fun g : A →+* ℂ => g a) ψ.2

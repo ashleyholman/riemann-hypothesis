@@ -35,7 +35,6 @@ theorem relIndex_nsmul (Λ : AddSubgroup H) (hΛ : Module.Finite ℤ Λ) {c : �
       (Λ.map (nsmulAddMonoidHom c)).relIndex Λ ≤ c ^ Module.finrank ℚ H := by
   have : HasUniqueDiv H := HasUniqueDiv.of_module_rat H
   have : Module.Finite ℤ Λ.toIntSubmodule := hΛ
-  have : Module.Free ℤ Λ.toIntSubmodule := inferInstance
   rw [AddSubgroup.relIndex_map_nsmul]
   refine ⟨pow_ne_zero _ hc.ne', Nat.pow_le_pow_right hc ?_⟩
   have hb := (Module.finBasis ℤ Λ.toIntSubmodule).linearIndependent.map' Λ.toIntSubmodule.subtype

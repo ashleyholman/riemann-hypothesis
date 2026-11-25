@@ -112,7 +112,6 @@ theorem spread₂_endU_comm : ∀ (B : Scheme.{0}) (H : Over B) [GrpObj H] [IsCo
   rw [GlobalTheory.TorusPart.pullTorus_comp hm hm FW Fκ hFκ j, GlobalTheory.TorusPart.pullTorus_torusMap_comp hm j, hjκ, Category.assoc,
     endU_gtTorus_comp U₂ E₂ hb₂ hm₂ Fκ hover₂, ← Category.assoc, ← Category.assoc,
     ← GlobalTheory.SplitTorus.torusMap_comp, ← GlobalTheory.SplitTorus.torusMap_comp] at e
-  have : Nonempty (Sp κ) := inferInstance
   have e' := GlobalTheory.SplitTorus.torusMap_injective ((cancel_mono _).1 e)
   intro y
   exact DFunLike.congr_fun e' y

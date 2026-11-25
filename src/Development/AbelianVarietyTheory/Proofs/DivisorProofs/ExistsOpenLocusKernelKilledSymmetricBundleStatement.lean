@@ -205,7 +205,6 @@ theorem fibreKilled_of_base : ∀ (d : ℕ) (S' : Scheme.{0}) [IsLocallyNoetheri
     have := congrArg CommaMorphism.left ((comp_pow_pt ρ x d).trans
       ((Over.OverMorphism.ext e1).trans (MonObj.comp_one ρ).symm))
     exact this
-  have : Flat r := inferInstance
   have : Surjective r := ⟨Function.surjective_to_subsingleton _⟩
   have : Epi p1 := Flat.epi_of_flat_of_surjective _
   exact Over.OverMorphism.ext ((cancel_epi p1).1 e2)

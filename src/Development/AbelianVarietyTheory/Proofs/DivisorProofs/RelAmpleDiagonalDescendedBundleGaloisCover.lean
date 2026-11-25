@@ -107,8 +107,6 @@ theorem relAmple_diag_of_galois : ∀ (p : ℕ) [Fact p.Prime] (D : GlobalTheory
   have := hG.fin
   have := hG.etale
   have := hG.onto
-  have : Flat ψ.left := inferInstance
-  have : LocallyOfFinitePresentation ψ.left := inferInstance
   have hP := o.isLB
   have e : ψ.left ≫ (lift (𝟙 A') (𝟙 A')).left = (lift (𝟙 o.A) (𝟙 o.A)).left ≫ Hecke.sq2 ψ := by
     simp only [Hecke.sq2, ← Over.comp_left]

@@ -68,7 +68,6 @@ theorem dim_localization_add_trdeg (K A : Type) [Field K] [CommRing A] [Algebra 
       simp only
       linear_combination hv
   let e : Localization.AtPrime p ≃ₐ[A] L := IsLocalization.algEquiv p.primeCompl _ _
-  have hB : Algebra.FiniteType K B := inferInstance
   have hD := GlobalTheory.height_add_ringKrullDim_quotient_of_finiteType K P
   have e2 : ringKrullDim (B ⧸ P) = ringKrullDim (A ⧸ p) :=
     ringKrullDim_eq_of_ringEquiv (DoubleQuot.quotQuotEquivQuotOfLE hqp)

@@ -1608,7 +1608,6 @@ theorem shLift_cusp_kills_J : ∀ (F F' : Type) [Field F] [Field F'] [Algebra F 
   intro F F' _ _ _ _ s hl hs ι θ hθ n k hn hln hreg
   haveI : Finite F := Finite.of_injective (algebraMap F F') (algebraMap F F').injective
   haveI : Module.Finite F F' := Module.Finite.of_finite
-  haveI : IsGalois F F' := inferInstance
   have hΓ : Nat.card (F' ≃ₐ[F] F') = Module.finrank F F' := IsGalois.card_aut_eq_finrank F F'
   haveI : Finite (F' ≃ₐ[F] F') := Nat.finite_of_card_ne_zero (by rw [hΓ]; exact hl.ne_zero)
   letI : Fintype (F' ≃ₐ[F] F') := Fintype.ofFinite _

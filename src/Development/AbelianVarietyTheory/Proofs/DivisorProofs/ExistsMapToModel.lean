@@ -123,7 +123,6 @@ theorem span_bLie_eq_wRec : ∀ (E : Type) [Field E] [NumberField E] [IsCMField 
   have inj : Function.Injective (algebraMap T.V O) := fun a b h => IsFractionRing.injective T.V T.Fr
     (k.toRingHom.injective ((hP.1 a).symm.trans ((congrArg _ h).trans (hP.1 b))))
   haveI : FaithfulSMul T.V O := (faithfulSMul_iff_algebraMap_injective _ _).2 inj
-  haveI : Module.Flat T.V O := inferInstance
   haveI := G.semi.smooth
   haveI := G.act.hom
   choose χ hχ using fun a => int_val c T io τ a

@@ -258,7 +258,6 @@ theorem fg_addSubgroup_field_finite_or_basis {K : Type} [Field K] (H : AddSubgro
   · right
     haveI : CharP K 0 := h0 ▸ ringChar.charP K
     haveI : CharZero K := CharP.charP_to_charZero K
-    haveI : NoZeroSMulDivisors ℤ H := inferInstance
     haveI : Module.Free ℤ H := Module.free_of_finite_type_torsion_free'
     let bs := Module.finBasis ℤ H
     refine ⟨_, fun j => (bs j : K), fun j => (bs j).2, ?_, ?_⟩

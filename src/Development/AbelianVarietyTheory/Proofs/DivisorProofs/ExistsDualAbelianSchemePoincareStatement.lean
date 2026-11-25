@@ -460,7 +460,6 @@ namespace GlobalTheory.DualCon
 theorem isPullback_sigmaι_desc {X : Scheme.{0}} {κ : Type} (V : κ → X.Opens)
     (hd : Pairwise fun i i' => Disjoint (V i) (V i')) {B : κ → Scheme.{0}} (f : ∀ i, B i ⟶ (V i).toScheme)
     (i : κ) : IsPullback (Sigma.ι B i) (f i) (Sigma.desc fun j => f j ≫ (V j).ι) (V i).ι := by
-  have : IsOpenImmersion (Sigma.ι B i) := inferInstance
   have hr : ∀ s : PullbackCone (Sigma.desc fun j => f j ≫ (V j).ι) (V i).ι,
       Set.range s.fst ⊆ Set.range (Sigma.ι B i) := by
     rintro s _ ⟨t, rfl⟩
@@ -914,7 +913,6 @@ theorem step : ∀ (R : Type) [CommRing R] [Algebra.FiniteType ℤ R] [IsReduced
     intro i
     obtain ⟨h1, h2, h3⟩ := hD i
     haveI : IsNoetherianRing (D i) := by
-      haveI : Algebra.FiniteType R (D i) := inferInstance
       exact Algebra.FiniteType.isNoetherianRing R (D i)
     exact hasRepAF_factor R A g hA hg V hV hVs (D i)
   haveI : ∀ i, Module.Finite R (D i) := fun i ↦ (hD i).2.2

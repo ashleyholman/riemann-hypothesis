@@ -488,7 +488,6 @@ theorem exists_finPt_sub_mem : ∀ {D : D7} (S T : HSp D) (r : D.host.E) (I : Fr
   ∀ U : AddSubgroup (WO S T), IsOpen (U : Set (WO S T)) → ∀ u : WO S T, HatPt r I u →
   ∃ z : Matrix (Fin T.rank) (Fin S.rank) D.host.E, (∀ i j, z i j ∈ I) ∧ u - finPt (S := S) (T := T) rfl rfl r z ∈ U := by
   intro D S T r I hr hI U hU u hu
-  haveI hg : IsTopologicalAddGroup (WO S T) := inferInstance
   haveI : ContinuousSub (WO S T) := IsTopologicalAddGroup.to_continuousSub
   let Φ : (Fin T.rank → Fin S.rank → FA D) → WO S T := fun y =>
     Matrix.of fun i j => lift D (algebraMap D.host.E (FA D) r⁻¹ * y i j)

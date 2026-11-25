@@ -96,7 +96,6 @@ theorem exists_agree_of_generic {U S : Scheme.{0}} (j : U ⟶ S) [IsOpenImmersio
   obtain ⟨b, hb, hb'⟩ := grpPullback_iso (isGrpPullback_pullback H (Out.jK R ≫ t))
     (((isGrpPullback_pullback ((Over.pullback j).obj H) k).comp (isGrpPullback_pullback H j)).congr hk rfl)
   haveI := ha; haveI := hb; haveI := hf
-  have hfK : IsMonHom (a.hom ≫ (Over.pullback k).map f ≫ b.inv) := inferInstance
   have hρ : (a.hom.left ≫ pullback.fst ((Over.pullback j).obj G).hom k) ≫ pullback.fst G.hom j =
       pullback.fst G.hom (Out.jK R ≫ t) := (Category.assoc _ _ _).trans ha'
   have hb2 : b.inv.left ≫ pullback.fst H.hom (Out.jK R ≫ t) =

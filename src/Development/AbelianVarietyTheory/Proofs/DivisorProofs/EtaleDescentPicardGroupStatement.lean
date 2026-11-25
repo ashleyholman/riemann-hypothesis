@@ -299,12 +299,10 @@ def Rep (x : H ℤ (sp A) Gm 1) (c : CommRing.Pic A) : Prop :=
 
 theorem etale_tensor (B C : Type) [CommRing B] [CommRing C] [Algebra A B] [Algebra A C] [Algebra.Etale A B]
     [Algebra.Etale A C] : Algebra.Etale A (B ⊗[A] C) := by
-  haveI : Algebra.Etale B (B ⊗[A] C) := inferInstance
   exact Algebra.Etale.comp A B _
 
 theorem ff_tensor (B C : Type) [CommRing B] [CommRing C] [Algebra A B] [Algebra A C] [Module.FaithfullyFlat A B]
     [Module.FaithfullyFlat A C] : Module.FaithfullyFlat A (B ⊗[A] C) := by
-  haveI : Module.FaithfullyFlat B (B ⊗[A] C) := inferInstance
   exact Module.FaithfullyFlat.trans A B _
 
 theorem common {x y : H ℤ (sp A) Gm 1} {c d : CommRing.Pic A} (hx : Rep x c) (hy : Rep y d) :

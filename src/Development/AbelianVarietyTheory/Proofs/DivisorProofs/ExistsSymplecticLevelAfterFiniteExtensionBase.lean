@@ -75,8 +75,6 @@ theorem exists_galois_root (K K' : Type) [Field K] [CharZero K] [Field K'] [Alge
   haveI : FiniteDimensional K K'' := Module.Finite.trans K' K''
   haveI : IsScalarTower K K'' Ω := IsScalarTower.of_algebraMap_eq fun _ => rfl
   let E := IntermediateField.normalClosure K K'' Ω
-  haveI : IsGalois K E := inferInstance
-  haveI : FiniteDimensional K E := inferInstance
   let t : K'' →ₐ[K] E := (IsScalarTower.toAlgHom K K'' Ω).codRestrict _
     fun y => AlgHom.fieldRange_le_normalClosure _ ⟨y, rfl⟩
   have hz : ζ₀ ∈ K'' := IntermediateField.mem_adjoin_simple_self K' ζ₀

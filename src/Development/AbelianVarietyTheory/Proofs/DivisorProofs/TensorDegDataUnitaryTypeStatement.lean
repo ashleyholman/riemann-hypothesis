@@ -614,7 +614,6 @@ theorem wpQ_nondeg : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R], G
   obtain ⟨⟨h1, h2, h3, h4⟩, hc⟩ := hR
   have hL : Laws := GlobalTheory.lawsAndExpansions.1.1
   have : CharZero F := by
-    have : CharZero (FractionRing R) := inferInstance
     exact charZero_of_injective_algebraMap (algebraMap (FractionRing R) F).injective
   have h0 : (n : F) ≠ 0 := Nat.cast_ne_zero.2 hn.ne'
   obtain ⟨hW, -⟩ := GlobalTheory.ThetaInValues.brUth_of_laws hL R D.toPre D.psi_even D.tau_bimult F N ν
@@ -1181,7 +1180,6 @@ theorem finrank_dvd_of_ringOfIntegers_to_matrix (E : Type) [Field E] [NumberFiel
     change g a * g b = g b * g a
     rw [← map_mul, mul_comm, map_mul])
   open scoped IsMulCommutative in
-  letI : CommRing S := inferInstance
   let g₁ : 𝓞 E →+* S := g.codRestrict S (fun a => Algebra.subset_adjoin ⟨a, rfl⟩)
   have hg : ∀ y : Algebra.algebraMapSubmonoid (𝓞 E) (nonZeroDivisors ℤ), IsUnit (g₁ y) := by
     rintro ⟨_, m, hm, rfl⟩

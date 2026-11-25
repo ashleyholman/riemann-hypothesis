@@ -1259,7 +1259,6 @@ theorem cDvr_of_finExt : ∀ (R R' : Type) [CommRing R] [IsDomain R] [IsLocalRin
   obtain ⟨⟨hnoeth, -, hic, hcomp⟩, hinj, hfin⟩ := hE
   letI : Algebra R R' := ρ.toAlgebra
   haveI : Module.Finite R R' := hfin
-  haveI : Algebra.IsIntegral R R' := inferInstance
   haveI := hnoeth
   haveI := hic
   have hinj' : Function.Injective (algebraMap R R') := hinj

@@ -704,7 +704,6 @@ theorem pull_two_nsmul_eq_zero_of_triples : ∀ (S : Scheme.{0}) [IsIntegral S] 
   obtain ⟨s0, hs0⟩ := hU
   obtain ⟨a0, ha0V, ha0⟩ := hsurj s0
   have : Nonempty V := ⟨⟨a0, ha0V⟩⟩
-  have : IsIntegral V.toScheme := inferInstance
   have hVn : GlobalTheory.IsNormalScheme V.toScheme := GlobalTheory.isNormalScheme_of_smooth (V.ι ≫ A.hom)
   let i0 := (x.left ⁻¹ᵁ W).ι
   let O : (x.left ⁻¹ᵁ W).toScheme.Opens := i0 ⁻¹ᵁ (x.left ⁻¹ᵁ V)

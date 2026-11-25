@@ -27,7 +27,6 @@ theorem bijective_linearCombination_iff_localizedModule_map {R R' S S' : Type} [
   haveI : IsLocalizedModule (Submonoid.powers f) gM :=
     IsLocalizedModule.pi (Submonoid.powers f) (fun _ : Fin r => Algebra.linearMap R R')
   let gS : S →ₗ[R] S' := (IsScalarTower.toAlgHom R S S').toLinearMap
-  haveI : IsLocalizedModule (Submonoid.powers f) gS := inferInstance
   let φ : (Fin r → R') →ₗ[R] S' :=
     (Fintype.linearCombination R' (fun k => algebraMap S S' (v k))).restrictScalars R
   have hcomm : φ ∘ₗ gM = gS ∘ₗ Fintype.linearCombination R v := by

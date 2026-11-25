@@ -630,7 +630,6 @@ theorem spMap_eq_closedPoint_iff {R R' : Type} [CommRing R] [IsLocalRing R] [Com
     (ρ : R →+* R') (hρ : ρ.Finite) (y : Sp R') : spMap ρ y = closedPoint R ↔ y = closedPoint R' := by
   letI : Algebra R R' := ρ.toAlgebra
   haveI : Module.Finite R R' := hρ
-  haveI : Algebra.IsIntegral R R' := inferInstance
   constructor
   · intro h
     have hc : (y.asIdeal.comap (algebraMap R R')).IsMaximal := by

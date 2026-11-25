@@ -44,7 +44,6 @@ theorem exists_lineBundle_extension_genericFibre : ∀ (R K : Type) [CommRing R]
   intro R K _ _ _ _ _ _ X Y s t a hs hq hpb L hL
   haveI := _root_.GlobalTheory.isOpenImmersion_spMap_of_isDiscreteValuationRing R K
   have ha : IsOpenImmersion a := MorphismProperty.of_isPullback hpb.flip this
-  haveI : IsRegularRing R := inferInstance
   haveI : IsLocallyNoetherian X := LocallyOfFiniteType.isLocallyNoetherian s
   haveI : CompactSpace X := QuasiCompact.compactSpace_of_compactSpace s
   have key : ∀ x : X, IsDomain (X.presheaf.stalk x) ∧

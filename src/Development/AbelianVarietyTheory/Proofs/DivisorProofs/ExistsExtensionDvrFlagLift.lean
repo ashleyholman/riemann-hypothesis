@@ -109,7 +109,6 @@ theorem exists_split_baseChange (W : Type) [CommRing W] [IsDomain W] [IsDiscrete
         ((Over.pullback (spMap (algebraMap W W'))).obj G)) := by
   have h₀ : IsSemiAbelian ((Over.pullback (spMap (residue W))).obj G) := IsSemiAbelian.pullback _ G hG
   obtain ⟨k', _, _, hk, Sx, ⟨d⟩⟩ := GlobalTheory.UnifAfterExt.exists_finite_split _ h₀
-  have : Algebra.IsSeparable (ResidueField W) k' := inferInstance
   obtain ⟨W', i1, i2, i3, i4, i5, hf, hi, -, -, e, he⟩ := GlobalTheory.unramExt W k'
   refine ⟨W', i1, i2, i3, i4, i5, hf, hi, ?_⟩
   have key : (e.symm.toRingHom.comp (algebraMap (ResidueField W) k')).comp (residue W) =

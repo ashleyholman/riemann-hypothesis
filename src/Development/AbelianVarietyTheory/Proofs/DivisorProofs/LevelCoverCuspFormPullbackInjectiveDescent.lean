@@ -367,9 +367,6 @@ theorem exists_lift_finiteEtale_testRing : ∀ (Y Z : Scheme.{0}) (π : Z ⟶ Y)
   intro Y Z π hfin het hsurj K _ p x
   let P := pullback π x
   let f : P ⟶ Sp p.R := pullback.snd π x
-  have : IsFinite f := inferInstance
-  have : Etale f := inferInstance
-  have : Surjective f := inferInstance
   have : IsAffine P := isAffine_of_isAffineHom f
   let g : Spec Γ(P, ⊤) ⟶ Spec (CommRingCat.of p.R) := P.isoSpec.inv ≫ f
   let φ : CommRingCat.of p.R ⟶ Γ(P, ⊤) := Spec.preimage g

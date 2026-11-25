@@ -644,7 +644,6 @@ theorem GlobalTheory.Mix.cycInt_genericFibre : ∀ (k K : Type) [CommRing k] [Fi
   have hc : CharZero Γ(clos (j x), ⊤) := by
     obtain ⟨g0, hg0, -, -, -⟩ := hZuniv (clos x) (closι x ≫ j) (by
       simp only [Scheme.Hom.comp_apply, hxgen])
-    have : IsDomain Γ(clos x, ⊤) := inferInstance
     let φ : K →+* Γ(clos x, ⊤) :=
       ((closι x ≫ q).appTop).hom.comp (Scheme.ΓSpecIso (CommRingCat.of K)).inv.hom
     have : CharZero Γ(clos x, ⊤) := (RingHom.charZero_iff φ.injective).1 hK

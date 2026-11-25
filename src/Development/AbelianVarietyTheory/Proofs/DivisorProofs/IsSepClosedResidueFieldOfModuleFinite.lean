@@ -73,8 +73,6 @@ theorem isSepClosed_residueField_of_moduleFinite (R T : Type) [CommRing R] [IsLo
     [Module.Finite R T] : IsSepClosed (ResidueField T) := by
   haveI := isLocalHom_algebraMap_of_moduleFinite R T
   haveI : Algebra.IsIntegral R T := Algebra.IsIntegral.of_finite R T
-  haveI : Algebra.IsIntegral (ResidueField R) (ResidueField T) := inferInstance
-  haveI : Algebra.IsAlgebraic (ResidueField R) (ResidueField T) := inferInstance
   exact Algebra.IsAlgebraic.isSepClosed (F := ResidueField R)
 
 theorem finite_algebra_strictly_henselian_pi : ∀ (R S : Type) [CommRing R] [HenselianLocalRing R]

@@ -816,7 +816,6 @@ theorem exists_unif_unram : ∀ (E : Type) [Field E] [NumberField E] [IsCMField 
     IntermediateField.finiteDimensional_adjoin fun x _ => Algebra.IsIntegral.isIntegral x
   obtain ⟨W, _, _, _, hcW, _, -, hinj, hirr, hloc, e, he⟩ :=
     GlobalTheory.ResLift.exists_lift _ V k'' rfl
-  have : IsLocalRing W := inferInstance
   have hzW : CharZero W := charZero_of_injective_algebraMap hinj
   let β : ResidueField W →+* Ω := k''.val.toRingHom.comp e.symm.toRingHom
   have hβ : β.comp (ResidueField.map (algebraMap V W)) = algebraMap (ResidueField V) Ω := by

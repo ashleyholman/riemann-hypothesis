@@ -101,7 +101,6 @@ theorem haar_pure_slice_bounds : ∀ (F : Type) [Field F] [NumberField F] (κ : 
             ∀ y, c * ∫⁻ z, ‖GlobalTheory.WeilAdm.slice F Φ y z‖ₑ ^ 2 ≤ ∫⁻ x, ‖Φ x‖ₑ ^ 2 ∂μ := by
   intro F _ _ κ _ g hg U hU
   haveI := volume_isAddHaar F κ
-  haveI : OpensMeasurableSpace (κ → mixedEmbedding.mixedSpace F) := inferInstance
   haveI : LocallyCompactSpace (FiniteAdeleRing (𝓞 F) F) := GlobalTheory.AdelicUnitaryTop.locallyCompact_finiteAdele F
   haveI : SecondCountableTopology (FiniteAdeleRing (𝓞 F) F) := GlobalTheory.AdelicUnitaryTop.secondCountable_finiteAdele F
   haveI : T2Space (FiniteAdeleRing (𝓞 F) F) := GlobalTheory.AdelicUnitaryTop.t2Space_finiteAdeleRing_of_numberField F
@@ -111,7 +110,6 @@ theorem haar_pure_slice_bounds : ∀ (F : Type) [Field F] [NumberField F] (κ : 
   haveI : BorelSpace (κ → AdeleRing (𝓞 F) F) := ⟨rfl⟩
   haveI : SigmaCompactSpace (κ → FiniteAdeleRing (𝓞 F) F) := sigmaCompactSpace_of_locallyCompact_secondCountable
   set ν : Measure (κ → FiniteAdeleRing (𝓞 F) F) := Measure.addHaar with hν
-  haveI : SFinite ν := inferInstance
   haveI : MeasurableAdd (κ → mixedEmbedding.mixedSpace F) := ContinuousAdd.measurableAdd
   haveI : MeasurableAdd (κ → FiniteAdeleRing (𝓞 F) F) := ContinuousAdd.measurableAdd
   haveI : ν.IsAddHaarMeasure := by rw [hν]; infer_instance

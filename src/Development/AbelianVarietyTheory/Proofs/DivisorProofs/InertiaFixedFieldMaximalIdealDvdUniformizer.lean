@@ -238,7 +238,6 @@ theorem valuation_uniformizer_integralClosure (R K L : Type) [CommRing R] [IsDom
     rw [RingHom.coe_comp] at h
     exact Function.Injective.of_comp h
   have : FaithfulSMul R (integralClosure R L) := (faithfulSMul_iff_algebraMap_injective _ _).2 hinj
-  have : Module.IsTorsionFree R (integralClosure R L) := inferInstance
   have hlo : P.asIdeal.LiesOver v.asIdeal := by
     constructor
     have hP := P.isPrime

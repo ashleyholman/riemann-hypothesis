@@ -231,7 +231,6 @@ theorem cdp_le_one_of_ne_char (k K Ω : Type) [Field k] [IsAlgClosed k] [Field K
     let E := fixedField (U : Subgroup (Ω ≃ₐ[K] Ω))
     letI : Algebra (RatFunc k) E := ((algebraMap K E).comp (algebraMap (RatFunc k) K)).toAlgebra
     haveI : IsScalarTower (RatFunc k) K E := IsScalarTower.of_algebraMap_eq' rfl
-    haveI : Algebra.IsAlgebraic K E := inferInstance
     haveI : Algebra.IsAlgebraic (RatFunc k) E := Algebra.IsAlgebraic.trans (RatFunc k) K E
     haveI : IsGalois E Ω := IsGalois.tower_top_of_isGalois K E Ω
     have hB : Subsingleton (cohomology (Rep.res (U : Subgroup (Ω ≃ₐ[K] Ω)).subtype

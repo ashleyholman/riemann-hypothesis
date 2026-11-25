@@ -342,7 +342,6 @@ theorem exists_norm_basicOpen : ∀ (R R₁ : Type) [CommRing R] [CommRing R₁]
       fun a t => AffDesc.isoPushout_desc_tmul _ _ _ a t
     obtain ⟨e, he⟩ := exists_basis_of_ringEquiv c Φe (fun a => by rw [fΦ, map_one, _root_.mul_one]; rfl)
     exact ⟨e, fun i => by rw [he, fΦ, map_one, _root_.one_mul]⟩
-  haveI : Module.Flat R R₁ := inferInstance
   haveI : Flat (spMap (algebraMap R R₁)) :=
     Flat.SpecMap_iff.mpr (RingHom.flat_algebraMap_iff.mpr inferInstance)
   obtain ⟨e, he⟩ := key V (isIso_pushoutSection_of_isQuasiSeparated_of_flat_right H le_top le_top _
@@ -571,7 +570,6 @@ theorem GlobalTheory.Mum.isClosed_image_snd_of_subset_fibre_closedPoint :
   have hcl : IsClosedMap (i ≫ pullback.snd f f) := by
     rw [hcomp]
     haveI := hfin
-    haveI : IsFinite (pullback.snd (k ≫ f) f) := inferInstance
     exact ((pullbackRightPullbackFstIso f f k).hom ≫ pullback.snd (k ≫ f) f).isClosedMap
   have hNi : (snd G G).left '' N = (i ≫ pullback.snd f f) '' (i ⁻¹' N) := by
     rw [Scheme.Hom.comp_base, TopCat.coe_comp, Set.image_comp, Set.image_preimage_eq_of_subset]
@@ -855,7 +853,6 @@ theorem exists_affine_open_of_finset_closedFibre :
   letI : Algebra R R₁ := ρ.toAlgebra
   haveI : Module.Finite R R₁ := hfin.2.2
   haveI : Algebra.Etale R R₁ := het
-  haveI : Module.Flat R R₁ := inferInstance
   haveI : Module.Free R R₁ := Module.free_of_flat_of_isLocalRing
 
   let A : Over.mk (spMap ρ) ⟶ G := Over.homMk a ha

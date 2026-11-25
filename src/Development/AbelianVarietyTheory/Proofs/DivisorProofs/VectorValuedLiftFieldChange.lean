@@ -170,7 +170,6 @@ theorem exists_coords : ∃ (N : ℕ) (e : Fin N → 𝓞 K') (φ : Fin N → K'
   classical
   let _ : Algebra K K' := j.toAlgebra
   have : Module.FinitePresentation (𝓞 K) (𝓞 K') := Module.finitePresentation_of_finite _ _
-  have : Module.Flat (𝓞 K) (𝓞 K') := inferInstance
   have : Module.Projective (𝓞 K) (𝓞 K') := Module.Flat.projective_of_finitePresentation
   obtain ⟨N, f, g, -, -, hfg⟩ := Module.Finite.exists_comp_eq_id_of_projective (𝓞 K) (𝓞 K')
   have : FiniteDimensional K K' := Module.Finite.of_restrictScalars_finite ℚ K K'

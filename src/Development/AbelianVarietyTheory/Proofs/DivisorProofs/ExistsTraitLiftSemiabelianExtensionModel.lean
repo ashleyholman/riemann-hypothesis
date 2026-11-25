@@ -62,7 +62,6 @@ theorem exists_point_finite_ext {X Y : Scheme.{0}} (f : X ⟶ Y) [LocallyOfFinit
   obtain ⟨p, -⟩ := (pullback.snd f y).surjective (Classical.arbitrary (Sp K))
   obtain ⟨R, e, he, ⟨q, -⟩, -⟩ := Scheme.exists_affine_mem_range_and_range_subset (X := P) (x := p) (U := ⊤) trivial
   let g' : Spec R ⟶ Sp K := e ≫ pullback.snd f y
-  haveI : LocallyOfFiniteType g' := inferInstance
   obtain ⟨φ, hφ⟩ := Spec.map_surjective g'
   have hφf : φ.hom.FiniteType := by
     rw [← HasRingHomProperty.Spec_iff (P := @LocallyOfFiniteType), hφ]

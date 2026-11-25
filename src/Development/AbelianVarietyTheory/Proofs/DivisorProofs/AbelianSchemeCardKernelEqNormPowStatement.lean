@@ -186,7 +186,6 @@ namespace GlobalTheory.FinUnram
 
 theorem formallyUnramified_of_dual_const : ∀ (K : Type) [Field K] [IsAlgClosed K] (R : Type) [CommRing R] [Algebra K R] [Module.Finite K R], (∀ (φ : R →ₐ[K] DualNumber K) (r : R), (φ r).snd = 0) → Algebra.FormallyUnramified K R := by
   intro K _ _ R _ _ _ H
-  haveI : Algebra.FiniteType K R := inferInstance
   refine GlobalTheory.TangentCrit.formallyUnramified_of_dual_const_field (K := K) (A := K) (B := R)
     (fun φ hK _ b => ?_)
   exact H { φ with commutes' := hK } b
@@ -229,7 +228,6 @@ theorem formallyUnramified_ker : ∀ (K : Type) [Field K] [IsAlgClosed K] (B : A
   have hfin : IsFinite (Hom.hom f).left := hf.1
   set Z := pullback (Hom.hom f).left η[B.X].left with hZ
   set p : Z ⟶ Sp K := pullback.snd (Hom.hom f).left η[B.X].left with hp
-  have : IsFinite p := inferInstance
   have : IsAffine Z := isAffine_of_isAffineHom p
   have hnat := Scheme.isoSpec_hom_naturality p
   have hS : Spec.map p.appTop = Z.isoSpec.inv ≫ p ≫ (Sp K).isoSpec.hom := by

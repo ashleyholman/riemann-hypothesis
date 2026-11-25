@@ -533,7 +533,6 @@ theorem injective_and_exists_frac_genericChart : ∀ (R : Type) [CommRing R] [Is
     CommRingCat.isPushout_iff_isPushout.mp po
   haveI : Algebra.Smooth Γ(M.S, U) Γ(G.left, W) :=
     HasRingHomProperty.appLE @AlgebraicGeometry.Smooth G.hom hG ⟨U, hU⟩ ⟨W, hW⟩ hWU
-  haveI : Module.Flat Γ(M.S, U) Γ(G.left, W) := inferInstance
   let e := Algebra.IsPushout.equiv Γ(M.S, U) Γ(G.left, W) Γ(Sp (FractionRing R), M.gp ⁻¹ᵁ U) Γ(Y, α ⁻¹ᵁ W)
   have he1 : ∀ c : Γ(G.left, W), e (c ⊗ₜ 1) = (α.app W).hom c := fun c => by
     rw [Algebra.IsPushout.equiv_tmul, map_one, _root_.mul_one]; rfl
@@ -676,7 +675,6 @@ namespace GlobalTheory.Mum
 
 theorem isLocallyNoetherian_of_smooth_over_modif : ∀ (R : Type) [CommRing R] [IsDomain R] [IsNoetherianRing R] (M : Modif R) (G : Over M.S), Smooth G.hom → IsLocallyNoetherian G.left := by
   intro R _ _ _ M G hG
-  haveI : IsLocallyNoetherian (Sp R) := inferInstance
   haveI := M.proper
   haveI : IsLocallyNoetherian M.S := LocallyOfFiniteType.isLocallyNoetherian M.π
   haveI := hG
@@ -994,7 +992,6 @@ theorem isIntegral_tensor_of_fibre [IsNoetherianRing A] {K : Type} [CommRing K] 
       exact (TensorProduct.toIntegralClosure A C K y).2
   let φ : C ⊗[A] (K ⧸ I) →ₗ[C] B ⊗[A] (K ⧸ I) :=
     AlgebraTensorModule.rTensor A (K ⧸ I) (Algebra.linearMap C B)
-  haveI : IsLocalizedModule p.primeCompl φ := inferInstance
   have h1 : c • I.mkQ.baseChange C f = 0 := by rw [← map_smul]; exact (key _).1 hf
   have h2 : φ (I.mkQ.baseChange C f) = 0 := by
     refine regular_tensor (algebraMap C B c) (p.comap (algebraMap A C)) ?_

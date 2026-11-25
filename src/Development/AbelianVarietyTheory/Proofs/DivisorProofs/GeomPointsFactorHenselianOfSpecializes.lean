@@ -155,7 +155,6 @@ theorem ringHom_extend_of_isIntegral_isAlgClosed (A C K : Type) [CommRing A] [Co
   letI : Algebra (A ⧸ RingHom.ker h) K := (RingHom.kerLift h).toAlgebra
   haveI : FaithfulSMul (A ⧸ RingHom.ker h) K :=
     (faithfulSMul_iff_algebraMap_injective _ _).mpr (RingHom.kerLift_injective h)
-  haveI : FaithfulSMul (A ⧸ RingHom.ker h) (C ⧸ Q) := inferInstance
   haveI : Nontrivial (A ⧸ RingHom.ker h) := Ideal.Quotient.nontrivial_iff.mpr hp.ne_top
   haveI : Algebra.IsIntegral (A ⧸ RingHom.ker h) (C ⧸ Q) :=
     Ideal.Quotient.algebra_isIntegral_of_liesOver (A := A) (p := RingHom.ker h) (P := Q)

@@ -1527,7 +1527,6 @@ theorem exists_normCoeff_not_mem {A B : Type} [CommRing A] [IsDomain A] [IsInteg
       · exact absurd h hs'
       · exact h
     rw [this]; exact p.zero_mem
-  haveI : Algebra.IsIntegral A B := inferInstance
   obtain ⟨Q, hQI, hQp, hQc⟩ := Ideal.exists_ideal_over_prime_of_isIntegral (S := B) p I hI
   have hPQ : Polynomial.aeval b P ∈ Q := hQI (by simpa [I, RingHom.mem_ker] using hker)
   have hbd : b ^ P.natDegree ∈ Q := by

@@ -258,7 +258,6 @@ theorem GlobalTheory.UnifGenPoint.main : ∀ (E : Type) [Field E] [NumberField E
     rw [← Over.comp_left, P.U.gen.inv_hom_id, Over.id_left], n₁⟩⟩
   haveI : IsPreimmersion (jK R) := IsPreimmersion.of_isLocalization (nonZeroDivisors R)
   haveI : IsPreimmersion (pullback.fst t.G.hom (jK R)) := MorphismProperty.of_isPullback (IsPullback.of_hasPullback t.G.hom (jK R)).flip inferInstance
-  haveI : IsPreimmersion mm := inferInstance
   have hmy : mm y = q := by
     rw [hq, ← hξ2]
     rfl

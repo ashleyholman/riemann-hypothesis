@@ -64,7 +64,6 @@ theorem pullTop_comp {X Y Z : Scheme.{0}} (f : X ⟶ Y) (g : Y ⟶ Z) (χ : Γ(Z
 theorem transfer (S : Scheme.{0}) (N N' T : Over S) [GrpObj N] [GrpObj N'] (e : N' ≅ N) (he : IsMonHom e.hom)
   (χ : Γ((N' ⊗ T).left, ⊤)ˣ) (hχ : IsCharacter χ) (h1 : χ ≠ 1) :
   ∃ χ' : Γ((N ⊗ T).left, ⊤)ˣ, IsCharacter χ' ∧ χ' ≠ 1 := by
-  have hinv : IsMonHom e.inv := inferInstance
   refine ⟨pullTop (e.inv ▷ T).left χ, ?_, ?_⟩
   · unfold IsCharacter at hχ ⊢
     have k1 : lift (fst N (N ⊗ T) * (snd N (N ⊗ T) ≫ fst N T)) (snd N (N ⊗ T) ≫ snd N T) ≫ e.inv ▷ T =

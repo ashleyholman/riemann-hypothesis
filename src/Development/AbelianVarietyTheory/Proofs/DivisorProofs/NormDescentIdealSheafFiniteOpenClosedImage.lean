@@ -364,7 +364,6 @@ theorem isIntegral_normForm (A K L : Type) [CommRing A] [Field K] [Field L] [Alg
   set R := MvPolynomial (Fin m) K
   set R' := MvPolynomial (Fin m) A
   let F := FractionRing R
-  haveI : IsScalarTower R' R F := inferInstance
   let S := R ⊗[K] L
   letI : Algebra R' S := ((algebraMap R S).comp (algebraMap R' R)).toAlgebra
   let y : S := ∑ i, (X i : R) ⊗ₜ[K] x i

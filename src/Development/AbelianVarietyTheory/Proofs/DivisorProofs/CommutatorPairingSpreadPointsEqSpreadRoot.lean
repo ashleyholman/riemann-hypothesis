@@ -21,8 +21,6 @@ theorem weilIs_of_spread : ∀ (Ω T : Type) [Field Ω] [CommRing T] [IsDomain T
   intro Ω T _ _ _ _ jT hj A P φ hp hw k x x' y y' c hk hx hx' hy hy' hW
   have hL : Laws := GlobalTheory.lawsAndExpansions.1.1
   haveI : IsCommMonObj A.A := A.isAb.comm
-  haveI : IsLocallyNoetherian (Sp T) := inferInstance
-  haveI : IsLocallyNoetherian (Sp Ω) := inferInstance
   obtain ⟨c₀, hc₀, -⟩ := (hL.weil (Sp T) P k (baseOver _)).1 y y' hy hy'
   let h : Over.mk ((baseOver (Sp Ω)).hom ≫ spMap jT) ⟶ baseOver (Sp T) := Over.homMk (spMap jT) (by simp)
   have H1 := GlobalTheory.CommPairing.weilIs_pull hL.globalFns P.isAb P.isLB h hc₀

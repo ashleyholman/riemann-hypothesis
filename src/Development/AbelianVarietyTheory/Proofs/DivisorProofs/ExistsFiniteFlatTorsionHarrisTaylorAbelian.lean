@@ -540,7 +540,6 @@ theorem isIsogDeg_of_coprime : ∀ (S : Scheme.{0}) (A : Over S) [GrpObj A] [IsC
   obtain ⟨t, -⟩ := (h₂ K₁ (1 : K₁ ⟶ A)).2 fun b _ => by have := ρ.hom b; exact MonObj.one_comp _
   let s : K₁ ⟶ K₁ ⊗ K₂ := lift (𝟙 K₁) t
   have hs : s ≫ fst K₁ K₂ = 𝟙 K₁ := lift_fst _ _
-  have hsep : IsSeparated (fst K₁ K₂).left := inferInstance
   have : IsFinite (s.left ≫ (fst K₁ K₂).left) := by
     rw [← Over.comp_left, hs, Over.id_left]; infer_instance
   have : IsFinite s.left := IsFinite.of_comp s.left (fst K₁ K₂).left

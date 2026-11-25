@@ -137,8 +137,6 @@ theorem GlobalTheory.EtC.h_zero_pull_bijective : ∀ (q : ℕ) [NeZero q] (A A' 
   haveI : Nontrivial A := f.domain_nontrivial
   obtain ⟨-, e, he, -⟩ := _root_.GlobalTheory.EtC.etale_cohomology_vanishing_negative_degree_zero (ZMod q) (tw q i)
   let g : Spec (CommRingCat.of A') ⟶ Spec (CommRingCat.of A) := Spec.map (CommRingCat.ofHom f)
-  haveI : Nonempty (Spec (CommRingCat.of A)) := inferInstance
-  haveI : Nonempty (Spec (CommRingCat.of A')) := inferInstance
   let ζ : Prim q Γ(Spec (CommRingCat.of A), ⊤) :=
     Prim.map (Scheme.ΓSpecIso (CommRingCat.of A)).inv.hom ⟨ζ0, hq, hζ0⟩
   have hres : Function.Bijective (Sec.res (F := tw q i) g) := by

@@ -77,7 +77,6 @@ theorem isConj_of_isConj_incl : ∀ (F F' : Type) [Field F] [Field F'] [Algebra 
     have h2 : c * incl F F' n γ = incl F F' n γ' * c := by rw [← hc]; group
     exact congrArg (fun x : GL (Fin n) F' => (x : Matrix (Fin n) (Fin n) F')) h2
   haveI : Finite F := Finite.of_injective _ (algebraMap F F').injective
-  haveI : FiniteDimensional F F' := inferInstance
   have hl : 0 < Module.finrank F F' := Module.finrank_pos
   let b := Module.finBasis F F'
   let f := Matrix.toLin' (γ : Matrix (Fin n) (Fin n) F)

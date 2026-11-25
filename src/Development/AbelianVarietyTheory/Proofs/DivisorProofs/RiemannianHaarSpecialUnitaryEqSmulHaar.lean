@@ -926,14 +926,10 @@ theorem haar_chart_formula : ∀ (E : Type) [Field E] [NumberField E] [IsCMField
     exact Prod.ext h1 h2
   haveI hPol : PolishSpace (Frame X.Ψ r) := by
     show PolishSpace (X.Ψ → Fin r → Fin r → ℂ)
-    letI : NormedAddCommGroup (X.Ψ → Fin r → Fin r → ℂ) := inferInstance
-    haveI : CompleteSpace (X.Ψ → Fin r → Fin r → ℂ) := inferInstance
     haveI : TopologicalSpace.SeparableSpace (X.Ψ → Fin r → Fin r → ℂ) := inferInstance
     infer_instance
   haveI hPol2 : PolishSpace (V (nd X) × Frame X.Ψ r) := by
     show PolishSpace (V (nd X) × (X.Ψ → Fin r → Fin r → ℂ))
-    letI : NormedAddCommGroup (V (nd X) × (X.Ψ → Fin r → Fin r → ℂ)) := inferInstance
-    haveI : CompleteSpace (V (nd X) × (X.Ψ → Fin r → Fin r → ℂ)) := inferInstance
     haveI : TopologicalSpace.SeparableSpace (V (nd X) × (X.Ψ → Fin r → Fin r → ℂ)) := inferInstance
     infer_instance
   obtain ⟨φ, hφm, hφM, hφ0⟩ := exists_measurable_extend M (Metric.ball (0 : V (nd X)) ρ ×ˢ Bor X.Ψ r)

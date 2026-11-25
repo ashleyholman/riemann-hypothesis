@@ -23,7 +23,6 @@ theorem exists_common_field_extension :
   intro Ω Ω₁ Ω₂ _ _ _ i₁ i₂
   letI : Algebra Ω Ω₁ := i₁.toAlgebra
   letI : Algebra Ω Ω₂ := i₂.toAlgebra
-  haveI : Nontrivial (Ω₁ ⊗[Ω] Ω₂) := inferInstance
   obtain ⟨m, hm⟩ := Ideal.exists_maximal (Ω₁ ⊗[Ω] Ω₂)
   refine ⟨(Ω₁ ⊗[Ω] Ω₂) ⧸ m, Ideal.Quotient.field m,
     (Ideal.Quotient.mk m).comp (Algebra.TensorProduct.includeLeftRingHom),

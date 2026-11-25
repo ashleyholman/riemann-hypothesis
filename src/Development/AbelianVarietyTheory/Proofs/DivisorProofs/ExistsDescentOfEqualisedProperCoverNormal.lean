@@ -267,7 +267,6 @@ theorem mem_range_appTop_of_fst_eq_snd : ∀ (R : Type) [CommRing R] [IsDomain R
       fun c => rfl
     rw [h1, h1] at hab
     exact (Scheme.ΓSpecIso (CommRingCat.of R)).commRingCatIsoToRingEquiv.symm.injective (hinj (hres hab))
-  haveI : UniversallyClosed π := inferInstance
   have hxint : IsIntegral R (res.hom x) := by
     obtain ⟨p, hpm, hp⟩ := isIntegral_appTop_of_universallyClosed π x
     refine ⟨p.map (Scheme.ΓSpecIso (CommRingCat.of R)).hom.hom, hpm.map _, ?_⟩

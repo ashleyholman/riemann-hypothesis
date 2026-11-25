@@ -32,7 +32,6 @@ theorem exists_basis {K : Type} [Field K] (c : ℂ →+* K) {n : ℕ} (x : Fin n
   haveI : Algebra.IsAlgebraic (IntermediateField.adjoin ℂ (Set.range x)) K := hx'.isAlgebraic_field
   haveI : CharZero (IntermediateField.adjoin ℂ (Set.range x)) :=
     charZero_of_injective_algebraMap (algebraMap ℂ _).injective
-  haveI : Algebra.IsSeparable (IntermediateField.adjoin ℂ (Set.range x)) K := inferInstance
   exact exists_basis_kaehler_of_algebraicIndependent hx'.1
 
 theorem exists_derivation {L P : Type} [Field L] [CommRing P] [Algebra P L] [Algebra ℂ L]

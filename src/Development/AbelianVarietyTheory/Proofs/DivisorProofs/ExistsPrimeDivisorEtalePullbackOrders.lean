@@ -82,7 +82,6 @@ theorem formallyEtale_stalkMap {M W : Scheme.{0}} (f : M ⟶ W) (U : M.Opens)
   have h : ((U.ι ≫ f).stalkMap w).hom.FormallyEtale := by
     algebraize [((U.ι ≫ f).stalkMap w).hom]
     exact Algebra.FormallyEtale.iff_formallyUnramified_and_formallySmooth.mpr ⟨hu, hs⟩
-  have : IsIso (U.ι.stalkMap w) := inferInstance
   rw [Scheme.Hom.stalkMap_comp] at h
   exact formallyEtale_of_comp_bijective (f.stalkMap (U.ι w)).hom (U.ι.stalkMap w).hom
     (ConcreteCategory.bijective_of_isIso _) h

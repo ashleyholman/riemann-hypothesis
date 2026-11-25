@@ -173,7 +173,6 @@ theorem exists_genDer_extend : ∀ (E : Type) [Field E] [NumberField E] [IsCMFie
       rfl
     exact congrArg CommRingCat.Hom.hom e
   subst hρ'
-  have hiso : IsIso (W.ι.stalkMap η₀) := inferInstance
   letI iA : Algebra c.F Γ(TF.Y.X, U.1) := (ReciprocityTheory.ChartRestriction.G.DVR.FlatBC.algX TF.Y.s U.1).toAlgebra
   letI iK : Algebra c.F (X₀ TF.Y Z).functionField := (GlobalTheory.Cartier.constFn (s₀ TF.Y Z)).toAlgebra
   letI iAK : Algebra Γ(TF.Y.X, U.1) (X₀ TF.Y Z).functionField :=

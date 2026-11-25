@@ -530,7 +530,6 @@ theorem relAmple_near_of_polAt : ∀ (E : Type) [Field E] [NumberField E] [IsCMF
           gm_pull_g L F (𝟙 Y) y J K hy.1.2 hy.2, gm_pull_g L F (𝟙 Y) y I K hy.1.1 hy.2]
         exact gm_cocycle hL _ y (mem_pull.1 hy.1.1) (mem_pull.1 hy.1.2) (mem_pull.1 hy.2) }
   have : Smooth t.G.hom := t.semi.smooth
-  have : Flat t.G.hom := inferInstance
   have hL := t.PP.isLB
   let p : Ideal R := RingHom.ker g
   haveI : p.IsPrime := RingHom.ker_isPrime g

@@ -225,7 +225,6 @@ theorem l2A_sumPure_le {m : ℕ} (μ : @Measure (κ → FiniteAdeleRing (𝓞 F)
     (f : Fin m → SchwartzMap (κ → mixedEmbedding.mixedSpace F) ℂ) :
     GlobalTheory.WeilL2Words.l2A F μ (GlobalTheory.ThetaSobolevBase.sumPure g f) ≤
       (m : ENNReal) * ∑ i, (∫⁻ x, ‖f i x‖ₑ ^ 2) * @lintegral _ (borel _) μ (fun y => ‖g i y‖ₑ ^ 2) := by
-  haveI hO : OpensMeasurableSpace (κ → mixedEmbedding.mixedSpace F) := inferInstance
   letI : MeasurableSpace (κ → FiniteAdeleRing (𝓞 F) F) := borel _
   haveI : BorelSpace (κ → FiniteAdeleRing (𝓞 F) F) := ⟨rfl⟩
   have hpt : ∀ x y, ‖GlobalTheory.ThetaSobolevBase.sumPure g f (GlobalTheory.WeilCont.adeleJoin F x y)‖ₑ ^ 2 ≤
@@ -274,10 +273,8 @@ theorem GlobalTheory.WeilL2Words.l2A_word_le : ∀ (F : Type) [Field F] [NumberF
     ∀ (n : ℕ) (R : ℝ), ∃ B : ENNReal, B ≠ ⊤ ∧ ∀ ws : List ((κ → mixedEmbedding.mixedSpace F) × (κ → mixedEmbedding.mixedSpace F)), ws.length = n → (∀ h ∈ ws, ‖h‖ ≤ R) →
       GlobalTheory.WeilL2Words.l2A F μ (GlobalTheory.WeilL2Words.word F ψ ws Φ) ≤ B := by
   intro F _ _ _ κ _ ψ hψ Φ hΦ μ hμ n R
-  haveI hO : OpensMeasurableSpace (κ → mixedEmbedding.mixedSpace F) := inferInstance
   haveI := GlobalTheory.WeilAdm.HaarSplit.volume_isAddHaar F κ
   haveI : BorelSpace (κ → mixedEmbedding.mixedSpace F) := inferInstance
-  haveI : (volume : Measure (κ → mixedEmbedding.mixedSpace F)).HasTemperateGrowth := inferInstance
   obtain ⟨ℓ, -, hℓ⟩ := hψ
   obtain ⟨m, g, f, hg, rfl⟩ := GlobalTheory.ThetaSobolevBase.exists_sumPure hΦ
   have hgc : ∀ i, Continuous (g i) := fun i => (hg i).1.continuous

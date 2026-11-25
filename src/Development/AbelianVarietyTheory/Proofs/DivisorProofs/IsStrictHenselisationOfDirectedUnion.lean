@@ -66,7 +66,6 @@ theorem indEtale_of_directed_union : ∀ (R S : Type) [CommRing R] [CommRing S] 
     exact RingHom.finitePresentation_algebraMap.2 inferInstance
   unfold GlobalTheory.IndefiniteRowSideFullHecke.ProjectiveSpaceOverSpec.IsIndEtale
   rw [← MorphismProperty.ind_ind hp]
-  haveI : IsFiltered ι := inferInstance
   let F : ι ⥤ CommRingCat.{0} :=
     { obj := fun i => CommRingCat.of (D i)
       map := fun {i j} h => CommRingCat.ofHom
@@ -110,7 +109,6 @@ instance DivIdx.instNonempty {A : Type} [CommRing A] (M : Submonoid A) : Nonempt
 open CategoryTheory Limits in
 theorem indEtale_localization_of_etale : ∀ (R A : Type) [CommRing R] [CommRing A] [Algebra R A] [Algebra.Etale R A] (M : Submonoid A), GlobalTheory.IndefiniteRowSideFullHecke.ProjectiveSpaceOverSpec.IsIndEtale (algebraMap R (Localization M)) := by
   intro R A _ _ _ _ M
-  haveI : IsFiltered (DivIdx M) := inferInstance
   have hunit : ∀ {x y : DivIdx M}, x ≤ y →
       IsUnit (algebraMap A (Localization.Away y.el) x.el) := by
     intro x y h

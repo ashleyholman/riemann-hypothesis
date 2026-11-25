@@ -29,7 +29,6 @@ theorem tensor_decomp_factorwise : ∀ (S F B : Type) [Field S] [CharZero S] [Fi
         fun i => algebraMap (L i) (L i ⊗[F] B) (ψ z i)) := by
   intro S F B _ _ _ _ _ _ _ _ _
   haveI hEt : Algebra.Etale ℚ F := by
-    haveI : Algebra.IsSeparable ℚ F := inferInstance
     haveI : Algebra.FormallyEtale ℚ F := Algebra.FormallyEtale.of_isSeparable ℚ F
     haveI : Algebra.FinitePresentation ℚ F := Algebra.FinitePresentation.of_finiteType.mp inferInstance
     constructor <;> infer_instance

@@ -107,7 +107,6 @@ theorem pspace_noeth_and_pullback : ∀ (R : Type) [CommRing R] [IsNoetherianRin
     exact {}
   refine ⟨h1, ?_⟩
   haveI := hπ
-  have : IsProper (pullback.fst (PSpace.str R N) π) := inferInstance
   haveI := LocallyOfFiniteType.isLocallyNoetherian (pullback.fst (PSpace.str R N) π)
   haveI := QuasiCompact.compactSpace_of_compactSpace (pullback.fst (PSpace.str R N) π)
   exact {}
@@ -182,7 +181,6 @@ theorem connectedSpace_pullback_of_finitelyGenerated_residue :
   haveI hpre : IsPreimmersion (spMap φ) := by
     rw [IsPreimmersion.SpecMap_iff]
     refine ⟨?_, hstalk⟩
-    haveI : Subsingleton (PrimeSpectrum L) := inferInstance
     exact Topology.IsEmbedding.of_subsingleton _
 
   set π' : pullback π (spMap ιC) ⟶ Sp A := pullback.snd π (spMap ιC) with hπ'

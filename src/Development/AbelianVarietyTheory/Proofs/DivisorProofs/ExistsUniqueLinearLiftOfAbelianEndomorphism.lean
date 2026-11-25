@@ -66,7 +66,6 @@ theorem existsUnique_linear_lift :
       IsExp y e → IsExp y e' → IsMonHom α → ∃! M : (Fin g → ℂ) →ₗ[ℂ] (Fin g → ℂ), ∀ z, e' (M z) = e z ≫ α := by
   intro X G _ _ g hab hsm y e e' α he he' hα
   obtain ⟨Λ, hdisc, -, hker⟩ := _root_.GlobalTheory.ExpKernel.kernel_isFullLattice X G g hab hsm y e' he'
-  letI : CommGroup (Over.mk y ⟶ G) := inferInstance
   let ex : (Fin g → ℂ) →+ Additive (Over.mk y ⟶ G) :=
     AddMonoidHom.mk' (fun z ↦ Additive.ofMul (e' z)) he'.1
   let G' : (Fin g → ℂ) →+ Additive (Over.mk y ⟶ G) :=

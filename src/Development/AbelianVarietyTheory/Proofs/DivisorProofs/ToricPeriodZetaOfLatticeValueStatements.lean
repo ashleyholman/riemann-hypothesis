@@ -420,7 +420,6 @@ theorem exists_sq_eq_neg_of_discr_eq_neg : ∀ (K : Type) [Field K] [NumberField
   classical
   intro K _ _ d h2 hd
   haveI : Algebra.IsQuadraticExtension ℚ K := ⟨h2⟩
-  haveI : IsGalois ℚ K := inferInstance
   have hcard : Nat.card (K ≃ₐ[ℚ] K) = 2 := by rw [IsGalois.card_aut_eq_finrank, h2]
   obtain ⟨σ, hσ, huniq⟩ := (Nat.card_eq_two_iff' (1 : K ≃ₐ[ℚ] K)).1 hcard
   have huniv : (Finset.univ : Finset (K ≃ₐ[ℚ] K)) = {1, σ} := by

@@ -237,13 +237,11 @@ theorem complementary_eq_topForms : ∀ (k F K : Type) [Field k] [CharZero k] [F
   intro k F K _ _ _ _ _ _ _ _ _ d u hu A _ hA B hB hsm τ hτ z
   classical
   haveI : CharZero F := charZero_of_injective_algebraMap (algebraMap k F).injective
-  haveI : Algebra.IsSeparable F K := inferInstance
 
   haveI : IsNoetherianRing A := by
     subst hA; exact isNoetherianRing_of_ringEquiv _ hu.aevalEquiv.toRingEquiv
   haveI : UniqueFactorizationMonoid A := by
     subst hA; exact hu.aevalEquiv.toMulEquiv.uniqueFactorizationMonoid inferInstance
-  haveI : IsIntegrallyClosed A := inferInstance
   have hgen : IntermediateField.adjoin k (Set.range u) = ⊤ := by
     rw [eq_top_iff]
     intro x _
@@ -277,7 +275,6 @@ theorem complementary_eq_topForms : ∀ (k F K : Type) [Field k] [CharZero k] [F
     refine (faithfulSMul_iff_algebraMap_injective A C).mpr fun a a' h => ?_
     have h' : algebraMap F K (a : F) = algebraMap F K (a' : F) := congrArg (fun x : C => (x : K)) h
     exact Subtype.val_injective ((algebraMap F K).injective h')
-  haveI : Algebra.HasGoingDown A C := inferInstance
 
   have hunder : ∀ Q : Ideal B, Q.IsPrime → Q.height = 1 →
       ∃ p : Ideal A, p.IsPrime ∧ p.height = 1 ∧

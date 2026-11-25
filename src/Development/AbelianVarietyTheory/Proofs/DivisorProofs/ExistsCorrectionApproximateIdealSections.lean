@@ -82,7 +82,6 @@ theorem mem_span_sup_pow_of_forall_complete_dvr : ∀ (O : Type) [CommRing O] [I
     intro V _ _ _ hVc ρ' hρ' _
     let ρ : O →+* V := ρ'.comp ι
     have hρ : Function.Injective ρ := hρ'.comp hinj
-    haveI : IsLocalHom ρ := inferInstance
     haveI : CharZero V := charZero_of_injective_ringHom hρ
     have hgV : ρ' (ι g) ≠ 0 := fun h => hgR (hρ' (by rw [h, map_zero]))
     refine dvd_of_forall_mem_span_sup_pow hgV fun e => ?_

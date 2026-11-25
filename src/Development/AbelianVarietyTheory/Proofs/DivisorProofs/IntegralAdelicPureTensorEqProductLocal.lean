@@ -250,10 +250,6 @@ theorem lintegral_evalV_mul_shiftInvariant : ∀ (F : Type) [Field F] [NumberFie
   haveI := GlobalTheory.AdelicUnitaryTop.properSpace_adicCompletion F w
   haveI := GlobalTheory.AdelicUnitaryTop.secondCountable_finiteAdele F
   haveI := GlobalTheory.AdelicUnitaryTop.locallyCompact_finiteAdele F
-  haveI : SecondCountableTopology (κ → Af F) := inferInstance
-  haveI : SecondCountableTopology (κ → Fv F w) := inferInstance
-  haveI : LocallyCompactSpace (κ → Af F) := inferInstance
-  haveI : LocallyCompactSpace (κ → Fv F w) := inferInstance
   have hcont : Continuous fun (y : κ → Af F) (i : κ) => evalV F w (y i) :=
     continuous_pi fun i => (GlobalTheory.GaugeGlue.continuous_evalV w).comp (continuous_apply i)
   have hOc : IsClosed {t : κ → Fv F w | ∀ i, t i ∈ w.adicCompletionIntegers F} := by

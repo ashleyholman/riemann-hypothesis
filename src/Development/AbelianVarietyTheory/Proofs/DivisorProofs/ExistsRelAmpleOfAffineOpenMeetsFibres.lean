@@ -186,7 +186,6 @@ theorem exists_isLocus : ∀ (X : Scheme.{0}) [IsIntegral X] [IsLocallyNoetheria
   intro X _ _ _ V hV hne
   have hι : IsAffineHom V.ι :=
     haveI : IsAffine V := hV
-    haveI : IsAffineHom (V.ι ≫ terminal.from X) := inferInstance
     IsAffineHom.of_comp _ (terminal.from X)
   let G := Scheme.IdealSheafData.vanishingIdeal V.compl
   let P : X → Prop := fun x =>
@@ -302,7 +301,6 @@ theorem isRegularRing_localization_of_comap_eq_bot (R A : Type) [CommRing R] [Is
   let M := Algebra.algebraMapSubmonoid A (nonZeroDivisors R)
   let B := Localization M
   letI : Algebra K B := localizationAlgebra (nonZeroDivisors R) A
-  haveI : IsScalarTower R K B := inferInstance
   haveI h1 : Algebra.IsPushout R A K B :=
     Algebra.isPushout_of_isLocalization (nonZeroDivisors R) K A B
   haveI : Algebra.IsPushout R K A B := h1.symm
@@ -334,7 +332,6 @@ theorem ufd_stalk_of_generic : ∀ (R : Type) [CommRing R] [IsDomain R] (X : Sch
   have hs : (f.appLE ⊤ U le_top).hom.Smooth :=
     HasRingHomProperty.appLE @Smooth f inferInstance ⟨⊤, isAffineOpen_top _⟩ ⟨U, hU⟩ le_top
   haveI : Nonempty (⊤ : (Sp R).Opens) := ⟨⟨f x, trivial⟩⟩
-  haveI : IsDomain Γ(Sp R, ⊤) := inferInstance
   have hgen : f x = genericPoint (Sp R) := by
     rw [genericPoint_eq_bot_of_affine]
     exact PrimeSpectrum.ext hx
@@ -381,7 +378,6 @@ theorem exists_locus_over_dense_open : ∀ (R : Type) [CommRing R] [IsNoetherian
   have := hA.proper
   have : GeometricallyIntegral A.hom :=
     GlobalTheory.forall_geometricallyIntegral_of_smooth_of_geometricallyConnected _ _ _ hA.smooth hA.geomConnected
-  have : IsLocallyNoetherian (Sp R) := inferInstance
   have : IsIntegral A.left := GeometricallyIntegral.isIntegral_of_isLocallyNoetherian A.hom
   have : IsLocallyNoetherian A.left := LocallyOfFiniteType.isLocallyNoetherian A.hom
   have : A.left.IsSeparated := ⟨by rw [← terminal.comp_from A.hom]; infer_instance⟩
@@ -433,7 +429,6 @@ theorem isIso_of_isAffine_of_coheight_le_one {X Y : Scheme.{0}} [IsLocallyNoethe
     (hf : ∀ x : X, Order.coheight x ≤ 1 → x ∈ Set.range f) : IsIso f := by
   have h : IsIso (f.appTop) :=
     (ConcreteCategory.isIso_iff_bijective _).mpr (bijective_app_of_coheight_le_one f hf ⊤)
-  have : IsIso (Spec.map f.appTop) := inferInstance
   have e : f = Y.isoSpec.hom ≫ Spec.map f.appTop ≫ X.isoSpec.inv := by
     rw [← Category.assoc, Scheme.isoSpec_hom_naturality]
     simp
@@ -732,7 +727,6 @@ theorem isAffineOpen_preimage_translate (R : Type) [CommRing R] (A : Over (Sp R)
     (V : A.left.Opens) (hV : IsAffineOpen V) (T : Over (Sp R)) [IsAffine T.left] (b : T ⟶ A) :
     IsAffineOpen ((fst A T * (snd A T ≫ b)).left ⁻¹ᵁ V) := by
   haveI : IsAffine (Sp R) := by unfold Sp; infer_instance
-  haveI : IsAffineHom T.hom := inferInstance
   haveI : IsAffineHom (fst A T).left := by
     change IsAffineHom (pullback.fst A.hom T.hom)
     exact isAffineHom_isStableUnderBaseChange.of_isPullback

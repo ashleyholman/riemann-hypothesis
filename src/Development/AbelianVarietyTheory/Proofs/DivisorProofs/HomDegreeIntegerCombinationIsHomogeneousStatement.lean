@@ -327,7 +327,6 @@ theorem inter_pull_isogeny_eq_deg_mul : ∀ (K : Type) [Field K] (A B : AbVar K)
     obtain ⟨hfr, hfin, hrk⟩ := hfree
     haveI := hfr
     haveI := hfin
-    haveI : Module.Flat Γ(B.X.left, V) Γ(A.X.left, f.hom.left ⁻¹ᵁ V) := inferInstance
     obtain ⟨z, -⟩ : genericPoint B.X.left ∈ Set.range hV.fromSpec := by rwa [hV.range_fromSpec]
     have e := Scheme.Hom.finrank_of_isPullback _ _ _ _ (GlobalTheory.isPullback_fromSpec_app f.hom.left hV hV') z
     rw [hrank] at e

@@ -910,7 +910,6 @@ theorem toBase_of_Spec (X : Scheme.{0}) (F' : X.AffineZariskiSiteᵒᵖ ⥤ Comm
   let e := IsOpenImmersion.isoOfRangeEq ((relativeGluingData h).toBase ⁻¹ᵁ U.1).ι
     ((relativeGluingData h).cover.f V0) (by rw [Scheme.Opens.range_ι, ← Scheme.Hom.coe_opensRange, ← hpre])
   have hU : IsAffineOpen U.1 := U.2
-  haveI : Mono hU.fromSpec := inferInstance
   have key : e.inv ≫ ((relativeGluingData h).toBase ∣_ U.1) ≫ hU.isoSpec.hom =
       Spec.map (α'.app (Opposite.op V0)) := by
     apply (cancel_mono hU.fromSpec).mp
@@ -1071,7 +1070,6 @@ theorem exists_finite_openImmersion_nbhd : ∀ (H X : Scheme.{0}) (φ : H ⟶ X)
     obtain ⟨O, hzO, hO⟩ := hZ z hz
     exact quasiFiniteAt_of_isolated H X φ hloft z O hzO hO
   have : IsLocallyNoetherian H := LocallyOfFiniteType.isLocallyNoetherian φ
-  have : QuasiCompact H'.ι := inferInstance
   obtain ⟨T, q, j, hq, hj, hjq⟩ := _root_.GlobalTheory.ZMTFin.exists_finite_openImmersion H'.toScheme X (H'.ι ≫ φ) hX inferInstance
     inferInstance inferInstance inferInstance
   have : QuasiCompact j := by

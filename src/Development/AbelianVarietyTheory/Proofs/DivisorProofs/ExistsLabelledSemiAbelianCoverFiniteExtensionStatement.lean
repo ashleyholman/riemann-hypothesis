@@ -359,7 +359,6 @@ theorem exists_spread : ∀ (F Ω : Type) [Field F] [Field Ω] (em : F →+* Ω)
   have : IsNoetherianRing R := Algebra.FiniteType.isNoetherianRing ℤ R
   have := P₀.smoothDim
   have : Smooth P₀.A.hom := SmoothOfRelativeDimension.smooth P₀.g _
-  have : LocallyOfFinitePresentation P₀.A.hom := inferInstance
 
   have hx : ∀ i, ((y i).left ≫ φ₀) ≫ P₀.A.hom = spMap (algebraMap R Ω) := by
     intro i

@@ -19,7 +19,6 @@ theorem pullQuasiInv : ∀ (T Y : Scheme.{0}) (t : T ⟶ Y) (A B : Over Y) [GrpO
   intro T Y t A B _ _ _ _ k ψ ψ' A₁ _ _ φ hB hq hA
   obtain ⟨hψ, hψ', h1, h2⟩ := hq
   obtain ⟨e, he, hφ⟩ := grpPullback_iso hA (isGrpPullback_pullback A t)
-  have hinv : IsMonHom e.inv := inferInstance
   have hinvφ : e.inv.left ≫ φ = pullback.fst A.hom t := by
     rw [← hφ, ← Category.assoc, ← Over.comp_left, e.inv_hom_id, Over.id_left, Category.id_comp]
   have hmap : ∀ (X M : Over Y) [MonObj M] (f : X ⟶ M) (n : ℕ),

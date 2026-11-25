@@ -41,7 +41,6 @@ theorem exists_integralClosure_finite : ∀ {o₁ Ω₁ : Type} [CommRing o₁] 
   haveI : IsFractionRing R₁ Ω₁ := IsFractionRing.of_field _ _ fun z => by
     obtain ⟨a, ha, b, hb, rfl⟩ := hfrac z
     exact ⟨⟨a, ha⟩, ⟨b, hb⟩, rfl⟩
-  haveI : IsScalarTower R₁ Ω₁ Ω₂ := inferInstance
   let C := integralClosure R₁ Ω₂
   have hmem : ∀ x : o₂, algebraMap o₂ Ω₂ x ∈ C := by
     intro x

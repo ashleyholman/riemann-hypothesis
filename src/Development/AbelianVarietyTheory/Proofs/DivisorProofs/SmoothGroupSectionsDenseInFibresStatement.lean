@@ -458,7 +458,6 @@ theorem exists_ne_zero_algebraMap_eq_mul_of_formallyUnramified :
   let S := Algebra.algebraMapSubmonoid D M
   let L := Localization S
   letI : Algebra K L := localizationAlgebra M D
-  haveI : IsScalarTower P K L := inferInstance
   have hS : S ≤ nonZeroDivisors D := by
     intro x hx
     obtain ⟨q, hq, rfl⟩ := hx

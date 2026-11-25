@@ -142,7 +142,6 @@ theorem directedSystem_etaleBaseChange : ∀ (T : Type) [CommRing T] (ι : Type)
       commutes' := fun p => by
         change Polynomial.map _ (Polynomial.map _ p) = Polynomial.map _ p
         rw [Polynomial.map_map, hsub (h₀ k)] }
-  haveI : Module.Flat (𝒜 i₀)[X] E₀ := inferInstance
   have hcovT : ∀ q : T[X], ∃ k p, sub k p = q := by
     intro q
     have hq : ∃ k, ∀ n, q.coeff n ∈ 𝒜 k := by

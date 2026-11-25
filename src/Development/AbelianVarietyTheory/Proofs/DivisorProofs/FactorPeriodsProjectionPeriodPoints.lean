@@ -273,7 +273,6 @@ theorem GlobalTheory.Mum.Two.Fac.pt_ext (R : Type) [CommRing R] [IsDomain R] (D 
     (h : toUnit (TF (R := R) F) ≫ a = toUnit (TF (R := R) F) ≫ b) : a = b := by
   have : IsDominant (jK R) := isDominant_jK
   have : Surjective (jFK (R := R) F) := GlobalTheory.Balanced.surjective_spMap (algebraMap (FractionRing R) F)
-  have : IsDominant (jFK (R := R) F) := inferInstance
   have : IsProper D.P.A.hom := D.P.isAb.proper
   have e := congrArg (fun m => m.left) h
   simp only [Over.comp_left] at e

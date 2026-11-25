@@ -57,14 +57,11 @@ theorem eq_zero_of_val_cen_eq_zero : ∀ (o Ω : Type) [CommRing o] [Field Ω] [
   have : Flat M.s := GlobalTheory.ModelOfOutput.flat_ratModel M
   have : Flat (Spec.map (CommRingCat.ofHom (Int.castRingHom o))) := by
     refine Flat.SpecMap_iff.2 ?_
-    have : FaithfulSMul ℤ o := inferInstance
     exact (RingHom.flat_algebraMap_iff.2 inferInstance)
-  have : Flat π := inferInstance
   have := M.lft
   have : LocallyOfFiniteType (Spec.map (CommRingCat.ofHom (Int.castRingHom o))) := by
     rw [HasRingHomProperty.Spec_iff (P := @LocallyOfFiniteType)]
     exact (RingHom.finiteType_algebraMap (A := ℤ) (B := o)).2 hb.ft
-  have : LocallyOfFiniteType π := inferInstance
   have hz : IsClosed ({y₀ (cPt p)} : Set M.Z) := isClosed_singleton_cPt y₀
   obtain ⟨p', hp', y, hy, hyW⟩ := GlobalTheory.padicAlgCl_integral_points.1 M.Z π (y₀ (cPt p)) hz _ hW
   have e : p = p' := prime_eq_of_natCast_eq_zero (Fact.out) hp'.out (natCast_residueField_cPt y₀)

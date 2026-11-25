@@ -376,7 +376,6 @@ theorem exists_common_field_of_point_eq : ∀ (X : Scheme.{0}) (K₁ K₂ : Type
   subst hxy
   letI : Algebra (X.residueField x) K₁ := f.hom.toAlgebra
   letI : Algebra (X.residueField x) K₂ := g.hom.toAlgebra
-  haveI : Nontrivial (TensorProduct (X.residueField x) K₁ K₂) := inferInstance
   obtain ⟨m, hm⟩ := Ideal.exists_maximal (TensorProduct (X.residueField x) K₁ K₂)
   letI : Field ((TensorProduct (X.residueField x) K₁ K₂) ⧸ m) := Ideal.Quotient.field m
   refine ⟨(TensorProduct (X.residueField x) K₁ K₂) ⧸ m, inferInstance,
@@ -1446,7 +1445,6 @@ theorem secs_exists (R : Type) [CommRing R] [IsDomain R] [IsLocalRing R] (hB : B
     inferInstanceAs (Smooth (pullback.snd Y.H.hom (spMap (residue R))))
   have himm0 : IsImmersion (pullback.fst Y.H.hom (spMap (residue R)) ≫ GlobalTheory.ProjSpace.toProj Y.H.hom τ hτ) := by
     have : IsClosedImmersion (spMap (residue R)) := IsClosedImmersion.spec_of_surjective _ residue_surjective
-    have : IsClosedImmersion (pullback.fst Y.H.hom (spMap (residue R))) := inferInstance
     infer_instance
   refine ⟨{ N := N, k := _, s := fun i => Φ (F i), θ := θ, Y := (Over.pullback (spMap (residue R))).obj Y.H
             smooth := hsm0

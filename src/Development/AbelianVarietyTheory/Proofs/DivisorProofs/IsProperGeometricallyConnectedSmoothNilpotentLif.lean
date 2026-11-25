@@ -84,7 +84,6 @@ theorem isProper_and_geometricallyConnected_of_smooth_lift :
   have : IsProper (i ≫ X.hom) := by rw [hsq.w]; infer_instance
   have : UniversallyClosed X.hom := UniversallyClosed.of_comp_surjective i X.hom
   have : IsSeparated X.hom := GlobalTheory.NilProper.isSeparated_of_comp_surjective i X.hom
-  have : LocallyOfFiniteType X.hom := inferInstance
   refine ⟨{}, ⟨fun K _ y Z fst snd hz ↦ ?_⟩⟩
   obtain ⟨φ, rfl⟩ := Spec.map_surjective y
   have hφ : RingHom.ker π ≤ RingHom.ker φ.hom := by

@@ -773,7 +773,6 @@ theorem sum_flat_surjective_quasiCompact : ∀ (R : Type) [CommRing R] [IsDomain
     change QuasiCompact (pullback.fst (UT N).hom (UT N).hom ≫ (UT N).hom)
     have h1 : QuasiCompact (UT N).hom := by
       change QuasiCompact (pullback.snd N.U.hom (pullback.fst π π ≫ π)); infer_instance
-    have h2 : QuasiCompact (pullback.fst (UT N).hom (UT N).hom) := inferInstance
     infer_instance
   have : QuasiSeparated ((Over.pullback p).obj G').hom := by
     change QuasiSeparated (pullback.snd G'.hom p); infer_instance

@@ -305,7 +305,6 @@ theorem exists_galois_polAV : ∀ (K : Type) [Field K] [CharZero K] (A : Over (S
   let E : IntermediateField K Ω := IntermediateField.normalClosure K F' Ω
   haveI hEf : FiniteDimensional K E := normalClosure.is_finiteDimensional K F' Ω
   haveI hEg : IsGalois K E := by
-    haveI : Normal K E := inferInstance
     exact IsGalois.mk
   have hFE : F ≤ E := le_sup_left.trans F'.le_normalClosure
   have hsE : (s : Set Ω) ⊆ E := fun y hy =>
@@ -1136,7 +1135,6 @@ theorem GlobalTheory.Mum.pairing_kernel_trivial : ∀ (R : Type) [CommRing R] [I
   have hη : η[A'.A] ≫ U'.gen.inv = η[(Over.pullback (jK R)).obj G'] := by
     have : IsMonHom U'.gen.hom := U'.gen_hom
     rw [← IsMonHom.one_hom U'.gen.hom, Category.assoc, Iso.hom_inv_id, Category.comp_id]
-  have : IsMonHom ((Over.pullback (jK R)).map pr) := inferInstance
   rw [Category.assoc, ← Category.assoc η[A'.A], hη, IsMonHom.one_hom]
 end -- clump:auto
 end -- clump:auto

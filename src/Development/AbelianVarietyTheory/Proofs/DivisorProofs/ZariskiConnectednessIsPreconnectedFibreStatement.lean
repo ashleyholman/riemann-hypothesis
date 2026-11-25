@@ -250,7 +250,6 @@ theorem isPreconnected_fibre : ∀ (X Y : Scheme.{0}) (a : X ⟶ Y), IsLocallyNo
   let π : (a ⁻¹ᵁ U).toScheme ⟶ Sp Γ(Y, U) := (a ∣_ U) ≫ e.hom
   let g : Sp A ⟶ Sp Γ(Y, U) := Spec.map (CommRingCat.ofHom φ)
   haveI : Flat g := HasRingHomProperty.Spec_iff.2 hφ
-  haveI : IsProper π := inferInstance
   have hres : Function.Bijective ((a ∣_ U).app ⊤).hom := by
     rw [morphismRestrict_app]
     have h1 := hbij ((Scheme.Opens.ι U) ''ᵁ ⊤)

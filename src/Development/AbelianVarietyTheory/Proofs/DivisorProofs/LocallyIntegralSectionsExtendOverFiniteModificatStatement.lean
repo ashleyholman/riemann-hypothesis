@@ -428,9 +428,6 @@ theorem exists_finite_cover {S : Scheme.{0}} {K : Type} [Field K] (gp : Sp K ⟶
   have H : QCohSub gp F := ⟨h1, h2, h3⟩
   have : AlgebraicGeometry.IsIntegral (Sp K) := inferInstanceAs (AlgebraicGeometry.IsIntegral (Spec (.of K)))
   have : Subsingleton (Sp K) := inferInstanceAs (Subsingleton (PrimeSpectrum K))
-  have : TopologicalSpace.NoetherianSpace (Sp K) := inferInstance
-  have : QuasiCompact gp := inferInstance
-  have : QuasiSeparated gp := inferInstance
   have hfin : IsFinite (fromRel H) := by
     refine isFinite_fromRel H fun U ↦ ?_
     obtain ⟨t, ht, hx⟩ := h4 U.1 U.2

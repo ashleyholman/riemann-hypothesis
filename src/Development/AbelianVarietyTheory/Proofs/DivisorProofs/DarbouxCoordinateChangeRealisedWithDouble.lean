@@ -289,7 +289,6 @@ theorem isOp_unip (ψ : AddChar (AF F) ℂ) (hψ : IsStd ψ) {κ : Type} [Fintyp
     letI : MeasurableSpace (κ → AF F) := borel _
     haveI : BorelSpace (κ → AF F) := ⟨rfl⟩
     haveI : SecondCountableTopology (AF F) := GlobalTheory.AdelicUnitaryTop.secondCountable_adele F
-    haveI : SecondCountableTopology (κ → AF F) := inferInstance
     haveI := hμ
     haveI := hμ'
     have e := Measure.isAddLeftInvariant_eq_smul μ' μ

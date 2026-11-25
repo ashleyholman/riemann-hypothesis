@@ -590,7 +590,6 @@ theorem exists_unitary_matLat_eq : ∀ {O K : Type} [CommRing O] [IsDomain O] [I
   set A := Algebra.adjoin K {γ} with hAdef
   letI : IsMulCommutative A := Algebra.isMulCommutative_adjoin_singleton K γ
   open scoped IsMulCommutative in
-  letI : CommRing A := inferInstance
   have hcomm : ∀ u ∈ A, ∀ v ∈ A, u * v = v * u := by
     intro u hu v hv
     exact congrArg (fun z : A => z.1) (mul_comm (⟨u, hu⟩ : A) ⟨v, hv⟩)

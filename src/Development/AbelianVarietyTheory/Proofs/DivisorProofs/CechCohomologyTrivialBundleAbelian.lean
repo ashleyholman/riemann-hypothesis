@@ -140,7 +140,6 @@ theorem exists_free_complex_of_primitive_cech : ∀ (A : Type) [CommRing A] [IsN
       letI := φ.toAlgebra
       hq K
     let χ := ((ModuleCat.extendScalars φ).mapHomologicalComplex _).map ψ ≫ (cechLBBaseChangeIso hF hX hD).hom
-    have : QuasiIso χ := inferInstance
     have e₁ := (isoOfQuasiIsoAt χ i).toLinearEquiv
     have : IsSeparated f' := MorphismProperty.of_isPullback (P := @IsSeparated) hX inferInstance
     obtain ⟨e₂⟩ := cechLB_homology_equiv_of_affine_covers K X' f' (F.pull π) (Fin (m + 1))

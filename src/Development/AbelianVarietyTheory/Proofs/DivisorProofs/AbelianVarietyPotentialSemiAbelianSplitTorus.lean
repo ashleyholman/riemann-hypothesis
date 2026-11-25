@@ -108,8 +108,6 @@ theorem exists_iso_specialise {R S : Type} [CommRing R] [CommRing S] [Algebra k 
 
 theorem exists_finite_iso : ∀ (k Ω : Type) [Field k] [Field Ω] [Algebra k Ω] (T T' : Over (Spec (CommRingCat.of k))) [GrpObj T] [GrpObj T'], IsAffineHom T.hom → IsAffineHom T'.hom → LocallyOfFiniteType T.hom → LocallyOfFiniteType T'.hom → (∃ e : fieldBaseChange k Ω T ≅ fieldBaseChange k Ω T', IsMonHom e.hom) → ∃ (k' : Type) (_ : Field k') (_ : Algebra k k') (_ : FiniteDimensional k k') (e : fieldBaseChange k k' T ≅ fieldBaseChange k k' T'), IsMonHom e.hom := by
   intro k Ω _ _ _ T T' _ _ _ _ _ _ ⟨e, he⟩
-  have : LocallyOfFinitePresentation T.hom := inferInstance
-  have : LocallyOfFinitePresentation T'.hom := inferInstance
   obtain ⟨R, g, hR, hg⟩ := exists_fg_iso (k := k) (C := Ω) (A := T) (A' := T') e
   have : Algebra.FiniteType k R := (Subalgebra.fg_iff_finiteType R).1 hR
   obtain ⟨m, hm⟩ := Ideal.exists_maximal R
@@ -181,7 +179,6 @@ theorem exists_finite_torusExtension_of_torusExt : ∀ (k : Type) [Field k] (G :
   refine ⟨k', inferInstance, inferInstance, hfin, ?_⟩
   let f : Spec (CommRingCat.of k') ⟶ Spec (CommRingCat.of k) := Spec.map (CommRingCat.ofHom (algebraMap k k'))
   have hq := isPullback_overPullback_map_left f T.q
-  have : IsMonHom e.inv := inferInstance
   refine ⟨{ X := X
             B := (Over.pullback f).obj T.B
             grpB := inferInstance

@@ -781,7 +781,6 @@ theorem eq_one_of_coprime {A B : AbVar K} (f : A ⟶ B) (hf : IsIsogeny f) (m : 
       rw [hy1, MonObj.one_comp]
     · change ((x ≫ q.hom) ≫ i.hom) ≫ (prodSnd B A).hom = (1 : T ⟶ (prod B A).X) ≫ (prodSnd B A).hom
       rw [hy2, MonObj.one_comp]
-  have hmono : Mono i.hom.left := inferInstance
   have hy : x ≫ q.hom = 1 := by
     apply Over.OverMorphism.ext
     have := congrArg Over.Hom.left hyi

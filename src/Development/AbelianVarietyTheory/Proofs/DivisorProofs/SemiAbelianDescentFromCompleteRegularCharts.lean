@@ -671,7 +671,6 @@ theorem lbIso_pull : ∀ (X Y : Scheme.{0}) [IsIntegral X] [IsIntegral Y] (V : Y
   obtain ⟨l, h₁, h₂⟩ := hF
   obtain ⟨q⟩ : Nonempty (Sp Y.functionField) := inferInstance
   haveI : Nonempty V := ⟨l q⟩
-  haveI : IsIntegral V.toScheme := inferInstance
   haveI : IsDominant V.ι := isDominant_of_gen V.ι (l q) (by
     rw [← Scheme.Hom.comp_apply, h₁, gp_apply])
   haveI : IsDominant φ := isDominant_of_gen φ (l q) (by

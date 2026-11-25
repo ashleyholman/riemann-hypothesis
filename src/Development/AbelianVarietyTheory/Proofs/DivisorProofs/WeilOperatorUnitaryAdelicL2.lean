@@ -62,7 +62,6 @@ theorem lintegral_eq_of_fibres {Z X Y : Type} [AddGroup Z] [TopologicalSpace Z] 
   have he : Measurable e := e.continuous.measurable
   let ρ : Measure Y := Measure.addHaar
   haveI : (μ.map e).IsAddHaarMeasure := e.isAddHaarMeasure_map μ
-  haveI : (ν.prod ρ).IsAddHaarMeasure := inferInstance
   rw [← lintegral_map hG he, ← lintegral_map hG' he, Measure.isAddLeftInvariant_eq_smul (μ.map e) (ν.prod ρ),
     lintegral_smul_measure, lintegral_smul_measure, lintegral_prod_symm _ hG.aemeasurable,
     lintegral_prod_symm _ hG'.aemeasurable]

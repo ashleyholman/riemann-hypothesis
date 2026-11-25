@@ -23,8 +23,6 @@ theorem exists_isNorm : ∀ (F F' : Type) [Field F] [Field F'] [Algebra F F'] [F
     (∀ t : F' ≃ₐ[F] F', t ∈ Subgroup.zpowers s) → ∀ (n : ℕ) (δ : GL (Fin n) F'), ∃ γ : GL (Fin n) F, IsNorm s δ γ := by
   intro F F' _ _ _ _ s hs n δ₀
   haveI : Finite F := Finite.of_injective _ (algebraMap F F').injective
-  haveI : Finite (GL (Fin n) F) := inferInstance
-  haveI : Finite (GL (Fin n) F') := inferInstance
   letI := Fintype.ofFinite (GL (Fin n) F)
   letI := Fintype.ofFinite (GL (Fin n) F')
   have hfib := _root_.GlobalTheory.Shin.NormFibre.card_isNorm_mul_card F F' s hs n

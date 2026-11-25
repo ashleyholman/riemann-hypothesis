@@ -74,7 +74,6 @@ theorem lbIso_of_generic {O Ω : Type} [CommRing O] [IsDomain O] [IsLocalRing O]
   have : IsDominant (spMap (algebraMap O Ω)) := by
     obtain ⟨_, _⟩ := (IsGenericPointHom.fractionField O Ω).quasiCompact_and_dominant
     infer_instance
-  have : QuasiCompact (spMap (algebraMap O Ω)) := inferInstance
   have := hH.smooth
   have := geometricallyIntegral_of_isAbelianScheme H
   refine (GlobalTheory.CechPic.cls_eq_iff hL hL').1

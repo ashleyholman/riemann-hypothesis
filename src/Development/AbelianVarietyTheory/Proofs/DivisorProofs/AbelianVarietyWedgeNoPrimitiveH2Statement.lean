@@ -687,7 +687,6 @@ theorem GlobalTheory.AbCoh.wedgeO_noPrimO2 : ∀ (K : Type) [Field K] [IsAlgClos
   intro K _ _ A _ g hab hsm
   haveI : IsProper A.hom := hab.proper
   haveI hsep : IsSeparated A.hom := inferInstance
-  haveI hqc : QuasiCompact A.hom := inferInstance
   obtain ⟨-, hprim, -⟩ := GlobalTheory.T.abelian_variety_h1_axes_primitive_rank K A g hab hsm
   obtain ⟨n, D, hD, hcov⟩ := GlobalTheory.AbCoh.WedgeSq.exists_fin_affine_cover A.hom
   obtain ⟨⟨e1⟩, ⟨e2⟩⟩ := GlobalTheory.T.cech_cohomology_structure_sheaf_iso K A.left A.hom (Fin n) D hsep hD hcov

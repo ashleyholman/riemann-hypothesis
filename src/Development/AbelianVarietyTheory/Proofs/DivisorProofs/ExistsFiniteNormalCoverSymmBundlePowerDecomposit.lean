@@ -113,7 +113,6 @@ theorem exists_finite_normal_cover_of_finiteDimensional : ∀ (R : Type) [CommRi
   letI : Algebra R K' := ((algebraMap K K').comp (algebraMap R K)).toAlgebra
   haveI : IsScalarTower R K K' := IsScalarTower.of_algebraMap_eq (fun _ => rfl)
   haveI : CharZero K := charZero_of_injective_algebraMap (IsFractionRing.injective R K)
-  haveI : Algebra.IsSeparable K K' := inferInstance
   let C := integralClosure R K'
   haveI hCf : Module.Finite R C := IsIntegralClosure.finite R K K' C
   haveI : IsFractionRing C K' := integralClosure.isFractionRing_of_finite_extension K K'

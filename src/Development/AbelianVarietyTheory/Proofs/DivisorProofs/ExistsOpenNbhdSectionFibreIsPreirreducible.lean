@@ -151,7 +151,6 @@ theorem exists_affine_chart_preirreducible_fiber : ∀ (X S : Scheme.{0}) (f : X
   rw [← h1] at h2
   let j : pullback (W.ι ≫ f) p ⟶ pullback f p :=
     pullback.map _ _ _ _ W.ι (𝟙 _) (𝟙 _) (by simp) (by simp)
-  have hj : IsOpenImmersion j := inferInstance
   have hjf : j ≫ pullback.fst f p = pullback.fst _ _ ≫ W.ι := pullback.lift_fst _ _ _
   have h3 := h2.isPreirreducible.preimage j.isOpenEmbedding
   constructor

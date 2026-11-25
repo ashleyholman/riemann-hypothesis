@@ -686,7 +686,6 @@ theorem grp_of_isPullback {X S' P : Scheme.{0}} (G : Over X) [GrpObj G] (hG : Is
   let e : Over.mk snd ≅ (Over.pullback f).obj G := Over.isoMk h.isoPullback (by simp)
   letI gr : GrpObj (Over.mk snd) := GrpObj.ofIso e.symm
   refine ⟨gr, GlobalTheory.Compare.AbelianSchemeTorusCompare.isAbelianScheme_of_iso e ?_ hP⟩
-  haveI : IsMonHom e.symm.hom := inferInstance
   exact isMonHom_inv_of_iso e.symm
 
 theorem restrict_isPullback {X T : Scheme.{0}} (p : T ⟶ X) (U : X.affineOpens) :
@@ -1138,7 +1137,6 @@ theorem pullback_fromSpec_compact_affineCover : ∀ (E : Type) [Field E] [Number
   have hsep : IsSeparated t.G.hom := t.semi.separated
   have hU : IsAffineOpen U.1 := U.2
   have : IsOpenImmersion hU.fromSpec := hU.isOpenImmersion_fromSpec
-  have : IsOpenImmersion (pullback.fst t.G.hom hU.fromSpec) := inferInstance
   refine ⟨?_, ?_, ?_⟩
   · exact QuasiCompact.compactSpace_of_compactSpace (pullback.snd t.G.hom hU.fromSpec)
   · intro I hI

@@ -390,7 +390,6 @@ theorem exists_isAlgebraic_ratFunc_of_ringHom (k B : Type) [Field k] [CommRing B
     rw [this]
     exact (hR x).mul (hR s).inv
   haveI : Algebra.IsIntegral F K := ⟨hall⟩
-  haveI : Algebra.IsAlgebraic F K := inferInstance
 
   obtain ⟨algRF, hRF⟩ := GlobalTheory.FracAlgDedekind.exists_isAlgebraic_ratFunc k B hB
   letI algK : Algebra (RatFunc k) K := ((algebraMap F K).comp (algebraMap (RatFunc k) F)).toAlgebra
@@ -638,7 +637,6 @@ theorem fractionRing_away_etale_isArtinian_isReduced : ∀ (B : Type) [CommRing 
   have : IsReduced A' := GlobalTheory.isReduced_algebra_of_smooth_of_isNoetherianRing B A'
   have : IsNoetherianRing (Localization.Away (algebraMap B A' f)) :=
     IsLocalization.isNoetherianRing (Submonoid.powers (algebraMap B A' f)) _ inferInstance
-  have : IsReduced (Localization.Away (algebraMap B A' f)) := inferInstance
   exact total_fractions_isArtinian_isReduced _
 
 end GlobalTheory

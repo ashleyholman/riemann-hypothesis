@@ -927,7 +927,6 @@ theorem isCpl_props {O R : Type} [CommRing O] [IsLocalRing O] [IsNoetherianRing 
         ∃ ψ : R →+* V, IsLocalHom ψ ∧ ψ.comp j = φ := by
   obtain ⟨e, he⟩ := hj
   have hj : j = e.toRingHom.comp (algebraMap O _) := RingHom.ext fun a => (he a).symm
-  have hl : IsLocalHom (algebraMap O (AdicCompletion (maximalIdeal O) O)) := inferInstance
   refine ⟨?_, ?_, fun V _ _ hV φ hφ => ?_⟩
   · rw [hj]
     exact e.injective.comp (AdicCompletion.of_injective (maximalIdeal O) O)

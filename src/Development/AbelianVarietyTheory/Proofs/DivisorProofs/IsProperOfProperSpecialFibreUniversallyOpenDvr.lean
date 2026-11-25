@@ -215,7 +215,6 @@ theorem isClosed_image_closure : ∀ (O : Type) [CommRing O] [IsDomain O] [IsDis
     let I := Scheme.IdealSheafData.vanishingIdeal (⟨closure (q '' C), hZc⟩ : TopologicalSpace.Closeds P)
     have hrange : Set.range I.subschemeι = closure (q '' C) := by
       rw [Scheme.IdealSheafData.range_subschemeι, Scheme.IdealSheafData.coe_support_vanishingIdeal]; rfl
-    haveI : IsProper (I.subschemeι ≫ s) := inferInstance
     have hne : Nonempty I.subscheme := by
       obtain ⟨c, hc⟩ := hC.nonempty
       have : q c ∈ Set.range I.subschemeι := by rw [hrange]; exact subset_closure ⟨c, hc, rfl⟩
@@ -245,7 +244,6 @@ theorem isClosed_image_closure : ∀ (O : Type) [CommRing O] [IsDomain O] [IsDis
     let res := Spec.map (CommRingCat.ofHom (IsLocalRing.residue O))
     haveI : IsClosedImmersion res :=
       IsClosedImmersion.spec_of_surjective _ IsLocalRing.residue_surjective
-    haveI : IsProper (pullback.snd (q ≫ s) res ≫ res) := inferInstance
     haveI : IsProper ((pullback.fst (q ≫ s) res ≫ q) ≫ s) := by
       rw [Category.assoc, pullback.condition]; infer_instance
     haveI : IsProper (pullback.fst (q ≫ s) res ≫ q) := IsProper.of_comp _ s
@@ -423,8 +421,6 @@ theorem isProper_of_specialFibre : ∀ (W : Type) [CommRing W] [IsDomain W] [IsD
     rw [HasRingHomProperty.Spec_iff (P := @Flat)]
     exact RingHom.flat_algebraMap_iff.2 inferInstance
   have gsurj : Surjective g := ⟨PrimeSpectrum.comap_surjective_of_faithfullyFlat (A := W) (B := O)⟩
-  haveI : IrreducibleSpace (Spec (CommRingCat.of O)) := inferInstance
-  haveI : IrreducibleSpace ↥(pullback f g) := inferInstance
 
   let k := CommRingCat.ofHom (IsLocalRing.residue W)
   let kO := CommRingCat.ofHom (IsLocalRing.residue O)

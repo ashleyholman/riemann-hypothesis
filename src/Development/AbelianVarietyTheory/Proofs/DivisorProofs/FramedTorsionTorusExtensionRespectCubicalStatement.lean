@@ -779,7 +779,6 @@ theorem ext_mul : ∀ (V : Type) [CommRing V] [IsDomain V] [IsLocalRing V], IsCN
   intro V _ _ _ _ D A G _ _ _ U x x' h h' h'' hx hx' hx''
   have := U.gen_hom
   have := U.separated
-  have hmon : IsMonHom U.gen.inv := inferInstance
   have hpb := isGrpPullback_pullback G (jK V)
   have e₁ := hpb.2 (TFK (R := V) (FractionRing V)) (x ≫ U.gen.inv) (x' ≫ U.gen.inv)
     (toUnit (TF (R := V) (FractionRing V)) ≫ h) (toUnit (TF (R := V) (FractionRing V)) ≫ h')

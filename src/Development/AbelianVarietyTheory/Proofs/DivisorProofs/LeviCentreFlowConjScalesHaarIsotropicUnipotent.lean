@@ -945,11 +945,6 @@ theorem modulus_conj_flow : ∀ (F E : Type) [Field F] [NumberField F] [Field E]
   haveI : LocallyCompactSpace (unipRad σ J X) := GlobalTheory.UAut.locallyCompact_unipRad h hJ hff.1
   haveI i1 : SecondCountableTopology (skewA σ (r + 1)) :=
     TopologicalSpace.Subtype.secondCountableTopology (skewA σ (r + 1) : Set (Matrix (Fin (r + 1)) (Fin (r + 1)) (AF F ⊗[F] E)))
-  have i2 : BorelSpace (skewA σ (r + 1)) := inferInstance
-  have i3 : T2Space (skewA σ (r + 1)) := inferInstance
-  have i4 : SecondCountableTopology (unipRad σ J X) := inferInstance
-  have i5 : BorelSpace (unipRad σ J X) := inferInstance
-  have i6 : T2Space (unipRad σ J X) := inferInstance
 
   have cTadd : ∀ {p q : ℕ} (M N : Matrix (Fin p) (Fin q) (AF F ⊗[F] E)),
       cT (sigR (AF F) σ) (M + N) = cT (sigR (AF F) σ) M + cT (sigR (AF F) σ) N := fun M N => Matrix.ext fun i k => by simp [cT]

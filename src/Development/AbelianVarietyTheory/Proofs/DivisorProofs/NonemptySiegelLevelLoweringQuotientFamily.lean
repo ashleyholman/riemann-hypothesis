@@ -387,7 +387,6 @@ theorem nonempty_sQuot : ∀ (h n N : ℕ) (F : SFam h N (zetaAway N)) (j : cycA
   have hsm : SmoothOfRelativeDimension (h * (h + 1) / 2) (π ≫ sY) := by
     rw [hπ]
     haveI := F.smooth
-    haveI : SmoothOfRelativeDimension 0 (spMap j) := inferInstance
     have := smoothOfRelativeDimension_comp (h * (h + 1) / 2) 0 F.s (spMap j)
     rwa [Nat.add_zero] at this
   have hsY : SmoothOfRelativeDimension (h * (h + 1) / 2) sY :=

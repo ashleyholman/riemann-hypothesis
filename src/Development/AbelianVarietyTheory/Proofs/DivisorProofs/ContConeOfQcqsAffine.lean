@@ -312,7 +312,6 @@ theorem contCone_of_qcqs_affine : ∀ (R : Type) [CommRing R] (F : Shv R), Finit
   have hcore := _root_.GlobalTheory.contCone_bc_of_qcqs R F hF (G.obj i₀) (Over i₀) (Over.post G) ((Over.conePost G i₀).obj c) hc'
     (fun j => haff _ _ j.hom) (G.obj i₀) (𝟙 _)
   have hb := _root_.GlobalTheory.EtC.eqv_basic R F
-  haveI : IsIso (sch.map (𝟙 (G.obj i₀))) := inferInstance
   apply _root_.GlobalTheory.EtC.contCone_of_whisker R F I (Over i₀) (Over.forget i₀) (G ⋙ sch) (sch.mapCone c)
   · intro i
     exact ⟨Over.mk (IsCofiltered.minToRight i i₀), ⟨IsCofiltered.minToLeft i i₀⟩⟩

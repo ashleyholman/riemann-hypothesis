@@ -1012,7 +1012,6 @@ namespace GlobalTheory.Mum.LocalInj
 theorem base_to_stalk_injective : ∀ (R' : Type) [CommRing R'] [IsDomain R'] [IsLocalRing R'], AdmBase R' (maximalIdeal R') → ∀ (G₁ : Over (Sp R')) [GrpObj G₁] [IsCommMonObj G₁], IsSemiAbelian G₁ → ∀ x : G₁.left, Function.Injective ((G₁.left.presheaf.germ ⊤ x trivial).hom.comp ((G₁.hom.appTop).hom.comp (Scheme.ΓSpecIso (CommRingCat.of R')).inv.hom)) := by
   intro R' _ _ _ _ G₁ _ _ hG x
   haveI : Smooth G₁.hom := hG.smooth
-  haveI : Flat G₁.hom := inferInstance
 
   have hst : Function.Injective (G₁.hom.stalkMap x).hom := by
     have h := Flat.stalkMap G₁.hom x

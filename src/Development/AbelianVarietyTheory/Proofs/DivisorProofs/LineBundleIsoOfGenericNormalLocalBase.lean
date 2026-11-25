@@ -29,7 +29,6 @@ theorem lbIso_of_generic_local : ∀ (R : Type) [CommRing R] [IsDomain R] [IsLoc
     rw [HasRingHomProperty.Spec_iff (P := @Flat)]
     exact RingHom.flat_algebraMap_iff.2 (IsLocalization.flat _ (nonZeroDivisors R))
   have : IsDominant (jK R) := ReciprocityTheory.ChartRestriction.G.DVR.isDominant_jK
-  have : QuasiCompact (jK R) := inferInstance
   refine (GlobalTheory.CechPic.cls_eq_iff hL hL').1 (GlobalTheory.ZH.EndoExtend.pic_ext (jK R) hn H e he ?_ ?_)
   · exact (GlobalTheory.DualOpen.pic_sp_local_eq_zero R _).trans
       (GlobalTheory.DualOpen.pic_sp_local_eq_zero R _).symm

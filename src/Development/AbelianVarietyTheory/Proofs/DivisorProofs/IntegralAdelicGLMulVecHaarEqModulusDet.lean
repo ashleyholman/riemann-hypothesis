@@ -128,7 +128,6 @@ theorem GlobalTheory.JacSubst.integral_mulVec : ∀ (F E : Type) [Field F] [Numb
     inferInstanceAs (SecondCountableTopology (Fin d → Fin 1 → AE F E))
   letI : MeasurableSpace (Matrix (Fin d) (Fin 1) (AE F E)) := borel _
   haveI : BorelSpace (Matrix (Fin d) (Fin 1) (AE F E)) := ⟨rfl⟩
-  haveI : μ.Regular := inferInstance
   have hdt : IsUnit (t : Matrix (Fin d) (Fin d) (AE F E)).det := by
     rw [← Matrix.GeneralLinearGroup.val_det_apply]; exact Units.isUnit _
   let φ := mulVecCE (t : Matrix (Fin d) (Fin d) (AE F E)) hdt

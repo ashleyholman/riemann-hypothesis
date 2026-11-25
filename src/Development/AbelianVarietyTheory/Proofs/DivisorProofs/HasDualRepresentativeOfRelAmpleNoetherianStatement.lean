@@ -360,8 +360,6 @@ theorem finite_flat_surjective_of_openCover : ∀ (X T₀ : Scheme.{0}) (p : X �
     obtain ⟨k, hk⟩ := exists_isPullback_of_factor_iff (m i) b (a i) (hrep i)
     exact ⟨k, hk.paste_vert (hpb i)⟩
   choose k hk using H
-  have hfin : IsZariskiLocalAtTarget @IsFinite.{0} :=
-    inferInstance
   have hflat : IsZariskiLocalAtTarget @Flat.{0} :=
     HasRingHomProperty.instIsZariskiLocalAtTarget (P := @Flat.{0})
   exact ⟨of_isPullback_openCover @IsFinite _ V hV A k _ hk (fun i => (hP i).1),

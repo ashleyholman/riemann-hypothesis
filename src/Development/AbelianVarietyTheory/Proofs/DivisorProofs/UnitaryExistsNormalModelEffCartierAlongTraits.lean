@@ -1382,7 +1382,6 @@ theorem lift_i_of_closedPoint (C : UCompact Xo c) (V : Type) [CommRing V] [IsLoc
   haveI := C.ded
   haveI := C.iF_open
   haveI : IsPreimmersion (spMap C.b) := IsPreimmersion.of_isLocalization (nonZeroDivisors C.o)
-  haveI : IsPreimmersion (pullback.fst C.z (spMap C.b)) := inferInstance
   have hinj : Function.Injective (pullback.fst C.z (spMap C.b)) :=
     (pullback.fst C.z (spMap C.b)).isEmbedding.injective
   obtain ⟨x, hx⟩ := hg

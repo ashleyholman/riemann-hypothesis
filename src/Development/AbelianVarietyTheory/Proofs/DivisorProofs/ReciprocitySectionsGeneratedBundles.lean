@@ -817,7 +817,6 @@ theorem compactSpace_of_projOver {R : Type} [CommRing R] {X : Scheme.{0}} {f : X
     (h : IsProjOver f) : CompactSpace X := by
   obtain ⟨m, i, hi, rfl⟩ := h
   have := isProper_str R m
-  have : IsProper (i ≫ PSpace.str R m) := inferInstance
   exact QuasiCompact.compactSpace_of_compactSpace (i ≫ PSpace.str R m)
 
 theorem int_sub_half {k : Type} [CommRing k] {X : Scheme.{0}} {p : X ⟶ Sp k} {σ : k →+* ℂ} {D : ℕ}

@@ -24,8 +24,6 @@ theorem exists_extension {A B K : Type} [CommRing A] [CommRing B] [Field K] [IsA
   letI : Algebra (A ⧸ RingHom.ker ev) K := (RingHom.kerLift ev).toAlgebra
   haveI : FaithfulSMul (A ⧸ RingHom.ker ev) K :=
     (faithfulSMul_iff_algebraMap_injective _ _).2 (RingHom.kerLift_injective ev)
-  haveI : Algebra.IsIntegral (A ⧸ RingHom.ker ev) (B ⧸ Q) := inferInstance
-  haveI : FaithfulSMul (A ⧸ RingHom.ker ev) (B ⧸ Q) := inferInstance
   haveI : Module.IsTorsionFree (A ⧸ RingHom.ker ev) (B ⧸ Q) :=
     Module.IsTorsionFree.of_smul_eq_zero fun r x h => by
       rw [Algebra.smul_def, mul_eq_zero] at h

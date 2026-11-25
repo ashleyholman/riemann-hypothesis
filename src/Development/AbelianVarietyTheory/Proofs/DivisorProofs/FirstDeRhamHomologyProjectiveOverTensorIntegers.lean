@@ -152,7 +152,6 @@ theorem baseChange_equiv :
   haveI : IsScalarTower (R ⊗[ℤ] O) (R' ⊗[ℤ] O) N := ⟨fun a x n => mul_smul (f a) x n⟩
   have hf : ∀ (r : R) (o : O), f (r ⊗ₜ o) = algebraMap R R' r ⊗ₜ o := fun r o => rfl
 
-  haveI : Module.FaithfullyFlat R R' := inferInstance
   haveI : IsScalarTower R (R ⊗[ℤ] O) (R' ⊗[ℤ] O) := IsScalarTower.of_algebraMap_eq (fun r => rfl)
   let l : R' →ₗ[R] R' ⊗[ℤ] O :=
     { toFun := fun r' => r' ⊗ₜ 1
@@ -360,7 +359,6 @@ theorem projective_of_baseChange (k K : Type) [Field k] [Field K] [Algebra k K] 
   set B := (Over.pullback (spMap (algebraMap k K))).obj A₀
   set b := OAct.pullback (spMap (algebraMap k K)) A₀ a
 
-  haveI : Module.Finite k (HdR A₀) := inferInstance
   letI := oModule a
   letI := oModule b
   haveI := smulComm a
@@ -803,7 +801,6 @@ theorem formallyUnramified_int_of_finite_field (K : Type) [Field K] [Finite K] :
   haveI : Fact p.Prime := CharP.char_is_prime_of_pos K p
   letI : Algebra (ZMod p) K := ZMod.algebra K p
   haveI : Module.Finite (ZMod p) K := Module.Finite.of_finite
-  haveI : Algebra.IsSeparable (ZMod p) K := inferInstance
   haveI : Algebra.FormallyUnramified (ZMod p) K := Algebra.FormallyUnramified.of_isSeparable _ _
   haveI : Algebra.FormallyUnramified ℤ (ZMod p) :=
     Algebra.FormallyUnramified.of_surjective (Algebra.ofId ℤ (ZMod p)) (ZMod.intCast_surjective)
@@ -811,7 +808,6 @@ theorem formallyUnramified_int_of_finite_field (K : Type) [Field K] [Finite K] :
 
 theorem formallyUnramified_int_of_finite_isReduced (A : Type) [CommRing A] [Finite A]
     [IsReduced A] : Algebra.FormallyUnramified ℤ A := by
-  haveI : IsArtinianRing A := inferInstance
   have h : Algebra.FormallyUnramified ℤ (∀ I : MaximalSpectrum A, A ⧸ I.asIdeal) := by
     rw [Algebra.FormallyUnramified.pi_iff]
     intro I
@@ -829,7 +825,6 @@ theorem isReduced_field_tensor_finite :
   haveI := formallyUnramified_int_of_finite_isReduced A
   haveI : Algebra.FormallyUnramified k (k ⊗[ℤ] A) := Algebra.FormallyUnramified.base_change k
   haveI : Module.Finite ℤ A := Module.Finite.of_finite
-  haveI : Algebra.EssFiniteType k (k ⊗[ℤ] A) := inferInstance
   exact Algebra.FormallyUnramified.isReduced_of_field k _
 
 end GlobalTheory.FinRedTensor

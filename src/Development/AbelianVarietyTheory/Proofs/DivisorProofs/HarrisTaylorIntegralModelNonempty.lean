@@ -474,8 +474,6 @@ theorem isGrpPullback_comp_spread_to_subring :
   intro g n B _ ζ S _ R₀ s₀ d₀ Y sY u h₀ ψ sE e j cart hj hjψ
   haveI := d₀.ab.proper
   haveI := u.ab.smooth
-  haveI hqc : QuasiCompact (pullback.fst d₀.A.hom d₀.A.hom ≫ d₀.A.hom) := inferInstance
-  haveI hlft : LocallyOfFiniteType (pullback.snd u.A.hom h₀) := inferInstance
   set f₀ : pullback d₀.A.hom d₀.A.hom ⟶ Sp R₀ := pullback.fst d₀.A.hom d₀.A.hom ≫ d₀.A.hom with hf₀
   have hμd : (μ[d₀.A]).left ≫ d₀.A.hom = f₀ := Over.w μ[d₀.A]
   have hμu : (μ[u.A]).left ≫ u.A.hom = pullback.fst u.A.hom u.A.hom ≫ u.A.hom := Over.w μ[u.A]
@@ -890,7 +888,6 @@ theorem classified_basicOpen : ∀ (g n : ℕ), 1 ≤ g → 3 ≤ n → Odd n �
   obtain ⟨f₀, hf₀s, hf₀⟩ := H c₀ hc₀
   haveI := F.smooth
   haveI : Smooth F.s := SmoothOfRelativeDimension.smooth (g * (g + 1) / 2) F.s
-  haveI : LocallyOfFinitePresentation F.s := inferInstance
   obtain ⟨r₀, hr₀, ι₀, f₁, hι₀, hf₁s, hf₁⟩ := _root_.GlobalTheory.SpreadPoint.exists_away (cycAway n) F.X F.s R β 𝔭 f₀ hf₀s
   obtain ⟨r, hr, κ, d', hκ, hd'c, hd'u⟩ := _root_.GlobalTheory.SiegelSpreadLocal.exists_spread_of_pullbacks g n (cycAway n) (zetaAway n) R β 𝔭 c F.X F.s F.univ r₀ ι₀ f₁ c₀
     hr₀ hι₀ hf₁s hc₀ (hf₁ ▸ hf₀)

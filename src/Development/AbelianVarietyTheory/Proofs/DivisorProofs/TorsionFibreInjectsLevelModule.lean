@@ -1263,7 +1263,6 @@ theorem valAt_mul : ∀ {X' : Scheme.{0}} [IsIntegral X'] [GlobalTheory.IsNormal
     rw [← hιT, ← Category.assoc, hQT]; exact Over.w Q
   let h : pullback (torsion G n).hom (torsion G n).hom ⟶ X' :=
     pullback.fst (torsion G n).hom (torsion G n).hom ≫ (torsion G n).hom
-  haveI : Etale h := inferInstance
   let pq : Sp K ⟶ pullback (torsion G n).hom (torsion G n).hom := pullback.lift PT QT (hPt.trans hQt.symm)
   haveI : IsDomain ((pullback (torsion G n).hom (torsion G n).hom).presheaf.stalk (pq x)) :=
     isDomain_stalk_of_etale h (pq x)

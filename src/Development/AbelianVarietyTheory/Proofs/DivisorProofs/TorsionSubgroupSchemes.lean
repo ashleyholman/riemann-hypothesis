@@ -151,7 +151,6 @@ theorem exists_finiteEtale_killedBy : ∀ (p : ℕ) [Fact p.Prime] (D : GlobalTh
     intro a
     rw [← hactN, ← o.act.mul, ← o.act.mul, Nat.cast_comm]
   haveI : ∀ a, IsMonHom (o.act.act a) := o.act.hom
-  haveI : IsSeparated (torsion o.A n).hom := inferInstance
   have : Module.Finite ℤ D.O := D.finO
   have : IsNoetherian D.O D.O := isNoetherian_of_tower ℤ inferInstance
   obtain ⟨t, ht⟩ := IsNoetherian.noetherian (𝔟.map (algebraMap (𝓞 D.F) D.O))

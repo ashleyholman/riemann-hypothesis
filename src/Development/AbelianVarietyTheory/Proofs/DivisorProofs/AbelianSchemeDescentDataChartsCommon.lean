@@ -703,7 +703,6 @@ theorem setup_common : ∀ σ : Setup, σ.Common := by
     rw [HasRingHomProperty.Spec_iff (P := @Flat)]; exact fa
   haveI : Flat (spMap b) := by
     rw [HasRingHomProperty.Spec_iff (P := @Flat)]; exact fb
-  haveI : Flat (pullback.fst (σ.C x).G.hom (spMap a)) := inferInstance
   haveI : Flat (F.hom.left ≫ pullback.fst (σ.C x').G.hom (spMap b)) :=
     MorphismProperty.of_isPullback (P := @Flat) gb.1.flip inferInstance
   obtain ⟨θa, ha⟩ := @exists_ff _ ((Over.pullback (spMap a)).obj (σ.C x).G).left _ _

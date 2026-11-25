@@ -106,7 +106,6 @@ theorem hom_ext_points {K : Type} [Field K] {X Y : Over (Sp K)} (hX : IsFinite X
   letI : Algebra K F := c.hom.toAlgebra
   obtain ⟨σ, x', e⟩ := exists_factor X hX F _ hc.symm
   have : Epi i := by
-    have : Flat i := inferInstance
     have : Surjective i :=
       ⟨fun _ => ⟨(default : PrimeSpectrum F), Subsingleton.elim (α := PrimeSpectrum (X.left.residueField z)) _ _⟩⟩
     exact Flat.epi_of_flat_of_surjective _
@@ -162,7 +161,6 @@ theorem pow_eq_one_of_points : ∀ (K : Type) [Field K] (A C : AbVar K) (f : A �
     haveI := hZe
     haveI : FormallyUnramified Z.hom := by infer_instance
     haveI : LocallyOfFinitePresentation Z.hom := by infer_instance
-    haveI : IsClosedImmersion (pullback.fst a (η[C.X]).left) := inferInstance
     haveI : FormallyUnramified (pullback.fst a (η[C.X]).left) := inferInstance
     haveI : FormallyUnramified H.hom := by
       show FormallyUnramified (pullback.fst a (η[C.X]).left ≫ Z.hom)

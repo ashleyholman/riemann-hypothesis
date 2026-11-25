@@ -15,7 +15,6 @@ open scoped CategoryTheory.Obj
 namespace GlobalTheory.Mum
 
 theorem isIntegral_image_of_field {K : Type} [Field K] {S : Scheme.{0}} (g : Sp K ⟶ S) : IsIntegral g.image := by
-  have : QuasiCompact g := inferInstance
   have := GlobalTheory.isSchemeTheoreticallyDominant_toImage g
   have : IsReduced g.image := IsSchemeTheoreticallyDominant.isReduced g.toImage
   have hi : IsIrreducible (Set.range g.toImage) := by

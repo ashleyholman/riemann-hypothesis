@@ -14,7 +14,6 @@ theorem grp_factor_eq_of_conj : ∀ (p : ℕ) [Fact p.Prime] (G : HTGroup p) (β
     (y : G.Cˣ × ℚˣ).2 = (y₀ : G.Cˣ × ℚˣ).2 := by
   intro p _ G β y y₀ c hyc
   haveI : Module.Finite ℚ G.C := Module.Finite.trans G.F G.C
-  haveI : Nontrivial G.C := inferInstance
   set d : G.C → ℚ := fun a => LinearMap.det (LinearMap.mulLeft ℚ a) with hd
   have dmul : ∀ a b, d (a * b) = d a * d b := by
     intro a b; simp only [hd, LinearMap.mulLeft_mul, LinearMap.det_comp]

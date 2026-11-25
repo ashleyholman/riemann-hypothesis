@@ -488,7 +488,6 @@ theorem exists_section_mod (T O : Type) [CommRing T] [IsLocalRing T] [HenselianL
   set π : T →+* O ⧸ I := (Ideal.Quotient.mk I).comp (algebraMap T O) with hπ
   haveI : IsLocalHom (Ideal.Quotient.mk I) := isLocalHom_of_le_jacobson_bot I
     (by rw [IsLocalRing.jacobson_eq_maximalIdeal ⊥ bot_ne_top]; exact le_maximalIdeal hI)
-  haveI : IsLocalHom π := inferInstance
   have het : (algebraMap A B).Etale := RingHom.etale_algebraMap.mpr inferInstance
   obtain ⟨ψ, hψ1, hψ2⟩ := _root_.GlobalTheory.etale_hom_to_field_lands_in_algClosed_subfield A B (ResidueField T) (ResidueField (O ⧸ I))
     ((residue T).comp i) (ResidueField.map π) ((residue (O ⧸ I)).comp b)
@@ -596,8 +595,6 @@ theorem fibre_retract : ∀ (T O : Type) [CommRing T] [IsDomain T] [IsLocalRing 
     have h2 : IsUnit (s b') := h1 ▸ hx.mul (hunit y)
     intro hb'
     exact (IsLocalRing.mem_maximalIdeal _).mp hb' h2⟩
-  haveI : Algebra.QuasiFinite A B := inferInstance
-  haveI : Algebra.QuasiFinite A A₁ := inferInstance
   have hinj : Function.Injective i₁ := by
     have h1 : (RingHom.ker i₁).comap f = ⊥ := by
       rw [RingHom.comap_ker, hcomp]; exact (RingHom.injective_iff_ker_eq_bot i).mp hi

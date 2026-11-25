@@ -772,7 +772,6 @@ theorem gw_eq_of_rigidified : ∀ (R' : Type) [CommRing R'] [IsDomain R'] [IsLoc
     rw [map_one]
     exact (gm_pull (𝟙 _) (eSec G') x ⊤ trivial u).trans (mul_eq_right.1 q)
   have := U'.smooth
-  have : Flat G'.hom := inferInstance
   have : IsDominant (jK R') := by
     rw [isDominant_iff]
     show DenseRange (PrimeSpectrum.comap (algebraMap R' (FractionRing R')))

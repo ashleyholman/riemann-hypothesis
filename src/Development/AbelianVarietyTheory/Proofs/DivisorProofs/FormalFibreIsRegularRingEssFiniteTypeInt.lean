@@ -474,7 +474,6 @@ theorem isRegularRing_adicCompletion_tensor_of_mvPolynomial :
   let S₀ := MvPolynomial (Fin n) Λ
   let R := Localization.AtPrime P
   let B := AdicCompletion (maximalIdeal R) R
-  haveI : IsRegularLocalRing R := inferInstance
   haveI : IsRegularLocalRing B := GlobalTheory.RegularCompletion.isRegularLocalRing_adicCompletion R
   haveI : IsRegularRing B := GlobalTheory.isRegularRing_of_isRegularLocalRing B
   letI : Algebra S₀ K := ((algebraMap R K).comp (algebraMap S₀ R)).toAlgebra
@@ -528,7 +527,6 @@ theorem formalFibre_isRegularRing_of_essFiniteType :
   haveI : IsNoetherianRing R₀ := IsLocalization.isNoetherianRing P.primeCompl _ inferInstance
   have hsurj : Function.Surjective (algebraMap R₀ R) := hφ
   haveI : Algebra.FiniteType R₀ R := Algebra.FiniteType.of_surjective (Algebra.ofId R₀ R) hsurj
-  haveI : Algebra.EssFiniteType R₀ R := inferInstance
   haveI : Algebra.EssFiniteType R₀ K := Algebra.EssFiniteType.comp R₀ R K
   have hK₀ : ∀ a : Λ, algebraMap R₀ K (algebraMap Λ R₀ a) = 0 → a = 0 := by
     intro a ha

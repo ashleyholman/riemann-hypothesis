@@ -38,7 +38,6 @@ theorem isDomain_tensor_complex : ∀ (K κ : Type) [Field K] [Field κ] [Algebr
   classical
   intro K κ _ _ _ _
   suffices h : IsDomain (κ ⊗[ℂ] K) from (Algebra.TensorProduct.comm ℂ K κ).toMulEquiv.isDomain
-  haveI : Nontrivial (κ ⊗[ℂ] K) := inferInstance
   refine @NoZeroDivisors.to_isDomain _ _ _ ⟨fun {x y} hxy => ?_⟩
   obtain ⟨S₁, h₁⟩ := exists_finset_lift (k := ℂ) x
   obtain ⟨S₂, h₂⟩ := exists_finset_lift (k := ℂ) y
@@ -46,7 +45,6 @@ theorem isDomain_tensor_complex : ∀ (K κ : Type) [Field K] [Field κ] [Algebr
   obtain ⟨x', hx'⟩ := h₁ (S₁ ∪ S₂) Finset.subset_union_left
   obtain ⟨y', hy'⟩ := h₂ (S₁ ∪ S₂) Finset.subset_union_right
   haveI : Algebra.FiniteType ℂ A := ⟨(Subalgebra.fg_top _).mpr (Subalgebra.fg_adjoin_finset _)⟩
-  haveI : IsDomain A := inferInstance
   haveI : IsDomain (κ ⊗[ℂ] A) := GlobalTheory.GeomComp.isDomain_tensor_of_isAlgClosed ℂ A κ
   let φ := Algebra.TensorProduct.map (AlgHom.id ℂ κ) A.val
   have hφ : Function.Injective φ :=
