@@ -226,14 +226,6 @@ lemma nablaCombination_transpose_mulVec (v : ColumnFilling n κ → R) :
   -- The transposed matrix sends `v` to the combination of the rows with coefficients `v`.
   simp only [mulVec_transpose, vecMul_eq_sum, map_sum, map_smul, nablaCombination_fillingMatrixOver]
 
-/-- For a family `z` of square matrices, `nablaCombination`, which takes coordinates to the
-combination of the standard basis, sends row `i` of the Schur matrix `schur κ z` to the basis
-polynomial `nablaBasis R n κ i` with `z y` substituted for the variables `y`. -/
-lemma nablaCombination_schur_row (z : ∀ τ : Φ, Matrix (n τ) (n τ) R) (i : WeylIndexFamily n κ) :
-    nablaCombination κ (schur κ z i) = rowSubst z (nablaBasis R n κ i) := by
-  -- For equal ranks no power of a determinant occurs in the expansion.
-  simp [← sum_schur_smul_nablaBasis FitsRanks.refl z i, Fintype.linearCombination_apply, detPow]
-
 /-- For a family `z` of square matrices, the embedding `fillingMatrixOver` of the Weyl module into
 tensors intertwines the Schur matrix `schur κ z`, the action of `z` on the Weyl module, with
 `minorsMatrix κ z`, the action of `z` on tensors by products of minors. -/

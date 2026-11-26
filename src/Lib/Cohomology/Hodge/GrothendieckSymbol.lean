@@ -773,18 +773,6 @@ lemma symbolClass_succ :
         (by exact fun _ _ ↦ rfl)).symm
     _ = _ := congr($(id_pull _) _ _)
 
-/-- The product formula in natural form: restricted to the pairs (v, x) with v or x unimodular,
-the cup product of [dT/T] in degrees d and 1 is the pull-back of [dT/T] in degree d + 1 along
-the map (v, x) ↦ (v, x) ∈ 𝔸^(d+1). -/
-lemma map_cup_symbolClass_eq_map_symbolClass :
-    HodgeH.map (relFreeAb.prod (unimodular (d := d)) (unimodular (d := 1)))
-        (cup exteriorAlg.mulPairing (symbolClass (k := k) (d := d)) symbolClass
-          (add_comm 1 d) :) =
-      HodgeH.map (relFreeAb.map (affineSpace.snoc k d) (unimodularSup_le_preimage_snoc k d))
-        symbolClass := by
-  obtain ⟨_, h_eq⟩ := symbolClass_succ k d
-  exact h_eq
-
 end
 
 end GrothendieckSymbol
