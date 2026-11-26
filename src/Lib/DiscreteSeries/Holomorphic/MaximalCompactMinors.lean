@@ -186,14 +186,6 @@ theorem blockDiagPart_mul_right {x : Matrix n n ℂ} (hx : x ∈ blockDiagAlg ε
   simp only [blockDiagPart_eq, Matrix.mul_assoc, (mem_blockDiagAlg_iff_commute.mp hx).eq,
     smul_mul_assoc, add_mul]
 
-/-- Taking the block diagonal part commutes with left and with right multiplication by a block
-diagonal matrix `x`. -/
-@[simp]
-theorem blockDiagPart_mul {x : Matrix n n ℂ} (hx : x ∈ blockDiagAlg ε) (y : Matrix n n ℂ) :
-    blockDiagPart ε (x * y) = x * blockDiagPart ε y ∧
-    blockDiagPart ε (y * x) = blockDiagPart ε y * x :=
-  ⟨blockDiagPart_mul_left hx y, blockDiagPart_mul_right hx y⟩
-
 @[simp]
 theorem blockDiagAlg.inv_mem {x : Matrix n n ℂ} (hx : x ∈ blockDiagAlg ε) :
     x⁻¹ ∈ blockDiagAlg ε := by

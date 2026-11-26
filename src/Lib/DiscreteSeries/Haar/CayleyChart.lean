@@ -387,12 +387,6 @@ lemma volU_pos (j : ℕ) : 0 < volU j := by
   unfold volU
   positivity
 
-/-- For J = 1 the denominator 1 - (`New.skewOfReal` y) / 2 of the Cayley chart is invertible for
-every y, because its hermitian part is the identity. -/
-@[simp]
-lemma det_cayleyDenom_one_ne_zero : (cayleyDenom 1 y).det ≠ 0 :=
-  IsAccretive.det_ne_zero (by norm_num [IsAccretive, PosDef.ofNat, cayleyDenom])
-
 section
 
 variable {J J' y} [IsHermitianInvolution J']
